@@ -1,0 +1,8 @@
+{
+  "*.css": [
+    "prettier --write"
+  ],
+  "*.{js,vue}": [
+    "prettier --write"
+  ]
+}

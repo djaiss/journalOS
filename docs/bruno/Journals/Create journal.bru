@@ -1,0 +1,23 @@
+meta {
+  name: Create journal
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://{{URL}}/journals?name=Personal
+  body: none
+  auth: bearer
+}
+
+query {
+  name: Personal
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
