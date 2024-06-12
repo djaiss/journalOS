@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Organization;
+namespace Tests\Feature\Api;
 
 use App\Models\Journal;
 use App\Models\User;
@@ -20,6 +20,7 @@ class JournalControllerTest extends TestCase
 
         $response = $this->json('POST', '/api/journals', [
             'name' => 'New journal',
+            'description' => 'This is a new journal',
         ]);
 
         $response->assertStatus(201);
@@ -31,6 +32,7 @@ class JournalControllerTest extends TestCase
                 'id' => $journal->id,
                 'object' => 'journal',
                 'name' => 'New journal',
+                'description' => 'This is a new journal',
             ],
             $response->json()
         );
@@ -45,10 +47,12 @@ class JournalControllerTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
             'name' => 'Old journal',
+            'description' => 'This is an old journal',
         ]);
 
         $response = $this->json('PUT', '/api/journals/' . $journal->id, [
             'name' => 'New journal',
+            'description' => 'This is a new journal',
         ]);
 
         $response->assertStatus(200);
@@ -58,6 +62,7 @@ class JournalControllerTest extends TestCase
                 'id' => $journal->id,
                 'object' => 'journal',
                 'name' => 'New journal',
+                'description' => 'This is a new journal',
             ],
             $response->json()
         );
@@ -75,6 +80,7 @@ class JournalControllerTest extends TestCase
 
         $response = $this->json('PUT', '/api/journals/' . $journal->id, [
             'name' => 'New journal',
+            'description' => 'This is a new journal',
         ]);
 
         $response->assertStatus(401);
@@ -124,9 +130,11 @@ class JournalControllerTest extends TestCase
         $user = User::factory()->create();
         $journal = $user->journals()->create([
             'name' => 'New journal',
+            'description' => 'This is a new journal',
         ]);
         $secondJournal = $user->journals()->create([
             'name' => 'Old journal',
+            'description' => 'This is an old journal',
         ]);
         Sanctum::actingAs($user);
 
@@ -141,11 +149,13 @@ class JournalControllerTest extends TestCase
                     'id' => $journal->id,
                     'object' => 'journal',
                     'name' => 'New journal',
+                    'description' => 'This is a new journal',
                 ],
                 1 => [
                     'id' => $secondJournal->id,
                     'object' => 'journal',
                     'name' => 'Old journal',
+                    'description' => 'This is an old journal',
                 ],
             ]
         );

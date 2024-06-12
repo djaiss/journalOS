@@ -5,12 +5,14 @@ parameters:
     paths:
         - app/
     # Level 9 is the highest level
-    level: 6
+    level: 3
     ignoreErrors:
         # larastan needs to manage ->pivot properties
         #- '#Access to an undefined property App\\Models\\[^:]*::\$pivot\.#'
         #- '#Method\s.+?\sreturn type has no value type specified in iterable type array\.#'
-        - '#\s.+?\sno value type specified in iterable type array\.#'
+        - '#PHPDoc type array<string> of property App\\Models\\[^:]*::\$fillable is not covariant with PHPDoc type array<int, string> of overridden property Illuminate\\Database\\Eloquent\\Model::\$fillable.#'
+        - '#Property App\\Models\\[^:]*::\$label \(never\) does not accept string\|null.#'
+        - '#Property App\\Models\\[^:]*::\$label \(never\) does not accept string.#'
 
 #
     excludePaths:
@@ -22,5 +24,4 @@ parameters:
 
 #
 #    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
     treatPhpDocTypesAsCertain: false

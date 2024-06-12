@@ -16,13 +16,24 @@ class Journal extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'description',
     ];
 
+    /**
+     * Get the user that owns the journal.
+     *
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the posts for the journal.
+     *
+     * @return HasMany
+     */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);

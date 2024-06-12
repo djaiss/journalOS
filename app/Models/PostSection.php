@@ -24,6 +24,11 @@ class PostSection extends Model
         'content',
     ];
 
+    /**
+     * Get the post section's post.
+     *
+     * @return BelongsTo
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);

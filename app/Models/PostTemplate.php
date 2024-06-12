@@ -36,11 +36,21 @@ class PostTemplate extends Model
         'can_be_deleted' => 'boolean',
     ];
 
+    /**
+     * Get the post template's user.
+     *
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the post template's post template sections.
+     *
+     * @return HasMany
+     */
     public function postTemplateSections(): HasMany
     {
         return $this->hasMany(PostTemplateSection::class);

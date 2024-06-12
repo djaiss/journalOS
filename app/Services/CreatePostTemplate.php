@@ -11,16 +11,21 @@ class CreatePostTemplate extends BaseService
     public function __construct(
         public ?string $label,
         public ?string $labelTranslationKey,
+        public ?int $position,
         public bool $canBeDeleted,
     ) {
     }
 
     public function execute(): PostTemplate
     {
-        // determine the new position of the template page
-        $newPosition = auth()->user()->postTemplates()
-            ->max('position');
-        $newPosition++;
+        if (! $this->position) {
+            // determine the new position of the template page
+            $newPosition = auth()->user()->postTemplates()
+                ->max('position');
+            $newPosition++;
+        } else {
+            $newPosition = $this->position;
+        }
 
         $this->postTemplate = PostTemplate::create([
             'user_id' => auth()->user()->id,

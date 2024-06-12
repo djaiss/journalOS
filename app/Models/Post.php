@@ -41,11 +41,21 @@ class Post extends Model
         'updated_at' => 'datetime',
     ];
 
+    /**
+     * Get the post's journal.
+     *
+     * @return BelongsTo
+     */
     public function journal(): BelongsTo
     {
         return $this->belongsTo(Journal::class);
     }
 
+    /**
+     * Get the post's sections.
+     *
+     * @return HasMany
+     */
     public function postSections(): HasMany
     {
         return $this->hasMany(PostSection::class);

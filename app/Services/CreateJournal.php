@@ -10,6 +10,7 @@ class CreateJournal extends BaseService
 
     public function __construct(
         public string $name,
+        public string $description = '',
     ) {
     }
 
@@ -25,6 +26,7 @@ class CreateJournal extends BaseService
         $this->journal = Journal::create([
             'user_id' => auth()->user()->id,
             'name' => $this->name,
+            'description' => $this->description,
         ]);
     }
 }

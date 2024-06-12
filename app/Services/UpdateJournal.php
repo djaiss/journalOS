@@ -10,6 +10,7 @@ class UpdateJournal extends BaseService
     public function __construct(
         public Journal $journal,
         public string $name,
+        public string $description = '',
     ) {
     }
 
@@ -31,6 +32,7 @@ class UpdateJournal extends BaseService
     private function update(): void
     {
         $this->journal->name = $this->name;
+        $this->journal->description = $this->description;
         $this->journal->save();
     }
 }

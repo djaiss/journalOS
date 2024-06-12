@@ -21,6 +21,7 @@ class CreatePostTemplateTest extends TestCase
         $postTemplate = (new CreatePostTemplate(
             label: 'Nice journal',
             labelTranslationKey: 'nice',
+            position: 1,
             canBeDeleted: false,
         ))->execute();
 

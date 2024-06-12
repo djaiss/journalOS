@@ -35,11 +35,21 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    /**
+     * Get the journals for the user.
+     *
+     * @return HasMany
+     */
     public function journals(): HasMany
     {
         return $this->hasMany(Journal::class);
     }
 
+    /**
+     * Get the post templates for the user.
+     *
+     * @return HasMany
+     */
     public function postTemplates(): HasMany
     {
         return $this->hasMany(PostTemplate::class);

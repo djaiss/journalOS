@@ -19,23 +19,32 @@ class JournalController extends Controller
      * Create a journal
      *
      * @bodyParam name string required The name of the journal. Max 255 characters. Example: New journal
+     * @bodyParam description string The description of the journal. Max 255 characters. Example: This is a new journal
      *
      * @response 201 {
      *  "id": 4,
      *  "object": "journal",
-     *  "label": "New journal",
+     *  "name": "New journal",
+     *  "description": "This is a new journal"
      * }
      */
     public function create(Request $request): JsonResponse
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
         $journal = (new CreateJournal(
-            name: $request->input('name'),
+            name: $validated['name'],
+            description: $validated['description'],
         ))->execute();
 
         return response()->json([
             'id' => $journal->id,
             'object' => 'journal',
             'name' => $journal->name,
+            'description' => $journal->description,
         ], 201);
     }
 
@@ -45,11 +54,13 @@ class JournalController extends Controller
      * @urlParam journal required The id of the journal. Example: 1
      *
      * @bodyParam name string required The name of the journal. Max 255 characters. Example: New journal
+     * @bodyParam description string The description of the journal. Max 255 characters. Example: This is a new journal
      *
      * @response 200 {
      *  "id": 4,
      *  "object": "journal",
-     *  "label": "New journal",
+     *  "name": "New journal",
+     *  "description": "This is a new journal"
      * }
      */
     public function update(Request $request, int $journalId): JsonResponse
@@ -57,15 +68,22 @@ class JournalController extends Controller
         $journal = Journal::where('user_id', auth()->user()->id)
             ->findOrFail($journalId);
 
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
         $journal = (new UpdateJournal(
             journal: $journal,
-            name: $request->input('name'),
+            name: $validated['name'],
+            description: $validated['description'],
         ))->execute();
 
         return response()->json([
             'id' => $journal->id,
             'object' => 'journal',
             'name' => $journal->name,
+            'description' => $journal->description,
         ], 200);
     }
 
@@ -75,7 +93,7 @@ class JournalController extends Controller
      * @urlParam journal required The id of the journal. Example: 1
      *
      * @response 200 {
-     *  "status": "success",
+     *  "status": "success"
      * }
      */
     public function destroy(Request $request, int $journalId): JsonResponse
@@ -101,11 +119,13 @@ class JournalController extends Controller
      * @response 200 [{
      *  "id": 4,
      *  "object": "journal",
-     *  "label": "New journal",
+     *  "name": "New journal",
+     *  "description": "This is a new journal"
      * }, {
      *  "id": 5,
      *  "object": "journal",
-     *  "label": "Old journal",
+     *  "name": "Old journal",
+     *  "description": "This is an old journal"
      * }]
      */
     public function index(): JsonResponse
@@ -117,6 +137,7 @@ class JournalController extends Controller
                 'id' => $journal->id,
                 'object' => 'journal',
                 'name' => $journal->name,
+                'description' => $journal->description,
             ]);
 
         return response()->json($journals, 200);

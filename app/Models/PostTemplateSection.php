@@ -35,6 +35,11 @@ class PostTemplateSection extends Model
         'can_be_deleted' => 'boolean',
     ];
 
+    /**
+     * Get the post template section's post template.
+     *
+     * @return BelongsTo
+     */
     public function postTemplate(): BelongsTo
     {
         return $this->belongsTo(PostTemplate::class);

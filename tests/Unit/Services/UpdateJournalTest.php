@@ -25,6 +25,7 @@ class UpdateJournalTest extends TestCase
         $journal = (new UpdateJournal(
             journal: $journal,
             name: 'this is the new name',
+            description: 'this is the new description',
         ))->execute();
 
         $this->assertInstanceOf(
@@ -51,6 +52,7 @@ class UpdateJournalTest extends TestCase
         (new UpdateJournal(
             journal: $journal,
             name: 'this is the new name',
+            description: 'this is the new description',
         ))->execute();
     }
 }

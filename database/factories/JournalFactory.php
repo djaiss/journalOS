@@ -20,6 +20,7 @@ class JournalFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => fake()->name(),
+            'description' => fake()->sentence(),
         ];
     }
 }
