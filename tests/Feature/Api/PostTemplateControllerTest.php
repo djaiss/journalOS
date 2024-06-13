@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api;
 
-use App\Models\Journal;
 use App\Models\PostTemplate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -51,7 +50,7 @@ class PostTemplateControllerTest extends TestCase
             'position' => 1,
         ]);
 
-        $response = $this->json('PUT', '/api/post-templates/' . $postTemplate->id, [
+        $response = $this->json('PUT', '/api/post-templates/'.$postTemplate->id, [
             'label' => 'Daily meditation updated',
             'position' => null,
         ]);
@@ -79,7 +78,7 @@ class PostTemplateControllerTest extends TestCase
             'label' => 'Daily meditation',
         ]);
 
-        $response = $this->json('PUT', '/api/post-templates/' . $postTemplate->id, [
+        $response = $this->json('PUT', '/api/post-templates/'.$postTemplate->id, [
             'label' => 'Daily meditation',
             'position' => null,
         ]);
@@ -97,7 +96,7 @@ class PostTemplateControllerTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $response = $this->json('DELETE', '/api/post-templates/' . $postTemplate->id);
+        $response = $this->json('DELETE', '/api/post-templates/'.$postTemplate->id);
 
         $response->assertStatus(200);
 
@@ -117,7 +116,7 @@ class PostTemplateControllerTest extends TestCase
 
         $postTemplate = PostTemplate::factory()->create();
 
-        $response = $this->json('DELETE', '/api/post-templates/' . $postTemplate->id);
+        $response = $this->json('DELETE', '/api/post-templates/'.$postTemplate->id);
 
         $response->assertStatus(401);
     }

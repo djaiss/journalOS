@@ -37,8 +37,6 @@ class PostTemplateSection extends Model
 
     /**
      * Get the post template section's post template.
-     *
-     * @return BelongsTo
      */
     public function postTemplate(): BelongsTo
     {

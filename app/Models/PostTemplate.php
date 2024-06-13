@@ -38,8 +38,6 @@ class PostTemplate extends Model
 
     /**
      * Get the post template's user.
-     *
-     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -48,8 +46,6 @@ class PostTemplate extends Model
 
     /**
      * Get the post template's post template sections.
-     *
-     * @return HasMany
      */
     public function postTemplateSections(): HasMany
     {

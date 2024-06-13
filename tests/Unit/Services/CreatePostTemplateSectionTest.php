@@ -26,6 +26,7 @@ class CreatePostTemplateSectionTest extends TestCase
             postTemplate: $postTemplate,
             label: 'Business awesome',
             labelTranslationKey: 'business_awesome',
+            position: 1,
             canBeDeleted: true,
         ))->execute();
 

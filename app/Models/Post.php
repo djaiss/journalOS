@@ -43,8 +43,6 @@ class Post extends Model
 
     /**
      * Get the post's journal.
-     *
-     * @return BelongsTo
      */
     public function journal(): BelongsTo
     {
@@ -53,8 +51,6 @@ class Post extends Model
 
     /**
      * Get the post's sections.
-     *
-     * @return HasMany
      */
     public function postSections(): HasMany
     {

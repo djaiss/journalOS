@@ -50,7 +50,7 @@ class JournalControllerTest extends TestCase
             'description' => 'This is an old journal',
         ]);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id, [
+        $response = $this->json('PUT', '/api/journals/'.$journal->id, [
             'name' => 'New journal',
             'description' => 'This is a new journal',
         ]);
@@ -78,7 +78,7 @@ class JournalControllerTest extends TestCase
             'name' => 'Old journal',
         ]);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id, [
+        $response = $this->json('PUT', '/api/journals/'.$journal->id, [
             'name' => 'New journal',
             'description' => 'This is a new journal',
         ]);
@@ -97,7 +97,7 @@ class JournalControllerTest extends TestCase
             'name' => 'Old journal',
         ]);
 
-        $response = $this->json('DELETE', '/api/journals/' . $journal->id);
+        $response = $this->json('DELETE', '/api/journals/'.$journal->id);
 
         $response->assertStatus(200);
 
@@ -119,7 +119,7 @@ class JournalControllerTest extends TestCase
             'name' => 'Old journal',
         ]);
 
-        $response = $this->json('DELETE', '/api/journals/' . $journal->id);
+        $response = $this->json('DELETE', '/api/journals/'.$journal->id);
 
         $response->assertStatus(401);
     }

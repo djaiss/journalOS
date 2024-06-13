@@ -18,6 +18,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property string $name
+ * @property string|null $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
@@ -28,6 +29,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Journal newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Journal query()
  * @method static \Illuminate\Database\Eloquent\Builder|Journal whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Journal whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Journal whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Journal whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Journal whereUpdatedAt($value)

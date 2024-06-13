@@ -110,6 +110,25 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-post-template-sections" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="post-template-sections">
+                    <a href="#post-template-sections">Post template sections</a>
+                </li>
+                                    <ul id="tocify-subheader-post-template-sections" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="post-template-sections-GETapi-post-templates--template--sections">
+                                <a href="#post-template-sections-GETapi-post-templates--template--sections">List all post template sections</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="post-template-sections-POSTapi-post-templates--template--sections">
+                                <a href="#post-template-sections-POSTapi-post-templates--template--sections">Create a post template section</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="post-template-sections-PUTapi-post-templates--template--sections--section-">
+                                <a href="#post-template-sections-PUTapi-post-templates--template--sections--section-">Update a post template section</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="post-template-sections-DELETEapi-post-templates--template--sections--section-">
+                                <a href="#post-template-sections-DELETEapi-post-templates--template--sections--section-">Delete a post template section</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
             </div>
 
     <ul class="toc-footer" id="toc-footer">
@@ -119,7 +138,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 12, 2024</li>
+        <li>Last updated: June 13, 2024</li>
     </ul>
 </div>
 
@@ -128,7 +147,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://journalos.test</code>
+    <strong>Base URL</strong>: <code>https://journalos.test</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -156,14 +175,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://journalos.test/api/me" \
+    --get "https://journalos.test/api/me" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/me"
+    "https://journalos.test/api/me"
 );
 
 const headers = {
@@ -179,7 +198,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/me';
+$url = 'https://journalos.test/api/me';
 $response = $client-&gt;get(
     $url,
     [
@@ -279,14 +298,14 @@ alphabetically.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://journalos.test/api/journals" \
+    --get "https://journalos.test/api/journals" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/journals"
+    "https://journalos.test/api/journals"
 );
 
 const headers = {
@@ -302,7 +321,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/journals';
+$url = 'https://journalos.test/api/journals';
 $response = $client-&gt;get(
     $url,
     [
@@ -406,7 +425,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://journalos.test/api/journals" \
+    "https://journalos.test/api/journals" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -418,7 +437,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/journals"
+    "https://journalos.test/api/journals"
 );
 
 const headers = {
@@ -440,7 +459,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/journals';
+$url = 'https://journalos.test/api/journals';
 $response = $client-&gt;post(
     $url,
     [
@@ -563,7 +582,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://journalos.test/api/journals/1" \
+    "https://journalos.test/api/journals/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -575,7 +594,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/journals/1"
+    "https://journalos.test/api/journals/1"
 );
 
 const headers = {
@@ -597,7 +616,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/journals/1';
+$url = 'https://journalos.test/api/journals/1';
 $response = $client-&gt;put(
     $url,
     [
@@ -732,14 +751,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://journalos.test/api/journals/1" \
+    "https://journalos.test/api/journals/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/journals/1"
+    "https://journalos.test/api/journals/1"
 );
 
 const headers = {
@@ -755,7 +774,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/journals/1';
+$url = 'https://journalos.test/api/journals/1';
 $response = $client-&gt;delete(
     $url,
     [
@@ -865,14 +884,14 @@ alphabetically.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://journalos.test/api/post-templates" \
+    --get "https://journalos.test/api/post-templates" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/post-templates"
+    "https://journalos.test/api/post-templates"
 );
 
 const headers = {
@@ -888,7 +907,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/post-templates';
+$url = 'https://journalos.test/api/post-templates';
 $response = $client-&gt;get(
     $url,
     [
@@ -989,7 +1008,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://journalos.test/api/post-templates" \
+    "https://journalos.test/api/post-templates" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1001,7 +1020,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/post-templates"
+    "https://journalos.test/api/post-templates"
 );
 
 const headers = {
@@ -1023,7 +1042,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/post-templates';
+$url = 'https://journalos.test/api/post-templates';
 $response = $client-&gt;post(
     $url,
     [
@@ -1146,7 +1165,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://journalos.test/api/post-templates/1" \
+    "https://journalos.test/api/post-templates/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1158,7 +1177,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/post-templates/1"
+    "https://journalos.test/api/post-templates/1"
 );
 
 const headers = {
@@ -1180,7 +1199,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/post-templates/1';
+$url = 'https://journalos.test/api/post-templates/1';
 $response = $client-&gt;put(
     $url,
     [
@@ -1315,14 +1334,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://journalos.test/api/post-templates/1" \
+    "https://journalos.test/api/post-templates/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://journalos.test/api/post-templates/1"
+    "https://journalos.test/api/post-templates/1"
 );
 
 const headers = {
@@ -1338,7 +1357,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://journalos.test/api/post-templates/1';
+$url = 'https://journalos.test/api/post-templates/1';
 $response = $client-&gt;delete(
     $url,
     [
@@ -1427,6 +1446,635 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="url">
     <br>
 <p>The id of the post template. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                <h1 id="post-template-sections">Post template sections</h1>
+
+    
+
+                                <h2 id="post-template-sections-GETapi-post-templates--template--sections">List all post template sections</h2>
+
+<p>
+</p>
+
+<p>This will list all the sections, sorted
+alphabetically.</p>
+
+<span id="example-requests-GETapi-post-templates--template--sections">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://journalos.test/api/post-templates/consequatur/sections" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://journalos.test/api/post-templates/consequatur/sections"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://journalos.test/api/post-templates/consequatur/sections';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-post-templates--template--sections">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">[{
+ &quot;id&quot;: 4,
+ &quot;object&quot;: &quot;post template section&quot;,
+ &quot;name&quot;: &quot;New post template section&quot;,
+ &quot;description&quot;: &quot;This is a new post template section&quot;,
+}, {
+ &quot;id&quot;: 5,
+ &quot;object&quot;: &quot;post template section&quot;,
+ &quot;name&quot;: &quot;Old post template section&quot;,
+ &quot;description&quot;: &quot;This is an old post template section&quot;,
+}]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-post-templates--template--sections" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-post-templates--template--sections"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-post-templates--template--sections"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-post-templates--template--sections" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-post-templates--template--sections">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-post-templates--template--sections" data-method="GET"
+      data-path="api/post-templates/{template}/sections"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-post-templates--template--sections', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/post-templates/{template}/sections</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-post-templates--template--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-post-templates--template--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>template</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="template"                data-endpoint="GETapi-post-templates--template--sections"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>Example: <code>consequatur</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="post-template-sections-POSTapi-post-templates--template--sections">Create a post template section</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-post-templates--template--sections">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://journalos.test/api/post-templates/1/sections" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"label\": \"Daily meditation\",
+    \"position\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://journalos.test/api/post-templates/1/sections"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "label": "Daily meditation",
+    "position": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://journalos.test/api/post-templates/1/sections';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'label' =&gt; 'Daily meditation',
+            'position' =&gt; 1,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-post-templates--template--sections">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 4,
+    &quot;object&quot;: &quot;post template section&quot;,
+    &quot;label&quot;: &quot;Daily meditation&quot;,
+    &quot;position&quot;: 1
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-post-templates--template--sections" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-post-templates--template--sections"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-post-templates--template--sections"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-post-templates--template--sections" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-post-templates--template--sections">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-post-templates--template--sections" data-method="POST"
+      data-path="api/post-templates/{template}/sections"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-post-templates--template--sections', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/post-templates/{template}/sections</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-post-templates--template--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-post-templates--template--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>template</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="template"                data-endpoint="POSTapi-post-templates--template--sections"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the post template. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="POSTapi-post-templates--template--sections"
+               value="Daily meditation"
+               data-component="body">
+    <br>
+<p>The name of the section. Max 255 characters. Example: <code>Daily meditation</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>position</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="position"                data-endpoint="POSTapi-post-templates--template--sections"
+               value="1"
+               data-component="body">
+    <br>
+<p>The position in the list of the all the sections, starting at 1. If you need to set the position automatically, indicate null in this field. In this case, it will take the last position. Max 1000. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="post-template-sections-PUTapi-post-templates--template--sections--section-">Update a post template section</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-post-templates--template--sections--section-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://journalos.test/api/post-templates/1/sections/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"label\": \"Daily meditation\",
+    \"position\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://journalos.test/api/post-templates/1/sections/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "label": "Daily meditation",
+    "position": 1
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://journalos.test/api/post-templates/1/sections/1';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'label' =&gt; 'Daily meditation',
+            'position' =&gt; 1,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-post-templates--template--sections--section-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;id&quot;: 4,
+    &quot;object&quot;: &quot;post template section&quot;,
+    &quot;label&quot;: &quot;Daily meditation&quot;,
+    &quot;position&quot;: 1
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-post-templates--template--sections--section-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-post-templates--template--sections--section-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-post-templates--template--sections--section-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-post-templates--template--sections--section-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-post-templates--template--sections--section-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-post-templates--template--sections--section-" data-method="PUT"
+      data-path="api/post-templates/{template}/sections/{section}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-post-templates--template--sections--section-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/post-templates/{template}/sections/{section}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-post-templates--template--sections--section-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-post-templates--template--sections--section-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>template</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="template"                data-endpoint="PUTapi-post-templates--template--sections--section-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the post template. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>section</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="section"                data-endpoint="PUTapi-post-templates--template--sections--section-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the post template section. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="PUTapi-post-templates--template--sections--section-"
+               value="Daily meditation"
+               data-component="body">
+    <br>
+<p>The name of the section. Max 255 characters. Example: <code>Daily meditation</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>position</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="position"                data-endpoint="PUTapi-post-templates--template--sections--section-"
+               value="1"
+               data-component="body">
+    <br>
+<p>The position in the list of the all the sections, starting at 1. If you need to set the position automatically, indicate null in this field. In this case, it will take the last position. Max 1000. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="post-template-sections-DELETEapi-post-templates--template--sections--section-">Delete a post template section</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-post-templates--template--sections--section-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://journalos.test/api/post-templates/1/sections/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://journalos.test/api/post-templates/1/sections/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://journalos.test/api/post-templates/1/sections/1';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-post-templates--template--sections--section-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;status&quot;: &quot;success&quot;,
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-post-templates--template--sections--section-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-post-templates--template--sections--section-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-post-templates--template--sections--section-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-post-templates--template--sections--section-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-post-templates--template--sections--section-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-post-templates--template--sections--section-" data-method="DELETE"
+      data-path="api/post-templates/{template}/sections/{section}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-post-templates--template--sections--section-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/post-templates/{template}/sections/{section}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-post-templates--template--sections--section-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-post-templates--template--sections--section-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>template</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="template"                data-endpoint="DELETEapi-post-templates--template--sections--section-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the post template. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>section</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="section"                data-endpoint="DELETEapi-post-templates--template--sections--section-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The id of the post template section. Example: <code>1</code></p>
             </div>
                     </form>
 

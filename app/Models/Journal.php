@@ -21,8 +21,6 @@ class Journal extends Model
 
     /**
      * Get the user that owns the journal.
-     *
-     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -31,8 +29,6 @@ class Journal extends Model
 
     /**
      * Get the posts for the journal.
-     *
-     * @return HasMany
      */
     public function posts(): HasMany
     {
