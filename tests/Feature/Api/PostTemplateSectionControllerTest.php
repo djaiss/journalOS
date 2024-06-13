@@ -51,7 +51,7 @@ class PostTemplateSectionControllerTest extends TestCase
 
         $postTemplate = PostTemplate::factory()->create();
 
-        $response = $this->json('POST', '/api/post-templates/' . $postTemplate->id . '/sections', [
+        $response = $this->json('POST', '/api/post-templates/'.$postTemplate->id.'/sections', [
             'label' => 'Title',
             'position' => null,
         ]);
@@ -75,7 +75,7 @@ class PostTemplateSectionControllerTest extends TestCase
             'position' => 1,
         ]);
 
-        $response = $this->json('PUT', '/api/post-templates/' . $postTemplate->id.'/sections/'.$section->id, [
+        $response = $this->json('PUT', '/api/post-templates/'.$postTemplate->id.'/sections/'.$section->id, [
             'label' => 'Daily meditation updated',
             'position' => null,
         ]);
@@ -105,7 +105,7 @@ class PostTemplateSectionControllerTest extends TestCase
             'post_template_id' => $postTemplate->id,
         ]);
 
-        $response = $this->json('PUT', '/api/post-templates/' . $postTemplate->id.'/sections/'.$section->id, [
+        $response = $this->json('PUT', '/api/post-templates/'.$postTemplate->id.'/sections/'.$section->id, [
             'label' => 'Daily meditation',
             'position' => null,
         ]);
@@ -127,7 +127,7 @@ class PostTemplateSectionControllerTest extends TestCase
             'post_template_id' => $postTemplate->id,
         ]);
 
-        $response = $this->json('DELETE', '/api/post-templates/' . $postTemplate->id.'/sections/'.$section->id);
+        $response = $this->json('DELETE', '/api/post-templates/'.$postTemplate->id.'/sections/'.$section->id);
 
         $response->assertStatus(200);
 
@@ -151,7 +151,7 @@ class PostTemplateSectionControllerTest extends TestCase
             'post_template_id' => $postTemplate->id,
         ]);
 
-        $response = $this->json('DELETE', '/api/post-templates/' . $postTemplate->id.'/sections/'.$section->id);
+        $response = $this->json('DELETE', '/api/post-templates/'.$postTemplate->id.'/sections/'.$section->id);
 
         $response->assertStatus(401);
     }
@@ -175,7 +175,7 @@ class PostTemplateSectionControllerTest extends TestCase
         ]);
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/post-templates/' . $postTemplate->id . '/sections');
+        $response = $this->json('GET', '/api/post-templates/'.$postTemplate->id.'/sections');
 
         $response->assertStatus(200);
 
