@@ -28,4 +28,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('settings/keys/{id}', [ApiAccessController::class, 'destroy'])->name('settings.api.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -8,6 +8,7 @@ use App\Models\PostTemplateSection;
 class UpdatePostTemplateSectionPosition extends BaseService
 {
     private PostTemplate $postTemplate;
+
     private int $pastPosition;
 
     public function __construct(

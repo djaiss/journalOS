@@ -34,7 +34,7 @@ class ApiAccessControllerTest extends DuskTestCase
             $tokenId = $user->tokens()->first()->id;
 
             $browser->visit('/settings/keys')
-                ->click('@cta-revoke-key-' . $tokenId)
+                ->click('@cta-revoke-key-'.$tokenId)
                 ->acceptDialog()
                 ->pause(150)
                 ->assertDontSee('iPhone');

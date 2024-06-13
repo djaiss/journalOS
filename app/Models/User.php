@@ -37,8 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the journals for the user.
-     *
-     * @return HasMany
      */
     public function journals(): HasMany
     {
@@ -47,8 +45,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the post templates for the user.
-     *
-     * @return HasMany
      */
     public function postTemplates(): HasMany
     {

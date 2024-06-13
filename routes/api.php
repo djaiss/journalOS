@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\JournalController;
 use App\Http\Controllers\Api\MeController;
 use App\Http\Controllers\Api\PostTemplateController;
+use App\Http\Controllers\Api\PostTemplateSectionController;
 use App\Http\Middleware\CheckJournal;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('post-templates/{template}', [PostTemplateController::class, 'update']);
     Route::delete('post-templates/{template}', [PostTemplateController::class, 'destroy']);
 
+    // post template sections
+    Route::get('post-templates/{template}/sections', [PostTemplateSectionController::class, 'index']);
+    Route::post('post-templates/{template}/sections', [PostTemplateSectionController::class, 'create']);
+    Route::put('post-templates/{template}/sections/{section}', [PostTemplateSectionController::class, 'update']);
+    Route::delete('post-templates/{template}/sections/{section}', [PostTemplateSectionController::class, 'destroy']);
 });

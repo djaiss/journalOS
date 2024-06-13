@@ -2,8 +2,6 @@
 
 namespace Tests\Unit\Traits;
 
-use App\Models\Journal;
-use App\Models\Permission;
 use App\Models\PostTemplate;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

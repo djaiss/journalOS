@@ -13,6 +13,7 @@ class CreatePostTemplateSection extends BaseService
         public PostTemplate $postTemplate,
         public ?string $label,
         public ?string $labelTranslationKey,
+        public ?int $position,
         public bool $canBeDeleted,
     ) {
     }

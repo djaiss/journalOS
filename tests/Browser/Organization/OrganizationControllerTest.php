@@ -26,7 +26,7 @@ class OrganizationControllerTest extends DuskTestCase
                 ->assertPathIs('/organizations/new')
                 ->type('organization_name', 'Dunder Mifflin')
                 ->click('@cta-create')
-                ->assertPathIs('/organizations/' . Organization::latest()->first()->id)
+                ->assertPathIs('/organizations/'.Organization::latest()->first()->id)
                 ->assertSeeIn('@header-organization-name', 'Dunder Mifflin')
                 ->visit('/dashboard')
                 ->assertSee('Dunder Mifflin');

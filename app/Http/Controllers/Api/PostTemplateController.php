@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Journal;
 use App\Models\PostTemplate;
-use App\Services\CreateJournal;
 use App\Services\CreatePostTemplate;
-use App\Services\DestroyJournal;
 use App\Services\DestroyPostTemplate;
-use App\Services\UpdateJournal;
 use App\Services\UpdatePostTemplate;
 use App\Services\UpdatePostTemplatePosition;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -71,11 +67,11 @@ class PostTemplateController extends Controller
      *  "position": 1
      * }
      */
-    public function update(Request $request, int $journalId): JsonResponse
+    public function update(Request $request, int $postTemplateId): JsonResponse
     {
         try {
             $postTemplate = PostTemplate::where('user_id', auth()->user()->id)
-                ->findOrFail($journalId);
+                ->findOrFail($postTemplateId);
         } catch (ModelNotFoundException) {
             abort(401);
         }
@@ -114,11 +110,11 @@ class PostTemplateController extends Controller
      *  "status": "success",
      * }
      */
-    public function destroy(Request $request, int $journalId): JsonResponse
+    public function destroy(Request $request, int $postTemplateId): JsonResponse
     {
         try {
             $postTemplate = PostTemplate::where('user_id', auth()->user()->id)
-                ->findOrFail($journalId);
+                ->findOrFail($postTemplateId);
         } catch (ModelNotFoundException) {
             abort(401);
         }

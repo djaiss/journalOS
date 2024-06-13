@@ -5,13 +5,14 @@ meta {
 }
 
 post {
-  url: http://{{URL}}/journals?name=Personal
+  url: http://{{URL}}/journals?name=Personal&description=This is amazing
   body: none
   auth: bearer
 }
 
 query {
   name: Personal
+  description: This is amazing
 }
 
 headers {
