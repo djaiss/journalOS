@@ -147,15 +147,15 @@ jobs:
         if: matrix.connection == 'mysql'
         run: |
           sudo systemctl start mysql.service
-          mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS organizationos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+          mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS collectos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
       - name: Create pgsql database
         if: matrix.connection == 'pgsql'
         run: |
           sudo systemctl start postgresql.service
-          sudo -u postgres psql --command="CREATE USER organizationos PASSWORD 'secret'" --command="\du"
-          sudo -u postgres createdb --owner=organizationos organizationos
-          PGPASSWORD=secret psql --username=organizationos --host=localhost --list organizationos
+          sudo -u postgres psql --command="CREATE USER collectos PASSWORD 'secret'" --command="\du"
+          sudo -u postgres createdb --owner=collectos collectos
+          PGPASSWORD=secret psql --username=collectos --host=localhost --list collectos
 
       - name: Generate key
         run: php artisan key:generate
@@ -181,10 +181,3 @@ jobs:
         run: vendor/bin/pest --ci
         env:
           DB_CONNECTION: ${{ matrix.connection }}
-
-      - name: Upload coverage reports to Codecov
-        if: matrix.connection == 'sqlite'
-        uses: codecov/codecov-action@v5
-        with:
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
