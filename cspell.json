@@ -13,7 +13,10 @@
     "bootstrap/cache/**",
     "coverage/**",
     ".git/**",
-    "build/**"
+    "build/**",
+    "database/blacklist_domains/data.txt",
+    "lang/fr.json",
+    "composer.lock"
   ],
   "ignoreWords": [
     "artisan",
@@ -65,18 +68,16 @@
     "APIs",
     "SQL",
     "sql",
-    "Monica",
-    "Wassup",
     "CollectOs"
   ],
   "words": [],
   "ignoreRegExpList": [
-"/\bhttps?:\/\/\S+\b/",
-"/^\s*\/\//",
-"/\/\*([\s\S]*?)\*\//",
+    "/\\bhttps?:\\/\\/\\S+\\b/",
+    "/^\\s*\\/\\//",
+    "/\\/\\*([\\s\\S]*?)\\*\\//",
     "/\b[A-F0-9]{8,}\b/",
-"/\b\$[a-zA-Z_][a-zA-Z0-9_]*\b/",
-"/<\?php[\s\S]*?\?>/"
+    "/\\b\\$[a-zA-Z_][a-zA-Z0-9_]*\\b/",
+    "/<\\?php[\\s\\S]*?\\?>/"
   ],
   "flagWords": [],
   "caseSensitive": false
