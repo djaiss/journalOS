@@ -11,12 +11,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateApiKeyTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_creates_an_api_key(): void
+    #[Test]
+    public function it_creates_an_api_key(): void
     {
         Queue::fake();
 

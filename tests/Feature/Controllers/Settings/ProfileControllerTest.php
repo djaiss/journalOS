@@ -7,19 +7,22 @@ namespace Tests\Feature\Controllers\Settings;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProfileControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_shows_the_profile_page(): void
+    #[Test]
+    public function it_shows_the_profile_page(): void
     {
         $this->actingAs(User::factory()->create());
 
         $this->get('/settings/profile')->assertOk();
     }
 
-    public function test_it_updates_the_profile_information(): void
+    #[Test]
+    public function it_updates_the_profile_information(): void
     {
         $user = User::factory()->create();
 
@@ -47,7 +50,8 @@ class ProfileControllerTest extends TestCase
         $this->assertNull($user->email_verified_at);
     }
 
-    public function test_it_does_not_change_the_email_verification_status_when_email_address_is_unchanged(): void
+    #[Test]
+    public function it_does_not_change_the_email_verification_status_when_email_address_is_unchanged(): void
     {
         $user = User::factory()->create();
 
@@ -70,7 +74,8 @@ class ProfileControllerTest extends TestCase
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
 
-    public function test_it_shows_the_latest_logs(): void
+    #[Test]
+    public function it_shows_the_latest_logs(): void
     {
         $user = User::factory()->create();
 

@@ -11,12 +11,14 @@ use InvalidArgumentException;
 use Mockery;
 use PragmaRX\Google2FALaravel\Google2FA;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class Validate2faQRCodeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_validates_the_2fa_qr_code_and_generates_recovery_codes(): void
+    #[Test]
+    public function it_validates_the_2fa_qr_code_and_generates_recovery_codes(): void
     {
         $secret = 'JBSWY3DPEHPK3PXP';
 
@@ -49,7 +51,8 @@ class Validate2faQRCodeTest extends TestCase
         }
     }
 
-    public function test_it_throws_exception_when_token_is_invalid(): void
+    #[Test]
+    public function it_throws_exception_when_token_is_invalid(): void
     {
         $secret = 'JBSWY3DPEHPK3PXP';
 
@@ -74,7 +77,8 @@ class Validate2faQRCodeTest extends TestCase
         ))->execute();
     }
 
-    public function test_it_does_not_update_recovery_codes_when_token_is_invalid(): void
+    #[Test]
+    public function it_does_not_update_recovery_codes_when_token_is_invalid(): void
     {
         $secret = 'JBSWY3DPEHPK3PXP';
 

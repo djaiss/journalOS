@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LogControllerTest extends TestCase
 {
@@ -66,7 +67,8 @@ class LogControllerTest extends TestCase
         ],
     ];
 
-    public function test_it_can_get_paginated_logs(): void
+    #[Test]
+    public function it_can_get_paginated_logs(): void
     {
         Carbon::setTestNow('2025-01-15 10:00:00');
         $user = User::factory()->create();
@@ -109,7 +111,8 @@ class LogControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_can_show_a_specific_log(): void
+    #[Test]
+    public function it_can_show_a_specific_log(): void
     {
         Carbon::setTestNow('2025-01-15 10:00:00');
         $user = User::factory()->create();
@@ -142,7 +145,8 @@ class LogControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_returns_403_when_trying_to_access_another_user_log(): void
+    #[Test]
+    public function it_returns_403_when_trying_to_access_another_user_log(): void
     {
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
@@ -161,7 +165,8 @@ class LogControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_returns_404_when_log_has_no_user_id(): void
+    #[Test]
+    public function it_returns_404_when_log_has_no_user_id(): void
     {
         $user = User::factory()->create();
         $log = Log::factory()->create([
@@ -179,7 +184,8 @@ class LogControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_returns_401_when_not_authenticated(): void
+    #[Test]
+    public function it_returns_401_when_not_authenticated(): void
     {
         $response = $this->json('GET', '/api/settings/logs');
         $response->assertUnauthorized();

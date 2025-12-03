@@ -9,12 +9,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class OrganizationControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_shows_the_organizations_the_user_is_a_member_of(): void
+    #[Test]
+    public function it_shows_the_organizations_the_user_is_a_member_of(): void
     {
         $user = User::factory()->create();
         $organization = Organization::factory()->create([
@@ -31,7 +33,8 @@ class OrganizationControllerTest extends TestCase
         $response->assertSee('Dunder Mifflin');
     }
 
-    public function test_it_shows_a_message_when_the_user_is_not_a_member_of_any_organizations(): void
+    #[Test]
+    public function it_shows_a_message_when_the_user_is_not_a_member_of_any_organizations(): void
     {
         $user = User::factory()->create();
 
@@ -41,7 +44,8 @@ class OrganizationControllerTest extends TestCase
         $response->assertSee('You are not a member of any organizations yet.');
     }
 
-    public function test_it_creates_an_organization(): void
+    #[Test]
+    public function it_creates_an_organization(): void
     {
         $user = User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
@@ -59,7 +63,8 @@ class OrganizationControllerTest extends TestCase
         $response->assertRedirect('/organizations/' . $organization->slug);
     }
 
-    public function test_it_lets_an_user_access_an_organization(): void
+    #[Test]
+    public function it_lets_an_user_access_an_organization(): void
     {
         $user = User::factory()->create();
         $organization = Organization::factory()->create();
@@ -72,7 +77,8 @@ class OrganizationControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_it_does_not_let_an_user_access_an_organization_they_are_not_a_member_of(): void
+    #[Test]
+    public function it_does_not_let_an_user_access_an_organization_they_are_not_a_member_of(): void
     {
         $user = User::factory()->create();
         $organization = Organization::factory()->create();

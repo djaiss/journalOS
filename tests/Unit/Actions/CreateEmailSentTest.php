@@ -13,12 +13,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateEmailSentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_creates_an_email_sent(): void
+    #[Test]
+    public function it_creates_an_email_sent(): void
     {
         Queue::fake();
 
@@ -50,7 +52,8 @@ class CreateEmailSentTest extends TestCase
         $this->assertInstanceOf(EmailSent::class, $emailSent);
     }
 
-    public function test_it_sanitizes_the_body_and_strips_any_links(): void
+    #[Test]
+    public function it_sanitizes_the_body_and_strips_any_links(): void
     {
         Queue::fake();
 
@@ -72,7 +75,8 @@ class CreateEmailSentTest extends TestCase
         ]);
     }
 
-    public function test_it_fails_if_user_doesnt_belong_to_organization(): void
+    #[Test]
+    public function it_fails_if_user_doesnt_belong_to_organization(): void
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -90,7 +94,8 @@ class CreateEmailSentTest extends TestCase
         ))->execute();
     }
 
-    public function test_it_creates_an_email_sent_with_a_uuid(): void
+    #[Test]
+    public function it_creates_an_email_sent_with_a_uuid(): void
     {
         Queue::fake();
 

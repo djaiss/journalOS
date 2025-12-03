@@ -10,12 +10,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UpdateTwoFAMethodTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_updates_user_2fa_method(): void
+    #[Test]
+    public function it_updates_user_2fa_method(): void
     {
         Queue::fake();
 

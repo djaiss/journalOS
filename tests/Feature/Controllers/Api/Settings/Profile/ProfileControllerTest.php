@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProfileControllerTest extends TestCase
 {
@@ -33,7 +34,8 @@ class ProfileControllerTest extends TestCase
         ],
     ];
 
-    public function test_it_can_get_the_current_user_profile(): void
+    #[Test]
+    public function it_can_get_the_current_user_profile(): void
     {
         Carbon::setTestNow('2025-07-01 00:00:00');
         $user = User::factory()->create([
@@ -68,7 +70,8 @@ class ProfileControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_can_update_the_user_profile(): void
+    #[Test]
+    public function it_can_update_the_user_profile(): void
     {
         Carbon::setTestNow('2025-07-01 00:00:00');
         $user = User::factory()->create([

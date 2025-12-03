@@ -9,12 +9,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateMagicLinkTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_returns_a_string(): void
+    #[Test]
+    public function it_returns_a_string(): void
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
@@ -27,7 +29,8 @@ class CreateMagicLinkTest extends TestCase
         $this->assertIsString($magicLinkUrl);
     }
 
-    public function test_it_contains_the_app_url_with_magic_link_structure(): void
+    #[Test]
+    public function it_contains_the_app_url_with_magic_link_structure(): void
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
@@ -42,7 +45,8 @@ class CreateMagicLinkTest extends TestCase
         $this->assertMatchesRegularExpression('/\/magiclink\/[a-f0-9-]+%3A[A-Za-z0-9]+/', $magicLinkUrl);
     }
 
-    public function test_it_throws_an_exception_if_user_not_found(): void
+    #[Test]
+    public function it_throws_an_exception_if_user_not_found(): void
     {
         $nonExistentEmail = 'nonexistent@example.com';
 

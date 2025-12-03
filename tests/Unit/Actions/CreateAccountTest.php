@@ -12,12 +12,14 @@ use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateAccountTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_creates_an_account(): void
+    #[Test]
+    public function it_creates_an_account(): void
     {
         Queue::fake();
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
@@ -47,7 +49,8 @@ class CreateAccountTest extends TestCase
         );
     }
 
-    public function test_it_cant_create_an_account_with_the_same_email(): void
+    #[Test]
+    public function it_cant_create_an_account_with_the_same_email(): void
     {
         User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',

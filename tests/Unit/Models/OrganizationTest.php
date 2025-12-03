@@ -9,12 +9,14 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class OrganizationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_belongs_to_many_users(): void
+    #[Test]
+    public function it_belongs_to_many_users(): void
     {
         $organization = Organization::factory()->create();
         $user1 = User::factory()->create();
@@ -32,7 +34,8 @@ class OrganizationTest extends TestCase
         $this->assertTrue($organization->users->contains($user2));
     }
 
-    public function test_it_has_many_emails_sent(): void
+    #[Test]
+    public function it_has_many_emails_sent(): void
     {
         $organization = Organization::factory()->create();
         EmailSent::factory()->count(2)->create([
@@ -42,7 +45,8 @@ class OrganizationTest extends TestCase
         $this->assertTrue($organization->emailsSent()->exists());
     }
 
-    public function test_it_gets_the_avatar(): void
+    #[Test]
+    public function it_gets_the_avatar(): void
     {
         $organization = Organization::factory()->create();
 

@@ -8,12 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\App;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LocaleControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_can_update_locale(): void
+    #[Test]
+    public function it_can_update_locale(): void
     {
         $response = $this->from('/')
             ->put('/locale', [
@@ -25,7 +27,8 @@ class LocaleControllerTest extends TestCase
         $this->assertEquals('fr', App::getLocale());
     }
 
-    public function test_it_updates_authenticated_user_locale(): void
+    #[Test]
+    public function it_updates_authenticated_user_locale(): void
     {
         $user = User::factory()->create([
             'locale' => 'en',
@@ -43,7 +46,8 @@ class LocaleControllerTest extends TestCase
         $this->assertEquals('fr', $user->fresh()->locale);
     }
 
-    public function test_it_validates_locale_input(): void
+    #[Test]
+    public function it_validates_locale_input(): void
     {
         $response = $this->from('/')
             ->put('/locale', [
@@ -54,7 +58,8 @@ class LocaleControllerTest extends TestCase
         $response->assertSessionHasErrors(['locale']);
     }
 
-    public function test_it_requires_locale(): void
+    #[Test]
+    public function it_requires_locale(): void
     {
         $response = $this->from('/')
             ->put('/locale', [
@@ -65,7 +70,8 @@ class LocaleControllerTest extends TestCase
         $response->assertSessionHasErrors(['locale']);
     }
 
-    public function test_it_handles_null_locale(): void
+    #[Test]
+    public function it_handles_null_locale(): void
     {
         $response = $this->from('/')
             ->put('/locale', [
@@ -76,7 +82,8 @@ class LocaleControllerTest extends TestCase
         $response->assertSessionHasErrors(['locale']);
     }
 
-    public function test_it_handles_missing_locale(): void
+    #[Test]
+    public function it_handles_missing_locale(): void
     {
         $response = $this->from('/')
             ->put('/locale', []);
@@ -85,7 +92,8 @@ class LocaleControllerTest extends TestCase
         $response->assertSessionHasErrors(['locale']);
     }
 
-    public function test_it_preserves_previous_locale_on_validation_failure(): void
+    #[Test]
+    public function it_preserves_previous_locale_on_validation_failure(): void
     {
         App::setLocale('en');
         session()->put('locale', 'en');
@@ -101,7 +109,8 @@ class LocaleControllerTest extends TestCase
         $this->assertEquals('en', session('locale'));
     }
 
-    public function test_it_preserves_authenticated_user_locale_on_validation_failure(): void
+    #[Test]
+    public function it_preserves_authenticated_user_locale_on_validation_failure(): void
     {
         $user = User::factory()->create([
             'locale' => 'en',

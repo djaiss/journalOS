@@ -7,12 +7,14 @@ namespace Tests\Feature\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SendMagicLinkControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_displays_the_magic_link_request_form(): void
+    #[Test]
+    public function it_displays_the_magic_link_request_form(): void
     {
         $response = $this->get(route('magic.link'));
 
@@ -20,7 +22,8 @@ class SendMagicLinkControllerTest extends TestCase
         $response->assertViewIs('auth.request-magic-link');
     }
 
-    public function test_it_sends_magic_link_when_user_exists(): void
+    #[Test]
+    public function it_sends_magic_link_when_user_exists(): void
     {
         User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
@@ -34,7 +37,8 @@ class SendMagicLinkControllerTest extends TestCase
         $response->assertViewIs('auth.magic-link-sent');
     }
 
-    public function test_it_shows_success_view_even_when_user_not_found(): void
+    #[Test]
+    public function it_shows_success_view_even_when_user_not_found(): void
     {
         $response = $this->json('POST', route('magic.link.store'), [
             'email' => 'not.found@dundermifflin.com',
@@ -44,7 +48,8 @@ class SendMagicLinkControllerTest extends TestCase
         $response->assertViewIs('auth.magic-link-sent');
     }
 
-    public function test_it_validates_email_presence(): void
+    #[Test]
+    public function it_validates_email_presence(): void
     {
         $response = $this->json('POST', route('magic.link.store'), [
             'email' => '',
@@ -54,7 +59,8 @@ class SendMagicLinkControllerTest extends TestCase
         $response->assertJsonValidationErrors(['email']);
     }
 
-    public function test_it_validates_email_format(): void
+    #[Test]
+    public function it_validates_email_format(): void
     {
         $response = $this->json('POST', route('magic.link.store'), [
             'email' => 'not-an-email',

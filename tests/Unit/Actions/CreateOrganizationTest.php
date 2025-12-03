@@ -13,12 +13,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateOrganizationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_creates_an_organization(): void
+    #[Test]
+    public function it_creates_an_organization(): void
     {
         Queue::fake();
         Carbon::setTestNow(Carbon::parse('2025-03-17 10:00:00'));
@@ -53,7 +55,8 @@ class CreateOrganizationTest extends TestCase
         );
     }
 
-    public function test_it_throws_an_exception_if_organization_name_contains_special_characters(): void
+    #[Test]
+    public function it_throws_an_exception_if_organization_name_contains_special_characters(): void
     {
         $this->expectException(ValidationException::class);
 

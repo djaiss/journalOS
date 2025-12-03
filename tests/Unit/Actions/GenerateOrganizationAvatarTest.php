@@ -7,12 +7,14 @@ namespace Tests\Unit\Actions;
 use App\Actions\GenerateOrganizationAvatar;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class GenerateOrganizationAvatarTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_generates_a_base64_encoded_svg_avatar(): void
+    #[Test]
+    public function it_generates_a_base64_encoded_svg_avatar(): void
     {
         $generator = new GenerateOrganizationAvatar(
             seed: 'test-seed',

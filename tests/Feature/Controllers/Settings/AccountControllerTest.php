@@ -8,12 +8,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class AccountControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_deletes_the_user_account(): void
+    #[Test]
+    public function it_deletes_the_user_account(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create();

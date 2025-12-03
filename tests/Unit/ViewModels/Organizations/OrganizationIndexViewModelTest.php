@@ -9,12 +9,14 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class OrganizationIndexViewModelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_returns_the_correct_organizations(): void
+    #[Test]
+    public function it_returns_the_correct_organizations(): void
     {
         $user = User::factory()->create();
         $organization1 = Organization::factory()->create([

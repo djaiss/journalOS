@@ -8,26 +8,30 @@ use App\Models\Log;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LogTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_belongs_to_an_organization(): void
+    #[Test]
+    public function it_belongs_to_an_organization(): void
     {
         $log = Log::factory()->create();
 
         $this->assertTrue($log->organization()->exists());
     }
 
-    public function test_it_belongs_to_a_user(): void
+    #[Test]
+    public function it_belongs_to_a_user(): void
     {
         $log = Log::factory()->create();
 
         $this->assertTrue($log->user()->exists());
     }
 
-    public function test_it_gets_the_name_of_the_user(): void
+    #[Test]
+    public function it_gets_the_name_of_the_user(): void
     {
         $user = User::factory()->create([
             'first_name' => 'Dwight',

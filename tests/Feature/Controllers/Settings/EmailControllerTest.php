@@ -9,12 +9,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_shows_all_the_emails(): void
+    #[Test]
+    public function it_shows_all_the_emails(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create([

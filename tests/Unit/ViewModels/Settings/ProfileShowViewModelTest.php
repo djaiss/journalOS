@@ -12,12 +12,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProfileShowViewModelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_tells_the_user_if_they_have_more_logs(): void
+    #[Test]
+    public function it_tells_the_user_if_they_have_more_logs(): void
     {
         $user = User::factory()->create([
             'first_name' => 'Ross',
@@ -35,7 +37,8 @@ class ProfileShowViewModelTest extends TestCase
         $this->assertTrue($viewModel->hasMoreLogs());
     }
 
-    public function test_it_gets_the_latest_logs(): void
+    #[Test]
+    public function it_gets_the_latest_logs(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
 
@@ -71,7 +74,8 @@ class ProfileShowViewModelTest extends TestCase
         ], (array) $viewModel->logs()->first());
     }
 
-    public function test_it_gets_the_latest_logs_with_organization(): void
+    #[Test]
+    public function it_gets_the_latest_logs_with_organization(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
 
@@ -108,7 +112,8 @@ class ProfileShowViewModelTest extends TestCase
         ], (array) $viewModel->logs()->first());
     }
 
-    public function test_it_gets_the_latest_emails_sent(): void
+    #[Test]
+    public function it_gets_the_latest_emails_sent(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
 

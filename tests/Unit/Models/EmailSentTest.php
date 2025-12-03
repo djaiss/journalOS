@@ -9,12 +9,14 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class EmailSentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_belongs_to_an_organization(): void
+    #[Test]
+    public function it_belongs_to_an_organization(): void
     {
         $organization = Organization::factory()->create();
         $emailSent = EmailSent::factory()->create([
@@ -24,7 +26,8 @@ class EmailSentTest extends TestCase
         $this->assertTrue($emailSent->organization()->exists());
     }
 
-    public function test_it_belongs_to_a_user(): void
+    #[Test]
+    public function it_belongs_to_a_user(): void
     {
         $user = User::factory()->create();
         $emailSent = EmailSent::factory()->create([

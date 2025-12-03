@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class OrganizationControllerTest extends TestCase
 {
@@ -51,7 +52,8 @@ class OrganizationControllerTest extends TestCase
         ],
     ];
 
-    public function test_it_can_list_the_organizations_of_the_current_user(): void
+    #[Test]
+    public function it_can_list_the_organizations_of_the_current_user(): void
     {
         $user = User::factory()->create();
 
@@ -91,7 +93,8 @@ class OrganizationControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_returns_empty_collection_when_user_has_no_organizations(): void
+    #[Test]
+    public function it_returns_empty_collection_when_user_has_no_organizations(): void
     {
         $user = User::factory()->create();
 
@@ -104,7 +107,8 @@ class OrganizationControllerTest extends TestCase
         $response->assertJsonCount(0, 'data');
     }
 
-    public function test_it_can_create_a_new_organization(): void
+    #[Test]
+    public function it_can_create_a_new_organization(): void
     {
         Carbon::setTestNow('2025-01-01 00:00:00');
         $user = User::factory()->create();
@@ -138,7 +142,8 @@ class OrganizationControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_can_show_an_organization(): void
+    #[Test]
+    public function it_can_show_an_organization(): void
     {
         $user = User::factory()->create();
         $organization = Organization::factory()->create();
@@ -152,7 +157,8 @@ class OrganizationControllerTest extends TestCase
         $response->assertJsonStructure($this->singleJsonStructure);
     }
 
-    public function test_it_restricts_access_to_an_organization(): void
+    #[Test]
+    public function it_restricts_access_to_an_organization(): void
     {
         $user = User::factory()->create();
         $organization = Organization::factory()->create();

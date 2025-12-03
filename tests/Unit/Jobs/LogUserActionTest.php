@@ -9,12 +9,14 @@ use App\Models\Log;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LogUserActionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_logs_user_action(): void
+    #[Test]
+    public function it_logs_user_action(): void
     {
         $user = User::factory()->create([
             'first_name' => 'Michael',
