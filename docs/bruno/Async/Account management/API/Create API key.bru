@@ -1,0 +1,17 @@
+meta {
+  name: Create API key
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{URL}}/settings/api
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "label": "Mobile app"
+  }
+}

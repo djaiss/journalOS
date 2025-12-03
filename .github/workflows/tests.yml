@@ -1,0 +1,190 @@
+name: Unit tests
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  release:
+    types: [created]
+  workflow_dispatch:
+
+env:
+  default-php-version: '8.4'
+  coverage-with: sqlite
+  PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
+
+concurrency:
+  group: Build ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  #############
+  # Run tests
+  #############
+  tests:
+    runs-on: ubuntu-latest
+    name: PHP ${{ matrix.php-version }} + ${{ matrix.connection }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['8.4']
+        connection: [sqlite, mysql, pgsql]
+        testsuite: [Unit]
+        coverage: [true] # run test with coverage, if 'coverage-with' match with the connection
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v6
+
+      - name: Setup PHP ${{ matrix.php-version }} without coverage
+        if: matrix.connection != env.coverage-with || matrix.php-version != env.default-php-version || ! matrix.coverage
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
+          coverage: none
+
+      - name: Setup PHP ${{ matrix.php-version }}
+        if: matrix.connection == env.coverage-with && matrix.php-version == env.default-php-version && matrix.coverage
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, ${{ matrix.connection }}
+          coverage: pcov
+          ini-values: pcov.directory=., pcov.exclude="~vendor~"
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Check Composer Version
+        run: composer -V
+
+      - name: Check PHP Extensions
+        run: php -m
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/pnpm-lock.yaml', '**/yarn.lock', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Composer
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache composer files
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+            ${{ runner.os }}-composer-${{ matrix.php-version }}
+            ${{ runner.os }}-composer-
+
+      - name: Install composer dependencies
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install node dependencies
+        run: npm install
+
+      # Determine Playwright version AFTER dependencies installed (so playwright CLI exists)
+      - name: Determine Playwright version
+        id: pw-version
+        run: echo "version=$(npx playwright --version | awk '{print $2}')" >> $GITHUB_OUTPUT
+
+      # Cache Playwright browsers (shared across matrix legs)
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: $HOME/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.pw-version.outputs.version }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Browsers
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+
+      # Prepare
+      - name: Prepare environment
+        run: |
+          cp tests/.env.ci.${{ matrix.connection }} .env
+          mkdir -p public/build/assets
+          {\
+            echo "{"; \
+            for f in app.js app.css; do \
+              [[ $first == 1 ]] && echo -n "," || first=1; \
+              k=${f##*.}/$f; \
+              echo "\"resources/$k\": {\"file\": \"assets/$f\", \"src\": \"resources/$k\"}"; \
+              echo '' > public/build/assets/$f; \
+            done; \
+            echo "}"; \
+          } | tee public/build/manifest.json
+
+      - name: Create sqlite database
+        if: matrix.connection == 'sqlite'
+        run: touch database/database.sqlite
+
+      - name: Create mysql database
+        if: matrix.connection == 'mysql'
+        run: |
+          sudo systemctl start mysql.service
+          mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS organizationos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+      - name: Create pgsql database
+        if: matrix.connection == 'pgsql'
+        run: |
+          sudo systemctl start postgresql.service
+          sudo -u postgres psql --command="CREATE USER organizationos PASSWORD 'secret'" --command="\du"
+          sudo -u postgres createdb --owner=organizationos organizationos
+          PGPASSWORD=secret psql --username=organizationos --host=localhost --list organizationos
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Run migrations
+        run: php artisan migrate --no-interaction -vvv
+
+      - name: Run tests
+        if: matrix.connection == 'sqlite'
+        run: vendor/bin/pest --ci --coverage-clover=coverage.xml --parallel
+        continue-on-error: true
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}
+
+      - name: Run tests (mysql)
+        if: matrix.connection == 'mysql'
+        run: vendor/bin/pest --ci --parallel
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}
+
+      - name: Run tests (pgsql)
+        if: matrix.connection == 'pgsql'
+        run: vendor/bin/pest --ci
+        env:
+          DB_CONNECTION: ${{ matrix.connection }}
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.connection == 'sqlite'
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,0 +1,18 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+    - ./vendor/nesbot/carbon/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - routes/
+        - database/
+
+    level: 5
+
+    ignoreErrors:
+
+    excludePaths:
+
+#    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false

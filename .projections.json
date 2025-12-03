@@ -1,0 +1,56 @@
+{
+  "app/Http/Controllers/Api/*.php": {
+    "alternate": "tests/Feature/Controllers/Api/{}Test.php"
+  },
+  "app/Http/Controllers/*.php": {
+    "alternate": "tests/Feature/Controllers/{}Test.php"
+  },
+  "app/Http/ViewModels/*.php": {
+    "alternate": "tests/Unit/ViewModels/{}Test.php"
+  },
+  "app/Actions/*.php": {
+    "alternate": "tests/Unit/Actions/{}Test.php"
+  },
+  "app/Jobs/*.php": {
+    "alternate": "tests/Unit/Jobs/{}Test.php"
+  },
+  "app/Mail/*.php": {
+    "alternate": "tests/Unit/Mail/{}Test.php"
+  },
+  "app/Models/*.php": {
+    "alternate": "tests/Unit/Models/{}Test.php"
+  },
+  "app/Providers/*.php": {
+    "alternate": "tests/Unit/Providers/{}Test.php"
+  },
+  "app/View/Components/*.php": {
+    "alternate": "tests/Unit/View/Components/{}Test.php"
+  },
+  "tests/Feature/Controllers/Api/*Test.php": {
+    "alternate": "app/Http/Controllers/Api/{}.php"
+  },
+  "tests/Feature/Controllers/*Test.php": {
+    "alternate": "app/Http/Controllers/{}.php"
+  },
+  "tests/Unit/ViewModels/*Test.php": {
+    "alternate": "app/Http/ViewModels/{}.php"
+  },
+  "tests/Unit/Actions/*Test.php": {
+    "alternate": "app/Actions/{}.php"
+  },
+  "tests/Unit/Jobs/*Test.php": {
+    "alternate": "app/Jobs/{}.php"
+  },
+  "tests/Unit/Mail/*Test.php": {
+    "alternate": "app/Mail/{}.php"
+  },
+  "tests/Unit/Models/*Test.php": {
+    "alternate": "app/Models/{}.php"
+  },
+  "tests/Unit/Providers/*Test.php": {
+    "alternate": "app/Providers/{}.php"
+  },
+  "tests/Unit/View/Components/*Test.php": {
+    "alternate": "app/View/Components/{}.php"
+  }
+}

@@ -1,0 +1,23 @@
+name: Check translations
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-translations:
+    runs-on: ubuntu-latest
+    name: Check translation completeness
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v6
+
+      - name: Check French translations
+        run: bash ./scripts/check-translations.sh

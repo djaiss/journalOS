@@ -1,0 +1,125 @@
+{
+  "$schema": "https://getcomposer.org/schema.json",
+  "name": "djaiss/collectos",
+  "type": "project",
+  "description": "Universal system for managing any type of collection",
+  "keywords": [
+    "laravel",
+    "framework",
+    "blade"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^8.4",
+    "bacon/bacon-qr-code": "^3.0",
+    "amirami/localizator": "^0.14.0@alpha",
+    "cesargb/laravel-magiclink": "^2.24",
+    "codeat3/blade-phosphor-icons": "^2.3",
+    "erag/laravel-disposable-email": "^3.5",
+    "laravel/framework": "^12.0",
+    "laravel/sanctum": "^4.0",
+    "laravel/tinker": "^2.10.1",
+    "livewire/livewire": "^3.6",
+    "pragmarx/google2fa-laravel": "^2.3",
+    "resend/resend-laravel": "^1.0.0",
+    "spatie/laravel-login-link": "^1.6",
+    "stevebauman/purify": "^6.3"
+  },
+  "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.16",
+    "fakerphp/faker": "^1.23",
+    "larastan/larastan": "^3.3",
+    "laravel/boost": "^1.0",
+    "laravel/pail": "^1.2.2",
+    "laravel/pint": "^1.18",
+    "laravel/sail": "^1.41",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.6",
+    "pestphp/pest": "^4.0",
+    "pestphp/pest-plugin-browser": "^4.0",
+    "pestphp/pest-plugin-profanity": "^4.0",
+    "pestphp/pest-plugin-type-coverage": "^4.0",
+    "rector/rector": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    },
+    "files": [
+      "app/Helpers/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-update-cmd": [
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi",
+      "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+      "@php artisan migrate --graceful --ansi"
+    ],
+    "dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+    ],
+    "test": [
+      "@collectos:unit",
+      "@collectos:setup",
+      "@collectos:locale",
+      "@collectos:lint"
+    ],
+    "precommit": [
+      "@collectos:rector",
+      "@test",
+      "@collectos:static",
+      "@collectos:update-blacklist-domains",
+      "@collectos:prettier",
+      "@collectos:update",
+      "@collectos:locale",
+      "@collectos:lint",
+      "@collectos:type-coverage",
+      "@collectos:setup"
+    ],
+    "collectos:lint": "./vendor/bin/pint",
+    "collectos:locale": "php artisan localize en,fr --remove-missing",
+    "collectos:prettier": "npx prettier --write resources/",
+    "collectos:rector": "./vendor/bin/rector",
+    "collectos:setup": "php artisan migrate:fresh && php artisan db:seed",
+    "collectos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
+    "collectos:type-coverage": "./vendor/bin/pest --type-coverage --min=100",
+    "collectos:update": "composer update && bun update",
+    "collectos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
+    "collectos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && ./vendor/bin/pest --parallel --processes=10"
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "version": "0.2.0"
+}

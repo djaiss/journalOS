@@ -1,0 +1,22 @@
+meta {
+  name: Update my information
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{URL}}/me
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "first_name": "Dwight",
+    "last_name": "Schrute",
+    "email": "admin@admin.coms",
+    "nickname": "Dwightchou",
+    "born_at": "1985-03-15",
+    "locale": "fr"
+  }
+}
