@@ -1,4 +1,4 @@
-Your login link for OrganizationOS
+Your login link for {{ config('app.name') }}
 
 {{ $link }}
 
