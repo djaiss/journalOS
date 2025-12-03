@@ -54,7 +54,7 @@ jobs:
             # Exclude directories and specific files to mirror cspell.json
             printf "%s\n" "$FILES" \
               | grep -vE '^(vendor/|node_modules/|storage/|public/|bootstrap/cache/|coverage/|build/)' \
-              | grep -vE '^(database/blacklist_domains/data\.txt|lang/fr\.json|composer\.lock|bun\.lock)$' \
+              | grep -vE '^(database/blacklist_domains/data\.txt|database/blacklist_domains/domains\.txt|lang/fr\.json|package\.json|lang/fr/auth\.php|composer\.lock|bun\.lock)$' \
               > changed_files.txt || true
             echo "no_changed_files=false" >> "$GITHUB_OUTPUT"
           fi
