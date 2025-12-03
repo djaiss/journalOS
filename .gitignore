@@ -33,3 +33,4 @@ phpstan-baseline.neon
 CLAUDE.md
 .php-cs-fixer.cache
 .php-cs-fixer.dist.php
+tests/Browser/console
