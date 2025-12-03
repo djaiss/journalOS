@@ -60,13 +60,13 @@ jobs:
         run: |
           echo "Running codespell against changed files (changed_files.txt)..."
           # Use xargs to pass files; exit 0 on no matches
-          xargs --no-run-if-empty codespell -q 3 --skip .git,vendor,node_modules < changed_files.txt
+          xargs --no-run-if-empty codespell -q 3 --skip .git,vendor,node_modules,storage,public,bootstrap/cache,coverage,build,database/blacklist_domains/data.txt,lang/fr.json,composer.lock,bun.lock < changed_files.txt
 
       - name: Run codespell on repo (fallback / push runs)
         if: github.event_name != 'pull_request' || steps.gather_changed.outputs.no_changed_files == 'true'
         run: |
           echo "Running codespell across repository (skipping vendor/node_modules)..."
-          codespell --skip .git,vendor,node_modules --check-filenames
+          codespell --skip .git,vendor,node_modules,storage,public,bootstrap/cache,coverage,build,database/blacklist_domains/data.txt,lang/fr.json,composer.lock,bun.lock --check-filenames
 
       - name: Spellcheck summary
         if: ${{ always() }}
