@@ -165,19 +165,19 @@ jobs:
 
       - name: Run tests
         if: matrix.connection == 'sqlite'
-        run: vendor/bin/phpunit --ci --parallel
+        run: vendor/bin/phpunit --parallel
         continue-on-error: true
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests (mysql)
         if: matrix.connection == 'mysql'
-        run: vendor/bin/phpunit --ci --parallel
+        run: vendor/bin/phpunit --parallel
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests (pgsql)
         if: matrix.connection == 'pgsql'
-        run: vendor/bin/phpunit --ci
+        run: vendor/bin/phpunit
         env:
           DB_CONNECTION: ${{ matrix.connection }}
