@@ -8,7 +8,7 @@ Login to {{ config('app.name') }}
 This link will only be valid for the next 5 minutes.
 
 <x-mail::panel>
-If you did not request this linkk, make sure to visit your account and change your password, just in case.
+If you did not request this link, make sure to visit your account and change your password, just in case.
 </x-mail::panel>
 
 Thanks,<br>
