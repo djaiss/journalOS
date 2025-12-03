@@ -1,8 +1,8 @@
 <x-mail::message>
-# Your login link for OrganizationOS
+# Your login link for {{ config('app.name') }}
 
 <x-mail::button :url="$link">
-Login to OrganizationOS
+Login to {{ config('app.name') }}
 </x-mail::button>
 
 This link will only be valid for the next 5 minutes.

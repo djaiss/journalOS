@@ -8,8 +8,8 @@ APP_URL=https://collectos.test
 DB_CONNECTION=pgsql
 DB_HOST=localhost
 DB_PORT=5432
-DB_DATABASE=organizationos
-DB_USERNAME=organizationos
+DB_DATABASE=collectos
+DB_USERNAME=collectos
 DB_PASSWORD=secret
 
 BROADCAST_DRIVER=log
