@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Actions\CreateAccount;
-use App\Actions\CreateJobDiscipline;
-use App\Actions\CreateJobFamily;
-use App\Actions\CreateJobLevel;
 use App\Models\User;
 use App\Models\Organization;
 use Illuminate\Database\Seeder;
@@ -16,8 +13,6 @@ use App\Actions\CreateOrganization;
 final class DatabaseSeeder extends Seeder
 {
     private User $michael;
-
-    private Organization $organization;
 
     /**
      * Seed the application's database.
