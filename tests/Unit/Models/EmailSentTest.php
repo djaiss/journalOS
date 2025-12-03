@@ -2,24 +2,35 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\Models;
+
 use App\Models\EmailSent;
 use App\Models\Organization;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-it('belongs to an organization', function (): void {
-    $organization = Organization::factory()->create();
-    $emailSent = EmailSent::factory()->create([
-        'organization_id' => $organization->id,
-    ]);
+class EmailSentTest extends TestCase
+{
+    use RefreshDatabase;
 
-    expect($emailSent->organization()->exists())->toBeTrue();
-});
+    public function test_it_belongs_to_an_organization(): void
+    {
+        $organization = Organization::factory()->create();
+        $emailSent = EmailSent::factory()->create([
+            'organization_id' => $organization->id,
+        ]);
 
-it('belongs to a user', function (): void {
-    $user = User::factory()->create();
-    $emailSent = EmailSent::factory()->create([
-        'user_id' => $user->id,
-    ]);
+        $this->assertTrue($emailSent->organization()->exists());
+    }
 
-    expect($emailSent->user()->exists())->toBeTrue();
-});
+    public function test_it_belongs_to_a_user(): void
+    {
+        $user = User::factory()->create();
+        $emailSent = EmailSent::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->assertTrue($emailSent->user()->exists());
+    }
+}

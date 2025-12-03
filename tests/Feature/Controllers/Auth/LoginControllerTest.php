@@ -2,60 +2,74 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feature\Controllers\Auth;
+
+use App\Enums\EmailType;
 use App\Jobs\SendEmail;
 use App\Models\User;
-use App\Enums\EmailType;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
+use Tests\TestCase;
 
-it('renders the login screen', function (): void {
-    $response = $this->get('/login');
+class LoginControllerTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $response->assertStatus(200);
-});
+    public function test_it_renders_the_login_screen(): void
+    {
+        $response = $this->get('/login');
 
-it('authenticates a user', function (): void {
-    $user = User::factory()->create();
+        $response->assertStatus(200);
+    }
 
-    $response = $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'password',
-    ]);
+    public function test_it_authenticates_a_user(): void
+    {
+        $user = User::factory()->create();
 
-    $this->assertAuthenticated();
-    $response->assertRedirect(route('organization.index', absolute: false));
-});
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
 
-it('does not authenticate a user with invalid password', function (): void {
-    $user = User::factory()->create();
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('organization.index', absolute: false));
+    }
 
-    $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'wrong-password',
-    ]);
+    public function test_it_does_not_authenticate_a_user_with_invalid_password(): void
+    {
+        $user = User::factory()->create();
 
-    $this->assertGuest();
-});
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'wrong-password',
+        ]);
 
-it('sends an email on failed login', function (): void {
-    Queue::fake();
+        $this->assertGuest();
+    }
 
-    $user = User::factory()->create();
+    public function test_it_sends_an_email_on_failed_login(): void
+    {
+        Queue::fake();
 
-    $this->post('/login', [
-        'email' => $user->email,
-        'password' => 'wrong-password',
-    ]);
+        $user = User::factory()->create();
 
-    Queue::assertPushed(SendEmail::class, function (SendEmail $job) use ($user): bool {
-        return $job->emailType === EmailType::LOGIN_FAILED && $job->user->id === $user->id;
-    });
-});
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'wrong-password',
+        ]);
 
-it('logs out a user', function (): void {
-    $user = User::factory()->create();
+        Queue::assertPushed(SendEmail::class, function (SendEmail $job) use ($user): bool {
+            return $job->emailType === EmailType::LOGIN_FAILED && $job->user->id === $user->id;
+        });
+    }
 
-    $response = $this->actingAs($user)->post('/logout');
+    public function test_it_logs_out_a_user(): void
+    {
+        $user = User::factory()->create();
 
-    $this->assertGuest();
-    $response->assertRedirect('/');
-});
+        $response = $this->actingAs($user)->post('/logout');
+
+        $this->assertGuest();
+        $response->assertRedirect('/');
+    }
+}

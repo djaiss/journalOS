@@ -2,54 +2,65 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feature\Controllers\Settings;
+
 use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-it('shows all the logs', function (): void {
-    Carbon::setTestNow(Carbon::create(2018, 1, 1));
-    $user = User::factory()->create([
-        'first_name' => 'Ross',
-        'last_name' => 'Geller',
-        'nickname' => null,
-    ]);
+class LogControllerTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $log = Log::factory()->create([
-        'organization_id' => null,
-        'user_id' => $user->id,
-        'action' => 'profile_update',
-        'description' => 'Updated their profile',
-    ]);
+    public function test_it_shows_all_the_logs(): void
+    {
+        Carbon::setTestNow(Carbon::create(2018, 1, 1));
+        $user = User::factory()->create([
+            'first_name' => 'Ross',
+            'last_name' => 'Geller',
+            'nickname' => null,
+        ]);
 
-    $response = $this->actingAs($user)
-        ->get('/settings/profile/logs');
+        $log = Log::factory()->create([
+            'organization_id' => null,
+            'user_id' => $user->id,
+            'action' => 'profile_update',
+            'description' => 'Updated their profile',
+        ]);
 
-    $response->assertStatus(200);
-    $response->assertViewIs('settings.logs.index');
-    $response->assertViewHas('logs');
+        $response = $this->actingAs($user)
+            ->get('/settings/profile/logs');
 
-    $logs = $response->viewData('logs');
+        $response->assertStatus(200);
+        $response->assertViewIs('settings.logs.index');
+        $response->assertViewHas('logs');
 
-    expect($logs)->toHaveCount(1);
-    expect($logs[0]->id)->toEqual($log->id);
-    expect($logs[0]->user->getFullName())->toEqual('Ross Geller');
-    expect($logs[0]->action)->toEqual('profile_update');
-    expect($logs[0]->description)->toEqual('Updated their profile');
-});
+        $logs = $response->viewData('logs');
 
-it('shows a pagination', function (): void {
-    $user = User::factory()->create();
+        $this->assertCount(1, $logs);
+        $this->assertEquals($log->id, $logs[0]->id);
+        $this->assertEquals('Ross Geller', $logs[0]->user->getFullName());
+        $this->assertEquals('profile_update', $logs[0]->action);
+        $this->assertEquals('Updated their profile', $logs[0]->description);
+    }
 
-    Log::factory()->count(15)->create([
-        'organization_id' => null,
-        'user_id' => $user->id,
-    ]);
+    public function test_it_shows_a_pagination(): void
+    {
+        $user = User::factory()->create();
 
-    $response = $this->actingAs($user)
-        ->get('/settings/profile/logs');
+        Log::factory()->count(15)->create([
+            'organization_id' => null,
+            'user_id' => $user->id,
+        ]);
 
-    $response->assertStatus(200);
-    expect($response['logs'])->toHaveCount(10);
+        $response = $this->actingAs($user)
+            ->get('/settings/profile/logs');
 
-    expect($response['logs']->hasMorePages())->toBeTrue();
-});
+        $response->assertStatus(200);
+        $this->assertCount(10, $response['logs']);
+
+        $this->assertTrue($response['logs']->hasMorePages());
+    }
+}

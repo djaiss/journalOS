@@ -2,15 +2,25 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feature\Controllers\Settings\Security;
+
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-it('shows the recovery codes', function (): void {
-    $user = User::factory()->create([
-        'two_factor_recovery_codes' => ['code1', 'code2', 'code3'],
-    ]);
+class RecoveryCodeControllerTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $response = $this->actingAs($user)
-        ->get('/settings/security/recovery-codes');
+    public function test_it_shows_the_recovery_codes(): void
+    {
+        $user = User::factory()->create([
+            'two_factor_recovery_codes' => ['code1', 'code2', 'code3'],
+        ]);
 
-    $response->assertOk();
-});
+        $response = $this->actingAs($user)
+            ->get('/settings/security/recovery-codes');
+
+        $response->assertOk();
+    }
+}

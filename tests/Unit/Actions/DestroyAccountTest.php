@@ -2,34 +2,44 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\Actions;
+
 use App\Actions\DestroyAccount;
-use App\Models\User;
 use App\Mail\AccountDestroyed;
-use Illuminate\Support\Facades\Queue;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Queue;
+use Tests\TestCase;
 
-it('destroys a user account', function (): void {
-    Queue::fake();
-    Mail::fake();
-    config(['collectos.account_deletion_notification_email' => 'regis@collectos.com']);
+class DestroyAccountTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $user = User::factory()->create();
+    public function test_it_destroys_a_user_account(): void
+    {
+        Queue::fake();
+        Mail::fake();
+        config(['collectos.account_deletion_notification_email' => 'regis@collectos.com']);
 
-    (new DestroyAccount(
-        user: $user,
-        reason: 'the service is not working',
-    ))->execute();
+        $user = User::factory()->create();
 
-    $this->assertDatabaseMissing('users', [
-        'id' => $user->id,
-    ]);
+        (new DestroyAccount(
+            user: $user,
+            reason: 'the service is not working',
+        ))->execute();
 
-    $this->assertDatabaseHas('account_deletion_reasons', [
-        'reason' => 'the service is not working',
-    ]);
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id,
+        ]);
 
-    Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
-        return $job->reason === 'the service is not working'
-            && $job->to[0]['address'] === 'regis@collectos.com';
-    });
-});
+        $this->assertDatabaseHas('account_deletion_reasons', [
+            'reason' => 'the service is not working',
+        ]);
+
+        Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
+            return $job->reason === 'the service is not working'
+                && $job->to[0]['address'] === 'regis@collectos.com';
+        });
+    }
+}

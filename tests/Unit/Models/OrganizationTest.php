@@ -2,42 +2,50 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\Models;
+
 use App\Models\EmailSent;
-use App\Models\Group;
-use App\Models\JobDiscipline;
-use App\Models\JobFamily;
 use App\Models\Organization;
-use App\Models\Role;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-it('belongs to many users', function (): void {
-    $organization = Organization::factory()->create();
-    $user1 = User::factory()->create();
-    $user2 = User::factory()->create();
+class OrganizationTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $organization->users()->attach($user1->id, [
-        'joined_at' => now(),
-    ]);
-    $organization->users()->attach($user2->id, [
-        'joined_at' => now(),
-    ]);
+    public function test_it_belongs_to_many_users(): void
+    {
+        $organization = Organization::factory()->create();
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
 
-    expect($organization->users)->toHaveCount(2);
-    expect($organization->users->contains($user1))->toBeTrue();
-    expect($organization->users->contains($user2))->toBeTrue();
-});
+        $organization->users()->attach($user1->id, [
+            'joined_at' => now(),
+        ]);
+        $organization->users()->attach($user2->id, [
+            'joined_at' => now(),
+        ]);
 
-it('has many emails sent', function (): void {
-    $organization = Organization::factory()->create();
-    EmailSent::factory()->count(2)->create([
-        'organization_id' => $organization->id,
-    ]);
+        $this->assertCount(2, $organization->users);
+        $this->assertTrue($organization->users->contains($user1));
+        $this->assertTrue($organization->users->contains($user2));
+    }
 
-    expect($organization->emailsSent()->exists())->toBeTrue();
-});
+    public function test_it_has_many_emails_sent(): void
+    {
+        $organization = Organization::factory()->create();
+        EmailSent::factory()->count(2)->create([
+            'organization_id' => $organization->id,
+        ]);
 
-it('gets the avatar', function (): void {
-    $organization = Organization::factory()->create();
+        $this->assertTrue($organization->emailsSent()->exists());
+    }
 
-    expect($organization->getAvatar())->toBeString();
-});
+    public function test_it_gets_the_avatar(): void
+    {
+        $organization = Organization::factory()->create();
+
+        $this->assertIsString($organization->getAvatar());
+    }
+}

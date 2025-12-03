@@ -1,68 +1,84 @@
 <?php
 
 declare(strict_types=1);
+
+namespace Tests\Feature\Controllers\Organizations;
+
 use App\Models\Organization;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 
-it('shows the organizations the user is a member of', function (): void {
-    $user = User::factory()->create();
-    $organization = Organization::factory()->create([
-        'name' => 'Dunder Mifflin',
-        'slug' => 'dunder-mifflin',
-    ]);
-    $user->organizations()->attach($organization->id, [
-        'joined_at' => now(),
-    ]);
+class OrganizationControllerTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $response = $this->actingAs($user)->get('/organizations');
+    public function test_it_shows_the_organizations_the_user_is_a_member_of(): void
+    {
+        $user = User::factory()->create();
+        $organization = Organization::factory()->create([
+            'name' => 'Dunder Mifflin',
+            'slug' => 'dunder-mifflin',
+        ]);
+        $user->organizations()->attach($organization->id, [
+            'joined_at' => now(),
+        ]);
 
-    $response->assertStatus(200);
-    $response->assertSee('Dunder Mifflin');
-});
+        $response = $this->actingAs($user)->get('/organizations');
 
-it('shows a message when the user is not a member of any organizations', function (): void {
-    $user = User::factory()->create();
+        $response->assertStatus(200);
+        $response->assertSee('Dunder Mifflin');
+    }
 
-    $response = $this->actingAs($user)->get('/organizations');
+    public function test_it_shows_a_message_when_the_user_is_not_a_member_of_any_organizations(): void
+    {
+        $user = User::factory()->create();
 
-    $response->assertStatus(200);
-    $response->assertSee('You are not a member of any organizations yet.');
-});
+        $response = $this->actingAs($user)->get('/organizations');
 
-it('creates an organization', function (): void {
-    $user = User::factory()->create([
-        'email' => 'michael.scott@dundermifflin.com',
-        'password' => Illuminate\Support\Facades\Hash::make('5UTHSmdj'),
-    ]);
+        $response->assertStatus(200);
+        $response->assertSee('You are not a member of any organizations yet.');
+    }
 
-    $response = $this->actingAs($user)->get('/organizations/create');
+    public function test_it_creates_an_organization(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'michael.scott@dundermifflin.com',
+            'password' => Hash::make('5UTHSmdj'),
+        ]);
 
-    $response = $this->post('/organizations', [
-        'organization_name' => 'Dunder Mifflin',
-    ]);
+        $response = $this->actingAs($user)->get('/organizations/create');
 
-    $organization = Organization::where('name', 'Dunder Mifflin')->first();
+        $response = $this->post('/organizations', [
+            'organization_name' => 'Dunder Mifflin',
+        ]);
 
-    $response->assertRedirect('/organizations/' . $organization->slug);
-});
+        $organization = Organization::where('name', 'Dunder Mifflin')->first();
 
-it('lets an user access an organization', function (): void {
-    $user = User::factory()->create();
-    $organization = Organization::factory()->create();
-    $user->organizations()->attach($organization->id, [
-        'joined_at' => now(),
-    ]);
+        $response->assertRedirect('/organizations/' . $organization->slug);
+    }
 
-    $response = $this->actingAs($user)->get('/organizations/' . $organization->slug);
+    public function test_it_lets_an_user_access_an_organization(): void
+    {
+        $user = User::factory()->create();
+        $organization = Organization::factory()->create();
+        $user->organizations()->attach($organization->id, [
+            'joined_at' => now(),
+        ]);
 
-    $response->assertStatus(200);
-});
+        $response = $this->actingAs($user)->get('/organizations/' . $organization->slug);
 
-it('does not let an user access an organization they are not a member of', function (): void {
-    $user = User::factory()->create();
-    $organization = Organization::factory()->create();
+        $response->assertStatus(200);
+    }
 
-    $response = $this->actingAs($user)->get('/organizations/' . $organization->slug);
+    public function test_it_does_not_let_an_user_access_an_organization_they_are_not_a_member_of(): void
+    {
+        $user = User::factory()->create();
+        $organization = Organization::factory()->create();
 
-    $response->assertStatus(403);
-});
+        $response = $this->actingAs($user)->get('/organizations/' . $organization->slug);
+
+        $response->assertStatus(403);
+    }
+}
