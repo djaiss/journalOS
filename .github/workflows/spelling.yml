@@ -74,7 +74,9 @@ jobs:
             -type d \( -name .git -o -name vendor -o -name node_modules -o -path ./storage -o -path ./public -o -path ./bootstrap/cache -o -path ./coverage -o -path ./build \) -prune -o \
             -type f \
             ! -path './database/blacklist_domains/data.txt' \
+            ! -path './database/blacklist_domains/domains.txt' \
             ! -path './lang/fr.json' \
+            ! -path './lang/fr/auth.php' \
             ! -name 'composer.lock' \
             ! -name 'bun.lock' \
             -print \
