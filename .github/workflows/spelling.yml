@@ -76,6 +76,7 @@ jobs:
             ! -path './database/blacklist_domains/data.txt' \
             ! -path './database/blacklist_domains/domains.txt' \
             ! -path './lang/fr.json' \
+            ! -path 'package.json' \
             ! -path './lang/fr/auth.php' \
             ! -name 'composer.lock' \
             ! -name 'bun.lock' \
