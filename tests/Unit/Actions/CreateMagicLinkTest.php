@@ -2,42 +2,54 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
+namespace Tests\Unit\Actions;
+
 use App\Actions\CreateMagicLink;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-it('returns a string', function (): void {
-    $user = User::factory()->create([
-        'email' => 'test@example.com',
-    ]);
+class CreateMagicLinkTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $magicLinkUrl = (new CreateMagicLink(
-        email: $user->email,
-    ))->execute();
+    public function test_it_returns_a_string(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+        ]);
 
-    expect($magicLinkUrl)->toBeString();
-});
+        $magicLinkUrl = (new CreateMagicLink(
+            email: $user->email,
+        ))->execute();
 
-it('contains the app url with magic link structure', function (): void {
-    $user = User::factory()->create([
-        'email' => 'test@example.com',
-    ]);
+        $this->assertIsString($magicLinkUrl);
+    }
 
-    $magicLinkUrl = (new CreateMagicLink(
-        email: $user->email,
-    ))->execute();
+    public function test_it_contains_the_app_url_with_magic_link_structure(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+        ]);
 
-    $appUrl = config('app.url');
-    expect($magicLinkUrl)->toStartWith($appUrl . '/magiclink/');
-    expect($magicLinkUrl)->toMatch('/\/magiclink\/[a-f0-9-]+%3A[A-Za-z0-9]+/');
-});
+        $magicLinkUrl = (new CreateMagicLink(
+            email: $user->email,
+        ))->execute();
 
-it('throws an exception if user not found', function (): void {
-    $nonExistentEmail = 'nonexistent@example.com';
+        $appUrl = config('app.url');
+        $this->assertStringStartsWith($appUrl . '/magiclink/', $magicLinkUrl);
+        $this->assertMatchesRegularExpression('/\/magiclink\/[a-f0-9-]+%3A[A-Za-z0-9]+/', $magicLinkUrl);
+    }
 
-    $this->expectException(ModelNotFoundException::class);
+    public function test_it_throws_an_exception_if_user_not_found(): void
+    {
+        $nonExistentEmail = 'nonexistent@example.com';
 
-    (new CreateMagicLink(
-        email: $nonExistentEmail,
-    ))->execute();
-});
+        $this->expectException(ModelNotFoundException::class);
+
+        (new CreateMagicLink(
+            email: $nonExistentEmail,
+        ))->execute();
+    }
+}

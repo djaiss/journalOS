@@ -27,6 +27,7 @@
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.16",
+    "brianium/paratest": "^7.8",
     "fakerphp/faker": "^1.23",
     "larastan/larastan": "^3.3",
     "laravel/boost": "^1.0",
@@ -35,10 +36,7 @@
     "laravel/sail": "^1.41",
     "mockery/mockery": "^1.6",
     "nunomaduro/collision": "^8.6",
-    "pestphp/pest": "^4.0",
-    "pestphp/pest-plugin-browser": "^4.0",
-    "pestphp/pest-plugin-profanity": "^4.0",
-    "pestphp/pest-plugin-type-coverage": "^4.0",
+    "phpunit/phpunit": "^11.0",
     "rector/rector": "^2.0"
   },
   "autoload": {
@@ -91,7 +89,6 @@
       "@collectos:update",
       "@collectos:locale",
       "@collectos:lint",
-      "@collectos:type-coverage",
       "@collectos:setup"
     ],
     "collectos:lint": "./vendor/bin/pint",
@@ -100,10 +97,9 @@
     "collectos:rector": "./vendor/bin/rector",
     "collectos:setup": "php artisan migrate:fresh && php artisan db:seed",
     "collectos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
-    "collectos:type-coverage": "./vendor/bin/pest --type-coverage --min=100",
     "collectos:update": "composer update && bun update",
     "collectos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
-    "collectos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && ./vendor/bin/pest --parallel --processes=10"
+    "collectos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && ./vendor/bin/phpunit"
   },
   "extra": {
     "laravel": {
@@ -115,7 +111,6 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "allow-plugins": {
-      "pestphp/pest-plugin": true,
       "php-http/discovery": true
     }
   },

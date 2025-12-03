@@ -2,42 +2,52 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\ViewModels\Organizations;
+
 use App\Http\ViewModels\Organizations\OrganizationIndexViewModel;
-use App\Models\User;
 use App\Models\Organization;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-it('returns the correct organizations', function (): void {
-    $user = User::factory()->create();
-    $organization1 = Organization::factory()->create([
-        'name' => 'Dunder Mifflin',
-        'slug' => 'dunder-mifflin',
-    ]);
-    $organization2 = Organization::factory()->create([
-        'name' => 'Dunder Mifflin Paper Company',
-        'slug' => 'dunder-mifflin-paper-company',
-    ]);
+class OrganizationIndexViewModelTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $user->organizations()->attach($organization1->id, [
-        'joined_at' => now(),
-    ]);
-    $user->organizations()->attach($organization2->id, [
-        'joined_at' => now(),
-    ]);
+    public function test_it_returns_the_correct_organizations(): void
+    {
+        $user = User::factory()->create();
+        $organization1 = Organization::factory()->create([
+            'name' => 'Dunder Mifflin',
+            'slug' => 'dunder-mifflin',
+        ]);
+        $organization2 = Organization::factory()->create([
+            'name' => 'Dunder Mifflin Paper Company',
+            'slug' => 'dunder-mifflin-paper-company',
+        ]);
 
-    $viewModel = new OrganizationIndexViewModel(
-        user: $user,
-    );
+        $user->organizations()->attach($organization1->id, [
+            'joined_at' => now(),
+        ]);
+        $user->organizations()->attach($organization2->id, [
+            'joined_at' => now(),
+        ]);
 
-    $organizations = $viewModel->organizations();
+        $viewModel = new OrganizationIndexViewModel(
+            user: $user,
+        );
 
-    expect($organizations)->toHaveCount(2);
+        $organizations = $viewModel->organizations();
 
-    $firstOrganization = $organizations->first();
-    expect(property_exists($firstOrganization, 'id'))->toBeTrue();
-    expect(property_exists($firstOrganization, 'name'))->toBeTrue();
-    expect(property_exists($firstOrganization, 'slug'))->toBeTrue();
-    expect(property_exists($firstOrganization, 'avatar'))->toBeTrue();
+        $this->assertCount(2, $organizations);
 
-    expect($firstOrganization->id)->toEqual($organization1->id);
-    expect('Dunder Mifflin')->toEqual($organization1->name);
-});
+        $firstOrganization = $organizations->first();
+        $this->assertTrue(property_exists($firstOrganization, 'id'));
+        $this->assertTrue(property_exists($firstOrganization, 'name'));
+        $this->assertTrue(property_exists($firstOrganization, 'slug'));
+        $this->assertTrue(property_exists($firstOrganization, 'avatar'));
+
+        $this->assertEquals($organization1->id, $firstOrganization->id);
+        $this->assertEquals('Dunder Mifflin', $organization1->name);
+    }
+}

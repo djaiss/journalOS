@@ -2,90 +2,107 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\Actions;
+
 use App\Actions\Validate2faQRCode;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use InvalidArgumentException;
+use Mockery;
 use PragmaRX\Google2FALaravel\Google2FA;
+use Tests\TestCase;
 
-it('validates the 2fa QR code and generates recovery codes', function (): void {
-    $secret = 'JBSWY3DPEHPK3PXP';
+class Validate2faQRCodeTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $user = User::factory()->create([
-        'two_factor_secret' => $secret,
-        'two_factor_confirmed_at' => null,
-    ]);
+    public function test_it_validates_the_2fa_qr_code_and_generates_recovery_codes(): void
+    {
+        $secret = 'JBSWY3DPEHPK3PXP';
 
-    $google2faMock = Mockery::mock(Google2FA::class);
-    $google2faMock->shouldReceive('verifyKey')
-        ->once()
-        ->with($secret, '123456')
-        ->andReturn(true);
+        $user = User::factory()->create([
+            'two_factor_secret' => $secret,
+            'two_factor_confirmed_at' => null,
+        ]);
 
-    (new Validate2faQRCode(
-        user: $user,
-        token: '123456',
-        google2fa: $google2faMock,
-    ))->execute();
+        $google2faMock = Mockery::mock(Google2FA::class);
+        $google2faMock->shouldReceive('verifyKey')
+            ->once()
+            ->with($secret, '123456')
+            ->andReturn(true);
 
-    $user->refresh();
-
-    expect($user->two_factor_confirmed_at)->not->toBeNull();
-    expect($user->two_factor_recovery_codes)->toBeArray();
-    expect($user->two_factor_recovery_codes)->toHaveCount(8);
-
-    foreach ($user->two_factor_recovery_codes as $code) {
-        expect($code)->toBeString();
-        expect(mb_strlen($code))->toBe(10);
-    }
-});
-
-it('throws exception when token is invalid', function (): void {
-    $secret = 'JBSWY3DPEHPK3PXP';
-
-    $user = User::factory()->create([
-        'two_factor_secret' => $secret,
-        'two_factor_confirmed_at' => null,
-    ]);
-
-    $google2faMock = Mockery::mock(Google2FA::class);
-    $google2faMock->shouldReceive('verifyKey')
-        ->once()
-        ->with($secret, 'wrong-token')
-        ->andReturn(false);
-
-    expect(fn() => (new Validate2faQRCode(
-        user: $user,
-        token: 'wrong-token',
-        google2fa: $google2faMock,
-    ))->execute())->toThrow(InvalidArgumentException::class, 'The provided token is invalid.');
-});
-
-it('does not update recovery codes when token is invalid', function (): void {
-    $secret = 'JBSWY3DPEHPK3PXP';
-
-    $user = User::factory()->create([
-        'two_factor_secret' => $secret,
-        'two_factor_confirmed_at' => null,
-        'two_factor_recovery_codes' => null,
-    ]);
-
-    $google2faMock = Mockery::mock(Google2FA::class);
-    $google2faMock->shouldReceive('verifyKey')
-        ->once()
-        ->with($secret, 'invalid-token')
-        ->andReturn(false);
-
-    try {
         (new Validate2faQRCode(
             user: $user,
-            token: 'invalid-token',
+            token: '123456',
             google2fa: $google2faMock,
         ))->execute();
-    } catch (InvalidArgumentException $e) {
-        // Expected exception
+
+        $user->refresh();
+
+        $this->assertNotNull($user->two_factor_confirmed_at);
+        $this->assertIsArray($user->two_factor_recovery_codes);
+        $this->assertCount(8, $user->two_factor_recovery_codes);
+
+        foreach ($user->two_factor_recovery_codes as $code) {
+            $this->assertIsString($code);
+            $this->assertEquals(10, mb_strlen($code));
+        }
     }
 
-    $user->refresh();
+    public function test_it_throws_exception_when_token_is_invalid(): void
+    {
+        $secret = 'JBSWY3DPEHPK3PXP';
 
-    expect($user->two_factor_confirmed_at)->toBeNull();
-    expect($user->two_factor_recovery_codes)->toBeNull();
-});
+        $user = User::factory()->create([
+            'two_factor_secret' => $secret,
+            'two_factor_confirmed_at' => null,
+        ]);
+
+        $google2faMock = Mockery::mock(Google2FA::class);
+        $google2faMock->shouldReceive('verifyKey')
+            ->once()
+            ->with($secret, 'wrong-token')
+            ->andReturn(false);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The provided token is invalid.');
+
+        (new Validate2faQRCode(
+            user: $user,
+            token: 'wrong-token',
+            google2fa: $google2faMock,
+        ))->execute();
+    }
+
+    public function test_it_does_not_update_recovery_codes_when_token_is_invalid(): void
+    {
+        $secret = 'JBSWY3DPEHPK3PXP';
+
+        $user = User::factory()->create([
+            'two_factor_secret' => $secret,
+            'two_factor_confirmed_at' => null,
+            'two_factor_recovery_codes' => null,
+        ]);
+
+        $google2faMock = Mockery::mock(Google2FA::class);
+        $google2faMock->shouldReceive('verifyKey')
+            ->once()
+            ->with($secret, 'invalid-token')
+            ->andReturn(false);
+
+        try {
+            (new Validate2faQRCode(
+                user: $user,
+                token: 'invalid-token',
+                google2fa: $google2faMock,
+            ))->execute();
+        } catch (InvalidArgumentException $e) {
+            // Expected exception
+        }
+
+        $user->refresh();
+
+        $this->assertNull($user->two_factor_confirmed_at);
+        $this->assertNull($user->two_factor_recovery_codes);
+    }
+}

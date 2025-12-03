@@ -2,51 +2,63 @@
 
 declare(strict_types=1);
 
+namespace Tests\Unit\Actions;
+
+use App\Actions\UpdateUserPassword;
 use App\Jobs\LogUserAction;
 use App\Models\User;
-use App\Actions\UpdateUserPassword;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
+use InvalidArgumentException;
+use Tests\TestCase;
 
-it('updates user password', function (): void {
-    Queue::fake();
+class UpdateUserPasswordTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $user = User::factory()->create([
-        'password' => Hash::make('current-password'),
-    ]);
+    public function test_it_updates_user_password(): void
+    {
+        Queue::fake();
 
-    $updatedUser = (new UpdateUserPassword(
-        user: $user,
-        currentPassword: 'current-password',
-        newPassword: 'new-password',
-    ))->execute();
+        $user = User::factory()->create([
+            'password' => Hash::make('current-password'),
+        ]);
 
-    expect(Hash::check('new-password', $updatedUser->fresh()->password))->toBeTrue();
+        $updatedUser = (new UpdateUserPassword(
+            user: $user,
+            currentPassword: 'current-password',
+            newPassword: 'new-password',
+        ))->execute();
 
-    expect($updatedUser)->toBeInstanceOf(User::class);
+        $this->assertTrue(Hash::check('new-password', $updatedUser->fresh()->password));
 
-    Queue::assertPushedOn(
-        queue: 'low',
-        job: LogUserAction::class,
-        callback: function (LogUserAction $job) use ($user): bool {
-            return $job->action === 'update_user_password'
-                && $job->user->id === $user->id
-                && $job->description === 'Updated their password';
-        },
-    );
-});
+        $this->assertInstanceOf(User::class, $updatedUser);
 
-it('throws exception when current password is incorrect', function (): void {
-    $user = User::factory()->create([
-        'password' => Hash::make('current-password'),
-    ]);
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: LogUserAction::class,
+            callback: function (LogUserAction $job) use ($user): bool {
+                return $job->action === 'update_user_password'
+                    && $job->user->id === $user->id
+                    && $job->description === 'Updated their password';
+            },
+        );
+    }
 
-    $this->expectException(InvalidArgumentException::class);
-    $this->expectExceptionMessage('Current password is incorrect');
+    public function test_it_throws_exception_when_current_password_is_incorrect(): void
+    {
+        $user = User::factory()->create([
+            'password' => Hash::make('current-password'),
+        ]);
 
-    (new UpdateUserPassword(
-        user: $user,
-        currentPassword: Hash::make('wrong-password'),
-        newPassword: 'new-password',
-    ))->execute();
-});
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Current password is incorrect');
+
+        (new UpdateUserPassword(
+            user: $user,
+            currentPassword: Hash::make('wrong-password'),
+            newPassword: 'new-password',
+        ))->execute();
+    }
+}

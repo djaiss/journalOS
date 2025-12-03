@@ -2,12 +2,23 @@
 
 declare(strict_types=1);
 
-it('checks the health of the application', function (): void {
-    $response = $this->json('GET', '/api/health');
+namespace Tests\Feature\Controllers\Api;
 
-    $response->assertStatus(200);
-    $response->assertJson([
-        'message' => 'ok',
-        'status' => 200,
-    ]);
-});
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class HealthControllerTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_it_checks_the_health_of_the_application(): void
+    {
+        $response = $this->json('GET', '/api/health');
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => 'ok',
+            'status' => 200,
+        ]);
+    }
+}

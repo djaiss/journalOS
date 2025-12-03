@@ -2,13 +2,39 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feature\Controllers\Api\Settings\Security;
+
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
+use Tests\TestCase;
 
-$collectionJsonStructure = [
-    'data' => [
-        '*' => [
+class ApiKeyControllerTest extends TestCase
+{
+    use RefreshDatabase;
+
+    private array $collectionJsonStructure = [
+        'data' => [
+            '*' => [
+                'type',
+                'id',
+                'attributes' => [
+                    'name',
+                    'token',
+                    'last_used_at',
+                    'created_at',
+                    'updated_at',
+                ],
+                'links' => [
+                    'self',
+                ],
+            ],
+        ],
+    ];
+
+    private array $singleJsonStructure = [
+        'data' => [
             'type',
             'id',
             'attributes' => [
@@ -22,118 +48,106 @@ $collectionJsonStructure = [
                 'self',
             ],
         ],
-    ],
-];
+    ];
 
-$singleJsonStructure = [
-    'data' => [
-        'type',
-        'id',
-        'attributes' => [
-            'name',
-            'token',
-            'last_used_at',
-            'created_at',
-            'updated_at',
-        ],
-        'links' => [
-            'self',
-        ],
-    ],
-];
+    public function test_it_can_list_the_api_keys_of_the_current_user(): void
+    {
+        Carbon::setTestNow('2025-07-01 00:00:00');
+        $user = User::factory()->create();
 
-it('can list the api keys of the current user', function () use ($collectionJsonStructure): void {
-    Carbon::setTestNow('2025-07-01 00:00:00');
-    $user = User::factory()->create();
+        $token1 = $user->createToken('Test API Key 1');
+        $token2AccessToken = $user->createToken('Test API Key 2')->accessToken;
+        $token2AccessToken->last_used_at = Carbon::now()->subDays(5);
+        $token2AccessToken->save();
 
-    $token1 = $user->createToken('Test API Key 1');
-    $token2AccessToken = $user->createToken('Test API Key 2')->accessToken;
-    $token2AccessToken->last_used_at = Carbon::now()->subDays(5);
-    $token2AccessToken->save();
+        Sanctum::actingAs($user);
 
-    Sanctum::actingAs($user);
+        $response = $this->json('GET', '/api/settings/api');
 
-    $response = $this->json('GET', '/api/settings/api');
+        $response->assertJsonStructure($this->collectionJsonStructure);
 
-    $response->assertJsonStructure($collectionJsonStructure);
+        $response->assertJsonCount(2, 'data');
+    }
 
-    $response->assertJsonCount(2, 'data');
-});
+    public function test_it_can_create_a_new_api_key(): void
+    {
+        $user = User::factory()->create();
 
-it('can create a new api key', function () use ($singleJsonStructure): void {
-    $user = User::factory()->create();
+        Sanctum::actingAs($user);
 
-    Sanctum::actingAs($user);
+        $response = $this->json('POST', '/api/settings/api', [
+            'label' => 'New API Key',
+        ]);
 
-    $response = $this->json('POST', '/api/settings/api', [
-        'label' => 'New API Key',
-    ]);
+        $response->assertStatus(201);
 
-    $response->assertStatus(201);
+        $this->assertDatabaseHas('personal_access_tokens', [
+            'name' => 'New API Key',
+            'tokenable_id' => $user->id,
+            'tokenable_type' => User::class,
+        ]);
 
-    $this->assertDatabaseHas('personal_access_tokens', [
-        'name' => 'New API Key',
-        'tokenable_id' => $user->id,
-        'tokenable_type' => User::class,
-    ]);
+        $response->assertJsonStructure($this->singleJsonStructure);
+    }
 
-    $response->assertJsonStructure($singleJsonStructure);
-});
+    public function test_user_can_delete_their_api_key(): void
+    {
+        $user = User::factory()->create();
+        $token = $user->createToken('Test API Key');
+        $tokenId = $token->accessToken->id;
 
-it('user can delete their api key', function (): void {
-    $user = User::factory()->create();
-    $token = $user->createToken('Test API Key');
-    $tokenId = $token->accessToken->id;
+        Sanctum::actingAs($user);
 
-    Sanctum::actingAs($user);
+        $response = $this->json('DELETE', "/api/settings/api/{$tokenId}");
 
-    $response = $this->json('DELETE', "/api/settings/api/{$tokenId}");
+        $response->assertStatus(204);
 
-    $response->assertStatus(204);
+        $this->assertDatabaseMissing('personal_access_tokens', [
+            'id' => $tokenId,
+        ]);
+    }
 
-    $this->assertDatabaseMissing('personal_access_tokens', [
-        'id' => $tokenId,
-    ]);
-});
+    public function test_it_can_get_a_single_api_key(): void
+    {
+        Carbon::setTestNow('2025-07-01 00:00:00');
+        $user = User::factory()->create();
+        $token = $user->createToken('Test API Key');
+        $tokenId = $token->accessToken->id;
 
-it('can get a single api key', function () use ($singleJsonStructure): void {
-    Carbon::setTestNow('2025-07-01 00:00:00');
-    $user = User::factory()->create();
-    $token = $user->createToken('Test API Key');
-    $tokenId = $token->accessToken->id;
+        Sanctum::actingAs($user);
 
-    Sanctum::actingAs($user);
+        $response = $this->json('GET', "/api/settings/api/{$tokenId}");
 
-    $response = $this->json('GET', "/api/settings/api/{$tokenId}");
+        $response->assertStatus(200);
+        $response->assertJsonStructure($this->singleJsonStructure);
 
-    $response->assertStatus(200);
-    $response->assertJsonStructure($singleJsonStructure);
-
-    $response->assertJson([
-        'data' => [
-            'type' => 'api_key',
-            'id' => (string) $tokenId,
-            'attributes' => [
-                'name' => 'Test API Key',
-                'token' => null,
-                'last_used_at' => null,
-                'created_at' => Carbon::now()->timestamp,
-                'updated_at' => Carbon::now()->timestamp,
+        $response->assertJson([
+            'data' => [
+                'type' => 'api_key',
+                'id' => (string) $tokenId,
+                'attributes' => [
+                    'name' => 'Test API Key',
+                    'token' => null,
+                    'last_used_at' => null,
+                    'created_at' => Carbon::now()->timestamp,
+                    'updated_at' => Carbon::now()->timestamp,
+                ],
             ],
-        ],
-    ]);
-});
+        ]);
+    }
 
-it('returns 404 when api key not found', function (): void {
-    $user = User::factory()->create();
+    public function test_it_returns_404_when_api_key_not_found(): void
+    {
+        $user = User::factory()->create();
 
-    Sanctum::actingAs($user);
+        Sanctum::actingAs($user);
 
-    $response = $this->json('GET', '/api/settings/api/999');
+        $response = $this->json('GET', '/api/settings/api/999');
 
-    $response->assertStatus(404);
-    $response->assertJson([
-        'message' => 'API key not found',
-        'status' => 404,
-    ]);
-});
+        $response->assertStatus(404);
+        $response->assertJson([
+            'message' => 'API key not found',
+            'status' => 404,
+        ]);
+    }
+}

@@ -104,25 +104,6 @@ jobs:
       - name: Install node dependencies
         run: npm install
 
-      # Determine Playwright version AFTER dependencies installed (so playwright CLI exists)
-      - name: Determine Playwright version
-        id: pw-version
-        run: echo "version=$(npx playwright --version | awk '{print $2}')" >> $GITHUB_OUTPUT
-
-      # Cache Playwright browsers (shared across matrix legs)
-      - name: Cache Playwright browsers
-        id: pw-cache
-        uses: actions/cache@v4
-        with:
-          path: $HOME/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.pw-version.outputs.version }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
-
-      - name: Install Playwright Browsers
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-
       # Prepare
       - name: Prepare environment
         run: |
@@ -165,19 +146,19 @@ jobs:
 
       - name: Run tests
         if: matrix.connection == 'sqlite'
-        run: vendor/bin/pest --ci --coverage-clover=coverage.xml --parallel
+        run: php artisan test --parallel
         continue-on-error: true
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests (mysql)
         if: matrix.connection == 'mysql'
-        run: vendor/bin/pest --ci --parallel
+        run: php artisan test --parallel
         env:
           DB_CONNECTION: ${{ matrix.connection }}
 
       - name: Run tests (pgsql)
         if: matrix.connection == 'pgsql'
-        run: vendor/bin/pest --ci
+        run: php artisan test
         env:
           DB_CONNECTION: ${{ matrix.connection }}

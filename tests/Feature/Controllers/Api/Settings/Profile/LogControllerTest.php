@@ -2,31 +2,21 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feature\Controllers\Api\Settings\Profile;
+
 use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
+use Tests\TestCase;
 
-$logJsonStructure = [
-    'data' => [
-        'type',
-        'id',
-        'attributes' => [
-            'user_name',
-            'action',
-            'description',
-            'created_at',
-            'updated_at',
-        ],
-        'links' => [
-            'self',
-        ],
-    ],
-];
+class LogControllerTest extends TestCase
+{
+    use RefreshDatabase;
 
-$logsCollectionStructure = [
-    'data' => [
-        '*' => [
+    private array $logJsonStructure = [
+        'data' => [
             'type',
             'id',
             'attributes' => [
@@ -40,138 +30,162 @@ $logsCollectionStructure = [
                 'self',
             ],
         ],
-    ],
-    'links' => [
-        'first',
-        'last',
-        'prev',
-        'next',
-    ],
-    'meta' => [
-        'current_page',
-        'from',
-        'last_page',
-        'path',
-        'per_page',
-        'to',
-        'total',
-    ],
-];
+    ];
 
-it('can get paginated logs', function () use ($logsCollectionStructure): void {
-    Carbon::setTestNow('2025-01-15 10:00:00');
-    $user = User::factory()->create();
-
-    $logs = Log::factory()->count(15)->create([
-        'user_id' => $user->id,
-        'user_name' => $user->getFullName(),
-    ]);
-
-    Sanctum::actingAs($user);
-
-    $response = $this->json('GET', '/api/settings/logs');
-
-    $response->assertStatus(200);
-    $response->assertJsonStructure($logsCollectionStructure);
-
-    $response->assertJson([
-        'meta' => [
-            'current_page' => 1,
-            'per_page' => 10,
-            'total' => 15,
-        ],
-    ]);
-
-    $firstLog = $logs->sortByDesc('created_at')->first();
-    $response->assertJson([
+    private array $logsCollectionStructure = [
         'data' => [
-            [
-                'type' => 'log',
-                'id' => (string) $firstLog->id,
+            '*' => [
+                'type',
+                'id',
                 'attributes' => [
-                    'user_name' => $firstLog->user_name,
-                    'action' => $firstLog->action,
-                    'description' => $firstLog->description,
-                    'created_at' => $firstLog->created_at->timestamp,
-                    'updated_at' => $firstLog->created_at->timestamp,
+                    'user_name',
+                    'action',
+                    'description',
+                    'created_at',
+                    'updated_at',
+                ],
+                'links' => [
+                    'self',
                 ],
             ],
         ],
-    ]);
-});
-
-it('can show a specific log', function () use ($logJsonStructure): void {
-    Carbon::setTestNow('2025-01-15 10:00:00');
-    $user = User::factory()->create();
-    $log = Log::factory()->create([
-        'user_id' => $user->id,
-        'user_name' => $user->getFullName(),
-        'action' => 'user.login',
-        'description' => 'User logged in successfully',
-    ]);
-
-    Sanctum::actingAs($user);
-
-    $response = $this->json('GET', "/api/settings/logs/{$log->id}");
-
-    $response->assertStatus(200);
-    $response->assertJsonStructure($logJsonStructure);
-
-    $response->assertJson([
-        'data' => [
-            'type' => 'log',
-            'id' => (string) $log->id,
-            'attributes' => [
-                'user_name' => $log->user_name,
-                'action' => 'user.login',
-                'description' => 'User logged in successfully',
-                'created_at' => $log->created_at->timestamp,
-                'updated_at' => $log->created_at->timestamp,
-            ],
+        'links' => [
+            'first',
+            'last',
+            'prev',
+            'next',
         ],
-    ]);
-});
+        'meta' => [
+            'current_page',
+            'from',
+            'last_page',
+            'path',
+            'per_page',
+            'to',
+            'total',
+        ],
+    ];
 
-it('returns 403 when trying to access another user log', function (): void {
-    $user1 = User::factory()->create();
-    $user2 = User::factory()->create();
-    $log = Log::factory()->create([
-        'user_id' => $user2->id,
-        'user_name' => $user2->getFullName(),
-    ]);
+    public function test_it_can_get_paginated_logs(): void
+    {
+        Carbon::setTestNow('2025-01-15 10:00:00');
+        $user = User::factory()->create();
 
-    Sanctum::actingAs($user1);
+        $logs = Log::factory()->count(15)->create([
+            'user_id' => $user->id,
+            'user_name' => $user->getFullName(),
+        ]);
 
-    $response = $this->json('GET', "/api/settings/logs/{$log->id}");
+        Sanctum::actingAs($user);
 
-    $response->assertForbidden();
-    $response->assertJson([
-        'message' => 'Unauthorized action.',
-    ]);
-});
+        $response = $this->json('GET', '/api/settings/logs');
 
-it('returns 404 when log has no user_id', function (): void {
-    $user = User::factory()->create();
-    $log = Log::factory()->create([
-        'user_id' => null,
-        'user_name' => 'System',
-    ]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure($this->logsCollectionStructure);
 
-    Sanctum::actingAs($user);
+        $response->assertJson([
+            'meta' => [
+                'current_page' => 1,
+                'per_page' => 10,
+                'total' => 15,
+            ],
+        ]);
 
-    $response = $this->json('GET', "/api/settings/logs/{$log->id}");
+        $firstLog = $logs->sortByDesc('created_at')->first();
+        $response->assertJson([
+            'data' => [
+                [
+                    'type' => 'log',
+                    'id' => (string) $firstLog->id,
+                    'attributes' => [
+                        'user_name' => $firstLog->user_name,
+                        'action' => $firstLog->action,
+                        'description' => $firstLog->description,
+                        'created_at' => $firstLog->created_at->timestamp,
+                        'updated_at' => $firstLog->created_at->timestamp,
+                    ],
+                ],
+            ],
+        ]);
+    }
 
-    $response->assertNotFound();
-    $response->assertJson([
-        'message' => 'Log not found.',
-    ]);
-});
+    public function test_it_can_show_a_specific_log(): void
+    {
+        Carbon::setTestNow('2025-01-15 10:00:00');
+        $user = User::factory()->create();
+        $log = Log::factory()->create([
+            'user_id' => $user->id,
+            'user_name' => $user->getFullName(),
+            'action' => 'user.login',
+            'description' => 'User logged in successfully',
+        ]);
 
-it('returns 401 when not authenticated', function (): void {
-    $response = $this->json('GET', '/api/settings/logs');
-    $response->assertUnauthorized();
+        Sanctum::actingAs($user);
 
-    $log = Log::factory()->create();
-    $response = $this->json('GET', "/api/settings/logs/{$log->id}");
-    $response->assertUnauthorized();
-});
+        $response = $this->json('GET', "/api/settings/logs/{$log->id}");
+
+        $response->assertStatus(200);
+        $response->assertJsonStructure($this->logJsonStructure);
+
+        $response->assertJson([
+            'data' => [
+                'type' => 'log',
+                'id' => (string) $log->id,
+                'attributes' => [
+                    'user_name' => $log->user_name,
+                    'action' => 'user.login',
+                    'description' => 'User logged in successfully',
+                    'created_at' => $log->created_at->timestamp,
+                    'updated_at' => $log->created_at->timestamp,
+                ],
+            ],
+        ]);
+    }
+
+    public function test_it_returns_403_when_trying_to_access_another_user_log(): void
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+        $log = Log::factory()->create([
+            'user_id' => $user2->id,
+            'user_name' => $user2->getFullName(),
+        ]);
+
+        Sanctum::actingAs($user1);
+
+        $response = $this->json('GET', "/api/settings/logs/{$log->id}");
+
+        $response->assertForbidden();
+        $response->assertJson([
+            'message' => 'Unauthorized action.',
+        ]);
+    }
+
+    public function test_it_returns_404_when_log_has_no_user_id(): void
+    {
+        $user = User::factory()->create();
+        $log = Log::factory()->create([
+            'user_id' => null,
+            'user_name' => 'System',
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('GET', "/api/settings/logs/{$log->id}");
+
+        $response->assertNotFound();
+        $response->assertJson([
+            'message' => 'Log not found.',
+        ]);
+    }
+
+    public function test_it_returns_401_when_not_authenticated(): void
+    {
+        $response = $this->json('GET', '/api/settings/logs');
+        $response->assertUnauthorized();
+
+        $log = Log::factory()->create();
+        $response = $this->json('GET', "/api/settings/logs/{$log->id}");
+        $response->assertUnauthorized();
+    }
+}
