@@ -14,9 +14,10 @@ class GenerateOrganizationAvatarTest extends TestCase
 
     public function test_it_generates_a_base64_encoded_svg_avatar(): void
     {
-        $result = new GenerateOrganizationAvatar(
+        $generator = new GenerateOrganizationAvatar(
             seed: 'test-seed',
-        )->execute();
+        );
+        $result = $generator->execute();
 
         $this->assertStringStartsWith('data:image/svg+xml;base64,', $result);
         $this->assertStringContainsString('data:image/svg+xml;base64,', $result);
