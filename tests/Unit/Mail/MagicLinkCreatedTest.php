@@ -8,12 +8,14 @@ use App\Mail\MagicLinkCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MagicLinkCreatedTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_should_have_correct_envelope_subject(): void
+    #[Test]
+    public function it_should_have_correct_envelope_subject(): void
     {
         Config::set('app.name', 'OrganizationOS');
 
@@ -22,7 +24,8 @@ class MagicLinkCreatedTest extends TestCase
         $this->assertEquals('Login to OrganizationOS', $mailable->envelope()->subject);
     }
 
-    public function test_it_should_render_markdown_content_correctly(): void
+    #[Test]
+    public function it_should_render_markdown_content_correctly(): void
     {
         Config::set('app.name', 'OrganizationOS');
 

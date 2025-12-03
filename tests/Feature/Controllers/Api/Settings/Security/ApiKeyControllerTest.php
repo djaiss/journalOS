@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ApiKeyControllerTest extends TestCase
 {
@@ -50,7 +51,8 @@ class ApiKeyControllerTest extends TestCase
         ],
     ];
 
-    public function test_it_can_list_the_api_keys_of_the_current_user(): void
+    #[Test]
+    public function it_can_list_the_api_keys_of_the_current_user(): void
     {
         Carbon::setTestNow('2025-07-01 00:00:00');
         $user = User::factory()->create();
@@ -69,7 +71,8 @@ class ApiKeyControllerTest extends TestCase
         $response->assertJsonCount(2, 'data');
     }
 
-    public function test_it_can_create_a_new_api_key(): void
+    #[Test]
+    public function it_can_create_a_new_api_key(): void
     {
         $user = User::factory()->create();
 
@@ -90,7 +93,8 @@ class ApiKeyControllerTest extends TestCase
         $response->assertJsonStructure($this->singleJsonStructure);
     }
 
-    public function test_user_can_delete_their_api_key(): void
+    #[Test]
+    public function user_can_delete_their_api_key(): void
     {
         $user = User::factory()->create();
         $token = $user->createToken('Test API Key');
@@ -107,7 +111,8 @@ class ApiKeyControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_can_get_a_single_api_key(): void
+    #[Test]
+    public function it_can_get_a_single_api_key(): void
     {
         Carbon::setTestNow('2025-07-01 00:00:00');
         $user = User::factory()->create();
@@ -136,7 +141,8 @@ class ApiKeyControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_returns_404_when_api_key_not_found(): void
+    #[Test]
+    public function it_returns_404_when_api_key_not_found(): void
     {
         $user = User::factory()->create();
 

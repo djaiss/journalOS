@@ -9,12 +9,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LogControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_shows_all_the_logs(): void
+    #[Test]
+    public function it_shows_all_the_logs(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create([
@@ -46,7 +48,8 @@ class LogControllerTest extends TestCase
         $this->assertEquals('Updated their profile', $logs[0]->description);
     }
 
-    public function test_it_shows_a_pagination(): void
+    #[Test]
+    public function it_shows_a_pagination(): void
     {
         $user = User::factory()->create();
 

@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Mail;
 use Mockery;
 use Resend\Email;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SendEmailTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_sends_email_the_traditional_way(): void
+    #[Test]
+    public function it_sends_email_the_traditional_way(): void
     {
         Config::set('collectos.use_resend', false);
         Config::set('mail.from.address', 'noreply@example.com');
@@ -49,7 +51,8 @@ class SendEmailTest extends TestCase
         $this->assertEquals('API key removed', $emailSent->subject);
     }
 
-    public function test_it_sends_email_with_resend_facade(): void
+    #[Test]
+    public function it_sends_email_with_resend_facade(): void
     {
         Config::set('collectos.use_resend', true);
         Config::set('mail.from.address', 'noreply@example.com');

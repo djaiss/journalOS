@@ -8,12 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_logs_in_a_user(): void
+    #[Test]
+    public function it_logs_in_a_user(): void
     {
         User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
@@ -38,7 +40,8 @@ class LoginControllerTest extends TestCase
         $this->assertNotEmpty($responseData['data']['token']);
     }
 
-    public function test_it_fails_to_authenticate_with_invalid_credentials(): void
+    #[Test]
+    public function it_fails_to_authenticate_with_invalid_credentials(): void
     {
         User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
@@ -61,7 +64,8 @@ class LoginControllerTest extends TestCase
         $this->assertEquals(401, $responseData['status']);
     }
 
-    public function test_it_logs_out_a_user(): void
+    #[Test]
+    public function it_logs_out_a_user(): void
     {
         $user = User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',

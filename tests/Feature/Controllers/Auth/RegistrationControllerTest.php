@@ -6,19 +6,22 @@ namespace Tests\Feature\Controllers\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class RegistrationControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_renders_the_registration_screen(): void
+    #[Test]
+    public function it_renders_the_registration_screen(): void
     {
         $response = $this->get('/register');
 
         $response->assertStatus(200);
     }
 
-    public function test_it_registers_a_new_organization(): void
+    #[Test]
+    public function it_registers_a_new_organization(): void
     {
         $response = $this->post('/register', [
             'first_name' => 'Michael',

@@ -12,12 +12,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UpdateUserInformationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_updates_user_information(): void
+    #[Test]
+    public function it_updates_user_information(): void
     {
         Queue::fake();
 
@@ -56,7 +58,8 @@ class UpdateUserInformationTest extends TestCase
         );
     }
 
-    public function test_it_triggers_email_verification_when_email_changes(): void
+    #[Test]
+    public function it_triggers_email_verification_when_email_changes(): void
     {
         Event::fake();
         Queue::fake();
@@ -79,7 +82,8 @@ class UpdateUserInformationTest extends TestCase
         $this->assertNull($user->refresh()->email_verified_at);
     }
 
-    public function test_it_does_not_trigger_email_verification_when_email_stays_same(): void
+    #[Test]
+    public function it_does_not_trigger_email_verification_when_email_stays_same(): void
     {
         Event::fake();
         Queue::fake();

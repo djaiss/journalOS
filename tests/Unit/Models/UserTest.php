@@ -9,12 +9,14 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_belongs_to_many_organizations(): void
+    #[Test]
+    public function it_belongs_to_many_organizations(): void
     {
         $user = User::factory()->create();
         $organization1 = Organization::factory()->create();
@@ -32,7 +34,8 @@ class UserTest extends TestCase
         $this->assertTrue($user->organizations->contains($organization2));
     }
 
-    public function test_it_has_many_emails_sent(): void
+    #[Test]
+    public function it_has_many_emails_sent(): void
     {
         $user = User::factory()->create();
         EmailSent::factory()->create([
@@ -42,7 +45,8 @@ class UserTest extends TestCase
         $this->assertTrue($user->emailsSent()->exists());
     }
 
-    public function test_it_gets_the_name(): void
+    #[Test]
+    public function it_gets_the_name(): void
     {
         $user = User::factory()->create([
             'first_name' => 'Dwight',
@@ -57,7 +61,8 @@ class UserTest extends TestCase
         $this->assertEquals('The Beet Farmer', $user->getFullName());
     }
 
-    public function test_it_has_initials(): void
+    #[Test]
+    public function it_has_initials(): void
     {
         $dwight = User::factory()->create([
             'first_name' => 'Dwight',
@@ -67,7 +72,8 @@ class UserTest extends TestCase
         $this->assertEquals('DS', $dwight->initials());
     }
 
-    public function test_it_checks_organization_membership(): void
+    #[Test]
+    public function it_checks_organization_membership(): void
     {
         $user = User::factory()->create();
         $organization = Organization::factory()->create();

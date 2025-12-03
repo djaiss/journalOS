@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
 use InvalidArgumentException;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UpdateUserPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_updates_user_password(): void
+    #[Test]
+    public function it_updates_user_password(): void
     {
         Queue::fake();
 
@@ -46,7 +48,8 @@ class UpdateUserPasswordTest extends TestCase
         );
     }
 
-    public function test_it_throws_exception_when_current_password_is_incorrect(): void
+    #[Test]
+    public function it_throws_exception_when_current_password_is_incorrect(): void
     {
         $user = User::factory()->create([
             'password' => Hash::make('current-password'),

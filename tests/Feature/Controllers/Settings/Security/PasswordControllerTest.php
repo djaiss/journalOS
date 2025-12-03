@@ -7,12 +7,14 @@ namespace Tests\Feature\Controllers\Settings\Security;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PasswordControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_allows_the_user_to_update_their_password(): void
+    #[Test]
+    public function it_allows_the_user_to_update_their_password(): void
     {
         $user = User::factory()->create();
 

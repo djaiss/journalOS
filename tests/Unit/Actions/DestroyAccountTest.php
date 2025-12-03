@@ -11,12 +11,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DestroyAccountTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_destroys_a_user_account(): void
+    #[Test]
+    public function it_destroys_a_user_account(): void
     {
         Queue::fake();
         Mail::fake();

@@ -9,19 +9,22 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_can_render_the_reset_password_link_screen(): void
+    #[Test]
+    public function it_can_render_the_reset_password_link_screen(): void
     {
         $response = $this->get('/forgot-password');
 
         $response->assertStatus(200);
     }
 
-    public function test_it_can_request_a_reset_password_link(): void
+    #[Test]
+    public function it_can_request_a_reset_password_link(): void
     {
         Notification::fake();
 
@@ -32,7 +35,8 @@ class PasswordResetTest extends TestCase
         Notification::assertSentTo($user, ResetPassword::class);
     }
 
-    public function test_it_can_render_the_reset_password_screen(): void
+    #[Test]
+    public function it_can_render_the_reset_password_screen(): void
     {
         Notification::fake();
 
@@ -49,7 +53,8 @@ class PasswordResetTest extends TestCase
         });
     }
 
-    public function test_it_can_reset_the_password_with_a_valid_token(): void
+    #[Test]
+    public function it_can_reset_the_password_with_a_valid_token(): void
     {
         Notification::fake();
 

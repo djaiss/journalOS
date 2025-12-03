@@ -7,12 +7,14 @@ namespace Tests\Feature\Controllers\Settings\Security;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PreferredTwoFAControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_lets_user_define_the_preferred_two_factor_authentication_method(): void
+    #[Test]
+    public function it_lets_user_define_the_preferred_two_factor_authentication_method(): void
     {
         $user = User::factory()->create();
 

@@ -10,19 +10,22 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_renders_the_login_screen(): void
+    #[Test]
+    public function it_renders_the_login_screen(): void
     {
         $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
 
-    public function test_it_authenticates_a_user(): void
+    #[Test]
+    public function it_authenticates_a_user(): void
     {
         $user = User::factory()->create();
 
@@ -35,7 +38,8 @@ class LoginControllerTest extends TestCase
         $response->assertRedirect(route('organization.index', absolute: false));
     }
 
-    public function test_it_does_not_authenticate_a_user_with_invalid_password(): void
+    #[Test]
+    public function it_does_not_authenticate_a_user_with_invalid_password(): void
     {
         $user = User::factory()->create();
 
@@ -47,7 +51,8 @@ class LoginControllerTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_it_sends_an_email_on_failed_login(): void
+    #[Test]
+    public function it_sends_an_email_on_failed_login(): void
     {
         Queue::fake();
 
@@ -63,7 +68,8 @@ class LoginControllerTest extends TestCase
         });
     }
 
-    public function test_it_logs_out_a_user(): void
+    #[Test]
+    public function it_logs_out_a_user(): void
     {
         $user = User::factory()->create();
 

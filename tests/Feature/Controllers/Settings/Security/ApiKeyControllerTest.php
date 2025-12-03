@@ -7,12 +7,14 @@ namespace Tests\Feature\Controllers\Settings\Security;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ApiKeyControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_can_create_a_new_api_token(): void
+    #[Test]
+    public function it_can_create_a_new_api_token(): void
     {
         $user = User::factory()->create();
 
@@ -31,7 +33,8 @@ class ApiKeyControllerTest extends TestCase
         ]);
     }
 
-    public function test_it_can_delete_an_api_token(): void
+    #[Test]
+    public function it_can_delete_an_api_token(): void
     {
         $user = User::factory()->create();
         $token = $user->createToken('Test API Token');

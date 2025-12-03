@@ -11,12 +11,14 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class Generate2faQRCodeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_generates_a_2fa_qr_code(): void
+    #[Test]
+    public function it_generates_a_2fa_qr_code(): void
     {
         Queue::fake();
         Carbon::setTestNow(Carbon::parse('2025-07-16 10:00:00'));

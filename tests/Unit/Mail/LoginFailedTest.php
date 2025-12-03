@@ -8,12 +8,14 @@ use App\Mail\LoginFailed;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class LoginFailedTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_should_have_correct_envelope_subject(): void
+    #[Test]
+    public function it_should_have_correct_envelope_subject(): void
     {
         Config::set('app.name', 'OrganizationOS');
 

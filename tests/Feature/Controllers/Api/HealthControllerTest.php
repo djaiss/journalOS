@@ -6,12 +6,14 @@ namespace Tests\Feature\Controllers\Api;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class HealthControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_checks_the_health_of_the_application(): void
+    #[Test]
+    public function it_checks_the_health_of_the_application(): void
     {
         $response = $this->json('GET', '/api/health');
 
