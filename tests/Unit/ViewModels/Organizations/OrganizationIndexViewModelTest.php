@@ -48,6 +48,6 @@ class OrganizationIndexViewModelTest extends TestCase
         $this->assertTrue(property_exists($firstOrganization, 'avatar'));
 
         $this->assertEquals($organization1->id, $firstOrganization->id);
-        $this->assertEquals($organization1->name, 'Dunder Mifflin');
+        $this->assertEquals('Dunder Mifflin', $organization1->name);
     }
 }
