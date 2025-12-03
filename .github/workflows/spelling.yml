@@ -1,0 +1,88 @@
+name: Spellcheck (cSpell + codespell)
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  spellcheck:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run cspell (checks changed files by default)
+        uses: streetsidesoftware/cspell-action@v1
+        with:
+          config: 'cspell.json'
+          incremental_files_only: true
+          strict: true
+
+      - name: Setup Python (for codespell)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install codespell
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install codespell
+
+      - id: gather_changed
+        name: Gather changed text files (PR only)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          # Try to fetch the PR base branch so we can diff against it
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
+          git fetch origin "${BASE_REF}" --depth=1 || true
+
+          # List changed files between base and head
+          CHANGED=$(git diff --name-only "origin/${BASE_REF}...HEAD" || true)
+
+          # Filter for text/code files we want to spellcheck
+          FILES=$(printf "%s\n" "$CHANGED" | grep -E '\\.(php|js|ts|jsx|tsx|md|markdown|txt|json|yml|yaml|html|vue)$' || true)
+
+          if [ -z "$FILES" ]; then
+            echo "no_changed_files=true" >> "$GITHUB_OUTPUT"
+          else
+            # Exclude directories and specific files to mirror cspell.json
+            printf "%s\n" "$FILES" \
+              | grep -vE '^(vendor/|node_modules/|storage/|public/|bootstrap/cache/|coverage/|build/)' \
+              | grep -vE '^(database/blacklist_domains/data\.txt|lang/fr\.json|composer\.lock|bun\.lock)$' \
+              > changed_files.txt || true
+            echo "no_changed_files=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run codespell on changed files
+        if: github.event_name == 'pull_request' && steps.gather_changed.outputs.no_changed_files == 'false'
+        run: |
+          echo "Running codespell against changed files (changed_files.txt) with explicit directory/file exclusions..."
+          # Use xargs to pass files; exit 0 on no matches
+          xargs --no-run-if-empty codespell -q 3 --check-filenames < changed_files.txt
+
+      - name: Run codespell on repo (fallback / push runs)
+        if: github.event_name != 'pull_request' || steps.gather_changed.outputs.no_changed_files == 'true'
+        run: |
+          echo "Running codespell across repository with find-based pruning and file excludes..."
+          find . \
+            -type d \( -name .git -o -name vendor -o -name node_modules -o -path ./storage -o -path ./public -o -path ./bootstrap/cache -o -path ./coverage -o -path ./build \) -prune -o \
+            -type f \
+            ! -path './database/blacklist_domains/data.txt' \
+            ! -path './database/blacklist_domains/domains.txt' \
+            ! -path './lang/fr.json' \
+            ! -path './lang/fr/auth.php' \
+            ! -name 'composer.lock' \
+            ! -name 'bun.lock' \
+            -print \
+            | xargs --no-run-if-empty codespell -q 3 --check-filenames
+
+      - name: Spellcheck summary
+        if: ${{ always() }}
+        run: |
+          echo "Spellcheck job completed."
