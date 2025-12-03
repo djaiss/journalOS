@@ -16,7 +16,8 @@
     "build/**",
     "database/blacklist_domains/data.txt",
     "lang/fr.json",
-    "composer.lock"
+    "composer.lock",
+    "bun.lock"
   ],
   "ignoreWords": [
     "artisan",
