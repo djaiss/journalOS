@@ -42,7 +42,7 @@ final class DatabaseSeeder extends Seeder
 
     private function addOrganization(): void
     {
-        $this->organization = new CreateOrganization(
+        new CreateOrganization(
             user: $this->michael,
             organizationName: 'Dunder Mifflin',
         )->execute();
