@@ -159,6 +159,6 @@ jobs:
 
       - name: Run tests (pgsql)
         if: matrix.connection == 'pgsql'
-        run: php artisan test --parallel
+        run: php artisan test
         env:
           DB_CONNECTION: ${{ matrix.connection }}
