@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'description' => env('APP_DESCRIPTION', 'CollectOS is a universal system for managing any type of collection.'),
+    'description' => env('APP_DESCRIPTION', 'Memoir is the journaling app for serious people.'),
 
     /*
     |--------------------------------------------------------------------------

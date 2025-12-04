@@ -24,7 +24,7 @@ class SendEmailTest extends TestCase
     #[Test]
     public function it_sends_email_the_traditional_way(): void
     {
-        Config::set('collectos.use_resend', false);
+        Config::set('memoir.use_resend', false);
         Config::set('mail.from.address', 'noreply@example.com');
         Mail::fake();
 
@@ -54,7 +54,7 @@ class SendEmailTest extends TestCase
     #[Test]
     public function it_sends_email_with_resend_facade(): void
     {
-        Config::set('collectos.use_resend', true);
+        Config::set('memoir.use_resend', true);
         Config::set('mail.from.address', 'noreply@example.com');
 
         $resendMock = Mockery::mock();
