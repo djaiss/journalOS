@@ -23,13 +23,15 @@
     "composer.lock",
     "bun.lock",
     "package.json",
-    "github/workflows/tests.yml",
+    ".github/workflows/tests.yml",
     "tests/**"
   ],
   "ignoreWords": [
     "artisan",
     "Eloquent",
     "Queueable",
+    "semibold",
+    "endenv",
     "Laravel",
     "Carbon",
     "Blade",
