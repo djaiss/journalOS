@@ -28,7 +28,7 @@ final readonly class DestroyAccount
 
     private function sendMail(): void
     {
-        Mail::to(config('collectos.account_deletion_notification_email'))
+        Mail::to(config('memoir.account_deletion_notification_email'))
             ->queue(new AccountDestroyed(
                 reason: $this->reason,
                 activeSince: $this->user->created_at->format('Y-m-d'),

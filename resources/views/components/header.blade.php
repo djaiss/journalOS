@@ -2,7 +2,7 @@
   <!-- normal desktop header -->
   <nav class="hidden flex-1 items-center gap-3 pt-2 pb-2 sm:flex">
     <a href="/" class="flex items-center">
-      <x-logo width="20" height="20" />
+      <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="Memoir logo" />
     </a>
 
     <!-- selectors -->
@@ -63,7 +63,7 @@
   <!-- mobile header -->
   <nav class="flex w-full items-center justify-between gap-3 pt-2 pb-2 sm:hidden" x-data="{ mobileMenuOpen: false }">
     <a href="/">
-      <x-logo width="20" height="20" />
+      <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="Memoir logo" />
     </a>
 
     <button @click="mobileMenuOpen = true" class="flex items-center gap-2 rounded-md border border-transparent py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
@@ -75,7 +75,7 @@
       <div class="flex h-full flex-col">
         <!-- Mobile Menu Header -->
         <div class="flex items-center justify-between border-b border-gray-200 px-2 py-1 dark:border-gray-700">
-          <x-logo width="20" height="20" />
+          <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="Memoir logo" />
 
           <button @click="mobileMenuOpen = false" class="flex items-center gap-2 rounded-md border border-transparent py-2 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-600 dark:hover:bg-gray-800">
             <x-phosphor-x class="size-5 text-gray-600 dark:text-gray-400" />

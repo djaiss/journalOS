@@ -3,13 +3,13 @@ APP_NAME=Laravel
 APP_ENV=testing
 APP_KEY=base64:NTrXToqFZJlv48dgPc+kNpc3SBt333TfDnF1mDShsBg=
 APP_DEBUG=true
-APP_URL=https://collectos.test
+APP_URL=https://memoir.test
 
 DB_CONNECTION=pgsql
 DB_HOST=localhost
 DB_PORT=5432
-DB_DATABASE=collectos
-DB_USERNAME=collectos
+DB_DATABASE=memoir
+DB_USERNAME=memoir
 DB_PASSWORD=secret
 
 BROADCAST_DRIVER=log
