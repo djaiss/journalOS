@@ -6,3 +6,5 @@
 - [x] make public properties in service as protected
 - [ ] Update documentation
 - [ ] Take care of marketing website and repo
+- [ ] remove livewire entirely
+- [ ] delete account after a while

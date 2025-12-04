@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Api\Auth\LoginController;
-use App\Http\Controllers\Api\HealthController;
-use App\Http\Controllers\Api\Settings;
-use App\Http\Controllers\Api\Journals;
+use App\Http\Controllers\App\Api\Auth\LoginController;
+use App\Http\Controllers\App\Api\HealthController;
+use App\Http\Controllers\App\Api\Settings;
+use App\Http\Controllers\App\Api\Journals;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->group(function (): void {
