@@ -5,7 +5,7 @@
     <div class="flex items-center">
       <a href="{{ route('marketing.index') }}" class="group flex items-center gap-x-2 transition-transform ease-in-out">
         <div class="transition-all duration-400 group-hover:-translate-y-0.5 group-hover:-rotate-3">
-          <x-logo width="25" height="25" />
+          <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="Memoir logo" />
         </div>
         <span class="text-lg font-semibold text-gray-900 dark:text-white">{{ config('app.name') }}</span>
       </a>
@@ -57,8 +57,8 @@
 
     <!-- Right side - user menu -->
     <div class="flex items-center gap-x-5">
-      <a href="" class="text-sm text-gray-700">Sign in</a>
-      <a href="" class="rounded-md bg-blue-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-600">Get started</a>
+      <a href="{{ route('login') }}" class="text-sm text-gray-700">Sign in</a>
+      <a href="{{ route('register') }}" class="rounded-md bg-blue-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-600">Get started</a>
     </div>
   </nav>
 

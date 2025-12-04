@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Auth\ConfirmationController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegistrationController;
-use App\Http\Controllers\Auth\SendMagicLinkController;
-use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\App\Auth\ConfirmationController;
+use App\Http\Controllers\App\Auth\LoginController;
+use App\Http\Controllers\App\Auth\NewPasswordController;
+use App\Http\Controllers\App\Auth\PasswordResetLinkController;
+use App\Http\Controllers\App\Auth\RegistrationController;
+use App\Http\Controllers\App\Auth\SendMagicLinkController;
+use App\Http\Controllers\App\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function (): void {

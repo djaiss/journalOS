@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\Journals;
-use App\Http\Controllers\Settings;
+use App\Http\Controllers\App\Journals;
+use App\Http\Controllers\App\Settings;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/marketing.php';
