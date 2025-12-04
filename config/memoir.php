@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'description' => env('APP_DESCRIPTION', 'Memoir is the journaling app for serious people.'),
+    'description' => env('APP_DESCRIPTION', 'Memoir is the diary app for serious people.'),
 
     /*
     |--------------------------------------------------------------------------

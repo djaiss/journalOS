@@ -19,13 +19,18 @@
     "build/**",
     "database/blacklist_domains/data.txt",
     "lang/fr.json",
+    "composer.json",
     "composer.lock",
     "bun.lock",
-    "package.json"
+    "package.json",
+    "github/workflows/tests.yml",
+    "tests/**"
   ],
   "ignoreWords": [
     "artisan",
     "Eloquent",
+    "Queueable",
+    "Laravel",
     "Carbon",
     "Blade",
     "middleware",
