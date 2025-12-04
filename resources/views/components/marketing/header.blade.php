@@ -56,10 +56,19 @@
     </div>
 
     <!-- Right side - user menu -->
+    @if (Auth::check())
+    <div class="relative ms-3 flex items-center gap-x-3">
+      <a href="{{ route('login') }}" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 px-2 py-1 text-sm transition-colors duration-150 hover:bg-white">
+        <x-phosphor-door class="h-4 w-4 text-gray-500" />
+        {{ __('Go to your account') }}
+      </a>
+    </div>
+    @else
     <div class="flex items-center gap-x-5">
-      <a href="{{ route('login') }}" class="text-sm text-gray-700">Sign in</a>
+      <a href="{{ route('journal.index') }}" class="text-sm text-gray-700">Sign in</a>
       <a href="{{ route('register') }}" class="rounded-md bg-blue-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-600">Get started</a>
     </div>
+    @endif
   </nav>
 
   <!-- Mobile menu (off-canvas) -->
