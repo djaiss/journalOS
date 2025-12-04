@@ -7,6 +7,8 @@ use App\Http\Controllers\Journals;
 use App\Http\Controllers\Settings;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__ . '/marketing.php';
+
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
 Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(function (): void {

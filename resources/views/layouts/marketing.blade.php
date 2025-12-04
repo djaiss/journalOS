@@ -12,18 +12,20 @@
 
     <!-- json-ld -->
     @yield('json-ld')
+
+    @livewireStyles
   </head>
   <body class="font-sans antialiased">
     <div class="min-h-screen bg-white dark:bg-gray-900">
-      @include('marketing.partials.header')
+      @include('components.marketing.header')
 
       <!-- Page Content -->
       <main>
         {{ $slot }}
       </main>
 
-      @include('marketing.partials.footer')
-      @include('components.toaster')
+      @include('components.marketing.footer')
     </div>
+    @livewireScripts
   </body>
 </html>
