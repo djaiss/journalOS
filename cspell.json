@@ -27,6 +27,7 @@
     "bun.lock",
     "package.json",
     ".github/workflows/tests.yml",
+    "resources/views/marketing/docs/api/partials/",
     "tests/**"
   ],
   "ignoreWords": [
@@ -41,6 +42,11 @@
     "recoverycodes",
     "roadmap",
     "Totp",
+    "Posthog",
+    "Régis",
+    "Freyd",
+    "livewire",
+    "passwordrules",
     "tailwindcss",
     "uncompromised",
     "Eloquent",
