@@ -10,8 +10,8 @@ use App\Models\User;
 final readonly class UpdateTwoFAMethod
 {
     public function __construct(
-        private readonly User $user,
-        private readonly string $preferredMethods,
+        private User $user,
+        private string $preferredMethods,
     ) {}
 
     /**

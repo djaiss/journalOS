@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Mail;
 final readonly class DestroyAccount
 {
     public function __construct(
-        private readonly User $user,
-        private readonly string $reason,
+        private User $user,
+        private string $reason,
     ) {}
 
     public function execute(): void

@@ -13,8 +13,8 @@ use PragmaRX\Google2FA\Google2FA;
 final readonly class VerifyTwoFactorCode
 {
     public function __construct(
-        private readonly User $user,
-        private readonly string $code,
+        private User $user,
+        private string $code,
     ) {}
 
     /**

@@ -9,12 +9,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
 
-final class UpdateUserPassword
+final readonly class UpdateUserPassword
 {
     public function __construct(
-        private readonly User $user,
-        private readonly string $currentPassword,
-        private readonly string $newPassword,
+        private User $user,
+        private string $currentPassword,
+        private string $newPassword,
     ) {}
 
     /**

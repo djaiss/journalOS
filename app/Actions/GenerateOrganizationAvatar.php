@@ -7,10 +7,10 @@ namespace App\Actions;
 /**
  * Generate an organization avatar.
  */
-final class GenerateOrganizationAvatar
+final readonly class GenerateOrganizationAvatar
 {
     public function __construct(
-        private readonly string $seed,
+        private string $seed,
     ) {}
 
     public function execute(): string
