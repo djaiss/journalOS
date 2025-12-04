@@ -13,7 +13,7 @@ final class PermissionController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.concepts.permissions');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.concepts.permissions')->onQueue('low');
 
         return view('marketing.docs.concepts.permissions');
     }

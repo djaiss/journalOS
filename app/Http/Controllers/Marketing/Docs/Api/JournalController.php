@@ -13,7 +13,7 @@ final class JournalController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.journals.journals');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.journals.journals')->onQueue('low');
 
         return view('marketing.docs.api.journals.journals');
     }

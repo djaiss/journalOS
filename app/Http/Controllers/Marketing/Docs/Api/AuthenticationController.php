@@ -13,7 +13,7 @@ final class AuthenticationController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.authentication');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.authentication')->onQueue('low');
 
         return view('marketing.docs.api.authentication');
     }

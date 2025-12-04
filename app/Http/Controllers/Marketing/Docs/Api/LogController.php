@@ -13,7 +13,7 @@ final class LogController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.logs');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.logs')->onQueue('low');
 
         return view('marketing.docs.api.account.logs');
     }

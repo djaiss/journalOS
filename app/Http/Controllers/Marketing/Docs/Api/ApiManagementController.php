@@ -13,7 +13,7 @@ final class ApiManagementController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.api-management');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.api-management')->onQueue('low');
 
         return view('marketing.docs.api.account.api-management');
     }

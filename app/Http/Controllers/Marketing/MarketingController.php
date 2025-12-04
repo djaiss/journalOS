@@ -13,7 +13,7 @@ final class MarketingController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.index');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.index')->onQueue('low');
 
         return view('marketing.index');
     }

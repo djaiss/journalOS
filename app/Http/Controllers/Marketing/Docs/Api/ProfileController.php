@@ -13,7 +13,7 @@ final class ProfileController extends Controller
 {
     public function index(Request $request): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.profile');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.profile')->onQueue('low')->onQueue('low');
 
         return view('marketing.docs.api.account.profile');
     }
