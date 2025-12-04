@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Settings;
-use App\Http\Controllers\Api\Organizations;
+use App\Http\Controllers\Api\Journals;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->group(function (): void {
@@ -22,12 +22,12 @@ Route::name('api.')->group(function (): void {
         Route::get('me', [Settings\Profile\ProfileController::class, 'show'])->name('me');
         Route::put('me', [Settings\Profile\ProfileController::class, 'update'])->name('me.update');
 
-        // organizations
-        Route::post('organizations', [Organizations\OrganizationController::class, 'create'])->name('organization.create');
-        Route::get('organizations', [Organizations\OrganizationController::class, 'index'])->name('organization.index');
+        // journals
+        Route::post('journals', [Journals\JournalController::class, 'create'])->name('journal.create');
+        Route::get('journals', [Journals\JournalController::class, 'index'])->name('journal.index');
 
-        Route::middleware(['organization.api'])->group(function (): void {
-            Route::get('organizations/{id}', [Organizations\OrganizationController::class, 'show'])->name('organization.show');
+        Route::middleware(['journal.api'])->group(function (): void {
+            Route::get('journals/{id}', [Journals\JournalController::class, 'show'])->name('journal.show');
 
             // settings
         });

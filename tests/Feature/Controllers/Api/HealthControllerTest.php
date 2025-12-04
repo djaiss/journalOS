@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class HealthControllerTest extends TestCase
+final class HealthControllerTest extends TestCase
 {
     use RefreshDatabase;
 

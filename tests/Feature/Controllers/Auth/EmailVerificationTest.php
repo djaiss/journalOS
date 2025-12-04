@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class EmailVerificationTest extends TestCase
+final class EmailVerificationTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -43,7 +43,7 @@ class EmailVerificationTest extends TestCase
 
         Event::assertDispatched(Verified::class);
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
-        $response->assertRedirect(route('organization.index', absolute: false) . '?verified=1');
+        $response->assertRedirect(route('journal.index', absolute: false) . '?verified=1');
     }
 
     #[Test]

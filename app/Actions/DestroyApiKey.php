@@ -14,8 +14,8 @@ final class DestroyApiKey
     private string $label;
 
     public function __construct(
-        public User $user,
-        public int $tokenId,
+        private readonly User $user,
+        private readonly int $tokenId,
     ) {}
 
     /**
@@ -34,8 +34,8 @@ final class DestroyApiKey
     private function log(): void
     {
         LogUserAction::dispatch(
-            organization: null,
             user: $this->user,
+            journal: null,
             action: 'api_key_deletion',
             description: 'Deleted an API key',
         )->onQueue('low');

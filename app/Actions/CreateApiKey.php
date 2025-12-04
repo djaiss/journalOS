@@ -12,8 +12,8 @@ use App\Models\User;
 final class CreateApiKey
 {
     public function __construct(
-        public User $user,
-        public string $label,
+        private readonly User $user,
+        private readonly string $label,
     ) {}
 
     public function execute(): string
@@ -28,8 +28,8 @@ final class CreateApiKey
     private function log(): void
     {
         LogUserAction::dispatch(
-            organization: null,
             user: $this->user,
+            journal: null,
             action: 'api_key_creation',
             description: 'Created an API key',
         )->onQueue('low');

@@ -56,8 +56,8 @@ final class Generate2faQRCode
     private function logUserAction(): void
     {
         LogUserAction::dispatch(
-            organization: null,
             user: $this->user,
+            journal: null,
             action: '2fa_qr_code_generation',
             description: 'Generated 2FA QR code for setup',
         )->onQueue('low');

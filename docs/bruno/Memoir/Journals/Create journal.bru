@@ -1,0 +1,17 @@
+meta {
+  name: Create journal
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{URL}}/journals
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Dunder Mifflin"
+  }
+}

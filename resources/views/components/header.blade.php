@@ -6,12 +6,12 @@
     </a>
 
     <!-- selectors -->
-    @if (isset($organization))
+    @if (isset($journal))
       <div class="flex items-center gap-1">
-        <a href="{{ route('organization.index') }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ __('Dashboard') }}</a>
+        <a href="{{ route('journal.index') }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ __('Dashboard') }}</a>
         <span class="text-gray-500">/</span>
         <div class="flex items-center gap-0">
-          <a class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ $organization->name }}</a>
+          <a class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ $journal->name }}</a>
           <div class="rounded-md border border-transparent px-1 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
             <x-phosphor-caret-up-down class="size-4 text-gray-600" />
           </div>

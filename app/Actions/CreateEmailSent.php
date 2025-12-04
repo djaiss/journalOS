@@ -5,39 +5,29 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Models\EmailSent;
-use App\Models\Organization;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Stevebauman\Purify\Facades\Purify;
 
 final class CreateEmailSent
 {
     private EmailSent $emailSent;
+    private string $updatedBody = '';
 
     public function __construct(
-        public ?Organization $organization,
-        public User $user,
-        public ?string $uuid,
-        public string $emailType,
-        public string $emailAddress,
-        public string $subject,
-        public string $body,
+        private readonly User $user,
+        private readonly ?string $uuid,
+        private readonly string $emailType,
+        private readonly string $emailAddress,
+        private readonly string $subject,
+        private readonly string $body,
     ) {}
 
     public function execute(): EmailSent
     {
-        $this->validate();
         $this->sanitize();
         $this->create();
 
         return $this->emailSent;
-    }
-
-    private function validate(): void
-    {
-        if ($this->organization && $this->user->isPartOfOrganization($this->organization) === false) {
-            throw new ModelNotFoundException('User is not part of the organization.');
-        }
     }
 
     /**
@@ -49,19 +39,18 @@ final class CreateEmailSent
     private function sanitize(): void
     {
         $config = ['HTML.ForbiddenElements' => 'a'];
-        $this->body = Purify::config($config)->clean($this->body);
+        $this->updatedBody = Purify::config($config)->clean($this->body);
     }
 
     private function create(): void
     {
         $this->emailSent = EmailSent::create([
-            'organization_id' => $this->organization instanceof Organization ? $this->organization->id : null,
             'user_id' => $this->user->id,
             'uuid' => $this->uuid,
             'email_type' => $this->emailType,
             'email_address' => $this->emailAddress,
             'subject' => $this->subject,
-            'body' => $this->body,
+            'body' => $this->updatedBody,
         ]);
     }
 }

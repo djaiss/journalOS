@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LocaleControllerTest extends TestCase
+final class LocaleControllerTest extends TestCase
 {
     use RefreshDatabase;
 

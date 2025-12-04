@@ -15,9 +15,9 @@ use InvalidArgumentException;
 final readonly class Validate2faQRCode
 {
     public function __construct(
-        private User $user,
-        private string $token,
-        private ?Google2FA $google2fa = null,
+        private readonly User $user,
+        private readonly string $token,
+        private readonly ?Google2FA $google2fa = null,
     ) {}
 
     public function execute(): void

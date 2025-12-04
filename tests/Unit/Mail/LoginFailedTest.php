@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LoginFailedTest extends TestCase
+final class LoginFailedTest extends TestCase
 {
     use RefreshDatabase;
 

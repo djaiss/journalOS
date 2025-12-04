@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class DestroyApiKeyTest extends TestCase
+final class DestroyApiKeyTest extends TestCase
 {
     use RefreshDatabase;
 

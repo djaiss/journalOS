@@ -1,52 +1,8 @@
 # 🧱 Our roadmap
 
-## ✅ Phase 1: Foundations
-- [x] User registration & login
-- [x] Organization creation after user signs up
-- [x] Change password
-- [x] List logs
-- [x] Send email to user when failed attempt to login
-- [x] Record sent emails in the database
-- [x] Display sent emails
-- [x] Test email templates
-- [ ] Check Resend to capture email delivery
-- [x] Manage API tokens
-- [x] Basic docs microsite
-- [x] API to check health
-- [x] API to get user info (name, email, locale)
-- [x] API to update user info
-- [x] API to read logs
-
-## Core structural layers
-
-- [x] Create organization
-- [x] Generate avatar library
-- [x] Create organization API
-- [x] Add create organization to user logs
-- [x] Display organization links in log
-- [ ] Create organizations logs
-- [x] Add fake organization in seeder
-- [x] Add notion of marketing page
-- [x] Add pageviews for marketing page
-- [ ] Join organization
-- [x] Remove dusk
-- [ ] 2fa
-- [x] Automate release notes
+- [ ] Make sure we check Resend to capture email delivery
 - [ ] Instance administration panel
-- [x] Job families (CRUD)
-- [x] API for job families
-- [x] Documentation for job families
-- [x] Database seeders for job families
-- [x] Job disciplines (CRUD)
-- [x] API for job disciplines
-- [x] Documentation for job disciplines
-- [x] Database seeders for job disciplines
-- [x] Job levels (CRUD)
-- [x] API for job levels
-- [x] Documentation for job levels
-- [x] Database seeders for job levels
-- [ ] Design system
-- [ ] Export organization account
-- [ ] Permissions in organization
-- [ ] Add last activity date
-- [ ] Change title as a slot in x-box component
+- [x] Modify API
+- [x] make public properties in service as protected
+- [ ] Update documentation
+- [ ] Take care of marketing website and repo

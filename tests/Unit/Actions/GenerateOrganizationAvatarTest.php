@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class GenerateOrganizationAvatarTest extends TestCase
+final class GenerateOrganizationAvatarTest extends TestCase
 {
     use RefreshDatabase;
 

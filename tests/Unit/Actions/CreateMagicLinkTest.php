@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class CreateMagicLinkTest extends TestCase
+final class CreateMagicLinkTest extends TestCase
 {
     use RefreshDatabase;
 

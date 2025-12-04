@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class ProfileControllerTest extends TestCase
+final class ProfileControllerTest extends TestCase
 {
     use RefreshDatabase;
 

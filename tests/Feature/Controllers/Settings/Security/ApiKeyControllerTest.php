@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class ApiKeyControllerTest extends TestCase
+final class ApiKeyControllerTest extends TestCase
 {
     use RefreshDatabase;
 

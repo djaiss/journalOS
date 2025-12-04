@@ -11,7 +11,7 @@
   </x-slot>
 
   <x-breadcrumb :items="[
-    ['label' => __('Dashboard'), 'route' => route('organization.index')],
+    ['label' => __('Dashboard'), 'route' => route('journal.index')],
     ['label' => __('Settings')]
   ]" />
 

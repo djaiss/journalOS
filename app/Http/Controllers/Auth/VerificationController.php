@@ -16,14 +16,14 @@ final class VerificationController extends Controller
     public function notice(Request $request): RedirectResponse|View
     {
         return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended(route('organization.index', absolute: false))
+                    ? redirect()->intended(route('journal.index', absolute: false))
                     : view('auth.verify-email');
     }
 
     public function store(Request $request): RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(route('organization.index', absolute: false));
+            return redirect()->intended(route('journal.index', absolute: false));
         }
 
         $request->user()->sendEmailVerificationNotification();
@@ -34,7 +34,7 @@ final class VerificationController extends Controller
     public function verify(EmailVerificationRequest $request): RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(route('organization.index', absolute: false) . '?verified=1');
+            return redirect()->intended(route('journal.index', absolute: false) . '?verified=1');
         }
 
         if ($request->user()->markEmailAsVerified()) {
@@ -44,6 +44,6 @@ final class VerificationController extends Controller
             event(new Verified($user));
         }
 
-        return redirect()->intended(route('organization.index', absolute: false) . '?verified=1');
+        return redirect()->intended(route('journal.index', absolute: false) . '?verified=1');
     }
 }

@@ -6,16 +6,14 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\CreateEmailSent;
 use App\Models\EmailSent;
-use App\Models\Organization;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class CreateEmailSentTest extends TestCase
+final class CreateEmailSentTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -28,7 +26,6 @@ class CreateEmailSentTest extends TestCase
 
         $emailSent = (new CreateEmailSent(
             user: $user,
-            organization: null,
             uuid: 'd27cee22-b10f-46c4-a7dc-af3b46820d80',
             emailType: 'birthday_wishes',
             emailAddress: 'dwight.schrute@dundermifflin.com',
@@ -38,7 +35,6 @@ class CreateEmailSentTest extends TestCase
 
         $this->assertDatabaseHas('emails_sent', [
             'id' => $emailSent->id,
-            'organization_id' => null,
             'user_id' => $user->id,
             'uuid' => 'd27cee22-b10f-46c4-a7dc-af3b46820d80',
             'email_type' => 'birthday_wishes',
@@ -61,7 +57,6 @@ class CreateEmailSentTest extends TestCase
 
         $emailSent = (new CreateEmailSent(
             user: $user,
-            organization: null,
             uuid: null,
             emailType: 'birthday_wishes',
             emailAddress: 'dwight.schrute@dundermifflin.com',
@@ -76,25 +71,6 @@ class CreateEmailSentTest extends TestCase
     }
 
     #[Test]
-    public function it_fails_if_user_doesnt_belong_to_organization(): void
-    {
-        $this->expectException(ModelNotFoundException::class);
-
-        $user = User::factory()->create();
-        $organization = Organization::factory()->create();
-
-        (new CreateEmailSent(
-            user: $user,
-            organization: $organization,
-            uuid: null,
-            emailType: 'birthday_wishes',
-            emailAddress: 'monica.geller@friends.com',
-            subject: 'Happy Birthday!',
-            body: 'Hope you have a great day!',
-        ))->execute();
-    }
-
-    #[Test]
     public function it_creates_an_email_sent_with_a_uuid(): void
     {
         Queue::fake();
@@ -104,7 +80,6 @@ class CreateEmailSentTest extends TestCase
 
         $emailSent = (new CreateEmailSent(
             user: $user,
-            organization: null,
             uuid: $uuid->toString(),
             emailType: 'birthday_wishes',
             emailAddress: 'dwight.schrute@dundermifflin.com',

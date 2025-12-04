@@ -31,6 +31,6 @@ final class ConfirmationController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(route('organization.index', absolute: false));
+        return redirect()->intended(route('journal.index', absolute: false));
     }
 }

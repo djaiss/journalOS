@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LogUserActionTest extends TestCase
+final class LogUserActionTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -24,15 +24,14 @@ class LogUserActionTest extends TestCase
             'nickname' => null,
         ]);
         LogUserAction::dispatch(
-            organization: null,
             user: $user,
+            journal: null,
             action: 'personal_profile_update',
             description: 'Updated their personal profile',
         );
 
         $log = Log::first();
 
-        $this->assertEquals('Michael Scott', $log->getUserName());
         $this->assertEquals('personal_profile_update', $log->action);
         $this->assertEquals('Updated their personal profile', $log->description);
     }

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class PasswordControllerTest extends TestCase
+final class PasswordControllerTest extends TestCase
 {
     use RefreshDatabase;
 

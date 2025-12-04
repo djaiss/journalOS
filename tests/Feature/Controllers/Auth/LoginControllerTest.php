@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LoginControllerTest extends TestCase
+final class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -35,7 +35,7 @@ class LoginControllerTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('organization.index', absolute: false));
+        $response->assertRedirect(route('journal.index', absolute: false));
     }
 
     #[Test]

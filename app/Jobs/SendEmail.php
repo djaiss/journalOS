@@ -99,7 +99,6 @@ final class SendEmail implements ShouldQueue
     private function recordEmailSent(): void
     {
         new CreateEmailSent(
-            organization: null,
             user: $this->user,
             uuid: $this->uuid,
             emailType: $this->emailType->value,

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class UpdateUserInformationTest extends TestCase
+final class UpdateUserInformationTest extends TestCase
 {
     use RefreshDatabase;
 

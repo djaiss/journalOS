@@ -14,14 +14,14 @@ return new class extends Migration {
     {
         Schema::create('logs', function (Blueprint $table): void {
             $table->id();
-            $table->unsignedBigInteger('organization_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('user_name');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('journal_id')->nullable();
+            $table->string('journal_name')->nullable();
             $table->string('action');
             $table->string('description');
             $table->timestamps();
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('journal_id')->references('id')->on('journals')->onDelete('set null');
         });
     }
 

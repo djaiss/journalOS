@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class PreferredTwoFAControllerTest extends TestCase
+final class PreferredTwoFAControllerTest extends TestCase
 {
     use RefreshDatabase;
 

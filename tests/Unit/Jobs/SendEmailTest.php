@@ -17,7 +17,7 @@ use Resend\Email;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class SendEmailTest extends TestCase
+final class SendEmailTest extends TestCase
 {
     use RefreshDatabase;
 

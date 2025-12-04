@@ -16,10 +16,10 @@ final class CreateAccount
     private User $user;
 
     public function __construct(
-        public string $email,
-        public string $password,
-        public string $firstName,
-        public string $lastName,
+        private readonly string $email,
+        private readonly string $password,
+        private readonly string $firstName,
+        private readonly string $lastName,
     ) {}
 
     public function execute(): User
@@ -43,8 +43,8 @@ final class CreateAccount
     private function log(): void
     {
         LogUserAction::dispatch(
-            organization: null,
             user: $this->user,
+            journal: null,
             action: 'account_created',
             description: 'Created an account',
         )->onQueue('low');

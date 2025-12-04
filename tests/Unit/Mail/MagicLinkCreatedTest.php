@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class MagicLinkCreatedTest extends TestCase
+final class MagicLinkCreatedTest extends TestCase
 {
     use RefreshDatabase;
 
