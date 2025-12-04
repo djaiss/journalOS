@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class SendMagicLinkControllerTest extends TestCase
+final class SendMagicLinkControllerTest extends TestCase
 {
     use RefreshDatabase;
 

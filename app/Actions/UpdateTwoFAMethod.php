@@ -10,8 +10,8 @@ use App\Models\User;
 final readonly class UpdateTwoFAMethod
 {
     public function __construct(
-        private User $user,
-        private string $preferredMethods,
+        private readonly User $user,
+        private readonly string $preferredMethods,
     ) {}
 
     /**
@@ -35,8 +35,8 @@ final readonly class UpdateTwoFAMethod
     private function log(): void
     {
         LogUserAction::dispatch(
-            organization: null,
             user: $this->user,
+            journal: null,
             action: 'update_preferred_method',
             description: 'Updated their preferred 2FA method',
         )->onQueue('low');

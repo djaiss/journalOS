@@ -14,7 +14,6 @@ return new class extends Migration {
     {
         Schema::create('emails_sent', function (Blueprint $table): void {
             $table->id();
-            $table->unsignedBigInteger('organization_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('uuid')->nullable();
             $table->text('email_type');
@@ -25,7 +24,6 @@ return new class extends Migration {
             $table->datetime('delivered_at')->nullable();
             $table->datetime('bounced_at')->nullable();
             $table->timestamps();
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

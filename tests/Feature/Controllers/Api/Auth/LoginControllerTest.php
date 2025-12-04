@@ -10,7 +10,7 @@ use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LoginControllerTest extends TestCase
+final class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -13,7 +13,7 @@ use PragmaRX\Google2FALaravel\Google2FA;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class Validate2faQRCodeTest extends TestCase
+final class Validate2faQRCodeTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Represents an email that has been sent in the system.
  *
  * @property int $id
- * @property int|null $organization_id
  * @property int|null $user_id
  * @property string|null $uuid
  * @property string $email_type
@@ -38,7 +37,6 @@ final class EmailSent extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'organization_id',
         'user_id',
         'uuid',
         'email_type',
@@ -58,14 +56,6 @@ final class EmailSent extends Model
         'delivered_at' => 'datetime',
         'bounced_at' => 'datetime',
     ];
-
-    /**
-     * Get the organization that owns the email.
-     */
-    public function organization(): BelongsTo
-    {
-        return $this->belongsTo(Organization::class);
-    }
 
     /**
      * Get the user associated with the email.

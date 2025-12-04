@@ -6,15 +6,15 @@ namespace Tests\Unit\ViewModels\Settings;
 
 use App\Http\ViewModels\Settings\ProfileShowViewModel;
 use App\Models\EmailSent;
+use App\Models\Journal;
 use App\Models\Log;
-use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class ProfileShowViewModelTest extends TestCase
+final class ProfileShowViewModelTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -47,15 +47,11 @@ class ProfileShowViewModelTest extends TestCase
             'last_name' => 'Scott',
             'nickname' => null,
         ]);
-        $organization = Organization::factory()->create([
-            'name' => 'Dunder Mifflin',
-        ]);
 
         Log::factory()->create([
             'user_id' => $user->id,
             'action' => 'profile_update',
             'description' => 'Updated their profile',
-            'organization_id' => null,
         ]);
 
         $viewModel = (new ProfileShowViewModel(
@@ -64,10 +60,9 @@ class ProfileShowViewModelTest extends TestCase
 
         $this->assertCount(1, $viewModel->logs());
         $this->assertEquals([
-            'username' => 'Michael Scott',
             'action' => 'profile_update',
-            'organization_id' => null,
-            'organization_name' => null,
+            'journal_id' => null,
+            'journal_name' => null,
             'description' => 'Updated their profile',
             'created_at' => '2018-01-01 00:00:00',
             'created_at_diff_for_humans' => '0 seconds ago',
@@ -75,7 +70,7 @@ class ProfileShowViewModelTest extends TestCase
     }
 
     #[Test]
-    public function it_gets_the_latest_logs_with_organization(): void
+    public function it_gets_the_latest_logs_with_journal(): void
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
 
@@ -85,7 +80,7 @@ class ProfileShowViewModelTest extends TestCase
             'nickname' => null,
         ]);
 
-        $organization = Organization::factory()->create([
+        $journal = Journal::factory()->create([
             'name' => 'Dunder Mifflin',
         ]);
 
@@ -93,7 +88,8 @@ class ProfileShowViewModelTest extends TestCase
             'user_id' => $user->id,
             'action' => 'profile_update',
             'description' => 'Updated their profile',
-            'organization_id' => $organization->id,
+            'journal_id' => $journal->id,
+            'journal_name' => 'Dunder Mifflin',
         ]);
 
         $viewModel = (new ProfileShowViewModel(
@@ -102,10 +98,9 @@ class ProfileShowViewModelTest extends TestCase
 
         $this->assertCount(1, $viewModel->logs());
         $this->assertEquals([
-            'username' => 'Michael Scott',
             'action' => 'profile_update',
-            'organization_id' => $organization->id,
-            'organization_name' => 'Dunder Mifflin',
+            'journal_id' => $journal->id,
+            'journal_name' => 'Dunder Mifflin',
             'description' => 'Updated their profile',
             'created_at' => '2018-01-01 00:00:00',
             'created_at_diff_for_humans' => '0 seconds ago',

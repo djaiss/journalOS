@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class EmailControllerTest extends TestCase
+final class EmailControllerTest extends TestCase
 {
     use RefreshDatabase;
 

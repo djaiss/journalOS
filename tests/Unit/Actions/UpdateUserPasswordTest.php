@@ -14,7 +14,7 @@ use InvalidArgumentException;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class UpdateUserPasswordTest extends TestCase
+final class UpdateUserPasswordTest extends TestCase
 {
     use RefreshDatabase;
 

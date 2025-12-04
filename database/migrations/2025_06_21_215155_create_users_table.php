@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('password');
             $table->string('locale')->default('en');
+            $table->datetime('last_activity_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

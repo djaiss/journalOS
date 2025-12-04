@@ -64,7 +64,7 @@ final class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('organization.index', absolute: false));
+        return redirect()->intended(route('journal.index', absolute: false));
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -131,7 +131,7 @@ final class LoginController extends Controller
         $userId = session('2fa:user:id');
         $user = User::find($userId);
 
-        if (!(new VerifyTwoFactorCode(user: $user, code: $request->input('code')))->execute()) {
+        if (!new VerifyTwoFactorCode(user: $user, code: $request->input('code'))->execute()) {
             return back()->withErrors(['code' => 'Invalid code']);
         }
 
@@ -139,6 +139,6 @@ final class LoginController extends Controller
         session()->forget('2fa:user:id');
         $request->session()->regenerate();
 
-        return redirect()->intended(route('organization.index', absolute: false));
+        return redirect()->intended(route('journal.index', absolute: false));
     }
 }

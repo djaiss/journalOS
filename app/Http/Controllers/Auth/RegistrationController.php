@@ -45,6 +45,6 @@ final class RegistrationController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('organization.index', absolute: false));
+        return redirect(route('journal.index', absolute: false));
     }
 }

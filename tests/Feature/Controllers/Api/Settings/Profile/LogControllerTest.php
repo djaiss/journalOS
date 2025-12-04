@@ -12,7 +12,7 @@ use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LogControllerTest extends TestCase
+final class LogControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -21,9 +21,9 @@ class LogControllerTest extends TestCase
             'type',
             'id',
             'attributes' => [
-                'user_name',
                 'action',
                 'description',
+                'journal_name',
                 'created_at',
                 'updated_at',
             ],
@@ -39,9 +39,9 @@ class LogControllerTest extends TestCase
                 'type',
                 'id',
                 'attributes' => [
-                    'user_name',
                     'action',
                     'description',
+                    'journal_name',
                     'created_at',
                     'updated_at',
                 ],
@@ -75,7 +75,7 @@ class LogControllerTest extends TestCase
 
         $logs = Log::factory()->count(15)->create([
             'user_id' => $user->id,
-            'user_name' => $user->getFullName(),
+            'journal_name' => 'Dunder Mifflin journal',
         ]);
 
         Sanctum::actingAs($user);
@@ -100,9 +100,9 @@ class LogControllerTest extends TestCase
                     'type' => 'log',
                     'id' => (string) $firstLog->id,
                     'attributes' => [
-                        'user_name' => $firstLog->user_name,
                         'action' => $firstLog->action,
                         'description' => $firstLog->description,
+                        'journal_name' => 'Dunder Mifflin journal',
                         'created_at' => $firstLog->created_at->timestamp,
                         'updated_at' => $firstLog->created_at->timestamp,
                     ],
@@ -118,9 +118,9 @@ class LogControllerTest extends TestCase
         $user = User::factory()->create();
         $log = Log::factory()->create([
             'user_id' => $user->id,
-            'user_name' => $user->getFullName(),
             'action' => 'user.login',
             'description' => 'User logged in successfully',
+            'journal_name' => 'Dunder Mifflin journal',
         ]);
 
         Sanctum::actingAs($user);
@@ -135,9 +135,9 @@ class LogControllerTest extends TestCase
                 'type' => 'log',
                 'id' => (string) $log->id,
                 'attributes' => [
-                    'user_name' => $log->user_name,
                     'action' => 'user.login',
                     'description' => 'User logged in successfully',
+                    'journal_name' => 'Dunder Mifflin journal',
                     'created_at' => $log->created_at->timestamp,
                     'updated_at' => $log->created_at->timestamp,
                 ],
@@ -152,7 +152,7 @@ class LogControllerTest extends TestCase
         $user2 = User::factory()->create();
         $log = Log::factory()->create([
             'user_id' => $user2->id,
-            'user_name' => $user2->getFullName(),
+            'journal_name' => 'Dunder Mifflin journal',
         ]);
 
         Sanctum::actingAs($user1);
@@ -166,21 +166,18 @@ class LogControllerTest extends TestCase
     }
 
     #[Test]
-    public function it_returns_404_when_log_has_no_user_id(): void
+    public function it_returns_404_when_log_has_no_journal_id(): void
     {
         $user = User::factory()->create();
-        $log = Log::factory()->create([
-            'user_id' => null,
-            'user_name' => 'System',
-        ]);
+        $log = Log::factory()->create();
 
         Sanctum::actingAs($user);
 
         $response = $this->json('GET', "/api/settings/logs/{$log->id}");
 
-        $response->assertNotFound();
+        $response->assertStatus(403);
         $response->assertJson([
-            'message' => 'Log not found.',
+            'message' => 'Unauthorized action.',
         ]);
     }
 

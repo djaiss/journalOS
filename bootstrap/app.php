@@ -6,8 +6,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\SetLocale;
-use App\Http\Middleware\CheckOrganization;
-use App\Http\Middleware\CheckOrganizationAPI;
+use App\Http\Middleware\CheckJournal;
+use App\Http\Middleware\CheckJournalAPI;
+use App\Http\Middleware\CheckJournalEntry;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,8 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'set.locale' => SetLocale::class,
-            'organization' => CheckOrganization::class,
-            'organization.api' => CheckOrganizationAPI::class,
+            'journal' => CheckJournal::class,
+            'journal.api' => CheckJournalAPI::class,
+            'journal.entry' => CheckJournalEntry::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -12,9 +12,9 @@ use InvalidArgumentException;
 final class UpdateUserPassword
 {
     public function __construct(
-        public User $user,
-        public string $currentPassword,
-        public string $newPassword,
+        private readonly User $user,
+        private readonly string $currentPassword,
+        private readonly string $newPassword,
     ) {}
 
     /**
@@ -46,8 +46,8 @@ final class UpdateUserPassword
     private function log(): void
     {
         LogUserAction::dispatch(
-            organization: null,
             user: $this->user,
+            journal: null,
             action: 'update_user_password',
             description: 'Updated their password',
         )->onQueue('low');

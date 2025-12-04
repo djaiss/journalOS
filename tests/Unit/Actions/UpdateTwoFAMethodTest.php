@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class UpdateTwoFAMethodTest extends TestCase
+final class UpdateTwoFAMethodTest extends TestCase
 {
     use RefreshDatabase;
 

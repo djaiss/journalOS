@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class RegistrationControllerTest extends TestCase
+final class RegistrationControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -32,6 +32,6 @@ class RegistrationControllerTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('organization.index', absolute: false));
+        $response->assertRedirect(route('journal.index', absolute: false));
     }
 }

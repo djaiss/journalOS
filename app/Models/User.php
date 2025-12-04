@@ -6,7 +6,6 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -27,9 +26,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property array|null $two_factor_recovery_codes
  * @property string|null $two_factor_preferred_method
  * @property Carbon|null $two_factor_confirmed_at
- * @property Carbon $created_at
+ * @property Carbon|null $last_activity_at
  * @property string $password
  * @property string $locale
+ * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
 final class User extends Authenticatable implements MustVerifyEmail
@@ -56,6 +56,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'two_factor_secret',
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
+        'last_activity_at',
     ];
 
     /**
@@ -80,19 +81,18 @@ final class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
             'two_factor_recovery_codes' => 'array',
+            'last_activity_at' => 'datetime',
         ];
     }
 
     /**
-     * Get the organizations associated with the user.
+     * Get the journals associated with the user.
      *
-     * @return BelongsToMany<Organization, $this>
+     * @return HasMany<Journal, $this>
      */
-    public function organizations(): BelongsToMany
+    public function journals(): HasMany
     {
-        return $this->belongsToMany(Organization::class)
-            ->withPivot(['joined_at'])
-            ->withTimestamps();
+        return $this->hasMany(Journal::class);
     }
 
     /**
@@ -129,15 +129,5 @@ final class User extends Authenticatable implements MustVerifyEmail
         $separator = $firstName && $lastName ? ' ' : '';
 
         return $firstName . $separator . $lastName;
-    }
-
-    /**
-     * Check if the user is part of a specific organization.
-     *
-     * @return bool
-     */
-    public function isPartOfOrganization(Organization $organization): bool
-    {
-        return $this->organizations()->where('organization_id', $organization->id)->exists();
     }
 }

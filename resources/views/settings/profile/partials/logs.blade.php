@@ -17,10 +17,8 @@
         <x-phosphor-pulse class="size-3 min-w-3 text-zinc-600 dark:text-zinc-400" />
         <div class="flex flex-col gap-y-2">
           <p class="items-center gap-2 sm:flex">
-            <span class="">{{ $log->username }}</span>
-            |
-            @if ($log->organization_name)
-              <x-link href="{{ route('organization.show', $log->organization_id) }}">{{ $log->organization_name }}</x-link>
+            @if ($log->journal_name)
+              <x-link href="{{ route('journal.show', $log->journal_id) }}">{{ $log->journal_name }}</x-link>
               |
             @endif
 

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class DestroyAccountTest extends TestCase
+final class DestroyAccountTest extends TestCase
 {
     use RefreshDatabase;
 

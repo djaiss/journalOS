@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class Generate2faQRCodeTest extends TestCase
+final class Generate2faQRCodeTest extends TestCase
 {
     use RefreshDatabase;
 

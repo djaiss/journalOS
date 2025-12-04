@@ -29,15 +29,14 @@ final readonly class ProfileShowViewModel
     {
         return Log::where('user_id', $this->user->id)
             ->with('user')
-            ->with('organization')
+            ->with('journal')
             ->take(5)
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(fn(Log $log) => (object) [
-                'username' => $log->getUserName(),
                 'action' => $log->action,
-                'organization_name' => $log->organization?->name,
-                'organization_id' => $log->organization?->id,
+                'journal_name' => $log->journal?->name,
+                'journal_id' => $log->journal?->id,
                 'description' => $log->description,
                 'created_at' => $log->created_at->format('Y-m-d H:i:s'),
                 'created_at_diff_for_humans' => $log->created_at->diffForHumans(),

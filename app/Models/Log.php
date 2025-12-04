@@ -15,9 +15,9 @@ use Carbon\Carbon;
  * Represents a log entry in the system for tracking user actions and events.
  *
  * @property int $id
- * @property int|null $organization_id
- * @property int|null $user_id
- * @property string $user_name
+ * @property int $user_id
+ * @property int|null $journal_id
+ * @property string $journal_name
  * @property string $action
  * @property string $description
  * @property Carbon $created_at
@@ -41,22 +41,12 @@ final class Log extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'organization_id',
         'user_id',
-        'user_name',
+        'journal_id',
         'action',
         'description',
+        'journal_name',
     ];
-
-    /**
-     * Get the organization associated with the log.
-     *
-     * @return BelongsTo<Organization, $this>
-     */
-    public function organization(): BelongsTo
-    {
-        return $this->belongsTo(Organization::class);
-    }
 
     /**
      * Get the user associated with the log.
@@ -69,15 +59,25 @@ final class Log extends Model
     }
 
     /**
-     * Get the user name associated with the log.
-     * If the user object exists, return the name from the user object.
-     * If the user object does not exist, return the user name that was set in
-     * the log at the time of creation.
+     * Get the journal associated with the log.
+     *
+     * @return BelongsTo<Journal, $this>
+     */
+    public function journal(): BelongsTo
+    {
+        return $this->belongsTo(Journal::class);
+    }
+
+    /**
+     * Get the journal name associated with the log.
+     * If the journal object exists, return the name from the journal object.
+     * If the journal object does not exist, return the journal name that was
+     * set in the log at the time of creation.
      *
      * @return string
      */
-    public function getUserName(): string
+    public function getJournalName(): string
     {
-        return $this->user ? $this->user->getFullName() : $this->user_name;
+        return $this->journal ? $this->journal->name : $this->journal_name;
     }
 }

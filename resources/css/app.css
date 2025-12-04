@@ -31,3 +31,19 @@
     -webkit-backface-visibility: hidden;
   }
 }
+
+.days-grid-28 {
+  grid-template-columns: repeat(28, minmax(0, 1fr));
+}
+
+.days-grid-29 {
+  grid-template-columns: repeat(29, minmax(0, 1fr));
+}
+
+.days-grid-30 {
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+}
+
+.days-grid-31 {
+  grid-template-columns: repeat(31, minmax(0, 1fr));
+}

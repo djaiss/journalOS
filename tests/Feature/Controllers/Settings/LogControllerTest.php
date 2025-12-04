@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-class LogControllerTest extends TestCase
+final class LogControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -26,7 +26,7 @@ class LogControllerTest extends TestCase
         ]);
 
         $log = Log::factory()->create([
-            'organization_id' => null,
+            'journal_id' => null,
             'user_id' => $user->id,
             'action' => 'profile_update',
             'description' => 'Updated their profile',
@@ -43,7 +43,6 @@ class LogControllerTest extends TestCase
 
         $this->assertCount(1, $logs);
         $this->assertEquals($log->id, $logs[0]->id);
-        $this->assertEquals('Ross Geller', $logs[0]->user->getFullName());
         $this->assertEquals('profile_update', $logs[0]->action);
         $this->assertEquals('Updated their profile', $logs[0]->description);
     }
@@ -54,7 +53,7 @@ class LogControllerTest extends TestCase
         $user = User::factory()->create();
 
         Log::factory()->count(15)->create([
-            'organization_id' => null,
+            'journal_id' => null,
             'user_id' => $user->id,
         ]);
 
