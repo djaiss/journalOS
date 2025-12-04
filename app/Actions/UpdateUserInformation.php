@@ -11,12 +11,12 @@ use Illuminate\Auth\Events\Registered;
 final readonly class UpdateUserInformation
 {
     public function __construct(
-        private readonly User $user,
-        private readonly string $email,
-        private readonly string $firstName,
-        private readonly string $lastName,
-        private readonly ?string $nickname,
-        private readonly string $locale,
+        private User $user,
+        private string $email,
+        private string $firstName,
+        private string $lastName,
+        private ?string $nickname,
+        private string $locale,
     ) {}
 
     /**

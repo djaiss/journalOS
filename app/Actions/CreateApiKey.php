@@ -9,11 +9,11 @@ use App\Jobs\LogUserAction;
 use App\Jobs\SendEmail;
 use App\Models\User;
 
-final class CreateApiKey
+final readonly class CreateApiKey
 {
     public function __construct(
-        private readonly User $user,
-        private readonly string $label,
+        private User $user,
+        private string $label,
     ) {}
 
     public function execute(): string
