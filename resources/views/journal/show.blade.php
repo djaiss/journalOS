@@ -41,8 +41,8 @@
       <h3 class="text-lg font-bold">Journal</h3>
     </div>
     <div>
-      {{-- <x-module>sdfasdf</x-module> --}}
+      {{-- <x-module>this is great</x-module> --}}
     </div>
-    dsff
+    great
   </div>
 </x-app-layout>
