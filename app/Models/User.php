@@ -57,6 +57,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
         'last_activity_at',
+        'auto_delete_account',
     ];
 
     /**
@@ -82,6 +83,7 @@ final class User extends Authenticatable implements MustVerifyEmail
             'two_factor_confirmed_at' => 'datetime',
             'two_factor_recovery_codes' => 'array',
             'last_activity_at' => 'datetime',
+            'auto_delete_account' => 'boolean',
         ];
     }
 
