@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Administration;
+namespace Tests\Feature\Controllers\App\Settings;
 
 use App\Models\Journal;
 use App\Models\User;
@@ -10,12 +10,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class AdministrationPruneAccountControllerTest extends TestCase
+final class PruneAccountControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function administration_prune_can_be_rendered(): void
+    public function the_screen_can_be_rendered(): void
     {
         $user = User::factory()->create();
 

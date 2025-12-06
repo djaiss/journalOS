@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Services;
+namespace Tests\Unit\Actions;
 
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;

@@ -6,11 +6,10 @@ namespace App\Actions;
 
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
-use App\Models\Account;
 use App\Models\Journal;
 use App\Models\User;
 
-final class PruneAccount
+final readonly class PruneAccount
 {
     public function __construct(
         public User $user,
