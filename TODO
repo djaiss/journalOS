@@ -8,5 +8,6 @@
 - [x] Take care of marketing website and repo
 - [ ] remove livewire entirely
 - [x] delete account after a while
-- [ ] prune account
+- [ ] delete account after a while UI
+- [x] prune account
 - [ ] update user activity in actions

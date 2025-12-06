@@ -12,10 +12,10 @@ use App\Models\User;
  * Delete an account if there is no activity for all users after a period of
  * time.
  */
-final class DestroyAccountBecauseInactivity
+final readonly class DestroyAccountBecauseInactivity
 {
     public function __construct(
-        private readonly User $user,
+        private User $user,
     ) {}
 
     public function execute(): void
