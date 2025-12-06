@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
     // account
     Route::get('settings/account', [Settings\AccountController::class, 'index'])->name('settings.account.index');
+    Route::put('settings/prune', [Settings\PruneAccountController::class, 'update'])->name('settings.account.prune');
     Route::delete('settings/account', [Settings\AccountController::class, 'destroy'])->name('settings.account.destroy');
 });
 
