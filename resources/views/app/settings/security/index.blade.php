@@ -22,6 +22,9 @@
         <!-- two factor authentication -->
         @include('app.settings.security.partials.2fa.index')
 
+        <!-- auto delete account -->
+        @include('app.settings.security.partials.auto-delete')
+
         <!-- api keys -->
         @include('app.settings.security.partials.api.index', ['apiKeys' => $apiKeys])
       </div>
