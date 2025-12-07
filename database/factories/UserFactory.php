@@ -36,6 +36,7 @@ final class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'two_factor_preferred_method' => 'none',
             'two_factor_confirmed_at' => null,
+            'auto_delete_account' => false,
         ];
     }
 
