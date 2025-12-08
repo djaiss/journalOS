@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\CreateJournal;
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\User;
 use Carbon\Carbon;
@@ -45,6 +46,14 @@ final class CreateJournalTest extends TestCase
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
                 return $job->action === 'journal_creation' && $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
             },
         );
     }

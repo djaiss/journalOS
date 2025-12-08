@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Models\User;
+use App\Jobs\UpdateUserLastActivityDate;
 use PragmaRX\Google2FA\Google2FA;
 
 /**
@@ -25,9 +26,16 @@ final readonly class VerifyTwoFactorCode
     public function execute(): bool
     {
         if ($this->verifyTotp()) {
+            $this->updateUserLastActivityDate();
             return true;
         }
-        return $this->verifyRescueCode();
+
+        if ($this->verifyRescueCode()) {
+            $this->updateUserLastActivityDate();
+            return true;
+        }
+
+        return false;
     }
 
     private function verifyTotp(): bool
@@ -55,5 +63,10 @@ final readonly class VerifyTwoFactorCode
         }
 
         return false;
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

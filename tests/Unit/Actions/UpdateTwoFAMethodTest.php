@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\UpdateTwoFAMethod;
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
@@ -40,6 +41,14 @@ final class UpdateTwoFAMethodTest extends TestCase
                 return $job->user->id === $user->id
                     && $job->action === 'update_preferred_method'
                     && $job->description === 'Updated their preferred 2FA method';
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
             },
         );
     }

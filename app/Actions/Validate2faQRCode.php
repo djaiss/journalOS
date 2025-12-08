@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Models\User;
+use App\Jobs\UpdateUserLastActivityDate;
 use Illuminate\Support\Str;
 use PragmaRX\Google2FALaravel\Google2FA;
 use InvalidArgumentException;
@@ -24,6 +25,7 @@ final readonly class Validate2faQRCode
     {
         $this->validateToken();
         $this->generateRecoveryCodes();
+        $this->updateUserLastActivityDate();
     }
 
     private function validateToken(): void
@@ -45,5 +47,10 @@ final readonly class Validate2faQRCode
     private function generateRandomCodes(): array
     {
         return collect()->times(8)->map(fn() => Str::random(10))->all();
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

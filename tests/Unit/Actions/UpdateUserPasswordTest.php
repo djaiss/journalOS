@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\UpdateUserPassword;
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -44,6 +45,14 @@ final class UpdateUserPasswordTest extends TestCase
                 return $job->action === 'update_user_password'
                     && $job->user->id === $user->id
                     && $job->description === 'Updated their password';
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
             },
         );
     }

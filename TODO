@@ -6,8 +6,7 @@
 - [x] make public properties in service as protected
 - [x] Update documentation
 - [x] Take care of marketing website and repo
-- [ ] remove livewire entirely
+- [x] remove livewire entirely
 - [x] delete account after a while
-- [ ] delete account after a while UI
 - [x] prune account
-- [ ] update user activity in actions
+- [x] update user activity in actions

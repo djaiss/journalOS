@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 
@@ -28,6 +29,7 @@ final readonly class UpdateUserInformation
     {
         $this->triggerEmailVerification();
         $this->update();
+        $this->updateUserLastActivityDate();
         $this->log();
 
         return $this->user;
@@ -61,5 +63,10 @@ final readonly class UpdateUserInformation
             action: 'personal_profile_update',
             description: 'Updated their personal profile',
         )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

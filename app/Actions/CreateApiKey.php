@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Enums\EmailType;
 use App\Jobs\LogUserAction;
 use App\Jobs\SendEmail;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 
 final readonly class CreateApiKey
@@ -21,6 +22,7 @@ final readonly class CreateApiKey
         $token = $this->user->createToken($this->label)->plainTextToken;
         $this->log();
         $this->sendEmail();
+        $this->updateUserLastActivityDate();
 
         return $token;
     }
@@ -42,5 +44,10 @@ final readonly class CreateApiKey
             user: $this->user,
             parameters: ['label' => $this->label],
         )->onQueue('high');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

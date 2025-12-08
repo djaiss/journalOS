@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\CreateAccount;
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -45,6 +46,14 @@ final class CreateAccountTest extends TestCase
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
                 return $job->action === 'account_created' && $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
             },
         );
     }

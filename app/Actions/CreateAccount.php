@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +26,7 @@ final class CreateAccount
     public function execute(): User
     {
         $this->create();
+        $this->updateUserLastActivityDate();
         $this->log();
 
         return $this->user;
@@ -48,5 +50,10 @@ final class CreateAccount
             action: 'account_created',
             description: 'Created an account',
         )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

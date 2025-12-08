@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
@@ -24,6 +25,7 @@ final readonly class UpdateUserPassword
     {
         $this->validate();
         $this->update();
+        $this->updateUserLastActivityDate();
         $this->log();
 
         return $this->user;
@@ -51,5 +53,10 @@ final readonly class UpdateUserPassword
             action: 'update_user_password',
             description: 'Updated their password',
         )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

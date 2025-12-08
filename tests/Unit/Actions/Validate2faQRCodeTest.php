@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\Validate2faQRCode;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use InvalidArgumentException;
+use Illuminate\Support\Facades\Queue;
 use Mockery;
 use PragmaRX\Google2FALaravel\Google2FA;
 use Tests\TestCase;
@@ -20,6 +22,8 @@ final class Validate2faQRCodeTest extends TestCase
     #[Test]
     public function it_validates_the_2fa_qr_code_and_generates_recovery_codes(): void
     {
+        Queue::fake();
+
         $secret = 'JBSWY3DPEHPK3PXP';
 
         $user = User::factory()->create([
@@ -49,11 +53,21 @@ final class Validate2faQRCodeTest extends TestCase
             $this->assertIsString($code);
             $this->assertEquals(10, mb_strlen($code));
         }
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
+            },
+        );
     }
 
     #[Test]
     public function it_throws_exception_when_token_is_invalid(): void
     {
+        Queue::fake();
+
         $secret = 'JBSWY3DPEHPK3PXP';
 
         $user = User::factory()->create([
@@ -67,19 +81,25 @@ final class Validate2faQRCodeTest extends TestCase
             ->with($secret, 'wrong-token')
             ->andReturn(false);
 
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The provided token is invalid.');
+        try {
+            (new Validate2faQRCode(
+                user: $user,
+                token: 'wrong-token',
+                google2fa: $google2faMock,
+            ))->execute();
+            $this->fail('Expected InvalidArgumentException was not thrown.');
+        } catch (InvalidArgumentException $exception) {
+            $this->assertSame('The provided token is invalid.', $exception->getMessage());
+        }
 
-        (new Validate2faQRCode(
-            user: $user,
-            token: 'wrong-token',
-            google2fa: $google2faMock,
-        ))->execute();
+        Queue::assertNothingPushed();
     }
 
     #[Test]
     public function it_does_not_update_recovery_codes_when_token_is_invalid(): void
     {
+        Queue::fake();
+
         $secret = 'JBSWY3DPEHPK3PXP';
 
         $user = User::factory()->create([
@@ -108,5 +128,7 @@ final class Validate2faQRCodeTest extends TestCase
 
         $this->assertNull($user->two_factor_confirmed_at);
         $this->assertNull($user->two_factor_recovery_codes);
+
+        Queue::assertNothingPushed();
     }
 }
