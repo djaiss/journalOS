@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -63,5 +64,10 @@ final class CreateJournal
             action: 'journal_creation',
             description: sprintf('Created a journal called %s', $this->name),
         )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }
