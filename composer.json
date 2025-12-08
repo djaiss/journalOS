@@ -19,7 +19,6 @@
     "laravel/framework": "^12.0",
     "laravel/sanctum": "^4.0",
     "laravel/tinker": "^2.10.1",
-    "livewire/livewire": "^3.6",
     "pragmarx/google2fa-laravel": "^2.3",
     "resend/resend-laravel": "^1.0.0",
     "spatie/laravel-login-link": "^1.6",
