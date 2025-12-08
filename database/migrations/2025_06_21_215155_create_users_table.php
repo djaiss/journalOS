@@ -26,6 +26,10 @@ return new class extends Migration {
             $table->string('locale')->default('en');
             $table->datetime('last_activity_at')->nullable();
             $table->boolean('auto_delete_account')->default(false);
+            $table->string('last_used_browser')->nullable();
+            $table->string('last_used_ip')->nullable();
+            $table->string('last_used_os')->nullable();
+            $table->string('last_used_device')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

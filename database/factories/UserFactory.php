@@ -37,6 +37,10 @@ final class UserFactory extends Factory
             'two_factor_preferred_method' => 'none',
             'two_factor_confirmed_at' => null,
             'auto_delete_account' => false,
+            'last_used_browser' => null,
+            'last_used_ip' => null,
+            'last_used_os' => null,
+            'last_used_device' => null,
         ];
     }
 

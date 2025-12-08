@@ -13,8 +13,8 @@ use App\Models\User;
 final readonly class CreateApiKey
 {
     public function __construct(
-        private User $user,
-        private string $label,
+        private readonly User $user,
+        private readonly string $label,
     ) {}
 
     public function execute(): string
