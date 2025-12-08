@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use PragmaRX\Google2FALaravel\Google2FA;
 
@@ -25,6 +26,7 @@ final class Generate2faQRCode
     {
         $this->generateSecret();
         $this->generateQRCode();
+        $this->updateUserLastActivityDate();
         $this->logUserAction();
 
         return [
@@ -61,5 +63,10 @@ final class Generate2faQRCode
             action: '2fa_qr_code_generation',
             description: 'Generated 2FA QR code for setup',
         )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

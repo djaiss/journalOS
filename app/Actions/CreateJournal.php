@@ -25,6 +25,7 @@ final class CreateJournal
         $this->validate();
         $this->create();
         $this->generateSlug();
+        $this->updateUserLastActivityDate();
         $this->log();
 
         return $this->journal;

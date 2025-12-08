@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 
 final readonly class UpdateTwoFAMethod
@@ -20,6 +21,7 @@ final readonly class UpdateTwoFAMethod
     public function execute(): User
     {
         $this->update();
+        $this->updateUserLastActivityDate();
         $this->log();
 
         return $this->user;
@@ -40,5 +42,10 @@ final readonly class UpdateTwoFAMethod
             action: 'update_preferred_method',
             description: 'Updated their preferred 2FA method',
         )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

@@ -9,7 +9,6 @@ use App\Mail\AccountDestroyed;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -20,7 +19,6 @@ final class DestroyAccountTest extends TestCase
     #[Test]
     public function it_destroys_a_user_account(): void
     {
-        Queue::fake();
         Mail::fake();
         config(['memoir.account_deletion_notification_email' => 'regis@memoir.com']);
 

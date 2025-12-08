@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Enums\EmailType;
 use App\Jobs\LogUserAction;
 use App\Jobs\SendEmail;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 
 final class DestroyApiKey
@@ -27,6 +28,7 @@ final class DestroyApiKey
         $this->label = $token->name;
         $token->delete();
 
+        $this->updateUserLastActivityDate();
         $this->log();
         $this->sendEmailToUser();
     }
@@ -50,5 +52,10 @@ final class DestroyApiKey
                 'label' => $this->label,
             ],
         )->onQueue('high');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
     }
 }

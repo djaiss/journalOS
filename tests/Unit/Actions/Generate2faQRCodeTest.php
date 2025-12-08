@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\Generate2faQRCode;
 use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -40,6 +41,14 @@ final class Generate2faQRCodeTest extends TestCase
                 return $job->action === '2fa_qr_code_generation'
                     && $job->user->id === $user->id
                     && $job->description === 'Generated 2FA QR code for setup';
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
             },
         );
     }

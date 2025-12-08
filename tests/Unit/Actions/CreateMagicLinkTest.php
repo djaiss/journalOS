@@ -8,6 +8,8 @@ use App\Actions\CreateMagicLink;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\UpdateUserLastActivityDate;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -18,6 +20,8 @@ final class CreateMagicLinkTest extends TestCase
     #[Test]
     public function it_returns_a_string(): void
     {
+        Queue::fake();
+
         $user = User::factory()->create([
             'email' => 'test@example.com',
         ]);
@@ -27,11 +31,21 @@ final class CreateMagicLinkTest extends TestCase
         ))->execute();
 
         $this->assertIsString($magicLinkUrl);
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
+            },
+        );
     }
 
     #[Test]
     public function it_contains_the_app_url_with_magic_link_structure(): void
     {
+        Queue::fake();
+
         $user = User::factory()->create([
             'email' => 'test@example.com',
         ]);
@@ -48,6 +62,8 @@ final class CreateMagicLinkTest extends TestCase
     #[Test]
     public function it_throws_an_exception_if_user_not_found(): void
     {
+        Queue::fake();
+
         $nonExistentEmail = 'nonexistent@example.com';
 
         $this->expectException(ModelNotFoundException::class);
@@ -55,5 +71,7 @@ final class CreateMagicLinkTest extends TestCase
         (new CreateMagicLink(
             email: $nonExistentEmail,
         ))->execute();
+
+        Queue::assertNothingPushed();
     }
 }

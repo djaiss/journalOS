@@ -9,4 +9,4 @@
 - [x] remove livewire entirely
 - [x] delete account after a while
 - [x] prune account
-- [ ] update user activity in actions
+- [x] update user activity in actions
