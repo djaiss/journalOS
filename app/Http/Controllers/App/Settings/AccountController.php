@@ -21,7 +21,7 @@ final class AccountController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'feedback' => 'required|string|min:3|max:255',
+            'feedback' => ['required', 'string', 'min:3', 'max:255'],
         ]);
 
         new DestroyAccount(
@@ -33,6 +33,6 @@ final class AccountController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return to_route('login');
     }
 }

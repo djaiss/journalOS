@@ -51,7 +51,7 @@ final class CreateOrRetrieveJournalEntry
             throw new Exception('Invalid date');
         }
 
-        $this->date = Carbon::create($this->year, $this->month, $this->day);
+        $this->date = \Illuminate\Support\Facades\Date::create($this->year, $this->month, $this->day);
     }
 
     private function create(): void

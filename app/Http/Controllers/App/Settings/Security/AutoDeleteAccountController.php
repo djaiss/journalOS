@@ -15,7 +15,7 @@ final class AutoDeleteAccountController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'auto_delete_account' => 'required|in:yes,no',
+            'auto_delete_account' => ['required', 'in:yes,no'],
         ]);
 
         $user = User::find(Auth::user()->id);
@@ -23,7 +23,7 @@ final class AutoDeleteAccountController extends Controller
         $user->auto_delete_account = $validated['auto_delete_account'] === 'yes';
         $user->save();
 
-        return redirect()->route('settings.security.index')
+        return to_route('settings.security.index')
             ->with('status', trans('Changes saved'));
     }
 }

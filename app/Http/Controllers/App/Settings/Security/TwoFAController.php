@@ -30,7 +30,7 @@ final class TwoFAController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'token' => 'required|numeric|digits:6',
+            'token' => ['required', 'numeric', 'digits:6'],
         ]);
 
         try {
@@ -44,7 +44,7 @@ final class TwoFAController extends Controller
                 ->withInput();
         }
 
-        return redirect()->route('settings.security.index')
+        return to_route('settings.security.index')
             ->with('status', __('Two-factor authentication has been enabled successfully.'));
     }
 }

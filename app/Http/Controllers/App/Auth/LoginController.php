@@ -58,7 +58,7 @@ final class LoginController extends Controller
             $userId = Auth::user()->id; // Retrieve the user's ID before logging out
             Auth::logout();
             session(['2fa:user:id' => $userId]); // Use the stored ID to set the session value
-            return redirect()->route('2fa.challenge');
+            return to_route('2fa.challenge');
         }
 
         RateLimiter::clear($this->throttleKey($request));

@@ -61,7 +61,7 @@ final class JournalEntry extends Model
      */
     public function getDate(): string
     {
-        return Carbon::create($this->year, $this->month, $this->day)
+        return \Illuminate\Support\Facades\Date::create($this->year, $this->month, $this->day)
             ->format('l F jS, Y');
     }
 }
