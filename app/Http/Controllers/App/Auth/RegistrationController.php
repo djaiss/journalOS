@@ -6,6 +6,7 @@ namespace App\Http\Controllers\App\Auth;
 
 use App\Actions\CreateAccount;
 use App\Http\Controllers\Controller;
+use App\Jobs\CheckLastLogin;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -44,6 +45,8 @@ final class RegistrationController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        CheckLastLogin::dispatch(user: Auth::user(), ip: $request->ip())->onQueue('low');
 
         return redirect(route('journal.index', absolute: false));
     }

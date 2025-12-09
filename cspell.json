@@ -1,36 +1,9 @@
 {
   "version": "0.2",
   "language": "en",
-  "dictionaries": [
-    "names",
-    "php",
-    "css",
-    "html"
-  ],
+  "dictionaries": ["names", "php", "css", "html"],
   "dictionaryDefinitions": [],
-  "ignorePaths": [
-    "vendor/**",
-    "node_modules/**",
-    "storage/**",
-    "public/**",
-    "bootstrap/cache/**",
-    "coverage/**",
-    ".git/**",
-    "build/**",
-    "database/blacklist_domains/data.txt",
-    "database/blacklist_domains/domains.txt",
-    "lang/fr.json",
-    "lang/fr/auth.php",
-    "docs/bruno/**",
-    "database/seeders/**",
-    "composer.json",
-    "composer.lock",
-    "bun.lock",
-    "package.json",
-    ".github/workflows/tests.yml",
-    "resources/views/marketing/docs/api/partials/",
-    "tests/**"
-  ],
+  "ignorePaths": ["vendor/**", "node_modules/**", "storage/**", "public/**", "bootstrap/cache/**", "coverage/**", ".git/**", "build/**", "database/blacklist_domains/data.txt", "database/blacklist_domains/domains.txt", "lang/fr.json", "lang/fr/auth.php", "docs/bruno/**", "database/seeders/**", "composer.json", "composer.lock", "bun.lock", "package.json", ".github/workflows/tests.yml", "resources/views/marketing/docs/api/partials/", "tests/**"],
   "ignoreWords": [
     "artisan",
     "Authenticatable",
@@ -39,6 +12,8 @@
     "Dunder",
     "forelse",
     "Levinson",
+    "magiclink",
+    "ARRAYACCESS",
     "endforelse",
     "vite",
     "recoverycodes",
@@ -47,6 +22,8 @@
     "Posthog",
     "pageviews",
     "Mailables",
+    "larastan",
+    "nesbot",
     "Régis",
     "Freyd",
     "livewire",
@@ -109,14 +86,7 @@
     "codespell"
   ],
   "words": [],
-  "ignoreRegExpList": [
-    "/\\bhttps?:\\/\\/\\S+\\b/",
-    "/^\\s*\\/\\//",
-    "/\\/\\*([\\s\\S]*?)\\*\\//",
-    "/\b[A-F0-9]{8,}\b/",
-    "/\\b\\$[a-zA-Z_][a-zA-Z0-9_]*\\b/",
-    "/<\\?php[\\s\\S]*?\\?>/"
-  ],
+  "ignoreRegExpList": ["/\\bhttps?:\\/\\/\\S+\\b/", "/^\\s*\\/\\//", "/\\/\\*([\\s\\S]*?)\\*\\//", "/\b[A-F0-9]{8,}\b/", "/\\b\\$[a-zA-Z_][a-zA-Z0-9_]*\\b/", "/<\\?php[\\s\\S]*?\\?>/"],
   "flagWords": [],
   "caseSensitive": false
 }

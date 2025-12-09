@@ -34,7 +34,7 @@ final class CreateMagicLink
 
     private function validate(): void
     {
-        $this->user = User::where('email', $this->email)->firstOrFail();
+        $this->user = User::query()->where('email', $this->email)->firstOrFail();
     }
 
     private function create(): void

@@ -8,6 +8,7 @@ use App\Actions\VerifyTwoFactorCode;
 use App\Enums\EmailType;
 use App\Enums\TwoFactorType;
 use App\Http\Controllers\Controller;
+use App\Jobs\CheckLastLogin;
 use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
@@ -38,7 +39,7 @@ final class LoginController extends Controller
         if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey($request));
 
-            $user = User::where('email', $request->input('email'))->first();
+            $user = User::query()->where('email', $request->input('email'))->first();
 
             if ($user) {
                 SendEmail::dispatch(
@@ -57,10 +58,11 @@ final class LoginController extends Controller
             $userId = Auth::user()->id; // Retrieve the user's ID before logging out
             Auth::logout();
             session(['2fa:user:id' => $userId]); // Use the stored ID to set the session value
-            return redirect()->route('2fa.challenge');
+            return to_route('2fa.challenge');
         }
 
         RateLimiter::clear($this->throttleKey($request));
+        CheckLastLogin::dispatch(user: Auth::user(), ip: $request->ip())->onQueue('low');
 
         $request->session()->regenerate();
 
@@ -129,7 +131,7 @@ final class LoginController extends Controller
         ]);
 
         $userId = session('2fa:user:id');
-        $user = User::find($userId);
+        $user = User::query()->find($userId);
 
         if (!new VerifyTwoFactorCode(user: $user, code: $request->input('code'))->execute()) {
             return back()->withErrors(['code' => 'Invalid code']);
@@ -138,6 +140,8 @@ final class LoginController extends Controller
         Auth::login($user);
         session()->forget('2fa:user:id');
         $request->session()->regenerate();
+
+        CheckLastLogin::dispatch(user: Auth::user(), ip: $request->ip())->onQueue('low');
 
         return redirect()->intended(route('journal.index', absolute: false));
     }

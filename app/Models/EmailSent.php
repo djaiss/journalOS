@@ -59,6 +59,7 @@ final class EmailSent extends Model
 
     /**
      * Get the user associated with the email.
+     * @return BelongsTo<\App\Models\User, $this>
      */
     public function user(): BelongsTo
     {

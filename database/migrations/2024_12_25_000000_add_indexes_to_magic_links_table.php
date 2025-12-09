@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class AddIndexesToMagicLinksTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -20,7 +19,6 @@ final class AddIndexesToMagicLinksTable extends Migration
             $table->index('max_visits');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -33,4 +31,4 @@ final class AddIndexesToMagicLinksTable extends Migration
             $table->dropIndex('magic_links_max_visits_index');
         });
     }
-}
+};

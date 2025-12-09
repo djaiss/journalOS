@@ -14,8 +14,7 @@ final class LogController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
-        $logs = Log::where('user_id', Auth::user()->id)
-            ->orderBy('created_at', 'desc')
+        $logs = Log::query()->where('user_id', Auth::user()->id)->latest()
             ->paginate(10);
 
         return LogResource::collection($logs);
@@ -23,7 +22,7 @@ final class LogController extends Controller
 
     public function show(int $id): LogResource
     {
-        $log = Log::find($id);
+        $log = Log::query()->find($id);
 
         if (!$log || $log->user_id === null) {
             abort(404, 'Log not found.');

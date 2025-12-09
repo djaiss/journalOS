@@ -125,11 +125,8 @@ final class JournalControllerTest extends TestCase
         $response->assertStatus(201);
         $response->assertJsonStructure($this->singleJsonStructure);
 
-        $this->assertDatabaseHas('journals', [
-            'name' => 'Dunder Mifflin',
-        ]);
-
-        $journal = Journal::where('name', 'Dunder Mifflin')->first();
+        $journal = Journal::latest()->first();
+        $this->assertEquals('Dunder Mifflin', $journal->name);
 
         $response->assertJson([
             'data' => [
