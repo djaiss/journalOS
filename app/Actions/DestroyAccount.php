@@ -37,7 +37,7 @@ final readonly class DestroyAccount
 
     private function logAccountDeletion(): void
     {
-        AccountDeletionReason::create([
+        AccountDeletionReason::query()->create([
             'reason' => $this->reason,
         ]);
     }

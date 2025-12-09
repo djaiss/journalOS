@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Date;
 
 /**
  * Class JournalEntry
@@ -61,7 +62,7 @@ final class JournalEntry extends Model
      */
     public function getDate(): string
     {
-        return Carbon::create($this->year, $this->month, $this->day)
+        return Date::create($this->year, $this->month, $this->day)
             ->format('l F jS, Y');
     }
 }

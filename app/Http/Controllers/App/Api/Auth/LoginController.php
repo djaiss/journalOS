@@ -17,8 +17,8 @@ final class LoginController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'email' => 'required|email|max:255',
-            'password' => 'required|max:255',
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'max:255'],
         ]);
 
         if (! Auth::attempt($validated)) {

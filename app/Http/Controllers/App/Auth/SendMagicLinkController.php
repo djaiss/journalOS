@@ -33,7 +33,7 @@ final class SendMagicLinkController extends Controller
 
             SendEmail::dispatch(
                 emailType: EmailType::MAGIC_LINK_CREATED,
-                user: User::where('email', $request->input('email'))->firstOrFail(),
+                user: User::query()->where('email', $request->input('email'))->firstOrFail(),
                 parameters: ['link' => $link],
             )->onQueue('high');
         } catch (ModelNotFoundException) {

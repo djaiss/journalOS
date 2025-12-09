@@ -106,6 +106,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the emailsSent associated with the user.
+     * @return HasMany<\App\Models\EmailSent, $this>
      */
     public function emailsSent(): HasMany
     {

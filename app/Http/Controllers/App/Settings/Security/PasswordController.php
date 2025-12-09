@@ -16,7 +16,7 @@ final class PasswordController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'current_password' => 'required|string',
+            'current_password' => ['required', 'string'],
             'new_password' => [
                 'required',
                 'confirmed',
@@ -30,7 +30,7 @@ final class PasswordController extends Controller
             newPassword: $validated['new_password'],
         )->execute();
 
-        return redirect()->route('settings.security.index')
+        return to_route('settings.security.index')
             ->with('status', __('Changes saved'));
     }
 }

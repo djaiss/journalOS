@@ -17,7 +17,7 @@ final class PruneAccountController extends Controller
             user: Auth::user(),
         )->execute();
 
-        return redirect()->route('settings.account.index')
+        return to_route('settings.account.index')
             ->with('status', trans('The account has been pruned'));
     }
 }

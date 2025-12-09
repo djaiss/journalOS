@@ -26,7 +26,7 @@ final class LogUserAction implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::create([
+        Log::query()->create([
             'user_id' => $this->user->id,
             'journal_id' => $this->journal?->id,
             'journal_name' => $this->journal?->name,
