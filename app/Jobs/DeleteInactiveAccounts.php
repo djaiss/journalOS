@@ -18,7 +18,7 @@ final class DeleteInactiveAccounts implements ShouldQueue
      */
     public function handle(): void
     {
-        $users = User::where('auto_delete_account', true)->get();
+        $users = User::query()->where('auto_delete_account', true)->get();
 
         foreach ($users as $user) {
             new DestroyAccountBecauseInactivity($user)->execute();

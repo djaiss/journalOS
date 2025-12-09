@@ -43,7 +43,7 @@ final class CreateJournal
 
     private function create(): void
     {
-        $this->journal = Journal::create([
+        $this->journal = Journal::query()->create([
             'user_id' => $this->user->id,
             'name' => $this->name,
         ]);

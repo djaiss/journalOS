@@ -25,7 +25,7 @@ final class CheckJournal
         $id = (int) Str::before($slug, '-');
 
         try {
-            $journal = Journal::where('id', $id)
+            $journal = Journal::query()->where('id', $id)
                 ->where('user_id', Auth::user()->id)
                 ->firstOrFail();
             $request->attributes->add(['journal' => $journal]);

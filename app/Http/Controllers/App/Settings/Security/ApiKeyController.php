@@ -22,7 +22,7 @@ final class ApiKeyController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'label' => 'required|string|min:3|max:255',
+            'label' => ['required', 'string', 'min:3', 'max:255'],
         ]);
 
         $apiKey = new CreateApiKey(
@@ -30,7 +30,7 @@ final class ApiKeyController extends Controller
             label: $validated['label'],
         )->execute();
 
-        return redirect()->route('settings.security.index')
+        return to_route('settings.security.index')
             ->with('apiKey', $apiKey)
             ->with('status', trans('API key created'));
     }
@@ -44,7 +44,7 @@ final class ApiKeyController extends Controller
             tokenId: $apiKey->id,
         )->execute();
 
-        return redirect()->route('settings.security.index')
+        return to_route('settings.security.index')
             ->with('status', trans('API key deleted'));
     }
 }

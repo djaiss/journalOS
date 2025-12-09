@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->text('first_name');
             $table->text('last_name');
-            $table->string('nickname')->nullable();
+            $table->text('nickname')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('two_factor_secret')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration {
             $table->string('locale')->default('en');
             $table->datetime('last_activity_at')->nullable();
             $table->boolean('auto_delete_account')->default(false);
+            $table->text('last_used_ip')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

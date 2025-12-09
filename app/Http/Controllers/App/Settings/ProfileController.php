@@ -54,7 +54,7 @@ final class ProfileController extends Controller
             locale: $validated['locale'],
         )->execute();
 
-        return redirect()->route('settings.profile.index')
+        return to_route('settings.profile.index')
             ->with('status', __('Changes saved'));
     }
 

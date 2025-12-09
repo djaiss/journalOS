@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class AddAccessCodeToMagicLinksTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -19,7 +18,6 @@ final class AddAccessCodeToMagicLinksTable extends Migration
             $table->string('access_code')->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -33,4 +31,4 @@ final class AddAccessCodeToMagicLinksTable extends Migration
             });
         }
     }
-}
+};

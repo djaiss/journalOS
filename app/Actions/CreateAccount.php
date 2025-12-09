@@ -34,7 +34,7 @@ final class CreateAccount
 
     private function create(): void
     {
-        $this->user = User::create([
+        $this->user = User::query()->create([
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
