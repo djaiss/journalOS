@@ -7,6 +7,7 @@ namespace App\Helpers;
 use App\Models\Journal;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 
 /**
  * This class is responsible for providing helper methods related to the journal.
@@ -38,7 +39,7 @@ final class JournalHelper
         return collect(range(1, 12))->mapWithKeys(fn(int $month): array => [
             $month => (object) [
                 'month' => $month,
-                'month_name' => ucfirst(\Illuminate\Support\Facades\Date::createFromDate($year, $month, 1)->translatedFormat('F')),
+                'month_name' => ucfirst(Date::createFromDate($year, $month, 1)->translatedFormat('F')),
                 'entries_count' => 0,
                 'is_selected' => $month === $selectedMonth,
                 'url' => route('journal.entry.show', [
@@ -76,7 +77,7 @@ final class JournalHelper
             ->mapWithKeys(fn(int $currentDay): array => [
                 $currentDay => (object) [
                     'day' => $currentDay,
-                    'is_today' => \Illuminate\Support\Facades\Date::createFromDate($year, $month, $currentDay)->isToday(),
+                    'is_today' => Date::createFromDate($year, $month, $currentDay)->isToday(),
                     'is_selected' => $currentDay === $day,
                     'has_blocks' => 0,
                     'url' => route('journal.entry.show', [
