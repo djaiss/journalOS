@@ -13,10 +13,9 @@ final class LogController extends Controller
 {
     public function index(): View
     {
-        $logs = Log::where('user_id', Auth::user()->id)
+        $logs = Log::query()->where('user_id', Auth::user()->id)
             ->with('journal')
-            ->with('user')
-            ->orderBy('created_at', 'desc')
+            ->with('user')->latest()
             ->cursorPaginate(10);
 
         return view('app.settings.logs.index', [

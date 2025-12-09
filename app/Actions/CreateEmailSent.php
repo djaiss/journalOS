@@ -44,7 +44,7 @@ final class CreateEmailSent
 
     private function create(): void
     {
-        $this->emailSent = EmailSent::create([
+        $this->emailSent = EmailSent::query()->create([
             'user_id' => $this->user->id,
             'uuid' => $this->uuid,
             'email_type' => $this->emailType,

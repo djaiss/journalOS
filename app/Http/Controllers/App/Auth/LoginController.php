@@ -39,7 +39,7 @@ final class LoginController extends Controller
         if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey($request));
 
-            $user = User::where('email', $request->input('email'))->first();
+            $user = User::query()->where('email', $request->input('email'))->first();
 
             if ($user) {
                 SendEmail::dispatch(
@@ -131,7 +131,7 @@ final class LoginController extends Controller
         ]);
 
         $userId = session('2fa:user:id');
-        $user = User::find($userId);
+        $user = User::query()->find($userId);
 
         if (!new VerifyTwoFactorCode(user: $user, code: $request->input('code'))->execute()) {
             return back()->withErrors(['code' => 'Invalid code']);

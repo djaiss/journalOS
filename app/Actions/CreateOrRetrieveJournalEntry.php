@@ -12,6 +12,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Date;
 
 /**
  * Create or retrieve an entry for a journal.
@@ -51,12 +52,12 @@ final class CreateOrRetrieveJournalEntry
             throw new Exception('Invalid date');
         }
 
-        $this->date = \Illuminate\Support\Facades\Date::create($this->year, $this->month, $this->day);
+        $this->date = Date::create($this->year, $this->month, $this->day);
     }
 
     private function create(): void
     {
-        $existingEntry = JournalEntry::where('journal_id', $this->journal->id)
+        $existingEntry = JournalEntry::query()->where('journal_id', $this->journal->id)
             ->where('day', $this->day)
             ->where('month', $this->month)
             ->where('year', $this->year)
@@ -65,7 +66,7 @@ final class CreateOrRetrieveJournalEntry
         if ($existingEntry) {
             $this->entry = $existingEntry;
         } else {
-            $this->entry = JournalEntry::create([
+            $this->entry = JournalEntry::query()->create([
                 'journal_id' => $this->journal->id,
                 'day' => $this->day,
                 'month' => $this->month,

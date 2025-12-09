@@ -18,7 +18,7 @@ final class AutoDeleteAccountController extends Controller
             'auto_delete_account' => ['required', 'in:yes,no'],
         ]);
 
-        $user = User::find(Auth::user()->id);
+        $user = User::query()->find(Auth::user()->id);
 
         $user->auto_delete_account = $validated['auto_delete_account'] === 'yes';
         $user->save();

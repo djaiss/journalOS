@@ -17,17 +17,17 @@ final readonly class ProfileShowViewModel
 
     public function hasMoreLogs(): bool
     {
-        return Log::where('user_id', $this->user->id)->count() > 5;
+        return Log::query()->where('user_id', $this->user->id)->count() > 5;
     }
 
     public function hasMoreEmailsSent(): bool
     {
-        return EmailSent::where('user_id', $this->user->id)->count() > 5;
+        return EmailSent::query()->where('user_id', $this->user->id)->count() > 5;
     }
 
     public function logs(): Collection
     {
-        return Log::where('user_id', $this->user->id)
+        return Log::query()->where('user_id', $this->user->id)
             ->with('user')
             ->with('journal')
             ->take(5)
@@ -45,7 +45,7 @@ final readonly class ProfileShowViewModel
 
     public function emailsSent(): Collection
     {
-        return EmailSent::where('user_id', $this->user->id)
+        return EmailSent::query()->where('user_id', $this->user->id)
             ->take(5)
             ->orderBy('sent_at', 'desc')
             ->get()

@@ -27,7 +27,7 @@ final readonly class PruneAccount
 
     private function deleteJournals(): void
     {
-        Journal::where('user_id', $this->user->id)->delete();
+        Journal::query()->where('user_id', $this->user->id)->delete();
     }
 
     private function updateUserLastActivityDate(): void
