@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run cspell (checks changed files by default)
-        uses: streetsidesoftware/cspell-action@v1
+        uses: streetsidesoftware/cspell-action@v8
         with:
           config: 'cspell.json'
           incremental_files_only: true
