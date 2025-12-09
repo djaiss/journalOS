@@ -15,8 +15,8 @@ return new class extends Migration {
         Schema::create('journals', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
-            $table->string('slug')->unique()->nullable()->index();
+            $table->text('name');
+            $table->text('slug')->unique()->nullable()->index();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

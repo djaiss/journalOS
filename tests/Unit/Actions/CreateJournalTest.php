@@ -33,11 +33,8 @@ final class CreateJournalTest extends TestCase
             name: 'Dunder Mifflin',
         ))->execute();
 
-        $this->assertDatabaseHas('journals', [
-            'id' => $journal->id,
-            'name' => 'Dunder Mifflin',
-            'slug' => $journal->id . '-dunder-mifflin',
-        ]);
+        $this->assertEquals('Dunder Mifflin', $journal->name);
+        $this->assertEquals($journal->id . '-dunder-mifflin', $journal->slug);
 
         $this->assertInstanceOf(Journal::class, $journal);
 

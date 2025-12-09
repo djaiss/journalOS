@@ -46,6 +46,19 @@ final class Journal extends Model
     ];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'name' => 'encrypted',
+            'slug' => 'encrypted',
+        ];
+    }
+
+    /**
      * Get the user associated with the journal.
      *
      * @return BelongsTo<User, $this>

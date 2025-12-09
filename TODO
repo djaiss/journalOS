@@ -10,8 +10,7 @@
 - [x] delete account after a while
 - [x] prune account
 - [x] update user activity in actions
-- [ ] log user location
-- [ ] send email when location change
+- [x] send email when location change
 - [ ] readme as cool as https://github.com/penpot/penpot
 - [ ] clean asset https://laravel-news.com/asset-cleaner-package-for-laravel
 - [ ] encrypt database
