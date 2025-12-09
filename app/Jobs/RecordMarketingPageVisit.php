@@ -34,7 +34,7 @@ final class RecordMarketingPageVisit implements ShouldQueue
 
     private function getMarketingPageObject(): void
     {
-        $this->marketingPage = MarketingPage::firstOrCreate([
+        $this->marketingPage = MarketingPage::query()->firstOrCreate([
             'url' => $this->viewName,
         ]);
     }

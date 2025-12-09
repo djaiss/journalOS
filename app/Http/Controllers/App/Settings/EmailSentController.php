@@ -13,8 +13,8 @@ final class EmailSentController extends Controller
 {
     public function index(): View
     {
-        $emails = EmailSent::where('user_id', Auth::user()->id)
-            ->orderBy('sent_at', 'desc')
+        $emails = EmailSent::query()->where('user_id', Auth::user()->id)
+            ->latest('sent_at')
             ->cursorPaginate(10);
 
         return view('app.settings.emails.index', [

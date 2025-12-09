@@ -23,7 +23,7 @@ final class CheckJournalAPI
         $id = $request->route()->parameter('id');
 
         try {
-            $journal = Journal::where('id', $id)
+            $journal = Journal::query()->where('id', $id)
                 ->where('user_id', Auth::user()->id)
                 ->firstOrFail();
 

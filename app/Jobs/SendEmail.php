@@ -17,12 +17,12 @@ use Resend\Laravel\Facades\Resend;
 use Illuminate\Support\Facades\Mail;
 use App\Actions\CreateEmailSent;
 use App\Mail\AccountDestroyed;
+use App\Mail\UserIpAddressChanged;
 
 final class SendEmail implements ShouldQueue
 {
     use Queueable;
 
-    /** @var ApiKeyCreated|ApiKeyDestroyed|MagicLinkCreated|LoginFailed */
     private Mailable $mailable;
 
     private string $subject;
@@ -70,6 +70,10 @@ final class SendEmail implements ShouldQueue
             EmailType::ACCOUNT_DESTROYED => new AccountDestroyed(
                 reason: $this->parameters['reason'],
                 activeSince: $this->parameters['activeSince'],
+            ),
+            EmailType::USER_IP_CHANGED => new UserIpAddressChanged(
+                user: $this->user,
+                ip: $this->parameters['ip'],
             ),
         };
     }

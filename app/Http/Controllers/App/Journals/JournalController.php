@@ -47,7 +47,7 @@ final class JournalController extends Controller
             name: $validated['journal_name'],
         )->execute();
 
-        return redirect()->route('journal.show', $journal->slug)
+        return to_route('journal.show', $journal->slug)
             ->with('status', __('Journal created successfully'));
     }
 

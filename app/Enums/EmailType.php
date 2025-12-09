@@ -11,4 +11,5 @@ enum EmailType: string
     case API_CREATED = 'api_created';
     case API_DESTROYED = 'api_destroyed';
     case ACCOUNT_DESTROYED = 'account_destroyed';
+    case USER_IP_CHANGED = 'user_ip_changed';
 }

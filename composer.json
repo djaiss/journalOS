@@ -11,11 +11,12 @@
   "license": "MIT",
   "require": {
     "php": "^8.4",
-    "bacon/bacon-qr-code": "^3.0",
     "amirami/localizator": "^0.14.0@alpha",
+    "bacon/bacon-qr-code": "^3.0",
     "cesargb/laravel-magiclink": "^2.24",
     "codeat3/blade-phosphor-icons": "^2.3",
     "erag/laravel-disposable-email": "^3.5",
+    "jenssegers/agent": "^2.6",
     "laravel/framework": "^12.0",
     "laravel/sanctum": "^4.0",
     "laravel/tinker": "^2.10.1",
@@ -27,6 +28,7 @@
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.16",
     "brianium/paratest": "^7.8",
+    "driftingly/rector-laravel": "^2.1",
     "fakerphp/faker": "^1.23",
     "larastan/larastan": "^3.3",
     "laravel/boost": "^1.0",
