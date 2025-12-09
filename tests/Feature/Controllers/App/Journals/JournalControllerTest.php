@@ -56,7 +56,7 @@ final class JournalControllerTest extends TestCase
             'journal_name' => 'Dunder Mifflin',
         ]);
 
-        $journal = Journal::where('name', 'Dunder Mifflin')->first();
+        $journal = Journal::latest()->first();
 
         $response->assertRedirect('/journals/' . $journal->slug);
     }

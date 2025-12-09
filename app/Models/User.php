@@ -81,12 +81,16 @@ final class User extends Authenticatable implements MustVerifyEmail
     protected function casts(): array
     {
         return [
+            'first_name' => 'encrypted',
+            'last_name' => 'encrypted',
+            'nickname' => 'encrypted',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
             'two_factor_recovery_codes' => 'array',
             'last_activity_at' => 'datetime',
             'auto_delete_account' => 'boolean',
+            'last_used_ip' => 'encrypted',
         ];
     }
 
