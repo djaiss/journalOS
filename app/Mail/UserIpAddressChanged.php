@@ -20,15 +20,12 @@ final class UserIpAddressChanged extends Mailable implements ShouldQueue
     public function __construct(
         public User $user,
         public string $ip,
-        public string $browser,
-        public string $os,
-        public string $device,
     ) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New sign-in detected on your '. config('app.name') .' account',
+            subject: 'New sign-in detected on your ' . config('app.name') . ' account',
         );
     }
 
@@ -40,9 +37,6 @@ final class UserIpAddressChanged extends Mailable implements ShouldQueue
             with: [
                 'email' => $this->user->email,
                 'ip' => $this->ip,
-                'browser' => $this->browser,
-                'os' => $this->os,
-                'device' => $this->device,
             ],
         );
     }

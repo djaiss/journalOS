@@ -23,7 +23,6 @@ final class SendEmail implements ShouldQueue
 {
     use Queueable;
 
-    /** @var ApiKeyCreated|ApiKeyDestroyed|MagicLinkCreated|LoginFailed|AccountDestroyed|UserIpChanged */
     private Mailable $mailable;
 
     private string $subject;
@@ -75,9 +74,6 @@ final class SendEmail implements ShouldQueue
             EmailType::USER_IP_CHANGED => new UserIpAddressChanged(
                 user: $this->user,
                 ip: $this->parameters['ip'],
-                browser: $this->parameters['browser'],
-                os: $this->parameters['os'],
-                device: $this->parameters['device'],
             ),
         };
     }

@@ -30,10 +30,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $password
  * @property string $locale
  * @property bool $auto_delete_account
- * @property string|null $last_used_browser
  * @property string|null $last_used_ip
- * @property string|null $last_used_device
- * @property string|null $last_used_os
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -63,10 +60,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'two_factor_confirmed_at',
         'last_activity_at',
         'auto_delete_account',
-        'last_used_browser',
         'last_used_ip',
-        'last_used_os',
-        'last_used_device',
     ];
 
     /**

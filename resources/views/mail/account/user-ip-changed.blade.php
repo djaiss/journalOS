@@ -6,12 +6,6 @@ Your {{ config('app.name') }} account {{ $email }} was recently signed-in from a
 <x-mail::panel>
 Time: {{ now()->toDayDateTimeString() }}
 
-Browser: {{ $browser }}
-
-OS: {{ $os }}
-
-Device: {{ $device }}
-
 IP Address: {{ $ip }}
 </x-mail::panel>
 

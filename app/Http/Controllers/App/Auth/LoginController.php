@@ -8,6 +8,7 @@ use App\Actions\VerifyTwoFactorCode;
 use App\Enums\EmailType;
 use App\Enums\TwoFactorType;
 use App\Http\Controllers\Controller;
+use App\Jobs\CheckLastLogin;
 use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
@@ -61,6 +62,7 @@ final class LoginController extends Controller
         }
 
         RateLimiter::clear($this->throttleKey($request));
+        CheckLastLogin::dispatch(user: Auth::user(), ip: $request->ip())->onQueue('low');
 
         $request->session()->regenerate();
 
@@ -138,6 +140,8 @@ final class LoginController extends Controller
         Auth::login($user);
         session()->forget('2fa:user:id');
         $request->session()->regenerate();
+
+        CheckLastLogin::dispatch(user: Auth::user(), ip: $request->ip())->onQueue('low');
 
         return redirect()->intended(route('journal.index', absolute: false));
     }
