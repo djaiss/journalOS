@@ -12,5 +12,4 @@
 - [x] update user activity in actions
 - [x] send email when location change
 - [ ] readme as cool as https://github.com/penpot/penpot
-- [ ] clean asset https://laravel-news.com/asset-cleaner-package-for-laravel
 - [x] encrypt database

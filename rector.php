@@ -20,7 +20,7 @@ return RectorConfig::configure()
     ->withSkip([
         AddOverrideAttributeToOverriddenMethodsRector::class,
         RemoveUselessReturnTagRector::class,
-        DispatchToHelperFunctionsRector::class
+        DispatchToHelperFunctionsRector::class,
     ])
     ->withSetProviders(LaravelSetProvider::class)
     ->withSets([
@@ -36,7 +36,8 @@ return RectorConfig::configure()
         LaravelSetList::LARAVEL_TESTING,
         LaravelSetList::LARAVEL_TYPE_DECLARATIONS,
     ])
-    ->withComposerBased(laravel: true,
+    ->withComposerBased(
+        laravel: true,
         /** other options */
     )
     ->withPhpSets();

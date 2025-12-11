@@ -7,6 +7,7 @@ namespace Tests\Unit\Models;
 use App\Models\EmailSent;
 use App\Models\Journal;
 use App\Models\User;
+use App\Models\Log;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
@@ -35,6 +36,17 @@ final class UserTest extends TestCase
         ]);
 
         $this->assertTrue($user->emailsSent()->exists());
+    }
+
+    #[Test]
+    public function it_has_many_logs(): void
+    {
+        $dwight = User::factory()->create();
+        Log::factory()->create([
+            'user_id' => $dwight->id,
+        ]);
+
+        $this->assertTrue($dwight->logs()->exists());
     }
 
     #[Test]
