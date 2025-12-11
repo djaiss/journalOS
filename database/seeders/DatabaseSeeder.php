@@ -36,6 +36,7 @@ final class DatabaseSeeder extends Seeder
     private function validateEmail(): void
     {
         $this->michael->email_verified_at = now();
+        $this->michael->is_instance_admin = true;
         $this->michael->save();
     }
 

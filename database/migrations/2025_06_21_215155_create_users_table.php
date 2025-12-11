@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table): void {
             $table->id();
+            $table->boolean('is_instance_admin')->default(false);
             $table->text('first_name');
             $table->text('last_name');
             $table->text('nickname')->nullable();
@@ -26,6 +27,7 @@ return new class extends Migration {
             $table->string('locale')->default('en');
             $table->datetime('last_activity_at')->nullable();
             $table->boolean('auto_delete_account')->default(false);
+            $table->boolean('has_lifetime_access')->default(false);
             $table->text('last_used_ip')->nullable();
             $table->rememberToken();
             $table->timestamps();

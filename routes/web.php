@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\App\Journals;
 use App\Http\Controllers\App\Settings;
+use App\Http\Controllers\Instance;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/marketing.php';
@@ -62,6 +63,11 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
     Route::get('settings/account', [Settings\AccountController::class, 'index'])->name('settings.account.index');
     Route::put('settings/prune', [Settings\PruneAccountController::class, 'update'])->name('settings.account.prune');
     Route::delete('settings/account', [Settings\AccountController::class, 'destroy'])->name('settings.account.destroy');
+
+    Route::middleware(['instance.admin'])->group(function (): void {
+        Route::get('instance', [Instance\InstanceController::class, 'index'])->name('instance.index');
+        Route::get('instance/users/{user}', [Instance\InstanceController::class, 'show'])->name('instance.show');
+    });
 });
 
 require __DIR__ . '/auth.php';

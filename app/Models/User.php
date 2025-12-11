@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Class User
  *
  * @property int $id
+ * @property bool $is_instance_admin
  * @property string $first_name
  * @property string $last_name
  * @property string $nickname
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $password
  * @property string $locale
  * @property bool $auto_delete_account
+ * @property bool $has_lifetime_access
  * @property string|null $last_used_ip
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -47,6 +49,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
+        'is_instance_admin',
         'first_name',
         'last_name',
         'nickname',
@@ -60,6 +63,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'two_factor_confirmed_at',
         'last_activity_at',
         'auto_delete_account',
+        'has_lifetime_access',
         'last_used_ip',
     ];
 
@@ -81,6 +85,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     protected function casts(): array
     {
         return [
+            'is_instance_admin' => 'boolean',
             'first_name' => 'encrypted',
             'last_name' => 'encrypted',
             'nickname' => 'encrypted',
@@ -91,6 +96,7 @@ final class User extends Authenticatable implements MustVerifyEmail
             'last_activity_at' => 'datetime',
             'auto_delete_account' => 'boolean',
             'last_used_ip' => 'encrypted',
+            'has_lifetime_access' => 'boolean',
         ];
     }
 
@@ -106,11 +112,21 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the emailsSent associated with the user.
-     * @return HasMany<\App\Models\EmailSent, $this>
+     * @return HasMany<EmailSent, $this>
      */
     public function emailsSent(): HasMany
     {
         return $this->hasMany(EmailSent::class);
+    }
+
+    /**
+    * Get the logs associated with the user.
+    *
+    * @return HasMany<Log, $this>
+    */
+    public function logs(): HasMany
+    {
+        return $this->hasMany(Log::class);
     }
 
     /**

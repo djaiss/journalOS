@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\CheckInstanceAdministrator;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -23,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'journal' => CheckJournal::class,
             'journal.api' => CheckJournalAPI::class,
             'journal.entry' => CheckJournalEntry::class,
+            'instance.admin' => CheckInstanceAdministrator::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
