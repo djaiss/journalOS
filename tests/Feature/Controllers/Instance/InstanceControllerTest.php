@@ -24,6 +24,7 @@ final class InstanceControllerTest extends TestCase
             ->get('/instance');
 
         $response->assertStatus(200);
+        $response->assertSee('Instance administration');
     }
 
     #[Test]
@@ -37,5 +38,6 @@ final class InstanceControllerTest extends TestCase
             ->get('/instance');
 
         $response->assertStatus(403);
+        $response->assertDontSee('Instance administration');
     }
 }

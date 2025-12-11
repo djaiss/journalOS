@@ -39,6 +39,7 @@ final class UserFactory extends Factory
             'auto_delete_account' => false,
             'last_used_ip' => null,
             'has_lifetime_access' => false,
+            'is_instance_admin' => false,
         ];
     }
 
