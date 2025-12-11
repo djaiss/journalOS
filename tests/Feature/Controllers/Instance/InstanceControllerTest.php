@@ -38,4 +38,17 @@ final class InstanceControllerTest extends TestCase
 
         $response->assertStatus(403);
     }
+
+    #[Test]
+    public function you_can_see_an_option_to_access_instance_in_the_menu_if_you_have_the_right_to(): void
+    {
+        $user = User::factory()->create([
+            'is_instance_admin' => true,
+        ]);
+
+        $response = $this->actingAs($user)
+            ->get('/instance');
+
+        $response->assertSee('Instance administration');
+    }
 }
