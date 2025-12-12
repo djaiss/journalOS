@@ -90,7 +90,7 @@
                     <x-phosphor-clock class="h-4 w-4 text-yellow-600" />
                     <span class="text-sm font-medium text-yellow-600">{{ __('Trial account') }}</span>
                   </div>
-                  <p class="text-sm text-gray-600">{{ $user->trial_ends_at->diffInDays() }} {{ __('days remaining') }}</p>
+                  <p class="text-sm text-gray-600">{{ $user->trial_ends_at?->diffInDays() }} {{ __('days remaining') }}</p>
                 </div>
               @endif
             </div>
@@ -99,51 +99,47 @@
       </div>
 
       <!-- Action pane -->
-      {{--
-        @if (! $firstUser->is_instance_admin && $firstUser->id !== Auth::id())
-        <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <!-- Delete Account -->
-        <form onsubmit="return confirm('Are you absolutely sure? This action cannot be undone.')" action="{{ route('instance.destroy', $user) }}" method="post" class="w-full">
-        @csrf
-        @method('delete')
-        <button type="submit" class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-red-200 bg-white px-4 py-3 text-sm font-medium text-red-600 shadow-xs transition hover:bg-red-50">
-        <x-lucide-trash-2 class="h-4 w-4" />
-        {{ __('Delete account') }}
-        </button>
-        </form>
-        
+      @if (! $user->is_instance_admin && $user->id !== Auth::id())
+      <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <!-- Delete account -->
+        <x-form onsubmit="return confirm('Are you absolutely sure? This action cannot be undone.')" action="{{ route('instance.destroy', $user) }}" method="delete" class="w-full">
+          <button type="submit" class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-red-200 bg-white px-4 py-3 text-sm font-medium text-red-600 shadow-xs transition hover:bg-red-50">
+            <x-phosphor-trash class="h-4 w-4" />
+            {{ __('Delete account') }}
+          </button>
+        </x-form>
+
         <!-- Give Free Account -->
-        @if (! $user->has_lifetime_access)
+        {{-- @if (! $user->has_lifetime_access)
         <form onsubmit="return confirm('Are you absolutely sure? This action cannot be undone.')" action="{{ route('instance.accounts.free', $user) }}" method="post" class="w-full">
         @csrf
         @method('put')
-        
+
         <button type="submit" class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-green-200 bg-white px-4 py-3 text-sm font-medium text-green-600 shadow-xs transition hover:bg-green-50">
         <x-lucide-gift class="h-4 w-4" />
         {{ __('Give free account') }}
         </button>
         </form>
-        @endif
-        
+        @endif --}}
+
         <!-- Deactivate Account -->
-        <button type="button" class="flex items-center justify-center gap-2 rounded-lg border border-yellow-200 bg-white px-4 py-3 text-sm font-medium text-yellow-600 shadow-xs transition hover:bg-yellow-50">
+        {{-- <button type="button" class="flex items-center justify-center gap-2 rounded-lg border border-yellow-200 bg-white px-4 py-3 text-sm font-medium text-yellow-600 shadow-xs transition hover:bg-yellow-50">
         <x-lucide-ban class="h-4 w-4" />
         {{ __('Deactivate Account') }}
-        </button>
-        </div>
-        @else
-        <div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
+        </button> --}}
+      </div>
+      @else
+      <div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
         <div class="flex items-center gap-x-3">
-        <x-lucide-shield-alert class="h-5 w-5 text-gray-400" />
-        <p class="text-sm text-gray-600">
-        {{ __('No actions can be taken on this account as it belongs to an instance administrator or yourself.') }}
-        </p>
+          <x-phosphor-shield-check class="h-5 w-5 text-gray-400" />
+          <p class="text-sm text-gray-600">
+            {{ __('No actions can be taken on this account as it belongs to an instance administrator or yourself.') }}
+          </p>
         </div>
-        </div>
-        @endif
-      --}}
+      </div>
+      @endif
 
-      <!-- Latest Actions -->
+      <!-- Latest actions -->
       <div class="overflow-hidden rounded-lg border border-gray-200 bg-white">
         <div class="border-b border-gray-200 px-4 py-3">
           <h3 class="text-lg font-semibold">{{ __('Latest actions') }}</h3>

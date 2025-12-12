@@ -67,6 +67,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
     Route::middleware(['instance.admin'])->group(function (): void {
         Route::get('instance', [Instance\InstanceController::class, 'index'])->name('instance.index');
         Route::get('instance/users/{user}', [Instance\InstanceController::class, 'show'])->name('instance.show');
+        Route::delete('instance/users/{user}', [Instance\InstanceDestroyAccountController::class, 'destroy'])->name('instance.destroy');
     });
 });
 

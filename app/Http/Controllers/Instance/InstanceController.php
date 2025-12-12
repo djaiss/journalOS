@@ -23,6 +23,7 @@ final class InstanceController extends Controller
 
         $users = User::query()
             ->withCount('journals')
+            ->latest()
             ->get()
             ->map(fn(User $user): array => [
                 'id' => $user->id,

@@ -40,6 +40,7 @@ final class UserFactory extends Factory
             'last_used_ip' => null,
             'has_lifetime_access' => false,
             'is_instance_admin' => false,
+            'trial_ends_at' => null,
         ];
     }
 

@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $auto_delete_account
  * @property bool $has_lifetime_access
  * @property string|null $last_used_ip
+ * @property Carbon|null $trial_ends_at
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -65,6 +66,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'auto_delete_account',
         'has_lifetime_access',
         'last_used_ip',
+        'trial_ends_at',
     ];
 
     /**
@@ -97,6 +99,7 @@ final class User extends Authenticatable implements MustVerifyEmail
             'auto_delete_account' => 'boolean',
             'last_used_ip' => 'encrypted',
             'has_lifetime_access' => 'boolean',
+            'trial_ends_at' => 'datetime',
         ];
     }
 

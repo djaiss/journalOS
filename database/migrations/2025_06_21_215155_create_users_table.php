@@ -29,6 +29,7 @@ return new class extends Migration {
             $table->boolean('auto_delete_account')->default(false);
             $table->boolean('has_lifetime_access')->default(false);
             $table->text('last_used_ip')->nullable();
+            $table->datetime('trial_ends_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
