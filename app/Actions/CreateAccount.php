@@ -39,6 +39,7 @@ final class CreateAccount
             'last_name' => $this->lastName,
             'email' => $this->email,
             'password' => Hash::make($this->password),
+            'trial_ends_at' => now()->addDays(30),
         ]);
     }
 

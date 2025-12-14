@@ -1,3 +1,36 @@
+@if (Auth::user()->isInTrial())
+  <div class="relative mx-auto flex w-full flex-wrap items-center justify-center gap-4 bg-linear-to-r from-amber-100 via-yellow-50 to-white px-4 py-2 text-center ring-1 ring-amber-200/70 transition duration-150 sm:flex-nowrap sm:justify-center sm:text-left dark:from-yellow-900/40 dark:via-amber-900/20 dark:to-gray-900 dark:ring-amber-700/40" x-data="{ showTooltip: false }" @mouseenter="showTooltip = true" @mouseleave="showTooltip = false">
+    <div class="flex items-center gap-3">
+      <span class="flex size-9 items-center justify-center rounded-lg bg-amber-500/80 text-amber-950 shadow-inner ring-1 ring-white/70 dark:bg-amber-400/80">
+        <x-phosphor-hourglass class="size-5" />
+      </span>
+
+      <div class="flex flex-col leading-tight">
+        <p class="text-sm font-semibold text-amber-900 dark:text-amber-100">
+          {{ __(':days days left in your trial', ['days' => round(now()->diffInDays(Auth::user()->trial_ends_at))]) }}
+        </p>
+        <p class="text-xs text-amber-800/80 dark:text-amber-100/80">
+          {{ __('Unlock everything forever with a one-time fee.') }}
+        </p>
+      </div>
+    </div>
+
+    <a href="" class="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-amber-950 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500/70 dark:bg-amber-400 dark:text-amber-950">
+      <x-phosphor-sparkle class="size-4" />
+      {{ __('Unlock') }}
+    </a>
+
+    <div x-cloak x-show="showTooltip" x-transition:enter="transition duration-200 ease-out" x-transition:enter-start="translate-y-1 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition duration-150 ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1 opacity-0" class="absolute top-full left-1/2 z-50 mt-3 flex w-88 -translate-x-1/2 items-center gap-4 rounded-xl bg-white p-4 shadow-lg ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
+      <x-image src="{{ asset('images/vandamme.webp') }}" alt="One-time fee" width="80" height="80" class="h-20 w-20 rounded-full object-cover shadow-sm" srcset="{{ asset('images/vandamme.webp') }} 1x, {{ asset('images/vandamme@2x.webp') }} 2x" />
+      <div class="flex flex-col gap-1 text-sm text-gray-700 dark:text-gray-200">
+        <p>{{ __("It's a one-time fee, and will unlock everything!") }}</p>
+        <p>{{ __('No recurring charges. Keep your momentum rolling.') }}</p>
+        <p class="font-semibold">{{ __('Van Damme would be proud of you.') }}</p>
+      </div>
+    </div>
+  </div>
+@endif
+
 <header {{ $attributes->class(['flex w-full max-w-[1920px] items-center px-2 sm:pr-4 sm:pl-9']) }}>
   <!-- normal desktop header -->
   <nav class="hidden flex-1 items-center gap-3 pt-2 pb-2 sm:flex">
@@ -40,7 +73,7 @@
           <x-phosphor-caret-down class="size-4 text-gray-600 transition-transform duration-150" x-bind:class="{ 'rotate-180' : menuOpen }" />
         </button>
 
-        <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-56 min-w-[8rem] rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md" x-cloak>
+        <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-56 min-w-32 rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md" x-cloak>
           @if (Auth::user()->is_instance_admin)
             <a @click="menuOpen = false" href="{{ route('instance.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
               <x-phosphor-user class="mr-2 size-4 text-gray-600" />

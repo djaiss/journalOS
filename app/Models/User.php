@@ -159,4 +159,28 @@ final class User extends Authenticatable implements MustVerifyEmail
 
         return $firstName . $separator . $lastName;
     }
+
+    /**
+     * Check if the user is in trial.
+     *
+     * @return bool
+     */
+    public function isInTrial(): bool
+    {
+        return config('memoir.enable_paid_version')
+            && ! $this->has_lifetime_access
+            && $this->trial_ends_at->isFuture();
+    }
+
+    /**
+     * Check if the user needs to pay to continue using the app.
+     *
+     * @return bool
+     */
+    public function needsToPay(): bool
+    {
+        return config('memoir.enable_paid_version')
+            && ! $this->has_lifetime_access
+            && $this->trial_ends_at->isPast();
+    }
 }
