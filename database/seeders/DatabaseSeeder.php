@@ -37,6 +37,7 @@ final class DatabaseSeeder extends Seeder
     {
         $this->michael->email_verified_at = now();
         $this->michael->is_instance_admin = true;
+        $this->michael->trial_ends_at = now()->addDays(14);
         $this->michael->save();
     }
 

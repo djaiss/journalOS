@@ -19,7 +19,7 @@ final class JournalControllerTest extends TestCase
     public function it_shows_the_journals_of_the_user(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->create([
+        Journal::factory()->create([
             'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
             'slug' => 'dunder-mifflin',

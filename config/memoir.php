@@ -29,6 +29,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Enable the paid version
+    |--------------------------------------------------------------------------
+    |
+    | This value enables the paid version of the application. If you
+    | self host the application, you probably want to disable this since
+    | you will not have a way to purchase a lifetime access.
+    |
+    */
+
+    'enable_paid_version' => env('ENABLE_PAID_VERSION', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Supported locales
     |--------------------------------------------------------------------------
     |

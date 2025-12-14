@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\App\Journals;
 use App\Http\Controllers\App\Settings;
+use App\Http\Controllers\App;
 use App\Http\Controllers\Instance;
 use Illuminate\Support\Facades\Route;
 
@@ -13,16 +14,21 @@ require __DIR__ . '/marketing.php';
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
 Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(function (): void {
-    Route::get('journals', [Journals\JournalController::class, 'index'])->name('journal.index');
-    Route::get('journals/create', [Journals\JournalController::class, 'create'])->name('journal.create');
-    Route::post('journals', [Journals\JournalController::class, 'store'])->name('journal.store');
+    // upgrade
+    Route::get('upgrade', [App\UpgradeAccountController::class, 'index'])->name('upgrade.index');
 
-    // journal
-    Route::middleware(['journal'])->group(function (): void {
-        Route::get('journals/{slug}', [Journals\JournalController::class, 'show'])->name('journal.show');
+    Route::middleware(['subscription'])->group(function (): void {
+        Route::get('journals', [Journals\JournalController::class, 'index'])->name('journal.index');
+        Route::get('journals/create', [Journals\JournalController::class, 'create'])->name('journal.create');
+        Route::post('journals', [Journals\JournalController::class, 'store'])->name('journal.store');
 
-        Route::middleware(['journal.entry'])->group(function (): void {
-            Route::get('journals/{slug}/entries/{year}/{month}/{day}', [Journals\JournalEntryController::class, 'show'])->name('journal.entry.show');
+        // journal
+        Route::middleware(['journal'])->group(function (): void {
+            Route::get('journals/{slug}', [Journals\JournalController::class, 'show'])->name('journal.show');
+
+            Route::middleware(['journal.entry'])->group(function (): void {
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}', [Journals\JournalEntryController::class, 'show'])->name('journal.entry.show');
+            });
         });
     });
 
@@ -68,6 +74,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
         Route::get('instance', [Instance\InstanceController::class, 'index'])->name('instance.index');
         Route::get('instance/users/{user}', [Instance\InstanceController::class, 'show'])->name('instance.show');
         Route::delete('instance/users/{user}', [Instance\InstanceDestroyAccountController::class, 'destroy'])->name('instance.destroy');
+        Route::put('instance/users/{user}/free', [Instance\InstanceFreeAccountController::class, 'update'])->name('instance.users.free');
     });
 });
 
