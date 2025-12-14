@@ -20,7 +20,7 @@ final class DestroyAccountTest extends TestCase
     public function it_destroys_a_user_account(): void
     {
         Mail::fake();
-        config(['journalos.account_deletion_notification_email' => 'regis@memoir.com']);
+        config(['journalos.account_deletion_notification_email' => 'regis@journalos.cloud']);
 
         $user = User::factory()->create();
 
@@ -39,7 +39,7 @@ final class DestroyAccountTest extends TestCase
 
         Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
             return $job->reason === 'the service is not working'
-                && $job->to[0]['address'] === 'regis@memoir.com';
+                && $job->to[0]['address'] === 'regis@journalos.cloud';
         });
     }
 }

@@ -17,7 +17,7 @@
         <div class="mb-8 flex items-center gap-x-2">
           <a href="" class="group flex items-center gap-x-2 transition-transform ease-in-out">
             <div class="flex h-7 w-7 items-center justify-center transition-all duration-400 group-hover:-translate-y-0.5 group-hover:-rotate-3">
-              <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="25" height="25" alt="Memoir logo" />
+              <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="25" height="25" alt="JournalOS logo" />
             </div>
           </a>
           <h1 class="text-2xl font-semibold text-gray-900">
