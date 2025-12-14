@@ -20,7 +20,7 @@ final class DestroyAccountTest extends TestCase
     public function it_destroys_a_user_account(): void
     {
         Mail::fake();
-        config(['memoir.account_deletion_notification_email' => 'regis@memoir.com']);
+        config(['journalos.account_deletion_notification_email' => 'regis@memoir.com']);
 
         $user = User::factory()->create();
 

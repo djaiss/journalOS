@@ -15,7 +15,6 @@ on:
 env:
   default-php-version: '8.4'
   coverage-with: sqlite
-  PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
 
 concurrency:
   group: Build ${{ github.ref }}
@@ -128,15 +127,15 @@ jobs:
         if: matrix.connection == 'mysql'
         run: |
           sudo systemctl start mysql.service
-          mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS memoir CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+          mysql --protocol=tcp -u root -proot -e "CREATE DATABASE IF NOT EXISTS journalos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
       - name: Create pgsql database
         if: matrix.connection == 'pgsql'
         run: |
           sudo systemctl start postgresql.service
-          sudo -u postgres psql --command="CREATE USER memoir PASSWORD 'secret'" --command="\du"
-          sudo -u postgres createdb --owner=memoir memoir
-          PGPASSWORD=secret psql --username=memoir --host=localhost --list memoir
+          sudo -u postgres psql --command="CREATE USER journalos PASSWORD 'secret'" --command="\du"
+          sudo -u postgres createdb --owner=journalos journalos
+          PGPASSWORD=secret psql --username=journalos --host=localhost --list journalos
 
       - name: Generate key
         run: php artisan key:generate
