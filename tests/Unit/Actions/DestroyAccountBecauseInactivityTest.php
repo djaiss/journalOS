@@ -20,7 +20,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
     public function it_destroys_an_inactive_account(): void
     {
         Mail::fake();
-        config(['memoir.account_deletion_notification_email' => 'admin@memoir.com']);
+        config(['journalos.account_deletion_notification_email' => 'admin@journalos.cloud']);
 
         $user = User::factory()->create([
             'last_activity_at' => now()->subMonths(7),
@@ -36,7 +36,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
         ]);
 
         Mail::assertQueued(AccountAutomaticallyDestroyed::class, function (AccountAutomaticallyDestroyed $job): bool {
-            return $job->to[0]['address'] === 'admin@memoir.com';
+            return $job->to[0]['address'] === 'admin@journalos.cloud';
         });
     }
 

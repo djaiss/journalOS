@@ -5,7 +5,7 @@
     <div class="flex items-center">
       <a href="{{ route('marketing.index') }}" class="group flex items-center gap-x-2 transition-transform ease-in-out">
         <div class="transition-all duration-400 group-hover:-translate-y-0.5 group-hover:-rotate-3">
-          <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="Memoir logo" />
+          <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="JournalOS logo" />
         </div>
         <span class="text-lg font-semibold text-gray-900 dark:text-white">{{ config('app.name') }}</span>
       </a>

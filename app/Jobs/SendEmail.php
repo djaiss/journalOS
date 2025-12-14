@@ -51,7 +51,7 @@ final class SendEmail implements ShouldQueue
         $this->setMailable();
         $this->setSubject();
 
-        if (config('memoir.use_resend')) {
+        if (config('journalos.use_resend')) {
             $this->sendWithResend();
         } else {
             $this->sendTheTraditionalWay();

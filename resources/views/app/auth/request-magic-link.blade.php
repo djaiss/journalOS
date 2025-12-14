@@ -3,7 +3,7 @@
     <!-- Left side - Login form -->
     <div class="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center px-5 py-10 sm:px-30">
       <div class="w-full">
-        @if (config('memoir.show_marketing_site'))
+        @if (config('journalos.show_marketing_site'))
           <p class="group mb-10 flex items-center gap-x-1 text-sm text-gray-600">
             <x-phosphor-arrow-left class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1" />
             <x-link href="" class="group-hover:underline">{{ __('Back to the marketing website') }}</x-link>
@@ -15,7 +15,7 @@
           <div class="mb-2 flex items-center gap-x-2">
             <a href="" class="group flex items-center gap-x-2 transition-transform ease-in-out">
               <div class="flex h-7 w-7 items-center justify-center transition-all duration-400 group-hover:-translate-y-0.5 group-hover:-rotate-3">
-                <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="25" height="25" alt="Memoir logo" />
+                <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="25" height="25" alt="JournalOS logo" />
               </div>
             </a>
             <h1 class="text-2xl font-semibold text-gray-900">
