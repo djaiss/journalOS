@@ -62,7 +62,7 @@
         {{ __('Search') }}
       </a>
 
-      <a href="" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
+      <a href="{{ route('marketing.docs.index') }}" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
         <x-phosphor-lifebuoy class="size-4 text-gray-600 transition-transform duration-150" />
         {{ __('Docs') }}
       </a>
