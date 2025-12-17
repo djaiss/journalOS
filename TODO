@@ -14,5 +14,6 @@
 - [ ] readme as cool as https://github.com/penpot/penpot
 - [x] encrypt database
 - [x] instance panel: delete account
-- [ ] instance panel: give free account
+- [x] instance panel: give free account
 - [x] add notion of trial
+- [ ] notion of denormalized data
