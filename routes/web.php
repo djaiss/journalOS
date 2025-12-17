@@ -13,13 +13,17 @@ require __DIR__ . '/marketing.php';
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
-Route::middleware(['throttle:2,10'])->group(function (): void {
+Route::middleware(['throttle:500,1'])->group(function (): void {
     Route::get('demo', [App\DemoAccountController::class, 'index'])->name('demo.index');
 });
 
 Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(function (): void {
     // upgrade
     Route::get('upgrade', [App\UpgradeAccountController::class, 'index'])->name('upgrade.index');
+
+    // claim
+    Route::get('claim', [App\ClaimAccountController::class, 'index'])->name('claim.index');
+    Route::post('claim', [App\ClaimAccountController::class, 'store'])->name('claim.store');
 
     Route::middleware(['subscription'])->group(function (): void {
         Route::get('journals', [Journals\JournalController::class, 'index'])->name('journal.index');

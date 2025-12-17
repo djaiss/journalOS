@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <a href="" class="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-amber-950 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500/70 dark:bg-amber-400 dark:text-amber-950">
+    <a href="{{ route('claim.index') }}" class="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-amber-950 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500/70 dark:bg-amber-400 dark:text-amber-950">
       <x-phosphor-sparkle class="size-4" />
       {{ __('Claim your account') }}
     </a>
