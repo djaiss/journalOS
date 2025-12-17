@@ -31,7 +31,7 @@ final class CreateGuestAccount
     private function create(): void
     {
         // generate a unique email for the guest user
-        $email = 'guest+' . uniqid() . config('app.url');
+        $email = 'guest+' . uniqid() . '@' . parse_url((string) config('app.url'), PHP_URL_HOST);
 
         $this->user = User::query()->create([
             'first_name' => 'James',

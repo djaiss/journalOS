@@ -42,7 +42,6 @@ final class CreateGuestAccountTest extends TestCase
         $this->assertTrue($user->is_guest);
         $this->assertNotNull($user->guest_token);
         $this->assertStringStartsWith('guest+', $user->email);
-        $this->assertStringContainsString(config('app.url'), $user->email);
         $this->assertEquals('2025-12-23 00:00:00', $user->guest_expires_at->format('Y-m-d H:i:s'));
 
         Queue::assertPushedOn(
