@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\App\Api\Settings\Security;
+namespace App\Http\Controllers\Api\Settings\Security;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ApiResource;

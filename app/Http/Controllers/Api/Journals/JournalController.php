@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\App\Api\Journals;
+namespace App\Http\Controllers\Api\Journals;
 
 use App\Actions\CreateJournal;
 use App\Http\Controllers\Controller;

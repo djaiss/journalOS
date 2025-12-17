@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\App\Api\Settings\Security;
+namespace Tests\Feature\Controllers\Api\Settings\Security;
 
 use App\Models\User;
 use Carbon\Carbon;
