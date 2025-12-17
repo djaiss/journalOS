@@ -34,6 +34,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $has_lifetime_access
  * @property string|null $last_used_ip
  * @property Carbon|null $trial_ends_at
+ * @property bool $is_guest
+ * @property string|null $guest_token
+ * @property Carbon|null $guest_expires_at
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -67,6 +70,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         'has_lifetime_access',
         'last_used_ip',
         'trial_ends_at',
+        'is_guest',
+        'guest_token',
+        'guest_expires_at',
     ];
 
     /**
@@ -100,6 +106,8 @@ final class User extends Authenticatable implements MustVerifyEmail
             'last_used_ip' => 'encrypted',
             'has_lifetime_access' => 'boolean',
             'trial_ends_at' => 'datetime',
+            'is_guest' => 'boolean',
+            'guest_expires_at' => 'datetime',
         ];
     }
 
@@ -169,7 +177,8 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return config('journalos.enable_paid_version')
             && ! $this->has_lifetime_access
-            && $this->trial_ends_at->isFuture();
+            && $this->trial_ends_at->isFuture()
+            && ! $this->is_guest;
     }
 
     /**

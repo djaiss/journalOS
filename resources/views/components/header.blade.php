@@ -31,6 +31,27 @@
   </div>
 @endif
 
+@if (Auth::user()->is_guest)
+  <div class="relative mx-auto flex w-full flex-wrap items-center justify-center gap-4 bg-linear-to-r from-amber-100 via-yellow-50 to-white px-4 py-2 text-center ring-1 ring-amber-200/70 transition duration-150 sm:flex-nowrap sm:justify-center sm:text-left dark:from-yellow-900/40 dark:via-amber-900/20 dark:to-gray-900 dark:ring-amber-700/40">
+    <div class="flex items-center gap-3">
+      <span class="flex size-9 items-center justify-center rounded-lg bg-amber-500/80 text-amber-950 shadow-inner ring-1 ring-white/70 dark:bg-amber-400/80">
+        <x-phosphor-hourglass class="size-5" />
+      </span>
+
+      <div class="flex flex-col leading-tight">
+        <p class="text-sm font-semibold text-amber-900 dark:text-amber-100">
+          {{ __('This temporary account will expire in :count days and is only accessible from this browser. Sign up now for free to save your settings.', ['count' => round(now()->diffInDays(Auth::user()->guest_expires_at))]) }}
+        </p>
+      </div>
+    </div>
+
+    <a href="" class="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-semibold text-amber-950 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:bg-amber-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500/70 dark:bg-amber-400 dark:text-amber-950">
+      <x-phosphor-sparkle class="size-4" />
+      {{ __('Claim your account') }}
+    </a>
+  </div>
+@endif
+
 <header {{ $attributes->class(['flex w-full max-w-[1920px] items-center px-2 sm:pr-4 sm:pl-9']) }}>
   <!-- normal desktop header -->
   <nav class="hidden flex-1 items-center gap-3 pt-2 pb-2 sm:flex">
