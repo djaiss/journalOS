@@ -30,6 +30,9 @@ return new class extends Migration {
             $table->boolean('has_lifetime_access')->default(false);
             $table->text('last_used_ip')->nullable();
             $table->datetime('trial_ends_at')->nullable();
+            $table->boolean('is_guest')->default(false);
+            $table->uuid('guest_token')->nullable();
+            $table->datetime('guest_expires_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

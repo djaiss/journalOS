@@ -16,16 +16,16 @@
 
     <x-form method="put" :action="route('settings.profile.update')" class="space-y-4">
       <!-- First name -->
-      <x-input id="first_name" value="{{ old('first_name', $user->first_name) }}" :label="__('First name')" required placeholder="John" :error="$errors->get('first_name')" autofocus />
+      <x-input id="first_name" value="{{ old('first_name', $user->first_name) }}" :label="__('First name')" required placeholder="John" :error="$errors->get('first_name')" autofocus :disabled="$user->is_guest" />
 
       <!-- Last name -->
-      <x-input id="last_name" value="{{ old('last_name', $user->last_name) }}" :label="__('Last name')" required placeholder="Doe" :error="$errors->get('last_name')" />
+      <x-input id="last_name" value="{{ old('last_name', $user->last_name) }}" :label="__('Last name')" required placeholder="Doe" :error="$errors->get('last_name')" :disabled="$user->is_guest" />
 
       <!-- nickname -->
-      <x-input id="nickname" value="{{ old('nickname', $user?->nickname) }}" :label="__('Nickname')" :error="$errors->get('nickname')" />
+      <x-input id="nickname" value="{{ old('nickname', $user?->nickname) }}" :label="__('Nickname')" :error="$errors->get('nickname')" :disabled="$user->is_guest" />
 
       <!-- email -->
-      <x-input id="email" value="{{ old('email', $user->email) }}" :label="__('Email')" required placeholder="john@doe.com" :error="$errors->get('email')" />
+      <x-input id="email" value="{{ old('email', $user->email) }}" :label="__('Email')" required placeholder="john@doe.com" :error="$errors->get('email')" :disabled="$user->is_guest" />
 
       <!-- locale -->
       <x-select id="locale" :label="__('Language')" :options="['en' => __('English'), 'fr' => __('French')]" selected="{{ $user->locale }}" required :error="$errors->get('locale')" />

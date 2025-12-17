@@ -41,6 +41,9 @@ final class UserFactory extends Factory
             'has_lifetime_access' => false,
             'is_instance_admin' => false,
             'trial_ends_at' => now()->addDays(30),
+            'is_guest' => false,
+            'guest_token' => null,
+            'guest_expires_at' => null,
         ];
     }
 
