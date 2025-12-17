@@ -13,7 +13,7 @@ require __DIR__ . '/marketing.php';
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
-Route::middleware(['throttle:500,1'])->group(function (): void {
+Route::middleware(['throttle:30,1'])->group(function (): void {
     Route::get('demo', [App\DemoAccountController::class, 'index'])->name('demo.index');
 });
 

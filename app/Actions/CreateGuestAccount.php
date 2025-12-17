@@ -18,8 +18,6 @@ final class CreateGuestAccount
 {
     private User $user;
 
-    public function __construct() {}
-
     public function execute(): User
     {
         $this->create();

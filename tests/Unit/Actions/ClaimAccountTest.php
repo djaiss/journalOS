@@ -31,7 +31,7 @@ final class ClaimAccountTest extends TestCase
             'last_name' => 'User',
             'password' => Hash::make('old-password'),
             'is_guest' => true,
-            'guest_token' => 'token',
+            'guest_token' => fake()->uuid(),
             'guest_expires_at' => Carbon::create(2025, 12, 17, 9, 0, 0),
         ]);
 
