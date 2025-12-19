@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\App\Api\Settings\Profile;
+namespace Tests\Feature\Controllers\Api\Settings\Profile;
 
 use App\Models\User;
 use Carbon\Carbon;
