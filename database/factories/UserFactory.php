@@ -44,6 +44,7 @@ final class UserFactory extends Factory
             'is_guest' => false,
             'guest_token' => null,
             'guest_expires_at' => null,
+            'time_format_24h' => true,
         ];
     }
 

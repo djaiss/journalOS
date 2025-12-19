@@ -29,6 +29,7 @@ final class UserResource extends JsonResource
                 'nickname' => $this->nickname,
                 'email' => $this->email,
                 'locale' => $this->locale,
+                'time_format_24h' => $this->time_format_24h,
                 'created_at' => $this->created_at->timestamp,
                 'updated_at' => $this->updated_at->timestamp,
             ],

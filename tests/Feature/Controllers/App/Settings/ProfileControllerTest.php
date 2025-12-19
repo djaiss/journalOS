@@ -34,6 +34,7 @@ final class ProfileControllerTest extends TestCase
                 'nickname' => 'Michael',
                 'email' => 'michael.scott@dundermifflin.com',
                 'locale' => 'en',
+                'time_format_24h' => 'true',
             ]);
 
         $response
@@ -48,6 +49,7 @@ final class ProfileControllerTest extends TestCase
         $this->assertEquals('michael.scott@dundermifflin.com', $user->email);
         $this->assertEquals('en', $user->locale);
         $this->assertNull($user->email_verified_at);
+        $this->assertTrue($user->time_format_24h);
     }
 
     #[Test]
@@ -63,6 +65,7 @@ final class ProfileControllerTest extends TestCase
                 'nickname' => 'Michael',
                 'email' => $user->email,
                 'locale' => 'en',
+                'time_format_24h' => 'true',
             ]);
 
         $response
@@ -87,6 +90,7 @@ final class ProfileControllerTest extends TestCase
                 'nickname' => 'Michael',
                 'email' => $user->email,
                 'locale' => 'en',
+                'time_format_24h' => 'true',
             ]);
 
         $response
