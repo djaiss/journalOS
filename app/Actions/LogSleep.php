@@ -9,7 +9,6 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\User;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Date;
@@ -18,13 +17,13 @@ use Illuminate\Support\Facades\Date;
  * Log sleep habits for a journal entry.
  * Time is set using 24-hour format (HH:MM) and represented as a string.
  */
-final class LogSleep
+final readonly class LogSleep
 {
     public function __construct(
-        private readonly User $user,
-        private readonly JournalEntry $entry,
-        private readonly string $bedtime,
-        private readonly string $wakeUpTime,
+        private User $user,
+        private JournalEntry $entry,
+        private string $bedtime,
+        private string $wakeUpTime,
     ) {}
 
     public function execute(): JournalEntry
@@ -42,34 +41,42 @@ final class LogSleep
             throw new ModelNotFoundException('Journal not found');
         }
 
-        // check if the date is a real date
-        if (! checkdate($this->month, $this->day, $this->year)) {
-            throw new Exception('Invalid date');
+        try {
+            $bedtime = Date::createFromFormat('H:i', $this->bedtime);
+        } catch (Exception) {
+            throw new Exception('Invalid bedtime format. Expected HH:MM');
+        }
+        if ($bedtime === false || $bedtime->format('H:i') !== $this->bedtime) {
+            throw new Exception('Invalid bedtime format. Expected HH:MM');
         }
 
-        $this->date = Date::create($this->year, $this->month, $this->day);
+        try {
+            $wakeUp = Date::createFromFormat('H:i', $this->wakeUpTime);
+        } catch (Exception) {
+            throw new Exception('Invalid wake-up time format. Expected HH:MM');
+        }
+        if ($wakeUp === false || $wakeUp->format('H:i') !== $this->wakeUpTime) {
+            throw new Exception('Invalid wake-up time format. Expected HH:MM');
+        }
     }
 
     private function create(): void
     {
-        $existingEntry = JournalEntry::query()->where('journal_id', $this->journal->id)
-            ->where('day', $this->day)
-            ->where('month', $this->month)
-            ->where('year', $this->year)
-            ->first();
+        $bedtime = Date::createFromFormat('H:i', $this->bedtime);
+        $wakeUp = Date::createFromFormat('H:i', $this->wakeUpTime);
 
-        if ($existingEntry) {
-            $this->entry = $existingEntry;
-        } else {
-            $this->entry = JournalEntry::query()->create([
-                'journal_id' => $this->journal->id,
-                'day' => $this->day,
-                'month' => $this->month,
-                'year' => $this->year,
-            ]);
-
-            $this->logUserAction();
+        if ($wakeUp->lessThanOrEqualTo($bedtime)) {
+            $wakeUp->addDay();
         }
+
+        $sleepDuration = $bedtime->diff($wakeUp)->format('%H:%I');
+
+        $this->entry->bedtime = $this->bedtime;
+        $this->entry->wake_up_time = $this->wakeUpTime;
+        $this->entry->sleep_duration = $sleepDuration;
+        $this->entry->save();
+
+        $this->logUserAction();
     }
 
     private function updateUserLastActivityDate(): void
@@ -81,9 +88,9 @@ final class LogSleep
     {
         LogUserAction::dispatch(
             user: $this->user,
-            journal: $this->journal,
-            action: 'entry_creation',
-            description: 'Created the entry on ' . $this->date->format('l F jS, Y') . ' for the journal called ' . $this->journal->name,
+            journal: $this->entry->journal,
+            action: 'sleep_logged',
+            description: 'Logged sleep for journal entry on ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 }
