@@ -29,7 +29,7 @@ final class JournalEntryController extends Controller
             day: $journalEntry->day,
         );
 
-        return view('app.journal.show', [
+        return view('app.journal.entry.show', [
             'journal' => $journal,
             'months' => $months,
             'days' => $days,

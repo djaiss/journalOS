@@ -72,7 +72,7 @@ final class JournalController extends Controller
             day: $day,
         );
 
-        return view('app.journal.show', [
+        return view('app.journal.entry.show', [
             'journal' => $journal,
             'months' => $months,
             'days' => $days,
