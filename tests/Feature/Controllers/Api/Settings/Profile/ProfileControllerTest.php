@@ -25,6 +25,7 @@ final class ProfileControllerTest extends TestCase
                 'nickname',
                 'email',
                 'locale',
+                'time_format_24h',
                 'created_at',
                 'updated_at',
             ],
@@ -44,6 +45,7 @@ final class ProfileControllerTest extends TestCase
             'email' => 'michael.scott@dundermifflin.com',
             'nickname' => 'Mike',
             'locale' => 'en',
+            'time_format_24h' => true,
         ]);
 
         Sanctum::actingAs($user);
@@ -63,6 +65,7 @@ final class ProfileControllerTest extends TestCase
                     'nickname' => 'Mike',
                     'email' => 'michael.scott@dundermifflin.com',
                     'locale' => 'en',
+                    'time_format_24h' => true,
                     'created_at' => Carbon::now()->timestamp,
                     'updated_at' => Carbon::now()->timestamp,
                 ],
@@ -80,6 +83,7 @@ final class ProfileControllerTest extends TestCase
             'email' => 'michael.scott@dundermifflin.com',
             'nickname' => 'Mike',
             'locale' => 'en',
+            'time_format_24h' => true,
         ]);
 
         Sanctum::actingAs($user);
@@ -90,6 +94,7 @@ final class ProfileControllerTest extends TestCase
             'email' => 'dwight.schrute@dundermifflin.com',
             'nickname' => 'Dwight',
             'locale' => 'fr',
+            'time_format_24h' => false,
         ]);
 
         $response->assertStatus(200);
@@ -105,6 +110,7 @@ final class ProfileControllerTest extends TestCase
                     'nickname' => 'Dwight',
                     'email' => 'dwight.schrute@dundermifflin.com',
                     'locale' => 'fr',
+                    'time_format_24h' => false,
                     'created_at' => Carbon::now()->timestamp,
                     'updated_at' => Carbon::now()->timestamp,
                 ],

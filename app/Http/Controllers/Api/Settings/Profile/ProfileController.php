@@ -36,6 +36,7 @@ final class ProfileController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore(Auth::user()->id)],
             'nickname' => ['nullable', 'string', 'max:255'],
             'locale' => ['required', 'string', 'max:255'],
+            'time_format_24h' => ['required', 'boolean'],
         ]);
 
         new UpdateUserInformation(
@@ -45,6 +46,7 @@ final class ProfileController extends Controller
             lastName: $validated['last_name'],
             nickname: $validated['nickname'] ?? null,
             locale: $validated['locale'],
+            timeFormat24h: $validated['time_format_24h'],
         )->execute();
 
         return new UserResource(Auth::user()->refresh());

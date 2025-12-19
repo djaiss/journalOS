@@ -43,6 +43,7 @@ final class ProfileController extends Controller
                 Rule::unique(User::class)->ignore(Auth::user()->id),
             ],
             'locale' => ['required', 'string', Rule::in(['en', 'fr'])],
+            'time_format_24h' => ['required', Rule::in(['true', 'false'])],
         ]);
 
         new UpdateUserInformation(
@@ -52,6 +53,7 @@ final class ProfileController extends Controller
             lastName: $validated['last_name'],
             nickname: $validated['nickname'],
             locale: $validated['locale'],
+            timeFormat24h: $validated['time_format_24h'] === 'true' ? true : false,
         )->execute();
 
         return to_route('settings.profile.index')

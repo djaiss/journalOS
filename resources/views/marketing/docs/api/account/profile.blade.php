@@ -63,6 +63,7 @@
           <x-marketing.docs.attribute name="nickname" type="string" description="The nickname of the user." />
           <x-marketing.docs.attribute name="email" type="string" description="The email of the user." />
           <x-marketing.docs.attribute name="locale" type="string" description="The locale of the user." />
+          <x-marketing.docs.attribute name="time_format_24h" type="boolean" description="Indicates whether the user prefers the 24-hour time format." />
           <x-marketing.docs.attribute name="created_at" type="integer" description="The creation date of the user, in Unix timestamp format." />
           <x-marketing.docs.attribute name="updated_at" type="integer" description="The last update date of the user, in Unix timestamp format." />
           <x-marketing.docs.attribute name="links" type="object" description="The link to access the user." />
@@ -70,7 +71,7 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/me" verb="GET" verbClass="text-blue-700">
-          @include('docs.api.partials.profile-response')
+          @include('marketing.docs.api.partials.profile-response')
         </x-marketing.docs.code>
       </div>
     </div>
@@ -96,6 +97,7 @@
           <x-marketing.docs.attribute name="nickname" type="string" description="The nickname of the user. Max 255 characters." />
           <x-marketing.docs.attribute name="email" required="true" type="string" description="The email of the user. This email should be unique in the instance, and we will validate the email format. Max 255 characters." />
           <x-marketing.docs.attribute name="locale" type="string" description="The locale of the user. Format: en, fr, etc. Max 255 characters." />
+          <x-marketing.docs.attribute name="time_format_24h" type="boolean" description="Indicates whether the user prefers the 24-hour time format." />
         </x-marketing.docs.query-parameters>
 
         <!-- response attributes -->
@@ -107,6 +109,7 @@
           <x-marketing.docs.attribute name="nickname" type="string" description="The nickname of the user." />
           <x-marketing.docs.attribute name="email" type="string" description="The email of the user." />
           <x-marketing.docs.attribute name="locale" type="string" description="The locale of the user." />
+          <x-marketing.docs.attribute name="time_format_24h" type="boolean" description="Indicates whether the user prefers the 24-hour time format." />
           <x-marketing.docs.attribute name="created_at" type="integer" description="The creation date of the user, in Unix timestamp format." />
           <x-marketing.docs.attribute name="updated_at" type="integer" description="The last update date of the user, in Unix timestamp format." />
           <x-marketing.docs.attribute name="links" type="object" description="The link to access the user." />
@@ -114,7 +117,7 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/me" verb="PUT" verbClass="text-yellow-700">
-          @include('docs.api.partials.profile-response')
+          @include('marketing.docs.api.partials.profile-response')
         </x-marketing.docs.code>
       </div>
     </div>
