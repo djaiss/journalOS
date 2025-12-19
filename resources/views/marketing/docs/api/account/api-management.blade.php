@@ -88,7 +88,7 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/settings/api" verb="GET" verbClass="text-blue-700">
-          @include('docs.api.partials.api-response')
+          @include('marketing.docs.api.partials.api-response')
         </x-marketing.docs.code>
       </div>
     </div>
@@ -125,7 +125,7 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/settings/api/{id}" verb="GET" verbClass="text-blue-700">
-          @include('docs.api.partials.api-response')
+          @include('marketing.docs.api.partials.api-response')
         </x-marketing.docs.code>
       </div>
     </div>
@@ -162,7 +162,7 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/settings/api" verb="POST" verbClass="text-green-700">
-          @include('docs.api.partials.api-response')
+          @include('marketing.docs.api.partials.api-response')
         </x-marketing.docs.code>
       </div>
     </div>

@@ -37,6 +37,7 @@ final class UpdateUserInformationTest extends TestCase
             lastName: 'Scott',
             nickname: 'Mike',
             locale: 'fr',
+            timeFormat24h: false,
         ))->execute();
 
         $this->assertInstanceOf(User::class, $updatedUser);
@@ -49,6 +50,7 @@ final class UpdateUserInformationTest extends TestCase
         $this->assertEquals('Scott', $userInDb->last_name);
         $this->assertEquals('Mike', $userInDb->nickname);
         $this->assertEquals('fr', $userInDb->locale);
+        $this->assertFalse($userInDb->time_format_24h);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -85,6 +87,7 @@ final class UpdateUserInformationTest extends TestCase
             lastName: 'Schrute',
             nickname: 'Dwight',
             locale: 'fr',
+            timeFormat24h: true,
         ))->execute();
 
         Event::assertDispatched(Registered::class);
@@ -109,6 +112,7 @@ final class UpdateUserInformationTest extends TestCase
             lastName: 'Schrute',
             nickname: 'Dwight',
             locale: 'fr',
+            timeFormat24h: true,
         ))->execute();
 
         Event::assertNotDispatched(Registered::class);

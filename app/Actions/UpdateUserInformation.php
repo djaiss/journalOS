@@ -18,6 +18,7 @@ final readonly class UpdateUserInformation
         private string $lastName,
         private ?string $nickname,
         private string $locale,
+        private bool $timeFormat24h,
     ) {}
 
     /**
@@ -52,6 +53,7 @@ final readonly class UpdateUserInformation
             'email' => $this->email,
             'nickname' => $this->nickname,
             'locale' => $this->locale,
+            'time_format_24h' => $this->timeFormat24h,
         ]);
     }
 

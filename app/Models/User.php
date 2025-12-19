@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $first_name
  * @property string $last_name
  * @property string $nickname
+ * @property bool $time_format_24h
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string|null $two_factor_secret
@@ -57,6 +58,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'first_name',
         'last_name',
         'nickname',
+        'time_format_24h',
         'email',
         'password',
         'locale',
@@ -97,6 +99,7 @@ final class User extends Authenticatable implements MustVerifyEmail
             'first_name' => 'encrypted',
             'last_name' => 'encrypted',
             'nickname' => 'encrypted',
+            'time_format_24h' => 'boolean',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',

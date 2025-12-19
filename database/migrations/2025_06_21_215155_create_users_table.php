@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->text('first_name');
             $table->text('last_name');
             $table->text('nickname')->nullable();
+            $table->boolean('time_format_24h')->default(true);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('two_factor_secret')->nullable();

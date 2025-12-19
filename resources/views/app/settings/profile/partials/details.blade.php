@@ -30,6 +30,9 @@
       <!-- locale -->
       <x-select id="locale" :label="__('Language')" :options="['en' => __('English'), 'fr' => __('French')]" selected="{{ $user->locale }}" required :error="$errors->get('locale')" />
 
+      <!-- time format -->
+      <x-select id="time_format_24h" :label="__('Time format')" :options="['true' => __('24-hour (e.g., 14:00)'), 'false' => __('12-hour (e.g., 2:00 PM)')]" selected="{{ $user->time_format_24h ? 'true' : 'false' }}" required :error="$errors->get('time_format_24h')" />
+
       <div class="flex items-center justify-end">
         <x-button>{{ __('Save') }}</x-button>
       </div>
