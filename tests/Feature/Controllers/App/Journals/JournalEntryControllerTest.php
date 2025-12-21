@@ -31,7 +31,6 @@ final class JournalEntryControllerTest extends TestCase
         );
 
         $response->assertStatus(200);
-        // Optionally assert view data or content
     }
 
     #[Test]

@@ -47,6 +47,5 @@
     <div>
       {{-- <x-module>this is great</x-module> --}}
     </div>
-
   </div>
 </x-app-layout>

@@ -36,6 +36,9 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
             Route::middleware(['journal.entry'])->group(function (): void {
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}', [Journals\JournalEntryController::class, 'show'])->name('journal.entry.show');
+
+                // sleep
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}/sleep/{bedtime}/{wake_up_time}', [Journals\Modules\SleepController::class, 'show'])->name('journal.entry.sleep.show');
             });
         });
     });

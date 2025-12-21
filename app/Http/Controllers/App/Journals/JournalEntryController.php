@@ -6,6 +6,7 @@ namespace App\Http\Controllers\App\Journals;
 
 use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
+use App\Http\ViewModels\Journal\JournalEntryShowViewModel;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
@@ -29,10 +30,15 @@ final class JournalEntryController extends Controller
             day: $journalEntry->day,
         );
 
+        $data = (new JournalEntryShowViewModel(
+            journalEntry: $journalEntry,
+        ))->show();
+
         return view('app.journal.entry.show', [
             'journal' => $journal,
             'months' => $months,
             'days' => $days,
+            'data' => $data,
         ]);
     }
 }
