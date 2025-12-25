@@ -17,7 +17,10 @@
       </div>
       <div class="flex w-full rounded-lg border border-gray-200">
         @foreach ($data['sleep']['bedtime'] as $option)
-          <div class="flex-1 cursor-pointer border-r border-gray-200 p-2 text-center first:rounded-l-lg last:rounded-r-lg last:border-r-0 hover:bg-green-50">{{ $option['formatted'] }}</div>
+        <x-form :action="$data['sleep']['previous_bedtime_url']" method="put">
+          <input type="hidden" name="bedtime" value="{{ $option['time'] }}">
+          <button type="submit" class="flex-1 cursor-pointer border-r border-gray-200 p-2 text-center first:rounded-l-lg last:rounded-r-lg last:border-r-0 hover:bg-green-50">{{ $option['formatted'] }}</button>
+        </x-form>
         @endforeach
       </div>
     </div>

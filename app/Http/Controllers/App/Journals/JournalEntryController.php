@@ -30,9 +30,9 @@ final class JournalEntryController extends Controller
             day: $journalEntry->day,
         );
 
-        $data = (new JournalEntryShowViewModel(
+        $data = new JournalEntryShowViewModel(
             journalEntry: $journalEntry,
-        ))->show();
+        )->show();
 
         return view('app.journal.entry.show', [
             'journal' => $journal,

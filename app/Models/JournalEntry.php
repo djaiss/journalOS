@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Date;
  * @property int $year
  * @property string|null $bedtime
  * @property string|null $wake_up_time
- * @property string|null $sleep_duration
+ * @property string|null $sleep_duration_in_minutes
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -48,7 +48,7 @@ final class JournalEntry extends Model
         'year',
         'bedtime',
         'wake_up_time',
-        'sleep_duration',
+        'sleep_duration_in_minutes',
     ];
 
     /**
@@ -61,7 +61,7 @@ final class JournalEntry extends Model
         return [
             'bedtime' => 'encrypted',
             'wake_up_time' => 'encrypted',
-            'sleep_duration' => 'encrypted',
+            'sleep_duration_in_minutes' => 'encrypted',
         ];
     }
 

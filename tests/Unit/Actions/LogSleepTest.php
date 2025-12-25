@@ -40,7 +40,7 @@ final class LogSleepTest extends TestCase
 
         $this->assertEquals('22:30', $result->bedtime);
         $this->assertEquals('06:45', $result->wake_up_time);
-        $this->assertEquals('08:15', $result->sleep_duration);
+        $this->assertEquals('495', $result->sleep_duration_in_minutes);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -115,6 +115,6 @@ final class LogSleepTest extends TestCase
 
         $result = $action->execute();
 
-        $this->assertEquals('07:30', $result->sleep_duration);
+        $this->assertEquals('450', $result->sleep_duration_in_minutes);
     }
 }

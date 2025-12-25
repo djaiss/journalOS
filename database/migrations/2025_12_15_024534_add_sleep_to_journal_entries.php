@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::table('journal_entries', function (Blueprint $table): void {
             $table->text('bedtime')->nullable()->after('year');
             $table->text('wake_up_time')->nullable()->after('bedtime');
-            $table->text('sleep_duration')->nullable()->after('wake_up_time');
+            $table->text('sleep_duration_in_minutes')->nullable()->after('wake_up_time');
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration {
         Schema::table('journal_entries', function (Blueprint $table): void {
             $table->dropColumn('bedtime');
             $table->dropColumn('wake_up_time');
-            $table->dropColumn('sleep_duration');
+            $table->dropColumn('sleep_duration_in_minutes');
         });
     }
 };

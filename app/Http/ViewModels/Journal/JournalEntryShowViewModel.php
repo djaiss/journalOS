@@ -17,9 +17,9 @@ final readonly class JournalEntryShowViewModel
     public function show(): array
     {
         return [
-            'sleep' => (new ModuleSleepViewModel(
+            'sleep' => new ModuleSleepViewModel(
                 journalEntry: $this->journalEntry,
-            ))->sleep($this->startBedTime, $this->startWakeUpTime),
+            )->sleep($this->startBedTime, $this->startWakeUpTime),
         ];
     }
 }

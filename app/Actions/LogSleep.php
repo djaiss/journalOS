@@ -69,11 +69,11 @@ final readonly class LogSleep
             $wakeUp->addDay();
         }
 
-        $sleepDuration = $bedtime->diff($wakeUp)->format('%H:%I');
+        $sleepDuration = $bedtime->diffInMinutes($wakeUp);
 
         $this->entry->bedtime = $this->bedtime;
         $this->entry->wake_up_time = $this->wakeUpTime;
-        $this->entry->sleep_duration = $sleepDuration;
+        $this->entry->sleep_duration_in_minutes = (string) $sleepDuration;
         $this->entry->save();
 
         $this->logUserAction();
