@@ -7,7 +7,7 @@ namespace App\Http\Controllers\App\Journals;
 use App\Actions\CreateJournal;
 use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
-use App\Http\ViewModels\Journal\JournalIndexViewModel;
+use App\Models\Journal;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -17,12 +17,12 @@ final class JournalController extends Controller
 {
     public function index(): View
     {
-        $viewModel = new JournalIndexViewModel(
-            user: Auth::user(),
-        );
+        $journals = Journal::query()
+            ->where('user_id', Auth::user()->id)
+            ->get();
 
         return view('app.journal.index', [
-            'viewModel' => $viewModel,
+            'journals' => $journals,
         ]);
     }
 

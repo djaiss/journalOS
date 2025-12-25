@@ -1,6 +1,6 @@
 {
-    "12-hour (e.g., 2:00 PM)": "12-heure (ex : 14:00)",
-    "24-hour (e.g., 14:00)": "24-heure (ex : 14:00)",
+    "12-hour (e.g., 2:00 PM)": "12-heure (ex. 14:00)",
+    "24-hour (e.g., 14:00)": "24-heure (ex. 14:00)",
     ":count API key(s) created": ":count clé(s) API créée(s)",
     ":days days left in your trial": "Encore :days jours d'essai",
     "Account": "Compte",
@@ -153,7 +153,7 @@
     "Search users...": "Rechercher des utilisateurs...",
     "Security and access": "Sécurité et accès",
     "Send me a link instead": "Envoyez-moi un lien à la place",
-    "Sent at:": "Envoyé à :",
+    "Sent at:": "Envoyé le :",
     "Session expired. Please login again.": "Session expirée. Veuillez vous reconnecter.",
     "Settings": "Paramètres",
     "Set up": "Configurer",

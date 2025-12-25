@@ -1,13 +1,7 @@
-<?php
-/*
- * @var \App\Http\ViewModels\Settings\ProfileShowViewModel $viewModel
- */
-?>
-
 <x-box padding="p-0">
   <x-slot:title>{{ __('Emails sent') }}</x-slot>
 
-  @forelse ($viewModel->emailsSent() as $emailSent)
+  @forelse ($emails as $emailSent)
     <div x-data="{ open: false, isLast: {{ $loop->last ? 'true' : 'false' }} }">
       <div @click="open = !open" class="group flex cursor-pointer items-center justify-between border-b border-gray-200 p-3 text-sm first:rounded-t-lg hover:bg-blue-50" :class="{'border-b-0 rounded-b-lg': !open && isLast}">
         <div class="flex items-center gap-x-3">
@@ -36,13 +30,13 @@
           <div class="flex flex-col gap-1">
             <div>
               <span class="font-light text-gray-500">{{ __('Sent at:') }}</span>
-              {{ $emailSent->sent_at }}
+              {{ $emailSent->sent_at?->diffForHumans() }}
             </div>
 
             @if ($emailSent->delivered_at)
               <div>
                 <span class="font-light text-gray-500">{{ __('Delivered at:') }}</span>
-                {{ $emailSent->delivered_at }}
+                {{ $emailSent->delivered_at?->diffForHumans() }}
               </div>
             @endif
           </div>
@@ -69,7 +63,7 @@
     </div>
   @endforelse
 
-  @if ($viewModel->hasMoreEmailsSent())
+  @if ($hasMoreEmails)
     <div class="flex justify-center rounded-b-lg p-3 text-sm hover:bg-blue-50">
       <x-link href="{{ route('settings.emails.index') }}" class="text-center">{{ __('Browse all emails sent') }}</x-link>
     </div>
