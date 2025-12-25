@@ -17,10 +17,10 @@
       </div>
 
       <x-box padding="p-0">
-        @forelse ($viewModel->journals() as $journal)
+        @forelse ($journals as $journal)
           <div class="rounded-0 flex items-center border-b border-gray-200 text-sm first:rounded-t-lg last:rounded-b-lg last:border-b-0 hover:bg-gray-50">
             <div class="mr-2 rounded-full p-3">
-              <img src="{{ $journal->avatar }}" class="h-8 w-8" alt="Avatar" />
+              <img src="{{ $journal->avatar() }}" class="h-8 w-8" alt="Avatar" />
             </div>
 
             <x-link href="{{ route('journal.show', $journal->slug) }}">{{ $journal->name }}</x-link>
