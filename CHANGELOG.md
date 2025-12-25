@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.4.0](https://github.com/djaiss/journalOS/compare/djaiss/collectos-v0.3.0...djaiss/collectos-v0.4.0) (2025-12-25)
+
+
+### Features
+
+* ability to have a demo account ([#40](https://github.com/djaiss/journalOS/issues/40)) ([d161edf](https://github.com/djaiss/journalOS/commit/d161edfda20002d0b5b54d9c5da6e9bb0306d5ab))
+* add user time format ([#42](https://github.com/djaiss/journalOS/issues/42)) ([456b928](https://github.com/djaiss/journalOS/commit/456b928a43dbd6ee20a833b610f462f5e2263bfa))
+
+
+### Miscellaneous Chores
+
+* change api folder location ([#41](https://github.com/djaiss/journalOS/issues/41)) ([6bca74d](https://github.com/djaiss/journalOS/commit/6bca74d973a936ca64fd1b2e2d93b6527b9c25bc))
+* **deps:** update dependencies ([#38](https://github.com/djaiss/journalOS/issues/38)) ([6091fe0](https://github.com/djaiss/journalOS/commit/6091fe0ae080f2699f3af8ef308153e81d9a361e))
+* remove view model for journals ([#47](https://github.com/djaiss/journalOS/issues/47)) ([6479f42](https://github.com/djaiss/journalOS/commit/6479f42f31b2282735cc2d72c0fb6ef1f4533c62))
+* remove view model for settings ([#46](https://github.com/djaiss/journalOS/issues/46)) ([62d7fad](https://github.com/djaiss/journalOS/commit/62d7fad70769ad2a0df8f66dc6ec458f03d84e88))
+
 ## [0.3.0](https://github.com/djaiss/journalOS/compare/djaiss/collectos-v0.2.0...djaiss/collectos-v0.3.0) (2025-12-15)
 
 
