@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\App\Journals\Modules;
+namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
 use App\Http\Controllers\Controller;
 use App\Http\ViewModels\Journal\JournalEntryShowViewModel;

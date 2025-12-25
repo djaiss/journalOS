@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\App\Journals\Modules;
+namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
 use App\Http\Controllers\Controller;
 use App\Http\ViewModels\Journal\JournalEntryShowViewModel;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
-final class SleepController extends Controller
+final class SleepBedTimeController extends Controller
 {
     public function show(Request $request): View
     {
