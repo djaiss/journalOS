@@ -51,6 +51,7 @@ final class CreateEmailSent
             'email_address' => $this->emailAddress,
             'subject' => $this->subject,
             'body' => $this->updatedBody,
+            'sent_at' => now(),
         ]);
     }
 }

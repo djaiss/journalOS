@@ -1,10 +1,3 @@
-<?php
-/*
- * @var \App\Models\User $user
- * @var \App\Http\ViewModels\ProfileShowViewModel $viewModel
- */
-?>
-
 <x-app-layout>
   <x-slot:title>
     {{ __('Profile') }}
@@ -16,7 +9,7 @@
   ]" />
 
   <!-- settings layout -->
-  <div class="grid flex-grow sm:grid-cols-[220px_1fr]">
+  <div class="grid grow sm:grid-cols-[220px_1fr]">
     <!-- Sidebar -->
     @include('app.settings.partials.sidebar')
 
@@ -27,10 +20,10 @@
         @include('app.settings.profile.partials.details', ['user' => $user])
 
         <!-- logs -->
-        @include('app.settings.profile.partials.logs', ['viewModel' => $viewModel])
+        @include('app.settings.profile.partials.logs', ['logs' => $logs, 'hasMoreLogs' => $hasMoreLogs])
 
         <!-- emails sent -->
-        @include('app.settings.profile.partials.emails', ['viewModel' => $viewModel])
+        @include('app.settings.profile.partials.emails', ['emails' => $emails, 'hasMoreEmails' => $hasMoreEmails])
       </div>
     </section>
   </div>
