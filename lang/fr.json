@@ -1,4 +1,6 @@
 {
+    "12-hour (e.g., 2:00 PM)": "12-heure (ex. 14:00)",
+    "24-hour (e.g., 14:00)": "24-heure (ex. 14:00)",
     ":count API key(s) created": ":count clé(s) API créée(s)",
     ":days days left in your trial": "Encore :days jours d'essai",
     "Account": "Compte",
@@ -151,7 +153,7 @@
     "Search users...": "Rechercher des utilisateurs...",
     "Security and access": "Sécurité et accès",
     "Send me a link instead": "Envoyez-moi un lien à la place",
-    "Sent at:": "Envoyé à :",
+    "Sent at:": "Envoyé le :",
     "Session expired. Please login again.": "Session expirée. Veuillez vous reconnecter.",
     "Settings": "Paramètres",
     "Set up": "Configurer",
@@ -174,6 +176,7 @@
     "These are the details that will be displayed on your profile. Everyone within organizations you belong to will have the opportunity to view them.": "Voici les détails qui seront affichés sur votre profil. Tous les membres des organisations auxquelles vous appartenez pourront les consulter.",
     "This is a secure area of the application. Please confirm your password before continuing.": "Ceci est une zone sécurisée de l'application. Veuillez confirmer votre mot de passe avant de continuer.",
     "This temporary account will expire in :count days and is only accessible from this browser. Sign up now for free to save your settings.": "Ce compte temporaire expirera dans :count jours et n'est accessible que depuis ce navigateur. Inscrivez-vous maintenant gratuitement pour enregistrer vos paramètres.",
+    "Time format": "Format d'heure",
     "To:": "À :",
     "Total users": "Nombre total d'utilisateurs",
     "Trial account": "Compte d'essai",

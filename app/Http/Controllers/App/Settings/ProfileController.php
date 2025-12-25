@@ -6,7 +6,8 @@ namespace App\Http\Controllers\App\Settings;
 
 use App\Actions\UpdateUserInformation;
 use App\Http\Controllers\Controller;
-use App\Http\ViewModels\Settings\ProfileShowViewModel;
+use App\Models\EmailSent;
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,13 +19,27 @@ final class ProfileController extends Controller
 {
     public function edit(Request $request): View
     {
-        $viewModel = new ProfileShowViewModel(
-            user: $request->user(),
-        );
+        $logs = Log::query()
+            ->where('user_id', $request->user()->id)
+            ->with('user')
+            ->with('journal')
+            ->latest()
+            ->limit(6)
+            ->get();
+
+        $emails = EmailSent::query()
+            ->where('user_id', $request->user()->id)
+            ->with('user')
+            ->latest('sent_at')
+            ->limit(6)
+            ->get();
 
         return view('app.settings.profile.index', [
             'user' => $request->user(),
-            'viewModel' => $viewModel,
+            'logs' => $logs,
+            'emails' => $emails,
+            'hasMoreLogs' => $logs->count() > 5,
+            'hasMoreEmails' => $emails->count() > 5,
         ]);
     }
 

@@ -1,4 +1,6 @@
 {
+    "12-hour (e.g., 2:00 PM)": "12-hour (e.g., 2:00 PM)",
+    "24-hour (e.g., 14:00)": "24-hour (e.g., 14:00)",
     ":count API key(s) created": ":count API key(s) created",
     ":days days left in your trial": ":days days left in your trial",
     "Account": "Account",
@@ -174,6 +176,7 @@
     "These are the details that will be displayed on your profile. Everyone within organizations you belong to will have the opportunity to view them.": "These are the details that will be displayed on your profile. Everyone within organizations you belong to will have the opportunity to view them.",
     "This is a secure area of the application. Please confirm your password before continuing.": "This is a secure area of the application. Please confirm your password before continuing.",
     "This temporary account will expire in :count days and is only accessible from this browser. Sign up now for free to save your settings.": "This temporary account will expire in :count days and is only accessible from this browser. Sign up now for free to save your settings.",
+    "Time format": "Time format",
     "To:": "To:",
     "Total users": "Total users",
     "Trial account": "Trial account",

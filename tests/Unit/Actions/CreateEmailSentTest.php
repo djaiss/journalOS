@@ -7,6 +7,7 @@ namespace Tests\Unit\Actions;
 use App\Actions\CreateEmailSent;
 use App\Models\EmailSent;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
@@ -22,6 +23,7 @@ final class CreateEmailSentTest extends TestCase
     {
         Queue::fake();
 
+        Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create();
 
         $emailSent = (new CreateEmailSent(
@@ -41,6 +43,7 @@ final class CreateEmailSentTest extends TestCase
             'email_address' => 'dwight.schrute@dundermifflin.com',
             'subject' => 'Happy Birthday!',
             'body' => 'Hope you have a great day!',
+            'sent_at' => '2018-01-01 00:00:00',
         ]);
 
         $this->assertEquals(36, mb_strlen($emailSent->uuid));
