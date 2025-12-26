@@ -7,14 +7,15 @@ namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 use App\Helpers\Modules\Sleep\SleepHelper;
 use App\Http\Controllers\Controller;
 use App\Http\ViewModels\Journal\JournalEntryShowViewModel;
+use App\View\Presenters\SleepModulePresenter;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 final class SleepController extends Controller
 {
     public function show(Request $request): View
     {
-        $journal = $request->attributes->get('journal');
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
@@ -28,52 +29,13 @@ final class SleepController extends Controller
             ],
         ]);
 
-        $bedtimeRange = SleepHelper::range($validated['bedtime'], $journalEntry->bedtime);
-        $wakeUpRange = SleepHelper::range($validated['wake_up_time'], $journalEntry->wake_up_time);
-
-        $previousBedtimeUrl = route('journal.entry.sleep.show', [
-            'slug' => $journal->slug,
-            'year' => $journalEntry->year,
-            'month' => $journalEntry->month,
-            'day' => $journalEntry->day,
-            'bedtime' => SleepHelper::shift($validated['bedtime'], -5),
-            'wake_up_time' => $validated['wake_up_time'],
-        ]);
-
-        $nextBedtimeUrl = route('journal.entry.sleep.show', [
-            'slug' => $journal->slug,
-            'year' => $journalEntry->year,
-            'month' => $journalEntry->month,
-            'day' => $journalEntry->day,
-            'bedtime' => SleepHelper::shift($validated['bedtime'], +5),
-            'wake_up_time' => $validated['wake_up_time'],
-        ]);
-
-        $previousWakeUpUrl = route('journal.entry.sleep.show', [
-            'slug' => $journal->slug,
-            'year' => $journalEntry->year,
-            'month' => $journalEntry->month,
-            'day' => $journalEntry->day,
-            'bedtime' => $validated['bedtime'],
-            'wake_up_time' => SleepHelper::shift($validated['wake_up_time'], -5),
-        ]);
-
-        $nextWakeUpUrl = route('journal.entry.sleep.show', [
-            'slug' => $journal->slug,
-            'year' => $journalEntry->year,
-            'month' => $journalEntry->month,
-            'day' => $journalEntry->day,
-            'bedtime' => $validated['bedtime'],
-            'wake_up_time' => SleepHelper::shift($validated['wake_up_time'], +5),
-        ]);
+        $module = (new SleepModulePresenter($journalEntry))->build(
+            bedtime: $validated['bedtime'],
+            wake_up_time: $validated['wake_up_time'],
+        );
 
         return view('app.journal.entry.partials.sleep', [
-            'bedtimeRange' => $bedtimeRange,
-            'wakeUpRange' => $wakeUpRange,
-            'previousBedtimeUrl' => $previousBedtimeUrl,
-            'nextBedtimeUrl' => $nextBedtimeUrl,
-            'previousWakeUpUrl' => $previousWakeUpUrl,
-            'nextWakeUpUrl' => $nextWakeUpUrl,
+            'module' => $module,
         ]);
     }
 }

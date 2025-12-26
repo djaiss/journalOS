@@ -17,10 +17,14 @@
       </div>
       <div class="flex w-full rounded-lg border border-gray-200">
         @foreach ($module['bedtime'] as $option)
-        <x-form :action="$module['previous_bedtime_url']" method="put">
-          <input type="hidden" name="bedtime" value="{{ $option['time'] }}">
-          <button type="submit" class="flex-1 cursor-pointer border-r border-gray-200 p-2 text-center first:rounded-l-lg last:rounded-r-lg last:border-r-0 hover:bg-green-50">{{ \App\Helpers\TimeHelper::format($option['time']) }}</button>
-        </x-form>
+          <div class="flex-1 border-r border-gray-200 first:rounded-l-lg first:overflow-hidden last:rounded-r-lg last:border-r-0">
+            <x-form :action="$module['previous_bedtime_url']" method="put" class="h-full">
+              <input type="hidden" name="bedtime" value="{{ $option['time'] }}">
+              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50">
+                {{ \App\Helpers\TimeHelper::format($option['time']) }}
+              </button>
+            </x-form>
+          </div>
         @endforeach
       </div>
     </div>
@@ -38,7 +42,14 @@
       </div>
       <div class="flex w-full rounded-lg border border-gray-200">
         @foreach ($module['wake_up_time'] as $option)
-          <div class="flex-1 cursor-pointer border-r border-gray-200 p-2 text-center first:rounded-l-lg last:rounded-r-lg last:border-r-0 hover:bg-green-50">{{ \App\Helpers\TimeHelper::format($option['time']) }}</div>
+          <div class="flex-1 border-r border-gray-200 first:rounded-l-lg first:overflow-hidden last:rounded-r-lg last:border-r-0">
+            <x-form :action="$module['previous_wake_up_url']" method="put" class="h-full">
+              <input type="hidden" name="wake_up_time" value="{{ $option['time'] }}">
+              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50">
+                {{ \App\Helpers\TimeHelper::format($option['time']) }}
+              </button>
+            </x-form>
+          </div>
         @endforeach
       </div>
     </div>

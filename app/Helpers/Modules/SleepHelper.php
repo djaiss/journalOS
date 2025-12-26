@@ -20,7 +20,7 @@ final class SleepHelper
     {
         $startTime = Date::createFromFormat('H:i', $start);
 
-        return collect(range(1, 5))->map(function ($offset) use ($startTime, $selected) {
+        return collect(range(0, 4))->map(function ($offset) use ($startTime, $selected) {
             $time = $startTime->copy()->addHours($offset)->format('H:i');
 
             return [
