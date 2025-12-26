@@ -35,7 +35,6 @@
 
   <div class="grid grid-cols-3 gap-4 p-4">
     <div class="space-y-2">
-
       @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
 
       <x-module>

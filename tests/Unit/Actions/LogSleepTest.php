@@ -29,14 +29,12 @@ final class LogSleepTest extends TestCase
         $journal = Journal::factory()->for($user)->create();
         $entry = JournalEntry::factory()->for($journal)->create();
 
-        $action = new LogSleep(
+        $result = (new LogSleep(
             user: $user,
             entry: $entry,
             bedtime: '22:30',
             wakeUpTime: '06:45',
-        );
-
-        $result = $action->execute();
+        ))->execute();
 
         $this->assertEquals('22:30', $result->bedtime);
         $this->assertEquals('06:45', $result->wake_up_time);

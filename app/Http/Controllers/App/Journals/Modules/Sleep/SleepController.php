@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
-use App\Helpers\Modules\Sleep\SleepHelper;
 use App\Http\Controllers\Controller;
-use App\Http\ViewModels\Journal\JournalEntryShowViewModel;
 use App\View\Presenters\SleepModulePresenter;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 final class SleepController extends Controller
 {
     public function show(Request $request): View
     {
         $journalEntry = $request->attributes->get('journal_entry');
+        $bedtime = $request->route()->parameter('bedtime');
+        $wake_up_time = $request->route()->parameter('wake_up_time');
+
+        $request->merge([
+            'bedtime' => $bedtime,
+            'wake_up_time' => $wake_up_time,
+        ]);
 
         $validated = $request->validate([
             'bedtime' => [
