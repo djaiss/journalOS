@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}', [Journals\JournalEntryController::class, 'show'])->name('journal.entry.show');
 
                 // sleep tracking
-                Route::get('journals/{slug}/entries/{year}/{month}/{day}/sleep/{bedtime}/{wake_up_time}', [Journals\Modules\SleepController::class, 'show'])
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}/sleep/{bedtime}/{wake_up_time}', [Journals\Modules\Sleep\SleepController::class, 'show'])
                     ->name('journal.entry.sleep.show')
                     ->where(
                         [
@@ -46,8 +46,8 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                             'wake_up_time' => '([01][0-9]|2[0-3]):[0-5][0-9]',
                         ],
                     );
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/bedtime', [Journals\Modules\SleepBedTimeController::class, 'update'])->name('journal.entry.sleep.bedtime.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/wake_up_time', [Journals\Modules\SleepController::class, 'update'])->name('journal.entry.sleep.wake_up_time.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/bedtime', [Journals\Modules\Sleep\SleepBedTimeController::class, 'update'])->name('journal.entry.sleep.bedtime.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/wake_up_time', [Journals\Modules\Sleep\SleepController::class, 'update'])->name('journal.entry.sleep.wake_up_time.update');
             });
         });
     });

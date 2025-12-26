@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.3.0](https://github.com/djaiss/journalOS/compare/djaiss/collectos-v0.2.0...djaiss/collectos-v0.3.0) (2025-12-15)
+## [0.3.0](https://github.com/djaiss/journalOS/compare/djaiss/journalOS-v0.2.0...djaiss/journalOS-v0.3.0) (2025-12-15)
 
 
 ### Features

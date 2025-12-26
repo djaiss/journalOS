@@ -8,6 +8,7 @@ use App\Actions\CreateJournal;
 use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
+use App\View\Presenters\JournalEntryPresenter;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ final class JournalController extends Controller
             ->with('status', __('Journal created successfully'));
     }
 
-    public function show(Request $request): View
+    public function show(Request $request): RedirectResponse
     {
         $journal = $request->attributes->get('journal');
 
@@ -59,23 +60,11 @@ final class JournalController extends Controller
         $month = (int) now()->format('m');
         $year = (int) now()->format('Y');
 
-        $months = JournalHelper::getMonths(
-            journal: $journal,
-            year: $year,
-            selectedMonth: $month,
-        );
-
-        $days = JournalHelper::getDaysInMonth(
-            journal: $journal,
-            year: $year,
-            month: $month,
-            day: $day,
-        );
-
-        return view('app.journal.entry.show', [
-            'journal' => $journal,
-            'months' => $months,
-            'days' => $days,
+        return redirect()->route('journal.entry.show', [
+            'slug' => $journal->slug,
+            'year' => $year,
+            'month' => $month,
+            'day' => $day,
         ]);
     }
 }

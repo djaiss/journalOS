@@ -4,7 +4,7 @@
   "changelog-path": "CHANGELOG.md",
   "packages": {
     ".": {
-      "package-name": "djaiss/collectos",
+      "package-name": "djaiss/journalos",
       "version-file": "composer.json",
       "changelog-path": "CHANGELOG.md",
       "bootstrap-sha": ""
