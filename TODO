@@ -17,3 +17,7 @@
 - [x] instance panel: give free account
 - [x] add notion of trial
 - [ ] notion of denormalized data
+- [ ] display the number of entries on a month
+- [ ] year selector
+- [ ] reset sleep entries
+- [ ] hide/show modules
