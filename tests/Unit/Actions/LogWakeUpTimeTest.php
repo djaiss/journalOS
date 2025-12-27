@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\LogWakeUpTime;
+use App\Jobs\CalculateSleepDuration;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -53,6 +54,14 @@ final class LogWakeUpTimeTest extends TestCase
             job: UpdateUserLastActivityDate::class,
             callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
                 return $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CalculateSleepDuration::class,
+            callback: function (CalculateSleepDuration $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
             },
         );
     }

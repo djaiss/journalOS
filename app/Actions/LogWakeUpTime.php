@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Jobs\CalculateSleepDuration;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
@@ -28,6 +29,7 @@ final readonly class LogWakeUpTime
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
+        $this->calculateSleepDuration();
 
         return $this->entry;
     }
@@ -67,5 +69,10 @@ final readonly class LogWakeUpTime
     private function updateUserLastActivityDate(): void
     {
         UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
+    }
+
+    private function calculateSleepDuration(): void
+    {
+        CalculateSleepDuration::dispatch($this->entry)->onQueue('low');
     }
 }
