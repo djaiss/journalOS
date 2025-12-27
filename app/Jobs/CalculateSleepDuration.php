@@ -34,7 +34,13 @@ final class CalculateSleepDuration implements ShouldQueue
     private function calculateSleepDuration(): string
     {
         $bedtime = Date::createFromFormat('H:i', $this->entry->bedtime);
-        $wake_up_time = Date::createFromFormat('H:i', $this->entry->wake_up_time);
-        return (string) $wake_up_time->diffInMinutes($bedtime);
+        $wakeUpTime = Date::createFromFormat('H:i', $this->entry->wake_up_time);
+
+        // If wake up time is earlier than bedtime, it means we crossed midnight
+        if ($wakeUpTime < $bedtime) {
+            $wakeUpTime = $wakeUpTime->addDay();
+        }
+
+        return (string) $wakeUpTime->diffInMinutes($bedtime, true);
     }
 }

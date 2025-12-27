@@ -31,7 +31,7 @@ final class CalculateSleepDurationTest extends TestCase
 
         $entry->refresh();
 
-        $this->assertEquals(960, $entry->sleep_duration_in_minutes);
+        $this->assertEquals('480', $entry->sleep_duration_in_minutes);
     }
 
     #[Test]
@@ -49,7 +49,7 @@ final class CalculateSleepDurationTest extends TestCase
 
         $entry->refresh();
 
-        $this->assertEquals(945, $entry->sleep_duration_in_minutes);
+        $this->assertEquals('495', $entry->sleep_duration_in_minutes);
     }
 
     #[Test]
