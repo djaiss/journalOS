@@ -33,9 +33,10 @@ final class SleepController extends Controller
             ],
         ]);
 
-        $module = (new SleepModulePresenter($journalEntry))->build(
+        $module = new SleepModulePresenter($journalEntry)->build(
             bedtime: $validated['bedtime'],
             wake_up_time: $validated['wake_up_time'],
+            skipShift: true,
         );
 
         return view('app.journal.entry.partials.sleep', [

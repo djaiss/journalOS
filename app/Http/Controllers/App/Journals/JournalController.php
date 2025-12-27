@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals;
 
 use App\Actions\CreateJournal;
-use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
-use App\View\Presenters\JournalEntryPresenter;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -60,7 +58,7 @@ final class JournalController extends Controller
         $month = (int) now()->format('m');
         $year = (int) now()->format('Y');
 
-        return redirect()->route('journal.entry.show', [
+        return to_route('journal.entry.show', [
             'slug' => $journal->slug,
             'year' => $year,
             'month' => $month,

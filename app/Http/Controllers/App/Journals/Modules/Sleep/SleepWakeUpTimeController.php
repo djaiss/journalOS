@@ -4,28 +4,28 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
-use App\Actions\LogBedTime;
+use App\Actions\LogWakeUpTime;
 use App\Http\Controllers\Controller;
 use App\View\Presenters\SleepModulePresenter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-final class SleepBedTimeController extends Controller
+final class SleepWakeUpTimeController extends Controller
 {
     public function update(Request $request): RedirectResponse
     {
         $journalEntry = $request->attributes->get('journal_entry');
 
-        new LogBedTime(
+        new LogWakeUpTime(
             user: Auth::user(),
             entry: $journalEntry,
-            bedtime: $request->input('bedtime'),
+            wakeUpTime: $request->input('wake_up_time'),
         )->execute();
 
         $module = new SleepModulePresenter($journalEntry)->build(
-            bedtime: $request->input('bedtime'),
-            wake_up_time: $journalEntry->wake_up_time ?? '06:00',
+            bedtime: $journalEntry->bedtime ?? '20:00',
+            wake_up_time: $request->input('wake_up_time'),
         );
 
         return to_route('journal.entry.show', [

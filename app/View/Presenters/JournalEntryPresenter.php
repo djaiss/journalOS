@@ -12,7 +12,7 @@ final readonly class JournalEntryPresenter
 
     public function build(): array
     {
-        $sleep = (new SleepModulePresenter($this->entry))
+        $sleep = new SleepModulePresenter($this->entry)
             ->build('20:00', '06:00');
 
         return [

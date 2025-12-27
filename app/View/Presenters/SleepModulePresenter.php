@@ -6,6 +6,7 @@ namespace App\View\Presenters;
 
 use App\Helpers\Modules\SleepHelper;
 use App\Models\JournalEntry;
+use Carbon\CarbonImmutable;
 
 final readonly class SleepModulePresenter
 {
@@ -13,10 +14,18 @@ final readonly class SleepModulePresenter
         private JournalEntry $entry,
     ) {}
 
-    public function build(string $bedtime, string $wake_up_time): array
-    {
-        $bedtimeRange = SleepHelper::range($bedtime, $this->entry?->bedtime);
-        $wakeUpRange = SleepHelper::range($wake_up_time, $this->entry?->wake_up_time);
+    public function build(
+        string $bedtime = '20:00',
+        string $wake_up_time = '06:00',
+        bool $skipShift = false,
+    ): array {
+        if (! $skipShift) {
+            $bedtime = $this->shiftIfValid($this->entry->bedtime, -2) ?? $bedtime;
+            $wake_up_time = $this->shiftIfValid($this->entry->wake_up_time, -2) ?? $wake_up_time;
+        }
+
+        $bedtimeRange = SleepHelper::range($bedtime, $this->entry->bedtime);
+        $wakeUpRange = SleepHelper::range($wake_up_time, $this->entry->wake_up_time);
 
         $previousBedtimeUrl = route('journal.entry.sleep.show', [
             'slug' => $this->entry->journal->slug,
@@ -61,6 +70,34 @@ final readonly class SleepModulePresenter
             'next_bedtime_url' => $nextBedtimeUrl,
             'previous_wake_up_url' => $previousWakeUpUrl,
             'next_wake_up_url' => $nextWakeUpUrl,
+            'bedtime_update_url' => route('journal.entry.sleep.bedtime.update', [
+                'slug' => $this->entry->journal->slug,
+                'year' => $this->entry->year,
+                'month' => $this->entry->month,
+                'day' => $this->entry->day,
+            ]),
+            'wake_up_time_update_url' => route('journal.entry.sleep.wake_up_time.update', [
+                'slug' => $this->entry->journal->slug,
+                'year' => $this->entry->year,
+                'month' => $this->entry->month,
+                'day' => $this->entry->day,
+            ]),
         ];
+    }
+
+    private function shiftIfValid(?string $time, int $hours): ?string
+    {
+        $time = is_string($time) ? mb_trim($time) : null;
+
+        if ($time === null || $time === '') {
+            return null;
+        }
+
+        $dt = CarbonImmutable::createFromFormat('H:i', $time);
+        if (! $dt instanceof CarbonImmutable) {
+            return null;
+        }
+
+        return $dt->addHours($hours)->format('H:i');
     }
 }
