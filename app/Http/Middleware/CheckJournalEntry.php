@@ -24,6 +24,11 @@ final class CheckJournalEntry
         $month = (int) $request->route()->parameter('month');
         $year = (int) $request->route()->parameter('year');
 
+        // make sure the date is a real date
+        if (! checkdate($month, $day, $year)) {
+            abort(404);
+        }
+
         try {
             $journal = $request->attributes->get('journal');
 

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\App\Journals;
 
 use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
+use App\View\Presenters\JournalEntryPresenter;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
@@ -29,10 +30,14 @@ final class JournalEntryController extends Controller
             day: $journalEntry->day,
         );
 
-        return view('app.journal.show', [
+        $modules = new JournalEntryPresenter($journalEntry)->build();
+
+        return view('app.journal.entry.show', [
             'journal' => $journal,
             'months' => $months,
             'days' => $days,
+            'entry' => $journalEntry,
+            'modules' => $modules,
         ]);
     }
 }

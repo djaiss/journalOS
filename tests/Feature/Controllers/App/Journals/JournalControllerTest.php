@@ -71,7 +71,7 @@ final class JournalControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get('/journals/' . $journal->slug);
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
     #[Test]

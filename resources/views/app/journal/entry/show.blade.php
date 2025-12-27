@@ -34,8 +34,13 @@
   </div>
 
   <div class="grid grid-cols-3 gap-4 p-4">
-    <div>
-      <h3 class="text-lg font-bold">Journal</h3>
+    <div class="space-y-2">
+      @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
+
+      <x-module>
+        <x-slot:title>{{ __('Claim your account and make it permanent') }}</x-slot>
+        sdflsjf
+      </x-module>
     </div>
     <div>
       <h3 class="text-lg font-bold">Journal</h3>
@@ -43,6 +48,5 @@
     <div>
       {{-- <x-module>this is great</x-module> --}}
     </div>
-    great
   </div>
 </x-app-layout>
