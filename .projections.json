@@ -1,15 +1,24 @@
 {
-  "app/Http/Controllers/Api/*.php": {
-    "alternate": "tests/Feature/Controllers/Api/{}Test.php"
+  "app/Actions/*.php": {
+    "alternate": "tests/Unit/Actions/{}Test.php"
+  },
+  "app/Console/Commands/*.php": {
+    "alternate": "tests/Unit/Console/Commands/{}Test.php"
+  },
+  "app/Helpers/Modules/*.php": {
+    "alternate": "tests/Unit/Helpers/Modules/{}Test.php"
+  },
+  "app/Helpers/*.php": {
+    "alternate": "tests/Unit/Helpers/{}Test.php"
   },
   "app/Http/Controllers/*.php": {
     "alternate": "tests/Feature/Controllers/{}Test.php"
   },
+  "app/Http/Controllers/**/*.php": {
+    "alternate": "tests/Feature/Controllers/{}Test.php"
+  },
   "app/Http/ViewModels/*.php": {
     "alternate": "tests/Unit/ViewModels/{}Test.php"
-  },
-  "app/Actions/*.php": {
-    "alternate": "tests/Unit/Actions/{}Test.php"
   },
   "app/Jobs/*.php": {
     "alternate": "tests/Unit/Jobs/{}Test.php"
@@ -26,17 +35,26 @@
   "app/View/Components/*.php": {
     "alternate": "tests/Unit/View/Components/{}Test.php"
   },
-  "tests/Feature/Controllers/Api/*Test.php": {
-    "alternate": "app/Http/Controllers/Api/{}.php"
+  "app/View/Presenters/*.php": {
+    "alternate": "tests/Unit/Presenters/{}Test.php"
   },
   "tests/Feature/Controllers/*Test.php": {
     "alternate": "app/Http/Controllers/{}.php"
   },
-  "tests/Unit/ViewModels/*Test.php": {
-    "alternate": "app/Http/ViewModels/{}.php"
+  "tests/Feature/Controllers/**/*Test.php": {
+    "alternate": "app/Http/Controllers/{}.php"
   },
   "tests/Unit/Actions/*Test.php": {
     "alternate": "app/Actions/{}.php"
+  },
+  "tests/Unit/Console/Commands/*Test.php": {
+    "alternate": "app/Console/Commands/{}.php"
+  },
+  "tests/Unit/Helpers/Modules/*Test.php": {
+    "alternate": "app/Helpers/Modules/{}.php"
+  },
+  "tests/Unit/Helpers/*Test.php": {
+    "alternate": "app/Helpers/{}.php"
   },
   "tests/Unit/Jobs/*Test.php": {
     "alternate": "app/Jobs/{}.php"
@@ -47,10 +65,16 @@
   "tests/Unit/Models/*Test.php": {
     "alternate": "app/Models/{}.php"
   },
+  "tests/Unit/Presenters/*Test.php": {
+    "alternate": "app/View/Presenters/{}.php"
+  },
   "tests/Unit/Providers/*Test.php": {
     "alternate": "app/Providers/{}.php"
   },
   "tests/Unit/View/Components/*Test.php": {
     "alternate": "app/View/Components/{}.php"
+  },
+  "tests/Unit/ViewModels/*Test.php": {
+    "alternate": "app/Http/ViewModels/{}.php"
   }
 }
