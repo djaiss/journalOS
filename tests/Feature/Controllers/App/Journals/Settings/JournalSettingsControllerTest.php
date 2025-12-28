@@ -45,7 +45,7 @@ final class JournalSettingsControllerTest extends TestCase
         $journal->refresh();
 
         $response->assertRedirect(route('journal.settings.show', ['slug' => $journal->slug]));
-        $response->assertSessionHas('status', 'Journal renamed successfully');
+        $response->assertSessionHas('status', 'Changes saved');
         $this->assertEquals('Threat Level Midnight', $journal->name);
     }
 

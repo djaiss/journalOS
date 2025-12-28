@@ -9,7 +9,7 @@
     ['label' => __('Settings')]
   ]" />
 
-  <div class="mx-auto w-xl mt-10">
+  <div class="mx-auto mt-10 w-xl">
     @include('app.journal.settings.partials.rename')
   </div>
 </x-app-layout>

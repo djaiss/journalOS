@@ -34,11 +34,11 @@ final class JournalSettingsController extends Controller
             ],
         ]);
 
-        (new RenameJournal(
+        new RenameJournal(
             user: $request->user(),
             journal: $journal,
             name: $validated['journal_name'],
-        ))->execute();
+        )->execute();
 
         return to_route('journal.settings.show', [
             'slug' => $journal->slug,
