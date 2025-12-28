@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\App;
 use App\Http\Controllers\App\Journals;
 use App\Http\Controllers\App\Settings;
-use App\Http\Controllers\App;
 use App\Http\Controllers\Instance;
+use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
-require __DIR__ . '/marketing.php';
+require __DIR__.'/marketing.php';
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
@@ -54,6 +54,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
             // settings
             Route::get('journals/{slug}/settings', [Journals\Settings\JournalSettingsController::class, 'show'])->name('journal.settings.show');
+            Route::put('journals/{slug}/settings', [Journals\Settings\JournalSettingsController::class, 'update'])->name('journal.settings.update');
         });
     });
 
@@ -103,4 +104,4 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -1,7 +1,7 @@
 <x-box padding="p-0">
   <x-slot:title>{{ __('Rename journal') }}</x-slot>
 
-  <x-form method="put" action="{{ route('settings.password.update') }}">
+  <x-form method="put" action="{{ route('journal.settings.update', ['slug' => $journal->slug]) }}">
     <div class="grid grid-cols-3 items-center rounded-t-lg border-b border-gray-200 p-3 hover:bg-blue-50">
       <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name of the journal') }}</p>
       <div class="w-full justify-self-end">
