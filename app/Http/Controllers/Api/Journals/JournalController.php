@@ -19,7 +19,7 @@ final class JournalController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $journals = Auth::user()->journals;
+        $journals = Auth::user()->journals()->orderBy('id')->get();
 
         return JournalResource::collection($journals);
     }
