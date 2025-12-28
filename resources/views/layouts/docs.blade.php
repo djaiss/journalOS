@@ -24,13 +24,7 @@
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account.',) ? 'true' : 'false' }}' ===
               'true',
             journalsDocumentation:
-              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.organizations',) ? 'true' : 'false' }}' ===
-              'true',
-            jobFamiliesDocumentation:
-              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.organizations.job-families',) ? 'true' : 'false' }}' ===
-              'true',
-            jobLevelsDocumentation:
-              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.organizations.job-levels',) ? 'true' : 'false' }}' ===
+              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) ? 'true' : 'false' }}' ===
               'true',
           }"
           class="bg-light dark:bg-dark z-10 pt-16">

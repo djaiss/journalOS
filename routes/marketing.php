@@ -17,4 +17,4 @@ Route::get('/docs/api/authentication', [Docs\Api\AuthenticationController::class
 Route::get('/docs/api/profile', [Docs\Api\ProfileController::class, 'index'])->name('marketing.docs.api.account.profile');
 Route::get('/docs/api/api-management', [Docs\Api\ApiManagementController::class, 'index'])->name('marketing.docs.api.account.api-management');
 Route::get('/docs/api/logs', [Docs\Api\LogController::class, 'index'])->name('marketing.docs.api.account.logs');
-Route::get('/docs/api/organizations', [Docs\Api\JournalController::class, 'index'])->name('marketing.docs.api.journals');
+Route::get('/docs/api/journals', [Docs\Api\JournalController::class, 'index'])->name('marketing.docs.api.journals');
