@@ -42,6 +42,8 @@ final class SleepModulePresenterTest extends TestCase
         $this->assertArrayHasKey('next_wake_up_url', $result);
         $this->assertArrayHasKey('bedtime_update_url', $result);
         $this->assertArrayHasKey('wake_up_time_update_url', $result);
+        $this->assertArrayHasKey('reset_url', $result);
+        $this->assertArrayHasKey('display_reset', $result);
 
         $this->assertCount(5, $result['bedtime']);
         $this->assertCount(5, $result['wake_up_time']);
@@ -148,6 +150,11 @@ final class SleepModulePresenterTest extends TestCase
 
         $this->assertStringContainsString('/01:00', $result['previous_wake_up_url']);
         $this->assertStringContainsString('/11:00', $result['next_wake_up_url']);
+
+        $this->assertStringContainsString($journal->slug, $result['reset_url']);
+        $this->assertStringContainsString('2024', $result['reset_url']);
+        $this->assertStringContainsString('12', $result['reset_url']);
+        $this->assertStringContainsString('25', $result['reset_url']);
     }
 
     #[Test]

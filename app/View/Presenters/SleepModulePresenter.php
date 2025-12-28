@@ -63,6 +63,27 @@ final readonly class SleepModulePresenter
             'wake_up_time' => SleepHelper::shift($wake_up_time, +5),
         ]);
 
+        $bedtimeUpdateUrl = route('journal.entry.sleep.bedtime.update', [
+            'slug' => $this->entry->journal->slug,
+            'year' => $this->entry->year,
+            'month' => $this->entry->month,
+            'day' => $this->entry->day,
+        ]);
+
+        $wakeUpTimeUpdateUrl = route('journal.entry.sleep.wake_up_time.update', [
+            'slug' => $this->entry->journal->slug,
+            'year' => $this->entry->year,
+            'month' => $this->entry->month,
+            'day' => $this->entry->day,
+        ]);
+
+        $resetUrl = route('journal.entry.sleep.reset', [
+            'slug' => $this->entry->journal->slug,
+            'year' => $this->entry->year,
+            'month' => $this->entry->month,
+            'day' => $this->entry->day,
+        ]);
+
         return [
             'bedtime' => $bedtimeRange,
             'wake_up_time' => $wakeUpRange,
@@ -70,18 +91,10 @@ final readonly class SleepModulePresenter
             'next_bedtime_url' => $nextBedtimeUrl,
             'previous_wake_up_url' => $previousWakeUpUrl,
             'next_wake_up_url' => $nextWakeUpUrl,
-            'bedtime_update_url' => route('journal.entry.sleep.bedtime.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
-            'wake_up_time_update_url' => route('journal.entry.sleep.wake_up_time.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
+            'bedtime_update_url' => $bedtimeUpdateUrl,
+            'wake_up_time_update_url' => $wakeUpTimeUpdateUrl,
+            'reset_url' => $resetUrl,
+            'display_reset' => ! is_null($this->entry->bedtime) || ! is_null($this->entry->wake_up_time),
         ];
     }
 
