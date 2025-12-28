@@ -1,4 +1,4 @@
-<x-box class="mb-8" padding="p-0">
+<x-box padding="p-0">
   <x-slot:title>
     {{ __('Auto delete account') }}
   </x-slot>
@@ -19,11 +19,7 @@
     </div>
 
     <!-- actions -->
-    <div class="flex justify-between border-t border-gray-200 p-3">
-      <x-button.secondary class="mr-2">
-        {{ __('Cancel') }}
-      </x-button.secondary>
-
+    <div class="flex justify-end border-t border-gray-200 p-3">
       <x-button>
         {{ __('Save') }}
       </x-button>

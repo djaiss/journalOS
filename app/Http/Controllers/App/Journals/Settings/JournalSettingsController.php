@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Controllers\App\Journals\Settings;
+
+use App\Http\Controllers\Controller;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+
+final class JournalSettingsController extends Controller
+{
+    public function show(Request $request): View
+    {
+        $journal = $request->attributes->get('journal');
+
+        return view('app.journal.settings.show', [
+            'journal' => $journal,
+        ]);
+    }
+}
