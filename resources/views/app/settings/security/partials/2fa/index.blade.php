@@ -7,7 +7,7 @@
 
 @include('app.settings.security.partials.2fa.preferred-method')
 
-<x-box padding="p-0" class="mb-6">
+<x-box padding="p-0">
   <!-- Authenticator app -->
   <div id="authenticator-app" class="flex items-center rounded-t-lg border-b border-gray-200 p-3 hover:bg-blue-50">
     <x-phosphor-device-mobile class="h-5 w-5 text-gray-500" />

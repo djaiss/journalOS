@@ -56,7 +56,7 @@
   <!-- normal desktop header -->
   <nav class="hidden flex-1 items-center gap-3 pt-2 pb-2 sm:flex">
     <a href="/" class="flex items-center">
-      <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="JournalOS logo" />
+      <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="JournalOS logo" class="transition-transform duration-150 hover:scale-145" />
     </a>
 
     <!-- selectors -->
@@ -64,12 +64,13 @@
       <div class="flex items-center gap-1">
         <a href="{{ route('journal.index') }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ __('Dashboard') }}</a>
         <span class="text-gray-500">/</span>
-        <div class="flex items-center gap-0">
-          <a class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ $journal->name }}</a>
-          <div class="rounded-md border border-transparent px-1 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
-            <x-phosphor-caret-up-down class="size-4 text-gray-600" />
-          </div>
+        <div class="flex items-center pl-2">
+          {{ $journal->name }}
         </div>
+      </div>
+
+      <div class="ml-4">
+        <a href="{{ route('journal.settings.show', ['slug' => $journal->slug]) }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ __('Settings') }}</a>
       </div>
     @endif
 

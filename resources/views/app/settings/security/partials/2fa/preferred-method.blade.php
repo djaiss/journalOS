@@ -1,4 +1,4 @@
-<x-box class="mb-8" padding="p-0">
+<x-box padding="p-0">
   <x-slot:title>{{ __('Two-factor authentication') }}</x-slot>
   <x-slot:description>
     <p>{{ __('Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in.') }}</p>

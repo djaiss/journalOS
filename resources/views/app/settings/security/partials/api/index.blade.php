@@ -4,7 +4,7 @@
  */
 ?>
 
-<x-box class="mb-6" padding="p-0">
+<x-box padding="p-0">
   <x-slot:title>{{ __('Personal API Keys') }}</x-slot>
   <x-slot:description>
     <p>{{ __('API keys are like secret passwords that allow other tools or apps to connect securely to your account.') }}</p>

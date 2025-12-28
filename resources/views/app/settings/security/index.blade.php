@@ -15,7 +15,7 @@
 
     <!-- Main content -->
     <section class="p-4 sm:p-8">
-      <div class="mx-auto max-w-2xl sm:px-0">
+      <div class="mx-auto max-w-2xl space-y-6 sm:px-0">
         <!-- user password -->
         @include('app.settings.security.partials.password', ['user' => $user])
 
