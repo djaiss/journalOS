@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
-use App\Http\Controllers\Api\Settings;
 use App\Http\Controllers\Api\Journals;
+use App\Http\Controllers\Api\Settings;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->group(function (): void {
@@ -30,6 +30,7 @@ Route::name('api.')->group(function (): void {
             Route::get('journals/{id}', [Journals\JournalController::class, 'show'])->name('journal.show');
 
             // settings
+            Route::put('journals/{id}', [Journals\JournalController::class, 'update'])->name('journal.update');
         });
 
         // settings

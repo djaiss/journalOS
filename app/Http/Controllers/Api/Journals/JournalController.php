@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals;
 
 use App\Actions\CreateJournal;
+use App\Actions\RenameJournal;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalResource;
 use App\Traits\ApiResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 final class JournalController extends Controller
 {
@@ -43,6 +44,25 @@ final class JournalController extends Controller
     public function show(Request $request): JsonResponse
     {
         $journal = $request->attributes->get('journal');
+
+        return new JournalResource($journal)
+            ->response()
+            ->setStatusCode(200);
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        $journal = $request->attributes->get('journal');
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        new RenameJournal(
+            user: $request->user(),
+            journal: $journal,
+            name: $validated['name'],
+        )->execute();
 
         return new JournalResource($journal)
             ->response()

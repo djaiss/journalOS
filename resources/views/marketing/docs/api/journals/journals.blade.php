@@ -19,6 +19,10 @@
         'id' => 'create-a-journal',
         'title' => 'Create a journal',
       ],
+      [
+        'id' => 'update-a-journal',
+        'title' => 'Update a journal',
+      ],
     ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
@@ -127,7 +131,7 @@
     </div>
 
     <!-- POST /api/journals -->
-    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="create-a-journal" title="Create a journal" />
         <p class="mb-10">This endpoint creates a new journal. It will return the journal in the response. The avatar is automatically generated.</p>
@@ -158,6 +162,43 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/journals" verb="POST" verbClass="text-green-700">
+          @include('marketing.docs.api.partials.journal-response')
+        </x-marketing.docs.code>
+      </div>
+    </div>
+
+    <!-- PUT /api/journals -->
+    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div>
+        <x-marketing.docs.h2 id="update-a-journal" title="Update a journal" />
+        <p class="mb-10">This endpoint updates the name of the journal. It will return the journal in the response. The avatar is automatically generated.</p>
+
+        <!-- url parameters -->
+        <x-marketing.docs.url-parameters>
+          <p class="text-gray-500">This endpoint does not have any parameters.</p>
+        </x-marketing.docs.url-parameters>
+
+        <!-- query parameters -->
+        <x-marketing.docs.query-parameters>
+          <x-marketing.docs.attribute required name="name" type="string" description="The name of the journal. Maximum 255 characters." />
+        </x-marketing.docs.query-parameters>
+
+        <!-- response attributes -->
+        <x-marketing.docs.response-attributes>
+          <x-marketing.docs.attribute name="type" type="string" description="The object type. Always 'journal'." />
+          <x-marketing.docs.attribute name="id" type="integer" description="The ID of the journal." />
+          <x-marketing.docs.attribute name="attributes" type="object" description="The attributes of the journal." />
+          <x-marketing.docs.attribute name="attributes.name" type="string" description="The name of the journal." />
+          <x-marketing.docs.attribute name="attributes.slug" type="string" description="The slug of the journal." />
+          <x-marketing.docs.attribute name="attributes.avatar" type="string" description="The avatar of the journal." />
+          <x-marketing.docs.attribute name="attributes.created_at" type="integer" description="The date and time the object was created, in Unix timestamp format." />
+          <x-marketing.docs.attribute name="attributes.updated_at" type="integer" description="The date and time the object was last updated, in Unix timestamp format." />
+          <x-marketing.docs.attribute name="links" type="object" description="The links of the journal." />
+          <x-marketing.docs.attribute name="self" type="string" description="The URL of the journal." />
+        </x-marketing.docs.response-attributes>
+      </div>
+      <div>
+        <x-marketing.docs.code title="/api/journals/{id}" verb="PUT" verbClass="text-green-700">
           @include('marketing.docs.api.partials.journal-response')
         </x-marketing.docs.code>
       </div>

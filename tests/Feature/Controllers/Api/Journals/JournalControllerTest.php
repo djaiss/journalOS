@@ -9,8 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class JournalControllerTest extends TestCase
 {
@@ -169,5 +169,40 @@ final class JournalControllerTest extends TestCase
         $response = $this->json('GET', '/api/journals/' . $journal->id);
 
         $response->assertStatus(404);
+    }
+
+    #[Test]
+    public function it_can_update_the_journal(): void
+    {
+        Carbon::setTestNow('2025-01-01 00:00:00');
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('PUT', '/api/journals/' . $journal->id, [
+            'name' => 'Dunder Mifflin Michael Scott Edition',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonStructure($this->singleJsonStructure);
+
+        $journal = Journal::latest()->first();
+        $this->assertEquals('Dunder Mifflin Michael Scott Edition', $journal->name);
+
+        $response->assertJson([
+            'data' => [
+                'type' => 'journal',
+                'id' => (string) $journal->id,
+                'attributes' => [
+                    'name' => 'Dunder Mifflin Michael Scott Edition',
+                    'slug' => $journal->slug,
+                    'created_at' => Carbon::now()->timestamp,
+                    'updated_at' => Carbon::now()->timestamp,
+                ],
+            ],
+        ]);
     }
 }
