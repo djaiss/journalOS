@@ -18,6 +18,7 @@
 - [x] add notion of trial
 - [ ] notion of denormalized data
 - [ ] display the number of entries on a month
+- [ ] display months containing entries
 - [ ] year selector
-- [ ] reset sleep entries
+- [x] reset sleep entries
 - [ ] hide/show modules
