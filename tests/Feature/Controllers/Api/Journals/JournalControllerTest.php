@@ -152,7 +152,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/' . $journal->id);
+        $response = $this->json('GET', '/api/journals/'.$journal->id);
 
         $response->assertStatus(200);
         $response->assertJsonStructure($this->singleJsonStructure);
@@ -166,7 +166,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/' . $journal->id);
+        $response = $this->json('GET', '/api/journals/'.$journal->id);
 
         $response->assertStatus(404);
     }
@@ -182,7 +182,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id, [
+        $response = $this->json('PUT', '/api/journals/'.$journal->id, [
             'name' => 'Dunder Mifflin Michael Scott Edition',
         ]);
 
@@ -204,5 +204,37 @@ final class JournalControllerTest extends TestCase
                 ],
             ],
         ]);
+    }
+
+    #[Test]
+    public function it_can_delete_a_journal(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('DELETE', '/api/journals/'.$journal->id);
+
+        $response->assertNoContent();
+
+        $this->assertDatabaseMissing('journals', [
+            'id' => $journal->id,
+        ]);
+    }
+
+    #[Test]
+    public function it_returns_not_found_when_deleting_a_journal_the_user_does_not_own(): void
+    {
+        $user = User::factory()->create();
+        $otherJournal = Journal::factory()->create();
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('DELETE', '/api/journals/'.$otherJournal->id);
+
+        $response->assertStatus(404);
     }
 }

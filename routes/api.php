@@ -31,6 +31,7 @@ Route::name('api.')->group(function (): void {
 
             // settings
             Route::put('journals/{id}', [Journals\JournalController::class, 'update'])->name('journal.update');
+            Route::delete('journals/{id}', [Journals\JournalController::class, 'destroy'])->name('journal.destroy');
         });
 
         // settings

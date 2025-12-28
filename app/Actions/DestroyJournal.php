@@ -1,0 +1,61 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Actions;
+
+use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\Journal;
+use App\Models\JournalEntry;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+final readonly class DestroyJournal
+{
+    public function __construct(
+        private User $user,
+        private Journal $journal,
+    ) {}
+
+    public function execute(): void
+    {
+        $this->authorize();
+        $this->removeEntries();
+        $this->remove();
+        $this->updateUserLastActivityDate();
+        $this->log();
+    }
+
+    private function authorize(): void
+    {
+        if ($this->journal->user_id !== $this->user->id) {
+            throw new ModelNotFoundException('Journal not found');
+        }
+    }
+
+    private function remove(): void
+    {
+        $this->journal->delete();
+    }
+
+    private function removeEntries(): void
+    {
+        JournalEntry::query()->where('journal_id', $this->journal->id)->delete();
+    }
+
+    private function log(): void
+    {
+        LogUserAction::dispatch(
+            user: $this->user,
+            journal: $this->journal,
+            action: 'journal_deletion',
+            description: sprintf('Deleted the journal called %s', $this->journal->name),
+        )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
+    }
+}
