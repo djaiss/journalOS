@@ -57,9 +57,6 @@
           <x-marketing.docs.attribute name="attributes.day" type="integer" description="The day of the journal entry." />
           <x-marketing.docs.attribute name="attributes.month" type="integer" description="The month of the journal entry." />
           <x-marketing.docs.attribute name="attributes.year" type="integer" description="The year of the journal entry." />
-          <x-marketing.docs.attribute name="attributes.bedtime" type="string" description="The bedtime time of the journal entry." />
-          <x-marketing.docs.attribute name="attributes.wake_up_time" type="string" description="The wake up time of the journal entry." />
-          <x-marketing.docs.attribute name="attributes.sleep_duration_in_minutes" type="integer" description="The sleep duration in minutes." />
           <x-marketing.docs.attribute name="attributes.modules" type="object" description="The modules included with the journal entry." />
           <x-marketing.docs.attribute name="attributes.modules.sleep" type="object" description="The sleep module payload." />
           <x-marketing.docs.attribute name="attributes.modules.sleep.bedtime" type="string" description="The bedtime time of the journal entry." />

@@ -32,21 +32,7 @@
   ,
 </div>
 <div class="pl-12">
-  "bedtime":
-  <span class="text-lime-700">"22:30"</span>
-  ,
-</div>
-<div class="pl-12">
-  "wake_up_time":
-  <span class="text-lime-700">"06:45"</span>
-  ,
-</div>
-<div class="pl-12">
-  "sleep_duration_in_minutes":
-  <span class="text-rose-800">495</span>
-  ,
-</div>
-<div class="pl-12">"modules": {</div>
+  "modules": {</div>
 <div class="pl-16">"sleep": {</div>
 <div class="pl-20">
   "bedtime":
