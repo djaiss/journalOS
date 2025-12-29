@@ -21,7 +21,7 @@
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.',) ? 'true' : 'false' }}' ===
               'true',
             accountManagementDocumentation:
-              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account.',) ? 'true' : 'false' }}' ===
+              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account',) ? 'true' : 'false' }}' ===
               'true',
             journalsDocumentation:
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) ? 'true' : 'false' }}' ===
