@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals;
 
 use App\Actions\CreateJournal;
+use App\Actions\DestroyJournal;
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 final class JournalController extends Controller
 {
@@ -64,5 +65,18 @@ final class JournalController extends Controller
             'month' => $month,
             'day' => $day,
         ]);
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        $journal = $request->attributes->get('journal');
+
+        new DestroyJournal(
+            user: Auth::user(),
+            journal: $journal,
+        )->execute();
+
+        return to_route('journal.index')
+            ->with('status', trans('The journal has been deleted'));
     }
 }

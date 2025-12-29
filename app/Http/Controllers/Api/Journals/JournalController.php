@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals;
 
 use App\Actions\CreateJournal;
+use App\Actions\DestroyJournal;
 use App\Actions\RenameJournal;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalResource;
@@ -12,6 +13,7 @@ use App\Traits\ApiResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 final class JournalController extends Controller
@@ -59,7 +61,7 @@ final class JournalController extends Controller
         ]);
 
         new RenameJournal(
-            user: $request->user(),
+            user: Auth::user(),
             journal: $journal,
             name: $validated['name'],
         )->execute();
@@ -67,5 +69,17 @@ final class JournalController extends Controller
         return new JournalResource($journal)
             ->response()
             ->setStatusCode(200);
+    }
+
+    public function destroy(Request $request): Response
+    {
+        $journal = $request->attributes->get('journal');
+
+        new DestroyJournal(
+            user: Auth::user(),
+            journal: $journal,
+        )->execute();
+
+        return response()->noContent(204);
     }
 }
