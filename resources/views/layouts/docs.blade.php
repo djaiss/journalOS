@@ -82,7 +82,7 @@
                 <a href="{{ route('marketing.docs.api.account.api-management') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.account.api-management') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">API management</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.account.prune') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.account.prune') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Prune account</a>
+                <a href="{{ route('marketing.docs.api.account') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.account') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Manage account</a>
               </div>
             </div>
 

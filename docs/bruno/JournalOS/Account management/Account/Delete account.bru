@@ -1,0 +1,17 @@
+meta {
+  name: Delete account
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{URL}}/settings/account
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "reason": "I no longer need the account"
+  }
+}
