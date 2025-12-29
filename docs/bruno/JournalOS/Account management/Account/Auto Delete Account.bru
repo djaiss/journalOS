@@ -1,0 +1,15 @@
+meta {
+  name: Auto delete account
+  type: http
+  seq: 1
+}
+
+put {
+  url: http://{{URL}}/settings/security/auto-delete-account?auto_delete_account=0
+  body: json
+  auth: inherit
+}
+
+params:query {
+  auto_delete_account: 0
+}
