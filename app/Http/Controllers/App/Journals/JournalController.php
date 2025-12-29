@@ -6,6 +6,7 @@ namespace App\Http\Controllers\App\Journals;
 
 use App\Actions\CreateJournal;
 use App\Actions\DestroyJournal;
+use App\Actions\RenameJournal;
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
 use Illuminate\Http\RedirectResponse;
@@ -65,6 +66,30 @@ final class JournalController extends Controller
             'month' => $month,
             'day' => $day,
         ]);
+    }
+
+    public function update(Request $request): RedirectResponse
+    {
+        $journal = $request->attributes->get('journal');
+
+        $validated = $request->validate([
+            'journal_name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z0-9\s\-_]+$/',
+            ],
+        ]);
+
+        new RenameJournal(
+            user: $request->user(),
+            journal: $journal,
+            name: $validated['journal_name'],
+        )->execute();
+
+        return to_route('journal.settings.show', [
+            'slug' => $journal->slug,
+        ])->with('status', __('Changes saved'));
     }
 
     public function destroy(Request $request): RedirectResponse
