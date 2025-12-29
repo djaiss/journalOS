@@ -7,7 +7,7 @@
 <x-app-layout>
   <x-slot:title>
     {{ __('Emails sent') }}
-  </x-slot>
+  </x-slot:title>
 
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],
@@ -24,7 +24,7 @@
     <section class="p-4 sm:p-8">
       <div class="mx-auto max-w-4xl sm:px-0">
         <x-box id="emails-sent-container" x-merge="append" padding="p-0">
-          <x-slot:title>{{ __('Emails sent') }}</x-slot>
+          <x-slot:title>{{ __('Emails sent') }}</x-slot:title>
           <!-- last actions -->
           @foreach ($emails as $email)
             <div x-data="{ open: false, isLast: {{ $loop->last ? 'true' : 'false' }} }">

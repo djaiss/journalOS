@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot:title>
     {{ __('Claim your account') }}
-  </x-slot>
+  </x-slot:title>
 
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],
@@ -14,7 +14,7 @@
         <!-- Left: Form -->
         <div>
           <x-box>
-            <x-slot:title>{{ __('Claim your account and make it permanent') }}</x-slot>
+            <x-slot:title>{{ __('Claim your account and make it permanent') }}</x-slot:title>
 
             <x-form method="post" :action="route('claim.store')" class="space-y-4">
               <!-- First and Last Name -->
