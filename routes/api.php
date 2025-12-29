@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Settings;
+use App\Http\Controllers\Api\Settings\Account\DestroyAccountController;
 use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,5 +49,6 @@ Route::name('api.')->group(function (): void {
 
         // settings - account
         Route::put('settings/prune', [PruneAccountController::class, 'update'])->name('settings.account.prune');
+        Route::delete('settings/account', [DestroyAccountController::class, 'destroy'])->name('settings.account.destroy');
     });
 });
