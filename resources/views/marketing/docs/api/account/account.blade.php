@@ -8,6 +8,10 @@
 
     <x-marketing.docs.table-of-content :items="[
       [
+        'id' => 'auto-delete-the-account',
+        'title' => 'Auto delete the account',
+      ],
+      [
         'id' => 'prune-the-account',
         'title' => 'Prune the account',
       ],
@@ -20,11 +24,15 @@
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
         <p class="mb-2">These endpoints help users manage account lifecycle tasks.</p>
-        <p class="mb-2">You can prune journals while keeping login access, or permanently delete the account.</p>
+        <p class="mb-2">You can schedule automatic account deletion, prune journals while keeping login access, or permanently delete the account.</p>
       </div>
       <div>
         <x-marketing.docs.code title="Endpoints">
           <div class="flex flex-col gap-y-2">
+            <a href="#auto-delete-the-account">
+              <span class="text-orange-500">PUT</span>
+              /api/settings/security/auto-delete-account
+            </a>
             <a href="#prune-the-account">
               <span class="text-orange-500">PUT</span>
               /api/settings/prune
@@ -34,6 +42,47 @@
               /api/settings/account
             </a>
           </div>
+        </x-marketing.docs.code>
+      </div>
+    </div>
+
+    <!-- PUT /api/settings/security/auto-delete-account -->
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+      <div>
+        <x-marketing.docs.h2 id="auto-delete-the-account" title="Auto delete the account" />
+        <p class="mb-10">This endpoint toggles automatic account deletion for the authenticated user.</p>
+
+        <!-- url parameters -->
+        <x-marketing.docs.url-parameters>
+          <p class="text-gray-500">This endpoint does not have any parameters.</p>
+        </x-marketing.docs.url-parameters>
+
+        <!-- query parameters -->
+        <x-marketing.docs.query-parameters>
+          <x-marketing.docs.attribute required name="auto_delete_account" type="boolean" description="Set to true to enable automatic deletion, or false to disable it." />
+        </x-marketing.docs.query-parameters>
+
+        <!-- response attributes -->
+        <x-marketing.docs.response-attributes>
+          <x-marketing.docs.attribute name="message" type="string" description="Confirmation message for the auto-delete change." />
+          <x-marketing.docs.attribute name="status" type="integer" description="HTTP status code." />
+        </x-marketing.docs.response-attributes>
+      </div>
+      <div>
+        <x-marketing.docs.code title="/api/settings/security/auto-delete-account" verb="PUT" verbClass="text-yellow-700">
+          <div>{</div>
+          <div class="pl-4">
+            <span class="text-lime-700">"message"</span>
+            :
+            <span class="text-amber-700">"Changes saved"</span>
+            ,
+          </div>
+          <div class="pl-4">
+            <span class="text-lime-700">"status"</span>
+            :
+            <span class="text-indigo-700">200</span>
+          </div>
+          <div>}</div>
         </x-marketing.docs.code>
       </div>
     </div>

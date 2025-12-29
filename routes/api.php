@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Settings;
 use App\Http\Controllers\Api\Settings\Account\DestroyAccountController;
 use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
+use App\Http\Controllers\Api\Settings\Security\AutoDeleteAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->group(function (): void {
@@ -53,6 +54,7 @@ Route::name('api.')->group(function (): void {
 
         // settings - account
         Route::put('settings/prune', [PruneAccountController::class, 'update'])->name('settings.account.prune');
+        Route::put('settings/security/auto-delete-account', [AutoDeleteAccountController::class, 'update'])->name('settings.security.auto-delete.update');
         Route::delete('settings/account', [DestroyAccountController::class, 'destroy'])->name('settings.account.destroy');
     });
 });

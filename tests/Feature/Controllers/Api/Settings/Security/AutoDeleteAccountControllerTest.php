@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\App\Settings\Security;
+namespace Tests\Feature\Controllers\Api\Settings\Security;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 final class AutoDeleteAccountControllerTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     #[Test]
     public function it_updates_auto_delete_account_setting_to_true(): void
@@ -20,14 +21,17 @@ final class AutoDeleteAccountControllerTest extends TestCase
             'auto_delete_account' => false,
         ]);
 
-        $this->actingAs($user);
+        Sanctum::actingAs($user);
 
-        $response = $this->put(route('settings.security.auto-delete.update'), [
+        $response = $this->json('PUT', '/api/settings/security/auto-delete-account', [
             'auto_delete_account' => true,
         ]);
 
-        $response->assertRedirect(route('settings.security.index'));
-        $response->assertSessionHas('status', trans('Changes saved'));
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => trans('Changes saved'),
+            'status' => 200,
+        ]);
 
         $this->assertTrue($user->fresh()->auto_delete_account);
     }
@@ -39,14 +43,17 @@ final class AutoDeleteAccountControllerTest extends TestCase
             'auto_delete_account' => true,
         ]);
 
-        $this->actingAs($user);
+        Sanctum::actingAs($user);
 
-        $response = $this->put(route('settings.security.auto-delete.update'), [
+        $response = $this->json('PUT', '/api/settings/security/auto-delete-account', [
             'auto_delete_account' => false,
         ]);
 
-        $response->assertRedirect(route('settings.security.index'));
-        $response->assertSessionHas('status', trans('Changes saved'));
+        $response->assertStatus(200);
+        $response->assertJson([
+            'message' => trans('Changes saved'),
+            'status' => 200,
+        ]);
 
         $this->assertFalse($user->fresh()->auto_delete_account);
     }
