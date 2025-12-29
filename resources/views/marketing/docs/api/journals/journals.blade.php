@@ -23,6 +23,10 @@
         'id' => 'update-a-journal',
         'title' => 'Update a journal',
       ],
+      [
+        'id' => 'delete-a-journal',
+        'title' => 'Delete a journal',
+      ],
     ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
@@ -47,6 +51,12 @@
             <a href="#create-a-journal">
               <span class="text-green-700">POST</span>
               /api/journals
+            </a>
+          </div>
+          <div class="flex flex-col gap-y-2">
+            <a href="#delete-a-journal">
+              <span class="text-red-700">DELETE</span>
+              /api/journals/{id}
             </a>
           </div>
         </x-marketing.docs.code>
@@ -168,7 +178,7 @@
     </div>
 
     <!-- PUT /api/journals -->
-    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="update-a-journal" title="Update a journal" />
         <p class="mb-10">This endpoint updates the name of the journal. It will return the journal in the response. The avatar is automatically generated.</p>
@@ -200,6 +210,34 @@
       <div>
         <x-marketing.docs.code title="/api/journals/{id}" verb="PUT" verbClass="text-green-700">
           @include('marketing.docs.api.partials.journal-response')
+        </x-marketing.docs.code>
+      </div>
+    </div>
+
+    <!-- DELETE /api/journals/{id} -->
+    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div>
+        <x-marketing.docs.h2 id="delete-a-journal" title="Delete a journal" />
+        <p class="mb-10">This endpoint deletes a journal owned by the authenticated user.</p>
+
+        <!-- url parameters -->
+        <x-marketing.docs.url-parameters>
+          <x-marketing.docs.attribute required name="id" type="integer" description="The ID of the journal to delete." />
+        </x-marketing.docs.url-parameters>
+
+        <!-- query parameters -->
+        <x-marketing.docs.query-parameters>
+          <p class="text-gray-500">No query parameters are available for this endpoint.</p>
+        </x-marketing.docs.query-parameters>
+
+        <!-- response attributes -->
+        <x-marketing.docs.response-attributes>
+          <p class="text-gray-500">No response attributes are available for this endpoint.</p>
+        </x-marketing.docs.response-attributes>
+      </div>
+      <div>
+        <x-marketing.docs.code title="/api/journals/{id}" verb="DELETE" verbClass="text-red-700">
+          <div>No response body</div>
         </x-marketing.docs.code>
       </div>
     </div>
