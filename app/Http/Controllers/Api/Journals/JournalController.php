@@ -61,7 +61,7 @@ final class JournalController extends Controller
         ]);
 
         new RenameJournal(
-            user: $request->user(),
+            user: Auth::user(),
             journal: $journal,
             name: $validated['name'],
         )->execute();
@@ -76,10 +76,10 @@ final class JournalController extends Controller
         $journal = $request->attributes->get('journal');
 
         (new DestroyJournal(
-            user: $request->user(),
+            user: Auth::user(),
             journal: $journal,
         ))->execute();
 
-        return response()->noContent();
+        return response()->noContent(204);
     }
 }

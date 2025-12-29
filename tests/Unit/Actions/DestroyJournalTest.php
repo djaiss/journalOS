@@ -26,7 +26,8 @@ final class DestroyJournalTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
         ]);
         $entry = JournalEntry::factory()->for($journal)->create();
