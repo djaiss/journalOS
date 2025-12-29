@@ -24,7 +24,7 @@ final class AutoDeleteAccountControllerTest extends TestCase
         Sanctum::actingAs($user);
 
         $response = $this->json('PUT', '/api/settings/security/auto-delete-account', [
-            'auto_delete_account' => 'yes',
+            'auto_delete_account' => true,
         ]);
 
         $response->assertStatus(200);
@@ -46,7 +46,7 @@ final class AutoDeleteAccountControllerTest extends TestCase
         Sanctum::actingAs($user);
 
         $response = $this->json('PUT', '/api/settings/security/auto-delete-account', [
-            'auto_delete_account' => 'no',
+            'auto_delete_account' => false,
         ]);
 
         $response->assertStatus(200);

@@ -23,7 +23,7 @@ final class AutoDeleteAccountControllerTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->put(route('settings.security.auto-delete.update'), [
-            'auto_delete_account' => 'yes',
+            'auto_delete_account' => true,
         ]);
 
         $response->assertRedirect(route('settings.security.index'));
@@ -42,7 +42,7 @@ final class AutoDeleteAccountControllerTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->put(route('settings.security.auto-delete.update'), [
-            'auto_delete_account' => 'no',
+            'auto_delete_account' => false,
         ]);
 
         $response->assertRedirect(route('settings.security.index'));

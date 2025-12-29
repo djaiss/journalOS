@@ -59,7 +59,7 @@
 
         <!-- query parameters -->
         <x-marketing.docs.query-parameters>
-          <x-marketing.docs.attribute required name="auto_delete_account" type="string" description="Set to 'yes' to enable automatic deletion, or 'no' to disable it." />
+          <x-marketing.docs.attribute required name="auto_delete_account" type="boolean" description="Set to true to enable automatic deletion, or false to disable it." />
         </x-marketing.docs.query-parameters>
 
         <!-- response attributes -->

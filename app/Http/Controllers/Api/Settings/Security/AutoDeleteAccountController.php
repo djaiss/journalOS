@@ -17,11 +17,11 @@ final class AutoDeleteAccountController extends Controller
     public function update(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'auto_delete_account' => ['required', 'in:yes,no'],
+            'auto_delete_account' => ['required', 'boolean'],
         ]);
 
         $user = Auth::user();
-        $user->auto_delete_account = $validated['auto_delete_account'] === 'yes';
+        $user->auto_delete_account = (bool) $validated['auto_delete_account'];
         $user->save();
 
         return $this->ok(trans('Changes saved'));
