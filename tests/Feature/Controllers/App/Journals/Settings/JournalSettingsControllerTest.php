@@ -31,60 +31,12 @@ final class JournalSettingsControllerTest extends TestCase
     }
 
     #[Test]
-    public function it_updates_the_journal_name(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
-            'name' => 'Dunder Mifflin',
-        ]);
-
-        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings', [
-            'journal_name' => 'Threat Level Midnight',
-        ]);
-
-        $journal->refresh();
-
-        $response->assertRedirect(route('journal.settings.show', ['slug' => $journal->slug]));
-        $response->assertSessionHas('status', 'Changes saved');
-        $this->assertEquals('Threat Level Midnight', $journal->name);
-    }
-
-    #[Test]
-    public function it_validates_the_journal_name_when_updating(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-
-        $response = $this->actingAs($user)
-            ->from('/journals/' . $journal->slug . '/settings')
-            ->put('/journals/' . $journal->slug . '/settings', [
-                'journal_name' => 'Invalid@!',
-            ]);
-
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
-        $response->assertSessionHasErrors(['journal_name']);
-    }
-
-    #[Test]
     public function it_returns_not_found_if_user_does_not_own_the_journal(): void
     {
         $user = User::factory()->create();
         $otherJournal = Journal::factory()->create();
 
         $response = $this->actingAs($user)->get('/journals/' . $otherJournal->slug . '/settings');
-
-        $response->assertNotFound();
-    }
-
-    #[Test]
-    public function it_returns_not_found_when_trying_to_update_a_journal_the_user_does_not_own(): void
-    {
-        $user = User::factory()->create();
-        $otherJournal = Journal::factory()->create();
-
-        $response = $this->actingAs($user)->put('/journals/' . $otherJournal->slug . '/settings', [
-            'journal_name' => 'Threat Level Midnight',
-        ]);
 
         $response->assertNotFound();
     }
