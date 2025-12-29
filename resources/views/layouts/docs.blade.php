@@ -21,7 +21,7 @@
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.',) ? 'true' : 'false' }}' ===
               'true',
             accountManagementDocumentation:
-              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account.',) ? 'true' : 'false' }}' ===
+              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account',) ? 'true' : 'false' }}' ===
               'true',
             journalsDocumentation:
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) ? 'true' : 'false' }}' ===
@@ -77,6 +77,9 @@
               </div>
               <div>
                 <a href="{{ route('marketing.docs.api.account.logs') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.account.logs') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Logs</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.docs.api.account.emails') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.account.emails') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Emails</a>
               </div>
               <div>
                 <a href="{{ route('marketing.docs.api.account.api-management') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.account.api-management') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">API management</a>
