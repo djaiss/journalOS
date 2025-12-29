@@ -20,3 +20,4 @@ Route::get('/docs/api/logs', [Docs\Api\LogController::class, 'index'])->name('ma
 Route::get('/docs/api/emails', [Docs\Api\EmailSentController::class, 'index'])->name('marketing.docs.api.account.emails');
 Route::get('/docs/api/account', [Docs\Api\AccountController::class, 'index'])->name('marketing.docs.api.account');
 Route::get('/docs/api/journals', [Docs\Api\JournalController::class, 'index'])->name('marketing.docs.api.journals');
+Route::get('/docs/api/journal-entries', [Docs\Api\JournalEntryController::class, 'index'])->name('marketing.docs.api.journal-entries');

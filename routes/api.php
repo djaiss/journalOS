@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Journals;
+use App\Http\Controllers\Api\Journals\JournalEntryController;
 use App\Http\Controllers\Api\Settings;
 use App\Http\Controllers\Api\Settings\Account\DestroyAccountController;
 use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
@@ -31,6 +32,14 @@ Route::name('api.')->group(function (): void {
 
         Route::middleware(['journal.api'])->group(function (): void {
             Route::get('journals/{id}', [Journals\JournalController::class, 'show'])->name('journal.show');
+
+            Route::middleware(['journal.entry.api'])->group(function (): void {
+                Route::get('journals/{id}/{year}/{month}/{day}', [JournalEntryController::class, 'show'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.show');
+            });
 
             // settings
             Route::put('journals/{id}', [Journals\JournalController::class, 'update'])->name('journal.update');

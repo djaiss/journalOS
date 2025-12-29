@@ -24,7 +24,7 @@
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account',) ? 'true' : 'false' }}' ===
               'true',
             journalsDocumentation:
-              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) ? 'true' : 'false' }}' ===
+              '{{ (str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) || str_starts_with( request()->route()->getName(),'marketing.docs.api.journal-entries',)) ? 'true' : 'false' }}' ===
               'true',
           }"
           class="bg-light dark:bg-dark z-10 pt-16">
@@ -97,6 +97,9 @@
             <div x-show="journalsDocumentation" class="mb-3 flex flex-col gap-y-2">
               <div>
                 <a href="{{ route('marketing.docs.api.journals') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.journals') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journals</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.docs.api.journal-entries') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.journal-entries') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journal entries</a>
               </div>
             </div>
           </div>

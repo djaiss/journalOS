@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Resources;
+
+use App\Models\JournalEntry;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/**
+ * @mixin JournalEntry
+ */
+final class JournalEntryResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'type' => 'journal_entry',
+            'id' => (string) $this->id,
+            'attributes' => [
+                'journal_id' => $this->journal_id,
+                'day' => $this->day,
+                'month' => $this->month,
+                'year' => $this->year,
+                'modules' => [
+                    'sleep' => [
+                        'bedtime' => $this->bedtime,
+                        'wake_up_time' => $this->wake_up_time,
+                        'sleep_duration_in_minutes' => $this->sleep_duration_in_minutes,
+                    ],
+                ],
+                'created_at' => $this->created_at->timestamp,
+                'updated_at' => $this->updated_at?->timestamp,
+            ],
+            'links' => [
+                'self' => route('api.journal.entry.show', [
+                    'id' => $this->journal_id,
+                    'year' => $this->year,
+                    'month' => $this->month,
+                    'day' => $this->day,
+                ]),
+            ],
+        ];
+    }
+}

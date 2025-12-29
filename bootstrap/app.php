@@ -10,6 +10,7 @@ use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\CheckJournal;
 use App\Http\Middleware\CheckJournalAPI;
 use App\Http\Middleware\CheckJournalEntry;
+use App\Http\Middleware\CheckJournalEntryAPI;
 use App\Http\Middleware\CheckSubscription;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -25,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'journal' => CheckJournal::class,
             'journal.api' => CheckJournalAPI::class,
             'journal.entry' => CheckJournalEntry::class,
+            'journal.entry.api' => CheckJournalEntryAPI::class,
             'instance.admin' => CheckInstanceAdministrator::class,
             'subscription' => CheckSubscription::class,
         ]);

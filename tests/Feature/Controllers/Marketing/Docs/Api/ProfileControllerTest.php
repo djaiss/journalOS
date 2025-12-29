@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Marketing;
+namespace Tests\Feature\Controllers\Marketing\Docs\Api;
 
 use App\Jobs\RecordMarketingPageVisit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
