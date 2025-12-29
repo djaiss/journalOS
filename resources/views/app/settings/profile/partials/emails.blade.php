@@ -1,5 +1,5 @@
 <x-box padding="p-0">
-  <x-slot:title>{{ __('Emails sent') }}</x-slot>
+  <x-slot:title>{{ __('Emails sent') }}</x-slot:title>
 
   @forelse ($emails as $emailSent)
     <div x-data="{ open: false, isLast: {{ $loop->last ? 'true' : 'false' }} }">

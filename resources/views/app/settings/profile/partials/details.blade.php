@@ -5,7 +5,7 @@
 ?>
 
 <x-box>
-  <x-slot:title>{{ __('Details') }}</x-slot>
+  <x-slot:title>{{ __('Details') }}</x-slot:title>
 
   <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
     <div class="space-y-2">
