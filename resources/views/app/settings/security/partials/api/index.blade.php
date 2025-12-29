@@ -5,11 +5,11 @@
 ?>
 
 <x-box padding="p-0">
-  <x-slot:title>{{ __('Personal API Keys') }}</x-slot>
+  <x-slot:title>{{ __('Personal API Keys') }}</x-slot:title>
   <x-slot:description>
     <p>{{ __('API keys are like secret passwords that allow other tools or apps to connect securely to your account.') }}</p>
     <p>{{ __('Each API key is unique to you. Treat them like private passwords—don’t share them with anyone you don’t trust.') }}</p>
-  </x-slot>
+  </x-slot:description>
 
   <div id="api-key-notification">
     @if (session('apiKey'))

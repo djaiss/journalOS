@@ -1,7 +1,7 @@
 <x-app-layout :journal="$journal">
   <x-slot:title>
     {{ __('Journal') }}
-  </x-slot>
+  </x-slot:title>
 
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],
@@ -38,7 +38,7 @@
       @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
 
       <x-module>
-        <x-slot:title>{{ __('Claim your account and make it permanent') }}</x-slot>
+        <x-slot:title>{{ __('Claim your account and make it permanent') }}</x-slot:title>
         sdflsjf
       </x-module>
     </div>

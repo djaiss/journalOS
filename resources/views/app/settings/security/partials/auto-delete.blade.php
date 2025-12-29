@@ -1,11 +1,11 @@
 <x-box padding="p-0">
   <x-slot:title>
     {{ __('Auto delete account') }}
-  </x-slot>
+  </x-slot:title>
 
   <x-slot:description>
     {{ __('Automatically delete the account and all the data after 6 months of inactivity. Please be certain.') }}
-  </x-slot>
+  </x-slot:description>
 
   <x-form id="auto-delete-account-form" x-target="auto-delete-account-form" x-target.back="auto-delete-account-form" action="{{ route('settings.security.auto-delete.update') }}" method="put">
     <div class="grid grid-cols-3 items-center rounded-t-lg p-3 last:rounded-b-lg hover:bg-blue-50">
