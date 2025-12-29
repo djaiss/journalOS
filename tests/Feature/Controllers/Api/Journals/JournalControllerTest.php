@@ -152,7 +152,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/'.$journal->id);
+        $response = $this->json('GET', '/api/journals/' . $journal->id);
 
         $response->assertStatus(200);
         $response->assertJsonStructure($this->singleJsonStructure);
@@ -166,7 +166,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/'.$journal->id);
+        $response = $this->json('GET', '/api/journals/' . $journal->id);
 
         $response->assertStatus(404);
     }
@@ -182,7 +182,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/'.$journal->id, [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id, [
             'name' => 'Dunder Mifflin Michael Scott Edition',
         ]);
 
@@ -216,7 +216,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('DELETE', '/api/journals/'.$journal->id);
+        $response = $this->json('DELETE', '/api/journals/' . $journal->id);
 
         $response->assertNoContent();
 
@@ -233,7 +233,7 @@ final class JournalControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('DELETE', '/api/journals/'.$otherJournal->id);
+        $response = $this->json('DELETE', '/api/journals/' . $otherJournal->id);
 
         $response->assertStatus(404);
     }

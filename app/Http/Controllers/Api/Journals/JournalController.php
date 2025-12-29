@@ -75,10 +75,10 @@ final class JournalController extends Controller
     {
         $journal = $request->attributes->get('journal');
 
-        (new DestroyJournal(
+        new DestroyJournal(
             user: Auth::user(),
             journal: $journal,
-        ))->execute();
+        )->execute();
 
         return response()->noContent(204);
     }

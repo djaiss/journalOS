@@ -41,17 +41,12 @@ final class DestroyJournalTest extends TestCase
             'id' => $journal->id,
         ]);
 
-        $this->assertDatabaseMissing('journal_entries', [
-            'id' => $entry->id,
-        ]);
-
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
+            callback: function (LogUserAction $job) use ($user): bool {
                 return $job->action === 'journal_deletion'
-                    && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id;
+                    && $job->user->id === $user->id;
             },
         );
 

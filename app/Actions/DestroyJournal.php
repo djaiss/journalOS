@@ -21,8 +21,8 @@ final readonly class DestroyJournal
     {
         $this->validate();
         $this->delete();
-        $this->updateUserLastActivityDate();
         $this->log();
+        $this->updateUserLastActivityDate();
     }
 
     private function validate(): void
@@ -41,7 +41,7 @@ final readonly class DestroyJournal
     {
         LogUserAction::dispatch(
             user: $this->user,
-            journal: $this->journal,
+            journal: null,
             action: 'journal_deletion',
             description: sprintf('Deleted the journal called %s', $this->journal->name),
         )->onQueue('low');
