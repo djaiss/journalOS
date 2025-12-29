@@ -84,4 +84,36 @@ final class JournalControllerTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    #[Test]
+    public function it_lets_a_user_destroy_their_journal(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($user)->delete('/journals/' . $journal->slug);
+
+        $response->assertRedirect('/journals');
+
+        $this->assertDatabaseMissing('journals', [
+            'id' => $journal->id,
+        ]);
+    }
+
+    #[Test]
+    public function it_does_not_let_a_user_destroy_a_journal_they_do_not_own(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create();
+
+        $response = $this->actingAs($user)->delete('/journals/' . $journal->slug);
+
+        $response->assertStatus(404);
+
+        $this->assertDatabaseHas('journals', [
+            'id' => $journal->id,
+        ]);
+    }
 }
