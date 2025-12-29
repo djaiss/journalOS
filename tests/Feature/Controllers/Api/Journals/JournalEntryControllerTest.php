@@ -25,9 +25,6 @@ final class JournalEntryControllerTest extends TestCase
                 'day',
                 'month',
                 'year',
-                'bedtime',
-                'wake_up_time',
-                'sleep_duration_in_minutes',
                 'modules' => [
                     'sleep' => [
                         'bedtime',
@@ -63,7 +60,7 @@ final class JournalEntryControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/' . $journal->id . '/2025/4/12');
+        $response = $this->json('GET', '/api/journals/'.$journal->id.'/2025/4/12');
 
         $response->assertStatus(200);
         $response->assertJsonStructure($this->singleJsonStructure);
@@ -76,9 +73,6 @@ final class JournalEntryControllerTest extends TestCase
                     'day' => 12,
                     'month' => 4,
                     'year' => 2025,
-                    'bedtime' => '22:30',
-                    'wake_up_time' => '06:45',
-                    'sleep_duration_in_minutes' => '495',
                     'modules' => [
                         'sleep' => [
                             'bedtime' => '22:30',
@@ -101,7 +95,7 @@ final class JournalEntryControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/' . $journal->id . '/2025/2/31');
+        $response = $this->json('GET', '/api/journals/'.$journal->id.'/2025/2/31');
 
         $response->assertStatus(404);
     }
@@ -114,7 +108,7 @@ final class JournalEntryControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/' . $journal->id . '/2025/4/12');
+        $response = $this->json('GET', '/api/journals/'.$journal->id.'/2025/4/12');
 
         $response->assertStatus(404);
     }

@@ -28,9 +28,6 @@ final class JournalEntryResource extends JsonResource
                 'day' => $this->day,
                 'month' => $this->month,
                 'year' => $this->year,
-                'bedtime' => $this->bedtime,
-                'wake_up_time' => $this->wake_up_time,
-                'sleep_duration_in_minutes' => $this->sleep_duration_in_minutes,
                 'modules' => [
                     'sleep' => [
                         'bedtime' => $this->bedtime,
