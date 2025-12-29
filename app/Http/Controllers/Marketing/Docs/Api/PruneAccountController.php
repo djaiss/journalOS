@@ -8,12 +8,12 @@ use App\Http\Controllers\Controller;
 use App\Jobs\RecordMarketingPageVisit;
 use Illuminate\View\View;
 
-final class JournalController extends Controller
+final class PruneAccountController extends Controller
 {
     public function index(): View
     {
-        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.journals.journals')->onQueue('low');
+        RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.prune')->onQueue('low');
 
-        return view('marketing.docs.api.journals.journals');
+        return view('marketing.docs.api.account.prune');
     }
 }

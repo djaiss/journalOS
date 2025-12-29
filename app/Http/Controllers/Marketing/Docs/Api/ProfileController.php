@@ -6,12 +6,11 @@ namespace App\Http\Controllers\Marketing\Docs\Api;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\RecordMarketingPageVisit;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 final class ProfileController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): View
     {
         RecordMarketingPageVisit::dispatch(viewName: 'marketing.docs.api.account.profile')->onQueue('low')->onQueue('low');
 
