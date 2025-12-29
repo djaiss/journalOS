@@ -64,10 +64,15 @@
         <x-marketing.docs.code title="/api/settings/prune" verb="PUT" verbClass="text-yellow-700">
           <div>{</div>
           <div class="pl-4">
-            <span class="text-lime-700">"message"</span>: <span class="text-amber-700">"The account has been pruned"</span>,
+            <span class="text-lime-700">"message"</span>
+            :
+            <span class="text-amber-700">"The account has been pruned"</span>
+            ,
           </div>
           <div class="pl-4">
-            <span class="text-lime-700">"status"</span>: <span class="text-indigo-700">200</span>
+            <span class="text-lime-700">"status"</span>
+            :
+            <span class="text-indigo-700">200</span>
           </div>
           <div>}</div>
         </x-marketing.docs.code>
@@ -100,10 +105,15 @@
         <x-marketing.docs.code title="/api/settings/account" verb="DELETE" verbClass="text-red-700">
           <div>{</div>
           <div class="pl-4">
-            <span class="text-lime-700">"message"</span>: <span class="text-amber-700">"The account has been deleted"</span>,
+            <span class="text-lime-700">"message"</span>
+            :
+            <span class="text-amber-700">"The account has been deleted"</span>
+            ,
           </div>
           <div class="pl-4">
-            <span class="text-lime-700">"status"</span>: <span class="text-indigo-700">200</span>
+            <span class="text-lime-700">"status"</span>
+            :
+            <span class="text-indigo-700">200</span>
           </div>
           <div>}</div>
         </x-marketing.docs.code>

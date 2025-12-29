@@ -6,18 +6,20 @@ namespace App\Http\Controllers\Api\Settings\Account;
 
 use App\Actions\DestroyAccount;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Settings\Account\DestroyAccountRequest;
 use App\Traits\ApiResponses;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 final class DestroyAccountController extends Controller
 {
     use ApiResponses;
 
-    public function destroy(DestroyAccountRequest $request): JsonResponse
+    public function destroy(Request $request): JsonResponse
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'reason' => ['required', 'string', 'min:3', 'max:255'],
+        ]);
 
         new DestroyAccount(
             user: Auth::user(),
