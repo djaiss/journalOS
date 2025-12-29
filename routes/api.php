@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Settings;
+use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->group(function (): void {
@@ -43,5 +44,8 @@ Route::name('api.')->group(function (): void {
         Route::get('settings/api/{id}', [Settings\Security\ApiKeyController::class, 'show'])->name('settings.api.show');
         Route::post('settings/api', [Settings\Security\ApiKeyController::class, 'create'])->name('settings.api.create');
         Route::delete('settings/api/{id}', [Settings\Security\ApiKeyController::class, 'destroy'])->name('settings.api.destroy');
+
+        // settings - account
+        Route::put('settings/prune', [PruneAccountController::class, 'update'])->name('settings.account.prune');
     });
 });
