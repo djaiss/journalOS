@@ -41,6 +41,10 @@ Route::name('api.')->group(function (): void {
         Route::get('settings/logs', [Settings\Profile\LogController::class, 'index'])->name('settings.logs');
         Route::get('settings/logs/{id}', [Settings\Profile\LogController::class, 'show'])->name('settings.logs.show');
 
+        // settings - emails
+        Route::get('settings/emails', [Settings\EmailSentController::class, 'index'])->name('settings.emails');
+        Route::get('settings/emails/{id}', [Settings\EmailSentController::class, 'show'])->name('settings.emails.show');
+
         // settings - api keys
         Route::get('settings/api', [Settings\Security\ApiKeyController::class, 'index'])->name('settings.api');
         Route::get('settings/api/{id}', [Settings\Security\ApiKeyController::class, 'show'])->name('settings.api.show');
