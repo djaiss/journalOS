@@ -1,11 +1,11 @@
 <x-box>
   <x-slot:title>
     {{ __('Delete your account') }}
-  </x-slot:title>
+  </x-slot>
 
   <x-slot:description>
     {{ __('Your account and all data will be deleted immediately and cannot be restored. This is irreversible. Please be certain.') }}
-  </x-slot:description>
+  </x-slot>
 
   <form action="{{ route('settings.account.destroy') }}" method="post" x-data="{
     feedback: '',
