@@ -56,6 +56,9 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
             Route::get('journals/{slug}/settings', [Journals\Settings\JournalSettingsController::class, 'show'])->name('journal.settings.show');
             Route::put('journals/{slug}', [Journals\JournalController::class, 'update'])->name('journal.update');
             Route::delete('journals/{slug}', [Journals\JournalController::class, 'destroy'])->name('journal.destroy');
+
+            // settings - modules
+            Route::put('journals/{slug}/settings/modules', [Journals\Settings\JournalModulesController::class, 'update'])->name('journal.settings.modules.update');
         });
     });
 

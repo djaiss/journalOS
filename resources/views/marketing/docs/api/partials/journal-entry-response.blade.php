@@ -31,8 +31,7 @@
   <span class="text-rose-800">2024</span>
   ,
 </div>
-<div class="pl-12">
-  "modules": {</div>
+<div class="pl-12">"modules": {</div>
 <div class="pl-16">"sleep": {</div>
 <div class="pl-20">
   "bedtime":

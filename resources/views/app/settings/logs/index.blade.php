@@ -7,7 +7,7 @@
 <x-app-layout>
   <x-slot:title>
     {{ __('Profile') }}
-  </x-slot:title>
+  </x-slot>
 
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],
@@ -24,7 +24,7 @@
     <section class="p-4 sm:p-8">
       <div class="mx-auto max-w-4xl sm:px-0">
         <x-box id="logs-container" x-merge="append" padding="p-0">
-          <x-slot:title>{{ __('Logs') }}</x-slot:title>
+          <x-slot:title>{{ __('Logs') }}</x-slot>
           <!-- last actions -->
           @foreach ($logs as $log)
             <div class="flex items-center justify-between border-b border-gray-200 p-3 text-sm first:rounded-t-lg last:rounded-b-lg last:border-b-0 hover:bg-blue-50">

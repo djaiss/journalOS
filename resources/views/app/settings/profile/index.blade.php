@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot:title>
     {{ __('Profile') }}
-  </x-slot:title>
+  </x-slot>
 
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],

@@ -1,6 +1,6 @@
 <x-module>
-  <x-slot:title>{{ __('Sleep tracking') }}</x-slot:title>
-  <x-slot:emoji>🌖</x-slot:emoji>
+  <x-slot:title>{{ __('Sleep tracking') }}</x-slot>
+  <x-slot:emoji>🌖</x-slot>
   <x-slot:action>
     <div id="reset">
       @if ($module['display_reset'])
@@ -11,7 +11,7 @@
         </x-form>
       @endif
     </div>
-  </x-slot:action>
+  </x-slot>
 
   <div id="sleep-container" class="space-y-4">
     <div class="space-y-2">

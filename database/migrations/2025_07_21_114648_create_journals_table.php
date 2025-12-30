@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->text('name');
             $table->text('slug')->nullable();
+            $table->boolean('show_sleep_module')->default(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

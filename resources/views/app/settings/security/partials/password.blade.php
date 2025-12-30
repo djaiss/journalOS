@@ -5,7 +5,7 @@
 ?>
 
 <x-box padding="p-0">
-  <x-slot:title>{{ __('Change password') }}</x-slot:title>
+  <x-slot:title>{{ __('Change password') }}</x-slot>
 
   <x-form method="put" action="{{ route('settings.password.update') }}">
     <!-- current password -->
