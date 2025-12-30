@@ -9,7 +9,9 @@
     ['label' => __('Settings')]
   ]" />
 
-  <div class="mx-auto mt-10 w-xl space-y-8">
+  <div class="mx-auto my-10 w-xl space-y-8">
+    @include('app.journal.settings.partials.modules')
+
     @include('app.journal.settings.partials.rename')
 
     @include('app.journal.settings.partials.delete')
