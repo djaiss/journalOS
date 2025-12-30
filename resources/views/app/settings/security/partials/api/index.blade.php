@@ -44,8 +44,8 @@
                 },
               }">
                 <div class="flex items-center gap-x-2">
-                  <code class="flex-1 rounded border-gray-50 bg-white px-3 py-2 text-center font-mono text-sm text-gray-800">{{ session('apiKey') }}</code>
-                  <button @click="copyToClipboard()" class="inline-flex items-center rounded-md border border-green-200 bg-white px-3 py-2 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none">
+                  <code class="flex-1 rounded border-gray-50 bg-white px-3 py-2 text-center font-mono text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">{{ session('apiKey') }}</code>
+                  <button @click="copyToClipboard()" class="inline-flex items-center rounded-md border border-green-200 bg-white px-3 py-2 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none dark:border-green-700 dark:bg-gray-900 dark:text-green-300 dark:hover:bg-gray-800">
                     <x-phosphor-check x-show="copied" class="mr-1 h-4 w-4" />
                     <x-phosphor-copy x-show="!copied" class="mr-1 h-4 w-4" />
                     <span x-text="copied ? '{{ __('Copied') }}' : '{{ __('Copy') }}'"></span>
@@ -59,7 +59,7 @@
     @endif
   </div>
 
-  <div id="new-api-key-form" class="flex items-center justify-between rounded-t-lg p-3 last:rounded-b-lg last:border-b-0 hover:bg-blue-50">
+  <div id="new-api-key-form" class="flex items-center justify-between rounded-t-lg p-3 last:rounded-b-lg last:border-b-0 hover:bg-blue-50 dark:hover:bg-gray-800">
     @if ($apiKeys->isEmpty())
       <p class="text-sm text-zinc-500">{{ __('No API keys created') }}</p>
     @else
@@ -74,9 +74,9 @@
   @if (! $apiKeys->isEmpty())
     <div id="api-key-list">
       @foreach ($apiKeys as $apiKey)
-        <div class="group flex items-center justify-between border-b border-gray-200 p-3 first:border-t last:rounded-b-lg last:border-b-0">
+        <div class="group flex items-center justify-between border-b border-gray-200 p-3 first:border-t last:rounded-b-lg last:border-b-0 dark:border-gray-700">
           <div class="flex items-center justify-between gap-3">
-            <div class="rounded-sm bg-zinc-100 p-2">
+            <div class="rounded-sm bg-zinc-100 p-2 dark:bg-gray-800">
               <x-phosphor-key class="h-4 w-4 text-zinc-500" />
             </div>
 

@@ -21,7 +21,7 @@
                 <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="25" height="25" alt="JournalOS logo" />
               </div>
             </a>
-            <h1 class="text-2xl font-semibold text-gray-900">
+            <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
               {{ __('Sign up for an account') }}
             </h1>
           </div>

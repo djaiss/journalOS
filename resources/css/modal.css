@@ -40,4 +40,8 @@ dialog[open]::backdrop {
 
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.25);
+
+  @variant dark {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }

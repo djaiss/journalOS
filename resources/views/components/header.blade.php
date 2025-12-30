@@ -20,7 +20,7 @@
       {{ __('Unlock') }}
     </a>
 
-    <div x-cloak x-show="showTooltip" x-transition:enter="transition duration-200 ease-out" x-transition:enter-start="translate-y-1 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition duration-150 ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1 opacity-0" class="absolute top-full left-1/2 z-50 mt-3 flex w-88 -translate-x-1/2 items-center gap-4 rounded-xl bg-white p-4 shadow-lg ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
+    <div x-cloak x-show="showTooltip" x-transition:enter="transition duration-200 ease-out" x-transition:enter-start="translate-y-1 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition duration-150 ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1 opacity-0" class="absolute top-full left-1/2 z-50 mt-3 flex w-88 -translate-x-1/2 items-center gap-4 rounded-xl bg-white p-4 shadow-lg ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 dark:text-gray-100">
       <x-image src="{{ asset('images/vandamme.webp') }}" alt="One-time fee" width="80" height="80" class="h-20 w-20 rounded-full object-cover shadow-sm" srcset="{{ asset('images/vandamme.webp') }} 1x, {{ asset('images/vandamme@2x.webp') }} 2x" />
       <div class="flex flex-col gap-1 text-sm text-gray-700 dark:text-gray-200">
         <p>{{ __("It's a one-time fee, and will unlock everything!") }}</p>
@@ -62,7 +62,7 @@
     <!-- selectors -->
     @if (isset($journal))
       <div class="flex items-center gap-1">
-        <a href="{{ route('journal.index') }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ __('Dashboard') }}</a>
+        <a href="{{ route('journal.index') }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">{{ __('Dashboard') }}</a>
         <span class="text-gray-500">/</span>
         <div class="flex items-center pl-2">
           {{ $journal->name }}
@@ -70,7 +70,7 @@
       </div>
 
       <div class="ml-4">
-        <a href="{{ route('journal.settings.show', ['slug' => $journal->slug]) }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">{{ __('Settings') }}</a>
+        <a href="{{ route('journal.settings.show', ['slug' => $journal->slug]) }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">{{ __('Settings') }}</a>
       </div>
     @endif
 
@@ -79,25 +79,25 @@
 
     <!-- right side menu -->
     <div class="flex items-center gap-1">
-      <a class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100" href="/">
+    <a class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800" href="/">
         <x-phosphor-magnifying-glass class="size-4 text-gray-600 transition-transform duration-150" />
         {{ __('Search') }}
       </a>
 
-      <a href="{{ route('marketing.docs.index') }}" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
+    <a href="{{ route('marketing.docs.index') }}" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
         <x-phosphor-lifebuoy class="size-4 text-gray-600 transition-transform duration-150" />
         {{ __('Docs') }}
       </a>
 
       <div x-data="{ menuOpen: false }" @click.away="menuOpen = false" class="relative">
-        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
+      <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100 dark:bg-gray-800' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
           {{ __('Menu') }}
           <x-phosphor-caret-down class="size-4 text-gray-600 transition-transform duration-150" x-bind:class="{ 'rotate-180' : menuOpen }" />
         </button>
 
-        <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-56 min-w-32 rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md" x-cloak>
+      <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-56 min-w-32 rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" x-cloak>
           @if (Auth::user()->is_instance_admin)
-            <a @click="menuOpen = false" href="{{ route('instance.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
+            <a @click="menuOpen = false" href="{{ route('instance.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
               <x-phosphor-user class="mr-2 size-4 text-gray-600" />
               {{ __('Instance administration') }}
             </a>
@@ -105,7 +105,7 @@
             <div class="-mx-1 my-1 h-px bg-gray-200"></div>
           @endif
 
-          <a @click="menuOpen = false" href="{{ route('settings.profile.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
+          <a @click="menuOpen = false" href="{{ route('settings.profile.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
             <x-phosphor-user class="mr-2 size-4 text-gray-600" />
             {{ __('Profile') }}
           </a>
@@ -114,7 +114,7 @@
 
           <form method="POST" action="{{ route('logout') }}" class="w-full">
             @csrf
-            <button @click="menuOpen = false" type="submit" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900">
+            <button @click="menuOpen = false" type="submit" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
               <x-phosphor-sign-out class="mr-2 size-4 text-gray-600" />
               {{ __('Logout') }}
             </button>
@@ -130,7 +130,7 @@
       <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="JournalOS logo" />
     </a>
 
-    <button @click="mobileMenuOpen = true" class="flex items-center gap-2 rounded-md border border-transparent py-1 font-medium hover:border-gray-200 hover:bg-gray-100">
+    <button @click="mobileMenuOpen = true" class="flex items-center gap-2 rounded-md border border-transparent py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
       <x-phosphor-list class="size-5 text-gray-600 transition-transform duration-150" />
     </button>
 

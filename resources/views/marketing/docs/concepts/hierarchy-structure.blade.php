@@ -1,6 +1,6 @@
 <x-marketing-docs-layout>
   <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_250px]">
-    <div class="py-16 sm:border-r sm:border-gray-200 sm:pr-10">
+    <div class="py-16 sm:border-r sm:border-gray-200 sm:pr-10 dark:sm:border-gray-700">
       <x-marketing.docs.h1 title="Hierarchical structure" />
 
       <p class="mb-2">{{ config('app.name') }} models real-world structure in a simple, flexible way. The goal is not to capture every HR detail, but to provide the essential building blocks:</p>
@@ -133,14 +133,14 @@
           <div class="mb-4">
             <h4 class="mb-2 text-xs font-semibold text-gray-500 uppercase">Jump to</h4>
             <nav class="space-y-1 text-sm">
-              <a href="#countries" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Countries</a>
-              <a href="#offices" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Offices</a>
-              <a href="#divisions" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Divisions</a>
-              <a href="#departments" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Departments</a>
-              <a href="#teams" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Teams</a>
-              <a href="#guilds" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Guilds</a>
-              <a href="#key-principles" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Key principles</a>
-              <a href="#headquarters-vs-branch-offices" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Headquarters vs. branch offices</a>
+              <a href="#countries" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Countries</a>
+              <a href="#offices" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Offices</a>
+              <a href="#divisions" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Divisions</a>
+              <a href="#departments" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Departments</a>
+              <a href="#teams" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Teams</a>
+              <a href="#guilds" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Guilds</a>
+              <a href="#key-principles" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Key principles</a>
+              <a href="#headquarters-vs-branch-offices" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Headquarters vs. branch offices</a>
             </nav>
           </div>
         </div>

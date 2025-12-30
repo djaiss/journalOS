@@ -1,4 +1,4 @@
-<div class="mb-8 rounded-lg border border-gray-200 p-4">
+<div class="mb-8 rounded-lg border border-gray-200 p-4 dark:border-gray-700 dark:bg-gray-900">
   <p class="mb-2 text-xs">Table of contents</p>
 
   <ul>

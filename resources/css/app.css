@@ -21,6 +21,104 @@
   }
 }
 
+@layer base {
+  :root {
+    --app-bg: var(--color-white);
+    --app-bg-muted: var(--color-gray-50);
+    --app-surface: var(--color-white);
+    --app-surface-muted: var(--color-gray-100);
+    --app-border: var(--color-gray-200);
+    --app-text: var(--color-gray-900);
+    --app-text-muted: var(--color-gray-600);
+    --app-link: var(--color-blue-600);
+    --app-link-hover: var(--color-blue-700);
+    --app-ring: var(--color-gray-300);
+    --app-code-bg: var(--color-gray-100);
+    --app-code-text: var(--color-gray-900);
+  }
+
+  body.dark {
+    --app-bg: var(--color-gray-950);
+    --app-bg-muted: var(--color-gray-900);
+    --app-surface: var(--color-gray-900);
+    --app-surface-muted: var(--color-gray-800);
+    --app-border: var(--color-gray-700);
+    --app-text: var(--color-gray-100);
+    --app-text-muted: var(--color-gray-400);
+    --app-link: var(--color-blue-300);
+    --app-link-hover: var(--color-blue-200);
+    --app-ring: var(--color-gray-600);
+    --app-code-bg: var(--color-gray-800);
+    --app-code-text: var(--color-gray-100);
+  }
+
+  body {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+  }
+
+  main,
+  section,
+  article,
+  header,
+  footer,
+  nav,
+  aside {
+    color: inherit;
+  }
+
+  a {
+    color: var(--app-link);
+  }
+
+  a:hover {
+    color: var(--app-link-hover);
+  }
+
+  hr {
+    border-color: var(--app-border);
+  }
+
+  table {
+    border-color: var(--app-border);
+  }
+
+  thead,
+  tfoot {
+    background-color: var(--app-surface-muted);
+  }
+
+  th,
+  td {
+    border-color: var(--app-border);
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: var(--app-surface);
+    color: var(--app-text);
+    border-color: var(--app-border);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--app-text-muted);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline-color: var(--app-ring);
+  }
+
+  code,
+  pre {
+    background-color: var(--app-code-bg);
+    color: var(--app-code-text);
+  }
+}
+
 @layer utilities {
   [x-cloak] {
     display: none !important;

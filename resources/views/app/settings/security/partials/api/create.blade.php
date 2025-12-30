@@ -1,4 +1,4 @@
-<x-form id="new-api-key-form" x-target="api-key-list new-api-key-form api-key-notification notifications" x-target.back="new-api-key-form" action="{{ route('settings.api-keys.store') }}" method="post" class="space-y-5 rounded-t-lg p-4 first:rounded-t-lg last:rounded-b-lg last:border-0 hover:bg-blue-50">
+<x-form id="new-api-key-form" x-target="api-key-list new-api-key-form api-key-notification notifications" x-target.back="new-api-key-form" action="{{ route('settings.api-keys.store') }}" method="post" class="space-y-5 rounded-t-lg p-4 first:rounded-t-lg last:rounded-b-lg last:border-0 hover:bg-blue-50 dark:hover:bg-gray-800">
   <div>
     <x-input id="label" :label="__('Label for the API key')" type="text" name="label" required autofocus :error="$errors->get('label')" />
   </div>

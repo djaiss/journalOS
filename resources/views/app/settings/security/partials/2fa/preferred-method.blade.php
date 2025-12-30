@@ -7,7 +7,7 @@
 
   <x-form method="put" x-target="preferred-method-form notifications" x-target.back="preferred-method-form" id="preferred-method-form" :action="route('settings.security.2fa.update')">
     <!-- preferred methods -->
-    <div class="grid grid-cols-3 items-center rounded-t-lg border-b border-gray-200 p-3 last:rounded-b-lg hover:bg-blue-50">
+    <div class="grid grid-cols-3 items-center rounded-t-lg border-b border-gray-200 p-3 last:rounded-b-lg hover:bg-blue-50 dark:border-gray-700 dark:hover:bg-gray-800">
       <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Preferred methods') }}</p>
       <div class="col-span-1 w-full justify-self-end">
         <x-select id="preferred_method" :options="[

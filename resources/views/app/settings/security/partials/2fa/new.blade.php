@@ -1,11 +1,11 @@
-<x-form :action="route('settings.security.2fa.store')" method="post" id="authenticator-app" x-target="authenticator-app notifications" x-target.back="authenticator-app" class="border-b border-gray-200 p-4">
+<x-form :action="route('settings.security.2fa.store')" method="post" id="authenticator-app" x-target="authenticator-app notifications" x-target.back="authenticator-app" class="border-b border-gray-200 p-4 dark:border-gray-700">
   <div class="flex flex-col gap-y-4">
     <p>
       <span class="inline-flex h-6 w-6 items-center justify-center rounded-full border border-gray-400 text-sm">1</span>
       {{ __('Use any authenticator app to scan your QR code, or manually use the setup key.') }}
     </p>
     <div class="mx-auto w-full">
-      <div class="mb-2 flex h-36 w-36 items-center justify-center rounded-lg border border-gray-200">{!! $qrCodeSvg !!}</div>
+      <div class="mb-2 flex h-36 w-36 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-900">{!! $qrCodeSvg !!}</div>
       <p class="mb-4 text-sm">
         {{ __('Setup key:') }}
         <code>{{ $secret }}</code>
