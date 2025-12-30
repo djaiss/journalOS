@@ -1,9 +1,9 @@
 <x-box padding="p-0">
-  <x-slot:title>{{ __('Two-factor authentication') }}</x-slot:title>
+  <x-slot:title>{{ __('Two-factor authentication') }}</x-slot>
   <x-slot:description>
     <p>{{ __('Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to sign in.') }}</p>
     <p>{{ __('Set your preferred method to use for two-factor authentication when signing into the application.') }}</p>
-  </x-slot:description>
+  </x-slot>
 
   <x-form method="put" x-target="preferred-method-form notifications" x-target.back="preferred-method-form" id="preferred-method-form" :action="route('settings.security.2fa.update')">
     <!-- preferred methods -->

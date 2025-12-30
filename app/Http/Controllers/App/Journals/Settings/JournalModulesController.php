@@ -16,18 +16,18 @@ final class JournalModulesController extends Controller
     {
         $journal = $request->attributes->get('journal');
 
-        $validated = $request->validate([
-            'module' => ['required', 'in:sleep'],
+        $request->validate([
+            'module' => ['required'],
         ]);
 
-        new ToggleModuleVisibility(
+        $journal = new ToggleModuleVisibility(
             user: Auth::user(),
             journal: $journal,
-            moduleName: $validated['module'],
+            moduleName: 'sleep',
         )->execute();
 
-        return view('app.journal.settings.show', [
+        return view('app.journal.settings.partials.modules', [
             'journal' => $journal,
-        ])->with('status', __('Changes saved'));
+        ]);
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout :journal="$journal">
   <x-slot:title>
     {{ __('Journal') }}
-  </x-slot:title>
+  </x-slot>
 
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],
@@ -34,21 +34,47 @@
   </div>
 
   <div class="grid grid-cols-3 gap-4 p-4">
-    <div class="space-y-2">
-      @if ($journal->show_sleep_module)
-      @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
-      @endif
+    <div>
+      <!-- title -->
+      <div class="mb-4">
+        <h3 class="text-md font-semibold">{{ __('Life') }}</h3>
+        <p class="text-gray-600">{{ __('What happened today') }}</p>
+      </div>
 
-      <x-module>
-        <x-slot:title>{{ __('Claim your account and make it permanent') }}</x-slot:title>
-        sdflsjf
-      </x-module>
+      <!-- modules -->
+      <div class="space-y-2">
+        @if ($journal->show_sleep_module)
+          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
+        @endif
+      </div>
     </div>
     <div>
-      <h3 class="text-lg font-bold">Journal</h3>
+      <!-- title -->
+      <div class="mb-4">
+        <h3 class="text-md font-semibold">{{ __('Work') }}</h3>
+        <p class="text-gray-600">{{ __('What you worked on') }}</p>
+      </div>
+
+      <!-- modules -->
+      <div class="space-y-2">
+        @if ($journal->show_sleep_module)
+          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
+        @endif
+      </div>
     </div>
     <div>
-      {{-- <x-module>this is great</x-module> --}}
+      <!-- title -->
+      <div class="mb-4">
+        <h3 class="text-md font-semibold">{{ __('Mood') }}</h3>
+        <p class="text-gray-600">{{ __('How the day felt') }}</p>
+      </div>
+
+      <!-- modules -->
+      <div class="space-y-2">
+        @if ($journal->show_sleep_module)
+          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
+        @endif
+      </div>
     </div>
   </div>
 </x-app-layout>

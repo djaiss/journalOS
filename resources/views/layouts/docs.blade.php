@@ -24,7 +24,7 @@
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.account',) ? 'true' : 'false' }}' ===
               'true',
             journalsDocumentation:
-              '{{ (str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) || str_starts_with( request()->route()->getName(),'marketing.docs.api.journal-entries',)) ? 'true' : 'false' }}' ===
+              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) || str_starts_with( request()->route()->getName(),'marketing.docs.api.journal-entries',) ? 'true' : 'false' }}' ===
               'true',
           }"
           class="bg-light dark:bg-dark z-10 pt-16">

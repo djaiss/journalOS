@@ -60,7 +60,7 @@ final class JournalEntryControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/'.$journal->id.'/2025/4/12');
+        $response = $this->json('GET', '/api/journals/' . $journal->id . '/2025/4/12');
 
         $response->assertStatus(200);
         $response->assertJsonStructure($this->singleJsonStructure);
@@ -95,7 +95,7 @@ final class JournalEntryControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/'.$journal->id.'/2025/2/31');
+        $response = $this->json('GET', '/api/journals/' . $journal->id . '/2025/2/31');
 
         $response->assertStatus(404);
     }
@@ -108,7 +108,7 @@ final class JournalEntryControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('GET', '/api/journals/'.$journal->id.'/2025/4/12');
+        $response = $this->json('GET', '/api/journals/' . $journal->id . '/2025/4/12');
 
         $response->assertStatus(404);
     }

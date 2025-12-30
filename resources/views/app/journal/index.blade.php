@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot:title>
     {{ __('Dashboard') }}
-  </x-slot:title>
+  </x-slot>
 
   <div class="px-6 pt-6">
     <div class="mx-auto w-full max-w-4xl items-start justify-center">
@@ -11,7 +11,7 @@
         <x-button.secondary href="{{ route('journal.create') }}" turbo="true">
           <x-slot:icon>
             <x-phosphor-plus-bold class="size-4" />
-          </x-slot:icon>
+          </x-slot>
           {{ __('New journal') }}
         </x-button.secondary>
       </div>
