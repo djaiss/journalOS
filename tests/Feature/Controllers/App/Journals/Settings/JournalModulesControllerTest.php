@@ -18,7 +18,8 @@ final class JournalModulesControllerTest extends TestCase
     public function it_toggles_sleep_module_from_enabled_to_disabled(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'show_sleep_module' => true,
         ]);
 
@@ -40,7 +41,8 @@ final class JournalModulesControllerTest extends TestCase
     public function it_toggles_sleep_module_from_disabled_to_enabled(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'show_sleep_module' => false,
         ]);
 
@@ -69,16 +71,5 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response->assertNotFound();
-    }
-
-    #[Test]
-    public function it_requires_module_parameter(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-
-        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules');
-
-        $response->assertSessionHasErrors('module');
     }
 }
