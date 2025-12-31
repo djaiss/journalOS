@@ -6,4 +6,26 @@
 - [ ] notion of denormalized data
 - [ ] display the number of entries on a month
 - [ ] display months containing entries
-- [ ] year selector
+
+Life
+- [x] Sleep
+- [ ] Location
+- [ ] Meals
+- [ ] Physical activity
+- [ ] Health
+- [ ] Encounters
+- [ ] Context
+- [ ] Habits
+- [ ] Sexual activity (optional module)
+
+Work
+- [ ] Worked today
+- [ ] Work mode
+- [ ] Workload
+- [ ] Procrastinated
+
+Leisure
+- [ ] Reading
+- [ ] Watching
+- [ ] Mood
+- [ ] Energy

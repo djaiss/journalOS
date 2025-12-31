@@ -15,8 +15,11 @@ final readonly class JournalEntryPresenter
         $sleep = new SleepModulePresenter($this->entry)
             ->build('20:00', '06:00');
 
+        $work = new WorkModulePresenter($this->entry)->build();
+
         return [
             'sleep' => $sleep,
+            'work' => $work,
         ];
     }
 }

@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-3 gap-4 p-4">
+  <div class="grid grid-cols-4 gap-4 p-4">
     <div>
       <!-- title -->
       <div class="mb-4">
@@ -70,16 +70,19 @@
 
       <!-- modules -->
       <div class="space-y-2">
-        @if ($journal->show_sleep_module)
-          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
+        @if ($journal->show_work_module)
+          @include('app.journal.entry.partials.work', [
+            'module' => $modules['work'],
+            'entry' => $entry,
+          ])
         @endif
       </div>
     </div>
     <div>
       <!-- title -->
       <div class="mb-4">
-        <h3 class="text-md font-semibold">{{ __('Mood') }}</h3>
-        <p class="text-gray-600 dark:text-gray-400">{{ __('How the day felt') }}</p>
+        <h3 class="text-md font-semibold">{{ __('Leisure') }}</h3>
+        <p class="text-gray-600 dark:text-gray-400">{{ __('What you did for yourself') }}</p>
       </div>
 
       <!-- modules -->

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\App\Journals\Modules\Sleep;
+namespace App\Http\Controllers\App\Journals\Modules\Work;
 
-use App\Actions\ResetSleepData;
+use App\Actions\ResetWorkData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-final class SleepResetController extends Controller
+final class WorkResetController extends Controller
 {
     public function update(Request $request): RedirectResponse
     {
         $journalEntry = $request->attributes->get('journal_entry');
 
-        new ResetSleepData(
+        new ResetWorkData(
             user: Auth::user(),
             entry: $journalEntry,
         )->execute();

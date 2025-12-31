@@ -7,8 +7,8 @@ namespace App\Http\Controllers\App\Journals;
 use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
 use App\View\Presenters\JournalEntryPresenter;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 final class JournalEntryController extends Controller
 {
@@ -39,10 +39,10 @@ final class JournalEntryController extends Controller
 
         return view('app.journal.entry.show', [
             'journal' => $journal,
+            'entry' => $journalEntry,
             'years' => $years,
             'months' => $months,
             'days' => $days,
-            'entry' => $journalEntry,
             'modules' => $modules,
         ]);
     }
