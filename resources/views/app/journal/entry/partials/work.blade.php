@@ -48,7 +48,7 @@
           <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
             <x-form x-target="sleep-container notifications reset" :action="'bla'" method="put" class="h-full">
               <input type="hidden" name="bedtime" value="" />
-              <button type="submit" class=" flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
                 {{ __('Light') }}
               </button>
             </x-form>
@@ -56,7 +56,7 @@
           <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
             <x-form x-target="sleep-container notifications reset" :action="'bla'" method="put" class="h-full">
               <input type="hidden" name="bedtime" value="" />
-              <button type="submit" class=" flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
                 {{ __('Normal') }}
               </button>
             </x-form>
@@ -64,7 +64,7 @@
           <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
             <x-form x-target="sleep-container notifications reset" :action="'bla'" method="put" class="h-full">
               <input type="hidden" name="bedtime" value="" />
-              <button type="submit" class=" flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
                 {{ __('Heavy') }}
               </button>
             </x-form>
