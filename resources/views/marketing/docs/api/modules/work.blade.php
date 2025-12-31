@@ -20,6 +20,10 @@
         'id' => 'log-work-load',
         'title' => 'Log work load',
       ],
+      [
+        'id' => 'log-work-procrastinated',
+        'title' => 'Log work procrastination',
+      ],
     ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
@@ -41,6 +45,10 @@
             <a href="#log-work-load">
               <span class="text-orange-500">PUT</span>
               /api/journals/{id}/{year}/{month}/{day}/work/load
+            </a>
+            <a href="#log-work-procrastinated">
+              <span class="text-orange-500">PUT</span>
+              /api/journals/{id}/{year}/{month}/{day}/work/procrastinated
             </a>
           </div>
         </x-marketing.docs.code>
@@ -129,6 +137,35 @@
       </div>
       <div>
         <x-marketing.docs.code title="/api/journals/{id}/{year}/{month}/{day}/work/load" verb="PUT" verbClass="text-yellow-700">
+          @include('marketing.docs.api.partials.journal-entry-response')
+        </x-marketing.docs.code>
+      </div>
+    </div>
+
+    <!-- PUT /api/journals/{id}/{year}/{month}/{day}/work/procrastinated -->
+    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div>
+        <x-marketing.docs.h2 id="log-work-procrastinated" title="Log work procrastination" />
+        <p class="mb-10">This endpoint logs whether you procrastinated for a journal entry.</p>
+
+        <!-- url parameters -->
+        <x-marketing.docs.url-parameters>
+          <x-marketing.docs.attribute required name="id" type="integer" description="The ID of the journal." />
+          <x-marketing.docs.attribute required name="year" type="integer" description="The year of the journal entry." />
+          <x-marketing.docs.attribute required name="month" type="integer" description="The month of the journal entry." />
+          <x-marketing.docs.attribute required name="day" type="integer" description="The day of the journal entry." />
+        </x-marketing.docs.url-parameters>
+
+        <!-- query parameters -->
+        <x-marketing.docs.query-parameters>
+          <x-marketing.docs.attribute required name="work_procrastinated" type="string" description="Whether you procrastinated on this day. Accepted values are yes or no." />
+        </x-marketing.docs.query-parameters>
+
+        <!-- response attributes -->
+        @include('marketing.docs.api.partials.journal-entry-response-attributes')
+      </div>
+      <div>
+        <x-marketing.docs.code title="/api/journals/{id}/{year}/{month}/{day}/work/procrastinated" verb="PUT" verbClass="text-yellow-700">
           @include('marketing.docs.api.partials.journal-entry-response')
         </x-marketing.docs.code>
       </div>

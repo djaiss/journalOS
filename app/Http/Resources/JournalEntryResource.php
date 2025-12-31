@@ -38,6 +38,7 @@ final class JournalEntryResource extends JsonResource
                         'worked' => $this->worked,
                         'work_mode' => $this->work_mode,
                         'work_load' => $this->work_load,
+                        'work_procrastinated' => $this->work_procrastinated,
                     ],
                 ],
                 'created_at' => $this->created_at->timestamp,
