@@ -20,13 +20,17 @@ Life
 - [ ] Sexual activity (optional module)
 
 Work
-- [x] Worked today
-- [ ] Work mode
-- [ ] Workload
-- [ ] Procrastinated
+- [ ] Day type
+- [x] Work context (merged)
+- [ ] Primary obligation
+- [ ] Kids today
+- [ ] Dispute (occurred + reason)
 
 Leisure
 - [ ] Reading
 - [ ] Watching
 - [ ] Mood
 - [ ] Energy
+- [ ] Games played
+- [ ] Social activities
+- [ ] Listening (music)
