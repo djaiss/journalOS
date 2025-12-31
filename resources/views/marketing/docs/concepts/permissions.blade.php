@@ -1,6 +1,6 @@
 <x-marketing-docs-layout>
   <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[1fr_250px]">
-    <div class="py-16 sm:border-r sm:border-gray-200 sm:pr-10">
+    <div class="py-16 sm:border-r sm:border-gray-200 sm:pr-10 dark:sm:border-gray-700">
       <x-marketing.docs.h1 title="Permissions" />
 
       <p class="mb-2">{{ config('app.name') }} lets you define permissions to manage your organization at the most granular level. We currently support these three concepts that should let you manage everything the way you want:</p>
@@ -77,9 +77,9 @@
           <div class="mb-4">
             <h4 class="mb-2 text-xs font-semibold text-gray-500 uppercase">Jump to</h4>
             <nav class="space-y-1 text-sm">
-              <a href="#permissions" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Permissions</a>
-              <a href="#roles" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Roles</a>
-              <a href="#groups" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white">Groups</a>
+              <a href="#permissions" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Permissions</a>
+              <a href="#roles" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Roles</a>
+              <a href="#groups" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 text-gray-600 transition-colors duration-50 hover:border-gray-400 hover:bg-white dark:text-gray-400 dark:hover:border-gray-600 dark:hover:bg-gray-800">Groups</a>
             </nav>
           </div>
         </div>

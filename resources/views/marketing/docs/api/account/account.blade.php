@@ -21,7 +21,7 @@
       ],
     ]" />
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <p class="mb-2">These endpoints help users manage account lifecycle tasks.</p>
         <p class="mb-2">You can schedule automatic account deletion, prune journals while keeping login access, or permanently delete the account.</p>
@@ -47,7 +47,7 @@
     </div>
 
     <!-- PUT /api/settings/security/auto-delete-account -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="auto-delete-the-account" title="Auto delete the account" />
         <p class="mb-10">This endpoint toggles automatic account deletion for the authenticated user.</p>
@@ -88,7 +88,7 @@
     </div>
 
     <!-- PUT /api/settings/prune -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="prune-the-account" title="Prune the account" />
         <p class="mb-10">This endpoint removes all journals for the authenticated user.</p>

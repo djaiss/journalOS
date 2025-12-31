@@ -15,7 +15,7 @@
     </div>
   @endisset
 
-  <div {{ $attributes->merge(['class' => 'rounded-lg border border-gray-200 bg-white ' . $padding]) }}>
+  <div {{ $attributes->merge(['class' => 'rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 ' . $padding]) }}>
     {{ $slot }}
   </div>
 </div>

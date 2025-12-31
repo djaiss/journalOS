@@ -25,7 +25,7 @@
       ],
     ]" />
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <p class="mb-2">This endpoint lets you manage the API keys in your account.</p>
         <p class="mb-10">API keys are used to authenticate requests to the API. They are used to identify the user and the application that is making the request. You need to be very careful with them, since they can be used to access sensitive data.</p>
@@ -55,7 +55,7 @@
     </div>
 
     <!-- GET /api/settings/api -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="get-the-list-of-api-keys-in-the-account" title="Get the list of API keys in the account" />
         <p class="mb-2">This endpoint gets the list of API keys in the account.</p>
@@ -94,7 +94,7 @@
     </div>
 
     <!-- GET /api/settings/api/{id} -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="get-an-api-key" title="Get an API key" />
         <p class="mb-10">This endpoint gets an API key. It will return the API key in the response.</p>
@@ -131,7 +131,7 @@
     </div>
 
     <!-- POST /api/settings/api -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="create-a-new-api-key" title="Create a new API key" />
         <p class="mb-10">This endpoint creates a new API key. It will return the API key in the response. This will be the only time you will see the API key, so please save it in a secure location.</p>

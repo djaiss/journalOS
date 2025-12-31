@@ -11,7 +11,7 @@
   <div class="relative mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
     <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[250px_1fr]">
       <!-- Sidebar -->
-      <div class="hidden w-full flex-shrink-0 flex-col justify-self-end sm:border-r sm:border-gray-200 sm:pr-3 lg:flex">
+      <div class="hidden w-full flex-shrink-0 flex-col justify-self-end sm:border-r sm:border-gray-200 sm:pr-3 dark:sm:border-gray-700 lg:flex">
         <div
           x-data="{
             conceptsDocumentation:
@@ -29,7 +29,7 @@
           }"
           class="bg-light dark:bg-dark z-10 pt-16">
           <!-- concepts -->
-          <div @click="conceptsDocumentation = !conceptsDocumentation" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50">
+          <div @click="conceptsDocumentation = !conceptsDocumentation" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50 dark:hover:border-gray-700 dark:hover:bg-gray-800">
             <h3>Concepts</h3>
             <x-phosphor-caret-right x-bind:class="conceptsDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
           </div>
@@ -47,7 +47,7 @@
           </div>
 
           <!-- api documentation -->
-          <div @click="openApiDocumentation = !openApiDocumentation" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50">
+          <div @click="openApiDocumentation = !openApiDocumentation" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50 dark:hover:border-gray-700 dark:hover:bg-gray-800">
             <h3>API documentation</h3>
             <x-phosphor-caret-right x-bind:class="openApiDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
           </div>
@@ -67,7 +67,7 @@
             </div>
 
             <!-- account management -->
-            <div @click="accountManagementDocumentation = !accountManagementDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50">
+            <div @click="accountManagementDocumentation = !accountManagementDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50 dark:text-gray-400 dark:hover:border-gray-700 dark:hover:bg-gray-800">
               <h3>Account management</h3>
               <x-phosphor-caret-right x-bind:class="accountManagementDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
             </div>
@@ -90,7 +90,7 @@
             </div>
 
             <!-- journals -->
-            <div @click="journalsDocumentation = !journalsDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50">
+            <div @click="journalsDocumentation = !journalsDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50 dark:text-gray-400 dark:hover:border-gray-700 dark:hover:bg-gray-800">
               <h3>Journals</h3>
               <x-phosphor-caret-right x-bind:class="journalsDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
             </div>

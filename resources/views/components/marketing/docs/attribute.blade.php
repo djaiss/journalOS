@@ -5,7 +5,7 @@
   'required' => false,
 ])
 
-<div class="border-b border-gray-200 py-2 last:border-b-0 hover:bg-slate-100">
+<div class="border-b border-gray-200 py-2 last:border-b-0 hover:bg-slate-100 dark:border-gray-700 dark:hover:bg-gray-800">
   <div class="mb-1 flex items-center gap-x-2">
     <span class="font-mono font-bold">{{ $name }}</span>
     <span class="text-xs text-gray-500">{{ $type }}</span>

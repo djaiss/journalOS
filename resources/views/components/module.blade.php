@@ -4,8 +4,8 @@
   'action' => null,
 ])
 
-<div {{ $attributes->merge(['class' => 'rounded-lg border border-gray-200 bg-white ']) }}>
-  <div class="flex items-center justify-between border-b border-gray-200 p-2">
+<div {{ $attributes->merge(['class' => 'rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 ']) }}>
+  <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
     @isset($title)
       <div class="flex items-center">
         @isset($emoji)

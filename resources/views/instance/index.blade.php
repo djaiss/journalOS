@@ -13,7 +13,7 @@
       <!-- Stats -->
       <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         <!-- Total accounts -->
-        <div class="rounded-lg border border-gray-200 bg-white p-4">
+        <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600">{{ __('Total users') }}</p>
@@ -26,7 +26,7 @@
         </div>
 
         <!-- New accounts last 30 days -->
-        <div class="rounded-lg border border-gray-200 bg-white p-4">
+        <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600">{{ __('New users last 30 days') }}</p>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- New accounts last 7 days -->
-        <div class="rounded-lg border border-gray-200 bg-white p-4">
+        <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600">{{ __('New users last 7 days') }}</p>
@@ -53,22 +53,22 @@
       </div>
 
       <!-- Accounts list -->
-      <div class="mb-8 overflow-hidden rounded-lg border border-gray-200 bg-white" x-data="{
+      <div class="mb-8 overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900" x-data="{
         search: '',
         users: {{ \Illuminate\Support\Js::from($users) }},
       }">
         <!-- Search -->
-        <div class="border-b border-gray-200 p-4">
+        <div class="border-b border-gray-200 p-4 dark:border-gray-700">
           <div class="flex items-center justify-end">
             <div class="relative w-full sm:w-64">
               <x-phosphor-magnifying-glass class="pointer-events-none absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-              <x-input type="text" placeholder="{{ __('Search users...') }}" class="w-full border border-gray-300 bg-gray-100 py-1 pr-3 pl-8 text-sm focus:bg-white" x-model="search" />
+              <x-input type="text" placeholder="{{ __('Search users...') }}" class="w-full border border-gray-300 bg-gray-100 py-1 pr-3 pl-8 text-sm focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:focus:bg-gray-900" x-model="search" />
             </div>
           </div>
         </div>
 
         <!-- Table header -->
-        <div class="hidden grid-cols-12 gap-4 border-b border-gray-200 bg-gray-50 p-4 text-sm font-semibold text-gray-600 sm:grid">
+        <div class="hidden grid-cols-12 gap-4 border-b border-gray-200 bg-gray-50 p-4 text-sm font-semibold text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 sm:grid">
           <div class="col-span-1">{{ __('ID') }}</div>
           <div class="col-span-5">{{ __('Administrator') }}</div>
           <div class="col-span-3">{{ __('Last activity') }}</div>
@@ -78,7 +78,7 @@
         <!-- Table body -->
         <div class="divide-y divide-gray-200">
           <template x-for="user in users" :key="user.id">
-            <a :href="user.url" class="grid cursor-pointer grid-cols-1 gap-2 p-4 text-sm hover:bg-blue-50 sm:grid-cols-12 sm:gap-4 sm:p-3" x-show="
+            <a :href="user.url" class="grid cursor-pointer grid-cols-1 gap-2 p-4 text-sm hover:bg-blue-50 dark:hover:bg-gray-800 sm:grid-cols-12 sm:gap-4 sm:p-3" x-show="
               search === '' ||
                 user.name.toLowerCase().includes(search.toLowerCase()) ||
                 user.email.toLowerCase().includes(search.toLowerCase()) ||
@@ -133,7 +133,7 @@
             )
           ">
             <x-phosphor-magnifying-glass class="mx-auto h-12 w-12 text-gray-400" />
-            <h3 class="mt-2 text-sm font-semibold text-gray-900">{{ __('No results found') }}</h3>
+            <h3 class="mt-2 text-sm font-semibold text-gray-900 dark:text-gray-100">{{ __('No results found') }}</h3>
             <p class="mt-1 text-sm text-gray-500">{{ __('We could not find anything with that term. Try searching for something else.') }}</p>
           </div>
         </div>
