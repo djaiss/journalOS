@@ -20,11 +20,11 @@ final class TravelController extends Controller
             'has_traveled' => ['required', 'string', 'in:yes,no'],
         ]);
 
-        (new LogTravelledToday(
+        new LogTravelledToday(
             user: Auth::user(),
             entry: $journalEntry,
             hasTraveled: $validated['has_traveled'],
-        ))->execute();
+        )->execute();
 
         return to_route('journal.entry.show', [
             'slug' => $journalEntry->journal->slug,

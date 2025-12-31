@@ -20,11 +20,11 @@ final class TravelModeController extends Controller
             'travel_mode' => ['required', 'string', 'in:car,plane,train,bike,bus,walk,boat,other'],
         ]);
 
-        (new LogTravelMode(
+        new LogTravelMode(
             user: Auth::user(),
             entry: $journalEntry,
             travelMode: $validated['travel_mode'],
-        ))->execute();
+        )->execute();
 
         return to_route('journal.entry.show', [
             'slug' => $journalEntry->journal->slug,

@@ -16,7 +16,7 @@ use InvalidArgumentException;
  */
 final readonly class LogTravelMode
 {
-    private const VALID_MODES = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
+    private const array VALID_MODES = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
 
     public function __construct(
         private User $user,
