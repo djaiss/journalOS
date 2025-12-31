@@ -68,7 +68,7 @@
         </div>
 
         <!-- Table header -->
-        <div class="hidden grid-cols-12 gap-4 border-b border-gray-200 bg-gray-50 p-4 text-sm font-semibold text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 sm:grid">
+        <div class="hidden grid-cols-12 gap-4 border-b border-gray-200 bg-gray-50 p-4 text-sm font-semibold text-gray-600 sm:grid dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
           <div class="col-span-1">{{ __('ID') }}</div>
           <div class="col-span-5">{{ __('Administrator') }}</div>
           <div class="col-span-3">{{ __('Last activity') }}</div>
@@ -78,7 +78,7 @@
         <!-- Table body -->
         <div class="divide-y divide-gray-200">
           <template x-for="user in users" :key="user.id">
-            <a :href="user.url" class="grid cursor-pointer grid-cols-1 gap-2 p-4 text-sm hover:bg-blue-50 dark:hover:bg-gray-800 sm:grid-cols-12 sm:gap-4 sm:p-3" x-show="
+            <a :href="user.url" class="grid cursor-pointer grid-cols-1 gap-2 p-4 text-sm hover:bg-blue-50 sm:grid-cols-12 sm:gap-4 sm:p-3 dark:hover:bg-gray-800" x-show="
               search === '' ||
                 user.name.toLowerCase().includes(search.toLowerCase()) ||
                 user.email.toLowerCase().includes(search.toLowerCase()) ||

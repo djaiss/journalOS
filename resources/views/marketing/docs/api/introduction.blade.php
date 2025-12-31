@@ -25,7 +25,7 @@
       ],
     ]" />
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <p class="mb-2">The {{ config('app.name') }} API is organized around REST. Our API has predictable resource-oriented URLs.</p>
         <p class="mb-2">
@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="mb-10 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <x-marketing.docs.h2 id="test-the-api-yourself" title="Test the API yourself" />
       <p class="mb-2">
         If you want to test the API yourself, we provide two convenient tools for you to use:
@@ -57,7 +57,7 @@
       <p>Why these tools? Because they're fresh, new, free and open source under the MIT license, and I really like their ethos.</p>
     </div>
 
-    <div class="mb-10 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <x-marketing.docs.h2 id="conventions-of-the-api" title="Conventions of the API" />
       <p class="mb-2">
         There is no strict standard for JSON payloads, but we do try to follow
@@ -66,7 +66,7 @@
       </p>
     </div>
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <x-marketing.docs.h2 id="pagination" title="Pagination" />
         <p class="mb-2">All endpoints that return a collection of resources support pagination.</p>

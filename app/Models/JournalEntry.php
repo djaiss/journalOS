@@ -13,14 +13,22 @@ use Illuminate\Support\Facades\Date;
 /**
  * Class JournalEntry
  *
+ * Most properties are encrypted to protect the privacy of the user.
+ * This forces us to use strings to represent the values, even when it's not
+ * the right data type.
+ *
  * @property int $id
  * @property int $journal_id
  * @property int $day
  * @property int $month
  * @property int $year
- * @property string|null $bedtime
- * @property string|null $wake_up_time
- * @property string|null $sleep_duration_in_minutes
+ * @property string|null $bedtime # Format: 'HH:MM'
+ * @property string|null $wake_up_time # Format: 'HH:MM'
+ * @property string|null $sleep_duration_in_minutes # Format: '12'
+ * @property string|null $worked # Format: 'yes'|'no'
+ * @property string|null $work_mode # Format: 'on-site'|'remote'|'hybrid'
+ * @property string|null $work_load # Format: 'light'|'medium'|'heavy'
+ * @property string|null $work_procrastinated # Format: 'yes'|'no'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -49,6 +57,10 @@ final class JournalEntry extends Model
         'bedtime',
         'wake_up_time',
         'sleep_duration_in_minutes',
+        'worked',
+        'work_mode',
+        'work_load',
+        'work_procrastinated',
     ];
 
     /**
@@ -62,6 +74,10 @@ final class JournalEntry extends Model
             'bedtime' => 'encrypted',
             'wake_up_time' => 'encrypted',
             'sleep_duration_in_minutes' => 'encrypted',
+            'worked' => 'encrypted',
+            'work_mode' => 'encrypted',
+            'work_load' => 'encrypted',
+            'work_procrastinated' => 'encrypted',
         ];
     }
 
@@ -77,8 +93,6 @@ final class JournalEntry extends Model
 
     /**
      * Get the date of the entry in a human readable format, like "2024/12/23".
-     *
-     * @return string
      */
     public function getDate(): string
     {

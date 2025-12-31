@@ -13,9 +13,10 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->text('bedtime')->nullable()->after('year');
-            $table->text('wake_up_time')->nullable()->after('bedtime');
-            $table->text('sleep_duration_in_minutes')->nullable()->after('wake_up_time');
+            $table->text('worked')->nullable()->after('sleep_duration_in_minutes');
+            $table->text('work_mode')->nullable()->after('worked');
+            $table->text('work_load')->nullable()->after('work_mode');
+            $table->text('work_procrastinated')->nullable()->after('work_load');
         });
     }
 
@@ -25,9 +26,10 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->dropColumn('sleep_duration_in_minutes');
-            $table->dropColumn('wake_up_time');
-            $table->dropColumn('bedtime');
+            $table->dropColumn('work_procrastinated');
+            $table->dropColumn('work_load');
+            $table->dropColumn('work_mode');
+            $table->dropColumn('worked');
         });
     }
 };

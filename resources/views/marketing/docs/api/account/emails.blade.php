@@ -17,7 +17,7 @@
       ],
     ]" />
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <p class="mb-2">This endpoint gets the emails that were sent to the current user.</p>
       </div>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- GET /api/settings/emails -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <x-marketing.docs.h2 id="get-the-emails-of-the-current-user" title="Get the emails of the current user" />
         <p class="mb-2">This endpoint gets the emails that were sent to the current user.</p>
