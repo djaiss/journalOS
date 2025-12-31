@@ -47,7 +47,7 @@ final class Journal extends Model
         'name',
         'slug',
         'show_sleep_module',
-        'show_work_moddule',
+        'show_work_module',
     ];
 
     /**
@@ -61,7 +61,7 @@ final class Journal extends Model
             'name' => 'encrypted',
             'slug' => 'encrypted',
             'show_sleep_module' => 'boolean',
-            'show_work_moddule' => 'boolean',
+            'show_work_module' => 'boolean',
         ];
     }
 
@@ -90,6 +90,6 @@ final class Journal extends Model
      */
     public function avatar(): string
     {
-        return new GenerateJournalAvatar($this->id . '-' . $this->name)->execute();
+        return new GenerateJournalAvatar($this->id.'-'.$this->name)->execute();
     }
 }
