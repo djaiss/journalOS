@@ -62,8 +62,8 @@
       <div class="space-y-2">
         <p>{{ __('Did you procrastinate (be honest)?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="worked" value="yes" x-target="work-container notifications work-reset" :action="$module['has_worked_url']" selected="{{ $entry->worked === 'yes' }}" />
-          <x-button.no name="worked" value="no" x-target="work-container notifications work-reset" :action="$module['has_worked_url']" selected="{{ $entry->worked === 'no' }}" />
+          <x-button.yes name="work_procrastinated" value="yes" x-target="work-container notifications work-reset" :action="$module['work_procrastinated_url']" selected="{{ $entry->work_procrastinated === 'yes' }}" />
+          <x-button.no name="work_procrastinated" value="no" x-target="work-container notifications work-reset" :action="$module['work_procrastinated_url']" selected="{{ $entry->work_procrastinated === 'no' }}" />
         </div>
       </div>
     </div>
