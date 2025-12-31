@@ -34,6 +34,7 @@ final class WorkModulePresenterTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('has_worked_url', $result);
+        $this->assertArrayHasKey('work_mode_url', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
 
@@ -45,6 +46,16 @@ final class WorkModulePresenterTest extends TestCase
                 'day' => $entry->day,
             ]),
             $result['has_worked_url'],
+        );
+
+        $this->assertEquals(
+            route('journal.entry.work.mode.update', [
+                'slug' => $entry->journal->slug,
+                'year' => $entry->year,
+                'month' => $entry->month,
+                'day' => $entry->day,
+            ]),
+            $result['work_mode_url'],
         );
 
         $this->assertEquals(
