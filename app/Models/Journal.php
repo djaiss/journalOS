@@ -90,6 +90,6 @@ final class Journal extends Model
      */
     public function avatar(): string
     {
-        return new GenerateJournalAvatar($this->id.'-'.$this->name)->execute();
+        return new GenerateJournalAvatar($this->id . '-' . $this->name)->execute();
     }
 }

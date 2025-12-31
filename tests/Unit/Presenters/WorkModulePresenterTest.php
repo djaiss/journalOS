@@ -34,6 +34,8 @@ final class WorkModulePresenterTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('has_worked_url', $result);
+        $this->assertArrayHasKey('work_mode_url', $result);
+        $this->assertArrayHasKey('work_modes', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
 
@@ -48,6 +50,16 @@ final class WorkModulePresenterTest extends TestCase
         );
 
         $this->assertEquals(
+            route('journal.entry.work.mode.update', [
+                'slug' => $entry->journal->slug,
+                'year' => $entry->year,
+                'month' => $entry->month,
+                'day' => $entry->day,
+            ]),
+            $result['work_mode_url'],
+        );
+
+        $this->assertEquals(
             route('journal.entry.work.reset', [
                 'slug' => $entry->journal->slug,
                 'year' => $entry->year,
@@ -56,6 +68,14 @@ final class WorkModulePresenterTest extends TestCase
             ]),
             $result['reset_url'],
         );
+
+        $this->assertCount(3, $result['work_modes']);
+        $this->assertEquals('remote', $result['work_modes'][0]['value']);
+        $this->assertEquals('on-site', $result['work_modes'][1]['value']);
+        $this->assertEquals('hybrid', $result['work_modes'][2]['value']);
+        $this->assertFalse($result['work_modes'][0]['is_selected']);
+        $this->assertFalse($result['work_modes'][1]['is_selected']);
+        $this->assertFalse($result['work_modes'][2]['is_selected']);
 
         $this->assertFalse($result['display_reset']);
     }
@@ -81,13 +101,16 @@ final class WorkModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => 'focused',
+            'work_mode' => 'remote',
         ]);
 
         $presenter = new WorkModulePresenter($entry);
         $result = $presenter->build();
 
         $this->assertTrue($result['display_reset']);
+        $this->assertTrue($result['work_modes'][0]['is_selected']);
+        $this->assertFalse($result['work_modes'][1]['is_selected']);
+        $this->assertFalse($result['work_modes'][2]['is_selected']);
     }
 
     #[Test]

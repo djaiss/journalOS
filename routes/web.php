@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
                 // work
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/work', [Journals\Modules\Work\WorkController::class, 'update'])->name('journal.entry.work.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/work/mode', [Journals\Modules\Work\WorkModeController::class, 'update'])->name('journal.entry.work.mode.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/work/reset', [Journals\Modules\Work\WorkResetController::class, 'update'])->name('journal.entry.work.reset');
             });
 
