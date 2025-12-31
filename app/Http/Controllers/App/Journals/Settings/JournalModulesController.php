@@ -7,27 +7,27 @@ namespace App\Http\Controllers\App\Journals\Settings;
 use App\Actions\ToggleModuleVisibility;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class JournalModulesController extends Controller
 {
-    public function update(Request $request): View
+    public function update(Request $request): RedirectResponse
     {
         $journal = $request->attributes->get('journal');
 
-        $request->validate([
-            'module' => ['required'],
+        $validated = $request->validate([
+            'module' => ['required', 'string'],
         ]);
 
         $journal = new ToggleModuleVisibility(
             user: Auth::user(),
             journal: $journal,
-            moduleName: 'sleep',
+            moduleName: $validated['module'],
         )->execute();
 
-        return view('app.journal.settings.partials.modules', [
-            'journal' => $journal,
-        ]);
+        return to_route('journal.settings.show', [
+            'slug' => $journal->slug,
+        ])->with('status', __('Changes saved'));
     }
 }

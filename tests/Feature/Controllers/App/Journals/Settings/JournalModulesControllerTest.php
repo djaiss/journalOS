@@ -24,12 +24,10 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
-            'module' => '1',
+            'module' => 'sleep',
         ]);
 
-        $response->assertOk();
-        $response->assertSeeText('Modules');
-        $response->assertSeeText('Disabled');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -47,12 +45,10 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
-            'module' => '1',
+            'module' => 'sleep',
         ]);
 
-        $response->assertOk();
-        $response->assertSeeText('Modules');
-        $response->assertSeeText('Enabled');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -67,7 +63,7 @@ final class JournalModulesControllerTest extends TestCase
         $otherJournal = Journal::factory()->create();
 
         $response = $this->actingAs($user)->put('/journals/' . $otherJournal->slug . '/settings/modules', [
-            'module' => '1',
+            'module' => 'sleep',
         ]);
 
         $response->assertNotFound();

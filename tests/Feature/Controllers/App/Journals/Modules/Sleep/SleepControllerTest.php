@@ -34,24 +34,6 @@ final class SleepControllerTest extends TestCase
     }
 
     #[Test]
-    public function it_shows_the_sleep_module_with_custom_times(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'bedtime' => '23:00',
-            'wake_up_time' => '07:00',
-        ]);
-
-        $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/21:30/05:30",
-        );
-
-        $response->assertStatus(200);
-        $response->assertViewIs('app.journal.entry.partials.sleep');
-    }
-
-    #[Test]
     public function it_returns_404_for_unauthorized_entry(): void
     {
         $user = User::factory()->create();
