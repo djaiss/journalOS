@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property ?string $slug
  * @property bool $show_sleep_module
  * @property bool $show_work_module
+ * @property bool $show_travel_module
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -48,6 +49,7 @@ final class Journal extends Model
         'slug',
         'show_sleep_module',
         'show_work_module',
+        'show_travel_module',
     ];
 
     /**
@@ -62,6 +64,7 @@ final class Journal extends Model
             'slug' => 'encrypted',
             'show_sleep_module' => 'boolean',
             'show_work_module' => 'boolean',
+            'show_travel_module' => 'boolean',
         ];
     }
 
