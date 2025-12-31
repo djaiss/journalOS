@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Models;
 
 use App\Models\Journal;
+use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -18,9 +19,23 @@ final class JournalTest extends TestCase
     public function it_belongs_to_a_user(): void
     {
         $henri = User::factory()->create();
-        $journal = Journal::factory()->create(['user_id' => $henri->id]);
+        $journal = Journal::factory()->create([
+            'user_id' => $henri->id,
+        ]);
 
         $this->assertTrue($journal->user()->exists());
+    }
+
+    #[Test]
+    public function it_has_many_entries(): void
+    {
+        $journal = Journal::factory()->create();
+        JournalEntry::factory()->count(3)->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $this->assertCount(3, $journal->entries);
+        $this->assertTrue($journal->entries()->exists());
     }
 
     #[Test]

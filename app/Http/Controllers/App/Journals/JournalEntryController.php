@@ -17,6 +17,11 @@ final class JournalEntryController extends Controller
         $journal = $request->attributes->get('journal');
         $journalEntry = $request->attributes->get('journal_entry');
 
+        $years = JournalHelper::getYears(
+            journal: $journal,
+            selectedYear: $journalEntry->year,
+        );
+
         $months = JournalHelper::getMonths(
             journal: $journal,
             year: $journalEntry->year,
@@ -34,6 +39,7 @@ final class JournalEntryController extends Controller
 
         return view('app.journal.entry.show', [
             'journal' => $journal,
+            'years' => $years,
             'months' => $months,
             'days' => $days,
             'entry' => $journalEntry,
