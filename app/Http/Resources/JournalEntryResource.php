@@ -34,6 +34,9 @@ final class JournalEntryResource extends JsonResource
                         'wake_up_time' => $this->wake_up_time,
                         'sleep_duration_in_minutes' => $this->sleep_duration_in_minutes,
                     ],
+                    'work' => [
+                        'worked' => $this->worked,
+                    ],
                 ],
                 'created_at' => $this->created_at->timestamp,
                 'updated_at' => $this->updated_at?->timestamp,

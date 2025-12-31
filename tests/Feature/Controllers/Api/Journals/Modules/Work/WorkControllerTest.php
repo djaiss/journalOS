@@ -31,6 +31,9 @@ final class WorkControllerTest extends TestCase
                         'wake_up_time',
                         'sleep_duration_in_minutes',
                     ],
+                    'work' => [
+                        'worked',
+                    ],
                 ],
                 'created_at',
                 'updated_at',
