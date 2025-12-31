@@ -28,6 +28,13 @@ final readonly class WorkModulePresenter
             'day' => $this->entry->day,
         ]);
 
+        $workLoadURL = route('journal.entry.work.load.update', [
+            'slug' => $this->entry->journal->slug,
+            'year' => $this->entry->year,
+            'month' => $this->entry->month,
+            'day' => $this->entry->day,
+        ]);
+
         $resetUrl = route('journal.entry.work.reset', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
@@ -46,10 +53,23 @@ final readonly class WorkModulePresenter
             'is_selected' => $mode === $this->entry->work_mode,
         ]);
 
+        $workLoads = collect(['light', 'medium', 'heavy'])->map(fn($load) => [
+            'value' => $load,
+            'label' => match ($load) {
+                'light' => __('Light'),
+                'medium' => __('Medium'),
+                'heavy' => __('Heavy'),
+                default => $load,
+            },
+            'is_selected' => $load === $this->entry->work_load,
+        ]);
+
         return [
             'has_worked_url' => $hasWorkedURL,
             'work_mode_url' => $workModeURL,
             'work_modes' => $workModes,
+            'work_load_url' => $workLoadURL,
+            'work_loads' => $workLoads,
             'reset_url' => $resetUrl,
             'display_reset' => ! is_null($this->entry->worked) || ! is_null($this->entry->work_mode) || ! is_null($this->entry->work_load) || ! is_null($this->entry->work_procrastinated),
         ];

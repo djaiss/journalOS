@@ -45,30 +45,16 @@
       <div class="space-y-2">
         <p>{{ __('How much did you work?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="sleep-container notifications reset" :action="'bla'" method="put" class="h-full">
-              <input type="hidden" name="bedtime" value="" />
-              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                {{ __('Light') }}
-              </button>
-            </x-form>
-          </div>
-          <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="sleep-container notifications reset" :action="'bla'" method="put" class="h-full">
-              <input type="hidden" name="bedtime" value="" />
-              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                {{ __('Normal') }}
-              </button>
-            </x-form>
-          </div>
-          <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="sleep-container notifications reset" :action="'bla'" method="put" class="h-full">
-              <input type="hidden" name="bedtime" value="" />
-              <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                {{ __('Heavy') }}
-              </button>
-            </x-form>
-          </div>
+          @foreach ($module['work_loads'] as $option)
+            <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+              <x-form x-target="work-container notifications work-reset" :action="$module['work_load_url']" method="put" class="h-full">
+                <input type="hidden" name="work_load" value="{{ $option['value'] }}" />
+                <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+                  {{ $option['label'] }}
+                </button>
+              </x-form>
+            </div>
+          @endforeach
         </div>
       </div>
 
