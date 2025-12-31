@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Journals\JournalEntryController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkController;
+use App\Http\Controllers\Api\Journals\Modules\Work\WorkModeController;
 use App\Http\Controllers\Api\Settings;
 use App\Http\Controllers\Api\Settings\Account\DestroyAccountController;
 use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
@@ -60,6 +61,12 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.work.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/work/mode', [WorkModeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.work.mode.update');
             });
 
             // settings

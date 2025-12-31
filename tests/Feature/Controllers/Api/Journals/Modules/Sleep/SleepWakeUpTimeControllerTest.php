@@ -33,6 +33,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
                     ],
                     'work' => [
                         'worked',
+                        'work_mode',
                     ],
                 ],
                 'created_at',
