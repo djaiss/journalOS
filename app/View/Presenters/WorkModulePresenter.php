@@ -35,9 +35,22 @@ final readonly class WorkModulePresenter
             'day' => $this->entry->day,
         ]);
 
+        $workModes = collect(['remote', 'on-site', 'hybrid'])->map(function ($mode) {
+            return [
+                'value' => $mode,
+                'label' => match ($mode) {
+                    'remote' => __('Remote'),
+                    'on-site' => __('On-site'),
+                    'hybrid' => __('Hybrid'),
+                },
+                'is_selected' => $mode === $this->entry->work_mode,
+            ];
+        });
+
         return [
             'has_worked_url' => $hasWorkedURL,
             'work_mode_url' => $workModeURL,
+            'work_modes' => $workModes,
             'reset_url' => $resetUrl,
             'display_reset' => ! is_null($this->entry->worked) || ! is_null($this->entry->work_mode) || ! is_null($this->entry->work_load) || ! is_null($this->entry->work_procrastinated),
         ];

@@ -28,30 +28,16 @@
       <div class="space-y-2">
         <p>{{ __('How did you work?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="work-container notifications work-reset" :action="$module['work_mode_url']" method="put" class="h-full">
-              <input type="hidden" name="work_mode" value="remote" />
-              <button type="submit" class="{{ $entry->work_mode === 'remote' ? 'bg-green-200 dark:bg-green-900/60' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                {{ __('Remote') }}
-              </button>
-            </x-form>
-          </div>
-          <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="work-container notifications work-reset" :action="$module['work_mode_url']" method="put" class="h-full">
-              <input type="hidden" name="work_mode" value="on-site" />
-              <button type="submit" class="{{ $entry->work_mode === 'on-site' ? 'bg-green-200 dark:bg-green-900/60' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                {{ __('On-site') }}
-              </button>
-            </x-form>
-          </div>
-          <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="work-container notifications work-reset" :action="$module['work_mode_url']" method="put" class="h-full">
-              <input type="hidden" name="work_mode" value="hybrid" />
-              <button type="submit" class="{{ $entry->work_mode === 'hybrid' ? 'bg-green-200 dark:bg-green-900/60' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                {{ __('Hybrid') }}
-              </button>
-            </x-form>
-          </div>
+          @foreach ($module['work_modes'] as $option)
+            <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+              <x-form x-target="work-container notifications work-reset" :action="$module['work_mode_url']" method="put" class="h-full">
+                <input type="hidden" name="work_mode" value="{{ $option['value'] }}" />
+                <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+                  {{ $option['label'] }}
+                </button>
+              </x-form>
+            </div>
+          @endforeach
         </div>
       </div>
 
