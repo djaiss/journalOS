@@ -36,6 +36,8 @@ final class WorkModulePresenterTest extends TestCase
         $this->assertArrayHasKey('has_worked_url', $result);
         $this->assertArrayHasKey('work_mode_url', $result);
         $this->assertArrayHasKey('work_modes', $result);
+        $this->assertArrayHasKey('work_load_url', $result);
+        $this->assertArrayHasKey('work_loads', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
 
@@ -60,6 +62,16 @@ final class WorkModulePresenterTest extends TestCase
         );
 
         $this->assertEquals(
+            route('journal.entry.work.load.update', [
+                'slug' => $entry->journal->slug,
+                'year' => $entry->year,
+                'month' => $entry->month,
+                'day' => $entry->day,
+            ]),
+            $result['work_load_url'],
+        );
+
+        $this->assertEquals(
             route('journal.entry.work.reset', [
                 'slug' => $entry->journal->slug,
                 'year' => $entry->year,
@@ -76,6 +88,14 @@ final class WorkModulePresenterTest extends TestCase
         $this->assertFalse($result['work_modes'][0]['is_selected']);
         $this->assertFalse($result['work_modes'][1]['is_selected']);
         $this->assertFalse($result['work_modes'][2]['is_selected']);
+
+        $this->assertCount(3, $result['work_loads']);
+        $this->assertEquals('light', $result['work_loads'][0]['value']);
+        $this->assertEquals('medium', $result['work_loads'][1]['value']);
+        $this->assertEquals('heavy', $result['work_loads'][2]['value']);
+        $this->assertFalse($result['work_loads'][0]['is_selected']);
+        $this->assertFalse($result['work_loads'][1]['is_selected']);
+        $this->assertFalse($result['work_loads'][2]['is_selected']);
 
         $this->assertFalse($result['display_reset']);
     }
