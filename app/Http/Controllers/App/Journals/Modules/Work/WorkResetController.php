@@ -6,13 +6,12 @@ namespace App\Http\Controllers\App\Journals\Modules\Work;
 
 use App\Actions\ResetWorkData;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 final class WorkResetController extends Controller
 {
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request)
     {
         $journalEntry = $request->attributes->get('journal_entry');
 

@@ -1,0 +1,140 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Unit\Presenters;
+
+use App\Models\Journal;
+use App\Models\JournalEntry;
+use App\View\Presenters\WorkModulePresenter;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
+
+final class WorkModulePresenterTest extends TestCase
+{
+    use RefreshDatabase;
+
+    #[Test]
+    public function it_builds_work_module_data(): void
+    {
+        $journal = Journal::factory()->create([
+            'slug' => 'my-journal',
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2024,
+            'month' => 12,
+            'day' => 25,
+            'worked' => null,
+        ]);
+
+        $presenter = new WorkModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('has_worked_url', $result);
+        $this->assertArrayHasKey('reset_url', $result);
+        $this->assertArrayHasKey('display_reset', $result);
+
+        $this->assertEquals(
+            route('journal.entry.work.update', [
+                'slug' => $entry->journal->slug,
+                'year' => $entry->year,
+                'month' => $entry->month,
+                'day' => $entry->day,
+            ]),
+            $result['has_worked_url'],
+        );
+
+        $this->assertEquals(
+            route('journal.entry.work.reset', [
+                'slug' => $entry->journal->slug,
+                'year' => $entry->year,
+                'month' => $entry->month,
+                'day' => $entry->day,
+            ]),
+            $result['reset_url'],
+        );
+
+        $this->assertFalse($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_displays_reset_when_worked_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'worked' => 'yes',
+        ]);
+
+        $presenter = new WorkModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertTrue($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_displays_reset_when_work_mode_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'work_mode' => 'focused',
+        ]);
+
+        $presenter = new WorkModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertTrue($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_displays_reset_when_work_load_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'work_load' => 'heavy',
+        ]);
+
+        $presenter = new WorkModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertTrue($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_displays_reset_when_work_procrastinated_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'work_procrastinated' => 'yes',
+        ]);
+
+        $presenter = new WorkModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertTrue($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_does_not_display_reset_when_no_work_data_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'worked' => null,
+            'work_mode' => null,
+            'work_load' => null,
+            'work_procrastinated' => null,
+        ]);
+
+        $presenter = new WorkModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertFalse($result['display_reset']);
+    }
+}

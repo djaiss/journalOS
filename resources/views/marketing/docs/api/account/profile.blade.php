@@ -17,7 +17,7 @@
       ],
     ]" />
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <p class="mb-2">The profile endpoint is used to get and set the current user's profile information.</p>
         <p class="mb-2">This will probably not be used often, but it can be useful.</p>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- GET /api/me -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <x-marketing.docs.h2 id="get-the-information-about-the-logged-user" title="Get the information about the logged user" />
         <p class="mb-10">This endpoint gets the information about the logged user. This endpoint is there to make sure that the API works.</p>

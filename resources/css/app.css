@@ -21,7 +21,6 @@
   }
 }
 
-
 @layer utilities {
   [x-cloak] {
     display: none !important;

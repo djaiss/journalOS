@@ -11,7 +11,7 @@
   <div class="relative mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
     <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[250px_1fr]">
       <!-- Sidebar -->
-      <div class="hidden w-full flex-shrink-0 flex-col justify-self-end sm:border-r sm:border-gray-200 sm:pr-3 dark:sm:border-gray-700 lg:flex">
+      <div class="hidden w-full flex-shrink-0 flex-col justify-self-end sm:border-r sm:border-gray-200 sm:pr-3 lg:flex dark:sm:border-gray-700">
         <div
           x-data="{
             conceptsDocumentation:

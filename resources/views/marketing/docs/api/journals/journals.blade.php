@@ -29,7 +29,7 @@
       ],
     ]" />
 
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <p class="mb-2">This endpoint gets the journals of the current user.</p>
       </div>
@@ -70,7 +70,7 @@
     </div>
 
     <!-- GET /api/journals -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <x-marketing.docs.h2 id="get-the-journals-of-the-current-user" title="Get the journals of the current user" />
         <p class="mb-2">This endpoint gets the journals of the current user.</p>
@@ -111,7 +111,7 @@
     </div>
 
     <!-- GET /api/journals/{id} -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <x-marketing.docs.h2 id="get-a-journal" title="Get a specific journal" />
         <p class="mb-10">This endpoint gets a specific journal.</p>
@@ -147,7 +147,7 @@
     </div>
 
     <!-- POST /api/journals -->
-    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 dark:border-gray-700 sm:grid-cols-2">
+    <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <x-marketing.docs.h2 id="create-a-journal" title="Create a journal" />
         <p class="mb-10">This endpoint creates a new journal. It will return the journal in the response. The avatar is automatically generated.</p>

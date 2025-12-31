@@ -51,7 +51,7 @@ final readonly class LogHasWorked
             user: $this->user,
             journal: $this->entry->journal,
             action: 'has_worked_logged',
-            description: 'Logged if you have worked on '.$this->entry->getDate(),
+            description: 'Logged if you have worked on ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 

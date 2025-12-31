@@ -9,7 +9,7 @@ use App\Http\Controllers\Instance;
 use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
-require __DIR__.'/marketing.php';
+require __DIR__ . '/marketing.php';
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
 
@@ -112,4 +112,4 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

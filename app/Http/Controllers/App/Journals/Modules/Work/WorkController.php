@@ -23,7 +23,7 @@ final class WorkController extends Controller
         new LogHasWorked(
             user: Auth::user(),
             entry: $journalEntry,
-            hasWorked: $request->input('worked'),
+            hasWorked: $validated['worked'],
         )->execute();
 
         return to_route('journal.entry.show', [
