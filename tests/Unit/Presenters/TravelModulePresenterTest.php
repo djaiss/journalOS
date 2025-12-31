@@ -37,6 +37,8 @@ final class TravelModulePresenterTest extends TestCase
         $this->assertArrayHasKey('has_traveled_url', $result);
         $this->assertArrayHasKey('travel_mode_url', $result);
         $this->assertArrayHasKey('travel_modes', $result);
+        $this->assertArrayHasKey('reset_url', $result);
+        $this->assertArrayHasKey('display_reset', $result);
 
         $this->assertEquals(
             route('journal.entry.travel.update', [
@@ -58,6 +60,16 @@ final class TravelModulePresenterTest extends TestCase
             $result['travel_mode_url'],
         );
 
+        $this->assertEquals(
+            route('journal.entry.travel.reset', [
+                'slug' => $entry->journal->slug,
+                'year' => $entry->year,
+                'month' => $entry->month,
+                'day' => $entry->day,
+            ]),
+            $result['reset_url'],
+        );
+
         $this->assertCount(8, $result['travel_modes']);
         $this->assertEquals('car', $result['travel_modes'][0]['value']);
         $this->assertEquals('plane', $result['travel_modes'][1]['value']);
@@ -75,6 +87,8 @@ final class TravelModulePresenterTest extends TestCase
         $this->assertFalse($result['travel_modes'][5]['is_selected']);
         $this->assertFalse($result['travel_modes'][6]['is_selected']);
         $this->assertFalse($result['travel_modes'][7]['is_selected']);
+
+        $this->assertFalse($result['display_reset']);
     }
 
     #[Test]
@@ -137,5 +151,51 @@ final class TravelModulePresenterTest extends TestCase
         $this->assertEquals(__('Walk'), $result['travel_modes'][5]['label']);
         $this->assertEquals(__('Boat'), $result['travel_modes'][6]['label']);
         $this->assertEquals(__('Other'), $result['travel_modes'][7]['label']);
+    }
+
+    #[Test]
+    public function it_displays_reset_when_has_traveled_today_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_traveled_today' => 'yes',
+        ]);
+
+        $presenter = new TravelModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertTrue($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_displays_reset_when_travel_mode_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'travel_mode' => ['plane'],
+        ]);
+
+        $presenter = new TravelModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertTrue($result['display_reset']);
+    }
+
+    #[Test]
+    public function it_does_not_display_reset_when_no_travel_data_is_set(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_traveled_today' => null,
+            'travel_mode' => null,
+        ]);
+
+        $presenter = new TravelModulePresenter($entry);
+        $result = $presenter->build();
+
+        $this->assertFalse($result['display_reset']);
     }
 }

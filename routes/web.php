@@ -61,6 +61,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 // travel
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel', [Journals\Modules\Travel\TravelController::class, 'update'])->name('journal.entry.travel.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel/mode', [Journals\Modules\Travel\TravelModeController::class, 'update'])->name('journal.entry.travel.mode.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel/reset', [Journals\Modules\Travel\TravelResetController::class, 'update'])->name('journal.entry.travel.reset');
             });
 
             // settings

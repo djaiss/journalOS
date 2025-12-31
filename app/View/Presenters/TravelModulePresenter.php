@@ -28,6 +28,13 @@ final readonly class TravelModulePresenter
             'day' => $this->entry->day,
         ]);
 
+        $resetUrl = route('journal.entry.travel.reset', [
+            'slug' => $this->entry->journal->slug,
+            'year' => $this->entry->year,
+            'month' => $this->entry->month,
+            'day' => $this->entry->day,
+        ]);
+
         $travelModes = collect(['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'])->map(fn($mode) => [
             'value' => $mode,
             'label' => match ($mode) {
@@ -48,6 +55,8 @@ final readonly class TravelModulePresenter
             'has_traveled_url' => $hasTraveledURL,
             'travel_mode_url' => $travelModeURL,
             'travel_modes' => $travelModes,
+            'reset_url' => $resetUrl,
+            'display_reset' => ! is_null($this->entry->has_traveled_today) || ! is_null($this->entry->travel_mode),
         ];
     }
 }
