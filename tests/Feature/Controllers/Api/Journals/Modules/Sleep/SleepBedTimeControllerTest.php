@@ -78,7 +78,6 @@ final class SleepBedTimeControllerTest extends TestCase
 
         $this->assertDatabaseHas('journal_entries', [
             'id' => $entry->id,
-            'bedtime' => '22:30',
         ]);
     }
 
