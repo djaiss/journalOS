@@ -24,7 +24,7 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
-            'module' => '1',
+            'module' => 'sleep',
         ]);
 
         $response->assertOk();
@@ -47,7 +47,7 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
-            'module' => '1',
+            'module' => 'sleep',
         ]);
 
         $response->assertOk();
@@ -67,7 +67,7 @@ final class JournalModulesControllerTest extends TestCase
         $otherJournal = Journal::factory()->create();
 
         $response = $this->actingAs($user)->put('/journals/' . $otherJournal->slug . '/settings/modules', [
-            'module' => '1',
+            'module' => 'sleep',
         ]);
 
         $response->assertNotFound();
