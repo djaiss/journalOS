@@ -6,16 +6,18 @@ namespace App\Http\Controllers\Api\Journals\Modules\Work;
 
 use App\Actions\LogWorkMode;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Journals\Modules\Work\UpdateWorkModeRequest;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 final class WorkModeController extends Controller
 {
-    public function update(UpdateWorkModeRequest $request): JsonResponse
+    public function update(Request $request): JsonResponse
     {
         $journalEntry = $request->attributes->get('journal_entry');
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'work_mode' => ['required', 'string', 'in:on-site,remote,hybrid'],
+        ]);
 
         $entry = new LogWorkMode(
             user: $request->user(),
