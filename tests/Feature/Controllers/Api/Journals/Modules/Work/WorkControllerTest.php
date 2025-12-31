@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Api\Journals\Modules\Sleep;
+namespace Tests\Feature\Controllers\Api\Journals\Modules\Work;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
@@ -12,7 +12,7 @@ use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class SleepBedTimeControllerTest extends TestCase
+final class WorkControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -45,7 +45,7 @@ final class SleepBedTimeControllerTest extends TestCase
     ];
 
     #[Test]
-    public function it_logs_bedtime_for_a_journal_entry(): void
+    public function it_logs_work_status_for_a_journal_entry(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -60,8 +60,8 @@ final class SleepBedTimeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep/bedtime', [
-            'bedtime' => '22:30',
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
+            'worked' => 'yes',
         ]);
 
         $response->assertStatus(200);
@@ -69,22 +69,15 @@ final class SleepBedTimeControllerTest extends TestCase
         $response->assertJson([
             'data' => [
                 'id' => (string) $entry->id,
-                'attributes' => [
-                    'modules' => [
-                        'sleep' => [
-                            'bedtime' => '22:30',
-                        ],
-                    ],
-                ],
             ],
         ]);
 
         $entry->refresh();
-        $this->assertEquals('22:30', $entry->bedtime);
+        $this->assertEquals('yes', $entry->worked);
     }
 
     #[Test]
-    public function it_requires_a_valid_bedtime_format(): void
+    public function it_requires_worked_to_be_yes_or_no(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -93,24 +86,40 @@ final class SleepBedTimeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep/bedtime', [
-            'bedtime' => '22-30',
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
+            'worked' => 'maybe',
         ]);
 
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors('bedtime');
+        $response->assertJsonValidationErrors('worked');
     }
 
     #[Test]
-    public function it_rejects_bedtime_updates_for_other_users_entries(): void
+    public function it_requires_worked_to_be_present(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', []);
+
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors('worked');
+    }
+
+    #[Test]
+    public function it_rejects_work_updates_for_other_users_entries(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep/bedtime', [
-            'bedtime' => '22:30',
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
+            'worked' => 'yes',
         ]);
 
         $response->assertStatus(404);

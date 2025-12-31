@@ -31,6 +31,9 @@ final class JournalEntryControllerTest extends TestCase
                         'wake_up_time',
                         'sleep_duration_in_minutes',
                     ],
+                    'work' => [
+                        'worked',
+                    ],
                 ],
                 'created_at',
                 'updated_at',
@@ -78,6 +81,9 @@ final class JournalEntryControllerTest extends TestCase
                             'bedtime' => '22:30',
                             'wake_up_time' => '06:45',
                             'sleep_duration_in_minutes' => '495',
+                        ],
+                        'work' => [
+                            'worked' => null,
                         ],
                     ],
                 ],

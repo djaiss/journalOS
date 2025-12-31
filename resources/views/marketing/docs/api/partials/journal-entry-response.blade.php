@@ -47,6 +47,12 @@
   "sleep_duration_in_minutes":
   <span class="text-rose-800">495</span>
 </div>
+<div class="pl-16">},</div>
+<div class="pl-16">"work": {</div>
+<div class="pl-20">
+  "worked":
+  <span class="text-lime-700">"yes"</span>
+</div>
 <div class="pl-16">}</div>
 <div class="pl-12">},</div>
 <div class="pl-12">
