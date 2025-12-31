@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Journals\JournalEntryController;
+use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
+use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
 use App\Http\Controllers\Api\Settings;
 use App\Http\Controllers\Api\Settings\Account\DestroyAccountController;
 use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
@@ -39,6 +41,18 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.show');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/sleep/bedtime', [SleepBedTimeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.sleep.bedtime.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/sleep/wake_up_time', [SleepWakeUpTimeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.sleep.wake_up_time.update');
             });
 
             // settings
