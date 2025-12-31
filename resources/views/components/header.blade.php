@@ -102,7 +102,7 @@
               {{ __('Instance administration') }}
             </a>
 
-            <div class="-mx-1 my-1 h-px bg-gray-200"></div>
+            <div class="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
           @endif
 
           <a @click="menuOpen = false" href="{{ route('settings.profile.index') }}" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
@@ -110,7 +110,7 @@
             {{ __('Profile') }}
           </a>
 
-          <div class="-mx-1 my-1 h-px bg-gray-200"></div>
+          <div class="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
 
           <form method="POST" action="{{ route('logout') }}" class="w-full">
             @csrf
