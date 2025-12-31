@@ -14,6 +14,43 @@ use Illuminate\Support\Facades\Date;
 final class JournalHelper
 {
     /**
+     * Get all the years of the entries in the journal.
+     * Returns the following structure:
+     * [
+     *    2024 => [
+     *      'year' => 2024,
+     *      'is_selected' => true,
+     *      'url' => '/journal/journal-slug/2024/1/1',
+     *   ]
+     *
+     * @param Journal $journal The journal to get the years for.
+     * @param int $selectedYear The year to mark as selected.
+     *
+     * @return Collection The years with their metadata.
+     */
+    public static function getYears(Journal $journal, int $selectedYear): Collection
+    {
+        $years = $journal->entries()
+            ->select('year')
+            ->distinct()
+            ->orderBy('year', 'asc')
+            ->pluck('year');
+
+        return $years->mapWithKeys(fn(int $year): array => [
+            $year => (object) [
+                'year' => $year,
+                'is_selected' => $year === $selectedYear,
+                'url' => route('journal.entry.show', [
+                    'slug' => $journal->slug,
+                    'year' => $year,
+                    'month' => 1,
+                    'day' => 1,
+                ]),
+            ],
+        ]);
+    }
+
+    /**
      * Get all the months in a given year, with the current month marked as
      * selected if it is the current month.
      * For each month, get the number of non-empty entries in that month.
