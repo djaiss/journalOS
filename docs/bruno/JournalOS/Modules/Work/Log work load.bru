@@ -1,0 +1,17 @@
+meta {
+  name: Log work load
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/work/load
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "work_load": "heavy"
+  }
+}
