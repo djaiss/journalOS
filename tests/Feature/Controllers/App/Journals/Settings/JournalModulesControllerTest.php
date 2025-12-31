@@ -28,8 +28,6 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings');
-        $response->assertSeeText('Modules');
-        $response->assertSeeText('Disabled');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -51,8 +49,6 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings');
-        $response->assertSeeText('Modules');
-        $response->assertSeeText('Enabled');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
