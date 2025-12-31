@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $work_procrastinated # Format: 'yes'|'no'
  * @property string|null $has_traveled_today # Format: 'yes'|'no'
  * @property string|null $travel_details # Format: 'Took a flight to...'
- * @property string|null $travel_mode # Format: 'car'|'plane'|'train'|'bike'|'bus'|'walk'|'boat'|'other'
+ * @property array<string>|null $travel_mode # Format: ['car', 'plane']
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -86,7 +86,7 @@ final class JournalEntry extends Model
             'work_procrastinated' => 'encrypted',
             'has_traveled_today' => 'encrypted',
             'travel_details' => 'encrypted',
-            'travel_mode' => 'encrypted',
+            'travel_mode' => 'encrypted:array',
         ];
     }
 

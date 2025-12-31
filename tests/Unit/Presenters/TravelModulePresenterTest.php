@@ -83,15 +83,39 @@ final class TravelModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => 'plane',
+            'travel_mode' => ['plane'],
         ]);
 
         $presenter = new TravelModulePresenter($entry);
         $result = $presenter->build();
 
-        $selectedMode = $result['travel_modes']->firstWhere('is_selected', true);
+        $selectedModes = $result['travel_modes']->filter(fn($mode) => $mode['is_selected']);
+        $this->assertCount(1, $selectedModes);
+
+        $selectedMode = $selectedModes->first();
         $this->assertEquals('plane', $selectedMode['value']);
         $this->assertEquals(__('Plane'), $selectedMode['label']);
+    }
+
+    #[Test]
+    public function it_marks_multiple_selected_travel_modes(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'travel_mode' => ['car', 'plane', 'train'],
+        ]);
+
+        $presenter = new TravelModulePresenter($entry);
+        $result = $presenter->build();
+
+        $selectedModes = $result['travel_modes']->filter(fn($mode) => $mode['is_selected']);
+        $this->assertCount(3, $selectedModes);
+
+        $selectedValues = $selectedModes->pluck('value')->toArray();
+        $this->assertContains('car', $selectedValues);
+        $this->assertContains('plane', $selectedValues);
+        $this->assertContains('train', $selectedValues);
     }
 
     #[Test]

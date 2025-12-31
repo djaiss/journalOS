@@ -16,16 +16,16 @@
       <!-- Travel mode -->
       <div class="space-y-2">
         <p>{{ __('How did you travel?') }}</p>
-        <div class="grid grid-cols-4 gap-2">
-          @foreach ($module['travel_modes'] as $option)
-            <x-form x-target="travel-container notifications" :action="$module['travel_mode_url']" method="put">
-              <input type="hidden" name="travel_mode" value="{{ $option['value'] }}" />
-              <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} w-full cursor-pointer rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
-                {{ $option['label'] }}
-              </button>
-            </x-form>
-          @endforeach
-        </div>
+        <x-form x-target="travel-container notifications" :action="$module['travel_mode_url']" method="put" id="travel-mode-form">
+          <div class="grid grid-cols-4 gap-2">
+            @foreach ($module['travel_modes'] as $option)
+              <label class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                <input type="checkbox" name="travel_modes[]" value="{{ $option['value'] }}" {{ $option['is_selected'] ? 'checked' : '' }} onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                <span>{{ $option['label'] }}</span>
+              </label>
+            @endforeach
+          </div>
+        </x-form>
       </div>
     </div>
   </div>

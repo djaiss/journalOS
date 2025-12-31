@@ -41,7 +41,7 @@ final readonly class TravelModulePresenter
                 'other' => __('Other'),
                 default => $mode,
             },
-            'is_selected' => $mode === $this->entry->travel_mode,
+            'is_selected' => is_array($this->entry->travel_mode) && in_array($mode, $this->entry->travel_mode, true),
         ]);
 
         return [

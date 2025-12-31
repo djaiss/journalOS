@@ -16,7 +16,7 @@ final class TravelModeControllerTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function it_updates_travel_mode_with_car(): void
+    public function it_updates_travel_modes_with_single_mode(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -32,18 +32,18 @@ final class TravelModeControllerTest extends TestCase
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'car'],
+            ['travel_modes' => ['car']],
         );
 
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('car', $entry->travel_mode);
+        $this->assertEquals(['car'], $entry->travel_mode);
     }
 
     #[Test]
-    public function it_updates_travel_mode_with_plane(): void
+    public function it_updates_travel_modes_with_multiple_modes(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -59,18 +59,21 @@ final class TravelModeControllerTest extends TestCase
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'plane'],
+            ['travel_modes' => ['car', 'plane', 'train']],
         );
 
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('plane', $entry->travel_mode);
+        $this->assertEquals(['car', 'plane', 'train'], $entry->travel_mode);
+        $this->assertContains('car', $entry->travel_mode);
+        $this->assertContains('plane', $entry->travel_mode);
+        $this->assertContains('train', $entry->travel_mode);
     }
 
     #[Test]
-    public function it_updates_travel_mode_with_train(): void
+    public function it_updates_with_all_travel_modes(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -84,155 +87,23 @@ final class TravelModeControllerTest extends TestCase
             'day' => 15,
         ]);
 
+        $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
+
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'train'],
+            ['travel_modes' => $allModes],
         );
 
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('train', $entry->travel_mode);
+        $this->assertEquals($allModes, $entry->travel_mode);
+        $this->assertCount(8, $entry->travel_mode);
     }
 
     #[Test]
-    public function it_updates_travel_mode_with_bike(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-            'travel_mode' => null,
-            'year' => 2024,
-            'month' => 6,
-            'day' => 15,
-        ]);
-
-        $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'bike'],
-        );
-
-        $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
-        $response->assertSessionHas('status');
-
-        $entry->refresh();
-        $this->assertEquals('bike', $entry->travel_mode);
-    }
-
-    #[Test]
-    public function it_updates_travel_mode_with_bus(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-            'travel_mode' => null,
-            'year' => 2024,
-            'month' => 6,
-            'day' => 15,
-        ]);
-
-        $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'bus'],
-        );
-
-        $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
-        $response->assertSessionHas('status');
-
-        $entry->refresh();
-        $this->assertEquals('bus', $entry->travel_mode);
-    }
-
-    #[Test]
-    public function it_updates_travel_mode_with_walk(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-            'travel_mode' => null,
-            'year' => 2024,
-            'month' => 6,
-            'day' => 15,
-        ]);
-
-        $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'walk'],
-        );
-
-        $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
-        $response->assertSessionHas('status');
-
-        $entry->refresh();
-        $this->assertEquals('walk', $entry->travel_mode);
-    }
-
-    #[Test]
-    public function it_updates_travel_mode_with_boat(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-            'travel_mode' => null,
-            'year' => 2024,
-            'month' => 6,
-            'day' => 15,
-        ]);
-
-        $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'boat'],
-        );
-
-        $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
-        $response->assertSessionHas('status');
-
-        $entry->refresh();
-        $this->assertEquals('boat', $entry->travel_mode);
-    }
-
-    #[Test]
-    public function it_updates_travel_mode_with_other(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-            'travel_mode' => null,
-            'year' => 2024,
-            'month' => 6,
-            'day' => 15,
-        ]);
-
-        $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'other'],
-        );
-
-        $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
-        $response->assertSessionHas('status');
-
-        $entry->refresh();
-        $this->assertEquals('other', $entry->travel_mode);
-    }
-
-    #[Test]
-    public function it_validates_travel_mode_must_be_valid(): void
+    public function it_validates_travel_modes_must_be_array(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -247,14 +118,58 @@ final class TravelModeControllerTest extends TestCase
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'invalid'],
+            ['travel_modes' => 'car'],
         );
 
-        $response->assertSessionHasErrors('travel_mode');
+        $response->assertSessionHasErrors('travel_modes');
     }
 
     #[Test]
-    public function it_validates_travel_mode_is_required(): void
+    public function it_validates_travel_modes_cannot_be_empty(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
+
+        $response = $this->actingAs($user)->put(
+            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            ['travel_modes' => []],
+        );
+
+        $response->assertSessionHasErrors('travel_modes');
+    }
+
+    #[Test]
+    public function it_validates_each_travel_mode_must_be_valid(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
+
+        $response = $this->actingAs($user)->put(
+            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            ['travel_modes' => ['car', 'invalid', 'plane']],
+        );
+
+        $response->assertSessionHasErrors('travel_modes.1');
+    }
+
+    #[Test]
+    public function it_validates_travel_modes_is_required(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -272,7 +187,7 @@ final class TravelModeControllerTest extends TestCase
             [],
         );
 
-        $response->assertSessionHasErrors('travel_mode');
+        $response->assertSessionHasErrors('travel_modes');
     }
 
     #[Test]
@@ -288,7 +203,7 @@ final class TravelModeControllerTest extends TestCase
 
         $response = $this->put(
             "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'car'],
+            ['travel_modes' => ['car']],
         );
 
         $response->assertRedirect('/login');
@@ -308,7 +223,7 @@ final class TravelModeControllerTest extends TestCase
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
-            ['travel_mode' => 'car'],
+            ['travel_modes' => ['car']],
         );
 
         $response->assertNotFound();

@@ -22,7 +22,7 @@ final class LogTravelModeTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function it_logs_travel_mode_with_car(): void
+    public function it_logs_single_travel_mode(): void
     {
         Queue::fake();
 
@@ -37,10 +37,10 @@ final class LogTravelModeTest extends TestCase
         $result = (new LogTravelMode(
             user: $user,
             entry: $entry,
-            travelMode: 'car',
+            travelModes: ['car'],
         ))->execute();
 
-        $this->assertEquals('car', $result->travel_mode);
+        $this->assertEquals(['car'], $result->travel_mode);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -60,7 +60,7 @@ final class LogTravelModeTest extends TestCase
     }
 
     #[Test]
-    public function it_logs_travel_mode_with_plane(): void
+    public function it_logs_multiple_travel_modes(): void
     {
         Queue::fake();
 
@@ -75,30 +75,17 @@ final class LogTravelModeTest extends TestCase
         $result = (new LogTravelMode(
             user: $user,
             entry: $entry,
-            travelMode: 'plane',
+            travelModes: ['car', 'plane', 'train'],
         ))->execute();
 
-        $this->assertEquals('plane', $result->travel_mode);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'travel_mode_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
+        $this->assertEquals(['car', 'plane', 'train'], $result->travel_mode);
+        $this->assertContains('car', $result->travel_mode);
+        $this->assertContains('plane', $result->travel_mode);
+        $this->assertContains('train', $result->travel_mode);
     }
 
     #[Test]
-    public function it_logs_travel_mode_with_train(): void
+    public function it_logs_all_valid_travel_modes(): void
     {
         Queue::fake();
 
@@ -110,123 +97,16 @@ final class LogTravelModeTest extends TestCase
             'travel_mode' => null,
         ]);
 
-        $result = (new LogTravelMode(
-            user: $user,
-            entry: $entry,
-            travelMode: 'train',
-        ))->execute();
-
-        $this->assertEquals('train', $result->travel_mode);
-    }
-
-    #[Test]
-    public function it_logs_travel_mode_with_bike(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'travel_mode' => null,
-        ]);
+        $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
 
         $result = (new LogTravelMode(
             user: $user,
             entry: $entry,
-            travelMode: 'bike',
+            travelModes: $allModes,
         ))->execute();
 
-        $this->assertEquals('bike', $result->travel_mode);
-    }
-
-    #[Test]
-    public function it_logs_travel_mode_with_bus(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'travel_mode' => null,
-        ]);
-
-        $result = (new LogTravelMode(
-            user: $user,
-            entry: $entry,
-            travelMode: 'bus',
-        ))->execute();
-
-        $this->assertEquals('bus', $result->travel_mode);
-    }
-
-    #[Test]
-    public function it_logs_travel_mode_with_walk(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'travel_mode' => null,
-        ]);
-
-        $result = (new LogTravelMode(
-            user: $user,
-            entry: $entry,
-            travelMode: 'walk',
-        ))->execute();
-
-        $this->assertEquals('walk', $result->travel_mode);
-    }
-
-    #[Test]
-    public function it_logs_travel_mode_with_boat(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'travel_mode' => null,
-        ]);
-
-        $result = (new LogTravelMode(
-            user: $user,
-            entry: $entry,
-            travelMode: 'boat',
-        ))->execute();
-
-        $this->assertEquals('boat', $result->travel_mode);
-    }
-
-    #[Test]
-    public function it_logs_travel_mode_with_other(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'travel_mode' => null,
-        ]);
-
-        $result = (new LogTravelMode(
-            user: $user,
-            entry: $entry,
-            travelMode: 'other',
-        ))->execute();
-
-        $this->assertEquals('other', $result->travel_mode);
+        $this->assertEquals($allModes, $result->travel_mode);
+        $this->assertCount(8, $result->travel_mode);
     }
 
     #[Test]
@@ -245,15 +125,15 @@ final class LogTravelModeTest extends TestCase
         (new LogTravelMode(
             user: $user,
             entry: $entry,
-            travelMode: 'car',
+            travelModes: ['car'],
         ))->execute();
     }
 
     #[Test]
-    public function it_throws_when_travel_mode_is_invalid(): void
+    public function it_throws_when_travel_modes_is_empty(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('travelMode must be one of: car, plane, train, bike, bus, walk, boat, other');
+        $this->expectExceptionMessage('travelModes cannot be empty');
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -264,7 +144,26 @@ final class LogTravelModeTest extends TestCase
         (new LogTravelMode(
             user: $user,
             entry: $entry,
-            travelMode: 'invalid',
+            travelModes: [],
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_travel_mode_is_invalid(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Each travelMode must be one of: car, plane, train, bike, bus, walk, boat, other');
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogTravelMode(
+            user: $user,
+            entry: $entry,
+            travelModes: ['car', 'invalid', 'plane'],
         ))->execute();
     }
 }

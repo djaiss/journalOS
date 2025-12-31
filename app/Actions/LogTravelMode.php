@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use InvalidArgumentException;
 
 /**
- * This action logs the travel mode used by the user in this day.
+ * This action logs the travel modes used by the user in this day.
  */
 final readonly class LogTravelMode
 {
@@ -21,13 +21,13 @@ final readonly class LogTravelMode
     public function __construct(
         private User $user,
         private JournalEntry $entry,
-        private string $travelMode,
+        private array $travelModes,
     ) {}
 
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->travel_mode = $this->travelMode;
+        $this->entry->travel_mode = $this->travelModes;
         $this->entry->save();
 
         $this->logUserAction();
@@ -42,8 +42,14 @@ final readonly class LogTravelMode
             throw new ModelNotFoundException('Journal not found');
         }
 
-        if (! in_array($this->travelMode, self::VALID_MODES, true)) {
-            throw new InvalidArgumentException('travelMode must be one of: ' . implode(', ', self::VALID_MODES));
+        if (empty($this->travelModes)) {
+            throw new InvalidArgumentException('travelModes cannot be empty');
+        }
+
+        foreach ($this->travelModes as $mode) {
+            if (! in_array($mode, self::VALID_MODES, true)) {
+                throw new InvalidArgumentException('Each travelMode must be one of: ' . implode(', ', self::VALID_MODES));
+            }
         }
     }
 

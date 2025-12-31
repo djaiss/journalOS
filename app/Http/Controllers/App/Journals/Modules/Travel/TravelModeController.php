@@ -17,14 +17,15 @@ final class TravelModeController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'travel_mode' => ['required', 'string', 'in:car,plane,train,bike,bus,walk,boat,other'],
+            'travel_modes' => ['required', 'array', 'min:1'],
+            'travel_modes.*' => ['required', 'string', 'in:car,plane,train,bike,bus,walk,boat,other'],
         ]);
 
-        new LogTravelMode(
+        (new LogTravelMode(
             user: Auth::user(),
             entry: $journalEntry,
-            travelMode: $validated['travel_mode'],
-        )->execute();
+            travelModes: $validated['travel_modes'],
+        ))->execute();
 
         return to_route('journal.entry.show', [
             'slug' => $journalEntry->journal->slug,
