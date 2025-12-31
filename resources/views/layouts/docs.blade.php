@@ -26,6 +26,9 @@
             journalsDocumentation:
               '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.journals',) || str_starts_with( request()->route()->getName(),'marketing.docs.api.journal-entries',) ? 'true' : 'false' }}' ===
               'true',
+            modulesDocumentation:
+              '{{ str_starts_with( request()->route()->getName(),'marketing.docs.api.modules',) ? 'true' : 'false' }}' ===
+              'true',
           }"
           class="bg-light dark:bg-dark z-10 pt-16">
           <!-- concepts -->
@@ -100,6 +103,17 @@
               </div>
               <div>
                 <a href="{{ route('marketing.docs.api.journal-entries') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.journal-entries') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journal entries</a>
+              </div>
+            </div>
+
+            <!-- modules -->
+            <div @click="modulesDocumentation = !modulesDocumentation" class="mb-3 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 pl-3 text-xs text-gray-500 uppercase hover:border-gray-200 hover:bg-blue-50 dark:text-gray-400 dark:hover:border-gray-700 dark:hover:bg-gray-800">
+              <h3>Modules</h3>
+              <x-phosphor-caret-right x-bind:class="modulesDocumentation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
+            </div>
+            <div x-show="modulesDocumentation" class="mb-3 flex flex-col gap-y-2">
+              <div>
+                <a href="{{ route('marketing.docs.api.modules.sleep') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.sleep') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sleep</a>
               </div>
             </div>
           </div>

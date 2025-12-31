@@ -6,6 +6,7 @@
 - [ ] notion of denormalized data
 - [ ] display the number of entries on a month
 - [ ] display months containing entries
+- [ ] ability to reset an entire day
 
 Life
 - [x] Sleep
@@ -19,7 +20,7 @@ Life
 - [ ] Sexual activity (optional module)
 
 Work
-- [ ] Worked today
+- [x] Worked today
 - [ ] Work mode
 - [ ] Workload
 - [ ] Procrastinated

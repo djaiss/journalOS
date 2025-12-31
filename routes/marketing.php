@@ -21,3 +21,4 @@ Route::get('/docs/api/emails', [Docs\Api\EmailSentController::class, 'index'])->
 Route::get('/docs/api/account', [Docs\Api\AccountController::class, 'index'])->name('marketing.docs.api.account');
 Route::get('/docs/api/journals', [Docs\Api\JournalController::class, 'index'])->name('marketing.docs.api.journals');
 Route::get('/docs/api/journal-entries', [Docs\Api\JournalEntryController::class, 'index'])->name('marketing.docs.api.journal-entries');
+Route::get('/docs/api/modules/sleep', [Docs\Api\Modules\SleepController::class, 'index'])->name('marketing.docs.api.modules.sleep');
