@@ -27,7 +27,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'sleep',
         ]);
 
-        $response->assertOk();
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
         $response->assertSeeText('Modules');
         $response->assertSeeText('Disabled');
 
@@ -50,7 +50,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'sleep',
         ]);
 
-        $response->assertOk();
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
         $response->assertSeeText('Modules');
         $response->assertSeeText('Enabled');
 
