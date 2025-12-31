@@ -13,6 +13,7 @@
   <x-marketing.docs.attribute name="attributes.modules.sleep.sleep_duration_in_minutes" type="integer" description="The sleep duration in minutes." />
   <x-marketing.docs.attribute name="attributes.modules.work" type="object" description="The work module payload." />
   <x-marketing.docs.attribute name="attributes.modules.work.worked" type="string" description="Whether you worked on the journal entry." />
+  <x-marketing.docs.attribute name="attributes.modules.work.work_mode" type="string" description="The work mode for the journal entry." />
   <x-marketing.docs.attribute name="attributes.created_at" type="integer" description="The date and time the object was created, in Unix timestamp format." />
   <x-marketing.docs.attribute name="attributes.updated_at" type="integer" description="The date and time the object was last updated, in Unix timestamp format." />
   <x-marketing.docs.attribute name="links" type="object" description="The links to access the journal entry." />

@@ -33,6 +33,7 @@ final class JournalEntryControllerTest extends TestCase
                     ],
                     'work' => [
                         'worked',
+                        'work_mode',
                     ],
                 ],
                 'created_at',
@@ -84,6 +85,7 @@ final class JournalEntryControllerTest extends TestCase
                         ],
                         'work' => [
                             'worked' => null,
+                            'work_mode' => null,
                         ],
                     ],
                 ],

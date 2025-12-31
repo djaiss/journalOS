@@ -52,6 +52,11 @@
 <div class="pl-20">
   "worked":
   <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "work_mode":
+  <span class="text-lime-700">"remote"</span>
 </div>
 <div class="pl-16">}</div>
 <div class="pl-12">},</div>

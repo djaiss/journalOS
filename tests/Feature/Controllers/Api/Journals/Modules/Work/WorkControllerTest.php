@@ -33,6 +33,7 @@ final class WorkControllerTest extends TestCase
                     ],
                     'work' => [
                         'worked',
+                        'work_mode',
                     ],
                 ],
                 'created_at',
