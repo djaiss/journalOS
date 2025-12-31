@@ -64,8 +64,8 @@
     <div>
       <!-- title -->
       <div class="mb-4">
-        <h3 class="text-md font-semibold">{{ __('Work') }}</h3>
-        <p class="text-gray-600 dark:text-gray-400">{{ __('What you worked on') }}</p>
+        <h3 class="text-md font-semibold">{{ __('Day') }}</h3>
+        <p class="text-gray-600 dark:text-gray-400">{{ __('What shaped the day') }}</p>
       </div>
 
       <!-- modules -->
