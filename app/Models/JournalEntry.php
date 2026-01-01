@@ -31,7 +31,8 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $work_procrastinated # Format: 'yes'|'no'
  * @property string|null $has_traveled_today # Format: 'yes'|'no'
  * @property string|null $travel_details # Format: 'Took a flight to...'
- * @property array<string>|null $travel_mode # Format: ['car', 'plane']
+ * @property array<string>|null $travel_mode # Format: ['car',plane,train,bike,bus,walk,boat,other]
+ * @property string|null $day_type # Format: 'workday', 'day off', 'weekend', 'vacation', 'sick day'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -67,6 +68,7 @@ final class JournalEntry extends Model
         'has_traveled_today',
         'travel_details',
         'travel_mode',
+        'day_type',
     ];
 
     /**
@@ -87,6 +89,7 @@ final class JournalEntry extends Model
             'has_traveled_today' => 'encrypted',
             'travel_details' => 'encrypted',
             'travel_mode' => 'encrypted:array',
+            'day_type' => 'encrypted',
         ];
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->boolean('show_sleep_module')->default(true);
             $table->boolean('show_work_module')->default(true);
             $table->boolean('show_travel_module')->default(true);
+            $table->boolean('show_day_type_module')->default(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
