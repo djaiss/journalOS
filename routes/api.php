@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Journals\JournalEntryController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
+use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
+use App\Http\Controllers\Api\Journals\Modules\Travel\TravelModeController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkLoadController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkModeController;
@@ -81,6 +83,18 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.work.procrastinated.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/travel', [TravelController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.travel.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/travel/mode', [TravelModeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.travel.mode.update');
             });
 
             // settings

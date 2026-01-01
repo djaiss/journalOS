@@ -118,6 +118,9 @@
               <div>
                 <a href="{{ route('marketing.docs.api.modules.work') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.work') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Work</a>
               </div>
+              <div>
+                <a href="{{ route('marketing.docs.api.modules.travel') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.travel') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Travel</a>
+              </div>
             </div>
           </div>
         </div>
