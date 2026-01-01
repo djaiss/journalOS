@@ -68,4 +68,46 @@ final class JournalModulesControllerTest extends TestCase
 
         $response->assertNotFound();
     }
+
+    #[Test]
+    public function it_toggles_travel_module_from_enabled_to_disabled(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'show_travel_module' => true,
+        ]);
+
+        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
+            'module' => 'travel',
+        ]);
+
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+
+        $this->assertDatabaseHas('journals', [
+            'id' => $journal->id,
+            'show_travel_module' => false,
+        ]);
+    }
+
+    #[Test]
+    public function it_toggles_travel_module_from_disabled_to_enabled(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'show_travel_module' => false,
+        ]);
+
+        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
+            'module' => 'travel',
+        ]);
+
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+
+        $this->assertDatabaseHas('journals', [
+            'id' => $journal->id,
+            'show_travel_module' => true,
+        ]);
+    }
 }

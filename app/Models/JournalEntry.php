@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $work_mode # Format: 'on-site'|'remote'|'hybrid'
  * @property string|null $work_load # Format: 'light'|'medium'|'heavy'
  * @property string|null $work_procrastinated # Format: 'yes'|'no'
+ * @property string|null $has_traveled_today # Format: 'yes'|'no'
+ * @property string|null $travel_details # Format: 'Took a flight to...'
+ * @property array<string>|null $travel_mode # Format: ['car', 'plane']
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -61,6 +64,9 @@ final class JournalEntry extends Model
         'work_mode',
         'work_load',
         'work_procrastinated',
+        'has_traveled_today',
+        'travel_details',
+        'travel_mode',
     ];
 
     /**
@@ -78,6 +84,9 @@ final class JournalEntry extends Model
             'work_mode' => 'encrypted',
             'work_load' => 'encrypted',
             'work_procrastinated' => 'encrypted',
+            'has_traveled_today' => 'encrypted',
+            'travel_details' => 'encrypted',
+            'travel_mode' => 'encrypted:array',
         ];
     }
 

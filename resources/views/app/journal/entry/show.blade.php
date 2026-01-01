@@ -47,8 +47,8 @@
   </div>
 
   <div class="grid grid-cols-4 gap-4 p-4">
+    <!-- Life lane -->
     <div>
-      <!-- title -->
       <div class="mb-4">
         <h3 class="text-md font-semibold">{{ __('Life') }}</h3>
         <p class="text-gray-600 dark:text-gray-400">{{ __('What happened today') }}</p>
@@ -59,10 +59,15 @@
         @if ($journal->show_sleep_module)
           @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
         @endif
+
+        @if ($journal->show_travel_module)
+          @include('app.journal.entry.partials.travel', ['module' => $modules['travel']])
+        @endif
       </div>
     </div>
+
+    <!-- Day lane -->
     <div>
-      <!-- title -->
       <div class="mb-4">
         <h3 class="text-md font-semibold">{{ __('Day') }}</h3>
         <p class="text-gray-600 dark:text-gray-400">{{ __('What shaped the day') }}</p>
@@ -81,8 +86,9 @@
         @endif
       </div>
     </div>
+
+    <!-- Leisure lane -->
     <div>
-      <!-- title -->
       <div class="mb-4">
         <h3 class="text-md font-semibold">{{ __('Leisure') }}</h3>
         <p class="text-gray-600 dark:text-gray-400">{{ __('What you did for yourself') }}</p>

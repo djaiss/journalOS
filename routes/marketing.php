@@ -23,3 +23,4 @@ Route::get('/docs/api/journals', [Docs\Api\JournalController::class, 'index'])->
 Route::get('/docs/api/journal-entries', [Docs\Api\JournalEntryController::class, 'index'])->name('marketing.docs.api.journal-entries');
 Route::get('/docs/api/modules/sleep', [Docs\Api\Modules\SleepController::class, 'index'])->name('marketing.docs.api.modules.sleep');
 Route::get('/docs/api/modules/work', [Docs\Api\Modules\WorkController::class, 'index'])->name('marketing.docs.api.modules.work');
+Route::get('/docs/api/modules/travel', [Docs\Api\Modules\TravelController::class, 'index'])->name('marketing.docs.api.modules.travel');
