@@ -1,0 +1,62 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Actions;
+
+use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\JournalEntry;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use InvalidArgumentException;
+
+/**
+ * This action logs the type of day for the user in this day.
+ */
+final readonly class LogTypeOfDay
+{
+    public function __construct(
+        private User $user,
+        private JournalEntry $entry,
+        private string $dayType,
+    ) {}
+
+    public function execute(): JournalEntry
+    {
+        $this->validate();
+        $this->entry->day_type = $this->dayType;
+        $this->entry->save();
+
+        $this->logUserAction();
+        $this->updateUserLastActivityDate();
+
+        return $this->entry;
+    }
+
+    private function validate(): void
+    {
+        if ($this->entry->journal->user_id !== $this->user->id) {
+            throw new ModelNotFoundException('Journal not found');
+        }
+
+        if (! in_array($this->dayType, ['workday', 'day off', 'weekend', 'vacation', 'sick day'])) {
+            throw new InvalidArgumentException('dayType must be one of: "workday", "day off", "weekend", "vacation", "sick day"');
+        }
+    }
+
+    private function logUserAction(): void
+    {
+        LogUserAction::dispatch(
+            user: $this->user,
+            journal: $this->entry->journal,
+            action: 'day_type_logged',
+            description: 'Logged day type on ' . $this->entry->getDate(),
+        )->onQueue('low');
+    }
+
+    private function updateUserLastActivityDate(): void
+    {
+        UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
+    }
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Journals\JournalEntryController;
+use App\Http\Controllers\Api\Journals\Modules\DayType\DayTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
@@ -95,6 +96,12 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.travel.mode.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/day-type', [DayTypeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.day-type.update');
             });
 
             // settings
