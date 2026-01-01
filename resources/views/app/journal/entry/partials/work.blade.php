@@ -13,7 +13,9 @@
     </div>
   </x-slot>
 
-  <div id="work-container" class="space-y-4" x-data="{ showWorkDetails: {{ $entry->worked === 'yes' ? 'true' : 'false' }} }">
+  <div id="work-container" class="space-y-4" x-data="{
+    showWorkDetails: {{ $entry->worked === 'yes' ? 'true' : 'false' }},
+  }">
     <div>
       <!-- Have you worked today? -->
       <div class="space-y-2">
@@ -38,21 +40,21 @@
         </div>
       </div>
 
-      <div x-show="showWorkDetails" x-cloak class="space-y-4 mt-4">
+      <div x-show="showWorkDetails" x-cloak class="mt-4 space-y-4">
         <!-- Work mode -->
         <div class="space-y-2">
           <p>{{ __('How did you work?') }}</p>
           <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          @foreach ($module['work_modes'] as $option)
-            <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-              <x-form x-target="work-container notifications work-reset" :action="$module['work_mode_url']" method="put" class="h-full">
-                <input type="hidden" name="work_mode" value="{{ $option['value'] }}" />
-                <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                  {{ $option['label'] }}
-                </button>
-              </x-form>
-            </div>
-          @endforeach
+            @foreach ($module['work_modes'] as $option)
+              <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                <x-form x-target="work-container notifications work-reset" :action="$module['work_mode_url']" method="put" class="h-full">
+                  <input type="hidden" name="work_mode" value="{{ $option['value'] }}" />
+                  <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+                    {{ $option['label'] }}
+                  </button>
+                </x-form>
+              </div>
+            @endforeach
           </div>
         </div>
 
@@ -60,16 +62,16 @@
         <div class="space-y-2">
           <p>{{ __('How much did you work?') }}</p>
           <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          @foreach ($module['work_loads'] as $option)
-            <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-              <x-form x-target="work-container notifications work-reset" :action="$module['work_load_url']" method="put" class="h-full">
-                <input type="hidden" name="work_load" value="{{ $option['value'] }}" />
-                <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
-                  {{ $option['label'] }}
-                </button>
-              </x-form>
-            </div>
-          @endforeach
+            @foreach ($module['work_loads'] as $option)
+              <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                <x-form x-target="work-container notifications work-reset" :action="$module['work_load_url']" method="put" class="h-full">
+                  <input type="hidden" name="work_load" value="{{ $option['value'] }}" />
+                  <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
+                    {{ $option['label'] }}
+                  </button>
+                </x-form>
+              </div>
+            @endforeach
           </div>
         </div>
 
@@ -77,8 +79,8 @@
         <div class="space-y-2">
           <p>{{ __('Did you procrastinate (be honest)?') }}</p>
           <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="work_procrastinated" value="yes" x-target="work-container notifications work-reset" :action="$module['work_procrastinated_url']" selected="{{ $entry->work_procrastinated === 'yes' }}" />
-          <x-button.no name="work_procrastinated" value="no" x-target="work-container notifications work-reset" :action="$module['work_procrastinated_url']" selected="{{ $entry->work_procrastinated === 'no' }}" />
+            <x-button.yes name="work_procrastinated" value="yes" x-target="work-container notifications work-reset" :action="$module['work_procrastinated_url']" selected="{{ $entry->work_procrastinated === 'yes' }}" />
+            <x-button.no name="work_procrastinated" value="no" x-target="work-container notifications work-reset" :action="$module['work_procrastinated_url']" selected="{{ $entry->work_procrastinated === 'no' }}" />
           </div>
         </div>
       </div>
