@@ -1,0 +1,17 @@
+meta {
+  name: Log day type
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/day-type
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "day_type": "workday"
+  }
+}

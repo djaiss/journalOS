@@ -17,6 +17,8 @@
   <x-marketing.docs.attribute name="attributes.modules.travel" type="object" description="The travel module payload." />
   <x-marketing.docs.attribute name="attributes.modules.travel.has_traveled_today" type="string" description="Whether you traveled today." />
   <x-marketing.docs.attribute name="attributes.modules.travel.travel_mode" type="array" description="The travel modes used for the journal entry." />
+  <x-marketing.docs.attribute name="attributes.modules.day_type" type="object" description="The day type module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.day_type.day_type" type="string" description="The type of day." />
   <x-marketing.docs.attribute name="attributes.created_at" type="integer" description="The date and time the object was created, in Unix timestamp format." />
   <x-marketing.docs.attribute name="attributes.updated_at" type="integer" description="The date and time the object was last updated, in Unix timestamp format." />
   <x-marketing.docs.attribute name="links" type="object" description="The links to access the journal entry." />
