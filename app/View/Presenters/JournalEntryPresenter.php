@@ -19,10 +19,13 @@ final readonly class JournalEntryPresenter
 
         $travel = new TravelModulePresenter($this->entry)->build();
 
+        $dayType = new DayTypeModulePresenter($this->entry)->build();
+
         return [
             'sleep' => $sleep,
             'work' => $work,
             'travel' => $travel,
+            'day_type' => $dayType,
         ];
     }
 }
