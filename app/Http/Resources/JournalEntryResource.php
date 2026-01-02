@@ -58,6 +58,9 @@ final class JournalEntryResource extends JsonResource
                     'mood' => [
                         'mood' => $this->mood,
                     ],
+                    'energy' => [
+                        'energy' => $this->energy,
+                    ],
                 ],
                 'created_at' => $this->created_at->timestamp,
                 'updated_at' => $this->updated_at?->timestamp,
