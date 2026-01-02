@@ -85,6 +85,29 @@
   <span class="text-lime-700">"good"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"mood": {</div>
+<div class="pl-20">
+  "mood":
+  <span class="text-lime-700">"great"</span>
+</div>
+<div class="pl-16">},</div>
+<div class="pl-16">"energy": {</div>
+<div class="pl-20">
+  "energy":
+  <span class="text-lime-700">"high"</span>
+</div>
+<div class="pl-16">},</div>
+<div class="pl-16">"sexual_activity": {</div>
+<div class="pl-20">
+  "has_sexual_activity":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "sexual_activity_type":
+  <span class="text-lime-700">"with_partner"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"physical_activity": {</div>
 <div class="pl-20">
   "has_done_physical_activity":

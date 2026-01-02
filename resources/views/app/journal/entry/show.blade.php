@@ -95,6 +95,14 @@
         @if ($journal->show_health_module)
           @include('app.journal.entry.partials.health', ['module' => $modules['health']])
         @endif
+
+        @if ($journal->show_mood_module)
+          @include('app.journal.entry.partials.mood', ['module' => $modules['mood']])
+        @endif
+
+        @if ($journal->show_energy_module)
+          @include('app.journal.entry.partials.energy', ['module' => $modules['energy']])
+        @endif
       </div>
     </div>
 
@@ -109,6 +117,10 @@
       <div class="space-y-2">
         @if ($journal->show_physical_activity_module)
           @include('app.journal.entry.partials.physical_activity', ['module' => $modules['physical_activity'], 'entry' => $entry])
+        @endif
+
+        @if ($journal->show_sexual_activity_module)
+          @include('app.journal.entry.partials.sexual_activity', ['module' => $modules['sexual_activity'], 'entry' => $entry])
         @endif
       </div>
     </div>

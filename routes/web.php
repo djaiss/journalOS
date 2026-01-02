@@ -73,9 +73,22 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/intensity', [Journals\Modules\PhysicalActivity\PhysicalActivityIntensityController::class, 'update'])->name('journal.entry.physical-activity.intensity.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/reset', [Journals\Modules\PhysicalActivity\PhysicalActivityResetController::class, 'update'])->name('journal.entry.physical-activity.reset');
 
+                // sexual activity
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity', [Journals\Modules\SexualActivity\SexualActivityController::class, 'update'])->name('journal.entry.sexual-activity.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity/type', [Journals\Modules\SexualActivity\SexualActivityTypeController::class, 'update'])->name('journal.entry.sexual-activity.type.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity/reset', [Journals\Modules\SexualActivity\SexualActivityResetController::class, 'update'])->name('journal.entry.sexual-activity.reset');
+
                 // health
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health', [Journals\Modules\Health\HealthController::class, 'update'])->name('journal.entry.health.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health/reset', [Journals\Modules\Health\HealthResetController::class, 'update'])->name('journal.entry.health.reset');
+
+                // mood
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood', [Journals\Modules\Mood\MoodController::class, 'update'])->name('journal.entry.mood.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood/reset', [Journals\Modules\Mood\MoodResetController::class, 'update'])->name('journal.entry.mood.reset');
+
+                // energy
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy', [Journals\Modules\Energy\EnergyController::class, 'update'])->name('journal.entry.energy.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy/reset', [Journals\Modules\Energy\EnergyResetController::class, 'update'])->name('journal.entry.energy.reset');
             });
 
             // settings
