@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $show_physical_activity_module
  * @property bool $show_health_module
  * @property bool $show_mood_module
+ * @property bool $show_sexual_activity_module
  * @property bool $show_energy_module
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -59,6 +60,7 @@ final class Journal extends Model
         'show_physical_activity_module',
         'show_health_module',
         'show_mood_module',
+        'show_sexual_activity_module',
         'show_energy_module',
     ];
 
@@ -79,6 +81,7 @@ final class Journal extends Model
             'show_physical_activity_module' => 'boolean',
             'show_health_module' => 'boolean',
             'show_mood_module' => 'boolean',
+            'show_sexual_activity_module' => 'boolean',
             'show_energy_module' => 'boolean',
         ];
     }

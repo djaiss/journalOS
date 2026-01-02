@@ -16,6 +16,7 @@ return [
         'marketing/docs/api/modules/health' => '2026-01-02 04:40:47',
         'marketing/docs/api/modules/mood' => '2026-01-02 14:57:46',
         'marketing/docs/api/modules/physical-activity' => '2026-01-02 00:12:37',
+        'marketing/docs/api/modules/sexual-activity' => '2026-01-02 16:20:31',
         'marketing/docs/api/modules/sleep' => '2025-12-31 17:40:10',
         'marketing/docs/api/modules/travel' => '2026-01-01 00:01:37',
         'marketing/docs/api/modules/work' => '2025-12-31 21:09:20',

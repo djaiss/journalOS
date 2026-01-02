@@ -73,6 +73,11 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/intensity', [Journals\Modules\PhysicalActivity\PhysicalActivityIntensityController::class, 'update'])->name('journal.entry.physical-activity.intensity.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/reset', [Journals\Modules\PhysicalActivity\PhysicalActivityResetController::class, 'update'])->name('journal.entry.physical-activity.reset');
 
+                // sexual activity
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity', [Journals\Modules\SexualActivity\SexualActivityController::class, 'update'])->name('journal.entry.sexual-activity.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity/type', [Journals\Modules\SexualActivity\SexualActivityTypeController::class, 'update'])->name('journal.entry.sexual-activity.type.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity/reset', [Journals\Modules\SexualActivity\SexualActivityResetController::class, 'update'])->name('journal.entry.sexual-activity.reset');
+
                 // health
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health', [Journals\Modules\Health\HealthController::class, 'update'])->name('journal.entry.health.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health/reset', [Journals\Modules\Health\HealthResetController::class, 'update'])->name('journal.entry.health.reset');
