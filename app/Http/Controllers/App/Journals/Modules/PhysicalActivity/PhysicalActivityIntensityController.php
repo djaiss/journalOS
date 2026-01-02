@@ -26,7 +26,7 @@ final class PhysicalActivityIntensityController extends Controller
             activityIntensity: $validated['activity_intensity'],
         )->execute();
 
-        return redirect()->route('journal.entry.show', [
+        return to_route('journal.entry.show', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,

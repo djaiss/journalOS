@@ -26,7 +26,7 @@ final class PhysicalActivityController extends Controller
             hasDonePhysicalActivity: $validated['has_done_physical_activity'],
         )->execute();
 
-        return redirect()->route('journal.entry.show', [
+        return to_route('journal.entry.show', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,

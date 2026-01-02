@@ -26,7 +26,7 @@ final class PhysicalActivityTypeController extends Controller
             activityType: $validated['activity_type'],
         )->execute();
 
-        return redirect()->route('journal.entry.show', [
+        return to_route('journal.entry.show', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,

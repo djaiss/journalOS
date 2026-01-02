@@ -24,3 +24,5 @@ Route::get('/docs/api/journal-entries', [Docs\Api\JournalEntryController::class,
 Route::get('/docs/api/modules/sleep', [Docs\Api\Modules\SleepController::class, 'index'])->name('marketing.docs.api.modules.sleep');
 Route::get('/docs/api/modules/work', [Docs\Api\Modules\WorkController::class, 'index'])->name('marketing.docs.api.modules.work');
 Route::get('/docs/api/modules/travel', [Docs\Api\Modules\TravelController::class, 'index'])->name('marketing.docs.api.modules.travel');
+Route::get('/docs/api/modules/day-type', [Docs\Api\Modules\DayTypeController::class, 'index'])->name('marketing.docs.api.modules.day-type');
+Route::get('/docs/api/modules/physical-activity', [Docs\Api\Modules\PhysicalActivityController::class, 'index'])->name('marketing.docs.api.modules.physical-activity');

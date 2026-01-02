@@ -21,7 +21,7 @@ final class PhysicalActivityResetController extends Controller
             entry: $entry,
         )->execute();
 
-        return redirect()->route('journal.entry.show', [
+        return to_route('journal.entry.show', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,
