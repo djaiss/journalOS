@@ -194,4 +194,46 @@ final class JournalModulesControllerTest extends TestCase
             'show_health_module' => true,
         ]);
     }
+
+    #[Test]
+    public function it_toggles_mood_module_from_enabled_to_disabled(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'show_mood_module' => true,
+        ]);
+
+        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
+            'module' => 'mood',
+        ]);
+
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+
+        $this->assertDatabaseHas('journals', [
+            'id' => $journal->id,
+            'show_mood_module' => false,
+        ]);
+    }
+
+    #[Test]
+    public function it_toggles_mood_module_from_disabled_to_enabled(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'show_mood_module' => false,
+        ]);
+
+        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
+            'module' => 'mood',
+        ]);
+
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+
+        $this->assertDatabaseHas('journals', [
+            'id' => $journal->id,
+            'show_mood_module' => true,
+        ]);
+    }
 }

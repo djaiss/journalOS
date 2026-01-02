@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Journals;
 use App\Http\Controllers\Api\Journals\JournalEntryController;
 use App\Http\Controllers\Api\Journals\Modules\DayType\DayTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Health\HealthController as HealthModuleController;
+use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
@@ -116,6 +117,12 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.health.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/mood', [MoodModuleController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.mood.update');
             });
 
             // settings
