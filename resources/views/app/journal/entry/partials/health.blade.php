@@ -17,10 +17,10 @@
     <div class="mt-4 space-y-2">
       <p>{{ __('How did you feel today?') }}</p>
       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-        @foreach ($module['activity_intensities'] as $option)
+        @foreach ($module['health_options'] as $option)
           <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-            <x-form x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['activity_intensity_url']" method="put">
-              <input type="hidden" name="activity_intensity" value="{{ $option['value'] }}" />
+            <x-form x-target="health-container notifications health-reset days-listing months-listing" :action="$module['health_url']" method="put">
+              <input type="hidden" name="health" value="{{ $option['value'] }}" />
               <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
                 {{ $option['label'] }}
               </button>

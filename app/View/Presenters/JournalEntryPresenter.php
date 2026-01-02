@@ -23,12 +23,15 @@ final readonly class JournalEntryPresenter
 
         $physicalActivity = new PhysicalActivityModulePresenter($this->entry)->build();
 
+        $health = new HealthModulePresenter($this->entry)->build();
+
         return [
             'sleep' => $sleep,
             'work' => $work,
             'travel' => $travel,
             'day_type' => $dayType,
             'physical_activity' => $physicalActivity,
+            'health' => $health,
         ];
     }
 }
