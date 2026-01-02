@@ -23,6 +23,8 @@
   <x-marketing.docs.attribute name="attributes.modules.health.health" type="string" description="How you felt on that day." />
   <x-marketing.docs.attribute name="attributes.modules.mood" type="object" description="The mood module payload." />
   <x-marketing.docs.attribute name="attributes.modules.mood.mood" type="string" description="The mood for that day." />
+  <x-marketing.docs.attribute name="attributes.modules.energy" type="object" description="The energy module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.energy.energy" type="string" description="The energy level for that day." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity" type="object" description="The physical activity module payload." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity.has_done_physical_activity" type="string" description="Whether physical activity was done." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity.activity_type" type="string" description="The type of physical activity." />

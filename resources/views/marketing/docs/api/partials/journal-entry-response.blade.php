@@ -91,6 +91,12 @@
   <span class="text-lime-700">"great"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"energy": {</div>
+<div class="pl-20">
+  "energy":
+  <span class="text-lime-700">"high"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"physical_activity": {</div>
 <div class="pl-20">
   "has_done_physical_activity":

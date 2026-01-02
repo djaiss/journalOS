@@ -35,5 +35,6 @@ final class JournalEntryPresenterTest extends TestCase
         $this->assertArrayHasKey('travel', $result);
         $this->assertArrayHasKey('day_type', $result);
         $this->assertArrayHasKey('sexual_activity', $result);
+        $this->assertArrayHasKey('energy', $result);
     }
 }

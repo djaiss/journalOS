@@ -99,6 +99,10 @@
         @if ($journal->show_mood_module)
           @include('app.journal.entry.partials.mood', ['module' => $modules['mood']])
         @endif
+
+        @if ($journal->show_energy_module)
+          @include('app.journal.entry.partials.energy', ['module' => $modules['energy']])
+        @endif
       </div>
     </div>
 

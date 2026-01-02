@@ -62,6 +62,9 @@ final class JournalEntryResource extends JsonResource
                         'had_sexual_activity' => $this->had_sexual_activity,
                         'sexual_activity_type' => $this->sexual_activity_type,
                     ],
+                    'energy' => [
+                        'energy' => $this->energy,
+                    ],
                 ],
                 'created_at' => $this->created_at->timestamp,
                 'updated_at' => $this->updated_at?->timestamp,
