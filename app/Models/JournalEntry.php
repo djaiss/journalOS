@@ -39,6 +39,8 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $activity_intensity # Format: 'light', 'moderate', 'intense'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
  * @property string|null $mood # Format: 'terrible', 'bad', 'okay', 'good', 'great'
+ * @property string|null $had_sexual_activity # Format: 'yes'|'no'
+ * @property string|null $sexual_activity_type # Format: 'solo', 'with-partner', 'intimate-contact'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -81,6 +83,8 @@ final class JournalEntry extends Model
         'activity_intensity',
         'health',
         'mood',
+        'had_sexual_activity',
+        'sexual_activity_type',
     ];
 
     /**
@@ -107,6 +111,8 @@ final class JournalEntry extends Model
             'activity_type' => 'encrypted',
             'activity_intensity' => 'encrypted',
             'mood' => 'encrypted',
+            'had_sexual_activity' => 'encrypted',
+            'sexual_activity_type' => 'encrypted',
         ];
     }
 

@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\Journals\Modules\DayType\DayTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Health\HealthController as HealthModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
+use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
+use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
@@ -111,6 +113,18 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.physical-activity.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/sexual-activity', [SexualActivityController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.sexual-activity.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/sexual-activity/type', [SexualActivityTypeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.sexual-activity.type.update');
 
                 Route::put('journals/{id}/{year}/{month}/{day}/health', [HealthModuleController::class, 'update'])
                     ->whereNumber('year')

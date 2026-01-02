@@ -114,6 +114,10 @@
         @if ($journal->show_physical_activity_module)
           @include('app.journal.entry.partials.physical_activity', ['module' => $modules['physical_activity'], 'entry' => $entry])
         @endif
+
+        @if ($journal->show_sexual_activity_module)
+          @include('app.journal.entry.partials.sexual_activity', ['module' => $modules['sexual_activity'], 'entry' => $entry])
+        @endif
       </div>
     </div>
   </div>

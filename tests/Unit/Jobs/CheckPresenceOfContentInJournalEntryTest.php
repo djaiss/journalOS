@@ -38,6 +38,8 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'has_done_physical_activity' => null,
             'activity_type' => null,
             'activity_intensity' => null,
+            'had_sexual_activity' => null,
+            'sexual_activity_type' => null,
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);
@@ -131,6 +133,24 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'has_content' => false,
             'has_traveled_today' => 'yes',
             'travel_mode' => ['car', 'plane'],
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_sexual_activity_is_set(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+            'had_sexual_activity' => 'yes',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);
