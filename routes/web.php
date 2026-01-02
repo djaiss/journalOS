@@ -76,6 +76,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 // health
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health', [Journals\Modules\Health\HealthController::class, 'update'])->name('journal.entry.health.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health/reset', [Journals\Modules\Health\HealthResetController::class, 'update'])->name('journal.entry.health.reset');
+
+                // mood
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood', [Journals\Modules\Mood\MoodController::class, 'update'])->name('journal.entry.mood.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood/reset', [Journals\Modules\Mood\MoodResetController::class, 'update'])->name('journal.entry.mood.reset');
             });
 
             // settings

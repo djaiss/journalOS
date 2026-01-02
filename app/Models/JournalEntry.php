@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $activity_type # Format: 'running', 'cycling', 'swimming', 'gym', 'walking'
  * @property string|null $activity_intensity # Format: 'light', 'moderate', 'intense'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
+ * @property string|null $mood # Format: 'terrible', 'bad', 'okay', 'good', 'great'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -78,6 +79,8 @@ final class JournalEntry extends Model
         'has_done_physical_activity',
         'activity_type',
         'activity_intensity',
+        'health',
+        'mood',
     ];
 
     /**
@@ -103,6 +106,7 @@ final class JournalEntry extends Model
             'has_done_physical_activity' => 'encrypted',
             'activity_type' => 'encrypted',
             'activity_intensity' => 'encrypted',
+            'mood' => 'encrypted',
         ];
     }
 
