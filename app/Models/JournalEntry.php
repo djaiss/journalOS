@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $has_done_physical_activity # Format: 'yes'|'no'
  * @property string|null $activity_type # Format: 'running', 'cycling', 'swimming', 'gym', 'walking'
  * @property string|null $activity_intensity # Format: 'light', 'moderate', 'intense'
+ * @property string|null $health # Format: 'good', 'okay', 'not great'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */

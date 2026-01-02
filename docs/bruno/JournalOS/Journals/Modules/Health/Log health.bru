@@ -1,0 +1,17 @@
+meta {
+  name: Log health
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{URL}}/journals/1/2024/12/25/health
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "health": "good"
+  }
+}
