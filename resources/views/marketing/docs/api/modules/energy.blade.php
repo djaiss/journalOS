@@ -7,12 +7,12 @@
   <div class="py-16">
     <x-marketing.docs.h1 title="Energy module" />
 
-    <x-marketing.docs.table-of-content :items="[[
+    <x-marketing.docs.table-of-content :items="[
       [
         'id' => 'log-energy',
         'title' => 'Log energy',
       ],
-    ]]" />
+    ]" />
 
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
