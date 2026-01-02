@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\LogTravelledToday;
+use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -57,6 +58,14 @@ final class LogTravelledTodayTest extends TestCase
                 return $job->user->id === $user->id;
             },
         );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
     }
 
     #[Test]
@@ -93,6 +102,14 @@ final class LogTravelledTodayTest extends TestCase
             job: UpdateUserLastActivityDate::class,
             callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
                 return $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
             },
         );
     }

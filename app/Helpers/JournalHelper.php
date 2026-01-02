@@ -72,11 +72,19 @@ final class JournalHelper
      */
     public static function getMonths(Journal $journal, int $year, int $selectedMonth): Collection
     {
+        // Get count of entries with content for each month in this year
+        $entriesCounts = $journal->entries()
+            ->where('year', $year)
+            ->where('has_content', true)
+            ->groupBy('month')
+            ->selectRaw('month, COUNT(*) as count')
+            ->pluck('count', 'month');
+
         return collect(range(1, 12))->mapWithKeys(fn(int $month): array => [
             $month => (object) [
                 'month' => $month,
                 'month_name' => ucfirst(Date::createFromDate($year, $month, 1)->translatedFormat('F')),
-                'entries_count' => 0,
+                'entries_count' => $entriesCounts->get($month, 0),
                 'is_selected' => $month === $selectedMonth,
                 'url' => route('journal.entry.show', [
                     'slug' => $journal->slug,
@@ -96,7 +104,7 @@ final class JournalHelper
      *      'day' => 1,
      *      'is_today' => false,
      *      'is_selected' => false,
-     *      'has_blocks' => true,
+     *      'has_content' => true,
      *      'url' => '/journal/2023/01/01',
      *   ]
      *
@@ -109,13 +117,21 @@ final class JournalHelper
      */
     public static function getDaysInMonth(Journal $journal, int $year, int $month, int $day): Collection
     {
+        // Get all entries for this month with their has_content status
+        $entriesWithContent = $journal->entries()
+            ->where('year', $year)
+            ->where('month', $month)
+            ->where('has_content', true)
+            ->pluck('day')
+            ->flip();
+
         return collect(range(1, cal_days_in_month(CAL_GREGORIAN, $month, $year)))
             ->mapWithKeys(fn(int $currentDay): array => [
                 $currentDay => (object) [
                     'day' => $currentDay,
                     'is_today' => Date::createFromDate($year, $month, $currentDay)->isToday(),
                     'is_selected' => $currentDay === $day,
-                    'has_blocks' => 0,
+                    'has_content' => $entriesWithContent->has($currentDay),
                     'url' => route('journal.entry.show', [
                         'slug' => $journal->slug,
                         'year' => $year,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\LogTravelMode;
+use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -57,6 +58,14 @@ final class LogTravelModeTest extends TestCase
                 return $job->user->id === $user->id;
             },
         );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
     }
 
     #[Test]
@@ -107,6 +116,14 @@ final class LogTravelModeTest extends TestCase
 
         $this->assertEquals($allModes, $result->travel_mode);
         $this->assertCount(8, $result->travel_mode);
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
     }
 
     #[Test]

@@ -4,7 +4,7 @@
   <x-slot:action>
     <div id="physical-activity-reset">
       @if ($module['display_reset'])
-        <x-form x-target="physical-activity-container notifications physical-activity-reset" :action="$module['reset_url']" method="put">
+        <x-form x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['reset_url']" method="put">
           <button type="submit" class="inline cursor-pointer underline decoration-gray-300 underline-offset-4 transition-colors duration-200 hover:text-blue-600 hover:decoration-blue-400 hover:decoration-[1.15px] dark:decoration-gray-600 dark:hover:text-blue-400 dark:hover:decoration-blue-400">
             {{ __('Reset') }}
           </button>
@@ -22,8 +22,8 @@
       <div class="space-y-2">
         <p>{{ __('Did you do physical activity?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="has_done_physical_activity" value="yes" x-target="physical-activity-container notifications physical-activity-reset" :action="$module['has_done_url']" selected="{{ $entry->has_done_physical_activity === 'yes' }}" @click="showActivityDetails = true" />
-          <x-button.no name="has_done_physical_activity" value="no" x-target="physical-activity-container notifications physical-activity-reset" :action="$module['has_done_url']" selected="{{ $entry->has_done_physical_activity === 'no' }}" @click="showActivityDetails = false" />
+          <x-button.yes name="has_done_physical_activity" value="yes" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['has_done_url']" selected="{{ $entry->has_done_physical_activity === 'yes' }}" @click="showActivityDetails = true" />
+          <x-button.no name="has_done_physical_activity" value="no" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['has_done_url']" selected="{{ $entry->has_done_physical_activity === 'no' }}" @click="showActivityDetails = false" />
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <p>{{ __('What type of activity?') }}</p>
         <div class="flex flex-wrap justify-center gap-2">
           @foreach ($module['activity_types'] as $option)
-            <x-form x-target="physical-activity-container notifications physical-activity-reset" :action="$module['activity_type_url']" method="put">
+            <x-form x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['activity_type_url']" method="put">
               <input type="hidden" name="activity_type" value="{{ $option['value'] }}" />
               <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
                 {{ $option['label'] }}
@@ -51,7 +51,7 @@
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
           @foreach ($module['activity_intensities'] as $option)
             <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-              <x-form x-target="physical-activity-container notifications physical-activity-reset" :action="$module['activity_intensity_url']" method="put">
+              <x-form x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['activity_intensity_url']" method="put">
                 <input type="hidden" name="activity_intensity" value="{{ $option['value'] }}" />
                 <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
                   {{ $option['label'] }}

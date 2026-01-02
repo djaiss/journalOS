@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Date;
  * @property int $day
  * @property int $month
  * @property int $year
+ * @property bool $has_content
  * @property string|null $bedtime # Format: 'HH:MM'
  * @property string|null $wake_up_time # Format: 'HH:MM'
  * @property string|null $sleep_duration_in_minutes # Format: '12'
@@ -61,6 +62,7 @@ final class JournalEntry extends Model
         'day',
         'month',
         'year',
+        'has_content',
         'bedtime',
         'wake_up_time',
         'sleep_duration_in_minutes',
@@ -85,6 +87,7 @@ final class JournalEntry extends Model
     protected function casts(): array
     {
         return [
+            'has_content' => 'boolean',
             'bedtime' => 'encrypted',
             'wake_up_time' => 'encrypted',
             'sleep_duration_in_minutes' => 'encrypted',
