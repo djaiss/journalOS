@@ -14,7 +14,8 @@
   </x-slot>
 
   <div id="physical-activity-container" x-data="{
-    showActivityDetails: {{ $entry->has_done_physical_activity === 'yes' ? 'true' : 'false' }},
+    showActivityDetails:
+      {{ $entry->has_done_physical_activity === 'yes' ? 'true' : 'false' }},
   }">
     <div>
       <!-- Did you do physical activity? -->
@@ -28,7 +29,7 @@
     </div>
 
     <!-- Activity details (shown when has_done_physical_activity is 'yes') -->
-    <div x-show="showActivityDetails" x-cloak class="space-y-4 mt-4">
+    <div x-show="showActivityDetails" x-cloak class="mt-4 space-y-4">
       <!-- Activity type -->
       <div class="space-y-2">
         <p>{{ __('What type of activity?') }}</p>
@@ -45,7 +46,7 @@
       </div>
 
       <!-- Activity intensity -->
-      <div class="space-y-2 mt-4">
+      <div class="mt-4 space-y-2">
         <p>{{ __('How intense was it?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
           @foreach ($module['activity_intensities'] as $option)
