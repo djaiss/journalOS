@@ -28,7 +28,7 @@ final readonly class JournalEntryPresenter
         $mood = new MoodModulePresenter($this->entry)->build();
 
         $sexualActivity = new SexualActivityModulePresenter($this->entry)->build();
-      
+
         $energy = new EnergyModulePresenter($this->entry)->build();
 
         return [
