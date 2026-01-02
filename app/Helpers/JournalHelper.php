@@ -96,7 +96,7 @@ final class JournalHelper
      *      'day' => 1,
      *      'is_today' => false,
      *      'is_selected' => false,
-     *      'has_blocks' => true,
+     *      'has_content' => true,
      *      'url' => '/journal/2023/01/01',
      *   ]
      *
@@ -109,13 +109,21 @@ final class JournalHelper
      */
     public static function getDaysInMonth(Journal $journal, int $year, int $month, int $day): Collection
     {
+        // Get all entries for this month with their has_content status
+        $entriesWithContent = $journal->entries()
+            ->where('year', $year)
+            ->where('month', $month)
+            ->where('has_content', true)
+            ->pluck('day')
+            ->flip();
+
         return collect(range(1, cal_days_in_month(CAL_GREGORIAN, $month, $year)))
             ->mapWithKeys(fn(int $currentDay): array => [
                 $currentDay => (object) [
                     'day' => $currentDay,
                     'is_today' => Date::createFromDate($year, $month, $currentDay)->isToday(),
                     'is_selected' => $currentDay === $day,
-                    'has_blocks' => 0,
+                    'has_content' => $entriesWithContent->has($currentDay),
                     'url' => route('journal.entry.show', [
                         'slug' => $journal->slug,
                         'year' => $year,
