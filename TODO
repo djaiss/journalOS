@@ -5,6 +5,7 @@
 - [ ] readme as cool as https://github.com/penpot/penpot
 - [ ] notion of denormalized data
 - [ ] ability to reset an entire day
+- [ ] add og images for marketing sharing
 
 Life
 - [x] Sleep
@@ -16,7 +17,7 @@ Life
 - [ ] Encounters
 - [ ] Context
 - [ ] Habits
-- [ ] Sexual activity (optional module)
+- [x] Sexual activity (optional module)
 
 Work
 - [x] Day type
@@ -28,8 +29,8 @@ Work
 Leisure
 - [ ] Reading
 - [ ] Watching
-- [ ] Mood
-- [ ] Energy
+- [x] Mood
+- [x] Energy
 - [ ] Games played
 - [ ] Social activities
 - [ ] Listening (music)
