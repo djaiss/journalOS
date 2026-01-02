@@ -72,11 +72,19 @@ final class JournalHelper
      */
     public static function getMonths(Journal $journal, int $year, int $selectedMonth): Collection
     {
+        // Get count of entries with content for each month in this year
+        $entriesCounts = $journal->entries()
+            ->where('year', $year)
+            ->where('has_content', true)
+            ->groupBy('month')
+            ->selectRaw('month, COUNT(*) as count')
+            ->pluck('count', 'month');
+
         return collect(range(1, 12))->mapWithKeys(fn(int $month): array => [
             $month => (object) [
                 'month' => $month,
                 'month_name' => ucfirst(Date::createFromDate($year, $month, 1)->translatedFormat('F')),
-                'entries_count' => 0,
+                'entries_count' => $entriesCounts->get($month, 0),
                 'is_selected' => $month === $selectedMonth,
                 'url' => route('journal.entry.show', [
                     'slug' => $journal->slug,

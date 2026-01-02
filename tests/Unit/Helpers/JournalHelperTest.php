@@ -97,6 +97,124 @@ final class JournalHelperTest extends TestCase
     }
 
     #[Test]
+    public function it_counts_entries_with_content_for_each_month(): void
+    {
+        $journal = Journal::factory()->create();
+
+        // Create entries with content in different months
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 1,
+            'day' => 1,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 1,
+            'day' => 15,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 1,
+            'day' => 20,
+            'has_content' => false,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 3,
+            'day' => 10,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 3,
+            'day' => 20,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 3,
+            'day' => 25,
+            'has_content' => true,
+        ]);
+
+        $collection = JournalHelper::getMonths(
+            journal: $journal,
+            year: 2023,
+            selectedMonth: 1,
+        );
+
+        // January should have 2 entries with content
+        $this->assertEquals(2, $collection[1]->entries_count);
+
+        // February should have 0 entries with content
+        $this->assertEquals(0, $collection[2]->entries_count);
+
+        // March should have 3 entries with content
+        $this->assertEquals(3, $collection[3]->entries_count);
+
+        // All other months should have 0
+        $this->assertEquals(0, $collection[4]->entries_count);
+        $this->assertEquals(0, $collection[12]->entries_count);
+    }
+
+    #[Test]
+    public function it_does_not_count_entries_from_different_years(): void
+    {
+        $journal = Journal::factory()->create();
+
+        // Create entries in 2023
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2023,
+            'month' => 1,
+            'day' => 1,
+            'has_content' => true,
+        ]);
+
+        // Create entries in 2024
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2024,
+            'month' => 1,
+            'day' => 1,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2024,
+            'month' => 1,
+            'day' => 15,
+            'has_content' => true,
+        ]);
+
+        $collection2023 = JournalHelper::getMonths(
+            journal: $journal,
+            year: 2023,
+            selectedMonth: 1,
+        );
+
+        $collection2024 = JournalHelper::getMonths(
+            journal: $journal,
+            year: 2024,
+            selectedMonth: 1,
+        );
+
+        // 2023 January should have 1 entry
+        $this->assertEquals(1, $collection2023[1]->entries_count);
+
+        // 2024 January should have 2 entries
+        $this->assertEquals(2, $collection2024[1]->entries_count);
+    }
+
+    #[Test]
     public function it_gets_all_days_in_a_given_month(): void
     {
         Carbon::setTestNow(Carbon::create(2023, 2, 15));
