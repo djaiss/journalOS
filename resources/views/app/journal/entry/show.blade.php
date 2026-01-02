@@ -8,6 +8,7 @@
     ['label' => $journal->name]
   ]" />
 
+  <!-- list of years -->
   @if (count($years) > 1)
     <div id="years-listing" class="bg-white dark:bg-gray-900">
       <div class="mx-auto grid divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700" style="grid-template-columns: repeat({{ count($years) }}, minmax(0, 1fr))">
@@ -21,6 +22,7 @@
     </div>
   @endif
 
+  <!-- list of months -->
   <div id="months-listing" class="bg-white dark:bg-gray-900">
     <div class="mx-auto grid grid-cols-12 divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700">
       @foreach ($months as $month)
@@ -33,6 +35,7 @@
     </div>
   </div>
 
+  <!-- list of days -->
   <div id="days-listing" class="bg-white dark:bg-gray-900">
     <div class="days-grid-{{ $days->count() }} mx-auto grid divide-x divide-gray-200 dark:divide-gray-700">
       @foreach ($days as $day)
