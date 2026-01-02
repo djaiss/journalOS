@@ -14,7 +14,7 @@
   </x-slot>
 
   <div id="health-container">
-    <div class="mt-4 space-y-2">
+    <div class="space-y-2">
       <p>{{ __('How did you feel today?') }}</p>
       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
         @foreach ($module['health_options'] as $option)

@@ -16,10 +16,10 @@ final class HealthResetController extends Controller
     {
         $entry = $request->attributes->get('journal_entry');
 
-        (new ResetHealthData(
+        new ResetHealthData(
             user: Auth::user(),
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         return to_route('journal.entry.show', [
             'slug' => $entry->journal->slug,

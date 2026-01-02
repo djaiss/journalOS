@@ -21,11 +21,11 @@ final class HealthController extends Controller
             'health' => ['required', 'string', 'in:good,okay,not great'],
         ]);
 
-        $entry = (new LogHealth(
+        $entry = new LogHealth(
             user: Auth::user(),
             entry: $entry,
             health: $validated['health'],
-        ))->execute();
+        )->execute();
 
         return response()->json([
             'data' => new JournalEntryResource($entry),

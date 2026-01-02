@@ -20,11 +20,11 @@ final class HealthController extends Controller
             'health' => ['required', 'string', 'in:good,okay,not great'],
         ]);
 
-        (new LogHealth(
+        new LogHealth(
             user: Auth::user(),
             entry: $entry,
             health: $validated['health'],
-        ))->execute();
+        )->execute();
 
         return to_route('journal.entry.show', [
             'slug' => $entry->journal->slug,
