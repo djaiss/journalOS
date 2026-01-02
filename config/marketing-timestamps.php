@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'pages' => [
+        'marketing/docs/api/account/account' => '2025-12-31 03:28:34',
+        'marketing/docs/api/account/api-management' => '2025-12-31 03:28:34',
+        'marketing/docs/api/account/emails' => '2025-12-31 03:28:34',
+        'marketing/docs/api/account/logs' => '2025-12-31 03:28:34',
+        'marketing/docs/api/account/profile' => '2025-12-31 03:28:34',
+        'marketing/docs/api/authentication' => '2025-12-31 03:28:34',
+        'marketing/docs/api/entries/journal-entry' => '2025-12-31 17:40:10',
+        'marketing/docs/api/introduction' => '2025-12-31 03:28:34',
+        'marketing/docs/api/journals/journals' => '2025-12-31 03:28:34',
+        'marketing/docs/api/modules/day-type' => '2026-01-01 15:43:23',
+        'marketing/docs/api/modules/physical-activity' => '2026-01-02 00:12:37',
+        'marketing/docs/api/modules/sleep' => '2025-12-31 17:40:10',
+        'marketing/docs/api/modules/travel' => '2026-01-01 00:01:37',
+        'marketing/docs/api/modules/work' => '2025-12-31 21:09:20',
+        'marketing/docs/api/partials/api-response' => '2025-12-04 19:12:15',
+        'marketing/docs/api/partials/email-response' => '2025-12-29 14:37:29',
+        'marketing/docs/api/partials/journal-entry-response-attributes' => '2026-01-02 00:12:37',
+        'marketing/docs/api/partials/journal-entry-response' => '2026-01-02 00:12:37',
+        'marketing/docs/api/partials/journal-response' => '2025-12-04 19:12:15',
+        'marketing/docs/api/partials/log-response' => '2025-12-04 19:12:15',
+        'marketing/docs/api/partials/profile-response' => '2025-12-19 02:33:26',
+        'marketing/docs/concepts/hierarchy-structure' => '2025-12-31 00:04:49',
+        'marketing/docs/concepts/permissions' => '2025-12-31 00:04:49',
+        'marketing/docs/index' => '2025-12-04 19:12:15',
+        'marketing/index' => '2025-12-04 20:55:26',
+    ],
+];

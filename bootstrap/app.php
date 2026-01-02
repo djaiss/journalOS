@@ -11,6 +11,7 @@ use App\Http\Middleware\CheckJournal;
 use App\Http\Middleware\CheckJournalAPI;
 use App\Http\Middleware\CheckJournalEntry;
 use App\Http\Middleware\CheckJournalEntryAPI;
+use App\Http\Middleware\CheckMarketing;
 use App\Http\Middleware\CheckSubscription;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -29,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'journal.entry.api' => CheckJournalEntryAPI::class,
             'instance.admin' => CheckInstanceAdministrator::class,
             'subscription' => CheckSubscription::class,
+            'marketing' => CheckMarketing::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

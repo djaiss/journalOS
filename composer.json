@@ -23,6 +23,7 @@
     "pragmarx/google2fa-laravel": "^2.3",
     "resend/resend-laravel": "^1.0.0",
     "spatie/laravel-login-link": "^1.6",
+    "spatie/laravel-sitemap": "^7.3",
     "stevebauman/purify": "^6.3"
   },
   "require-dev": {
@@ -75,12 +76,16 @@
       "Composer\\Config::disableProcessTimeout",
       "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
     ],
-    "test": [
-      "@journalos:unit",
-      "@journalos:setup",
-      "@journalos:locale",
-      "@journalos:lint"
-    ],
+    "journalos:lint": "./vendor/bin/pint",
+    "journalos:locale": "php artisan localize en,fr --remove-missing",
+    "journalos:marketing": "php artisan marketing:extract-timestamps && php artisan marketing:generate-sitemap",
+    "journalos:prettier": "npx prettier --write resources/",
+    "journalos:rector": "./vendor/bin/rector",
+    "journalos:setup": "php artisan migrate:fresh && php artisan db:seed",
+    "journalos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
+    "journalos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && php artisan test --parallel",
+    "journalos:update": "composer update && bun update",
+    "journalos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
     "precommit": [
       "@journalos:rector",
       "@test",
@@ -90,17 +95,15 @@
       "@journalos:update",
       "@journalos:locale",
       "@journalos:lint",
-      "@journalos:setup"
+      "@journalos:setup",
+      "@journalos:marketing"
     ],
-    "journalos:lint": "./vendor/bin/pint",
-    "journalos:locale": "php artisan localize en,fr --remove-missing",
-    "journalos:prettier": "npx prettier --write resources/",
-    "journalos:rector": "./vendor/bin/rector",
-    "journalos:setup": "php artisan migrate:fresh && php artisan db:seed",
-    "journalos:static": "./vendor/bin/phpstan analyse --memory-limit=256M",
-    "journalos:update": "composer update && bun update",
-    "journalos:update-blacklist-domains": "php artisan erag:sync-disposable-email-list",
-    "journalos:unit": "rm -f database/test.sqlite_test* && php artisan migrate:fresh --database=testing && php artisan test --parallel"
+    "test": [
+      "@journalos:unit",
+      "@journalos:setup",
+      "@journalos:locale",
+      "@journalos:lint"
+    ]
   },
   "extra": {
     "laravel": {

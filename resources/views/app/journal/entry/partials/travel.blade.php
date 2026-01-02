@@ -14,7 +14,8 @@
   </x-slot>
 
   <div id="travel-container" class="space-y-4" x-data="{
-    showTravelDetails: {{ $entry->has_traveled_today === 'yes' ? 'true' : 'false' }},
+    showTravelDetails:
+      {{ $entry->has_traveled_today === 'yes' ? 'true' : 'false' }},
   }">
     <div>
       <!-- Have you traveled today? -->
