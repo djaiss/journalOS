@@ -72,6 +72,28 @@
   <span class="text-lime-700">"train"</span>
   ]
 </div>
+<div class="pl-16">},</div>
+<div class="pl-16">"day_type": {</div>
+<div class="pl-20">
+  "day_type":
+  <span class="text-lime-700">"workday"</span>
+</div>
+<div class="pl-16">},</div>
+<div class="pl-16">"physical_activity": {</div>
+<div class="pl-20">
+  "has_done_physical_activity":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "activity_type":
+  <span class="text-lime-700">"running"</span>
+  ,
+</div>
+<div class="pl-20">
+  "activity_intensity":
+  <span class="text-lime-700">"moderate"</span>
+</div>
 <div class="pl-16">}</div>
 <div class="pl-12">},</div>
 <div class="pl-12">

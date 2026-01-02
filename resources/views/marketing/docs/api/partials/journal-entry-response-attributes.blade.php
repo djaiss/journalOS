@@ -19,6 +19,10 @@
   <x-marketing.docs.attribute name="attributes.modules.travel.travel_mode" type="array" description="The travel modes used for the journal entry." />
   <x-marketing.docs.attribute name="attributes.modules.day_type" type="object" description="The day type module payload." />
   <x-marketing.docs.attribute name="attributes.modules.day_type.day_type" type="string" description="The type of day." />
+  <x-marketing.docs.attribute name="attributes.modules.physical_activity" type="object" description="The physical activity module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.physical_activity.has_done_physical_activity" type="string" description="Whether physical activity was done." />
+  <x-marketing.docs.attribute name="attributes.modules.physical_activity.activity_type" type="string" description="The type of physical activity." />
+  <x-marketing.docs.attribute name="attributes.modules.physical_activity.activity_intensity" type="string" description="The intensity of the physical activity." />
   <x-marketing.docs.attribute name="attributes.created_at" type="integer" description="The date and time the object was created, in Unix timestamp format." />
   <x-marketing.docs.attribute name="attributes.updated_at" type="integer" description="The date and time the object was last updated, in Unix timestamp format." />
   <x-marketing.docs.attribute name="links" type="object" description="The links to access the journal entry." />

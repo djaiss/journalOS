@@ -66,6 +66,12 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 // day type
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/day-type', [Journals\Modules\DayType\DayTypeController::class, 'update'])->name('journal.entry.day-type.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/day-type/reset', [Journals\Modules\DayType\DayTypeResetController::class, 'update'])->name('journal.entry.day-type.reset');
+
+                // physical activity
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity', [Journals\Modules\PhysicalActivity\PhysicalActivityController::class, 'update'])->name('journal.entry.physical-activity.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/type', [Journals\Modules\PhysicalActivity\PhysicalActivityTypeController::class, 'update'])->name('journal.entry.physical-activity.type.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/intensity', [Journals\Modules\PhysicalActivity\PhysicalActivityIntensityController::class, 'update'])->name('journal.entry.physical-activity.intensity.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/reset', [Journals\Modules\PhysicalActivity\PhysicalActivityResetController::class, 'update'])->name('journal.entry.physical-activity.reset');
             });
 
             // settings
