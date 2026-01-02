@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\LogWakeUpTime;
 use App\Jobs\CalculateSleepDuration;
+use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -61,6 +62,14 @@ final class LogWakeUpTimeTest extends TestCase
             queue: 'low',
             job: CalculateSleepDuration::class,
             callback: function (CalculateSleepDuration $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
                 return $job->entry->id === $entry->id;
             },
         );

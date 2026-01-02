@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
@@ -28,6 +29,7 @@ final readonly class ResetWorkData
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
+        $this->refreshContentPresenceStatus();
 
         return $this->entry;
     }
@@ -52,5 +54,10 @@ final readonly class ResetWorkData
     private function updateUserLastActivityDate(): void
     {
         UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
+    }
+
+    private function refreshContentPresenceStatus(): void
+    {
+        CheckPresenceOfContentInJournalEntry::dispatch($this->entry)->onQueue('low');
     }
 }
