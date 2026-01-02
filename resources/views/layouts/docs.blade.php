@@ -113,19 +113,22 @@
             </div>
             <div x-show="modulesDocumentation" class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.api.modules.sleep') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.sleep') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sleep</a>
+                <a href="{{ route('marketing.docs.api.modules.day-type') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.day-type') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Day type</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.work') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.work') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Work</a>
+                <a href="{{ route('marketing.docs.api.modules.health') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.health') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Health</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.docs.api.modules.physical-activity') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.physical-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Physical activity</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.docs.api.modules.sleep') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.sleep') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sleep</a>
               </div>
               <div>
                 <a href="{{ route('marketing.docs.api.modules.travel') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.travel') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Travel</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.day-type') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.day-type') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Day type</a>
-              </div>
-              <div>
-                <a href="{{ route('marketing.docs.api.modules.physical-activity') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.physical-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Physical activity</a>
+                <a href="{{ route('marketing.docs.api.modules.work') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.work') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Work</a>
               </div>
             </div>
           </div>

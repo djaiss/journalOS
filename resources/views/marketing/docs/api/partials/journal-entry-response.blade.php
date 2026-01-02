@@ -79,6 +79,12 @@
   <span class="text-lime-700">"workday"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"health": {</div>
+<div class="pl-20">
+  "health":
+  <span class="text-lime-700">"good"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"physical_activity": {</div>
 <div class="pl-20">
   "has_done_physical_activity":
