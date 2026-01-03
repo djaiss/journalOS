@@ -14,6 +14,7 @@ return [
         'marketing/docs/api/modules/day-type' => '2026-01-01 15:43:23',
         'marketing/docs/api/modules/energy' => '2026-01-02 15:50:54',
         'marketing/docs/api/modules/health' => '2026-01-02 04:40:47',
+        'marketing/docs/api/modules/kids' => '2026-01-05 09:00:00',
         'marketing/docs/api/modules/mood' => '2026-01-02 14:57:46',
         'marketing/docs/api/modules/physical-activity' => '2026-01-02 00:12:37',
         'marketing/docs/api/modules/sexual-activity' => '2026-01-02 16:20:31',

@@ -73,6 +73,12 @@
   ]
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"kids": {</div>
+<div class="pl-20">
+  "had_kids_today":
+  <span class="text-lime-700">"no"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"day_type": {</div>
 <div class="pl-20">
   "day_type":

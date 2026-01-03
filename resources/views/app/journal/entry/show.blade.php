@@ -66,6 +66,10 @@
         @if ($journal->show_travel_module)
           @include('app.journal.entry.partials.travel', ['module' => $modules['travel']])
         @endif
+
+        @if ($journal->show_kids_module)
+          @include('app.journal.entry.partials.kids', ['module' => $modules['kids']])
+        @endif
       </div>
     </div>
 

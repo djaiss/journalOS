@@ -17,6 +17,8 @@
   <x-marketing.docs.attribute name="attributes.modules.travel" type="object" description="The travel module payload." />
   <x-marketing.docs.attribute name="attributes.modules.travel.has_traveled_today" type="string" description="Whether you traveled today." />
   <x-marketing.docs.attribute name="attributes.modules.travel.travel_mode" type="array" description="The travel modes used for the journal entry." />
+  <x-marketing.docs.attribute name="attributes.modules.kids" type="object" description="The kids module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.kids.had_kids_today" type="string" description="Whether you had the kids today." />
   <x-marketing.docs.attribute name="attributes.modules.day_type" type="object" description="The day type module payload." />
   <x-marketing.docs.attribute name="attributes.modules.day_type.day_type" type="string" description="The type of day." />
   <x-marketing.docs.attribute name="attributes.modules.health" type="object" description="The health module payload." />
