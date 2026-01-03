@@ -44,6 +44,9 @@ final class JournalEntryResource extends JsonResource
                         'has_traveled_today' => $this->has_traveled_today,
                         'travel_mode' => $this->travel_mode,
                     ],
+                    'kids' => [
+                        'had_kids_today' => $this->had_kids_today,
+                    ],
                     'day_type' => [
                         'day_type' => $this->day_type,
                     ],
