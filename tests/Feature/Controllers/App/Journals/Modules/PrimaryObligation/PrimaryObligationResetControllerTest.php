@@ -24,6 +24,9 @@ final class PrimaryObligationResetControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+            'year' => 2022,
+            'month' => 1,
+            'day' => 1,
             'primary_obligation' => 'work',
         ]);
 
