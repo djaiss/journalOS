@@ -21,12 +21,15 @@ final class SleepControllerTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
         $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
         ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:00/06:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:00/06:00",
         );
 
         $response->assertStatus(200);
@@ -38,10 +41,14 @@ final class SleepControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:00/06:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:00/06:00",
         );
 
         $response->assertStatus(404);
