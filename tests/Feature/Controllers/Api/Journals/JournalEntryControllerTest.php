@@ -35,6 +35,9 @@ final class JournalEntryControllerTest extends TestCase
                         'worked',
                         'work_mode',
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation',
+                    ],
                 ],
                 'created_at',
                 'updated_at',
@@ -86,6 +89,9 @@ final class JournalEntryControllerTest extends TestCase
                         'work' => [
                             'worked' => null,
                             'work_mode' => null,
+                        ],
+                        'primary_obligation' => [
+                            'primary_obligation' => null,
                         ],
                     ],
                 ],

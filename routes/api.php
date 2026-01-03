@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Journals\Modules\Health\HealthController as HealthM
 use App\Http\Controllers\Api\Journals\Modules\Kids\KidsController as KidsModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
+use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligationController as PrimaryObligationModuleController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
@@ -115,6 +116,12 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.day-type.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/primary-obligation', [PrimaryObligationModuleController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.primary-obligation.update');
 
                 Route::put('journals/{id}/{year}/{month}/{day}/physical-activity', [PhysicalActivityController::class, 'update'])
                     ->whereNumber('year')

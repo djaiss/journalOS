@@ -44,6 +44,9 @@ final class PhysicalActivityControllerTest extends TestCase
                     'day_type' => [
                         'day_type',
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation',
+                    ],
                     'physical_activity' => [
                         'has_done_physical_activity',
                         'activity_type',

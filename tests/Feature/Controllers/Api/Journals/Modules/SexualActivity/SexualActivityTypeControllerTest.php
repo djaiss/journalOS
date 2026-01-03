@@ -35,6 +35,9 @@ final class SexualActivityTypeControllerTest extends TestCase
                         'worked',
                         'work_mode',
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation',
+                    ],
                 ],
                 'created_at',
                 'updated_at',

@@ -50,6 +50,9 @@ final class JournalEntryResource extends JsonResource
                     'day_type' => [
                         'day_type' => $this->day_type,
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation' => $this->primary_obligation,
+                    ],
                     'physical_activity' => [
                         'has_done_physical_activity' => $this->has_done_physical_activity,
                         'activity_type' => $this->activity_type,

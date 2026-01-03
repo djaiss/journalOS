@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Date;
  * @property array<string>|null $travel_mode # Format: ['car',plane,train,bike,bus,walk,boat,other]
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $day_type # Format: 'workday', 'day off', 'weekend', 'vacation', 'sick day'
+ * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property string|null $has_done_physical_activity # Format: 'yes'|'no'
  * @property string|null $activity_type # Format: 'running', 'cycling', 'swimming', 'gym', 'walking'
  * @property string|null $activity_intensity # Format: 'light', 'moderate', 'intense'
@@ -81,6 +82,7 @@ final class JournalEntry extends Model
         'travel_mode',
         'had_kids_today',
         'day_type',
+        'primary_obligation',
         'has_done_physical_activity',
         'activity_type',
         'activity_intensity',
@@ -112,6 +114,7 @@ final class JournalEntry extends Model
             'travel_mode' => 'encrypted:array',
             'had_kids_today' => 'encrypted',
             'day_type' => 'encrypted',
+            'primary_obligation' => 'encrypted',
             'has_done_physical_activity' => 'encrypted',
             'activity_type' => 'encrypted',
             'activity_intensity' => 'encrypted',

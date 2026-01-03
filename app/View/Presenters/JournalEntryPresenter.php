@@ -23,6 +23,8 @@ final readonly class JournalEntryPresenter
 
         $dayType = new DayTypeModulePresenter($this->entry)->build();
 
+        $primaryObligation = new PrimaryObligationModulePresenter($this->entry)->build();
+
         $physicalActivity = new PhysicalActivityModulePresenter($this->entry)->build();
 
         $health = new HealthModulePresenter($this->entry)->build();
@@ -39,6 +41,7 @@ final readonly class JournalEntryPresenter
             'travel' => $travel,
             'kids' => $kids,
             'day_type' => $dayType,
+            'primary_obligation' => $primaryObligation,
             'physical_activity' => $physicalActivity,
             'health' => $health,
             'mood' => $mood,

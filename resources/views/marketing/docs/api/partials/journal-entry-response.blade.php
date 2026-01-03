@@ -85,6 +85,12 @@
   <span class="text-lime-700">"workday"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"primary_obligation": {</div>
+<div class="pl-20">
+  "primary_obligation":
+  <span class="text-lime-700">"work"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"health": {</div>
 <div class="pl-20">
   "health":

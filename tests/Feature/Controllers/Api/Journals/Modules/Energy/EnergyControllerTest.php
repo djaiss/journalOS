@@ -52,6 +52,7 @@ final class EnergyControllerTest extends TestCase
                         'work',
                         'travel',
                         'day_type',
+                        'primary_obligation',
                         'physical_activity',
                         'health',
                         'mood',
