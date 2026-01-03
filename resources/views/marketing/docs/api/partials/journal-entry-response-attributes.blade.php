@@ -19,6 +19,8 @@
   <x-marketing.docs.attribute name="attributes.modules.travel.travel_mode" type="array" description="The travel modes used for the journal entry." />
   <x-marketing.docs.attribute name="attributes.modules.day_type" type="object" description="The day type module payload." />
   <x-marketing.docs.attribute name="attributes.modules.day_type.day_type" type="string" description="The type of day." />
+  <x-marketing.docs.attribute name="attributes.modules.primary_obligation" type="object" description="The primary obligation module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.primary_obligation.primary_obligation" type="string" description="What demanded most of your attention." />
   <x-marketing.docs.attribute name="attributes.modules.health" type="object" description="The health module payload." />
   <x-marketing.docs.attribute name="attributes.modules.health.health" type="string" description="How you felt on that day." />
   <x-marketing.docs.attribute name="attributes.modules.mood" type="object" description="The mood module payload." />

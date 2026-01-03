@@ -116,6 +116,9 @@
                 <a href="{{ route('marketing.docs.api.modules.day-type') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.day-type') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Day type</a>
               </div>
               <div>
+                <a href="{{ route('marketing.docs.api.modules.primary-obligation') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.primary-obligation') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Primary obligation</a>
+              </div>
+              <div>
                 <a href="{{ route('marketing.docs.api.modules.health') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.health') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Health</a>
               </div>
               <div>

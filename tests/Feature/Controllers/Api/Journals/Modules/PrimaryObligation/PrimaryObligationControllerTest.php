@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Api\Journals\Modules\Mood;
+namespace Tests\Feature\Controllers\Api\Journals\Modules\PrimaryObligation;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
@@ -12,12 +12,12 @@ use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class MoodControllerTest extends TestCase
+final class PrimaryObligationControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function it_updates_mood_with_terrible_and_returns_journal_entry(): void
+    public function it_updates_primary_obligation_with_work_and_returns_journal_entry(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -25,7 +25,7 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
+            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -33,8 +33,8 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'terrible',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'work',
         ]);
 
         $response->assertStatus(200);
@@ -56,6 +56,7 @@ final class MoodControllerTest extends TestCase
                         'physical_activity',
                         'health',
                         'mood',
+                        'energy',
                     ],
                     'created_at',
                     'updated_at',
@@ -70,8 +71,8 @@ final class MoodControllerTest extends TestCase
             'data' => [
                 'attributes' => [
                     'modules' => [
-                        'mood' => [
-                            'mood' => 'terrible',
+                        'primary_obligation' => [
+                            'primary_obligation' => 'work',
                         ],
                     ],
                 ],
@@ -79,11 +80,11 @@ final class MoodControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('terrible', $entry->mood);
+        $this->assertEquals('work', $entry->primary_obligation);
     }
 
     #[Test]
-    public function it_updates_mood_with_bad_and_returns_journal_entry(): void
+    public function it_updates_primary_obligation_with_family_and_returns_journal_entry(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -91,7 +92,7 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
+            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -99,8 +100,8 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'bad',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'family',
         ]);
 
         $response->assertStatus(200);
@@ -108,8 +109,8 @@ final class MoodControllerTest extends TestCase
             'data' => [
                 'attributes' => [
                     'modules' => [
-                        'mood' => [
-                            'mood' => 'bad',
+                        'primary_obligation' => [
+                            'primary_obligation' => 'family',
                         ],
                     ],
                 ],
@@ -117,11 +118,11 @@ final class MoodControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('bad', $entry->mood);
+        $this->assertEquals('family', $entry->primary_obligation);
     }
 
     #[Test]
-    public function it_updates_mood_with_okay_and_returns_journal_entry(): void
+    public function it_updates_primary_obligation_with_personal_and_returns_journal_entry(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -129,7 +130,7 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
+            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -137,8 +138,8 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'okay',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'personal',
         ]);
 
         $response->assertStatus(200);
@@ -146,8 +147,8 @@ final class MoodControllerTest extends TestCase
             'data' => [
                 'attributes' => [
                     'modules' => [
-                        'mood' => [
-                            'mood' => 'okay',
+                        'primary_obligation' => [
+                            'primary_obligation' => 'personal',
                         ],
                     ],
                 ],
@@ -155,11 +156,11 @@ final class MoodControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('okay', $entry->mood);
+        $this->assertEquals('personal', $entry->primary_obligation);
     }
 
     #[Test]
-    public function it_updates_mood_with_good_and_returns_journal_entry(): void
+    public function it_updates_primary_obligation_with_health_and_returns_journal_entry(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -167,7 +168,7 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
+            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -175,8 +176,8 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'good',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'health',
         ]);
 
         $response->assertStatus(200);
@@ -184,8 +185,8 @@ final class MoodControllerTest extends TestCase
             'data' => [
                 'attributes' => [
                     'modules' => [
-                        'mood' => [
-                            'mood' => 'good',
+                        'primary_obligation' => [
+                            'primary_obligation' => 'health',
                         ],
                     ],
                 ],
@@ -193,11 +194,11 @@ final class MoodControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('good', $entry->mood);
+        $this->assertEquals('health', $entry->primary_obligation);
     }
 
     #[Test]
-    public function it_updates_mood_with_great_and_returns_journal_entry(): void
+    public function it_updates_primary_obligation_with_travel_and_returns_journal_entry(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -205,7 +206,7 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
+            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -213,8 +214,8 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'great',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'travel',
         ]);
 
         $response->assertStatus(200);
@@ -222,8 +223,8 @@ final class MoodControllerTest extends TestCase
             'data' => [
                 'attributes' => [
                     'modules' => [
-                        'mood' => [
-                            'mood' => 'great',
+                        'primary_obligation' => [
+                            'primary_obligation' => 'travel',
                         ],
                     ],
                 ],
@@ -231,11 +232,49 @@ final class MoodControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('great', $entry->mood);
+        $this->assertEquals('travel', $entry->primary_obligation);
     }
 
     #[Test]
-    public function it_validates_mood_must_be_valid(): void
+    public function it_updates_primary_obligation_with_none_and_returns_journal_entry(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'primary_obligation' => null,
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'none',
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'data' => [
+                'attributes' => [
+                    'modules' => [
+                        'primary_obligation' => [
+                            'primary_obligation' => 'none',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $entry->refresh();
+        $this->assertEquals('none', $entry->primary_obligation);
+    }
+
+    #[Test]
+    public function it_validates_primary_obligation_must_be_valid(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -250,16 +289,16 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'invalid',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'invalid',
         ]);
 
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors('mood');
+        $response->assertJsonValidationErrors('primary_obligation');
     }
 
     #[Test]
-    public function it_validates_mood_is_required(): void
+    public function it_validates_primary_obligation_is_required(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -274,10 +313,10 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", []);
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", []);
 
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors('mood');
+        $response->assertJsonValidationErrors('primary_obligation');
     }
 
     #[Test]
@@ -291,8 +330,8 @@ final class MoodControllerTest extends TestCase
             'day' => 15,
         ]);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'good',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'work',
         ]);
 
         $response->assertStatus(401);
@@ -312,8 +351,8 @@ final class MoodControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/mood", [
-            'mood' => 'good',
+        $response = $this->json('PUT', "/api/journals/{$journal->id}/2024/6/15/primary-obligation", [
+            'primary_obligation' => 'work',
         ]);
 
         $response->assertStatus(404);

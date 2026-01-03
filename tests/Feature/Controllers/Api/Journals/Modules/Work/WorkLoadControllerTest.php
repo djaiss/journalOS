@@ -36,6 +36,9 @@ final class WorkLoadControllerTest extends TestCase
                         'work_mode',
                         'work_load',
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation',
+                    ],
                 ],
                 'created_at',
                 'updated_at',

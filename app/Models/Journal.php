@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $show_work_module
  * @property bool $show_travel_module
  * @property bool $show_day_type_module
+ * @property bool $show_primary_obligation_module
  * @property bool $show_physical_activity_module
  * @property bool $show_health_module
  * @property bool $show_mood_module
@@ -57,6 +58,7 @@ final class Journal extends Model
         'show_work_module',
         'show_travel_module',
         'show_day_type_module',
+        'show_primary_obligation_module',
         'show_physical_activity_module',
         'show_health_module',
         'show_mood_module',
@@ -78,6 +80,7 @@ final class Journal extends Model
             'show_work_module' => 'boolean',
             'show_travel_module' => 'boolean',
             'show_day_type_module' => 'boolean',
+            'show_primary_obligation_module' => 'boolean',
             'show_physical_activity_module' => 'boolean',
             'show_health_module' => 'boolean',
             'show_mood_module' => 'boolean',

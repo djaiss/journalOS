@@ -44,6 +44,9 @@ final class DayTypeControllerTest extends TestCase
                     'day_type' => [
                         'day_type',
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation',
+                    ],
                 ],
                 'created_at',
                 'updated_at',

@@ -37,6 +37,9 @@ final class WorkProcrastinatedControllerTest extends TestCase
                         'work_load',
                         'work_procrastinated',
                     ],
+                    'primary_obligation' => [
+                        'primary_obligation',
+                    ],
                 ],
                 'created_at',
                 'updated_at',

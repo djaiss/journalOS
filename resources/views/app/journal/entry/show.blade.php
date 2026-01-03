@@ -82,6 +82,10 @@
           @include('app.journal.entry.partials.day_type', ['module' => $modules['day_type']])
         @endif
 
+        @if ($journal->show_primary_obligation_module)
+          @include('app.journal.entry.partials.primary_obligation', ['module' => $modules['primary_obligation']])
+        @endif
+
         @if ($journal->show_work_module)
           @include(
             'app.journal.entry.partials.work',
