@@ -1,5 +1,43 @@
 # Changelog
 
+## [0.5.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.4.0...djaiss/journalos-v0.5.0) (2026-01-03)
+
+
+### Features
+
+* add dark mode ([#74](https://github.com/djaiss/journalOS/issues/74)) ([e4733e1](https://github.com/djaiss/journalOS/commit/e4733e1f84fdbb490e4bdfa3ff555c6761f4fe45))
+* add energy module to journal entries ([#95](https://github.com/djaiss/journalOS/issues/95)) ([933dc3c](https://github.com/djaiss/journalOS/commit/933dc3ced1e2de2070455c8e4f20ba8525cb94c6))
+* add health module ([#93](https://github.com/djaiss/journalOS/issues/93)) ([caef70d](https://github.com/djaiss/journalOS/commit/caef70d704f9673e1da575d8f4bce9324e0c2f9b))
+* add kids today module  ([#98](https://github.com/djaiss/journalOS/issues/98)) ([f7376aa](https://github.com/djaiss/journalOS/commit/f7376aa8f49aefa5fee3b05af6c737b914e9837c))
+* add mood module for journal entries ([#94](https://github.com/djaiss/journalOS/issues/94)) ([687b42e](https://github.com/djaiss/journalOS/commit/687b42e3eae4bec6be906861ff0e110d0469f426))
+* add physical activity module ([#90](https://github.com/djaiss/journalOS/issues/90)) ([d2e0a83](https://github.com/djaiss/journalOS/commit/d2e0a83987cc969e3afaf01b86b3daa0d28c443e))
+* add primary obligation module ([#99](https://github.com/djaiss/journalOS/issues/99)) ([67e01f2](https://github.com/djaiss/journalOS/commit/67e01f27191fb133048b35315281fa13732a5e65))
+* add sexual activity journal module ([#96](https://github.com/djaiss/journalOS/issues/96)) ([7c3a1bd](https://github.com/djaiss/journalOS/commit/7c3a1bdcdda5565cdc516ee4cff9a11c286263b1))
+* add travel module ([#85](https://github.com/djaiss/journalOS/issues/85)) ([7b709ab](https://github.com/djaiss/journalOS/commit/7b709ab10fb51598fb95f0deeb35bd822ffeb0fb))
+* add work load ([#82](https://github.com/djaiss/journalOS/issues/82)) ([eb24688](https://github.com/djaiss/journalOS/commit/eb246886f5c4cc7774bcb3f6607b756be5409cd7))
+* add work mode api ([#81](https://github.com/djaiss/journalOS/issues/81)) ([f887e23](https://github.com/djaiss/journalOS/commit/f887e23280e28059cd6e3df24d4573e0e002d727))
+* add work module to api ([#79](https://github.com/djaiss/journalOS/issues/79)) ([496897f](https://github.com/djaiss/journalOS/commit/496897f47fe3da1825cf35e04783c786ad8b1cbb))
+* api to manage sleep module ([#78](https://github.com/djaiss/journalOS/issues/78)) ([6740c24](https://github.com/djaiss/journalOS/commit/6740c24f1c9f73db8d466481c9d4deed50f0f8af))
+* change titles ([#84](https://github.com/djaiss/journalOS/issues/84)) ([e86cd0f](https://github.com/djaiss/journalOS/commit/e86cd0f069083e0a3f9856fea00e208da5e6d3fd))
+* day type module ([#87](https://github.com/djaiss/journalOS/issues/87)) ([ef96d91](https://github.com/djaiss/journalOS/commit/ef96d919d74ae254c7493887db6f0b4815ca684e))
+* hide day type module ([#89](https://github.com/djaiss/journalOS/issues/89)) ([2c8c0de](https://github.com/djaiss/journalOS/commit/2c8c0defc400b135022e12a524672ae0bfdc8817))
+* hide work information when needed ([#86](https://github.com/djaiss/journalOS/issues/86)) ([35b672e](https://github.com/djaiss/journalOS/commit/35b672efc35d2e5635750fa2899c3a3f0d1e7ad5))
+* indicate presence of content in a journal entry ([#92](https://github.com/djaiss/journalOS/issues/92)) ([1ed7e93](https://github.com/djaiss/journalOS/commit/1ed7e93724c67b7dc039a05990b0a2089fac7385))
+* log work information ([#76](https://github.com/djaiss/journalOS/issues/76)) ([bb9b34e](https://github.com/djaiss/journalOS/commit/bb9b34ee7dfd5bf0bb274ae6a75d532830fd48c1))
+* log work mode ([#80](https://github.com/djaiss/journalOS/issues/80)) ([d04a430](https://github.com/djaiss/journalOS/commit/d04a430bde61006bf8241ef6c031e103631b9dfa))
+* log work procrastination  ([#83](https://github.com/djaiss/journalOS/issues/83)) ([364671f](https://github.com/djaiss/journalOS/commit/364671f83abd3ab853b6c7e810a70187004f4244))
+* sitemap for marketing site ([#91](https://github.com/djaiss/journalOS/issues/91)) ([e596bc6](https://github.com/djaiss/journalOS/commit/e596bc60ec69aebd9cd1524cad3414e6ffa0da5d))
+* toggle work module visibility ([#77](https://github.com/djaiss/journalOS/issues/77)) ([1159677](https://github.com/djaiss/journalOS/commit/11596771a1e0994229652484f9b2ed3bb6f4a5e9))
+* update travel module to show travel details conditionally ([#88](https://github.com/djaiss/journalOS/issues/88)) ([37bf05e](https://github.com/djaiss/journalOS/commit/37bf05ef47b735bbe56100507e3afd3fc10be219))
+* year selector ([#75](https://github.com/djaiss/journalOS/issues/75)) ([d05fdc6](https://github.com/djaiss/journalOS/commit/d05fdc6b3781248006910bf9b6ec1682a3ffcf56))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump @rollup/rollup-linux-x64-gnu from 4.53.4 to 4.54.0 ([#43](https://github.com/djaiss/journalOS/issues/43)) ([85a7637](https://github.com/djaiss/journalOS/commit/85a7637d61487edb25e60221ee34a88c0a4472bc))
+* **deps:** update dependencies ([#72](https://github.com/djaiss/journalOS/issues/72)) ([8899781](https://github.com/djaiss/journalOS/commit/8899781a98464a0bf3c31c07533c66b9ed535849))
+* update todo ([#97](https://github.com/djaiss/journalOS/issues/97)) ([f277f62](https://github.com/djaiss/journalOS/commit/f277f62b215052b36d9e4097a6a5a664a8162304))
+
 ## [0.4.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.3.0...djaiss/journalos-v0.4.0) (2025-12-30)
 
 
