@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Journals\JournalEntryController;
 use App\Http\Controllers\Api\Journals\Modules\DayType\DayTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Energy\EnergyController as EnergyModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Health\HealthController as HealthModuleController;
+use App\Http\Controllers\Api\Journals\Modules\Kids\KidsController as KidsModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
 use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligationController as PrimaryObligationModuleController;
@@ -103,6 +104,12 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.travel.mode.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/kids', [KidsModuleController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.kids.update');
 
                 Route::put('journals/{id}/{year}/{month}/{day}/day-type', [DayTypeController::class, 'update'])
                     ->whereNumber('year')

@@ -34,6 +34,7 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'has_traveled_today' => null,
             'travel_details' => null,
             'travel_mode' => null,
+            'had_kids_today' => null,
             'day_type' => null,
             'has_done_physical_activity' => null,
             'activity_type' => null,
