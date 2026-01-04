@@ -1,0 +1,77 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Unit\Actions;
+
+use App\Actions\RenameBook;
+use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\Book;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
+
+final class RenameBookTest extends TestCase
+{
+    use RefreshDatabase;
+
+    #[Test]
+    public function it_renames_a_book(): void
+    {
+        Queue::fake();
+
+        $user = User::factory()->create();
+        $book = Book::factory()->for($user)->create([
+            'name' => 'The Great Gatsby',
+        ]);
+
+        $updatedBook = (new RenameBook(
+            user: $user,
+            book: $book,
+            name: 'The Greatest Gatsby',
+        ))->execute();
+
+        $this->assertEquals('The Greatest Gatsby', $updatedBook->name);
+        $this->assertInstanceOf(Book::class, $updatedBook);
+
+        $this->assertDatabaseHas('books', [
+            'id' => $book->id,
+        ]);
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: LogUserAction::class,
+            callback: function (LogUserAction $job) use ($user): bool {
+                return $job->action === 'book_rename' && $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
+            },
+        );
+    }
+
+    #[Test]
+    public function it_throws_an_exception_if_book_does_not_belong_to_user(): void
+    {
+        $this->expectException(ModelNotFoundException::class);
+        $this->expectExceptionMessage('Book not found');
+
+        $user = User::factory()->create();
+        $otherBook = Book::factory()->create();
+
+        (new RenameBook(
+            user: $user,
+            book: $otherBook,
+            name: 'New Name',
+        ))->execute();
+    }
+}
