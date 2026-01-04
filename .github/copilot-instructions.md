@@ -35,7 +35,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - Do not change the application's dependencies without approval.
 
 ## Frontend Bundling
-- If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `npm run build`, `npm run dev`, or `composer run dev`. Ask them.
+- If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `bun run build`, `bun run dev`, or `composer run dev`. Ask them.
 
 ## Replies
 - Be concise in your explanations - focus on what's important rather than explaining obvious details.
@@ -172,7 +172,7 @@ protected function isAccessible(User $user, ?string $path = null): bool
 - When creating tests, make use of `php artisan make:test [options] {name}` to create a feature test, and pass `--unit` to create a unit test. Most tests should be feature tests.
 
 ### Vite Error
-- If you receive an "Illuminate\Foundation\ViteException: Unable to locate file in Vite manifest" error, you can run `npm run build` or ask the user to run `npm run dev` or `composer run dev`.
+- If you receive an "Illuminate\Foundation\ViteException: Unable to locate file in Vite manifest" error, you can run `bun run build` or ask the user to run `bun run dev` or `composer run dev`.
 
 
 === laravel/v12 rules ===
@@ -289,3 +289,29 @@ protected function isAccessible(User $user, ?string $path = null): bool
 | decoration-slice | box-decoration-slice |
 | decoration-clone | box-decoration-clone |
 </laravel-boost-guidelines>
+
+## Guidelines
+
+- Start: say hi + 1 motivating line. Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
+- Commits: Conventional Commits (feat|fix|refactor|build|ci|chore|docs|style|perf|test).
+- Style: telegraph. Drop filler/grammar. Min tokens (global AGENTS + replies).
+
+## Overview of the project
+
+JournalOS is a personal diary. Users can have journals. A journal is made of journal entries. We provide a web application, an API and a marketing documentation. The marketing website is part of the codebase as well - although everything on the marketing website will be cached by Cloudflare for performance reasons.
+
+## General information
+- No Javascript framework. We only use Laravel, Blade, Alpine Ajax and AlpineJS.
+- Avoid external dependencies if possible.
+- Never use form requests. Use inline validation within controllers.
+- ALWAYS follow existing conventions and file structures in the project.
+
+## Overall structure
+- Every action a user can do (ie: LogWork) is an Action in the project. Actions are stored in /app/Actions.
+- We use Presenters to prepare data for the views.
+- Most jobs are queued on the `low` priority queue.
+
+## Tests
+- Everything should be tested thoroughly. Use PHPUnit.
+- Tests for controllers are stored in /tests/Features/Controllers. All the other tests should be stored in /tests/Unit/ and match the original structure of the files.
+- Once tests are working, run `composer precommit` to make sure everything works.
