@@ -313,4 +313,4 @@ JournalOS is a personal diary. Users can have journals. A journal is made of jou
 ## Tests
 - Everything should be tested thoroughly. Use PHPUnit.
 - Tests for controllers are stored in /tests/Features/Controllers. All the other tests should be stored in /tests/Unit/ and match the original structure of the files.
-- Once tests are working, run `composer precommit` to make sure everything works.
+- Once tests are working, run `composer journalos:unit` to make sure everything works.
