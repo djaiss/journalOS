@@ -144,6 +144,16 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the books associated with the user.
+     *
+     * @return HasMany<Book, $this>
+     */
+    public function books(): HasMany
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    /**
      * Get the user's initials
      */
     public function initials(): string

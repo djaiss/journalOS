@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Models;
 
+use App\Models\Book;
 use App\Models\EmailSent;
 use App\Models\Journal;
 use App\Models\User;
@@ -47,6 +48,17 @@ final class UserTest extends TestCase
         ]);
 
         $this->assertTrue($dwight->logs()->exists());
+    }
+
+    #[Test]
+    public function it_has_many_books(): void
+    {
+        $user = User::factory()->create();
+        Book::factory()->count(2)->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->assertCount(2, $user->books);
     }
 
     #[Test]
