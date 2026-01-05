@@ -71,6 +71,18 @@ final class LocaleControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_rejects_locale_longer_than_255_characters(): void
+    {
+        $response = $this->from('/')
+            ->put('/locale', [
+                'locale' => str_repeat('a', 256),
+            ]);
+
+        $response->assertRedirect('/');
+        $response->assertSessionHasErrors(['locale']);
+    }
+
+    #[Test]
     public function it_handles_null_locale(): void
     {
         $response = $this->from('/')

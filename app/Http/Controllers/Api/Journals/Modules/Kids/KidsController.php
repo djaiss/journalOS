@@ -16,7 +16,7 @@ final class KidsController extends Controller
     {
         $journalEntry = $request->attributes->get('journal_entry');
         $validated = $request->validate([
-            'had_kids_today' => ['required', 'string', 'in:yes,no'],
+            'had_kids_today' => ['required', 'string', 'max:255', 'in:yes,no'],
         ]);
 
         $entry = new LogHadKidsToday(

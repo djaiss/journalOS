@@ -65,6 +65,18 @@ final class LoginControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_rejects_overlong_login_email(): void
+    {
+        $response = $this->json('POST', '/api/login', [
+            'email' => str_repeat('a', 250) . '@example.com',
+            'password' => 'password',
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors(['email']);
+    }
+
+    #[Test]
     public function it_logs_out_a_user(): void
     {
         $user = User::factory()->create([

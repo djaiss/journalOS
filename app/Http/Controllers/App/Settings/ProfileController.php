@@ -57,7 +57,7 @@ final class ProfileController extends Controller
                 'max:255',
                 Rule::unique(User::class)->ignore(Auth::user()->id),
             ],
-            'locale' => ['required', 'string', Rule::in(['en', 'fr'])],
+            'locale' => ['required', 'string', 'max:255', Rule::in(['en', 'fr'])],
             'time_format_24h' => ['required', Rule::in(['true', 'false'])],
         ]);
 

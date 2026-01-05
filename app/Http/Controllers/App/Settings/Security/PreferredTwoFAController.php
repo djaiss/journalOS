@@ -15,7 +15,7 @@ final class PreferredTwoFAController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'preferred_method' => ['required', 'string', 'in:none,authenticator,email'],
+            'preferred_method' => ['required', 'string', 'max:255', 'in:none,authenticator,email'],
         ]);
 
         new UpdateTwoFAMethod(

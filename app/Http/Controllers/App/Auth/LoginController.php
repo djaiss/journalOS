@@ -30,8 +30,8 @@ final class LoginController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
         ]);
 
         $this->ensureIsNotRateLimited($request);
@@ -127,7 +127,7 @@ final class LoginController extends Controller
     public function verify2fa(Request $request): RedirectResponse
     {
         $request->validate([
-            'code' => ['required', 'string'],
+            'code' => ['required', 'string', 'max:255'],
         ]);
 
         $userId = session('2fa:user:id');

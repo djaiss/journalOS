@@ -20,7 +20,7 @@ final class PasswordResetLinkController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
         Password::sendResetLink($request->only('email'));

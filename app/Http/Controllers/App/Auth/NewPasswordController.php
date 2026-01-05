@@ -26,9 +26,13 @@ final class NewPasswordController extends Controller
     {
 
         $request->validate([
-            'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed',
+            'token' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => [
+                'required',
+                'string',
+                'max:255',
+                'confirmed',
                 RulesPassword::min(8)->uncompromised(),
             ],
         ]);

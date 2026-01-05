@@ -16,7 +16,7 @@ final class SexualActivityTypeController extends Controller
     {
         $journalEntry = $request->attributes->get('journal_entry');
         $validated = $request->validate([
-            'sexual_activity_type' => ['required', 'string', 'in:solo,with-partner,intimate-contact'],
+            'sexual_activity_type' => ['required', 'string', 'max:255', 'in:solo,with-partner,intimate-contact'],
         ]);
 
         $entry = new LogSexualActivityType(

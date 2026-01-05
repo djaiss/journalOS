@@ -69,4 +69,15 @@ final class SendMagicLinkControllerTest extends TestCase
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['email']);
     }
+
+    #[Test]
+    public function it_rejects_email_longer_than_255_characters(): void
+    {
+        $response = $this->json('POST', route('magic.link.store'), [
+            'email' => str_repeat('a', 250) . '@example.com',
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors(['email']);
+    }
 }

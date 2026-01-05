@@ -17,7 +17,7 @@ final class WorkProcrastinatedController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'work_procrastinated' => ['required', 'string', 'in:yes,no'],
+            'work_procrastinated' => ['required', 'string', 'max:255', 'in:yes,no'],
         ]);
 
         new LogWorkProcrastinated(

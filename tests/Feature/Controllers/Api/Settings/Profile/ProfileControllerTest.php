@@ -117,4 +117,31 @@ final class ProfileControllerTest extends TestCase
             ],
         ]);
     }
+
+    #[Test]
+    public function it_rejects_first_name_longer_than_255_characters(): void
+    {
+        $user = User::factory()->create([
+            'first_name' => 'Michael',
+            'last_name' => 'Scott',
+            'email' => 'michael.scott@dundermifflin.com',
+            'nickname' => 'Mike',
+            'locale' => 'en',
+            'time_format_24h' => true,
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('PUT', '/api/me', [
+            'first_name' => str_repeat('a', 256),
+            'last_name' => 'Scott',
+            'email' => 'michael.scott@dundermifflin.com',
+            'nickname' => 'Mike',
+            'locale' => 'en',
+            'time_format_24h' => true,
+        ]);
+
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors(['first_name']);
+    }
 }

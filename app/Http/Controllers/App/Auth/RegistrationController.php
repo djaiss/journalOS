@@ -30,6 +30,8 @@ final class RegistrationController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class, 'disposable_email'],
             'password' => [
                 'required',
+                'string',
+                'max:255',
                 'confirmed',
                 Password::min(8)->uncompromised(),
             ],

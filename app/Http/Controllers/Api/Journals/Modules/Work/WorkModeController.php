@@ -16,7 +16,7 @@ final class WorkModeController extends Controller
     {
         $journalEntry = $request->attributes->get('journal_entry');
         $validated = $request->validate([
-            'work_mode' => ['required', 'string', 'in:on-site,remote,hybrid'],
+            'work_mode' => ['required', 'string', 'max:255', 'in:on-site,remote,hybrid'],
         ]);
 
         $entry = new LogWorkMode(

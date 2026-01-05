@@ -18,7 +18,7 @@ final class EnergyController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'energy' => ['required', 'string', 'in:very low,low,normal,high,very high'],
+            'energy' => ['required', 'string', 'max:255', 'in:very low,low,normal,high,very high'],
         ]);
 
         $entry = new LogEnergy(

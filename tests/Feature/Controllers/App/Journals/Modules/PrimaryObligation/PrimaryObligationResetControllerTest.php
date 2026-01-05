@@ -47,6 +47,9 @@ final class PrimaryObligationResetControllerTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+            'year' => 2022,
+            'month' => 1,
+            'day' => 1,
         ]);
 
         $response = $this->put("/journals/{$journal->slug}/entries/2022/1/1/primary-obligation/reset");
@@ -61,6 +64,9 @@ final class PrimaryObligationResetControllerTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+            'year' => 2022,
+            'month' => 1,
+            'day' => 1,
             'primary_obligation' => 'family',
         ]);
 

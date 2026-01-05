@@ -58,10 +58,14 @@ final class SleepControllerTest extends TestCase
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:00/06:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:00/06:00",
         );
 
         $response->assertRedirect('/login');
@@ -72,10 +76,14 @@ final class SleepControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/25:00/06:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/25:00/06:00",
         );
 
         $response->assertStatus(404);
@@ -86,10 +94,14 @@ final class SleepControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:00/25:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:00/25:00",
         );
 
         $response->assertStatus(404);
@@ -100,10 +112,14 @@ final class SleepControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:75/06:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:75/06:00",
         );
 
         $response->assertStatus(404);
@@ -114,10 +130,14 @@ final class SleepControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:00/06:75",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:00/06:75",
         );
 
         $response->assertStatus(404);
@@ -129,12 +149,15 @@ final class SleepControllerTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
         $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
         ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/20:00/06:00",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/20:00/06:00",
         );
 
         $response->assertViewHas('module');

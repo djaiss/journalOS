@@ -17,7 +17,7 @@ final class HealthController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'health' => ['required', 'string', 'in:good,okay,not great'],
+            'health' => ['required', 'string', 'max:255', 'in:good,okay,not great'],
         ]);
 
         new LogHealth(
