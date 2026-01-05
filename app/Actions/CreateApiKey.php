@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Enums\EmailType;
+use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\SendEmail;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
-final readonly class CreateApiKey
+final class CreateApiKey
 {
     public function __construct(
         private User $user,
@@ -19,12 +21,25 @@ final readonly class CreateApiKey
 
     public function execute(): string
     {
+        $this->sanitize();
+
         $token = $this->user->createToken($this->label)->plainTextToken;
         $this->log();
         $this->sendEmail();
         $this->updateUserLastActivityDate();
 
         return $token;
+    }
+
+    private function sanitize(): void
+    {
+        $this->label = TextSanitizer::plainText($this->label);
+
+        if ($this->label === '') {
+            throw ValidationException::withMessages([
+                'label' => 'API key label must be plain text.',
+            ]);
+        }
     }
 
     private function log(): void

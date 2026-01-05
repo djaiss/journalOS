@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-final readonly class RenameJournal
+final class RenameJournal
 {
     public function __construct(
         private User $user,
@@ -32,8 +33,16 @@ final readonly class RenameJournal
 
     private function validate(): void
     {
+        $this->name = TextSanitizer::plainText($this->name);
+
         if ($this->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
+        }
+
+        if ($this->name === '') {
+            throw ValidationException::withMessages([
+                'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',
+            ]);
         }
 
         if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->name), [0, false], true)) {

@@ -94,6 +94,26 @@ final class ApiKeyControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_sanitizes_api_key_labels(): void
+    {
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('POST', '/api/settings/api', [
+            'label' => '<b>New</b> API Key',
+        ]);
+
+        $response->assertStatus(201);
+
+        $this->assertDatabaseHas('personal_access_tokens', [
+            'name' => 'New API Key',
+            'tokenable_id' => $user->id,
+            'tokenable_type' => User::class,
+        ]);
+    }
+
+    #[Test]
     public function user_can_delete_their_api_key(): void
     {
         $user = User::factory()->create();

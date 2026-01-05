@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -16,8 +17,8 @@ final class CreateJournal
     private Journal $journal;
 
     public function __construct(
-        private readonly User $user,
-        private readonly string $name,
+        private User $user,
+        private string $name,
     ) {}
 
     public function execute(): Journal
@@ -33,6 +34,14 @@ final class CreateJournal
 
     private function validate(): void
     {
+        $this->name = TextSanitizer::plainText($this->name);
+
+        if ($this->name === '') {
+            throw ValidationException::withMessages([
+                'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',
+            ]);
+        }
+
         // make sure the journal name doesn't contain any special characters
         if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->name), [0, false], true)) {
             throw ValidationException::withMessages([
