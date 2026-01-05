@@ -22,12 +22,12 @@ final class JournalEntryControllerTest extends TestCase
         $journal = Journal::factory()->for($user)->create();
         $entry = JournalEntry::factory()->for($journal)->create([
             'day' => 15,
-            'month' => 12,
-            'year' => 2025,
+            'month' => 6,
+            'year' => 2024,
         ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}",
+            "/journals/{$journal->slug}/entries/2024/6/15",
         );
 
         $response->assertStatus(200);
@@ -40,12 +40,12 @@ final class JournalEntryControllerTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->for($journal)->create([
             'day' => 15,
-            'month' => 12,
-            'year' => 2025,
+            'month' => 6,
+            'year' => 2024,
         ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}",
+            "/journals/{$journal->slug}/entries/2024/6/15",
         );
 
         $response->assertStatus(404);
@@ -57,12 +57,12 @@ final class JournalEntryControllerTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->for($journal)->create([
             'day' => 15,
-            'month' => 12,
-            'year' => 2025,
+            'month' => 6,
+            'year' => 2024,
         ]);
 
         $response = $this->get(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}",
+            "/journals/{$journal->slug}/entries/2024/6/15",
         );
 
         $response->assertRedirect('/login');

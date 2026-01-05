@@ -21,16 +21,19 @@ final class SleepBedTimeControllerTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create();
         $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/bedtime",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/bedtime",
             ['bedtime' => '23:30'],
         );
 
-        $response->assertRedirectContains("/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}");
+        $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
     }
 
@@ -38,10 +41,14 @@ final class SleepBedTimeControllerTest extends TestCase
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/bedtime",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/bedtime",
             ['bedtime' => '23:30'],
         );
 
@@ -53,10 +60,14 @@ final class SleepBedTimeControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->for($journal)->create([
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/{$entry->year}/{$entry->month}/{$entry->day}/sleep/bedtime",
+            "/journals/{$journal->slug}/entries/2024/6/15/sleep/bedtime",
             ['bedtime' => '23:30'],
         );
 
