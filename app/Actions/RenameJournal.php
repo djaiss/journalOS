@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-final readonly class RenameJournal
+final class RenameJournal
 {
     public function __construct(
         private User $user,
@@ -23,50 +23,50 @@ final readonly class RenameJournal
 
     public function execute(): Journal
     {
-        $sanitizedName = TextSanitizer::plainText($this->name);
-
-        $this->validate($sanitizedName);
-        $this->rename($sanitizedName);
+        $this->validate();
+        $this->rename();
         $this->updateUserLastActivityDate();
-        $this->log($sanitizedName);
+        $this->log();
 
         return $this->journal;
     }
 
-    private function validate(string $sanitizedName): void
+    private function validate(): void
     {
+        $this->name = TextSanitizer::plainText($this->name);
+
         if ($this->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
         }
 
-        if ($sanitizedName === '') {
+        if ($this->name === '') {
             throw ValidationException::withMessages([
                 'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',
             ]);
         }
 
-        if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $sanitizedName), [0, false], true)) {
+        if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->name), [0, false], true)) {
             throw ValidationException::withMessages([
                 'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',
             ]);
         }
     }
 
-    private function rename(string $sanitizedName): void
+    private function rename(): void
     {
         $this->journal->update([
-            'name' => $sanitizedName,
-            'slug' => $this->journal->id . '-' . Str::of($sanitizedName)->slug('-'),
+            'name' => $this->name,
+            'slug' => $this->journal->id . '-' . Str::of($this->name)->slug('-'),
         ]);
     }
 
-    private function log(string $sanitizedName): void
+    private function log(): void
     {
         LogUserAction::dispatch(
             user: $this->user,
             journal: $this->journal,
             action: 'journal_rename',
-            description: sprintf('Renamed the journal to %s', $sanitizedName),
+            description: sprintf('Renamed the journal to %s', $this->name),
         )->onQueue('low');
     }
 

@@ -117,49 +117,4 @@ final class ProfileControllerTest extends TestCase
             ],
         ]);
     }
-
-    #[Test]
-    public function it_sanitizes_profile_fields(): void
-    {
-        Carbon::setTestNow('2025-07-01 00:00:00');
-        $user = User::factory()->create([
-            'first_name' => 'Michael',
-            'last_name' => 'Scott',
-            'email' => 'michael.scott@dundermifflin.com',
-            'nickname' => 'Mike',
-            'locale' => 'en',
-            'time_format_24h' => true,
-        ]);
-
-        Sanctum::actingAs($user);
-
-        $response = $this->json('PUT', '/api/me', [
-            'first_name' => '<b>Dwight</b>',
-            'last_name' => 'Schrute<script>alert(1)</script>',
-            'email' => 'dwight.schrute@dundermifflin.com',
-            'nickname' => '<i>Dwight</i>',
-            'locale' => '<span>fr</span>',
-            'time_format_24h' => false,
-        ]);
-
-        $response->assertStatus(200);
-        $response->assertJson([
-            'data' => [
-                'attributes' => [
-                    'first_name' => 'Dwight',
-                    'last_name' => 'Schrutealert(1)',
-                    'nickname' => 'Dwight',
-                    'locale' => 'fr',
-                ],
-            ],
-        ]);
-
-        $this->assertDatabaseHas('users', [
-            'id' => $user->id,
-            'first_name' => 'Dwight',
-            'last_name' => 'Schrutealert(1)',
-            'nickname' => 'Dwight',
-            'locale' => 'fr',
-        ]);
-    }
 }

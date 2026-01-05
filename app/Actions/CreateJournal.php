@@ -15,16 +15,14 @@ use Illuminate\Validation\ValidationException;
 final class CreateJournal
 {
     private Journal $journal;
-    private string $sanitizedName = '';
 
     public function __construct(
-        private readonly User $user,
-        private readonly string $name,
+        private User $user,
+        private string $name,
     ) {}
 
     public function execute(): Journal
     {
-        $this->sanitize();
         $this->validate();
         $this->create();
         $this->generateSlug();
@@ -36,36 +34,33 @@ final class CreateJournal
 
     private function validate(): void
     {
-        if ($this->sanitizedName === '') {
+        $this->name = TextSanitizer::plainText($this->name);
+
+        if ($this->name === '') {
             throw ValidationException::withMessages([
                 'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',
             ]);
         }
 
         // make sure the journal name doesn't contain any special characters
-        if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->sanitizedName), [0, false], true)) {
+        if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->name), [0, false], true)) {
             throw ValidationException::withMessages([
                 'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',
             ]);
         }
     }
 
-    private function sanitize(): void
-    {
-        $this->sanitizedName = TextSanitizer::plainText($this->name);
-    }
-
     private function create(): void
     {
         $this->journal = Journal::query()->create([
             'user_id' => $this->user->id,
-            'name' => $this->sanitizedName,
+            'name' => $this->name,
         ]);
     }
 
     private function generateSlug(): void
     {
-        $slug = $this->journal->id . '-' . Str::of($this->sanitizedName)->slug('-');
+        $slug = $this->journal->id . '-' . Str::of($this->name)->slug('-');
 
         $this->journal->slug = $slug;
         $this->journal->save();
@@ -77,7 +72,7 @@ final class CreateJournal
             user: $this->user,
             journal: $this->journal,
             action: 'journal_creation',
-            description: sprintf('Created a journal called %s', $this->sanitizedName),
+            description: sprintf('Created a journal called %s', $this->name),
         )->onQueue('low');
     }
 

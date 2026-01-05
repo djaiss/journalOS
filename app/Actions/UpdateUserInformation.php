@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\ValidationException;
 
-final readonly class UpdateUserInformation
+final class UpdateUserInformation
 {
     public function __construct(
         private User $user,
@@ -30,18 +30,39 @@ final readonly class UpdateUserInformation
      */
     public function execute(): User
     {
-        $firstName = TextSanitizer::plainText($this->firstName);
-        $lastName = TextSanitizer::plainText($this->lastName);
-        $nickname = TextSanitizer::nullablePlainText($this->nickname);
-        $locale = TextSanitizer::plainText($this->locale);
-
-        $this->validate($firstName, $lastName, $locale);
+        $this->validate();
         $this->triggerEmailVerification();
-        $this->update($firstName, $lastName, $nickname, $locale);
+        $this->update();
         $this->updateUserLastActivityDate();
         $this->log();
 
         return $this->user;
+    }
+
+    private function validate(): void
+    {
+        $this->firstName = TextSanitizer::plainText($this->firstName);
+        $this->lastName = TextSanitizer::plainText($this->lastName);
+        $this->nickname = TextSanitizer::nullablePlainText($this->nickname);
+        $this->locale = TextSanitizer::plainText($this->locale);
+
+        $messages = [];
+
+        if ($this->firstName === '') {
+            $messages['first_name'] = 'First name must be plain text.';
+        }
+
+        if ($this->lastName === '') {
+            $messages['last_name'] = 'Last name must be plain text.';
+        }
+
+        if ($this->locale === '') {
+            $messages['locale'] = 'Locale must be plain text.';
+        }
+
+        if ($messages !== []) {
+            throw ValidationException::withMessages($messages);
+        }
     }
 
     private function triggerEmailVerification(): void
@@ -53,35 +74,14 @@ final readonly class UpdateUserInformation
         }
     }
 
-    private function validate(string $firstName, string $lastName, string $locale): void
-    {
-        $messages = [];
-
-        if ($firstName === '') {
-            $messages['first_name'] = 'First name must be plain text.';
-        }
-
-        if ($lastName === '') {
-            $messages['last_name'] = 'Last name must be plain text.';
-        }
-
-        if ($locale === '') {
-            $messages['locale'] = 'Locale must be plain text.';
-        }
-
-        if ($messages !== []) {
-            throw ValidationException::withMessages($messages);
-        }
-    }
-
-    private function update(string $firstName, string $lastName, ?string $nickname, string $locale): void
+    private function update(): void
     {
         $this->user->update([
-            'first_name' => $firstName,
-            'last_name' => $lastName,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
             'email' => $this->email,
-            'nickname' => $nickname,
-            'locale' => $locale,
+            'nickname' => $this->nickname,
+            'locale' => $this->locale,
             'time_format_24h' => $this->timeFormat24h,
         ]);
     }

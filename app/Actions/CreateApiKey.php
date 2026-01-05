@@ -12,7 +12,7 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
-final readonly class CreateApiKey
+final class CreateApiKey
 {
     public function __construct(
         private User $user,
@@ -21,20 +21,25 @@ final readonly class CreateApiKey
 
     public function execute(): string
     {
-        $label = TextSanitizer::plainText($this->label);
+        $this->sanitize();
 
-        if ($label === '') {
+        $token = $this->user->createToken($this->label)->plainTextToken;
+        $this->log();
+        $this->sendEmail();
+        $this->updateUserLastActivityDate();
+
+        return $token;
+    }
+
+    private function sanitize(): void
+    {
+        $this->label = TextSanitizer::plainText($this->label);
+
+        if ($this->label === '') {
             throw ValidationException::withMessages([
                 'label' => 'API key label must be plain text.',
             ]);
         }
-
-        $token = $this->user->createToken($label)->plainTextToken;
-        $this->log();
-        $this->sendEmail($label);
-        $this->updateUserLastActivityDate();
-
-        return $token;
     }
 
     private function log(): void
@@ -47,12 +52,12 @@ final readonly class CreateApiKey
         )->onQueue('low');
     }
 
-    private function sendEmail(string $label): void
+    private function sendEmail(): void
     {
         SendEmail::dispatch(
             emailType: EmailType::API_CREATED,
             user: $this->user,
-            parameters: ['label' => $label],
+            parameters: ['label' => $this->label],
         )->onQueue('high');
     }
 
