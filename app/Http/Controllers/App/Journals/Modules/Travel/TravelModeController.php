@@ -18,7 +18,7 @@ final class TravelModeController extends Controller
 
         $validated = $request->validate([
             'travel_modes' => ['required', 'array', 'min:1'],
-            'travel_modes.*' => ['required', 'string', 'in:car,plane,train,bike,bus,walk,boat,other'],
+            'travel_modes.*' => ['required', 'string', 'max:255', 'in:car,plane,train,bike,bus,walk,boat,other'],
         ]);
 
         new LogTravelMode(

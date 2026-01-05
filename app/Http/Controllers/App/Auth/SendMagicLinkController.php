@@ -23,7 +23,7 @@ final class SendMagicLinkController extends Controller
     public function store(Request $request): View
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
         try {

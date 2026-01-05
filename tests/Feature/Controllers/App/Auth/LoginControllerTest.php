@@ -52,6 +52,18 @@ final class LoginControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_rejects_overlong_login_email(): void
+    {
+        $response = $this->from('/login')->post('/login', [
+            'email' => str_repeat('a', 250) . '@example.com',
+            'password' => 'password',
+        ]);
+
+        $response->assertRedirect('/login');
+        $response->assertSessionHasErrors(['email']);
+    }
+
+    #[Test]
     public function it_sends_an_email_on_failed_login(): void
     {
         Queue::fake();

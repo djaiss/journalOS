@@ -16,7 +16,7 @@ final class WorkLoadController extends Controller
     {
         $journalEntry = $request->attributes->get('journal_entry');
         $validated = $request->validate([
-            'work_load' => ['required', 'string', 'in:light,medium,heavy'],
+            'work_load' => ['required', 'string', 'max:255', 'in:light,medium,heavy'],
         ]);
 
         $entry = new LogWorkLoad(

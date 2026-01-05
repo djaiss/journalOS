@@ -17,7 +17,7 @@ final class MoodController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'mood' => ['required', 'string', 'in:terrible,bad,okay,good,great'],
+            'mood' => ['required', 'string', 'max:255', 'in:terrible,bad,okay,good,great'],
         ]);
 
         new LogMood(

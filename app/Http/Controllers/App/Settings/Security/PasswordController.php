@@ -16,9 +16,11 @@ final class PasswordController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'current_password' => ['required', 'string'],
+            'current_password' => ['required', 'string', 'max:255'],
             'new_password' => [
                 'required',
+                'string',
+                'max:255',
                 'confirmed',
                 Password::min(8)->uncompromised(),
             ],

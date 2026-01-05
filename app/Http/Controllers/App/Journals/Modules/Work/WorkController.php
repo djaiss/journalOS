@@ -17,7 +17,7 @@ final class WorkController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'worked' => ['required', 'string', 'in:yes,no'],
+            'worked' => ['required', 'string', 'max:255', 'in:yes,no'],
         ]);
 
         new LogHasWorked(

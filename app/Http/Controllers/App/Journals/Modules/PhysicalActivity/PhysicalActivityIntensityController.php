@@ -17,7 +17,7 @@ final class PhysicalActivityIntensityController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'activity_intensity' => ['required', 'string', 'in:light,moderate,intense'],
+            'activity_intensity' => ['required', 'string', 'max:255', 'in:light,moderate,intense'],
         ]);
 
         new LogActivityIntensity(

@@ -17,7 +17,7 @@ final class JournalModulesController extends Controller
         $journal = $request->attributes->get('journal');
 
         $validated = $request->validate([
-            'module' => ['required', 'string'],
+            'module' => ['required', 'string', 'max:255'],
         ]);
 
         $journal = new ToggleModuleVisibility(

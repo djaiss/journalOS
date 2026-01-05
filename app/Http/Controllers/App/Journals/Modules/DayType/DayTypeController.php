@@ -17,7 +17,7 @@ final class DayTypeController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'day_type' => ['required', 'string', 'in:workday,day off,weekend,vacation,sick day'],
+            'day_type' => ['required', 'string', 'max:255', 'in:workday,day off,weekend,vacation,sick day'],
         ]);
 
         new LogTypeOfDay(

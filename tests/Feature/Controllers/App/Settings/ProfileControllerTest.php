@@ -53,6 +53,27 @@ final class ProfileControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_rejects_first_name_longer_than_255_characters(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->from('/settings/profile')
+            ->put('/settings/profile', [
+                'first_name' => str_repeat('a', 256),
+                'last_name' => 'Scott',
+                'nickname' => 'Michael',
+                'email' => $user->email,
+                'locale' => 'en',
+                'time_format_24h' => 'true',
+            ]);
+
+        $response->assertRedirect('/settings/profile');
+        $response->assertSessionHasErrors(['first_name']);
+    }
+
+    #[Test]
     public function it_does_not_change_the_email_verification_status_when_email_address_is_unchanged(): void
     {
         $user = User::factory()->create();

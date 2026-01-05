@@ -17,7 +17,7 @@ final class PrimaryObligationController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'primary_obligation' => ['required', 'string', 'in:work,family,personal,health,travel,none'],
+            'primary_obligation' => ['required', 'string', 'max:255', 'in:work,family,personal,health,travel,none'],
         ]);
 
         new LogPrimaryObligation(

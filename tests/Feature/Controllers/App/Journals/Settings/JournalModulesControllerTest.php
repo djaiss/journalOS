@@ -70,6 +70,24 @@ final class JournalModulesControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_rejects_module_names_longer_than_255_characters(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($user)
+            ->from('/journals/' . $journal->slug . '/settings')
+            ->put('/journals/' . $journal->slug . '/settings/modules', [
+                'module' => str_repeat('a', 256),
+            ]);
+
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertSessionHasErrors(['module']);
+    }
+
+    #[Test]
     public function it_toggles_travel_module_from_enabled_to_disabled(): void
     {
         $user = User::factory()->create();

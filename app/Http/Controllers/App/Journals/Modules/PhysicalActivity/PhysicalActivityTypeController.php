@@ -17,7 +17,7 @@ final class PhysicalActivityTypeController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'activity_type' => ['required', 'string', 'in:running,cycling,swimming,gym,walking'],
+            'activity_type' => ['required', 'string', 'max:255', 'in:running,cycling,swimming,gym,walking'],
         ]);
 
         new LogActivityType(
