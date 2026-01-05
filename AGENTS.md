@@ -301,16 +301,38 @@ protected function isAccessible(User $user, ?string $path = null): bool
 JournalOS is a personal diary. Users can have journals. A journal is made of journal entries. We provide a web application, an API and a marketing documentation. The marketing website is part of the codebase as well - although everything on the marketing website will be cached by Cloudflare for performance reasons.
 
 ## General information
+
 - No Javascript framework. We only use Laravel, Blade, Alpine Ajax and AlpineJS.
 - Avoid external dependencies if possible.
 - Never use form requests. Use inline validation within controllers.
 
 ## Overall structure
+
 - Every action a user can do (ie: LogWork) is an Action in the project. Actions are stored in /app/Actions.
 - We use Presenters to prepare data for the views.
 - Most jobs are queued on the `low` priority queue.
 
 ## Tests
+
 - Everything should be tested thoroughly. Use PHPUnit.
 - Tests for controllers are stored in /tests/Features/Controllers. All the other tests should be stored in /tests/Unit/ and match the original structure of the files.
 - Once tests are working, run `composer journalos:unit` to make sure everything works.
+
+## Mindset & Process
+
+- THINK A LOT PLEASE.
+- **No breadcrumbs**. If you delete or move code, do not leave a comment in the old place. No "// moved to X", no "relocated". Just remove it.
+- **Think hard, do not lose the plot**.
+- Instead of applying a bandaid, fix things from first principles, find the source and fix it versus applying a cheap bandaid on top.
+- When taking on new work, follow this order:
+  1. Think about the architecture.
+  1. Research official docs, blogs, or papers on the best architecture.
+  1. Review the existing codebase.
+  1. Compare the research with the codebase to choose the best fit.
+  1. Implement the fix or ask about the tradeoffs the user is willing to make.
+- Write idiomatic, simple, maintainable code. Always ask yourself if this is the most simple intuitive solution to the problem.
+- Leave each repo better than how you found it. If something is giving a code smell, fix it for the next person.
+- Clean up unused code ruthlessly. If a function no longer needs a parameter or a helper is dead, delete it and update the callers instead of letting the junk linger.
+- If code is very confusing or hard to understand:
+  1. Try to simplify it.
+  1. Add an ASCII art diagram in a code comment if it would help.
