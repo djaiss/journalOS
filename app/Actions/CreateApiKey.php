@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Enums\EmailType;
+use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\SendEmail;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 final readonly class CreateApiKey
 {
@@ -19,9 +21,17 @@ final readonly class CreateApiKey
 
     public function execute(): string
     {
-        $token = $this->user->createToken($this->label)->plainTextToken;
+        $label = TextSanitizer::plainText($this->label);
+
+        if ($label === '') {
+            throw ValidationException::withMessages([
+                'label' => 'API key label must be plain text.',
+            ]);
+        }
+
+        $token = $this->user->createToken($label)->plainTextToken;
         $this->log();
-        $this->sendEmail();
+        $this->sendEmail($label);
         $this->updateUserLastActivityDate();
 
         return $token;
@@ -37,12 +47,12 @@ final readonly class CreateApiKey
         )->onQueue('low');
     }
 
-    private function sendEmail(): void
+    private function sendEmail(string $label): void
     {
         SendEmail::dispatch(
             emailType: EmailType::API_CREATED,
             user: $this->user,
-            parameters: ['label' => $this->label],
+            parameters: ['label' => $label],
         )->onQueue('high');
     }
 

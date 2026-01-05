@@ -143,6 +143,31 @@ final class JournalControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_sanitizes_journal_names(): void
+    {
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('POST', '/api/journals', [
+            'name' => '<b>Dunder</b> Mifflin',
+        ]);
+
+        $response->assertStatus(201);
+
+        $journal = Journal::latest()->first();
+
+        $this->assertEquals('Dunder Mifflin', $journal->name);
+        $response->assertJson([
+            'data' => [
+                'attributes' => [
+                    'name' => 'Dunder Mifflin',
+                ],
+            ],
+        ]);
+    }
+
+    #[Test]
     public function it_can_show_a_journal(): void
     {
         $user = User::factory()->create();

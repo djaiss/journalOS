@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\ValidationException;
 
 final readonly class UpdateUserInformation
 {
@@ -28,8 +30,14 @@ final readonly class UpdateUserInformation
      */
     public function execute(): User
     {
+        $firstName = TextSanitizer::plainText($this->firstName);
+        $lastName = TextSanitizer::plainText($this->lastName);
+        $nickname = TextSanitizer::nullablePlainText($this->nickname);
+        $locale = TextSanitizer::plainText($this->locale);
+
+        $this->validate($firstName, $lastName, $locale);
         $this->triggerEmailVerification();
-        $this->update();
+        $this->update($firstName, $lastName, $nickname, $locale);
         $this->updateUserLastActivityDate();
         $this->log();
 
@@ -45,14 +53,35 @@ final readonly class UpdateUserInformation
         }
     }
 
-    private function update(): void
+    private function validate(string $firstName, string $lastName, string $locale): void
+    {
+        $messages = [];
+
+        if ($firstName === '') {
+            $messages['first_name'] = 'First name must be plain text.';
+        }
+
+        if ($lastName === '') {
+            $messages['last_name'] = 'Last name must be plain text.';
+        }
+
+        if ($locale === '') {
+            $messages['locale'] = 'Locale must be plain text.';
+        }
+
+        if ($messages !== []) {
+            throw ValidationException::withMessages($messages);
+        }
+    }
+
+    private function update(string $firstName, string $lastName, ?string $nickname, string $locale): void
     {
         $this->user->update([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
             'email' => $this->email,
-            'nickname' => $this->nickname,
-            'locale' => $this->locale,
+            'nickname' => $nickname,
+            'locale' => $locale,
             'time_format_24h' => $this->timeFormat24h,
         ]);
     }
