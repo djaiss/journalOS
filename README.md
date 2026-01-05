@@ -1,10 +1,10 @@
 ## What is this?
 
-JournalOS is a simple diary, released under the MIT license. It's let you track your life, like how you slept, if you are in a good mood, if you've worked remotely today, or how many friends you've talked to.
+JournalOS is a simple diary, released under the MIT license. It lets you track your life, like how you slept, if you are in a good mood, if you've worked remotely today, or how many friends you've talked to.
 
-I don't like writing long essays, I've never succeeded of going into the habit of writing daily. But I still wanted to document my life in a simple and efficient way. Since this didn't exist, I've created something that I would use every day (like [my previous project](https://github.com/monicahq/monica)).
+I don't like writing long essays, I've never succeeded in going into the habit of writing daily. But I still wanted to document my life in a simple and efficient way. Since this didn't exist, I've created something that I would use every day (like [my previous project](https://github.com/monicahq/monica)).
 
-You may use either the server I host, or host your own! You can try the product without even have to create your own account.
+You may use either the server I host, or host your own! You can try the product without even having to create your own account.
 
 ### Features
 
@@ -24,7 +24,7 @@ You may use either the server I host, or host your own! You can try the product 
 
 I wanted this tool to follow those principles:
 
-- It is very simple to use, without needing an help center, although this exists.
+- It is very simple to use, without needing a help center, although this exists.
 - It is as fast as possible.
 - It does not use JavaScript frameworks for the frontend. We use JS to enhance the user experience, but the core is still server-side rendered.
 - It should have as few dependencies as possible, since dependencies always create problems.
