@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This action logs whether the user has procrastinated or not in this day.
  */
-final readonly class LogWorkProcrastinated
+final class LogWorkProcrastinated
 {
     public function __construct(
         private User $user,
@@ -40,6 +41,16 @@ final readonly class LogWorkProcrastinated
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
+        }
+
+        $this->workProcrastinated = TextSanitizer::plainText($this->workProcrastinated);
+
+        if ($this->workProcrastinated === '') {
+            throw new InvalidArgumentException('workProcrastinated must be plain text');
+        }
+
+        if (mb_strlen($this->workProcrastinated) > 255) {
+            throw new InvalidArgumentException('workProcrastinated must not be longer than 255 characters');
         }
 
         if ($this->workProcrastinated !== 'yes' && $this->workProcrastinated !== 'no') {

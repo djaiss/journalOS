@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This action logs whether the user has traveled or not in this day.
  */
-final readonly class LogTravelledToday
+final class LogTravelledToday
 {
     public function __construct(
         private User $user,
@@ -40,6 +41,16 @@ final readonly class LogTravelledToday
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
+        }
+
+        $this->hasTraveled = TextSanitizer::plainText($this->hasTraveled);
+
+        if ($this->hasTraveled === '') {
+            throw new InvalidArgumentException('hasTraveled must be plain text');
+        }
+
+        if (mb_strlen($this->hasTraveled) > 255) {
+            throw new InvalidArgumentException('hasTraveled must not be longer than 255 characters');
         }
 
         if ($this->hasTraveled !== 'yes' && $this->hasTraveled !== 'no') {

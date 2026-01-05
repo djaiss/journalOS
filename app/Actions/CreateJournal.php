@@ -42,6 +42,12 @@ final class CreateJournal
             ]);
         }
 
+        if (mb_strlen($this->name) > 255) {
+            throw ValidationException::withMessages([
+                'journal_name' => 'Journal name must not be longer than 255 characters.',
+            ]);
+        }
+
         // make sure the journal name doesn't contain any special characters
         if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->name), [0, false], true)) {
             throw ValidationException::withMessages([

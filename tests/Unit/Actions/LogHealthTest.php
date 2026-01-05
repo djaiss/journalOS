@@ -186,4 +186,20 @@ final class LogHealthTest extends TestCase
             health: 'good',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_health_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogHealth(
+            user: $user,
+            entry: $entry,
+            health: str_repeat('a', 256),
+        ))->execute();
+    }
 }

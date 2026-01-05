@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogHealth
+final class LogHealth
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogHealth
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validHealthValues = ['good', 'okay', 'not great'];
-        if (!in_array($this->health, $validHealthValues)) {
+        $this->health = TextSanitizer::plainText($this->health);
+
+        $messages = [];
+
+        if ($this->health === '') {
+            $messages['health'] = 'Health must be plain text.';
+        }
+
+        if (mb_strlen($this->health) > 255) {
+            $messages['health'] = 'Health must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validHealthValues = ['good', 'okay', 'not great'];
+            if (! in_array($this->health, $validHealthValues, true)) {
+                $messages['health'] = 'Invalid health value.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'health' => 'Invalid health value.',
+                'health' => $messages['health'],
             ]);
         }
     }

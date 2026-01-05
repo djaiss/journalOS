@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogEnergy
+final class LogEnergy
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogEnergy
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validEnergyValues = ['very low', 'low', 'normal', 'high', 'very high'];
-        if (! in_array($this->energy, $validEnergyValues, true)) {
+        $this->energy = TextSanitizer::plainText($this->energy);
+
+        $messages = [];
+
+        if ($this->energy === '') {
+            $messages['energy'] = 'Energy must be plain text.';
+        }
+
+        if (mb_strlen($this->energy) > 255) {
+            $messages['energy'] = 'Energy must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validEnergyValues = ['very low', 'low', 'normal', 'high', 'very high'];
+            if (! in_array($this->energy, $validEnergyValues, true)) {
+                $messages['energy'] = 'Invalid energy value.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'energy' => 'Invalid energy value.',
+                'energy' => $messages['energy'],
             ]);
         }
     }

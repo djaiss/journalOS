@@ -188,4 +188,20 @@ final class LogWorkLoadTest extends TestCase
             workLoad: 'invalid',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_work_load_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogWorkLoad(
+            user: $user,
+            entry: $entry,
+            workLoad: str_repeat('a', 256),
+        ))->execute();
+    }
 }

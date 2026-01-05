@@ -8,13 +8,14 @@ use App\Jobs\CalculateSleepDuration;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Date;
 
-final readonly class LogBedTime
+final class LogBedTime
 {
     public function __construct(
         private User $user,
@@ -40,6 +41,12 @@ final readonly class LogBedTime
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
+        }
+
+        $this->bedtime = TextSanitizer::plainText($this->bedtime);
+
+        if ($this->bedtime === '' || mb_strlen($this->bedtime) !== 5) {
+            throw new Exception('Invalid bedtime format. Expected HH:MM');
         }
 
         $this->validateTimeFormat($this->bedtime, 'Invalid bedtime format. Expected HH:MM');

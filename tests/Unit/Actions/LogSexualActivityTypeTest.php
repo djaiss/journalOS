@@ -140,4 +140,20 @@ final class LogSexualActivityTypeTest extends TestCase
             sexualActivityType: 'invalid',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_sexual_activity_type_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogSexualActivityType(
+            user: $user,
+            entry: $entry,
+            sexualActivityType: str_repeat('a', 256),
+        ))->execute();
+    }
 }

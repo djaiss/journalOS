@@ -144,4 +144,22 @@ final class LogHadSexualActivityTest extends TestCase
             hadSexualActivity: 'maybe',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_had_sexual_activity_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogHadSexualActivity(
+            user: $user,
+            entry: $entry,
+            hadSexualActivity: str_repeat('a', 256),
+        ))->execute();
+    }
 }

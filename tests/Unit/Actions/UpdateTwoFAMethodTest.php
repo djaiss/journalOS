@@ -10,8 +10,9 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class UpdateTwoFAMethodTest extends TestCase
 {
@@ -28,11 +29,11 @@ final class UpdateTwoFAMethodTest extends TestCase
 
         $updatedUser = (new UpdateTwoFAMethod(
             user: $user,
-            preferredMethods: 'sms',
+            preferredMethods: 'authenticator',
         ))->execute();
 
-        $this->assertEquals('sms', $updatedUser->two_factor_preferred_method);
-        $this->assertEquals('sms', $user->fresh()->two_factor_preferred_method);
+        $this->assertEquals('authenticator', $updatedUser->two_factor_preferred_method);
+        $this->assertEquals('authenticator', $user->fresh()->two_factor_preferred_method);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -51,5 +52,35 @@ final class UpdateTwoFAMethodTest extends TestCase
                 return $job->user->id === $user->id;
             },
         );
+    }
+
+    #[Test]
+    public function it_throws_when_method_is_invalid(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create([
+            'two_factor_preferred_method' => 'email',
+        ]);
+
+        (new UpdateTwoFAMethod(
+            user: $user,
+            preferredMethods: 'sms',
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_method_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create([
+            'two_factor_preferred_method' => 'email',
+        ]);
+
+        (new UpdateTwoFAMethod(
+            user: $user,
+            preferredMethods: str_repeat('a', 256),
+        ))->execute();
     }
 }

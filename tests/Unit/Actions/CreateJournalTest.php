@@ -67,4 +67,17 @@ final class CreateJournalTest extends TestCase
             name: 'Dunder@ / Mifflin!',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_journal_name_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+
+        (new CreateJournal(
+            user: $user,
+            name: str_repeat('a', 256),
+        ))->execute();
+    }
 }

@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogActivityIntensity
+final class LogActivityIntensity
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogActivityIntensity
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validIntensities = ['light', 'moderate', 'intense'];
-        if (!in_array($this->activityIntensity, $validIntensities)) {
+        $this->activityIntensity = TextSanitizer::plainText($this->activityIntensity);
+
+        $messages = [];
+
+        if ($this->activityIntensity === '') {
+            $messages['activity_intensity'] = 'Activity intensity must be plain text.';
+        }
+
+        if (mb_strlen($this->activityIntensity) > 255) {
+            $messages['activity_intensity'] = 'Activity intensity must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validIntensities = ['light', 'moderate', 'intense'];
+            if (! in_array($this->activityIntensity, $validIntensities, true)) {
+                $messages['activity_intensity'] = 'Invalid activity intensity.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'activity_intensity' => 'Invalid activity intensity.',
+                'activity_intensity' => $messages['activity_intensity'],
             ]);
         }
     }

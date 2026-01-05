@@ -6,6 +6,7 @@ namespace App\Actions;
 
 use App\Models\User;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use Illuminate\Support\Str;
 use PragmaRX\Google2FALaravel\Google2FA;
 use InvalidArgumentException;
@@ -32,7 +33,13 @@ final readonly class Validate2faQRCode
     {
         $google2fa = $this->google2fa ?? new Google2FA(request());
 
-        if (!$google2fa->verifyKey($this->user->two_factor_secret, $this->token)) {
+        $token = TextSanitizer::plainText($this->token);
+
+        if ($token === '' || mb_strlen($token) !== 6 || ! ctype_digit($token)) {
+            throw new InvalidArgumentException(__('The provided token is invalid.'));
+        }
+
+        if (! $google2fa->verifyKey($this->user->two_factor_secret, $token)) {
             throw new InvalidArgumentException(__('The provided token is invalid.'));
         }
 

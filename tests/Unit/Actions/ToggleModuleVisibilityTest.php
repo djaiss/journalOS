@@ -91,4 +91,19 @@ final class ToggleModuleVisibilityTest extends TestCase
             moduleName: 'sleep',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_module_name_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+
+        (new ToggleModuleVisibility(
+            user: $user,
+            journal: $journal,
+            moduleName: str_repeat('a', 256),
+        ))->execute();
+    }
 }

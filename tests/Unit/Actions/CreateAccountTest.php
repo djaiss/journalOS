@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -70,6 +71,19 @@ final class CreateAccountTest extends TestCase
 
         (new CreateAccount(
             email: 'michael.scott@dundermifflin.com',
+            password: 'password',
+            firstName: 'Michael',
+            lastName: 'Scott',
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_email_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        (new CreateAccount(
+            email: str_repeat('a', 256),
             password: 'password',
             firstName: 'Michael',
             lastName: 'Scott',

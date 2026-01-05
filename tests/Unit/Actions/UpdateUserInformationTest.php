@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -117,5 +118,25 @@ final class UpdateUserInformationTest extends TestCase
 
         Event::assertNotDispatched(Registered::class);
         $this->assertNotNull($user->refresh()->email_verified_at);
+    }
+
+    #[Test]
+    public function it_throws_when_email_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create([
+            'email' => 'michael.scott@dundermifflin.com',
+        ]);
+
+        (new UpdateUserInformation(
+            user: $user,
+            email: str_repeat('a', 256),
+            firstName: 'Dwight',
+            lastName: 'Schrute',
+            nickname: 'Dwight',
+            locale: 'en',
+            timeFormat24h: true,
+        ))->execute();
     }
 }

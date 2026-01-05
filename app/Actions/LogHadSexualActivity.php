@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This action logs whether the user had sexual activity on this day.
  */
-final readonly class LogHadSexualActivity
+final class LogHadSexualActivity
 {
     public function __construct(
         private User $user,
@@ -40,6 +41,16 @@ final readonly class LogHadSexualActivity
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
+        }
+
+        $this->hadSexualActivity = TextSanitizer::plainText($this->hadSexualActivity);
+
+        if ($this->hadSexualActivity === '') {
+            throw new InvalidArgumentException('hadSexualActivity must be plain text');
+        }
+
+        if (mb_strlen($this->hadSexualActivity) > 255) {
+            throw new InvalidArgumentException('hadSexualActivity must not be longer than 255 characters');
         }
 
         if ($this->hadSexualActivity !== 'yes' && $this->hadSexualActivity !== 'no') {

@@ -12,8 +12,9 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class ClaimAccountTest extends TestCase
 {
@@ -73,5 +74,27 @@ final class ClaimAccountTest extends TestCase
                 return $job->user->id === $user->id;
             },
         );
+    }
+
+    #[Test]
+    public function it_throws_when_email_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $guest = User::factory()->create([
+            'email' => 'guest+123@example.com',
+            'first_name' => 'Guest',
+            'last_name' => 'User',
+            'password' => Hash::make('old-password'),
+            'is_guest' => true,
+        ]);
+
+        (new ClaimAccount(
+            user: $guest,
+            email: str_repeat('a', 256),
+            password: 'new-password',
+            firstName: 'Pam',
+            lastName: 'Beesly',
+        ))->execute();
     }
 }

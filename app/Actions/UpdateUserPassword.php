@@ -6,11 +6,13 @@ namespace App\Actions;
 
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 
-final readonly class UpdateUserPassword
+final class UpdateUserPassword
 {
     public function __construct(
         private User $user,
@@ -33,6 +35,31 @@ final readonly class UpdateUserPassword
 
     private function validate(): void
     {
+        $this->currentPassword = TextSanitizer::plainText($this->currentPassword);
+        $this->newPassword = TextSanitizer::plainText($this->newPassword);
+
+        $messages = [];
+
+        if ($this->currentPassword === '') {
+            $messages['current_password'] = 'Current password must be plain text.';
+        }
+
+        if (mb_strlen($this->currentPassword) > 255) {
+            $messages['current_password'] = 'Current password must not be longer than 255 characters.';
+        }
+
+        if ($this->newPassword === '') {
+            $messages['new_password'] = 'New password must be plain text.';
+        }
+
+        if (mb_strlen($this->newPassword) > 255) {
+            $messages['new_password'] = 'New password must not be longer than 255 characters.';
+        }
+
+        if ($messages !== []) {
+            throw ValidationException::withMessages($messages);
+        }
+
         if (! Hash::check($this->currentPassword, $this->user->password)) {
             throw new InvalidArgumentException('Current password is incorrect');
         }

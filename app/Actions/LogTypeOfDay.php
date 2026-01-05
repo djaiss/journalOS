@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This action logs the type of day for the user in this day.
  */
-final readonly class LogTypeOfDay
+final class LogTypeOfDay
 {
     public function __construct(
         private User $user,
@@ -40,6 +41,16 @@ final readonly class LogTypeOfDay
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
+        }
+
+        $this->dayType = TextSanitizer::plainText($this->dayType);
+
+        if ($this->dayType === '') {
+            throw new InvalidArgumentException('dayType must be plain text');
+        }
+
+        if (mb_strlen($this->dayType) > 255) {
+            throw new InvalidArgumentException('dayType must not be longer than 255 characters');
         }
 
         if (! in_array($this->dayType, ['workday', 'day off', 'weekend', 'vacation', 'sick day'])) {

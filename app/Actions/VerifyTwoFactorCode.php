@@ -6,12 +6,13 @@ namespace App\Actions;
 
 use App\Models\User;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use PragmaRX\Google2FA\Google2FA;
 
 /**
  * Service to verify a user's 2FA code (TOTP or rescue code).
  */
-final readonly class VerifyTwoFactorCode
+final class VerifyTwoFactorCode
 {
     public function __construct(
         private User $user,
@@ -25,6 +26,10 @@ final readonly class VerifyTwoFactorCode
      */
     public function execute(): bool
     {
+        if (! $this->validate()) {
+            return false;
+        }
+
         if ($this->verifyTotp()) {
             $this->updateUserLastActivityDate();
             return true;
@@ -36,6 +41,17 @@ final readonly class VerifyTwoFactorCode
         }
 
         return false;
+    }
+
+    private function validate(): bool
+    {
+        $this->code = TextSanitizer::plainText($this->code);
+
+        if ($this->code === '' || mb_strlen($this->code) > 255) {
+            return false;
+        }
+
+        return true;
     }
 
     private function verifyTotp(): bool

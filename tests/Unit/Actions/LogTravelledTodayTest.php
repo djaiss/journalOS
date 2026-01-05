@@ -152,4 +152,22 @@ final class LogTravelledTodayTest extends TestCase
             hasTraveled: 'maybe',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_has_traveled_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogTravelledToday(
+            user: $user,
+            entry: $entry,
+            hasTraveled: str_repeat('a', 256),
+        ))->execute();
+    }
 }

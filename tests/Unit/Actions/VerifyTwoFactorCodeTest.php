@@ -61,4 +61,23 @@ final class VerifyTwoFactorCodeTest extends TestCase
 
         Queue::assertNothingPushed();
     }
+
+    #[Test]
+    public function it_returns_false_when_code_is_too_long(): void
+    {
+        Queue::fake();
+
+        $user = User::factory()->create([
+            'two_factor_recovery_codes' => ['code-one'],
+        ]);
+
+        $result = (new VerifyTwoFactorCode(
+            user: $user,
+            code: str_repeat('a', 256),
+        ))->execute();
+
+        $this->assertFalse($result);
+
+        Queue::assertNothingPushed();
+    }
 }

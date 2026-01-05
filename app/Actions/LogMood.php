@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogMood
+final class LogMood
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogMood
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validMoodValues = ['terrible', 'bad', 'okay', 'good', 'great'];
-        if (! in_array($this->mood, $validMoodValues, true)) {
+        $this->mood = TextSanitizer::plainText($this->mood);
+
+        $messages = [];
+
+        if ($this->mood === '') {
+            $messages['mood'] = 'Mood must be plain text.';
+        }
+
+        if (mb_strlen($this->mood) > 255) {
+            $messages['mood'] = 'Mood must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validMoodValues = ['terrible', 'bad', 'okay', 'good', 'great'];
+            if (! in_array($this->mood, $validMoodValues, true)) {
+                $messages['mood'] = 'Invalid mood value.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'mood' => 'Invalid mood value.',
+                'mood' => $messages['mood'],
             ]);
         }
     }

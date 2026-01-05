@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogPrimaryObligation
+final class LogPrimaryObligation
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogPrimaryObligation
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validObligationValues = ['work', 'family', 'personal', 'health', 'travel', 'none'];
-        if (! in_array($this->primaryObligation, $validObligationValues, true)) {
+        $this->primaryObligation = TextSanitizer::plainText($this->primaryObligation);
+
+        $messages = [];
+
+        if ($this->primaryObligation === '') {
+            $messages['primary_obligation'] = 'Primary obligation must be plain text.';
+        }
+
+        if (mb_strlen($this->primaryObligation) > 255) {
+            $messages['primary_obligation'] = 'Primary obligation must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validObligationValues = ['work', 'family', 'personal', 'health', 'travel', 'none'];
+            if (! in_array($this->primaryObligation, $validObligationValues, true)) {
+                $messages['primary_obligation'] = 'Invalid primary obligation value.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'primary_obligation' => 'Invalid primary obligation value.',
+                'primary_obligation' => $messages['primary_obligation'],
             ]);
         }
     }

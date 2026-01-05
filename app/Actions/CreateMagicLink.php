@@ -6,6 +6,8 @@ namespace App\Actions;
 
 use App\Models\User;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
+use Illuminate\Validation\ValidationException;
 use MagicLink\Actions\LoginAction;
 use MagicLink\MagicLink;
 
@@ -34,7 +36,24 @@ final class CreateMagicLink
 
     private function validate(): void
     {
-        $this->user = User::query()->where('email', $this->email)->firstOrFail();
+        $email = TextSanitizer::plainText($this->email);
+        $email = mb_strtolower($email);
+
+        $messages = [];
+
+        if ($email === '') {
+            $messages['email'] = 'Email must be plain text.';
+        }
+
+        if (mb_strlen($email) > 255) {
+            $messages['email'] = 'Email must not be longer than 255 characters.';
+        }
+
+        if ($messages !== []) {
+            throw ValidationException::withMessages($messages);
+        }
+
+        $this->user = User::query()->where('email', $email)->firstOrFail();
     }
 
     private function create(): void

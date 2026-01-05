@@ -87,4 +87,19 @@ final class RenameJournalTest extends TestCase
             name: 'Valid Journal Name',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_name_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+
+        (new RenameJournal(
+            user: $user,
+            journal: $journal,
+            name: str_repeat('a', 256),
+        ))->execute();
+    }
 }

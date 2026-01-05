@@ -11,6 +11,7 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -59,5 +60,18 @@ final class CreateApiKeyTest extends TestCase
                 return $job->user->id === $user->id;
             },
         );
+    }
+
+    #[Test]
+    public function it_throws_when_label_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+
+        (new CreateApiKey(
+            user: $user,
+            label: str_repeat('a', 256),
+        ))->execute();
     }
 }

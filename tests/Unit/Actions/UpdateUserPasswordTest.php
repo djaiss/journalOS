@@ -11,9 +11,10 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
 use InvalidArgumentException;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class UpdateUserPasswordTest extends TestCase
 {
@@ -71,6 +72,22 @@ final class UpdateUserPasswordTest extends TestCase
             user: $user,
             currentPassword: Hash::make('wrong-password'),
             newPassword: 'new-password',
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_new_password_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create([
+            'password' => Hash::make('current-password'),
+        ]);
+
+        (new UpdateUserPassword(
+            user: $user,
+            currentPassword: 'current-password',
+            newPassword: str_repeat('a', 256),
         ))->execute();
     }
 }

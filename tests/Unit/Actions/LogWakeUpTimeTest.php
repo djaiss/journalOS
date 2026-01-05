@@ -93,4 +93,21 @@ final class LogWakeUpTimeTest extends TestCase
 
         $action->execute();
     }
+
+    #[Test]
+    public function it_throws_when_wake_up_time_is_too_long(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Invalid wake-up time format. Expected HH:MM');
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogWakeUpTime(
+            user: $user,
+            entry: $entry,
+            wakeUpTime: str_repeat('1', 6),
+        ))->execute();
+    }
 }

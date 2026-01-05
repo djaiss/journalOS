@@ -45,6 +45,12 @@ final class RenameJournal
             ]);
         }
 
+        if (mb_strlen($this->name) > 255) {
+            throw ValidationException::withMessages([
+                'journal_name' => 'Journal name must not be longer than 255 characters.',
+            ]);
+        }
+
         if (in_array(preg_match('/^[a-zA-Z0-9\s\-_]+$/', $this->name), [0, false], true)) {
             throw ValidationException::withMessages([
                 'journal_name' => 'Journal name can only contain letters, numbers, spaces, hyphens and underscores',

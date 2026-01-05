@@ -6,13 +6,14 @@ namespace App\Actions;
 
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-final readonly class ToggleModuleVisibility
+final class ToggleModuleVisibility
 {
     public function __construct(
         private User $user,
@@ -22,6 +23,7 @@ final readonly class ToggleModuleVisibility
 
     public function execute(): Journal
     {
+        $this->validateModuleName();
         $attribute = $this->moduleAttribute();
 
         $this->validate($attribute);
@@ -51,6 +53,25 @@ final readonly class ToggleModuleVisibility
             throw ValidationException::withMessages([
                 'module_name' => 'Module visibility must be boolean.',
             ]);
+        }
+    }
+
+    private function validateModuleName(): void
+    {
+        $this->moduleName = TextSanitizer::plainText($this->moduleName);
+
+        $messages = [];
+
+        if ($this->moduleName === '') {
+            $messages['module_name'] = 'Module name must be plain text.';
+        }
+
+        if (mb_strlen($this->moduleName) > 255) {
+            $messages['module_name'] = 'Module name must not be longer than 255 characters.';
+        }
+
+        if ($messages !== []) {
+            throw ValidationException::withMessages($messages);
         }
     }
 

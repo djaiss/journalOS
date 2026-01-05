@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogHasDonePhysicalActivity
+final class LogHasDonePhysicalActivity
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogHasDonePhysicalActivity
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validValues = ['yes', 'no'];
-        if (!in_array($this->hasDonePhysicalActivity, $validValues)) {
+        $this->hasDonePhysicalActivity = TextSanitizer::plainText($this->hasDonePhysicalActivity);
+
+        $messages = [];
+
+        if ($this->hasDonePhysicalActivity === '') {
+            $messages['has_done_physical_activity'] = 'Physical activity status must be plain text.';
+        }
+
+        if (mb_strlen($this->hasDonePhysicalActivity) > 255) {
+            $messages['has_done_physical_activity'] = 'Physical activity status must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validValues = ['yes', 'no'];
+            if (! in_array($this->hasDonePhysicalActivity, $validValues, true)) {
+                $messages['has_done_physical_activity'] = 'Invalid physical activity status.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'has_done_physical_activity' => 'Invalid physical activity status.',
+                'has_done_physical_activity' => $messages['has_done_physical_activity'],
             ]);
         }
     }

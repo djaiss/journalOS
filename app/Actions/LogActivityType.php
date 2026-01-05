@@ -7,12 +7,13 @@ namespace App\Actions;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Helpers\TextSanitizer;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogActivityType
+final class LogActivityType
 {
     public function __construct(
         private User $user,
@@ -40,10 +41,28 @@ final readonly class LogActivityType
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validTypes = ['running', 'cycling', 'swimming', 'gym', 'walking'];
-        if (!in_array($this->activityType, $validTypes)) {
+        $this->activityType = TextSanitizer::plainText($this->activityType);
+
+        $messages = [];
+
+        if ($this->activityType === '') {
+            $messages['activity_type'] = 'Activity type must be plain text.';
+        }
+
+        if (mb_strlen($this->activityType) > 255) {
+            $messages['activity_type'] = 'Activity type must not be longer than 255 characters.';
+        }
+
+        if ($messages === []) {
+            $validTypes = ['running', 'cycling', 'swimming', 'gym', 'walking'];
+            if (! in_array($this->activityType, $validTypes, true)) {
+                $messages['activity_type'] = 'Invalid activity type.';
+            }
+        }
+
+        if ($messages !== []) {
             throw ValidationException::withMessages([
-                'activity_type' => 'Invalid activity type.',
+                'activity_type' => $messages['activity_type'],
             ]);
         }
     }

@@ -158,4 +158,24 @@ final class LogWorkProcrastinatedTest extends TestCase
             workProcrastinated: 'maybe',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_work_procrastinated_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        (new LogWorkProcrastinated(
+            user: $user,
+            entry: $entry,
+            workProcrastinated: str_repeat('a', 256),
+        ))->execute();
+    }
 }

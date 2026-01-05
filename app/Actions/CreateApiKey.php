@@ -21,7 +21,7 @@ final class CreateApiKey
 
     public function execute(): string
     {
-        $this->sanitize();
+        $this->validate();
 
         $token = $this->user->createToken($this->label)->plainTextToken;
         $this->log();
@@ -31,14 +31,26 @@ final class CreateApiKey
         return $token;
     }
 
-    private function sanitize(): void
+    private function validate(): void
     {
         $this->label = TextSanitizer::plainText($this->label);
 
+        $messages = [];
+
         if ($this->label === '') {
-            throw ValidationException::withMessages([
-                'label' => 'API key label must be plain text.',
-            ]);
+            $messages['label'] = 'API key label must be plain text.';
+        }
+
+        if (mb_strlen($this->label) < 3) {
+            $messages['label'] = 'API key label must be at least 3 characters.';
+        }
+
+        if (mb_strlen($this->label) > 255) {
+            $messages['label'] = 'API key label must not be longer than 255 characters.';
+        }
+
+        if ($messages !== []) {
+            throw ValidationException::withMessages($messages);
         }
     }
 

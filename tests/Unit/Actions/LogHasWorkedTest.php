@@ -144,4 +144,20 @@ final class LogHasWorkedTest extends TestCase
             hasWorked: 'maybe',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_has_worked_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogHasWorked(
+            user: $user,
+            entry: $entry,
+            hasWorked: str_repeat('a', 256),
+        ))->execute();
+    }
 }

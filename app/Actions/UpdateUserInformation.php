@@ -41,6 +41,8 @@ final class UpdateUserInformation
 
     private function validate(): void
     {
+        $this->email = TextSanitizer::plainText($this->email);
+        $this->email = mb_strtolower($this->email);
         $this->firstName = TextSanitizer::plainText($this->firstName);
         $this->lastName = TextSanitizer::plainText($this->lastName);
         $this->nickname = TextSanitizer::nullablePlainText($this->nickname);
@@ -48,16 +50,45 @@ final class UpdateUserInformation
 
         $messages = [];
 
+        if ($this->email === '') {
+            $messages['email'] = 'Email must be plain text.';
+        }
+
+        if (mb_strlen($this->email) > 255) {
+            $messages['email'] = 'Email must not be longer than 255 characters.';
+        }
+
         if ($this->firstName === '') {
             $messages['first_name'] = 'First name must be plain text.';
+        }
+
+        if (mb_strlen($this->firstName) > 255) {
+            $messages['first_name'] = 'First name must not be longer than 255 characters.';
         }
 
         if ($this->lastName === '') {
             $messages['last_name'] = 'Last name must be plain text.';
         }
 
+        if (mb_strlen($this->lastName) > 255) {
+            $messages['last_name'] = 'Last name must not be longer than 255 characters.';
+        }
+
+        if ($this->nickname !== null && mb_strlen($this->nickname) > 255) {
+            $messages['nickname'] = 'Nickname must not be longer than 255 characters.';
+        }
+
         if ($this->locale === '') {
             $messages['locale'] = 'Locale must be plain text.';
+        }
+
+        if (mb_strlen($this->locale) > 255) {
+            $messages['locale'] = 'Locale must not be longer than 255 characters.';
+        }
+
+        $supportedLocales = config('journalos.supported_locales', []);
+        if ($supportedLocales !== [] && ! in_array($this->locale, $supportedLocales, true)) {
+            $messages['locale'] = 'Locale is not supported.';
         }
 
         if ($messages !== []) {

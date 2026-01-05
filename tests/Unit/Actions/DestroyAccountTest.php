@@ -9,6 +9,7 @@ use App\Mail\AccountDestroyed;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -41,5 +42,18 @@ final class DestroyAccountTest extends TestCase
             return $job->reason === 'the service is not working'
                 && $job->to[0]['address'] === 'regis@journalos.cloud';
         });
+    }
+
+    #[Test]
+    public function it_throws_when_reason_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+
+        (new DestroyAccount(
+            user: $user,
+            reason: str_repeat('a', 256),
+        ))->execute();
     }
 }

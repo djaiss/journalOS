@@ -275,4 +275,20 @@ final class LogActivityTypeTest extends TestCase
             activityType: 'invalid',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_activity_type_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogActivityType(
+            user: $user,
+            entry: $entry,
+            activityType: str_repeat('a', 256),
+        ))->execute();
+    }
 }

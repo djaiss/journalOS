@@ -93,4 +93,21 @@ final class LogBedTimeTest extends TestCase
 
         $action->execute();
     }
+
+    #[Test]
+    public function it_throws_when_bedtime_is_too_long(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Invalid bedtime format. Expected HH:MM');
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogBedTime(
+            user: $user,
+            entry: $entry,
+            bedtime: str_repeat('1', 6),
+        ))->execute();
+    }
 }

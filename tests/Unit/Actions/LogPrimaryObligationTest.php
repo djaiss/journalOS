@@ -318,4 +318,20 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'work',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_primary_obligation_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogPrimaryObligation(
+            user: $user,
+            entry: $entry,
+            primaryObligation: str_repeat('a', 256),
+        ))->execute();
+    }
 }

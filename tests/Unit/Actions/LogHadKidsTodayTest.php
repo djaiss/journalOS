@@ -152,4 +152,22 @@ final class LogHadKidsTodayTest extends TestCase
             hadKidsToday: 'maybe',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_had_kids_today_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogHadKidsToday(
+            user: $user,
+            entry: $entry,
+            hadKidsToday: str_repeat('a', 256),
+        ))->execute();
+    }
 }

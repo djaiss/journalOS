@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\UpdateUserLastActivityDate;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -73,5 +74,15 @@ final class CreateMagicLinkTest extends TestCase
         ))->execute();
 
         Queue::assertNothingPushed();
+    }
+
+    #[Test]
+    public function it_throws_when_email_is_too_long(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        (new CreateMagicLink(
+            email: str_repeat('a', 256),
+        ))->execute();
     }
 }

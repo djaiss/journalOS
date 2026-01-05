@@ -276,4 +276,20 @@ final class LogTypeOfDayTest extends TestCase
             dayType: 'invalid',
         ))->execute();
     }
+
+    #[Test]
+    public function it_throws_when_day_type_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->for($user)->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+
+        (new LogTypeOfDay(
+            user: $user,
+            entry: $entry,
+            dayType: str_repeat('a', 256),
+        ))->execute();
+    }
 }

@@ -78,13 +78,13 @@ final class Validate2faQRCodeTest extends TestCase
         $google2faMock = Mockery::mock(Google2FA::class);
         $google2faMock->shouldReceive('verifyKey')
             ->once()
-            ->with($secret, 'wrong-token')
+            ->with($secret, '123456')
             ->andReturn(false);
 
         try {
             (new Validate2faQRCode(
                 user: $user,
-                token: 'wrong-token',
+                token: '123456',
                 google2fa: $google2faMock,
             ))->execute();
             $this->fail('Expected InvalidArgumentException was not thrown.');
@@ -111,13 +111,13 @@ final class Validate2faQRCodeTest extends TestCase
         $google2faMock = Mockery::mock(Google2FA::class);
         $google2faMock->shouldReceive('verifyKey')
             ->once()
-            ->with($secret, 'invalid-token')
+            ->with($secret, '654321')
             ->andReturn(false);
 
         try {
             (new Validate2faQRCode(
                 user: $user,
-                token: 'invalid-token',
+                token: '654321',
                 google2fa: $google2faMock,
             ))->execute();
         } catch (InvalidArgumentException $e) {
@@ -130,5 +130,20 @@ final class Validate2faQRCodeTest extends TestCase
         $this->assertNull($user->two_factor_recovery_codes);
 
         Queue::assertNothingPushed();
+    }
+
+    #[Test]
+    public function it_throws_when_token_is_too_long(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $user = User::factory()->create([
+            'two_factor_secret' => 'JBSWY3DPEHPK3PXP',
+        ]);
+
+        (new Validate2faQRCode(
+            user: $user,
+            token: str_repeat('1', 7),
+        ))->execute();
     }
 }
