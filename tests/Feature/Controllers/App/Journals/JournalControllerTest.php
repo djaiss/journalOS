@@ -99,7 +99,7 @@ final class JournalControllerTest extends TestCase
 
         $journal->refresh();
 
-        $response->assertRedirect(route('journal.settings.show', ['slug' => $journal->slug]));
+        $response->assertRedirect(route('journal.settings.management.index', ['slug' => $journal->slug]));
         $response->assertSessionHas('status', 'Changes saved');
         $this->assertEquals('Threat Level Midnight', $journal->name);
     }
@@ -111,12 +111,12 @@ final class JournalControllerTest extends TestCase
         $journal = Journal::factory()->for($user)->create();
 
         $response = $this->actingAs($user)
-            ->from('/journals/' . $journal->slug . '/settings')
+            ->from('/journals/' . $journal->slug . '/settings/management')
             ->put('/journals/' . $journal->slug, [
                 'journal_name' => 'Invalid@!',
             ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/management');
         $response->assertSessionHasErrors(['journal_name']);
     }
 

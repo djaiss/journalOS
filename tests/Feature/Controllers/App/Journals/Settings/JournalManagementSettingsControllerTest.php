@@ -10,23 +10,25 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class JournalSettingsControllerTest extends TestCase
+final class JournalManagementSettingsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function it_shows_the_journal_settings_page(): void
+    public function it_shows_the_journal_management_settings_page(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->for($user)->create([
             'name' => 'Dunder Mifflin',
         ]);
 
-        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings');
+        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/management');
 
         $response->assertOk();
-        $response->assertSeeText('Journal settings');
-        $response->assertSee('Dunder Mifflin');
+        $response->assertSeeText('Maintenance');
+        $response->assertSeeText('Rename journal');
+        $response->assertSeeText('Delete journal');
+        $response->assertSeeText('Dunder Mifflin');
         $response->assertViewHas('journal', fn($viewJournal): bool => $viewJournal->id === $journal->id);
     }
 
@@ -36,7 +38,7 @@ final class JournalSettingsControllerTest extends TestCase
         $user = User::factory()->create();
         $otherJournal = Journal::factory()->create();
 
-        $response = $this->actingAs($user)->get('/journals/' . $otherJournal->slug . '/settings');
+        $response = $this->actingAs($user)->get('/journals/' . $otherJournal->slug . '/settings/management');
 
         $response->assertNotFound();
     }

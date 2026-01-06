@@ -8,13 +8,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class JournalSettingsController extends Controller
+final class JournalManagementSettingsController extends Controller
 {
     public function show(Request $request): View
     {
         $journal = $request->attributes->get('journal');
 
-        return view('app.journal.settings.show', [
+        return view('app.journal.settings.management.index', [
             'journal' => $journal,
         ]);
     }
