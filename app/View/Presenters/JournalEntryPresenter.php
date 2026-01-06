@@ -35,6 +35,8 @@ final readonly class JournalEntryPresenter
 
         $energy = new EnergyModulePresenter($this->entry)->build();
 
+        $socialDensity = new SocialDensityModulePresenter($this->entry)->build();
+
         return [
             'sleep' => $sleep,
             'work' => $work,
@@ -47,6 +49,7 @@ final readonly class JournalEntryPresenter
             'mood' => $mood,
             'sexual_activity' => $sexualActivity,
             'energy' => $energy,
+            'social_density' => $socialDensity,
         ];
     }
 }

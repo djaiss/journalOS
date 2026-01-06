@@ -29,6 +29,8 @@
   <x-marketing.docs.attribute name="attributes.modules.mood.mood" type="string" description="The mood for that day." />
   <x-marketing.docs.attribute name="attributes.modules.energy" type="object" description="The energy module payload." />
   <x-marketing.docs.attribute name="attributes.modules.energy.energy" type="string" description="The energy level for that day." />
+  <x-marketing.docs.attribute name="attributes.modules.social_density" type="object" description="The social density module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.social_density.social_density" type="string" description="How crowded the day felt." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity" type="object" description="The physical activity module payload." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity.has_done_physical_activity" type="string" description="Whether physical activity was done." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity.activity_type" type="string" description="The type of physical activity." />

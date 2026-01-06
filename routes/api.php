@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityC
 use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligationController as PrimaryObligationModuleController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityTypeController;
+use App\Http\Controllers\Api\Journals\Modules\SocialDensity\SocialDensityController as SocialDensityModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
 use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
@@ -158,6 +159,12 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.energy.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/social-density', [SocialDensityModuleController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.social-density.update');
             });
 
             // settings

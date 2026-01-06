@@ -27,6 +27,7 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs/api/modules/health', [Docs\Api\Modules\HealthController::class, 'index'])->name('marketing.docs.api.modules.health');
     Route::get('/docs/api/modules/kids', [Docs\Api\Modules\KidsController::class, 'index'])->name('marketing.docs.api.modules.kids');
     Route::get('/docs/api/modules/mood', [Docs\Api\Modules\MoodController::class, 'index'])->name('marketing.docs.api.modules.mood');
+    Route::get('/docs/api/modules/social-density', [Docs\Api\Modules\SocialDensityController::class, 'index'])->name('marketing.docs.api.modules.social-density');
     Route::get('/docs/api/modules/physical-activity', [Docs\Api\Modules\PhysicalActivityController::class, 'index'])->name('marketing.docs.api.modules.physical-activity');
     Route::get('/docs/api/modules/primary-obligation', [Docs\Api\Modules\PrimaryObligationController::class, 'index'])->name('marketing.docs.api.modules.primary-obligation');
     Route::get('/docs/api/modules/sexual-activity', [Docs\Api\Modules\SexualActivityController::class, 'index'])->name('marketing.docs.api.modules.sexual-activity');

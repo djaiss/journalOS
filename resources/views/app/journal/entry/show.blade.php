@@ -111,6 +111,10 @@
         @if ($journal->show_energy_module)
           @include('app.journal.entry.partials.energy', ['module' => $modules['energy']])
         @endif
+
+        @if ($journal->show_social_density_module)
+          @include('app.journal.entry.partials.social_density', ['module' => $modules['social_density']])
+        @endif
       </div>
     </div>
 
