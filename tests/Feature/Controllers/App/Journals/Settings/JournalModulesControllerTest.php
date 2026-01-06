@@ -24,7 +24,7 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/modules', [
-            'module' => 'sleep',
+            'module' => '<b>sleep</b>',
         ]);
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings');

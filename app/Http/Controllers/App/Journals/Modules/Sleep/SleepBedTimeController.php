@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
 use App\Actions\LogBedTime;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +20,7 @@ final class SleepBedTimeController extends Controller
         new LogBedTime(
             user: Auth::user(),
             entry: $journalEntry,
-            bedtime: $request->input('bedtime'),
+            bedtime: TextSanitizer::plainText((string) $request->input('bedtime')),
         )->execute();
 
         return to_route('journal.entry.show', [

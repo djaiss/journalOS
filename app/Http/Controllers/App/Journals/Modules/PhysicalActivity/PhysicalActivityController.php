@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\PhysicalActivity;
 
 use App\Actions\LogHasDonePhysicalActivity;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class PhysicalActivityController extends Controller
         new LogHasDonePhysicalActivity(
             user: Auth::user(),
             entry: $entry,
-            hasDonePhysicalActivity: $validated['has_done_physical_activity'],
+            hasDonePhysicalActivity: TextSanitizer::plainText($validated['has_done_physical_activity']),
         )->execute();
 
         return to_route('journal.entry.show', [

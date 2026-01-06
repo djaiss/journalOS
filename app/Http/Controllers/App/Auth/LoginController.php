@@ -7,6 +7,7 @@ namespace App\Http\Controllers\App\Auth;
 use App\Actions\VerifyTwoFactorCode;
 use App\Enums\EmailType;
 use App\Enums\TwoFactorType;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Jobs\CheckLastLogin;
 use App\Jobs\SendEmail;
@@ -133,7 +134,10 @@ final class LoginController extends Controller
         $userId = session('2fa:user:id');
         $user = User::query()->find($userId);
 
-        if (!new VerifyTwoFactorCode(user: $user, code: $request->input('code'))->execute()) {
+        if (! new VerifyTwoFactorCode(
+            user: $user,
+            code: TextSanitizer::plainText((string) $request->input('code')),
+        )->execute()) {
             return back()->withErrors(['code' => 'Invalid code']);
         }
 

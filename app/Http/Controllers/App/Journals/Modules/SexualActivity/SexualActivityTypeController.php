@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\SexualActivity;
 
 use App\Actions\LogSexualActivityType;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class SexualActivityTypeController extends Controller
         new LogSexualActivityType(
             user: Auth::user(),
             entry: $journalEntry,
-            sexualActivityType: $validated['sexual_activity_type'],
+            sexualActivityType: TextSanitizer::plainText($validated['sexual_activity_type']),
         )->execute();
 
         return to_route('journal.entry.show', [

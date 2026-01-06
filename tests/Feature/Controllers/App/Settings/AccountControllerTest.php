@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Controllers\App\Settings;
 
+use App\Mail\AccountDestroyed;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -17,6 +19,9 @@ final class AccountControllerTest extends TestCase
     #[Test]
     public function it_deletes_the_user_account(): void
     {
+        Mail::fake();
+        config(['journalos.account_deletion_notification_email' => 'regis@journalos.cloud']);
+
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create();
 
@@ -28,9 +33,22 @@ final class AccountControllerTest extends TestCase
 
         $response = $this->actingAs($user)
             ->delete('/settings/account', [
-                'feedback' => 'I want to delete my account',
+                'feedback' => 'I want to delete my <b>account</b>',
             ]);
 
         $response->assertRedirect('/login');
+
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id,
+        ]);
+
+        $this->assertDatabaseHas('account_deletion_reasons', [
+            'reason' => 'I want to delete my account',
+        ]);
+
+        Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
+            return $job->reason === 'I want to delete my account'
+                && $job->to[0]['address'] === 'regis@journalos.cloud';
+        });
     }
 }

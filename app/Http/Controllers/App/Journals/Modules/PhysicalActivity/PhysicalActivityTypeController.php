@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\PhysicalActivity;
 
 use App\Actions\LogActivityType;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class PhysicalActivityTypeController extends Controller
         new LogActivityType(
             user: Auth::user(),
             entry: $entry,
-            activityType: $validated['activity_type'],
+            activityType: TextSanitizer::plainText($validated['activity_type']),
         )->execute();
 
         return to_route('journal.entry.show', [

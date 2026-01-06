@@ -30,11 +30,13 @@ final class SleepBedTimeControllerTest extends TestCase
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/sleep/bedtime",
-            ['bedtime' => '23:30'],
+            ['bedtime' => '<b>23:30</b>'],
         );
 
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
+
+        $this->assertSame('23:30', $entry->refresh()->bedtime);
     }
 
     #[Test]

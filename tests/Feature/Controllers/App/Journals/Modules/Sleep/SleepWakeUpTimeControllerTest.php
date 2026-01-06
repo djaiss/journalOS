@@ -33,11 +33,13 @@ final class SleepWakeUpTimeControllerTest extends TestCase
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/1/15/sleep/wake_up_time",
-            ['wake_up_time' => '07:30'],
+            ['wake_up_time' => '<b>07:30</b>'],
         );
 
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/1/15");
         $response->assertSessionHas('status');
+
+        $this->assertSame('07:30', $entry->refresh()->wake_up_time);
     }
 
     #[Test]

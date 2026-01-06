@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Settings;
 
 use App\Actions\ToggleModuleVisibility;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class JournalModulesController extends Controller
         $journal = new ToggleModuleVisibility(
             user: Auth::user(),
             journal: $journal,
-            moduleName: $validated['module'],
+            moduleName: TextSanitizer::plainText($validated['module']),
         )->execute();
 
         return to_route('journal.settings.show', [

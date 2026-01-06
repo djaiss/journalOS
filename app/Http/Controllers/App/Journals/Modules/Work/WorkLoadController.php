@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Work;
 
 use App\Actions\LogWorkLoad;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class WorkLoadController extends Controller
         new LogWorkLoad(
             user: Auth::user(),
             entry: $journalEntry,
-            workLoad: $validated['work_load'],
+            workLoad: TextSanitizer::plainText($validated['work_load']),
         )->execute();
 
         return to_route('journal.entry.show', [

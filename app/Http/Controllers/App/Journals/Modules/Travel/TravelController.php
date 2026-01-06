@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Travel;
 
 use App\Actions\LogTravelledToday;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class TravelController extends Controller
         new LogTravelledToday(
             user: Auth::user(),
             entry: $journalEntry,
-            hasTraveled: $validated['has_traveled'],
+            hasTraveled: TextSanitizer::plainText($validated['has_traveled']),
         )->execute();
 
         return to_route('journal.entry.show', [

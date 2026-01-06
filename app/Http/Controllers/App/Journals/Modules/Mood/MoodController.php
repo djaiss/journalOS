@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Mood;
 
 use App\Actions\LogMood;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class MoodController extends Controller
         new LogMood(
             user: Auth::user(),
             entry: $entry,
-            mood: $validated['mood'],
+            mood: TextSanitizer::plainText($validated['mood']),
         )->execute();
 
         return to_route('journal.entry.show', [

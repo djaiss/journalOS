@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
 use App\Actions\LogWakeUpTime;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +20,7 @@ final class SleepWakeUpTimeController extends Controller
         new LogWakeUpTime(
             user: Auth::user(),
             entry: $journalEntry,
-            wakeUpTime: $request->input('wake_up_time'),
+            wakeUpTime: TextSanitizer::plainText((string) $request->input('wake_up_time')),
         )->execute();
 
         return to_route('journal.entry.show', [
