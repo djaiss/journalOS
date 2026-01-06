@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Work;
 
 use App\Actions\LogWorkProcrastinated;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class WorkProcrastinatedController extends Controller
         $entry = new LogWorkProcrastinated(
             user: $request->user(),
             entry: $journalEntry,
-            workProcrastinated: $validated['work_procrastinated'],
+            workProcrastinated: TextSanitizer::plainText($validated['work_procrastinated']),
         )->execute();
 
         return new JournalEntryResource($entry)

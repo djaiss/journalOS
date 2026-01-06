@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Settings\Account;
 
 use App\Actions\DestroyAccount;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Traits\ApiResponses;
 use Illuminate\Http\JsonResponse;
@@ -23,7 +24,7 @@ final class DestroyAccountController extends Controller
 
         new DestroyAccount(
             user: Auth::user(),
-            reason: $validated['reason'],
+            reason: TextSanitizer::plainText($validated['reason']),
         )->execute();
 
         return $this->ok(trans('The account has been deleted'));

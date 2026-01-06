@@ -29,7 +29,7 @@ final class TextSanitizer
      */
     public static function plainText(string $value): string
     {
-        return trim(strip_tags($value));
+        return mb_trim(strip_tags($value));
     }
 
     /**

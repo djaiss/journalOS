@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Work;
 
 use App\Actions\LogWorkLoad;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class WorkLoadController extends Controller
         $entry = new LogWorkLoad(
             user: $request->user(),
             entry: $journalEntry,
-            workLoad: $validated['work_load'],
+            workLoad: TextSanitizer::plainText($validated['work_load']),
         )->execute();
 
         return new JournalEntryResource($entry)

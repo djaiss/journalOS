@@ -15,7 +15,7 @@ use Illuminate\Validation\ValidationException;
 final class CreateApiKey
 {
     public function __construct(
-        private User $user,
+        private readonly User $user,
         private string $label,
     ) {}
 

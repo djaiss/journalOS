@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Work;
 
 use App\Actions\LogWorkMode;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class WorkModeController extends Controller
         $entry = new LogWorkMode(
             user: $request->user(),
             entry: $journalEntry,
-            workMode: $validated['work_mode'],
+            workMode: TextSanitizer::plainText($validated['work_mode']),
         )->execute();
 
         return new JournalEntryResource($entry)

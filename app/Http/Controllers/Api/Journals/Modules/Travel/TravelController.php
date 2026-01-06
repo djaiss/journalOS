@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Travel;
 
 use App\Actions\LogTravelledToday;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class TravelController extends Controller
         $entry = new LogTravelledToday(
             user: $request->user(),
             entry: $journalEntry,
-            hasTraveled: $validated['has_traveled'],
+            hasTraveled: TextSanitizer::plainText($validated['has_traveled']),
         )->execute();
 
         return new JournalEntryResource($entry)

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\Journals;
 use App\Actions\CreateJournal;
 use App\Actions\DestroyJournal;
 use App\Actions\RenameJournal;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalResource;
 use App\Traits\ApiResponses;
@@ -35,7 +36,7 @@ final class JournalController extends Controller
 
         $journal = new CreateJournal(
             user: Auth::user(),
-            name: $validated['name'],
+            name: TextSanitizer::plainText($validated['name']),
         )->execute();
 
         return new JournalResource($journal)
@@ -63,7 +64,7 @@ final class JournalController extends Controller
         new RenameJournal(
             user: Auth::user(),
             journal: $journal,
-            name: $validated['name'],
+            name: TextSanitizer::plainText($validated['name']),
         )->execute();
 
         return new JournalResource($journal)

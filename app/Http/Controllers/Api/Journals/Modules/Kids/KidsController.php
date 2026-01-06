@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Kids;
 
 use App\Actions\LogHadKidsToday;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class KidsController extends Controller
         $entry = new LogHadKidsToday(
             user: $request->user(),
             entry: $journalEntry,
-            hadKidsToday: $validated['had_kids_today'],
+            hadKidsToday: TextSanitizer::plainText($validated['had_kids_today']),
         )->execute();
 
         return new JournalEntryResource($entry)

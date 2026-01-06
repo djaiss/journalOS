@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ApiResource;
 use App\Actions\CreateApiKey;
 use App\Actions\DestroyApiKey;
+use App\Helpers\TextSanitizer;
 use App\Traits\ApiResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ final class ApiKeyController extends Controller
 
         $token = new CreateApiKey(
             user: Auth::user(),
-            label: $validated['label'],
+            label: TextSanitizer::plainText($validated['label']),
         )->execute();
 
         $apiKey = Auth::user()->tokens()->latest()->first();

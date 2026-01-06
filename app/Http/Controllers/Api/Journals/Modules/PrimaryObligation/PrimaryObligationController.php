@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\PrimaryObligation;
 
 use App\Actions\LogPrimaryObligation;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ final class PrimaryObligationController extends Controller
         $entry = new LogPrimaryObligation(
             user: Auth::user(),
             entry: $entry,
-            primaryObligation: $validated['primary_obligation'],
+            primaryObligation: TextSanitizer::plainText($validated['primary_obligation']),
         )->execute();
 
         return response()->json([

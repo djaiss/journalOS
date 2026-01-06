@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\Journals\Modules\PhysicalActivity;
 use App\Actions\LogActivityIntensity;
 use App\Actions\LogActivityType;
 use App\Actions\LogHasDonePhysicalActivity;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -30,7 +31,7 @@ final class PhysicalActivityController extends Controller
             $entry = new LogHasDonePhysicalActivity(
                 user: Auth::user(),
                 entry: $entry,
-                hasDonePhysicalActivity: $validated['has_done_physical_activity'],
+                hasDonePhysicalActivity: TextSanitizer::plainText($validated['has_done_physical_activity']),
             )->execute();
         }
 
@@ -39,7 +40,7 @@ final class PhysicalActivityController extends Controller
             $entry = new LogActivityType(
                 user: Auth::user(),
                 entry: $entry,
-                activityType: $validated['activity_type'],
+                activityType: TextSanitizer::plainText($validated['activity_type']),
             )->execute();
         }
 
@@ -48,7 +49,7 @@ final class PhysicalActivityController extends Controller
             $entry = new LogActivityIntensity(
                 user: Auth::user(),
                 entry: $entry,
-                activityIntensity: $validated['activity_intensity'],
+                activityIntensity: TextSanitizer::plainText($validated['activity_intensity']),
             )->execute();
         }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Sleep;
 
 use App\Actions\LogBedTime;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class SleepBedTimeController extends Controller
         $entry = new LogBedTime(
             user: $request->user(),
             entry: $journalEntry,
-            bedtime: $validated['bedtime'],
+            bedtime: TextSanitizer::plainText($validated['bedtime']),
         )->execute();
 
         return new JournalEntryResource($entry)

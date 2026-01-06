@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\SexualActivity;
 
 use App\Actions\LogSexualActivityType;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class SexualActivityTypeController extends Controller
         $entry = new LogSexualActivityType(
             user: $request->user(),
             entry: $journalEntry,
-            sexualActivityType: $validated['sexual_activity_type'],
+            sexualActivityType: TextSanitizer::plainText($validated['sexual_activity_type']),
         )->execute();
 
         return new JournalEntryResource($entry)

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Travel;
 
 use App\Actions\LogTravelMode;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -23,7 +24,10 @@ final class TravelModeController extends Controller
         $entry = new LogTravelMode(
             user: $request->user(),
             entry: $journalEntry,
-            travelModes: $validated['travel_modes'],
+            travelModes: array_map(
+                TextSanitizer::plainText(...),
+                $validated['travel_modes'],
+            ),
         )->execute();
 
         return new JournalEntryResource($entry)

@@ -16,8 +16,8 @@ use Illuminate\Validation\ValidationException;
 final class RenameJournal
 {
     public function __construct(
-        private User $user,
-        private Journal $journal,
+        private readonly User $user,
+        private readonly Journal $journal,
         private string $name,
     ) {}
 
