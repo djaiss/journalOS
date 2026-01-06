@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\DayType;
 
 use App\Actions\LogTypeOfDay;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class DayTypeController extends Controller
         $entry = new LogTypeOfDay(
             user: $request->user(),
             entry: $journalEntry,
-            dayType: $validated['day_type'],
+            dayType: TextSanitizer::plainText($validated['day_type']),
         )->execute();
 
         return new JournalEntryResource($entry)

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\PrimaryObligation;
 
 use App\Actions\LogPrimaryObligation;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class PrimaryObligationController extends Controller
         new LogPrimaryObligation(
             user: Auth::user(),
             entry: $entry,
-            primaryObligation: $validated['primary_obligation'],
+            primaryObligation: TextSanitizer::plainText($validated['primary_obligation']),
         )->execute();
 
         return to_route('journal.entry.show', [

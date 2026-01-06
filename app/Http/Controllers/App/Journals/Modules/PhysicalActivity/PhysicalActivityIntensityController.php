@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\PhysicalActivity;
 
 use App\Actions\LogActivityIntensity;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class PhysicalActivityIntensityController extends Controller
         new LogActivityIntensity(
             user: Auth::user(),
             entry: $entry,
-            activityIntensity: $validated['activity_intensity'],
+            activityIntensity: TextSanitizer::plainText($validated['activity_intensity']),
         )->execute();
 
         return to_route('journal.entry.show', [

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Work;
 
 use App\Actions\LogHasWorked;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class WorkController extends Controller
         new LogHasWorked(
             user: Auth::user(),
             entry: $journalEntry,
-            hasWorked: $validated['worked'],
+            hasWorked: TextSanitizer::plainText($validated['worked']),
         )->execute();
 
         return to_route('journal.entry.show', [

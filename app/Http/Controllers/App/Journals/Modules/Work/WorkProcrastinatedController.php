@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Work;
 
 use App\Actions\LogWorkProcrastinated;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class WorkProcrastinatedController extends Controller
         new LogWorkProcrastinated(
             user: Auth::user(),
             entry: $journalEntry,
-            workProcrastinated: $validated['work_procrastinated'],
+            workProcrastinated: TextSanitizer::plainText($validated['work_procrastinated']),
         )->execute();
 
         return to_route('journal.entry.show', [

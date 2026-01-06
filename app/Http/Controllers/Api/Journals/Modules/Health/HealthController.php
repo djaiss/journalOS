@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Health;
 
 use App\Actions\LogHealth;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ final class HealthController extends Controller
         $entry = new LogHealth(
             user: Auth::user(),
             entry: $entry,
-            health: $validated['health'],
+            health: TextSanitizer::plainText($validated['health']),
         )->execute();
 
         return response()->json([

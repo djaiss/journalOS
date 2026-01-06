@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Auth;
 
 use App\Actions\CreateAccount;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Jobs\CheckLastLogin;
 use App\Models\User;
@@ -38,10 +39,10 @@ final class RegistrationController extends Controller
         ]);
 
         $user = new CreateAccount(
-            email: $request->input('email'),
+            email: mb_strtolower(TextSanitizer::plainText((string) $request->input('email'))),
             password: $request->input('password'),
-            firstName: $request->input('first_name'),
-            lastName: $request->input('last_name'),
+            firstName: TextSanitizer::plainText((string) $request->input('first_name')),
+            lastName: TextSanitizer::plainText((string) $request->input('last_name')),
         )->execute();
 
         event(new Registered($user));

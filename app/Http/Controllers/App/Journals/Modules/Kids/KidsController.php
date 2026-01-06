@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Kids;
 
 use App\Actions\LogHadKidsToday;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class KidsController extends Controller
         new LogHadKidsToday(
             user: Auth::user(),
             entry: $journalEntry,
-            hadKidsToday: $validated['had_kids_today'],
+            hadKidsToday: TextSanitizer::plainText($validated['had_kids_today']),
         )->execute();
 
         return to_route('journal.entry.show', [

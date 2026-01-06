@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Travel;
 
 use App\Actions\LogTravelMode;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,7 +25,10 @@ final class TravelModeController extends Controller
         new LogTravelMode(
             user: Auth::user(),
             entry: $journalEntry,
-            travelModes: $validated['travel_modes'],
+            travelModes: array_map(
+                TextSanitizer::plainText(...),
+                $validated['travel_modes'],
+            ),
         )->execute();
 
         return to_route('journal.entry.show', [

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\App\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Actions\DestroyAccount;
+use App\Helpers\TextSanitizer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ final class AccountController extends Controller
 
         new DestroyAccount(
             user: Auth::user(),
-            reason: $validated['feedback'],
+            reason: TextSanitizer::plainText($validated['feedback']),
         )->execute();
 
         $request->session()->invalidate();

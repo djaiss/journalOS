@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Energy;
 
 use App\Actions\LogEnergy;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ final class EnergyController extends Controller
         new LogEnergy(
             user: Auth::user(),
             entry: $entry,
-            energy: $validated['energy'],
+            energy: TextSanitizer::plainText($validated['energy']),
         )->execute();
 
         return to_route('journal.entry.show', [

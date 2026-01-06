@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Work;
 
 use App\Actions\LogHasWorked;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,7 @@ final class WorkController extends Controller
         $entry = new LogHasWorked(
             user: $request->user(),
             entry: $journalEntry,
-            hasWorked: $validated['worked'],
+            hasWorked: TextSanitizer::plainText($validated['worked']),
         )->execute();
 
         return new JournalEntryResource($entry)

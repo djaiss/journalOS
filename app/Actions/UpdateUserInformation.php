@@ -14,13 +14,13 @@ use Illuminate\Validation\ValidationException;
 final class UpdateUserInformation
 {
     public function __construct(
-        private User $user,
-        private string $email,
+        private readonly User $user,
+        private readonly string $email,
         private string $firstName,
         private string $lastName,
         private ?string $nickname,
         private string $locale,
-        private bool $timeFormat24h,
+        private readonly bool $timeFormat24h,
     ) {}
 
     /**

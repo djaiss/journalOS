@@ -6,10 +6,11 @@ namespace App\Http\Controllers\Api\Settings\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Actions\UpdateUserInformation;
+use App\Helpers\TextSanitizer;
 use App\Http\Resources\UserResource;
 use App\Traits\ApiResponses;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -41,11 +42,11 @@ final class ProfileController extends Controller
 
         new UpdateUserInformation(
             user: Auth::user(),
-            email: mb_strtolower((string) $validated['email']),
-            firstName: $validated['first_name'],
-            lastName: $validated['last_name'],
-            nickname: $validated['nickname'] ?? null,
-            locale: $validated['locale'],
+            email: mb_strtolower(TextSanitizer::plainText($validated['email'])),
+            firstName: TextSanitizer::plainText($validated['first_name']),
+            lastName: TextSanitizer::plainText($validated['last_name']),
+            nickname: TextSanitizer::nullablePlainText($validated['nickname'] ?? null),
+            locale: TextSanitizer::plainText($validated['locale']),
             timeFormat24h: $validated['time_format_24h'],
         )->execute();
 

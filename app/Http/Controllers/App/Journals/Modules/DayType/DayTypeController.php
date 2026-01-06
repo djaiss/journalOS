@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\DayType;
 
 use App\Actions\LogTypeOfDay;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class DayTypeController extends Controller
         new LogTypeOfDay(
             user: Auth::user(),
             entry: $journalEntry,
-            dayType: $validated['day_type'],
+            dayType: TextSanitizer::plainText($validated['day_type']),
         )->execute();
 
         return to_route('journal.entry.show', [

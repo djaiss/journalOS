@@ -7,6 +7,7 @@ namespace App\Http\Controllers\App\Journals;
 use App\Actions\CreateJournal;
 use App\Actions\DestroyJournal;
 use App\Actions\RenameJournal;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
 use Illuminate\Http\RedirectResponse;
@@ -45,7 +46,7 @@ final class JournalController extends Controller
 
         $journal = new CreateJournal(
             user: Auth::user(),
-            name: $validated['journal_name'],
+            name: TextSanitizer::plainText($validated['journal_name']),
         )->execute();
 
         return to_route('journal.show', $journal->slug)
@@ -84,7 +85,7 @@ final class JournalController extends Controller
         new RenameJournal(
             user: $request->user(),
             journal: $journal,
-            name: $validated['journal_name'],
+            name: TextSanitizer::plainText($validated['journal_name']),
         )->execute();
 
         return to_route('journal.settings.show', [

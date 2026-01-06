@@ -17,7 +17,7 @@ final class CreateJournal
     private Journal $journal;
 
     public function __construct(
-        private User $user,
+        private readonly User $user,
         private string $name,
     ) {}
 

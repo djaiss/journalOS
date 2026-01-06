@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Energy;
 
 use App\Actions\LogEnergy;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ final class EnergyController extends Controller
         $entry = new LogEnergy(
             user: Auth::user(),
             entry: $entry,
-            energy: $validated['energy'],
+            energy: TextSanitizer::plainText($validated['energy']),
         )->execute();
 
         return response()->json([

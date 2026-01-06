@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\App\Journals\Modules\Work;
 
 use App\Actions\LogWorkMode;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ final class WorkModeController extends Controller
         new LogWorkMode(
             user: Auth::user(),
             entry: $journalEntry,
-            workMode: $validated['work_mode'],
+            workMode: TextSanitizer::plainText($validated['work_mode']),
         )->execute();
 
         return to_route('journal.entry.show', [

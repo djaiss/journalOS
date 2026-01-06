@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Journals\Modules\Mood;
 
 use App\Actions\LogMood;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +25,7 @@ final class MoodController extends Controller
         $entry = new LogMood(
             user: Auth::user(),
             entry: $entry,
-            mood: $validated['mood'],
+            mood: TextSanitizer::plainText($validated['mood']),
         )->execute();
 
         return response()->json([

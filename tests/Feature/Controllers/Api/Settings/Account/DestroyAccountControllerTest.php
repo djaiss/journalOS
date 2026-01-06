@@ -27,8 +27,10 @@ final class DestroyAccountControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
+        $reason = 'I no longer need the <b>account</b>';
+
         $response = $this->json('DELETE', '/api/settings/account', [
-            'reason' => 'I no longer need the account',
+            'reason' => $reason,
         ]);
 
         $response->assertStatus(200);
