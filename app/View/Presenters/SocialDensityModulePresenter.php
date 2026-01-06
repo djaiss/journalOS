@@ -34,7 +34,7 @@ final readonly class SocialDensityModulePresenter
 
     private function socialDensityOptions(): array
     {
-        return collect(['alone', 'few people', 'crowd', 'too much'])->map(fn ($value) => [
+        return collect(['alone', 'few people', 'crowd', 'too much'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'alone' => __('Alone'),
