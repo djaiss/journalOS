@@ -27,7 +27,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => '<b>sleep</b>',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -48,7 +48,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'sleep',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -78,12 +78,12 @@ final class JournalModulesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)
-            ->from('/journals/' . $journal->slug . '/settings')
+            ->from('/journals/' . $journal->slug . '/settings/modules')
             ->put('/journals/' . $journal->slug . '/settings/modules', [
                 'module' => str_repeat('a', 256),
             ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
         $response->assertSessionHasErrors(['module']);
     }
 
@@ -100,7 +100,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'travel',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -121,7 +121,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'travel',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -142,7 +142,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'day_type',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -163,7 +163,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'day_type',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -184,7 +184,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'primary_obligation',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -205,7 +205,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'primary_obligation',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -226,7 +226,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'health',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -247,7 +247,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'health',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -268,7 +268,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'mood',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -289,7 +289,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'mood',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -310,7 +310,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'energy',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -331,7 +331,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'energy',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -352,7 +352,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'sexual_activity',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
@@ -373,7 +373,7 @@ final class JournalModulesControllerTest extends TestCase
             'module' => 'sexual_activity',
         ]);
 
-        $response->assertRedirect('/journals/' . $journal->slug . '/settings');
+        $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,

@@ -70,7 +70,7 @@
       </div>
 
       <div class="ml-4">
-        <a href="{{ route('journal.settings.show', ['slug' => $journal->slug]) }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">{{ __('Settings') }}</a>
+        <a href="{{ route('journal.settings.modules.index', ['slug' => $journal->slug]) }}" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">{{ __('Settings') }}</a>
       </div>
     @endif
 

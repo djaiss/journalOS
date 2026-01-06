@@ -88,7 +88,7 @@ final class JournalController extends Controller
             name: TextSanitizer::plainText($validated['journal_name']),
         )->execute();
 
-        return to_route('journal.settings.show', [
+        return to_route('journal.settings.management.index', [
             'slug' => $journal->slug,
         ])->with('status', __('Changes saved'));
     }
