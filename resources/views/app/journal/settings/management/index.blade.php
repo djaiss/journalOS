@@ -14,7 +14,7 @@
     @include('app.journal.settings.partials.sidebar', ['journal' => $journal])
 
     <section class="p-4 sm:p-8">
-      <div class="mx-auto flex max-w-4xl flex-col gap-y-8 sm:px-0">
+      <div class="mx-auto flex max-w-2xl flex-col gap-y-8 sm:px-0">
         @include('app.journal.settings.partials.rename')
 
         @include('app.journal.settings.partials.delete')
