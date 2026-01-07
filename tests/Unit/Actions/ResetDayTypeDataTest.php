@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleDayType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetDayTypeDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleDayType::factory()->create([
+            'journal_entry_id' => $entry->id,
             'day_type' => 'workday',
         ]);
 
@@ -40,11 +44,10 @@ final class ResetDayTypeDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->day_type);
+        $this->assertNull($result->moduleDayType);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'day_type' => null,
+        $this->assertDatabaseMissing('module_day_type', [
+            'journal_entry_id' => $entry->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

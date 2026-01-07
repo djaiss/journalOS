@@ -27,7 +27,6 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'journal_id' => $journal->id,
             'has_content' => true,
             'had_kids_today' => null,
-            'day_type' => null,
             'had_sexual_activity' => null,
             'sexual_activity_type' => null,
         ]);
@@ -48,7 +47,6 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'journal_id' => $journal->id,
             'has_content' => false,
             'had_kids_today' => null,
-            'day_type' => null,
             'had_sexual_activity' => null,
             'sexual_activity_type' => null,
         ]);
@@ -73,7 +71,6 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'journal_id' => $journal->id,
             'has_content' => false,
             'had_kids_today' => null,
-            'day_type' => null,
             'had_sexual_activity' => null,
             'sexual_activity_type' => null,
         ]);

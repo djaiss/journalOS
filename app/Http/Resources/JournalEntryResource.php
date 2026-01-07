@@ -48,7 +48,7 @@ final class JournalEntryResource extends JsonResource
                         'had_kids_today' => $this->had_kids_today,
                     ],
                     'day_type' => [
-                        'day_type' => $this->day_type,
+                        'day_type' => $this->moduleDayType?->day_type,
                     ],
                     'primary_obligation' => [
                         'primary_obligation' => $this->primary_obligation,

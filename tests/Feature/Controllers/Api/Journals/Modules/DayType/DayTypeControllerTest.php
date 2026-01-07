@@ -68,7 +68,6 @@ final class DayTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -82,7 +81,7 @@ final class DayTypeControllerTest extends TestCase
         $response->assertJsonStructure($this->singleJsonStructure);
 
         $entry->refresh();
-        $this->assertEquals('workday', $entry->day_type);
+        $this->assertEquals('workday', $entry->moduleDayType->day_type);
     }
 
     #[Test]
@@ -96,7 +95,6 @@ final class DayTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -109,7 +107,7 @@ final class DayTypeControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('day off', $entry->day_type);
+        $this->assertEquals('day off', $entry->moduleDayType->day_type);
     }
 
     #[Test]
@@ -123,7 +121,6 @@ final class DayTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -136,7 +133,7 @@ final class DayTypeControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('weekend', $entry->day_type);
+        $this->assertEquals('weekend', $entry->moduleDayType->day_type);
     }
 
     #[Test]
@@ -150,7 +147,6 @@ final class DayTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -163,7 +159,7 @@ final class DayTypeControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('vacation', $entry->day_type);
+        $this->assertEquals('vacation', $entry->moduleDayType->day_type);
     }
 
     #[Test]
@@ -177,7 +173,6 @@ final class DayTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -190,7 +185,7 @@ final class DayTypeControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('sick day', $entry->day_type);
+        $this->assertEquals('sick day', $entry->moduleDayType->day_type);
     }
 
     #[Test]

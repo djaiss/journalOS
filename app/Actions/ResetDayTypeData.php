@@ -21,12 +21,17 @@ final readonly class ResetDayTypeData
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->day_type = null;
-        $this->entry->save();
+
+        $moduleDayType = $this->entry->moduleDayType;
+        if ($moduleDayType !== null) {
+            $moduleDayType->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleDayType');
 
         return $this->entry;
     }
