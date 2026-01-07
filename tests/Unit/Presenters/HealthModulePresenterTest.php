@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleHealth;
 use App\View\Presenters\HealthModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,7 +27,6 @@ final class HealthModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'health' => null,
         ]);
 
         $presenter = new HealthModulePresenter($entry);
@@ -90,6 +90,10 @@ final class HealthModulePresenterTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
+        ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'health' => 'good',
+        ]);
 
         $presenter = new HealthModulePresenter($entry);
         $result = $presenter->build();
@@ -106,6 +110,9 @@ final class HealthModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
             'health' => 'good',
         ]);
 
@@ -123,6 +130,9 @@ final class HealthModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
             'health' => 'okay',
         ]);
 
@@ -138,7 +148,6 @@ final class HealthModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
         ]);
 
         $presenter = new HealthModulePresenter($entry);

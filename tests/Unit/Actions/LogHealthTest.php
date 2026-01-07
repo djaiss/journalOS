@@ -33,7 +33,6 @@ final class LogHealthTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
         ]);
 
         $result = (new LogHealth(
@@ -42,7 +41,7 @@ final class LogHealthTest extends TestCase
             health: 'good',
         ))->execute();
 
-        $this->assertEquals('good', $result->health);
+        $this->assertEquals('good', $result->moduleHealth->health);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogHealthTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
         ]);
 
         $result = (new LogHealth(
@@ -89,7 +87,7 @@ final class LogHealthTest extends TestCase
             health: 'okay',
         ))->execute();
 
-        $this->assertEquals('okay', $result->health);
+        $this->assertEquals('okay', $result->moduleHealth->health);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogHealthTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
         ]);
 
         $result = (new LogHealth(
@@ -136,7 +133,7 @@ final class LogHealthTest extends TestCase
             health: 'not great',
         ))->execute();
 
-        $this->assertEquals('not great', $result->health);
+        $this->assertEquals('not great', $result->moduleHealth->health);
 
         Queue::assertPushedOn(
             queue: 'low',

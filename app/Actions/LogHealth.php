@@ -24,12 +24,18 @@ final readonly class LogHealth
     {
         $this->validate();
 
-        $this->entry->health = $this->health;
-        $this->entry->save();
+        $moduleHealth = $this->entry->moduleHealth()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleHealth->health = $this->health;
+        $moduleHealth->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleHealth');
 
         return $this->entry;
     }

@@ -8,6 +8,7 @@ use App\Enums\BookStatus;
 use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleHealth;
 use App\Models\ModuleDayType;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleSleep;
@@ -105,6 +106,23 @@ final class JournalEntryTest extends TestCase
     }
 
     #[Test]
+    public function it_has_one_module_health(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleHealth = ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'health' => 'okay',
+        ]);
+
+        $this->assertTrue($entry->moduleHealth()->exists());
+        $this->assertEquals($moduleHealth->id, $entry->moduleHealth->id);
+        $this->assertEquals('okay', $entry->moduleHealth->health);
+    }
+
+    #[Test]
     public function it_has_one_module_day_type(): void
     {
         $journal = Journal::factory()->create();
@@ -158,7 +176,7 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
         $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
     }
-  
+
     #[Test]
     public function it_has_one_module_work(): void
     {
@@ -166,7 +184,7 @@ final class JournalEntryTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
-        
+
         $moduleWork = ModuleWork::factory()->create([
             'journal_entry_id' => $entry->id,
             'worked' => 'yes',
