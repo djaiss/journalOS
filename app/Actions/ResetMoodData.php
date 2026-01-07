@@ -22,12 +22,16 @@ final readonly class ResetMoodData
     {
         $this->validate();
 
-        $this->entry->mood = null;
-        $this->entry->save();
+        $moduleMood = $this->entry->moduleMood;
+        if ($moduleMood !== null) {
+            $moduleMood->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleMood');
 
         return $this->entry;
     }

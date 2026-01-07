@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
- * @property string|null $mood # Format: 'terrible', 'bad', 'okay', 'good', 'great'
  * @property string|null $had_sexual_activity # Format: 'yes'|'no'
  * @property string|null $sexual_activity_type # Format: 'solo', 'with-partner', 'intimate-contact'
  * @property string|null $energy # Format: 'very low', 'low', 'normal', 'high', 'very high'
@@ -62,7 +61,6 @@ final class JournalEntry extends Model
         'had_kids_today',
         'primary_obligation',
         'health',
-        'mood',
         'had_sexual_activity',
         'sexual_activity_type',
         'energy',
@@ -80,7 +78,6 @@ final class JournalEntry extends Model
             'has_content' => 'boolean',
             'had_kids_today' => 'encrypted',
             'primary_obligation' => 'encrypted',
-            'mood' => 'encrypted',
             'had_sexual_activity' => 'encrypted',
             'sexual_activity_type' => 'encrypted',
             'energy' => 'encrypted',
@@ -121,6 +118,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the mood module data for this entry.
+     *
+     * @return HasOne<ModuleMood, $this>
+     */
+    public function moduleMood(): HasOne
+    {
+        return $this->hasOne(ModuleMood::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the health module data for this entry.
      *
      * @return HasOne<ModuleHealth, $this>
@@ -129,7 +136,7 @@ final class JournalEntry extends Model
     {
         return $this->hasOne(ModuleHealth::class, 'journal_entry_id');
     }
-  
+
     /**
      * Get the day type module data for this entry.
      *

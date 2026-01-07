@@ -12,8 +12,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('journal_entries', function (Blueprint $table): void {
+        Schema::create('module_mood', function (Blueprint $table): void {
+            $table->id();
+            $table->unsignedBigInteger('journal_entry_id');
             $table->text('mood')->nullable();
+            $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 
@@ -22,8 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->dropColumn('mood');
-        });
+        Schema::dropIfExists('module_mood');
     }
 };

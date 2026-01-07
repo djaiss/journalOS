@@ -33,7 +33,6 @@ final class LogMoodTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
         ]);
 
         $result = (new LogMood(
@@ -42,7 +41,7 @@ final class LogMoodTest extends TestCase
             mood: 'terrible',
         ))->execute();
 
-        $this->assertEquals('terrible', $result->mood);
+        $this->assertEquals('terrible', $result->moduleMood->mood);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogMoodTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
         ]);
 
         $result = (new LogMood(
@@ -89,7 +87,7 @@ final class LogMoodTest extends TestCase
             mood: 'bad',
         ))->execute();
 
-        $this->assertEquals('bad', $result->mood);
+        $this->assertEquals('bad', $result->moduleMood->mood);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogMoodTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
         ]);
 
         $result = (new LogMood(
@@ -136,7 +133,7 @@ final class LogMoodTest extends TestCase
             mood: 'okay',
         ))->execute();
 
-        $this->assertEquals('okay', $result->mood);
+        $this->assertEquals('okay', $result->moduleMood->mood);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -174,7 +171,6 @@ final class LogMoodTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
         ]);
 
         $result = (new LogMood(
@@ -183,7 +179,7 @@ final class LogMoodTest extends TestCase
             mood: 'good',
         ))->execute();
 
-        $this->assertEquals('good', $result->mood);
+        $this->assertEquals('good', $result->moduleMood->mood);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -221,7 +217,6 @@ final class LogMoodTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
         ]);
 
         $result = (new LogMood(
@@ -230,7 +225,7 @@ final class LogMoodTest extends TestCase
             mood: 'great',
         ))->execute();
 
-        $this->assertEquals('great', $result->mood);
+        $this->assertEquals('great', $result->moduleMood->mood);
 
         Queue::assertPushedOn(
             queue: 'low',

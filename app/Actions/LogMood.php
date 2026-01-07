@@ -24,12 +24,18 @@ final readonly class LogMood
     {
         $this->validate();
 
-        $this->entry->mood = $this->mood;
-        $this->entry->save();
+        $moduleMood = $this->entry->moduleMood()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleMood->mood = $this->mood;
+        $moduleMood->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleMood');
 
         return $this->entry;
     }
