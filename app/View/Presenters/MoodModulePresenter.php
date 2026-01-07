@@ -28,7 +28,7 @@ final readonly class MoodModulePresenter
                 'day' => $this->entry->day,
             ]),
             'mood_options' => $this->moodOptions(),
-            'display_reset' => $this->entry->mood !== null,
+            'display_reset' => $this->entry->moduleMood?->mood !== null,
         ];
     }
 
@@ -44,7 +44,7 @@ final readonly class MoodModulePresenter
                 'great' => __('Great'),
                 default => $value,
             },
-            'is_selected' => $this->entry->mood === $value,
+            'is_selected' => $this->entry->moduleMood?->mood === $value,
         ])->all();
     }
 }

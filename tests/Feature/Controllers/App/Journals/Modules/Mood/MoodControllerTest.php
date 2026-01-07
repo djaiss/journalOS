@@ -24,7 +24,6 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class MoodControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('terrible', $entry->mood);
+        $this->assertEquals('terrible', $entry->moduleMood->mood);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class MoodControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('bad', $entry->mood);
+        $this->assertEquals('bad', $entry->moduleMood->mood);
     }
 
     #[Test]
@@ -78,7 +76,6 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -93,7 +90,7 @@ final class MoodControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('okay', $entry->mood);
+        $this->assertEquals('okay', $entry->moduleMood->mood);
     }
 
     #[Test]
@@ -105,7 +102,6 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -120,7 +116,7 @@ final class MoodControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('good', $entry->mood);
+        $this->assertEquals('good', $entry->moduleMood->mood);
     }
 
     #[Test]
@@ -132,7 +128,6 @@ final class MoodControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'mood' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -147,7 +142,7 @@ final class MoodControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('great', $entry->mood);
+        $this->assertEquals('great', $entry->moduleMood->mood);
     }
 
     #[Test]

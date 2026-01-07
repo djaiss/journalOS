@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Mood;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleMood;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class MoodResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        $moduleMood = ModuleMood::factory()->create([
+            'journal_entry_id' => $entry->id,
             'mood' => 'good',
         ]);
 
@@ -38,7 +42,11 @@ final class MoodResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->mood);
+        $this->assertNull($entry->moduleMood);
+
+        $this->assertDatabaseMissing('module_mood', [
+            'id' => $moduleMood->id,
+        ]);
     }
 
     #[Test]
@@ -67,6 +75,9 @@ final class MoodResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleMood::factory()->create([
+            'journal_entry_id' => $entry->id,
             'mood' => 'okay',
         ]);
 

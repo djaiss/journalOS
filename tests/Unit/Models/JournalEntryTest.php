@@ -8,6 +8,7 @@ use App\Enums\BookStatus;
 use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleMood;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
 use App\Models\ModuleWork;
@@ -100,6 +101,23 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleSleep->id, $entry->moduleSleep->id);
         $this->assertEquals('22:00', $entry->moduleSleep->bedtime);
         $this->assertEquals('06:00', $entry->moduleSleep->wake_up_time);
+    }
+
+    #[Test]
+    public function it_has_one_module_mood(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleMood = ModuleMood::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'mood' => 'good',
+        ]);
+
+        $this->assertTrue($entry->moduleMood()->exists());
+        $this->assertEquals($moduleMood->id, $entry->moduleMood->id);
+        $this->assertEquals('good', $entry->moduleMood->mood);
     }
 
     #[Test]
