@@ -30,9 +30,15 @@ final class RemoveBookTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
-        $book = Book::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $book = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         DB::table('book_journal_entry')->insert([
             'book_id' => $book->id,
@@ -88,9 +94,15 @@ final class RemoveBookTest extends TestCase
     {
         $user = User::factory()->create();
         $anotherUser = User::factory()->create();
-        $journal = Journal::factory()->for($anotherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
-        $book = Book::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $anotherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $book = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Journal entry not found');
@@ -107,9 +119,15 @@ final class RemoveBookTest extends TestCase
     {
         $user = User::factory()->create();
         $anotherUser = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
-        $book = Book::factory()->for($anotherUser)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $book = Book::factory()->create([
+            'user_id' => $anotherUser->id,
+        ]);
 
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Book not found');

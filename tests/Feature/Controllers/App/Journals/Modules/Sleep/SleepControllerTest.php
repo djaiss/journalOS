@@ -48,7 +48,8 @@ final class SleepControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -65,7 +66,8 @@ final class SleepControllerTest extends TestCase
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -82,8 +84,11 @@ final class SleepControllerTest extends TestCase
     public function it_returns_404_for_invalid_bedtime_format(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -100,8 +105,11 @@ final class SleepControllerTest extends TestCase
     public function it_returns_404_for_invalid_wake_up_time_format(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -118,8 +126,11 @@ final class SleepControllerTest extends TestCase
     public function it_returns_404_for_invalid_bedtime_minutes(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -136,8 +147,11 @@ final class SleepControllerTest extends TestCase
     public function it_returns_404_for_invalid_wake_up_time_minutes(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,

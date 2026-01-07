@@ -31,7 +31,8 @@ final class LogTravelModeTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'travel_mode' => null,
         ]);
 
@@ -77,7 +78,8 @@ final class LogTravelModeTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'travel_mode' => null,
         ]);
 
@@ -102,7 +104,8 @@ final class LogTravelModeTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'travel_mode' => null,
         ]);
 
@@ -137,7 +140,9 @@ final class LogTravelModeTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $otherUser->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogTravelMode(
             user: $user,
@@ -156,7 +161,9 @@ final class LogTravelModeTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogTravelMode(
             user: $user,
@@ -175,7 +182,9 @@ final class LogTravelModeTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogTravelMode(
             user: $user,

@@ -25,7 +25,8 @@ final class RenameBookTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $book = Book::factory()->for($user)->create([
+        $book = Book::factory()->create([
+            'user_id' => $user->id,
             'name' => 'The Great Gatsby',
         ]);
 

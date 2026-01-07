@@ -27,8 +27,11 @@ final class ResetEnergyDataTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'energy' => 'high',
         ]);
 
@@ -79,8 +82,12 @@ final class ResetEnergyDataTest extends TestCase
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $journal = Journal::factory()->for($otherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $otherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new ResetEnergyData(
             user: $user,

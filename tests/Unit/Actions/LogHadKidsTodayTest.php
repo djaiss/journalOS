@@ -31,7 +31,8 @@ final class LogHadKidsTodayTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'had_kids_today' => null,
         ]);
 
@@ -77,7 +78,8 @@ final class LogHadKidsTodayTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'had_kids_today' => null,
         ]);
 
@@ -125,7 +127,9 @@ final class LogHadKidsTodayTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $otherUser->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogHadKidsToday(
             user: $user,
@@ -144,7 +148,9 @@ final class LogHadKidsTodayTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogHadKidsToday(
             user: $user,

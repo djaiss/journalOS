@@ -19,8 +19,11 @@ final class JournalEntryControllerTest extends TestCase
     public function it_shows_a_journal_entry(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'day' => 15,
             'month' => 6,
             'year' => 2024,
@@ -38,7 +41,8 @@ final class JournalEntryControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'day' => 15,
             'month' => 6,
             'year' => 2024,
@@ -55,7 +59,8 @@ final class JournalEntryControllerTest extends TestCase
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'day' => 15,
             'month' => 6,
             'year' => 2024,

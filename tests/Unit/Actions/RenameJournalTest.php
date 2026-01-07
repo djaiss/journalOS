@@ -26,7 +26,8 @@ final class RenameJournalTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
         ]);
 
@@ -64,7 +65,9 @@ final class RenameJournalTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         (new RenameJournal(
             user: $user,

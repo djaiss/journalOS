@@ -46,10 +46,18 @@ final class JournalEntryTest extends TestCase
     public function it_has_many_books(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
-        $book1 = Book::factory()->for($user)->create();
-        $book2 = Book::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $book1 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $book2 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         DB::table('book_journal_entry')->insert([
             [

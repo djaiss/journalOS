@@ -28,8 +28,11 @@ final class LogSexualActivityTypeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'sexual_activity_type' => null,
         ]);
 
@@ -72,8 +75,11 @@ final class LogSexualActivityTypeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'sexual_activity_type' => null,
         ]);
 
@@ -92,8 +98,11 @@ final class LogSexualActivityTypeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'sexual_activity_type' => null,
         ]);
 
@@ -114,8 +123,12 @@ final class LogSexualActivityTypeTest extends TestCase
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $journal = Journal::factory()->for($otherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $otherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogSexualActivityType(
             user: $user,
@@ -131,8 +144,12 @@ final class LogSexualActivityTypeTest extends TestCase
         $this->expectExceptionMessage('sexualActivityType must be one of: solo, with-partner, intimate-contact');
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogSexualActivityType(
             user: $user,

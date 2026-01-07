@@ -28,8 +28,11 @@ final class LogWorkModeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'work_mode' => null,
         ]);
 
@@ -72,8 +75,11 @@ final class LogWorkModeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'work_mode' => null,
         ]);
 
@@ -116,8 +122,11 @@ final class LogWorkModeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'work_mode' => null,
         ]);
 
@@ -162,8 +171,12 @@ final class LogWorkModeTest extends TestCase
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $journal = Journal::factory()->for($otherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $otherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogWorkMode(
             user: $user,
@@ -179,8 +192,12 @@ final class LogWorkModeTest extends TestCase
         $this->expectExceptionMessage('workMode must be either "on-site", "remote", or "hybrid"');
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new LogWorkMode(
             user: $user,

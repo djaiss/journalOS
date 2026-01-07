@@ -89,7 +89,8 @@ final class JournalControllerTest extends TestCase
     public function it_updates_the_journal_name(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
         ]);
 
@@ -108,7 +109,9 @@ final class JournalControllerTest extends TestCase
     public function it_validates_the_journal_name_when_updating(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         $response = $this->actingAs($user)
             ->from('/journals/' . $journal->slug . '/settings/management')

@@ -52,7 +52,8 @@ final class SleepBedTimeControllerTest extends TestCase
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -71,7 +72,8 @@ final class SleepBedTimeControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
