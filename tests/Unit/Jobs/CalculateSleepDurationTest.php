@@ -28,7 +28,7 @@ final class CalculateSleepDurationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
         $moduleSleep = ModuleSleep::factory()->create([
-            'entry_id' => $entry->id,
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -52,7 +52,7 @@ final class CalculateSleepDurationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
         $moduleSleep = ModuleSleep::factory()->create([
-            'entry_id' => $entry->id,
+            'journal_entry_id' => $entry->id,
             'bedtime' => '23:30',
             'wake_up_time' => '07:45',
         ]);
@@ -76,7 +76,7 @@ final class CalculateSleepDurationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
         $moduleSleep = ModuleSleep::factory()->create([
-            'entry_id' => $entry->id,
+            'journal_entry_id' => $entry->id,
             'bedtime' => null,
             'wake_up_time' => '06:00',
             'sleep_duration_in_minutes' => null,
@@ -101,7 +101,7 @@ final class CalculateSleepDurationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
         $moduleSleep = ModuleSleep::factory()->create([
-            'entry_id' => $entry->id,
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => null,
             'sleep_duration_in_minutes' => null,
@@ -126,7 +126,7 @@ final class CalculateSleepDurationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
         $moduleSleep = ModuleSleep::factory()->create([
-            'entry_id' => $entry->id,
+            'journal_entry_id' => $entry->id,
             'bedtime' => null,
             'wake_up_time' => null,
             'sleep_duration_in_minutes' => null,

@@ -35,7 +35,7 @@ final class ResetSleepDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
         $moduleSleep = ModuleSleep::factory()->create([
-            'entry_id' => $entry->id,
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
             'sleep_duration_in_minutes' => '495',

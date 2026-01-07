@@ -9,7 +9,6 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
-use App\Models\ModuleSleep;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -31,6 +30,8 @@ final readonly class LogWakeUpTime
         $this->updateUserLastActivityDate();
         $this->calculateSleepDuration();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSleep');
 
         return $this->entry;
     }
