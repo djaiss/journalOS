@@ -17,8 +17,8 @@ final readonly class ModuleSleepViewModel
 
     public function sleep(string $startBedTime, string $startWakeUpTime): array
     {
-        $bedtime = $this->journalEntry->bedtime ? TimeHelper::format($this->journalEntry->bedtime) : null;
-        $wakeUpTime = $this->journalEntry->wake_up_time ? TimeHelper::format($this->journalEntry->wake_up_time) : null;
+        $bedtime = $this->journalEntry->moduleSleep?->bedtime ? TimeHelper::format($this->journalEntry->moduleSleep->bedtime) : null;
+        $wakeUpTime = $this->journalEntry->moduleSleep?->wake_up_time ? TimeHelper::format($this->journalEntry->moduleSleep->wake_up_time) : null;
 
         return [
             'bedtime' => $this->getRange($startBedTime, $bedtime),
