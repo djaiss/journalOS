@@ -97,6 +97,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 // energy
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy', [Journals\Modules\Energy\EnergyController::class, 'update'])->name('journal.entry.energy.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy/reset', [Journals\Modules\Energy\EnergyResetController::class, 'update'])->name('journal.entry.energy.reset');
+
+                // social density
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-density', [Journals\Modules\SocialDensity\SocialDensityController::class, 'update'])->name('journal.entry.social-density.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-density/reset', [Journals\Modules\SocialDensity\SocialDensityResetController::class, 'update'])->name('journal.entry.social-density.reset');
             });
 
             // settings
