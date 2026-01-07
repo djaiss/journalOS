@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleTravel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetTravelDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_traveled_today' => 'yes',
             'travel_mode' => ['car', 'train'],
         ]);
@@ -41,13 +45,10 @@ final class ResetTravelDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->has_traveled_today);
-        $this->assertNull($result->travel_mode);
+        $this->assertNull($result->moduleTravel);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'has_traveled_today' => null,
-            'travel_mode' => null,
+        $this->assertDatabaseMissing('module_travel', [
+            'journal_entry_id' => $entry->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

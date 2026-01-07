@@ -40,7 +40,8 @@ final class TravelModeControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.travel.travel_mode', ['car']);
 
         $entry->refresh();
-        $this->assertEquals(['car'], $entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertEquals(['car'], $entry->moduleTravel->travel_mode);
     }
 
     #[Test]
@@ -67,7 +68,8 @@ final class TravelModeControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.travel.travel_mode', ['car', 'train', 'plane']);
 
         $entry->refresh();
-        $this->assertEquals(['car', 'train', 'plane'], $entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertEquals(['car', 'train', 'plane'], $entry->moduleTravel->travel_mode);
     }
 
     #[Test]
@@ -96,7 +98,8 @@ final class TravelModeControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.travel.travel_mode', $allModes);
 
         $entry->refresh();
-        $this->assertEquals($allModes, $entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertEquals($allModes, $entry->moduleTravel->travel_mode);
     }
 
     #[Test]

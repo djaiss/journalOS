@@ -29,9 +29,6 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $work_mode # Format: 'on-site'|'remote'|'hybrid'
  * @property string|null $work_load # Format: 'light'|'medium'|'heavy'
  * @property string|null $work_procrastinated # Format: 'yes'|'no'
- * @property string|null $has_traveled_today # Format: 'yes'|'no'
- * @property string|null $travel_details # Format: 'Took a flight to...'
- * @property array<string>|null $travel_mode # Format: ['car',plane,train,bike,bus,walk,boat,other]
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $day_type # Format: 'workday', 'day off', 'weekend', 'vacation', 'sick day'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
@@ -74,9 +71,6 @@ final class JournalEntry extends Model
         'work_mode',
         'work_load',
         'work_procrastinated',
-        'has_traveled_today',
-        'travel_details',
-        'travel_mode',
         'had_kids_today',
         'day_type',
         'primary_obligation',
@@ -104,9 +98,6 @@ final class JournalEntry extends Model
             'work_mode' => 'encrypted',
             'work_load' => 'encrypted',
             'work_procrastinated' => 'encrypted',
-            'has_traveled_today' => 'encrypted',
-            'travel_details' => 'encrypted',
-            'travel_mode' => 'encrypted:array',
             'had_kids_today' => 'encrypted',
             'day_type' => 'encrypted',
             'primary_obligation' => 'encrypted',
@@ -151,6 +142,16 @@ final class JournalEntry extends Model
     public function moduleSleep(): HasOne
     {
         return $this->hasOne(ModuleSleep::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the travel module data for this entry.
+     *
+     * @return HasOne<ModuleTravel, $this>
+     */
+    public function moduleTravel(): HasOne
+    {
+        return $this->hasOne(ModuleTravel::class, 'journal_entry_id');
     }
 
     /**

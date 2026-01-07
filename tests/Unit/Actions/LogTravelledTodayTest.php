@@ -33,7 +33,6 @@ final class LogTravelledTodayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_traveled_today' => null,
         ]);
 
         $result = (new LogTravelledToday(
@@ -42,7 +41,7 @@ final class LogTravelledTodayTest extends TestCase
             hasTraveled: 'yes',
         ))->execute();
 
-        $this->assertEquals('yes', $result->has_traveled_today);
+        $this->assertEquals('yes', $result->moduleTravel->has_traveled_today);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogTravelledTodayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_traveled_today' => null,
         ]);
 
         $result = (new LogTravelledToday(
@@ -89,7 +87,7 @@ final class LogTravelledTodayTest extends TestCase
             hasTraveled: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->has_traveled_today);
+        $this->assertEquals('no', $result->moduleTravel->has_traveled_today);
 
         Queue::assertPushedOn(
             queue: 'low',

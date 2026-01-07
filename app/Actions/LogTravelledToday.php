@@ -26,12 +26,13 @@ final readonly class LogTravelledToday
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->has_traveled_today = $this->hasTraveled;
-        $this->entry->save();
+        $this->log();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleTravel');
 
         return $this->entry;
     }
@@ -60,6 +61,16 @@ final readonly class LogTravelledToday
     private function updateUserLastActivityDate(): void
     {
         UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
+    }
+
+    private function log(): void
+    {
+        $moduleTravel = $this->entry->moduleTravel()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleTravel->has_traveled_today = $this->hasTraveled;
+        $moduleTravel->save();
     }
 
     private function refreshContentPresenceStatus(): void

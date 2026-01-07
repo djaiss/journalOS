@@ -40,7 +40,8 @@ final class TravelControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.travel.has_traveled_today', 'yes');
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->has_traveled_today);
+        $entry->load('moduleTravel');
+        $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
     }
 
     #[Test]
@@ -67,7 +68,8 @@ final class TravelControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.travel.has_traveled_today', 'no');
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->has_traveled_today);
+        $entry->load('moduleTravel');
+        $this->assertEquals('no', $entry->moduleTravel->has_traveled_today);
     }
 
     #[Test]

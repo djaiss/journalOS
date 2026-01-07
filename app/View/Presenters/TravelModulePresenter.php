@@ -14,6 +14,7 @@ final readonly class TravelModulePresenter
 
     public function build(): array
     {
+        $moduleTravel = $this->entry->moduleTravel;
         $hasTraveledURL = route('journal.entry.travel.update', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
@@ -48,15 +49,17 @@ final readonly class TravelModulePresenter
                 'other' => __('Other'),
                 default => $mode,
             },
-            'is_selected' => is_array($this->entry->travel_mode) && in_array($mode, $this->entry->travel_mode, true),
+            'is_selected' => is_array($moduleTravel?->travel_mode) && in_array($mode, $moduleTravel->travel_mode, true),
         ]);
 
         return [
+            'has_traveled_today' => $moduleTravel?->has_traveled_today,
             'has_traveled_url' => $hasTraveledURL,
+            'travel_mode' => $moduleTravel?->travel_mode,
             'travel_mode_url' => $travelModeURL,
             'travel_modes' => $travelModes,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($this->entry->has_traveled_today) || ! is_null($this->entry->travel_mode),
+            'display_reset' => ! is_null($moduleTravel?->has_traveled_today) || ! is_null($moduleTravel?->travel_mode),
         ];
     }
 }

@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleTravel;
 use App\View\Presenters\TravelModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,15 +27,15 @@ final class TravelModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'has_traveled_today' => null,
-            'travel_mode' => null,
         ]);
 
         $presenter = new TravelModulePresenter($entry);
         $result = $presenter->build();
 
         $this->assertIsArray($result);
+        $this->assertArrayHasKey('has_traveled_today', $result);
         $this->assertArrayHasKey('has_traveled_url', $result);
+        $this->assertArrayHasKey('travel_mode', $result);
         $this->assertArrayHasKey('travel_mode_url', $result);
         $this->assertArrayHasKey('travel_modes', $result);
         $this->assertArrayHasKey('reset_url', $result);
@@ -97,6 +98,9 @@ final class TravelModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'travel_mode' => ['plane'],
         ]);
 
@@ -117,6 +121,9 @@ final class TravelModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'travel_mode' => ['car', 'plane', 'train'],
         ]);
 
@@ -159,6 +166,9 @@ final class TravelModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_traveled_today' => 'yes',
         ]);
 
@@ -174,6 +184,9 @@ final class TravelModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'travel_mode' => ['plane'],
         ]);
 
@@ -189,8 +202,6 @@ final class TravelModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_traveled_today' => null,
-            'travel_mode' => null,
         ]);
 
         $presenter = new TravelModulePresenter($entry);

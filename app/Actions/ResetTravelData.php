@@ -21,13 +21,16 @@ final readonly class ResetTravelData
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->has_traveled_today = null;
-        $this->entry->travel_mode = null;
-        $this->entry->save();
+        $moduleTravel = $this->entry->moduleTravel;
+        if ($moduleTravel !== null) {
+            $moduleTravel->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleTravel');
 
         return $this->entry;
     }
