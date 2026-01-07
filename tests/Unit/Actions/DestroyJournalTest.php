@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\DestroyJournal;
+use App\Jobs\DeleteRelatedJournalData;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -57,6 +58,14 @@ final class DestroyJournalTest extends TestCase
             job: UpdateUserLastActivityDate::class,
             callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
                 return $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: DeleteRelatedJournalData::class,
+            callback: function (DeleteRelatedJournalData $job) use ($journal): bool {
+                return $job->journalId === $journal->id;
             },
         );
     }
