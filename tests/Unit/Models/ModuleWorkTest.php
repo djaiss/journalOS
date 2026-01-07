@@ -6,12 +6,12 @@ namespace Tests\Unit\Models;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
-use App\Models\ModuleSleep;
+use App\Models\ModuleWork;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class ModuleSleepTest extends TestCase
+final class ModuleWorkTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -22,11 +22,11 @@ final class ModuleSleepTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
-        $moduleSleep = ModuleSleep::factory()->create([
+        $moduleWork = ModuleWork::factory()->create([
             'journal_entry_id' => $entry->id,
         ]);
 
-        $this->assertTrue($moduleSleep->entry()->exists());
-        $this->assertEquals($entry->id, $moduleSleep->entry->id);
+        $this->assertTrue($moduleWork->entry()->exists());
+        $this->assertEquals($entry->id, $moduleWork->entry->id);
     }
 }

@@ -24,7 +24,6 @@ final class WorkModeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class WorkModeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('remote', $entry->work_mode);
+        $this->assertEquals('remote', $entry->moduleWork?->work_mode);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class WorkModeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class WorkModeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('on-site', $entry->work_mode);
+        $this->assertEquals('on-site', $entry->moduleWork?->work_mode);
     }
 
     #[Test]
@@ -78,7 +76,6 @@ final class WorkModeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -93,7 +90,7 @@ final class WorkModeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('hybrid', $entry->work_mode);
+        $this->assertEquals('hybrid', $entry->moduleWork?->work_mode);
     }
 
     #[Test]

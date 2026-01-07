@@ -33,7 +33,6 @@ final class LogHasWorkedTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'worked' => null,
         ]);
 
         $result = (new LogHasWorked(
@@ -42,7 +41,7 @@ final class LogHasWorkedTest extends TestCase
             hasWorked: 'yes',
         ))->execute();
 
-        $this->assertEquals('yes', $result->worked);
+        $this->assertEquals('yes', $result->moduleWork?->worked);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogHasWorkedTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'worked' => null,
         ]);
 
         $result = (new LogHasWorked(
@@ -89,7 +87,7 @@ final class LogHasWorkedTest extends TestCase
             hasWorked: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->worked);
+        $this->assertEquals('no', $result->moduleWork?->worked);
 
         Queue::assertPushedOn(
             queue: 'low',

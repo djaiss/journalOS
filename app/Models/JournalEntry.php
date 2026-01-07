@@ -25,10 +25,6 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
- * @property string|null $worked # Format: 'yes'|'no'
- * @property string|null $work_mode # Format: 'on-site'|'remote'|'hybrid'
- * @property string|null $work_load # Format: 'light'|'medium'|'heavy'
- * @property string|null $work_procrastinated # Format: 'yes'|'no'
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $day_type # Format: 'workday', 'day off', 'weekend', 'vacation', 'sick day'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
@@ -67,10 +63,6 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
-        'worked',
-        'work_mode',
-        'work_load',
-        'work_procrastinated',
         'had_kids_today',
         'day_type',
         'primary_obligation',
@@ -94,10 +86,6 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
-            'worked' => 'encrypted',
-            'work_mode' => 'encrypted',
-            'work_load' => 'encrypted',
-            'work_procrastinated' => 'encrypted',
             'had_kids_today' => 'encrypted',
             'day_type' => 'encrypted',
             'primary_obligation' => 'encrypted',
@@ -152,6 +140,16 @@ final class JournalEntry extends Model
     public function moduleTravel(): HasOne
     {
         return $this->hasOne(ModuleTravel::class, 'journal_entry_id');
+    }
+  
+    /**
+     * Get the work module data for this entry.
+     *
+     * @return HasOne<ModuleWork, $this>
+     */
+    public function moduleWork(): HasOne
+    {
+        return $this->hasOne(ModuleWork::class, 'journal_entry_id');
     }
 
     /**

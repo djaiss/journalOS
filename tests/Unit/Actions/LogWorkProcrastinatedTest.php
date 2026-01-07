@@ -33,7 +33,6 @@ final class LogWorkProcrastinatedTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_procrastinated' => null,
         ]);
 
         $result = (new LogWorkProcrastinated(
@@ -42,7 +41,7 @@ final class LogWorkProcrastinatedTest extends TestCase
             workProcrastinated: 'yes',
         ))->execute();
 
-        $this->assertEquals('yes', $result->work_procrastinated);
+        $this->assertEquals('yes', $result->moduleWork?->work_procrastinated);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogWorkProcrastinatedTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_procrastinated' => null,
         ]);
 
         $result = (new LogWorkProcrastinated(
@@ -89,7 +87,7 @@ final class LogWorkProcrastinatedTest extends TestCase
             workProcrastinated: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->work_procrastinated);
+        $this->assertEquals('no', $result->moduleWork?->work_procrastinated);
 
         Queue::assertPushedOn(
             queue: 'low',

@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleWork;
 use App\View\Presenters\WorkModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,7 +27,6 @@ final class WorkModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'worked' => null,
         ]);
 
         $presenter = new WorkModulePresenter($entry);
@@ -106,6 +106,9 @@ final class WorkModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
             'worked' => 'yes',
         ]);
 
@@ -121,6 +124,9 @@ final class WorkModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
             'work_mode' => 'remote',
         ]);
 
@@ -139,6 +145,9 @@ final class WorkModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
             'work_load' => 'heavy',
         ]);
 
@@ -154,6 +163,9 @@ final class WorkModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
             'work_procrastinated' => 'yes',
         ]);
 
@@ -169,10 +181,6 @@ final class WorkModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'worked' => null,
-            'work_mode' => null,
-            'work_load' => null,
-            'work_procrastinated' => null,
         ]);
 
         $presenter = new WorkModulePresenter($entry);

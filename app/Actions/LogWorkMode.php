@@ -26,12 +26,12 @@ final readonly class LogWorkMode
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->work_mode = $this->workMode;
-        $this->entry->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleWork');
 
         return $this->entry;
     }
@@ -45,6 +45,16 @@ final readonly class LogWorkMode
         if (! in_array($this->workMode, ['on-site', 'remote', 'hybrid'])) {
             throw new InvalidArgumentException('workMode must be either "on-site", "remote", or "hybrid"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleWork->work_mode = $this->workMode;
+        $moduleWork->save();
     }
 
     private function logUserAction(): void

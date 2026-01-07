@@ -26,12 +26,12 @@ final readonly class LogWorkLoad
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->work_load = $this->workLoad;
-        $this->entry->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleWork');
 
         return $this->entry;
     }
@@ -45,6 +45,16 @@ final readonly class LogWorkLoad
         if (! in_array($this->workLoad, ['light', 'medium', 'heavy'])) {
             throw new InvalidArgumentException('workLoad must be either "light", "medium", or "heavy"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleWork->work_load = $this->workLoad;
+        $moduleWork->save();
     }
 
     private function logUserAction(): void
