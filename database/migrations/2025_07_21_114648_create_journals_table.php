@@ -20,10 +20,15 @@ return new class extends Migration {
             $table->boolean('show_sleep_module')->default(true);
             $table->boolean('show_work_module')->default(true);
             $table->boolean('show_travel_module')->default(true);
+            $table->boolean('show_kids_module')->default(false);
             $table->boolean('show_day_type_module')->default(true);
+            $table->boolean('show_primary_obligation_module')->default(true);
             $table->boolean('show_physical_activity_module')->default(true);
             $table->boolean('show_health_module')->default(true);
             $table->boolean('show_mood_module')->default(true);
+            $table->boolean('show_energy_module')->default(true);
+            $table->boolean('show_sexual_activity_module')->default(false);
+            $table->boolean('show_social_density_module')->default(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
