@@ -26,13 +26,7 @@ final readonly class LogTypeOfDay
     public function execute(): JournalEntry
     {
         $this->validate();
-        $moduleDayType = $this->entry->moduleDayType()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleDayType->day_type = $this->dayType;
-        $moduleDayType->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -51,6 +45,16 @@ final readonly class LogTypeOfDay
         if (! in_array($this->dayType, ['workday', 'day off', 'weekend', 'vacation', 'sick day'])) {
             throw new InvalidArgumentException('dayType must be one of: "workday", "day off", "weekend", "vacation", "sick day"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleDayType = $this->entry->moduleDayType()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleDayType->day_type = $this->dayType;
+        $moduleDayType->save();
     }
 
     private function logUserAction(): void
