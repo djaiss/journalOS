@@ -41,8 +41,8 @@ final class JournalEntryResource extends JsonResource
                         'work_procrastinated' => $this->moduleWork?->work_procrastinated,
                     ],
                     'travel' => [
-                        'has_traveled_today' => $this->has_traveled_today,
-                        'travel_mode' => $this->travel_mode,
+                        'has_traveled_today' => $this->moduleTravel?->has_traveled_today,
+                        'travel_mode' => $this->moduleTravel?->travel_mode,
                     ],
                     'kids' => [
                         'had_kids_today' => $this->had_kids_today,

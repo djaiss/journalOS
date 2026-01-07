@@ -24,7 +24,6 @@ final class TravelControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_traveled_today' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,8 @@ final class TravelControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->has_traveled_today);
+        $entry->load('moduleTravel');
+        $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
     }
 
     #[Test]
@@ -51,7 +51,6 @@ final class TravelControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_traveled_today' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +65,8 @@ final class TravelControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->has_traveled_today);
+        $entry->load('moduleTravel');
+        $this->assertEquals('no', $entry->moduleTravel->has_traveled_today);
     }
 
     #[Test]

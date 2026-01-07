@@ -33,7 +33,6 @@ final class LogTravelModeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => null,
         ]);
 
         $result = (new LogTravelMode(
@@ -42,7 +41,7 @@ final class LogTravelModeTest extends TestCase
             travelModes: ['car'],
         ))->execute();
 
-        $this->assertEquals(['car'], $result->travel_mode);
+        $this->assertEquals(['car'], $result->moduleTravel->travel_mode);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogTravelModeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => null,
         ]);
 
         $result = (new LogTravelMode(
@@ -89,10 +87,10 @@ final class LogTravelModeTest extends TestCase
             travelModes: ['car', 'plane', 'train'],
         ))->execute();
 
-        $this->assertEquals(['car', 'plane', 'train'], $result->travel_mode);
-        $this->assertContains('car', $result->travel_mode);
-        $this->assertContains('plane', $result->travel_mode);
-        $this->assertContains('train', $result->travel_mode);
+        $this->assertEquals(['car', 'plane', 'train'], $result->moduleTravel->travel_mode);
+        $this->assertContains('car', $result->moduleTravel->travel_mode);
+        $this->assertContains('plane', $result->moduleTravel->travel_mode);
+        $this->assertContains('train', $result->moduleTravel->travel_mode);
     }
 
     #[Test]
@@ -106,7 +104,6 @@ final class LogTravelModeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => null,
         ]);
 
         $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
@@ -117,8 +114,8 @@ final class LogTravelModeTest extends TestCase
             travelModes: $allModes,
         ))->execute();
 
-        $this->assertEquals($allModes, $result->travel_mode);
-        $this->assertCount(8, $result->travel_mode);
+        $this->assertEquals($allModes, $result->moduleTravel->travel_mode);
+        $this->assertCount(8, $result->moduleTravel->travel_mode);
 
         Queue::assertPushedOn(
             queue: 'low',

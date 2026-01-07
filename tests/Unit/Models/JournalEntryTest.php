@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleSleep;
+use App\Models\ModuleTravel;
 use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -102,12 +103,32 @@ final class JournalEntryTest extends TestCase
     }
 
     #[Test]
+    public function it_has_one_module_travel(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleTravel = ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'has_traveled_today' => 'yes',
+            'travel_mode' => ['train'],
+        ]);
+
+        $this->assertTrue($entry->moduleTravel()->exists());
+        $this->assertEquals($moduleTravel->id, $entry->moduleTravel->id);
+        $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
+        $this->assertEquals(['train'], $entry->moduleTravel->travel_mode);
+    }
+  
+    #[Test]
     public function it_has_one_module_work(): void
     {
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
+        
         $moduleWork = ModuleWork::factory()->create([
             'journal_entry_id' => $entry->id,
             'worked' => 'yes',

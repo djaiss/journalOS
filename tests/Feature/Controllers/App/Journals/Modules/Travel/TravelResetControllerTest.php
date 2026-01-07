@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Travel;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleTravel;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class TravelResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_traveled_today' => 'yes',
             'travel_mode' => ['car', 'train'],
         ]);
@@ -39,8 +43,8 @@ final class TravelResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->has_traveled_today);
-        $this->assertNull($entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertNull($entry->moduleTravel);
     }
 
     #[Test]
@@ -69,6 +73,9 @@ final class TravelResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleTravel::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_traveled_today' => 'yes',
             'travel_mode' => ['plane', 'bus'],
         ]);
@@ -80,7 +87,7 @@ final class TravelResetControllerTest extends TestCase
         $response->assertStatus(404);
 
         $entry->refresh();
-        $this->assertNotNull($entry->has_traveled_today);
-        $this->assertNotNull($entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertNotNull($entry->moduleTravel);
     }
 }

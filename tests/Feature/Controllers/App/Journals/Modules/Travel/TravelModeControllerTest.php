@@ -24,7 +24,6 @@ final class TravelModeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,8 @@ final class TravelModeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals(['car'], $entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertEquals(['car'], $entry->moduleTravel->travel_mode);
     }
 
     #[Test]
@@ -51,7 +51,6 @@ final class TravelModeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,10 +65,11 @@ final class TravelModeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals(['car', 'plane', 'train'], $entry->travel_mode);
-        $this->assertContains('car', $entry->travel_mode);
-        $this->assertContains('plane', $entry->travel_mode);
-        $this->assertContains('train', $entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertEquals(['car', 'plane', 'train'], $entry->moduleTravel->travel_mode);
+        $this->assertContains('car', $entry->moduleTravel->travel_mode);
+        $this->assertContains('plane', $entry->moduleTravel->travel_mode);
+        $this->assertContains('train', $entry->moduleTravel->travel_mode);
     }
 
     #[Test]
@@ -81,7 +81,6 @@ final class TravelModeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'travel_mode' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -98,8 +97,9 @@ final class TravelModeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals($allModes, $entry->travel_mode);
-        $this->assertCount(8, $entry->travel_mode);
+        $entry->load('moduleTravel');
+        $this->assertEquals($allModes, $entry->moduleTravel->travel_mode);
+        $this->assertCount(8, $entry->moduleTravel->travel_mode);
     }
 
     #[Test]

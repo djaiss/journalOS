@@ -15,15 +15,15 @@
 
   <div id="travel-container" class="space-y-4" x-data="{
     showTravelDetails:
-      {{ $entry->has_traveled_today === 'yes' ? 'true' : 'false' }},
+      {{ $module['has_traveled_today'] === 'yes' ? 'true' : 'false' }},
   }">
     <div>
       <!-- Have you traveled today? -->
       <div class="space-y-2">
         <p>{{ __('Have you traveled today?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="has_traveled" value="yes" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['has_traveled_url']" selected="{{ $entry->has_traveled_today === 'yes' }}" @click="showTravelDetails = true" />
-          <x-button.no name="has_traveled" value="no" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['has_traveled_url']" selected="{{ $entry->has_traveled_today === 'no' }}" @click="showTravelDetails = false" />
+          <x-button.yes name="has_traveled" value="yes" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['has_traveled_url']" selected="{{ $module['has_traveled_today'] === 'yes' }}" @click="showTravelDetails = true" />
+          <x-button.no name="has_traveled" value="no" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['has_traveled_url']" selected="{{ $module['has_traveled_today'] === 'no' }}" @click="showTravelDetails = false" />
         </div>
       </div>
 
