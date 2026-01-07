@@ -84,7 +84,8 @@ final class SleepWakeUpTimeControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('06:45', $entry->wake_up_time);
+        $entry->load('moduleSleep');
+        $this->assertEquals('06:45', $entry->moduleSleep->wake_up_time);
     }
 
     #[Test]

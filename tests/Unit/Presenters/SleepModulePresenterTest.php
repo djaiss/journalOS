@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\View\Presenters\SleepModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -26,8 +27,6 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'bedtime' => null,
-            'wake_up_time' => null,
         ]);
 
         $presenter = new SleepModulePresenter($entry);
@@ -60,6 +59,8 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
+        ]);
+        ModuleSleep::factory()->for($entry, 'entry')->create([
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -91,6 +92,8 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
+        ]);
+        ModuleSleep::factory()->for($entry, 'entry')->create([
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -113,6 +116,8 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
+        ]);
+        ModuleSleep::factory()->for($entry, 'entry')->create([
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -133,8 +138,6 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'bedtime' => null,
-            'wake_up_time' => null,
         ]);
 
         $presenter = new SleepModulePresenter($entry);
@@ -200,8 +203,6 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'bedtime' => null,
-            'wake_up_time' => null,
         ]);
 
         $presenter = new SleepModulePresenter($entry);
@@ -223,6 +224,8 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
+        ]);
+        ModuleSleep::factory()->for($entry, 'entry')->create([
             'bedtime' => 'invalid',
             'wake_up_time' => null,
         ]);
@@ -243,6 +246,8 @@ final class SleepModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
+        ]);
+        ModuleSleep::factory()->for($entry, 'entry')->create([
             'bedtime' => '',
             'wake_up_time' => '  ',
         ]);

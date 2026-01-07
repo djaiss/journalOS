@@ -84,7 +84,8 @@ final class SleepBedTimeControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('22:30', $entry->bedtime);
+        $entry->load('moduleSleep');
+        $this->assertEquals('22:30', $entry->moduleSleep->bedtime);
     }
 
     #[Test]

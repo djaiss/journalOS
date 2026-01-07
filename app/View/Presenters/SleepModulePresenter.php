@@ -19,13 +19,15 @@ final readonly class SleepModulePresenter
         string $wake_up_time = '06:00',
         bool $skipShift = false,
     ): array {
+        $moduleSleep = $this->entry->moduleSleep;
+
         if (! $skipShift) {
-            $bedtime = $this->shiftIfValid($this->entry->bedtime, -2) ?? $bedtime;
-            $wake_up_time = $this->shiftIfValid($this->entry->wake_up_time, -2) ?? $wake_up_time;
+            $bedtime = $this->shiftIfValid($moduleSleep?->bedtime, -2) ?? $bedtime;
+            $wake_up_time = $this->shiftIfValid($moduleSleep?->wake_up_time, -2) ?? $wake_up_time;
         }
 
-        $bedtimeRange = SleepHelper::range($bedtime, $this->entry->bedtime);
-        $wakeUpRange = SleepHelper::range($wake_up_time, $this->entry->wake_up_time);
+        $bedtimeRange = SleepHelper::range($bedtime, $moduleSleep?->bedtime);
+        $wakeUpRange = SleepHelper::range($wake_up_time, $moduleSleep?->wake_up_time);
 
         $previousBedtimeUrl = route('journal.entry.sleep.show', [
             'slug' => $this->entry->journal->slug,
@@ -94,7 +96,7 @@ final readonly class SleepModulePresenter
             'bedtime_update_url' => $bedtimeUpdateUrl,
             'wake_up_time_update_url' => $wakeUpTimeUpdateUrl,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($this->entry->bedtime) || ! is_null($this->entry->wake_up_time),
+            'display_reset' => ! is_null($moduleSleep?->bedtime) || ! is_null($moduleSleep?->wake_up_time),
         ];
     }
 

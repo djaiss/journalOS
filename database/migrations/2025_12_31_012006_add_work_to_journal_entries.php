@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->text('worked')->nullable()->after('sleep_duration_in_minutes');
+            $table->text('worked')->nullable();
             $table->text('work_mode')->nullable()->after('worked');
             $table->text('work_load')->nullable()->after('work_mode');
             $table->text('work_procrastinated')->nullable()->after('work_load');

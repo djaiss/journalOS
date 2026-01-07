@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Sleep;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -19,11 +20,17 @@ final class SleepControllerTest extends TestCase
     public function it_shows_the_sleep_module_with_default_times(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
+        ]);
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
         ]);
@@ -147,11 +154,17 @@ final class SleepControllerTest extends TestCase
     public function it_passes_module_data_to_view(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
+        ]);
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
         ]);

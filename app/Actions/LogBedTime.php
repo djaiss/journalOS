@@ -25,13 +25,13 @@ final readonly class LogBedTime
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->bedtime = $this->bedtime;
-        $this->entry->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->calculateSleepDuration();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSleep');
 
         return $this->entry;
     }
@@ -56,6 +56,16 @@ final readonly class LogBedTime
         if ($parsed === false || $parsed->format('H:i') !== $time) {
             throw new Exception($message);
         }
+    }
+
+    private function log(): void
+    {
+        $moduleSleep = $this->entry->moduleSleep()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleSleep->bedtime = $this->bedtime;
+        $moduleSleep->save();
     }
 
     private function logUserAction(): void
