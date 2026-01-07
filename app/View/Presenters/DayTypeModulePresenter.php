@@ -14,6 +14,8 @@ final readonly class DayTypeModulePresenter
 
     public function build(): array
     {
+        $selectedDayType = $this->entry->moduleDayType?->day_type;
+
         $dayTypeURL = route('journal.entry.day-type.update', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
@@ -38,14 +40,14 @@ final readonly class DayTypeModulePresenter
                 'sick day' => __('Sick day'),
                 default => $type,
             },
-            'is_selected' => $type === $this->entry->day_type,
+            'is_selected' => $type === $selectedDayType,
         ]);
 
         return [
             'day_type_url' => $dayTypeURL,
             'day_types' => $dayTypes,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($this->entry->day_type),
+            'display_reset' => ! is_null($selectedDayType),
         ];
     }
 }

@@ -42,7 +42,7 @@ final class CheckJournalEntryAPI
             abort(404);
         }
 
-        $entry->load('moduleSleep', 'moduleWork', 'moduleTravel');
+        $entry->load('moduleSleep', 'moduleWork', 'moduleTravel', 'moduleDayType');
 
         $request->attributes->add(['journal_entry' => $entry]);
 

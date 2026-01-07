@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->text('has_done_physical_activity')->nullable()->after('day_type');
+            $table->text('has_done_physical_activity')->nullable();
             $table->text('activity_type')->nullable()->after('has_done_physical_activity');
             $table->text('activity_intensity')->nullable()->after('activity_type');
         });

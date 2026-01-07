@@ -33,7 +33,6 @@ final class LogTypeOfDayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
         ]);
 
         $result = (new LogTypeOfDay(
@@ -42,7 +41,7 @@ final class LogTypeOfDayTest extends TestCase
             dayType: 'workday',
         ))->execute();
 
-        $this->assertEquals('workday', $result->day_type);
+        $this->assertEquals('workday', $result->moduleDayType->day_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogTypeOfDayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
         ]);
 
         $result = (new LogTypeOfDay(
@@ -89,7 +87,7 @@ final class LogTypeOfDayTest extends TestCase
             dayType: 'day off',
         ))->execute();
 
-        $this->assertEquals('day off', $result->day_type);
+        $this->assertEquals('day off', $result->moduleDayType->day_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogTypeOfDayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
         ]);
 
         $result = (new LogTypeOfDay(
@@ -136,7 +133,7 @@ final class LogTypeOfDayTest extends TestCase
             dayType: 'weekend',
         ))->execute();
 
-        $this->assertEquals('weekend', $result->day_type);
+        $this->assertEquals('weekend', $result->moduleDayType->day_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -174,7 +171,6 @@ final class LogTypeOfDayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
         ]);
 
         $result = (new LogTypeOfDay(
@@ -183,7 +179,7 @@ final class LogTypeOfDayTest extends TestCase
             dayType: 'vacation',
         ))->execute();
 
-        $this->assertEquals('vacation', $result->day_type);
+        $this->assertEquals('vacation', $result->moduleDayType->day_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -221,7 +217,6 @@ final class LogTypeOfDayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
         ]);
 
         $result = (new LogTypeOfDay(
@@ -230,7 +225,7 @@ final class LogTypeOfDayTest extends TestCase
             dayType: 'sick day',
         ))->execute();
 
-        $this->assertEquals('sick day', $result->day_type);
+        $this->assertEquals('sick day', $result->moduleDayType->day_type);
 
         Queue::assertPushedOn(
             queue: 'low',
