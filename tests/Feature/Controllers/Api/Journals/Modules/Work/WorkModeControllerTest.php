@@ -84,7 +84,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('remote', $entry->work_mode);
+        $this->assertEquals('remote', $entry->moduleWork?->work_mode);
     }
 
     #[Test]

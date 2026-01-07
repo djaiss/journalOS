@@ -33,7 +33,6 @@ final class LogWorkLoadTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_load' => null,
         ]);
 
         $result = (new LogWorkLoad(
@@ -42,7 +41,7 @@ final class LogWorkLoadTest extends TestCase
             workLoad: 'light',
         ))->execute();
 
-        $this->assertEquals('light', $result->work_load);
+        $this->assertEquals('light', $result->moduleWork?->work_load);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogWorkLoadTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_load' => null,
         ]);
 
         $result = (new LogWorkLoad(
@@ -89,7 +87,7 @@ final class LogWorkLoadTest extends TestCase
             workLoad: 'medium',
         ))->execute();
 
-        $this->assertEquals('medium', $result->work_load);
+        $this->assertEquals('medium', $result->moduleWork?->work_load);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogWorkLoadTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_load' => null,
         ]);
 
         $result = (new LogWorkLoad(
@@ -136,7 +133,7 @@ final class LogWorkLoadTest extends TestCase
             workLoad: 'heavy',
         ))->execute();
 
-        $this->assertEquals('heavy', $result->work_load);
+        $this->assertEquals('heavy', $result->moduleWork?->work_load);
 
         Queue::assertPushedOn(
             queue: 'low',

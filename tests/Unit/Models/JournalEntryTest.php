@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleSleep;
+use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -85,8 +86,11 @@ final class JournalEntryTest extends TestCase
     public function it_has_one_module_sleep(): void
     {
         $journal = Journal::factory()->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
-        $moduleSleep = ModuleSleep::factory()->for($entry, 'entry')->create([
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleSleep = ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -95,5 +99,24 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleSleep->id, $entry->moduleSleep->id);
         $this->assertEquals('22:00', $entry->moduleSleep->bedtime);
         $this->assertEquals('06:00', $entry->moduleSleep->wake_up_time);
+    }
+
+    #[Test]
+    public function it_has_one_module_work(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleWork = ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'worked' => 'yes',
+            'work_mode' => 'remote',
+        ]);
+
+        $this->assertTrue($entry->moduleWork()->exists());
+        $this->assertEquals($moduleWork->id, $entry->moduleWork->id);
+        $this->assertEquals('yes', $entry->moduleWork->worked);
+        $this->assertEquals('remote', $entry->moduleWork->work_mode);
     }
 }

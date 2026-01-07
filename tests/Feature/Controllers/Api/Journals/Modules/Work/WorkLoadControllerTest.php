@@ -85,7 +85,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('heavy', $entry->work_load);
+        $this->assertEquals('heavy', $entry->moduleWork?->work_load);
     }
 
     #[Test]

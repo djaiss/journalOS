@@ -23,6 +23,8 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
     public function handle(): void
     {
+        $this->entry->loadMissing(['moduleSleep', 'moduleWork']);
+
         $excludedFields = [
             'id',
             'journal_id',
@@ -40,6 +42,20 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             if (! in_array($field, $excludedFields) && $value !== null) {
                 $hasContent = true;
                 break;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleSleep !== null) {
+            $moduleSleep = $this->entry->moduleSleep;
+            if ($moduleSleep->bedtime !== null || $moduleSleep->wake_up_time !== null || $moduleSleep->sleep_duration_in_minutes !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleWork !== null) {
+            $moduleWork = $this->entry->moduleWork;
+            if ($moduleWork->worked !== null || $moduleWork->work_mode !== null || $moduleWork->work_load !== null || $moduleWork->work_procrastinated !== null) {
+                $hasContent = true;
             }
         }
 

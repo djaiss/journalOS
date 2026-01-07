@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,10 +33,13 @@ final class ResetWorkDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'worked' => true,
-            'work_mode' => 'focused',
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'worked' => 'yes',
+            'work_mode' => 'remote',
             'work_load' => 'heavy',
-            'work_procrastinated' => false,
+            'work_procrastinated' => 'no',
         ]);
 
         $result = (new ResetWorkData(
@@ -43,17 +47,10 @@ final class ResetWorkDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->worked);
-        $this->assertNull($result->work_mode);
-        $this->assertNull($result->work_load);
-        $this->assertNull($result->work_procrastinated);
+        $this->assertNull($result->moduleWork);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'worked' => null,
-            'work_mode' => null,
-            'work_load' => null,
-            'work_procrastinated' => null,
+        $this->assertDatabaseMissing('module_work', [
+            'journal_entry_id' => $entry->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

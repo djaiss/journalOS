@@ -26,12 +26,18 @@ final readonly class LogWorkMode
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->work_mode = $this->workMode;
-        $this->entry->save();
+        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleWork->work_mode = $this->workMode;
+        $moduleWork->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleWork');
 
         return $this->entry;
     }

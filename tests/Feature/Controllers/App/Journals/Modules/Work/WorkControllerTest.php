@@ -24,7 +24,6 @@ final class WorkControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'worked' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class WorkControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->worked);
+        $this->assertEquals('yes', $entry->moduleWork?->worked);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class WorkControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'worked' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class WorkControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->worked);
+        $this->assertEquals('no', $entry->moduleWork?->worked);
     }
 
     #[Test]

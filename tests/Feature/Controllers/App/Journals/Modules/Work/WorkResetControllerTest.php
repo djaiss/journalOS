@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Work;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,8 +28,11 @@ final class WorkResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
             'worked' => 'yes',
-            'work_mode' => 'focused',
+            'work_mode' => 'remote',
             'work_load' => 'heavy',
             'work_procrastinated' => 'no',
         ]);
@@ -41,10 +45,7 @@ final class WorkResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->worked);
-        $this->assertNull($entry->work_mode);
-        $this->assertNull($entry->work_load);
-        $this->assertNull($entry->work_procrastinated);
+        $this->assertNull($entry->moduleWork);
     }
 
     #[Test]
@@ -73,8 +74,11 @@ final class WorkResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleWork::factory()->create([
+            'journal_entry_id' => $entry->id,
             'worked' => 'yes',
-            'work_mode' => 'focused',
+            'work_mode' => 'remote',
             'work_load' => 'heavy',
             'work_procrastinated' => 'no',
         ]);
@@ -86,9 +90,6 @@ final class WorkResetControllerTest extends TestCase
         $response->assertStatus(404);
 
         $entry->refresh();
-        $this->assertNotNull($entry->worked);
-        $this->assertNotNull($entry->work_mode);
-        $this->assertNotNull($entry->work_load);
-        $this->assertNotNull($entry->work_procrastinated);
+        $this->assertNotNull($entry->moduleWork);
     }
 }

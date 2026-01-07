@@ -21,15 +21,17 @@ final readonly class ResetWorkData
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->worked = null;
-        $this->entry->work_mode = null;
-        $this->entry->work_load = null;
-        $this->entry->work_procrastinated = null;
-        $this->entry->save();
+
+        $moduleWork = $this->entry->moduleWork;
+        if ($moduleWork !== null) {
+            $moduleWork->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleWork');
 
         return $this->entry;
     }

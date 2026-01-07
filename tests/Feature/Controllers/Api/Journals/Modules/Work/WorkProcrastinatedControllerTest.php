@@ -86,7 +86,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->work_procrastinated);
+        $this->assertEquals('yes', $entry->moduleWork?->work_procrastinated);
     }
 
     #[Test]
