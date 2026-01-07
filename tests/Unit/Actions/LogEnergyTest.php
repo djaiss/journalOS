@@ -33,7 +33,6 @@ final class LogEnergyTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
         ]);
 
         $result = (new LogEnergy(
@@ -42,7 +41,7 @@ final class LogEnergyTest extends TestCase
             energy: 'very low',
         ))->execute();
 
-        $this->assertEquals('very low', $result->energy);
+        $this->assertEquals('very low', $result->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogEnergyTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
         ]);
 
         $result = (new LogEnergy(
@@ -89,7 +87,7 @@ final class LogEnergyTest extends TestCase
             energy: 'low',
         ))->execute();
 
-        $this->assertEquals('low', $result->energy);
+        $this->assertEquals('low', $result->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogEnergyTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
         ]);
 
         $result = (new LogEnergy(
@@ -136,7 +133,7 @@ final class LogEnergyTest extends TestCase
             energy: 'normal',
         ))->execute();
 
-        $this->assertEquals('normal', $result->energy);
+        $this->assertEquals('normal', $result->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -174,7 +171,6 @@ final class LogEnergyTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
         ]);
 
         $result = (new LogEnergy(
@@ -183,7 +179,7 @@ final class LogEnergyTest extends TestCase
             energy: 'high',
         ))->execute();
 
-        $this->assertEquals('high', $result->energy);
+        $this->assertEquals('high', $result->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -221,7 +217,6 @@ final class LogEnergyTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
         ]);
 
         $result = (new LogEnergy(
@@ -230,7 +225,7 @@ final class LogEnergyTest extends TestCase
             energy: 'very high',
         ))->execute();
 
-        $this->assertEquals('very high', $result->energy);
+        $this->assertEquals('very high', $result->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',

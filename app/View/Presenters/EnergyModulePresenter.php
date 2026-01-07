@@ -14,6 +14,8 @@ final readonly class EnergyModulePresenter
 
     public function build(): array
     {
+        $energy = $this->entry->moduleEnergy?->energy;
+
         return [
             'energy_url' => route('journal.entry.energy.update', [
                 'slug' => $this->entry->journal->slug,
@@ -28,12 +30,14 @@ final readonly class EnergyModulePresenter
                 'day' => $this->entry->day,
             ]),
             'energy_options' => $this->energyOptions(),
-            'display_reset' => $this->entry->energy !== null,
+            'display_reset' => $energy !== null,
         ];
     }
 
     private function energyOptions(): array
     {
+        $energy = $this->entry->moduleEnergy?->energy;
+
         return collect(['very low', 'low', 'normal', 'high', 'very high'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
@@ -44,7 +48,7 @@ final readonly class EnergyModulePresenter
                 'very high' => __('Very high'),
                 default => $value,
             },
-            'is_selected' => $this->entry->energy === $value,
+            'is_selected' => $energy === $value,
         ])->all();
     }
 }

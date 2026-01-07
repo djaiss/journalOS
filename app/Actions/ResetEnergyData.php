@@ -22,12 +22,16 @@ final readonly class ResetEnergyData
     {
         $this->validate();
 
-        $this->entry->energy = null;
-        $this->entry->save();
+        $moduleEnergy = $this->entry->moduleEnergy;
+        if ($moduleEnergy !== null) {
+            $moduleEnergy->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleEnergy');
 
         return $this->entry;
     }

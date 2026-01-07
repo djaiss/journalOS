@@ -24,12 +24,18 @@ final readonly class LogEnergy
     {
         $this->validate();
 
-        $this->entry->energy = $this->energy;
-        $this->entry->save();
+        $moduleEnergy = $this->entry->moduleEnergy()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleEnergy->energy = $this->energy;
+        $moduleEnergy->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleEnergy');
 
         return $this->entry;
     }

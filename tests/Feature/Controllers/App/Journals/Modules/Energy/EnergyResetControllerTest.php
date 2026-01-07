@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Energy;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleEnergy;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class EnergyResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry->id,
             'energy' => 'high',
         ]);
 
@@ -38,7 +42,7 @@ final class EnergyResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->energy);
+        $this->assertNull($entry->moduleEnergy);
     }
 
     #[Test]
@@ -67,6 +71,9 @@ final class EnergyResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry->id,
             'energy' => 'low',
         ]);
 

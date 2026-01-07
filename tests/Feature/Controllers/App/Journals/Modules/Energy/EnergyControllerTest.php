@@ -24,7 +24,6 @@ final class EnergyControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class EnergyControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('very low', $entry->energy);
+        $this->assertEquals('very low', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class EnergyControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class EnergyControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('low', $entry->energy);
+        $this->assertEquals('low', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -78,7 +76,6 @@ final class EnergyControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -93,7 +90,7 @@ final class EnergyControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('normal', $entry->energy);
+        $this->assertEquals('normal', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -105,7 +102,6 @@ final class EnergyControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -120,7 +116,7 @@ final class EnergyControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('high', $entry->energy);
+        $this->assertEquals('high', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -132,7 +128,6 @@ final class EnergyControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -147,7 +142,7 @@ final class EnergyControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('very high', $entry->energy);
+        $this->assertEquals('very high', $entry->moduleEnergy->energy);
     }
 
     #[Test]

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 /**
  * Delete a user account.
  */
-final class DestroyAccount
+final readonly class DestroyAccount
 {
     public function __construct(
         private User $user,

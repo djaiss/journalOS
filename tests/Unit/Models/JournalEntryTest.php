@@ -10,6 +10,7 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleHealth;
 use App\Models\ModuleDayType;
+use App\Models\ModuleEnergy;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
@@ -103,6 +104,23 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleSleep->id, $entry->moduleSleep->id);
         $this->assertEquals('22:00', $entry->moduleSleep->bedtime);
         $this->assertEquals('06:00', $entry->moduleSleep->wake_up_time);
+    }
+
+    #[Test]
+    public function it_has_one_module_energy(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleEnergy = ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'energy' => 'normal',
+        ]);
+
+        $this->assertTrue($entry->moduleEnergy()->exists());
+        $this->assertEquals($moduleEnergy->id, $entry->moduleEnergy->id);
+        $this->assertEquals('normal', $entry->moduleEnergy->energy);
     }
 
     #[Test]
