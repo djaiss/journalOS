@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Date;
 
 /**
@@ -24,9 +25,6 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
- * @property string|null $bedtime # Format: 'HH:MM'
- * @property string|null $wake_up_time # Format: 'HH:MM'
- * @property string|null $sleep_duration_in_minutes # Format: '12'
  * @property string|null $worked # Format: 'yes'|'no'
  * @property string|null $work_mode # Format: 'on-site'|'remote'|'hybrid'
  * @property string|null $work_load # Format: 'light'|'medium'|'heavy'
@@ -72,9 +70,6 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
-        'bedtime',
-        'wake_up_time',
-        'sleep_duration_in_minutes',
         'worked',
         'work_mode',
         'work_load',
@@ -105,9 +100,6 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
-            'bedtime' => 'encrypted',
-            'wake_up_time' => 'encrypted',
-            'sleep_duration_in_minutes' => 'encrypted',
             'worked' => 'encrypted',
             'work_mode' => 'encrypted',
             'work_load' => 'encrypted',
@@ -149,6 +141,16 @@ final class JournalEntry extends Model
         return $this->belongsToMany(Book::class, 'book_journal_entry')
             ->withPivot('status')
             ->withTimestamps();
+    }
+
+    /**
+     * Get the sleep module data for this entry.
+     *
+     * @return HasOne<ModuleSleep, $this>
+     */
+    public function moduleSleep(): HasOne
+    {
+        return $this->hasOne(ModuleSleep::class, 'journal_entry_id');
     }
 
     /**

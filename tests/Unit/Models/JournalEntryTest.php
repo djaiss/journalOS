@@ -8,6 +8,7 @@ use App\Enums\BookStatus;
 use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -70,5 +71,21 @@ final class JournalEntryTest extends TestCase
         $this->assertCount(2, $entry->books);
         $this->assertEquals(BookStatus::STARTED->value, $entry->books->first()->pivot->status);
         $this->assertEquals(BookStatus::FINISHED->value, $entry->books->last()->pivot->status);
+    }
+
+    #[Test]
+    public function it_has_one_module_sleep(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->for($journal)->create();
+        $moduleSleep = ModuleSleep::factory()->for($entry, 'entry')->create([
+            'bedtime' => '22:00',
+            'wake_up_time' => '06:00',
+        ]);
+
+        $this->assertTrue($entry->moduleSleep()->exists());
+        $this->assertEquals($moduleSleep->id, $entry->moduleSleep->id);
+        $this->assertEquals('22:00', $entry->moduleSleep->bedtime);
+        $this->assertEquals('06:00', $entry->moduleSleep->wake_up_time);
     }
 }
