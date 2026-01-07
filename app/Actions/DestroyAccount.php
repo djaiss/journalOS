@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Jobs\DeleteRelatedAccountData;
 use App\Mail\AccountDestroyed;
 use App\Models\AccountDeletionReason;
 use App\Models\User;
@@ -22,8 +23,14 @@ final readonly class DestroyAccount
     public function execute(): void
     {
         $this->user->delete();
+        $this->delereteRelatedData();
         $this->sendMail();
         $this->logAccountDeletion();
+    }
+
+    private function delereteRelatedData(): void
+    {
+        DeleteRelatedAccountData::dispatch($this->user->id)->onQueue('low');
     }
 
     private function sendMail(): void
