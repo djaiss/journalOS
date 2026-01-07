@@ -15,15 +15,15 @@
 
   <div id="physical-activity-container" x-data="{
     showActivityDetails:
-      {{ $entry->has_done_physical_activity === 'yes' ? 'true' : 'false' }},
+      {{ $module['has_done_physical_activity'] === 'yes' ? 'true' : 'false' }},
   }">
     <div>
       <!-- Did you do physical activity? -->
       <div class="space-y-2">
         <p>{{ __('Did you do physical activity?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="has_done_physical_activity" value="yes" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['has_done_url']" selected="{{ $entry->has_done_physical_activity === 'yes' }}" @click="showActivityDetails = true" />
-          <x-button.no name="has_done_physical_activity" value="no" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['has_done_url']" selected="{{ $entry->has_done_physical_activity === 'no' }}" @click="showActivityDetails = false" />
+          <x-button.yes name="has_done_physical_activity" value="yes" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['has_done_url']" selected="{{ $module['has_done_physical_activity'] === 'yes' }}" @click="showActivityDetails = true" />
+          <x-button.no name="has_done_physical_activity" value="no" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing" :action="$module['has_done_url']" selected="{{ $module['has_done_physical_activity'] === 'no' }}" @click="showActivityDetails = false" />
         </div>
       </div>
     </div>

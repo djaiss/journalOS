@@ -122,7 +122,7 @@
       <!-- modules -->
       <div class="space-y-2">
         @if ($journal->show_physical_activity_module)
-          @include('app.journal.entry.partials.physical_activity', ['module' => $modules['physical_activity'], 'entry' => $entry])
+          @include('app.journal.entry.partials.physical_activity', ['module' => $modules['physical_activity']])
         @endif
 
         @if ($journal->show_sexual_activity_module)

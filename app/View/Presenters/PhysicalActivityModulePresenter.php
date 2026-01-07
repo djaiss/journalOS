@@ -14,6 +14,8 @@ final readonly class PhysicalActivityModulePresenter
 
     public function build(): array
     {
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity;
+
         return [
             'has_done_url' => route('journal.entry.physical-activity.update', [
                 'slug' => $this->entry->journal->slug,
@@ -39,15 +41,18 @@ final readonly class PhysicalActivityModulePresenter
                 'month' => $this->entry->month,
                 'day' => $this->entry->day,
             ]),
-            'activity_types' => $this->activityTypes(),
-            'activity_intensities' => $this->activityIntensities(),
-            'display_reset' => $this->entry->has_done_physical_activity !== null,
+            'has_done_physical_activity' => $modulePhysicalActivity?->has_done_physical_activity,
+            'activity_types' => $this->activityTypes($modulePhysicalActivity?->activity_type),
+            'activity_intensities' => $this->activityIntensities($modulePhysicalActivity?->activity_intensity),
+            'display_reset' => $modulePhysicalActivity?->has_done_physical_activity !== null
+                || $modulePhysicalActivity?->activity_type !== null
+                || $modulePhysicalActivity?->activity_intensity !== null,
         ];
     }
 
-    private function activityTypes(): array
+    private function activityTypes(?string $selectedType): array
     {
-        return collect(['running', 'cycling', 'swimming', 'gym', 'walking'])->map(fn($value) => [
+        return collect(['running', 'cycling', 'swimming', 'gym', 'walking'])->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'running' => __('Running'),
@@ -57,13 +62,13 @@ final readonly class PhysicalActivityModulePresenter
                 'walking' => __('Walking'),
                 default => $value,
             },
-            'is_selected' => $this->entry->activity_type === $value,
+            'is_selected' => $selectedType === $value,
         ])->all();
     }
 
-    private function activityIntensities(): array
+    private function activityIntensities(?string $selectedIntensity): array
     {
-        return collect(['light', 'moderate', 'intense'])->map(fn($value) => [
+        return collect(['light', 'moderate', 'intense'])->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'light' => __('Light'),
@@ -71,7 +76,7 @@ final readonly class PhysicalActivityModulePresenter
                 'intense' => __('Intense'),
                 default => $value,
             },
-            'is_selected' => $this->entry->activity_intensity === $value,
+            'is_selected' => $selectedIntensity === $value,
         ])->all();
     }
 }

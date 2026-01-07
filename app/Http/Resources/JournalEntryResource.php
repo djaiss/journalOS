@@ -54,9 +54,9 @@ final class JournalEntryResource extends JsonResource
                         'primary_obligation' => $this->primary_obligation,
                     ],
                     'physical_activity' => [
-                        'has_done_physical_activity' => $this->has_done_physical_activity,
-                        'activity_type' => $this->activity_type,
-                        'activity_intensity' => $this->activity_intensity,
+                        'has_done_physical_activity' => $this->modulePhysicalActivity?->has_done_physical_activity,
+                        'activity_type' => $this->modulePhysicalActivity?->activity_type,
+                        'activity_intensity' => $this->modulePhysicalActivity?->activity_intensity,
                     ],
                     'health' => [
                         'health' => $this->health,

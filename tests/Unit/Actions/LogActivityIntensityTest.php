@@ -33,7 +33,6 @@ final class LogActivityIntensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_intensity' => null,
         ]);
 
         $result = (new LogActivityIntensity(
@@ -42,7 +41,7 @@ final class LogActivityIntensityTest extends TestCase
             activityIntensity: 'light',
         ))->execute();
 
-        $this->assertEquals('light', $result->activity_intensity);
+        $this->assertEquals('light', $result->modulePhysicalActivity->activity_intensity);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogActivityIntensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_intensity' => null,
         ]);
 
         $result = (new LogActivityIntensity(
@@ -89,7 +87,7 @@ final class LogActivityIntensityTest extends TestCase
             activityIntensity: 'moderate',
         ))->execute();
 
-        $this->assertEquals('moderate', $result->activity_intensity);
+        $this->assertEquals('moderate', $result->modulePhysicalActivity->activity_intensity);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogActivityIntensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_intensity' => null,
         ]);
 
         $result = (new LogActivityIntensity(
@@ -136,7 +133,7 @@ final class LogActivityIntensityTest extends TestCase
             activityIntensity: 'intense',
         ))->execute();
 
-        $this->assertEquals('intense', $result->activity_intensity);
+        $this->assertEquals('intense', $result->modulePhysicalActivity->activity_intensity);
 
         Queue::assertPushedOn(
             queue: 'low',
