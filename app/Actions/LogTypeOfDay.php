@@ -26,12 +26,18 @@ final readonly class LogTypeOfDay
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->day_type = $this->dayType;
-        $this->entry->save();
+        $moduleDayType = $this->entry->moduleDayType()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleDayType->day_type = $this->dayType;
+        $moduleDayType->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleDayType');
 
         return $this->entry;
     }

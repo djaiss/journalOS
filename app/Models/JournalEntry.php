@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Date;
  * @property int $year
  * @property bool $has_content
  * @property string|null $had_kids_today # Format: 'yes'|'no'
- * @property string|null $day_type # Format: 'workday', 'day off', 'weekend', 'vacation', 'sick day'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property string|null $has_done_physical_activity # Format: 'yes'|'no'
  * @property string|null $activity_type # Format: 'running', 'cycling', 'swimming', 'gym', 'walking'
@@ -64,7 +63,6 @@ final class JournalEntry extends Model
         'year',
         'has_content',
         'had_kids_today',
-        'day_type',
         'primary_obligation',
         'has_done_physical_activity',
         'activity_type',
@@ -87,7 +85,6 @@ final class JournalEntry extends Model
         return [
             'has_content' => 'boolean',
             'had_kids_today' => 'encrypted',
-            'day_type' => 'encrypted',
             'primary_obligation' => 'encrypted',
             'has_done_physical_activity' => 'encrypted',
             'activity_type' => 'encrypted',
@@ -133,6 +130,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the day type module data for this entry.
+     *
+     * @return HasOne<ModuleDayType, $this>
+     */
+    public function moduleDayType(): HasOne
+    {
+        return $this->hasOne(ModuleDayType::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the travel module data for this entry.
      *
      * @return HasOne<ModuleTravel, $this>
@@ -141,7 +148,7 @@ final class JournalEntry extends Model
     {
         return $this->hasOne(ModuleTravel::class, 'journal_entry_id');
     }
-  
+
     /**
      * Get the work module data for this entry.
      *
