@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 /**
  * Delete a user account.
  */
-final readonly class DestroyAccount
+final class DestroyAccount
 {
     public function __construct(
         private User $user,
@@ -22,23 +22,26 @@ final readonly class DestroyAccount
 
     public function execute(): void
     {
+        $userId = $this->user->id;
+        $userCreatedAt = $this->user->created_at;
+
+        $this->deleteRelatedData($userId);
         $this->user->delete();
-        $this->delereteRelatedData();
-        $this->sendMail();
+        $this->sendMail($userCreatedAt);
         $this->logAccountDeletion();
     }
 
-    private function delereteRelatedData(): void
+    private function deleteRelatedData(int $userId): void
     {
-        DeleteRelatedAccountData::dispatch($this->user->id)->onQueue('low');
+        DeleteRelatedAccountData::dispatch($userId)->onQueue('low');
     }
 
-    private function sendMail(): void
+    private function sendMail($userCreatedAt): void
     {
         Mail::to(config('journalos.account_deletion_notification_email'))
             ->queue(new AccountDestroyed(
                 reason: $this->reason,
-                activeSince: $this->user->created_at->format('Y-m-d'),
+                activeSince: $userCreatedAt->format('Y-m-d'),
             ));
     }
 
