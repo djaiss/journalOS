@@ -10,7 +10,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->text('had_kids_today')->nullable()->after('travel_mode');
+            $table->text('had_kids_today')->nullable();
         });
     }
 
