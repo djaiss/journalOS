@@ -126,7 +126,7 @@ final class JournalEntry extends Model
     {
         return $this->hasOne(ModuleMood::class, 'journal_entry_id');
     }
-  
+
     /**
      * Get the health module data for this entry.
      *
@@ -136,7 +136,7 @@ final class JournalEntry extends Model
     {
         return $this->hasOne(ModuleHealth::class, 'journal_entry_id');
     }
-  
+
     /**
      * Get the day type module data for this entry.
      *

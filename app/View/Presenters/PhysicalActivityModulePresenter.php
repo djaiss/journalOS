@@ -52,7 +52,7 @@ final readonly class PhysicalActivityModulePresenter
 
     private function activityTypes(?string $selectedType): array
     {
-        return collect(['running', 'cycling', 'swimming', 'gym', 'walking'])->map(fn ($value) => [
+        return collect(['running', 'cycling', 'swimming', 'gym', 'walking'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'running' => __('Running'),
@@ -68,7 +68,7 @@ final readonly class PhysicalActivityModulePresenter
 
     private function activityIntensities(?string $selectedIntensity): array
     {
-        return collect(['light', 'moderate', 'intense'])->map(fn ($value) => [
+        return collect(['light', 'moderate', 'intense'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'light' => __('Light'),

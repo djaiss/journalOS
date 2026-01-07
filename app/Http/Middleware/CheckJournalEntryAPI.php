@@ -47,7 +47,7 @@ final class CheckJournalEntryAPI
             'moduleWork',
             'moduleTravel',
             'moduleDayType',
-            'modulePhysicalActivity'
+            'modulePhysicalActivity',
         );
 
         $request->attributes->add(['journal_entry' => $entry]);
