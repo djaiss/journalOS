@@ -8,6 +8,7 @@ use App\Enums\BookStatus;
 use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleHealth;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
 use App\Models\ModuleWork;
@@ -103,6 +104,23 @@ final class JournalEntryTest extends TestCase
     }
 
     #[Test]
+    public function it_has_one_module_health(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleHealth = ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'health' => 'okay',
+        ]);
+
+        $this->assertTrue($entry->moduleHealth()->exists());
+        $this->assertEquals($moduleHealth->id, $entry->moduleHealth->id);
+        $this->assertEquals('okay', $entry->moduleHealth->health);
+    }
+
+    #[Test]
     public function it_has_one_module_travel(): void
     {
         $journal = Journal::factory()->create();
@@ -128,7 +146,7 @@ final class JournalEntryTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
-        
+
         $moduleWork = ModuleWork::factory()->create([
             'journal_entry_id' => $entry->id,
             'worked' => 'yes',

@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleHealth;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetHealthDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
             'health' => 'good',
         ]);
 
@@ -40,11 +44,10 @@ final class ResetHealthDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->health);
+        $this->assertNull($result->moduleHealth);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'health' => null,
+        $this->assertDatabaseMissing('module_health', [
+            'journal_entry_id' => $entry->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

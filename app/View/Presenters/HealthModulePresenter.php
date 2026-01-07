@@ -14,6 +14,8 @@ final readonly class HealthModulePresenter
 
     public function build(): array
     {
+        $health = $this->entry->moduleHealth?->health;
+
         return [
             'health_url' => route('journal.entry.health.update', [
                 'slug' => $this->entry->journal->slug,
@@ -28,12 +30,14 @@ final readonly class HealthModulePresenter
                 'day' => $this->entry->day,
             ]),
             'health_options' => $this->healthOptions(),
-            'display_reset' => $this->entry->health !== null,
+            'display_reset' => $health !== null,
         ];
     }
 
     private function healthOptions(): array
     {
+        $health = $this->entry->moduleHealth?->health;
+
         return collect(['not great', 'okay', 'good'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
@@ -42,7 +46,7 @@ final readonly class HealthModulePresenter
                 'good' => __('Good'),
                 default => $value,
             },
-            'is_selected' => $this->entry->health === $value,
+            'is_selected' => $health === $value,
         ])->all();
     }
 }
