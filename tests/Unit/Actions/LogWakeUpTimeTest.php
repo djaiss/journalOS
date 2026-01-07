@@ -28,19 +28,22 @@ final class LogWakeUpTimeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'sleep_duration_in_minutes' => '400',
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogWakeUpTime(
+        (new LogWakeUpTime(
             user: $user,
             entry: $entry,
             wakeUpTime: '06:45',
         ))->execute();
 
-        $this->assertEquals('06:45', $result->wake_up_time);
-        $this->assertEquals('400', $result->sleep_duration_in_minutes);
+        $entry->refresh();
+        $this->assertNotNull($entry->moduleSleep);
+        $this->assertEquals('06:45', $entry->moduleSleep->wake_up_time);
 
         Queue::assertPushedOn(
             queue: 'low',

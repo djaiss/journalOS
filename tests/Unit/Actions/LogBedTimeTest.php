@@ -28,19 +28,22 @@ final class LogBedTimeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
-            'sleep_duration_in_minutes' => '300',
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogBedTime(
+        (new LogBedTime(
             user: $user,
             entry: $entry,
             bedtime: '22:30',
         ))->execute();
 
-        $this->assertEquals('22:30', $result->bedtime);
-        $this->assertEquals('300', $result->sleep_duration_in_minutes);
+        $entry->refresh();
+        $this->assertNotNull($entry->moduleSleep);
+        $this->assertEquals('22:30', $entry->moduleSleep->bedtime);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -82,8 +85,12 @@ final class LogBedTimeTest extends TestCase
         $this->expectExceptionMessage('Invalid bedtime format. Expected HH:MM');
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         $action = new LogBedTime(
             user: $user,
