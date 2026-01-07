@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->text('health')->nullable()->after('activity_type');
+            $table->text('health')->nullable();
         });
     }
 

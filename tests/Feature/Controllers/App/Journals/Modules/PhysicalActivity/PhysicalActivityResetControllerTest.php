@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\PhysicalActivity;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModulePhysicalActivity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class PhysicalActivityResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModulePhysicalActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_done_physical_activity' => 'yes',
             'activity_type' => 'running',
             'activity_intensity' => 'moderate',
@@ -40,9 +44,9 @@ final class PhysicalActivityResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->has_done_physical_activity);
-        $this->assertNull($entry->activity_type);
-        $this->assertNull($entry->activity_intensity);
+        $this->assertNull($entry->modulePhysicalActivity->has_done_physical_activity);
+        $this->assertNull($entry->modulePhysicalActivity->activity_type);
+        $this->assertNull($entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]
@@ -71,6 +75,9 @@ final class PhysicalActivityResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModulePhysicalActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_done_physical_activity' => 'yes',
             'activity_type' => 'swimming',
             'activity_intensity' => 'intense',
@@ -83,8 +90,8 @@ final class PhysicalActivityResetControllerTest extends TestCase
         $response->assertStatus(404);
 
         $entry->refresh();
-        $this->assertNotNull($entry->has_done_physical_activity);
-        $this->assertNotNull($entry->activity_type);
-        $this->assertNotNull($entry->activity_intensity);
+        $this->assertNotNull($entry->modulePhysicalActivity->has_done_physical_activity);
+        $this->assertNotNull($entry->modulePhysicalActivity->activity_type);
+        $this->assertNotNull($entry->modulePhysicalActivity->activity_intensity);
     }
 }

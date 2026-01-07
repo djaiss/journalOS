@@ -33,7 +33,6 @@ final class LogActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
         ]);
 
         $result = (new LogActivityType(
@@ -42,7 +41,7 @@ final class LogActivityTypeTest extends TestCase
             activityType: 'running',
         ))->execute();
 
-        $this->assertEquals('running', $result->activity_type);
+        $this->assertEquals('running', $result->modulePhysicalActivity->activity_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
         ]);
 
         $result = (new LogActivityType(
@@ -89,7 +87,7 @@ final class LogActivityTypeTest extends TestCase
             activityType: 'cycling',
         ))->execute();
 
-        $this->assertEquals('cycling', $result->activity_type);
+        $this->assertEquals('cycling', $result->modulePhysicalActivity->activity_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
         ]);
 
         $result = (new LogActivityType(
@@ -136,7 +133,7 @@ final class LogActivityTypeTest extends TestCase
             activityType: 'swimming',
         ))->execute();
 
-        $this->assertEquals('swimming', $result->activity_type);
+        $this->assertEquals('swimming', $result->modulePhysicalActivity->activity_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -174,7 +171,6 @@ final class LogActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
         ]);
 
         $result = (new LogActivityType(
@@ -183,7 +179,7 @@ final class LogActivityTypeTest extends TestCase
             activityType: 'gym',
         ))->execute();
 
-        $this->assertEquals('gym', $result->activity_type);
+        $this->assertEquals('gym', $result->modulePhysicalActivity->activity_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -221,7 +217,6 @@ final class LogActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
         ]);
 
         $result = (new LogActivityType(
@@ -230,7 +225,7 @@ final class LogActivityTypeTest extends TestCase
             activityType: 'walking',
         ))->execute();
 
-        $this->assertEquals('walking', $result->activity_type);
+        $this->assertEquals('walking', $result->modulePhysicalActivity->activity_type);
 
         Queue::assertPushedOn(
             queue: 'low',

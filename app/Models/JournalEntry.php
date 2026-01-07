@@ -27,9 +27,6 @@ use Illuminate\Support\Facades\Date;
  * @property bool $has_content
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
- * @property string|null $has_done_physical_activity # Format: 'yes'|'no'
- * @property string|null $activity_type # Format: 'running', 'cycling', 'swimming', 'gym', 'walking'
- * @property string|null $activity_intensity # Format: 'light', 'moderate', 'intense'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
  * @property string|null $mood # Format: 'terrible', 'bad', 'okay', 'good', 'great'
  * @property string|null $had_sexual_activity # Format: 'yes'|'no'
@@ -64,9 +61,6 @@ final class JournalEntry extends Model
         'has_content',
         'had_kids_today',
         'primary_obligation',
-        'has_done_physical_activity',
-        'activity_type',
-        'activity_intensity',
         'health',
         'mood',
         'had_sexual_activity',
@@ -86,9 +80,6 @@ final class JournalEntry extends Model
             'has_content' => 'boolean',
             'had_kids_today' => 'encrypted',
             'primary_obligation' => 'encrypted',
-            'has_done_physical_activity' => 'encrypted',
-            'activity_type' => 'encrypted',
-            'activity_intensity' => 'encrypted',
             'mood' => 'encrypted',
             'had_sexual_activity' => 'encrypted',
             'sexual_activity_type' => 'encrypted',
@@ -147,6 +138,16 @@ final class JournalEntry extends Model
     public function moduleTravel(): HasOne
     {
         return $this->hasOne(ModuleTravel::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the physical activity module data for this entry.
+     *
+     * @return HasOne<ModulePhysicalActivity, $this>
+     */
+    public function modulePhysicalActivity(): HasOne
+    {
+        return $this->hasOne(ModulePhysicalActivity::class, 'journal_entry_id');
     }
 
     /**

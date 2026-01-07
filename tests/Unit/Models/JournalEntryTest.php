@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleDayType;
+use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
 use App\Models\ModuleWork;
@@ -137,6 +138,25 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleTravel->id, $entry->moduleTravel->id);
         $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
         $this->assertEquals(['train'], $entry->moduleTravel->travel_mode);
+    }
+
+    #[Test]
+    public function it_has_one_module_physical_activity(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $modulePhysicalActivity = ModulePhysicalActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'has_done_physical_activity' => 'yes',
+            'activity_type' => 'running',
+        ]);
+
+        $this->assertTrue($entry->modulePhysicalActivity()->exists());
+        $this->assertEquals($modulePhysicalActivity->id, $entry->modulePhysicalActivity->id);
+        $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
+        $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
     }
   
     #[Test]
