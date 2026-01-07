@@ -38,13 +38,6 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
         $hasContent = false;
 
-        foreach ($this->entry->getAttributes() as $field => $value) {
-            if (! in_array($field, $excludedFields) && $value !== null) {
-                $hasContent = true;
-                break;
-            }
-        }
-
         if (! $hasContent && $this->entry->moduleSleep !== null) {
             $moduleSleep = $this->entry->moduleSleep;
             if ($moduleSleep->bedtime !== null || $moduleSleep->wake_up_time !== null || $moduleSleep->sleep_duration_in_minutes !== null) {

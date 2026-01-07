@@ -26,13 +26,7 @@ final readonly class LogHasWorked
     public function execute(): JournalEntry
     {
         $this->validate();
-        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleWork->worked = $this->hasWorked;
-        $moduleWork->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -51,6 +45,16 @@ final readonly class LogHasWorked
         if ($this->hasWorked !== 'yes' && $this->hasWorked !== 'no') {
             throw new InvalidArgumentException('hasWorked must be either "yes" or "no"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleWork->worked = $this->hasWorked;
+        $moduleWork->save();
     }
 
     private function logUserAction(): void
