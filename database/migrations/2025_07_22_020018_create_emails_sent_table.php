@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->datetime('delivered_at')->nullable();
             $table->datetime('bounced_at')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
