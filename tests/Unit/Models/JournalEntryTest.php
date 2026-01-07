@@ -121,10 +121,14 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleHealth->id, $entry->moduleHealth->id);
         $this->assertEquals('okay', $entry->moduleHealth->health);
     }
-  
+
     #[Test]
     public function it_has_one_module_day_type(): void
     {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
         $moduleDayType = ModuleDayType::factory()->create([
             'journal_entry_id' => $entry->id,
             'day_type' => 'workday',
@@ -172,7 +176,7 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
         $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
     }
-  
+
     #[Test]
     public function it_has_one_module_work(): void
     {
