@@ -21,14 +21,17 @@ final readonly class ResetSleepData
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->bedtime = null;
-        $this->entry->wake_up_time = null;
-        $this->entry->sleep_duration_in_minutes = null;
-        $this->entry->save();
+
+        $moduleSleep = $this->entry->moduleSleep;
+        if ($moduleSleep !== null) {
+            $moduleSleep->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSleep');
 
         return $this->entry;
     }

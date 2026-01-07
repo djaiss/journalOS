@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\Api\Journals;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -60,6 +61,9 @@ final class JournalEntryControllerTest extends TestCase
             'day' => 12,
             'month' => 4,
             'year' => 2025,
+        ]);
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
             'sleep_duration_in_minutes' => '495',

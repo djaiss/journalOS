@@ -316,6 +316,7 @@ JournalOS is a personal diary. Users can have journals. A journal is made of jou
 
 - Everything should be tested thoroughly. Use PHPUnit.
 - Tests for controllers are stored in /tests/Features/Controllers. All the other tests should be stored in /tests/Unit/ and match the original structure of the files.
+- NEVER use the `for()` method like in `Journal::factory()->for($user)->create();`. Write `$journal = Journal::factory()->create(['user_id' => $user->id,])` instead, with proper line breaks and indentation.
 - Once tests are working, run `composer journalos:unit` to make sure everything works.
 
 ## Mindset & Process

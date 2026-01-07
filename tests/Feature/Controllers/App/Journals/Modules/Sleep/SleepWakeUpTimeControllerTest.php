@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Sleep;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class SleepWakeUpTimeControllerTest extends TestCase
             'day' => 15,
             'month' => 1,
             'year' => 2024,
+        ]);
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -39,7 +43,9 @@ final class SleepWakeUpTimeControllerTest extends TestCase
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/1/15");
         $response->assertSessionHas('status');
 
-        $this->assertSame('07:30', $entry->refresh()->wake_up_time);
+        $entry->refresh();
+        $entry->load('moduleSleep');
+        $this->assertSame('07:30', $entry->moduleSleep->wake_up_time);
     }
 
     #[Test]

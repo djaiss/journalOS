@@ -42,6 +42,8 @@ final class CheckJournalEntryAPI
             abort(404);
         }
 
+        $entry->load('moduleSleep');
+
         $request->attributes->add(['journal_entry' => $entry]);
 
         return $next($request);

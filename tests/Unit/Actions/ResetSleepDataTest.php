@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,9 +33,12 @@ final class ResetSleepDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        $moduleSleep = ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
-            'sleep_duration_in_minutes' => 495,
+            'sleep_duration_in_minutes' => '495',
         ]);
 
         $result = (new ResetSleepData(
@@ -42,16 +46,12 @@ final class ResetSleepDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->bedtime);
-        $this->assertNull($result->wake_up_time);
-        $this->assertNull($result->sleep_duration_in_minutes);
-
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'bedtime' => null,
-            'wake_up_time' => null,
-            'sleep_duration_in_minutes' => null,
+        $this->assertDatabaseMissing('module_sleep', [
+            'id' => $moduleSleep->id,
         ]);
+
+        $entry->refresh();
+        $this->assertNull($entry->moduleSleep);
 
         $this->assertInstanceOf(JournalEntry::class, $result);
 

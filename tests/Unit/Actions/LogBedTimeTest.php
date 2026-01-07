@@ -33,17 +33,17 @@ final class LogBedTimeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sleep_duration_in_minutes' => '300',
         ]);
 
-        $result = (new LogBedTime(
+        (new LogBedTime(
             user: $user,
             entry: $entry,
             bedtime: '22:30',
         ))->execute();
 
-        $this->assertEquals('22:30', $result->bedtime);
-        $this->assertEquals('300', $result->sleep_duration_in_minutes);
+        $entry->refresh();
+        $this->assertNotNull($entry->moduleSleep);
+        $this->assertEquals('22:30', $entry->moduleSleep->bedtime);
 
         Queue::assertPushedOn(
             queue: 'low',

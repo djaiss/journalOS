@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Sleep;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class SleepResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
             'sleep_duration_in_minutes' => 480,
@@ -40,9 +44,8 @@ final class SleepResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->bedtime);
-        $this->assertNull($entry->wake_up_time);
-        $this->assertNull($entry->sleep_duration_in_minutes);
+        $entry->load('moduleSleep');
+        $this->assertNull($entry->moduleSleep);
     }
 
     #[Test]
@@ -71,6 +74,9 @@ final class SleepResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
             'sleep_duration_in_minutes' => 480,
@@ -84,8 +90,10 @@ final class SleepResetControllerTest extends TestCase
 
         // Sleep data should not be reset for unauthorized user
         $entry->refresh();
-        $this->assertNotNull($entry->bedtime);
-        $this->assertNotNull($entry->wake_up_time);
-        $this->assertNotNull($entry->sleep_duration_in_minutes);
+        $entry->load('moduleSleep');
+        $this->assertNotNull($entry->moduleSleep);
+        $this->assertNotNull($entry->moduleSleep->bedtime);
+        $this->assertNotNull($entry->moduleSleep->wake_up_time);
+        $this->assertNotNull($entry->moduleSleep->sleep_duration_in_minutes);
     }
 }
