@@ -22,12 +22,16 @@ final readonly class ResetHealthData
     {
         $this->validate();
 
-        $this->entry->health = null;
-        $this->entry->save();
+        $moduleHealth = $this->entry->moduleHealth;
+        if ($moduleHealth !== null) {
+            $moduleHealth->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleHealth');
 
         return $this->entry;
     }

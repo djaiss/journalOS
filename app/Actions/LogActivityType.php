@@ -24,12 +24,18 @@ final readonly class LogActivityType
     {
         $this->validate();
 
-        $this->entry->activity_type = $this->activityType;
-        $this->entry->save();
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePhysicalActivity->activity_type = $this->activityType;
+        $modulePhysicalActivity->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('modulePhysicalActivity');
 
         return $this->entry;
     }

@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->text('primary_obligation')->nullable()->after('day_type');
+            $table->text('primary_obligation')->nullable();
         });
     }
 

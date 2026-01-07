@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Health;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleHealth;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class HealthResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
             'health' => 'good',
         ]);
 
@@ -37,8 +41,8 @@ final class HealthResetControllerTest extends TestCase
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2022/1/1");
         $response->assertSessionHas('status');
 
-        $entry->refresh();
-        $this->assertNull($entry->health);
+        $entry->refresh()->load('moduleHealth');
+        $this->assertNull($entry->moduleHealth);
     }
 
     #[Test]
@@ -67,6 +71,9 @@ final class HealthResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleHealth::factory()->create([
+            'journal_entry_id' => $entry->id,
             'health' => 'okay',
         ]);
 

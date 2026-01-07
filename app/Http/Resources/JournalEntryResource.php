@@ -48,18 +48,18 @@ final class JournalEntryResource extends JsonResource
                         'had_kids_today' => $this->had_kids_today,
                     ],
                     'day_type' => [
-                        'day_type' => $this->day_type,
+                        'day_type' => $this->moduleDayType?->day_type,
                     ],
                     'primary_obligation' => [
                         'primary_obligation' => $this->primary_obligation,
                     ],
                     'physical_activity' => [
-                        'has_done_physical_activity' => $this->has_done_physical_activity,
-                        'activity_type' => $this->activity_type,
-                        'activity_intensity' => $this->activity_intensity,
+                        'has_done_physical_activity' => $this->modulePhysicalActivity?->has_done_physical_activity,
+                        'activity_type' => $this->modulePhysicalActivity?->activity_type,
+                        'activity_intensity' => $this->modulePhysicalActivity?->activity_intensity,
                     ],
                     'health' => [
-                        'health' => $this->health,
+                        'health' => $this->moduleHealth?->health,
                     ],
                     'mood' => [
                         'mood' => $this->moduleMood?->mood,

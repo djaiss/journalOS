@@ -24,7 +24,6 @@ final class HealthControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -38,8 +37,8 @@ final class HealthControllerTest extends TestCase
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
 
-        $entry->refresh();
-        $this->assertEquals('good', $entry->health);
+        $entry->refresh()->load('moduleHealth');
+        $this->assertEquals('good', $entry->moduleHealth->health);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class HealthControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -65,8 +63,8 @@ final class HealthControllerTest extends TestCase
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
 
-        $entry->refresh();
-        $this->assertEquals('okay', $entry->health);
+        $entry->refresh()->load('moduleHealth');
+        $this->assertEquals('okay', $entry->moduleHealth->health);
     }
 
     #[Test]
@@ -78,7 +76,6 @@ final class HealthControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'health' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -92,8 +89,8 @@ final class HealthControllerTest extends TestCase
         $response->assertRedirectContains("/journals/{$journal->slug}/entries/2024/6/15");
         $response->assertSessionHas('status');
 
-        $entry->refresh();
-        $this->assertEquals('not great', $entry->health);
+        $entry->refresh()->load('moduleHealth');
+        $this->assertEquals('not great', $entry->moduleHealth->health);
     }
 
     #[Test]
