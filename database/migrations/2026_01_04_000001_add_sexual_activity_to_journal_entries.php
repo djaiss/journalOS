@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
             $table->text('had_sexual_activity')->nullable();
-            $table->text('sexual_activity_type')->nullable()->after('had_sexual_activity');
+            $table->text('sexual_activity_type')->nullable();
         });
     }
 
