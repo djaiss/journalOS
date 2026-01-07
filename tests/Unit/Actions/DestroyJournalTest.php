@@ -30,7 +30,9 @@ final class DestroyJournalTest extends TestCase
             'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
         ]);
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new DestroyJournal(
             user: $user,

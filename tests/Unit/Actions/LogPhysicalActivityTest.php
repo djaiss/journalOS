@@ -24,8 +24,12 @@ final class LogPhysicalActivityTest extends TestCase
     public function it_logs_has_done_physical_activity_yes(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         $entry = new LogHasDonePhysicalActivity(
             user: $user,
@@ -40,8 +44,12 @@ final class LogPhysicalActivityTest extends TestCase
     public function it_logs_has_done_physical_activity_no(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         $entry = new LogHasDonePhysicalActivity(
             user: $user,
@@ -56,8 +64,12 @@ final class LogPhysicalActivityTest extends TestCase
     public function it_logs_activity_type(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         $entry = new LogActivityType(
             user: $user,
@@ -72,8 +84,12 @@ final class LogPhysicalActivityTest extends TestCase
     public function it_logs_activity_intensity(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         $entry = new LogActivityIntensity(
             user: $user,
@@ -91,8 +107,12 @@ final class LogPhysicalActivityTest extends TestCase
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $journal = Journal::factory()->for($otherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $otherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         new LogHasDonePhysicalActivity(
             user: $user,
@@ -107,8 +127,12 @@ final class LogPhysicalActivityTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         new LogHasDonePhysicalActivity(
             user: $user,
@@ -123,8 +147,12 @@ final class LogPhysicalActivityTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         new LogActivityType(
             user: $user,
@@ -139,8 +167,12 @@ final class LogPhysicalActivityTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         new LogActivityIntensity(
             user: $user,

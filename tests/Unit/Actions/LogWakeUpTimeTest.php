@@ -28,8 +28,11 @@ final class LogWakeUpTimeTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
             'sleep_duration_in_minutes' => '400',
         ]);
 
@@ -82,8 +85,12 @@ final class LogWakeUpTimeTest extends TestCase
         $this->expectExceptionMessage('Invalid wake-up time format. Expected HH:MM');
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         $action = new LogWakeUpTime(
             user: $user,

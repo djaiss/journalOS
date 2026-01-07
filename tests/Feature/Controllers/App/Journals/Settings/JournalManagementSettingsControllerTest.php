@@ -18,7 +18,8 @@ final class JournalManagementSettingsControllerTest extends TestCase
     public function it_shows_the_journal_management_settings_page(): void
     {
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
         ]);
 

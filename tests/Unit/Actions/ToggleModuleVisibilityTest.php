@@ -26,7 +26,8 @@ final class ToggleModuleVisibilityTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
             'show_sleep_module' => true,
         ]);
 
@@ -68,7 +69,9 @@ final class ToggleModuleVisibilityTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         (new ToggleModuleVisibility(
             user: $user,

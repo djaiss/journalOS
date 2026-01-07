@@ -30,10 +30,18 @@ final class ResetBookDataTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
-        $book1 = Book::factory()->for($user)->create();
-        $book2 = Book::factory()->for($user)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $book1 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $book2 = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         DB::table('book_journal_entry')->insert([
             [
@@ -106,8 +114,12 @@ final class ResetBookDataTest extends TestCase
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $journal = Journal::factory()->for($otherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $otherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new ResetBookData(
             user: $user,
