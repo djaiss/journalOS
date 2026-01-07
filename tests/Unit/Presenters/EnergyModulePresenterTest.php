@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleEnergy;
 use App\View\Presenters\EnergyModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,7 +27,6 @@ final class EnergyModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'energy' => null,
         ]);
 
         $presenter = new EnergyModulePresenter($entry);
@@ -108,6 +108,9 @@ final class EnergyModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry->id,
             'energy' => 'normal',
         ]);
 
@@ -127,6 +130,9 @@ final class EnergyModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry->id,
             'energy' => 'low',
         ]);
 
@@ -142,7 +148,6 @@ final class EnergyModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'energy' => null,
         ]);
 
         $presenter = new EnergyModulePresenter($entry);

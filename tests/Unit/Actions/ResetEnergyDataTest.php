@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleEnergy;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetEnergyDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry->id,
             'energy' => 'high',
         ]);
 
@@ -40,11 +44,10 @@ final class ResetEnergyDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->energy);
+        $this->assertNull($result->moduleEnergy);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'energy' => null,
+        $this->assertDatabaseMissing('module_energy', [
+            'journal_entry_id' => $entry->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

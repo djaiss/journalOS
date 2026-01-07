@@ -10,6 +10,7 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\Log;
 use App\Models\ModuleDayType;
+use App\Models\ModuleEnergy;
 use App\Models\ModuleHealth;
 use App\Models\ModuleMood;
 use App\Models\ModulePhysicalActivity;
@@ -37,6 +38,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ]);
 
         ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
+        ]);
+        ModuleEnergy::factory()->create([
             'journal_entry_id' => $entry->id,
         ]);
         ModuleWork::factory()->create([
@@ -70,6 +74,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
             'id' => $entry->id,
         ]);
         $this->assertDatabaseMissing('module_sleep', [
+            'journal_entry_id' => $entry->id,
+        ]);
+        $this->assertDatabaseMissing('module_energy', [
             'journal_entry_id' => $entry->id,
         ]);
         $this->assertDatabaseMissing('module_work', [
@@ -131,6 +138,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
             ModuleSleep::factory()->create([
                 'journal_entry_id' => $entry->id,
             ]);
+            ModuleEnergy::factory()->create([
+                'journal_entry_id' => $entry->id,
+            ]);
             ModuleWork::factory()->create([
                 'journal_entry_id' => $entry->id,
             ]);
@@ -144,6 +154,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
                 'id' => $entry->id,
             ]);
             $this->assertDatabaseMissing('module_sleep', [
+                'journal_entry_id' => $entry->id,
+            ]);
+            $this->assertDatabaseMissing('module_energy', [
                 'journal_entry_id' => $entry->id,
             ]);
             $this->assertDatabaseMissing('module_work', [
@@ -176,6 +189,12 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ModuleSleep::factory()->create([
             'journal_entry_id' => $entry2->id,
         ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry1->id,
+        ]);
+        ModuleEnergy::factory()->create([
+            'journal_entry_id' => $entry2->id,
+        ]);
 
         $log1 = Log::factory()->create([
             'user_id' => $user->id,
@@ -199,6 +218,12 @@ final class DeleteRelatedJournalDataTest extends TestCase
             'journal_entry_id' => $entry1->id,
         ]);
         $this->assertDatabaseHas('module_sleep', [
+            'journal_entry_id' => $entry2->id,
+        ]);
+        $this->assertDatabaseMissing('module_energy', [
+            'journal_entry_id' => $entry1->id,
+        ]);
+        $this->assertDatabaseHas('module_energy', [
             'journal_entry_id' => $entry2->id,
         ]);
         $this->assertDatabaseMissing('logs', [

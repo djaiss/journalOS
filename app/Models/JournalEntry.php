@@ -30,7 +30,6 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $health # Format: 'good', 'okay', 'not great'
  * @property string|null $had_sexual_activity # Format: 'yes'|'no'
  * @property string|null $sexual_activity_type # Format: 'solo', 'with-partner', 'intimate-contact'
- * @property string|null $energy # Format: 'very low', 'low', 'normal', 'high', 'very high'
  * @property string|null $social_density # Format: 'alone', 'few people', 'crowd', 'too much'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -63,7 +62,6 @@ final class JournalEntry extends Model
         'health',
         'had_sexual_activity',
         'sexual_activity_type',
-        'energy',
         'social_density',
     ];
 
@@ -80,7 +78,6 @@ final class JournalEntry extends Model
             'primary_obligation' => 'encrypted',
             'had_sexual_activity' => 'encrypted',
             'sexual_activity_type' => 'encrypted',
-            'energy' => 'encrypted',
             'social_density' => 'encrypted',
         ];
     }
@@ -115,6 +112,16 @@ final class JournalEntry extends Model
     public function moduleSleep(): HasOne
     {
         return $this->hasOne(ModuleSleep::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the energy module data for this entry.
+     *
+     * @return HasOne<ModuleEnergy, $this>
+     */
+    public function moduleEnergy(): HasOne
+    {
+        return $this->hasOne(ModuleEnergy::class, 'journal_entry_id');
     }
 
     /**

@@ -23,7 +23,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
     public function handle(): void
     {
-        $this->entry->loadMissing(['modulePhysicalActivity', 'moduleMood', 'moduleSleep', 'moduleWork']);
+        $this->entry->loadMissing(['moduleEnergy', 'modulePhysicalActivity', 'moduleMood', 'moduleSleep', 'moduleWork']);
 
         $excludedFields = [
             'id',
@@ -61,6 +61,12 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
         if (! $hasContent && $this->entry->modulePhysicalActivity !== null) {
             $modulePhysicalActivity = $this->entry->modulePhysicalActivity;
             if ($modulePhysicalActivity->has_done_physical_activity !== null || $modulePhysicalActivity->activity_type !== null || $modulePhysicalActivity->activity_intensity !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleEnergy !== null) {
+            if ($this->entry->moduleEnergy->energy !== null) {
                 $hasContent = true;
             }
         }

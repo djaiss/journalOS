@@ -20,6 +20,7 @@ final class DeleteRelatedJournalData implements ShouldQueue
      */
     private const array ENTRY_RELATED_TABLES = [
         'book_journal_entry' => 'journal_entry_id',
+        'module_energy' => 'journal_entry_id',
         'module_sleep' => 'journal_entry_id',
         'module_work' => 'journal_entry_id',
         'module_travel' => 'journal_entry_id',
