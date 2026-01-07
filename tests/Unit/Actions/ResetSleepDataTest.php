@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,11 +28,17 @@ final class ResetSleepDataTest extends TestCase
         Queue::fake();
 
         $user = User::factory()->create();
-        $journal = Journal::factory()->for($user)->create();
-        $entry = JournalEntry::factory()->for($journal)->create([
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleSleep = ModuleSleep::factory()->create([
+            'entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
-            'sleep_duration_in_minutes' => 495,
+            'sleep_duration_in_minutes' => '495',
         ]);
 
         $result = (new ResetSleepData(
@@ -39,16 +46,12 @@ final class ResetSleepDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->bedtime);
-        $this->assertNull($result->wake_up_time);
-        $this->assertNull($result->sleep_duration_in_minutes);
-
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'bedtime' => null,
-            'wake_up_time' => null,
-            'sleep_duration_in_minutes' => null,
+        $this->assertDatabaseMissing('module_sleep', [
+            'id' => $moduleSleep->id,
         ]);
+
+        $entry->refresh();
+        $this->assertNull($entry->moduleSleep);
 
         $this->assertInstanceOf(JournalEntry::class, $result);
 
@@ -85,8 +88,12 @@ final class ResetSleepDataTest extends TestCase
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $journal = Journal::factory()->for($otherUser)->create();
-        $entry = JournalEntry::factory()->for($journal)->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $otherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
 
         (new ResetSleepData(
             user: $user,

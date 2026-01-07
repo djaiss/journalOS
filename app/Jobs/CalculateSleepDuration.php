@@ -7,6 +7,7 @@ namespace App\Jobs;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use App\Models\JournalEntry;
+use App\Models\ModuleSleep;
 use Illuminate\Support\Facades\Date;
 
 /**
@@ -23,18 +24,20 @@ final class CalculateSleepDuration implements ShouldQueue
 
     public function handle(): void
     {
-        if ($this->entry->bedtime === null || $this->entry->wake_up_time === null) {
+        $moduleSleep = $this->entry->moduleSleep;
+
+        if ($moduleSleep === null || $moduleSleep->bedtime === null || $moduleSleep->wake_up_time === null) {
             return;
         }
 
-        $this->entry->sleep_duration_in_minutes = $this->calculateSleepDuration();
-        $this->entry->save();
+        $moduleSleep->sleep_duration_in_minutes = $this->calculateSleepDuration($moduleSleep);
+        $moduleSleep->save();
     }
 
-    private function calculateSleepDuration(): string
+    private function calculateSleepDuration(ModuleSleep $moduleSleep): string
     {
-        $bedtime = Date::createFromFormat('H:i', $this->entry->bedtime);
-        $wakeUpTime = Date::createFromFormat('H:i', $this->entry->wake_up_time);
+        $bedtime = Date::createFromFormat('H:i', $moduleSleep->bedtime);
+        $wakeUpTime = Date::createFromFormat('H:i', $moduleSleep->wake_up_time);
 
         // If wake up time is earlier than bedtime, it means we crossed midnight
         if ($wakeUpTime < $bedtime) {
