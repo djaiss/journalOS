@@ -26,12 +26,12 @@ final readonly class LogWorkProcrastinated
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->work_procrastinated = $this->workProcrastinated;
-        $this->entry->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleWork');
 
         return $this->entry;
     }
@@ -45,6 +45,16 @@ final readonly class LogWorkProcrastinated
         if ($this->workProcrastinated !== 'yes' && $this->workProcrastinated !== 'no') {
             throw new InvalidArgumentException('workProcrastinated must be either "yes" or "no"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleWork->work_procrastinated = $this->workProcrastinated;
+        $moduleWork->save();
     }
 
     private function logUserAction(): void

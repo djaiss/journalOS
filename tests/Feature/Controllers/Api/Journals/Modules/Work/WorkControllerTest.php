@@ -77,7 +77,7 @@ final class WorkControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->worked);
+        $this->assertEquals('yes', $entry->moduleWork?->worked);
     }
 
     #[Test]

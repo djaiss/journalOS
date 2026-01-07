@@ -24,7 +24,6 @@ final class WorkLoadControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_load' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class WorkLoadControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('light', $entry->work_load);
+        $this->assertEquals('light', $entry->moduleWork?->work_load);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class WorkLoadControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_load' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class WorkLoadControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('medium', $entry->work_load);
+        $this->assertEquals('medium', $entry->moduleWork?->work_load);
     }
 
     #[Test]
@@ -78,7 +76,6 @@ final class WorkLoadControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_load' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -93,7 +90,7 @@ final class WorkLoadControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('heavy', $entry->work_load);
+        $this->assertEquals('heavy', $entry->moduleWork?->work_load);
     }
 
     #[Test]

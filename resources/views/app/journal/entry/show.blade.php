@@ -91,13 +91,7 @@
         @endif
 
         @if ($journal->show_work_module)
-          @include(
-            'app.journal.entry.partials.work',
-            [
-              'module' => $modules['work'],
-              'entry' => $entry,
-            ]
-          )
+          @include('app.journal.entry.partials.work', ['module' => $modules['work']])
         @endif
 
         @if ($journal->show_health_module)

@@ -35,10 +35,10 @@ final class JournalEntryResource extends JsonResource
                         'sleep_duration_in_minutes' => $this->moduleSleep?->sleep_duration_in_minutes,
                     ],
                     'work' => [
-                        'worked' => $this->worked,
-                        'work_mode' => $this->work_mode,
-                        'work_load' => $this->work_load,
-                        'work_procrastinated' => $this->work_procrastinated,
+                        'worked' => $this->moduleWork?->worked,
+                        'work_mode' => $this->moduleWork?->work_mode,
+                        'work_load' => $this->moduleWork?->work_load,
+                        'work_procrastinated' => $this->moduleWork?->work_procrastinated,
                     ],
                     'travel' => [
                         'has_traveled_today' => $this->has_traveled_today,

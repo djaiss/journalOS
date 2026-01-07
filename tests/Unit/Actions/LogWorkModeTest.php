@@ -33,7 +33,6 @@ final class LogWorkModeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => null,
         ]);
 
         $result = (new LogWorkMode(
@@ -42,7 +41,7 @@ final class LogWorkModeTest extends TestCase
             workMode: 'on-site',
         ))->execute();
 
-        $this->assertEquals('on-site', $result->work_mode);
+        $this->assertEquals('on-site', $result->moduleWork?->work_mode);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogWorkModeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => null,
         ]);
 
         $result = (new LogWorkMode(
@@ -89,7 +87,7 @@ final class LogWorkModeTest extends TestCase
             workMode: 'remote',
         ))->execute();
 
-        $this->assertEquals('remote', $result->work_mode);
+        $this->assertEquals('remote', $result->moduleWork?->work_mode);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +125,6 @@ final class LogWorkModeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_mode' => null,
         ]);
 
         $result = (new LogWorkMode(
@@ -136,7 +133,7 @@ final class LogWorkModeTest extends TestCase
             workMode: 'hybrid',
         ))->execute();
 
-        $this->assertEquals('hybrid', $result->work_mode);
+        $this->assertEquals('hybrid', $result->moduleWork?->work_mode);
 
         Queue::assertPushedOn(
             queue: 'low',

@@ -24,7 +24,6 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_procrastinated' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->work_procrastinated);
+        $this->assertEquals('yes', $entry->moduleWork?->work_procrastinated);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'work_procrastinated' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->work_procrastinated);
+        $this->assertEquals('no', $entry->moduleWork?->work_procrastinated);
     }
 
     #[Test]

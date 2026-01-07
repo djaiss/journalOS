@@ -14,6 +14,8 @@ final readonly class WorkModulePresenter
 
     public function build(): array
     {
+        $moduleWork = $this->entry->moduleWork;
+
         $hasWorkedURL = route('journal.entry.work.update', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
@@ -57,7 +59,7 @@ final readonly class WorkModulePresenter
                 'hybrid' => __('Hybrid'),
                 default => $mode,
             },
-            'is_selected' => $mode === $this->entry->work_mode,
+            'is_selected' => $mode === $moduleWork?->work_mode,
         ]);
 
         $workLoads = collect(['light', 'medium', 'heavy'])->map(fn($load) => [
@@ -68,18 +70,23 @@ final readonly class WorkModulePresenter
                 'heavy' => __('Heavy'),
                 default => $load,
             },
-            'is_selected' => $load === $this->entry->work_load,
+            'is_selected' => $load === $moduleWork?->work_load,
         ]);
 
         return [
             'has_worked_url' => $hasWorkedURL,
+            'worked' => $moduleWork?->worked,
             'work_mode_url' => $workModeURL,
             'work_modes' => $workModes,
             'work_load_url' => $workLoadURL,
             'work_loads' => $workLoads,
             'work_procrastinated_url' => $workProcrastinatedURL,
+            'work_procrastinated' => $moduleWork?->work_procrastinated,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($this->entry->worked) || ! is_null($this->entry->work_mode) || ! is_null($this->entry->work_load) || ! is_null($this->entry->work_procrastinated),
+            'display_reset' => ! is_null($moduleWork?->worked)
+                || ! is_null($moduleWork?->work_mode)
+                || ! is_null($moduleWork?->work_load)
+                || ! is_null($moduleWork?->work_procrastinated),
         ];
     }
 }
