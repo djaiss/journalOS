@@ -9,6 +9,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModulePhysicalActivity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,9 +32,12 @@ final class ResetPhysicalActivityDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModulePhysicalActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'has_done_physical_activity' => 'yes',
             'activity_type' => 'running',
-            'activity_intensity' => 'high',
+            'activity_intensity' => 'intense',
         ]);
 
         $result = (new ResetPhysicalActivityData(
@@ -41,12 +45,12 @@ final class ResetPhysicalActivityDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->has_done_physical_activity);
-        $this->assertNull($result->activity_type);
-        $this->assertNull($result->activity_intensity);
+        $this->assertNull($result->modulePhysicalActivity->has_done_physical_activity);
+        $this->assertNull($result->modulePhysicalActivity->activity_type);
+        $this->assertNull($result->modulePhysicalActivity->activity_intensity);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
+        $this->assertDatabaseHas('module_physical_activity', [
+            'journal_entry_id' => $entry->id,
             'has_done_physical_activity' => null,
             'activity_type' => null,
             'activity_intensity' => null,

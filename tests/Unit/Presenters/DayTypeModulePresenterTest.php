@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleDayType;
 use App\View\Presenters\DayTypeModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,7 +27,6 @@ final class DayTypeModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'day_type' => null,
         ]);
 
         $presenter = new DayTypeModulePresenter($entry);
@@ -108,6 +108,9 @@ final class DayTypeModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleDayType::factory()->create([
+            'journal_entry_id' => $entry->id,
             'day_type' => 'workday',
         ]);
 
@@ -127,6 +130,9 @@ final class DayTypeModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleDayType::factory()->create([
+            'journal_entry_id' => $entry->id,
             'day_type' => 'vacation',
         ]);
 
@@ -142,7 +148,6 @@ final class DayTypeModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'day_type' => null,
         ]);
 
         $presenter = new DayTypeModulePresenter($entry);

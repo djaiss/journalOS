@@ -22,14 +22,20 @@ final readonly class ResetPhysicalActivityData
     {
         $this->validate();
 
-        $this->entry->has_done_physical_activity = null;
-        $this->entry->activity_type = null;
-        $this->entry->activity_intensity = null;
-        $this->entry->save();
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePhysicalActivity->has_done_physical_activity = null;
+        $modulePhysicalActivity->activity_type = null;
+        $modulePhysicalActivity->activity_intensity = null;
+        $modulePhysicalActivity->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('modulePhysicalActivity');
 
         return $this->entry;
     }

@@ -37,7 +37,7 @@ final class LogPhysicalActivityTest extends TestCase
             hasDonePhysicalActivity: 'yes',
         )->execute();
 
-        $this->assertEquals('yes', $entry->has_done_physical_activity);
+        $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
     }
 
     #[Test]
@@ -57,7 +57,7 @@ final class LogPhysicalActivityTest extends TestCase
             hasDonePhysicalActivity: 'no',
         )->execute();
 
-        $this->assertEquals('no', $entry->has_done_physical_activity);
+        $this->assertEquals('no', $entry->modulePhysicalActivity->has_done_physical_activity);
     }
 
     #[Test]
@@ -77,7 +77,7 @@ final class LogPhysicalActivityTest extends TestCase
             activityType: 'running',
         )->execute();
 
-        $this->assertEquals('running', $entry->activity_type);
+        $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
     }
 
     #[Test]
@@ -97,7 +97,7 @@ final class LogPhysicalActivityTest extends TestCase
             activityIntensity: 'moderate',
         )->execute();
 
-        $this->assertEquals('moderate', $entry->activity_intensity);
+        $this->assertEquals('moderate', $entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]

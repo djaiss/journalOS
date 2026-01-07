@@ -24,12 +24,18 @@ final readonly class LogHasDonePhysicalActivity
     {
         $this->validate();
 
-        $this->entry->has_done_physical_activity = $this->hasDonePhysicalActivity;
-        $this->entry->save();
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;
+        $modulePhysicalActivity->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('modulePhysicalActivity');
 
         return $this->entry;
     }

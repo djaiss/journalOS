@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\DayType;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleDayType;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class DayTypeResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleDayType::factory()->create([
+            'journal_entry_id' => $entry->id,
             'day_type' => 'workday',
         ]);
 
@@ -38,7 +42,7 @@ final class DayTypeResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->day_type);
+        $this->assertNull($entry->moduleDayType);
     }
 
     #[Test]
@@ -67,6 +71,9 @@ final class DayTypeResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleDayType::factory()->create([
+            'journal_entry_id' => $entry->id,
             'day_type' => 'vacation',
         ]);
 
@@ -77,6 +84,6 @@ final class DayTypeResetControllerTest extends TestCase
         $response->assertStatus(404);
 
         $entry->refresh();
-        $this->assertNotNull($entry->day_type);
+        $this->assertNotNull($entry->moduleDayType);
     }
 }

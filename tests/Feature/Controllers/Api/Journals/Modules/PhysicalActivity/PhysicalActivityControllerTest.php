@@ -73,7 +73,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_done_physical_activity' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -87,7 +86,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertJsonStructure($this->singleJsonStructure);
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->has_done_physical_activity);
+        $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
     }
 
     #[Test]
@@ -101,7 +100,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_done_physical_activity' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -114,7 +112,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->has_done_physical_activity);
+        $this->assertEquals('no', $entry->modulePhysicalActivity->has_done_physical_activity);
     }
 
     #[Test]
@@ -128,7 +126,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -141,7 +138,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('running', $entry->activity_type);
+        $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
     }
 
     #[Test]
@@ -155,7 +152,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -168,7 +164,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('cycling', $entry->activity_type);
+        $this->assertEquals('cycling', $entry->modulePhysicalActivity->activity_type);
     }
 
     #[Test]
@@ -182,7 +178,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -195,7 +190,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('swimming', $entry->activity_type);
+        $this->assertEquals('swimming', $entry->modulePhysicalActivity->activity_type);
     }
 
     #[Test]
@@ -209,7 +204,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -222,7 +216,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('gym', $entry->activity_type);
+        $this->assertEquals('gym', $entry->modulePhysicalActivity->activity_type);
     }
 
     #[Test]
@@ -236,7 +230,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -249,7 +242,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('walking', $entry->activity_type);
+        $this->assertEquals('walking', $entry->modulePhysicalActivity->activity_type);
     }
 
     #[Test]
@@ -263,7 +256,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_intensity' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -276,7 +268,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('light', $entry->activity_intensity);
+        $this->assertEquals('light', $entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]
@@ -290,7 +282,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_intensity' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -303,7 +294,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('moderate', $entry->activity_intensity);
+        $this->assertEquals('moderate', $entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]
@@ -317,7 +308,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'activity_intensity' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -330,7 +320,7 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('intense', $entry->activity_intensity);
+        $this->assertEquals('intense', $entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]
@@ -344,9 +334,6 @@ final class PhysicalActivityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'has_done_physical_activity' => null,
-            'activity_type' => null,
-            'activity_intensity' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -361,9 +348,9 @@ final class PhysicalActivityControllerTest extends TestCase
         $response->assertStatus(200);
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->has_done_physical_activity);
-        $this->assertEquals('swimming', $entry->activity_type);
-        $this->assertEquals('moderate', $entry->activity_intensity);
+        $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
+        $this->assertEquals('swimming', $entry->modulePhysicalActivity->activity_type);
+        $this->assertEquals('moderate', $entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]
