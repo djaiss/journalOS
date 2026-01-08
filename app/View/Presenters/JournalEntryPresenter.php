@@ -12,30 +12,77 @@ final readonly class JournalEntryPresenter
 
     public function build(): array
     {
-        $sleep = new SleepModulePresenter($this->entry)
-            ->build('20:00', '06:00');
+        if ($this->entry->journal->show_sleep_module) {
+            $sleep = new SleepModulePresenter($this->entry)->build('20:00', '06:00');
+        } else {
+            $sleep = [];
+        }
 
-        $work = new WorkModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_work_module) {
+            $work = new WorkModulePresenter($this->entry)->build();
+        } else {
+            $work = [];
+        }
 
-        $travel = new TravelModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_travel_module) {
+            $travel = new TravelModulePresenter($this->entry)->build();
+        } else {
+            $travel = [];
+        }
 
-        $kids = new KidsModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_kids_module) {
+            $kids = new KidsModulePresenter($this->entry)->build();
+        } else {
+            $kids = [];
+        }
 
-        $dayType = new DayTypeModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_day_type_module) {
+            $dayType = new DayTypeModulePresenter($this->entry)->build();
+        } else {
+            $dayType = [];
+        }
 
-        $primaryObligation = new PrimaryObligationModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_primary_obligation_module) {
+            $primaryObligation = new PrimaryObligationModulePresenter($this->entry)->build();
+        } else {
+            $primaryObligation = [];
+        }
 
-        $physicalActivity = new PhysicalActivityModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_physical_activity_module) {
+            $physicalActivity = new PhysicalActivityModulePresenter($this->entry)->build();
+        } else {
+            $physicalActivity = [];
+        }
 
-        $health = new HealthModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_health_module) {
+            $health = new HealthModulePresenter($this->entry)->build();
+        } else {
+            $health = [];
+        }
 
-        $mood = new MoodModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_mood_module) {
+            $mood = new MoodModulePresenter($this->entry)->build();
+        } else {
+            $mood = [];
+        }
 
-        $sexualActivity = new SexualActivityModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_sexual_activity_module) {
+            $sexualActivity = new SexualActivityModulePresenter($this->entry)->build();
+        } else {
+            $sexualActivity = [];
+        }
 
-        $energy = new EnergyModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_energy_module) {
+            $energy = new EnergyModulePresenter($this->entry)->build();
+        } else {
+            $energy = [];
+        }
 
-        $socialDensity = new SocialDensityModulePresenter($this->entry)->build();
+        if ($this->entry->journal->show_social_density_module) {
+            $socialDensity = new SocialDensityModulePresenter($this->entry)->build();
+        } else {
+            $socialDensity = [];
+        }
 
         return [
             'sleep' => $sleep,
