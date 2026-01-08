@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $had_sexual_activity # Format: 'yes'|'no'
  * @property string|null $sexual_activity_type # Format: 'solo', 'with-partner', 'intimate-contact'
  * @property Carbon $created_at
@@ -40,6 +41,7 @@ final class ModuleSexualActivity extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'had_sexual_activity',
         'sexual_activity_type',
     ];

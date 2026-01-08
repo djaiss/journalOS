@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $worked # Format: 'yes'|'no'
  * @property string|null $work_mode # Format: 'on-site'|'remote'|'hybrid'
  * @property string|null $work_load # Format: 'light'|'medium'|'heavy'
@@ -42,6 +43,7 @@ final class ModuleWork extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'worked',
         'work_mode',
         'work_load',

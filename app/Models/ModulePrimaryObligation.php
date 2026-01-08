@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -39,6 +40,7 @@ final class ModulePrimaryObligation extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'primary_obligation',
     ];
 
