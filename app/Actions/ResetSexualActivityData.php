@@ -21,13 +21,17 @@ final readonly class ResetSexualActivityData
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->had_sexual_activity = null;
-        $this->entry->sexual_activity_type = null;
-        $this->entry->save();
+
+        $moduleSexualActivity = $this->entry->moduleSexualActivity;
+        if ($moduleSexualActivity !== null) {
+            $moduleSexualActivity->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSexualActivity');
 
         return $this->entry;
     }

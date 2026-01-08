@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSexualActivity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetSexualActivityDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        $moduleSexualActivity = ModuleSexualActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'had_sexual_activity' => 'yes',
             'sexual_activity_type' => 'solo',
         ]);
@@ -41,13 +45,10 @@ final class ResetSexualActivityDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->had_sexual_activity);
-        $this->assertNull($result->sexual_activity_type);
+        $this->assertNull($result->moduleSexualActivity);
 
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'had_sexual_activity' => null,
-            'sexual_activity_type' => null,
+        $this->assertDatabaseMissing('module_sexual_activity', [
+            'id' => $moduleSexualActivity->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

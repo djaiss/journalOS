@@ -77,7 +77,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('with-partner', $entry->sexual_activity_type);
+        $this->assertEquals('with-partner', $entry->moduleSexualActivity->sexual_activity_type);
     }
 
     #[Test]

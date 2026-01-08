@@ -15,14 +15,14 @@
 
   <div id="sexual-activity-container" x-data="{
     showSexualActivityDetails:
-      {{ $entry->had_sexual_activity === 'yes' ? 'true' : 'false' }},
+      {{ $entry->moduleSexualActivity?->had_sexual_activity === 'yes' ? 'true' : 'false' }},
   }">
     <div>
       <div class="space-y-2">
         <p>{{ __('Did you have sexual activity?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="had_sexual_activity" value="yes" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['has_sexual_activity_url']" selected="{{ $entry->had_sexual_activity === 'yes' }}" @click="showSexualActivityDetails = true" />
-          <x-button.no name="had_sexual_activity" value="no" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['has_sexual_activity_url']" selected="{{ $entry->had_sexual_activity === 'no' }}" @click="showSexualActivityDetails = false" />
+          <x-button.yes name="had_sexual_activity" value="yes" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['has_sexual_activity_url']" selected="{{ $entry->moduleSexualActivity?->had_sexual_activity === 'yes' }}" @click="showSexualActivityDetails = true" />
+          <x-button.no name="had_sexual_activity" value="no" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['has_sexual_activity_url']" selected="{{ $entry->moduleSexualActivity?->had_sexual_activity === 'no' }}" @click="showSexualActivityDetails = false" />
         </div>
       </div>
     </div>

@@ -33,7 +33,6 @@ final class LogSexualActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sexual_activity_type' => null,
         ]);
 
         $result = (new LogSexualActivityType(
@@ -42,7 +41,7 @@ final class LogSexualActivityTypeTest extends TestCase
             sexualActivityType: 'solo',
         ))->execute();
 
-        $this->assertEquals('solo', $result->sexual_activity_type);
+        $this->assertEquals('solo', $result->moduleSexualActivity->sexual_activity_type);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogSexualActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sexual_activity_type' => null,
         ]);
 
         $result = (new LogSexualActivityType(
@@ -89,7 +87,7 @@ final class LogSexualActivityTypeTest extends TestCase
             sexualActivityType: 'with-partner',
         ))->execute();
 
-        $this->assertEquals('with-partner', $result->sexual_activity_type);
+        $this->assertEquals('with-partner', $result->moduleSexualActivity->sexual_activity_type);
     }
 
     #[Test]
@@ -103,7 +101,6 @@ final class LogSexualActivityTypeTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sexual_activity_type' => null,
         ]);
 
         $result = (new LogSexualActivityType(
@@ -112,7 +109,7 @@ final class LogSexualActivityTypeTest extends TestCase
             sexualActivityType: 'intimate-contact',
         ))->execute();
 
-        $this->assertEquals('intimate-contact', $result->sexual_activity_type);
+        $this->assertEquals('intimate-contact', $result->moduleSexualActivity->sexual_activity_type);
     }
 
     #[Test]

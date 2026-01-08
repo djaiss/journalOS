@@ -12,6 +12,7 @@ use App\Models\ModuleHealth;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
 use App\Models\ModulePhysicalActivity;
+use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
 use App\Models\ModuleWork;
@@ -213,5 +214,24 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleWork->id, $entry->moduleWork->id);
         $this->assertEquals('yes', $entry->moduleWork->worked);
         $this->assertEquals('remote', $entry->moduleWork->work_mode);
+    }
+
+    #[Test]
+    public function it_has_one_module_sexual_activity(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleSexualActivity = ModuleSexualActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'had_sexual_activity' => 'yes',
+            'sexual_activity_type' => 'solo',
+        ]);
+
+        $this->assertTrue($entry->moduleSexualActivity()->exists());
+        $this->assertEquals($moduleSexualActivity->id, $entry->moduleSexualActivity->id);
+        $this->assertEquals('yes', $entry->moduleSexualActivity->had_sexual_activity);
+        $this->assertEquals('solo', $entry->moduleSexualActivity->sexual_activity_type);
     }
 }

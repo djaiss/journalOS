@@ -77,7 +77,7 @@ final class SexualActivityControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->had_sexual_activity);
+        $this->assertEquals('yes', $entry->moduleSexualActivity->had_sexual_activity);
     }
 
     #[Test]

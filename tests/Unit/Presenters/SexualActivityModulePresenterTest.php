@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSexualActivity;
 use App\View\Presenters\SexualActivityModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,8 +27,6 @@ final class SexualActivityModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'had_sexual_activity' => null,
-            'sexual_activity_type' => null,
         ]);
 
         $presenter = new SexualActivityModulePresenter($entry);
@@ -87,6 +86,9 @@ final class SexualActivityModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleSexualActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'had_sexual_activity' => 'yes',
         ]);
 
@@ -102,6 +104,9 @@ final class SexualActivityModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleSexualActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'sexual_activity_type' => 'with-partner',
         ]);
 
@@ -120,8 +125,6 @@ final class SexualActivityModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_sexual_activity' => null,
-            'sexual_activity_type' => null,
         ]);
 
         $presenter = new SexualActivityModulePresenter($entry);

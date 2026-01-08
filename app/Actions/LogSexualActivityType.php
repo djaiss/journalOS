@@ -28,12 +28,17 @@ final readonly class LogSexualActivityType
     public function execute(): JournalEntry
     {
         $this->validate();
-        $this->entry->sexual_activity_type = $this->sexualActivityType;
-        $this->entry->save();
+        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+        $moduleSexualActivity->sexual_activity_type = $this->sexualActivityType;
+        $moduleSexualActivity->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSexualActivity');
 
         return $this->entry;
     }
