@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $day_type # Format: 'workday', 'day off', 'weekend', 'vacation', 'sick day'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -39,6 +40,7 @@ final class ModuleDayType extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'day_type',
     ];
 

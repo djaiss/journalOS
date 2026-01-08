@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -39,6 +40,7 @@ final class ModuleKids extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'had_kids_today',
     ];
 

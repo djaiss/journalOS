@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $bedtime # Format: 'HH:MM'
  * @property string|null $wake_up_time # Format: 'HH:MM'
  * @property string|null $sleep_duration_in_minutes # Format: '420'
@@ -41,6 +42,7 @@ final class ModuleSleep extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'bedtime',
         'wake_up_time',
         'sleep_duration_in_minutes',

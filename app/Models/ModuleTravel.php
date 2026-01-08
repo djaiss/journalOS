@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $has_traveled_today # Format: 'yes'|'no'
  * @property string|null $travel_details # Format: 'Took a flight to...'
  * @property array<string>|null $travel_mode # Format: ['car',plane,train,bike,bus,walk,boat,other]
@@ -41,6 +42,7 @@ final class ModuleTravel extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'has_traveled_today',
         'travel_details',
         'travel_mode',

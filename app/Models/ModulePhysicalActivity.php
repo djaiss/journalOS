@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property int $id
  * @property int $journal_entry_id
+ * @property string $category # Format: string
  * @property string|null $has_done_physical_activity # Format: 'yes'|'no'
  * @property string|null $activity_type # Format: 'running', 'cycling', 'swimming', 'gym', 'walking'
  * @property string|null $activity_intensity # Format: 'light', 'moderate', 'intense'
@@ -41,6 +42,7 @@ final class ModulePhysicalActivity extends Model
      */
     protected $fillable = [
         'journal_entry_id',
+        'category',
         'has_done_physical_activity',
         'activity_type',
         'activity_intensity',

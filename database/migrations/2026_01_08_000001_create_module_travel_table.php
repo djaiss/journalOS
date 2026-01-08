@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\ModuleType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ return new class extends Migration {
         Schema::create('module_travel', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
+            $table->string('category')->default(ModuleType::MOVEMENT_PLACES->value);
             $table->text('has_traveled_today')->nullable();
             $table->text('travel_details')->nullable();
             $table->text('travel_mode')->nullable();
