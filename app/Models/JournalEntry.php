@@ -25,8 +25,6 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
- * @property string|null $health # Format: 'good', 'okay', 'not great'
- * @property string|null $social_density # Format: 'alone', 'few people', 'crowd', 'too much'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -53,8 +51,6 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
-        'health',
-        'social_density',
     ];
 
     /**
@@ -66,7 +62,6 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
-            'social_density' => 'encrypted',
         ];
     }
 
@@ -110,6 +105,16 @@ final class JournalEntry extends Model
     public function modulePrimaryObligation(): HasOne
     {
         return $this->hasOne(ModulePrimaryObligation::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the social density module data for this entry.
+     *
+     * @return HasOne<ModuleSocialDensity, $this>
+     */
+    public function moduleSocialDensity(): HasOne
+    {
+        return $this->hasOne(ModuleSocialDensity::class, 'journal_entry_id');
     }
 
     /**

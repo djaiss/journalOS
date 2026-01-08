@@ -22,12 +22,16 @@ final readonly class ResetSocialDensityData
     {
         $this->validate();
 
-        $this->entry->social_density = null;
-        $this->entry->save();
+        $moduleSocialDensity = $this->entry->moduleSocialDensity;
+        if ($moduleSocialDensity !== null) {
+            $moduleSocialDensity->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSocialDensity');
 
         return $this->entry;
     }

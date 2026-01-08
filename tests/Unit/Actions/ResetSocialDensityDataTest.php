@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSocialDensity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetSocialDensityDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        $moduleSocialDensity = ModuleSocialDensity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'social_density' => 'crowd',
         ]);
 
@@ -40,11 +44,9 @@ final class ResetSocialDensityDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->social_density);
-
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'social_density' => null,
+        $this->assertNull($result->moduleSocialDensity?->social_density);
+        $this->assertDatabaseMissing('module_social_density', [
+            'id' => $moduleSocialDensity->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

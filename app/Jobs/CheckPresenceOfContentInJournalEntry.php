@@ -28,6 +28,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleKids',
             'modulePhysicalActivity',
             'modulePrimaryObligation',
+            'moduleSocialDensity',
             'moduleMood',
             'moduleSleep',
             'moduleWork',
@@ -88,6 +89,12 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
         if (! $hasContent && $this->entry->modulePrimaryObligation !== null) {
             if ($this->entry->modulePrimaryObligation->primary_obligation !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleSocialDensity !== null) {
+            if ($this->entry->moduleSocialDensity->social_density !== null) {
                 $hasContent = true;
             }
         }

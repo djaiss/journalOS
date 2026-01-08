@@ -33,7 +33,6 @@ final class LogSocialDensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
         ]);
 
         $result = (new LogSocialDensity(
@@ -42,7 +41,10 @@ final class LogSocialDensityTest extends TestCase
             socialDensity: 'alone',
         ))->execute();
 
-        $this->assertEquals('alone', $result->social_density);
+        $this->assertEquals('alone', $result->moduleSocialDensity?->social_density);
+        $this->assertDatabaseHas('module_social_density', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +82,6 @@ final class LogSocialDensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
         ]);
 
         $result = (new LogSocialDensity(
@@ -89,7 +90,10 @@ final class LogSocialDensityTest extends TestCase
             socialDensity: 'few people',
         ))->execute();
 
-        $this->assertEquals('few people', $result->social_density);
+        $this->assertEquals('few people', $result->moduleSocialDensity?->social_density);
+        $this->assertDatabaseHas('module_social_density', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +131,6 @@ final class LogSocialDensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
         ]);
 
         $result = (new LogSocialDensity(
@@ -136,7 +139,10 @@ final class LogSocialDensityTest extends TestCase
             socialDensity: 'crowd',
         ))->execute();
 
-        $this->assertEquals('crowd', $result->social_density);
+        $this->assertEquals('crowd', $result->moduleSocialDensity?->social_density);
+        $this->assertDatabaseHas('module_social_density', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -174,7 +180,6 @@ final class LogSocialDensityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
         ]);
 
         $result = (new LogSocialDensity(
@@ -183,7 +188,10 @@ final class LogSocialDensityTest extends TestCase
             socialDensity: 'too much',
         ))->execute();
 
-        $this->assertEquals('too much', $result->social_density);
+        $this->assertEquals('too much', $result->moduleSocialDensity?->social_density);
+        $this->assertDatabaseHas('module_social_density', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
