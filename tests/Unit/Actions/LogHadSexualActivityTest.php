@@ -33,7 +33,6 @@ final class LogHadSexualActivityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_sexual_activity' => null,
         ]);
 
         $result = (new LogHadSexualActivity(
@@ -42,7 +41,7 @@ final class LogHadSexualActivityTest extends TestCase
             hadSexualActivity: 'yes',
         ))->execute();
 
-        $this->assertEquals('yes', $result->had_sexual_activity);
+        $this->assertEquals('yes', $result->moduleSexualActivity->had_sexual_activity);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +79,6 @@ final class LogHadSexualActivityTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_sexual_activity' => null,
         ]);
 
         $result = (new LogHadSexualActivity(
@@ -89,7 +87,7 @@ final class LogHadSexualActivityTest extends TestCase
             hadSexualActivity: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->had_sexual_activity);
+        $this->assertEquals('no', $result->moduleSexualActivity->had_sexual_activity);
 
         Queue::assertPushedOn(
             queue: 'low',

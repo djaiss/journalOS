@@ -24,7 +24,6 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sexual_activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('solo', $entry->sexual_activity_type);
+        $this->assertEquals('solo', $entry->moduleSexualActivity->sexual_activity_type);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sexual_activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('with-partner', $entry->sexual_activity_type);
+        $this->assertEquals('with-partner', $entry->moduleSexualActivity->sexual_activity_type);
     }
 
     #[Test]
@@ -78,7 +76,6 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'sexual_activity_type' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -93,7 +90,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('intimate-contact', $entry->sexual_activity_type);
+        $this->assertEquals('intimate-contact', $entry->moduleSexualActivity->sexual_activity_type);
     }
 
     #[Test]

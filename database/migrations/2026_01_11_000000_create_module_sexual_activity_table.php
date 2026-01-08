@@ -12,9 +12,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('journal_entries', function (Blueprint $table): void {
+        Schema::create('module_sexual_activity', function (Blueprint $table): void {
+            $table->id();
+            $table->unsignedBigInteger('journal_entry_id');
             $table->text('had_sexual_activity')->nullable();
             $table->text('sexual_activity_type')->nullable();
+            $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 
@@ -23,9 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->dropColumn('sexual_activity_type');
-            $table->dropColumn('had_sexual_activity');
-        });
+        Schema::dropIfExists('module_sexual_activity');
     }
 };

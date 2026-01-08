@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\SexualActivity;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSexualActivity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -24,11 +25,14 @@ final class SexualActivityResetControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_sexual_activity' => 'yes',
-            'sexual_activity_type' => 'solo',
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleSexualActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'had_sexual_activity' => 'yes',
+            'sexual_activity_type' => 'solo',
         ]);
 
         $response = $this->actingAs($user)->put(
@@ -39,8 +43,7 @@ final class SexualActivityResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->had_sexual_activity);
-        $this->assertNull($entry->sexual_activity_type);
+        $this->assertNull($entry->moduleSexualActivity);
     }
 
     #[Test]
@@ -49,8 +52,6 @@ final class SexualActivityResetControllerTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_sexual_activity' => 'yes',
-            'sexual_activity_type' => 'solo',
             'year' => 2022,
             'month' => 1,
             'day' => 1,
@@ -73,8 +74,6 @@ final class SexualActivityResetControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_sexual_activity' => 'yes',
-            'sexual_activity_type' => 'solo',
             'year' => 2022,
             'month' => 1,
             'day' => 1,

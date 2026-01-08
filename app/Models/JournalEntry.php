@@ -28,8 +28,6 @@ use Illuminate\Support\Facades\Date;
  * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
- * @property string|null $had_sexual_activity # Format: 'yes'|'no'
- * @property string|null $sexual_activity_type # Format: 'solo', 'with-partner', 'intimate-contact'
  * @property string|null $social_density # Format: 'alone', 'few people', 'crowd', 'too much'
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -60,8 +58,6 @@ final class JournalEntry extends Model
         'had_kids_today',
         'primary_obligation',
         'health',
-        'had_sexual_activity',
-        'sexual_activity_type',
         'social_density',
     ];
 
@@ -76,8 +72,6 @@ final class JournalEntry extends Model
             'has_content' => 'boolean',
             'had_kids_today' => 'encrypted',
             'primary_obligation' => 'encrypted',
-            'had_sexual_activity' => 'encrypted',
-            'sexual_activity_type' => 'encrypted',
             'social_density' => 'encrypted',
         ];
     }
@@ -122,6 +116,16 @@ final class JournalEntry extends Model
     public function moduleEnergy(): HasOne
     {
         return $this->hasOne(ModuleEnergy::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the sexual activity module data for this entry.
+     *
+     * @return HasOne<ModuleSexualActivity, $this>
+     */
+    public function moduleSexualActivity(): HasOne
+    {
+        return $this->hasOne(ModuleSexualActivity::class, 'journal_entry_id');
     }
 
     /**
