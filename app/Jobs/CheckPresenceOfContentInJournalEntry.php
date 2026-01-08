@@ -33,18 +33,10 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleSleep',
             'moduleWork',
             'moduleSexualActivity',
+            'moduleHealth',
+            'moduleDayType',
+            'moduleTravel',
         ]);
-
-        $excludedFields = [
-            'id',
-            'journal_id',
-            'day',
-            'month',
-            'year',
-            'has_content',
-            'created_at',
-            'updated_at',
-        ];
 
         $hasContent = false;
 
@@ -102,6 +94,25 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
         if (! $hasContent && $this->entry->moduleSexualActivity !== null) {
             $moduleSexualActivity = $this->entry->moduleSexualActivity;
             if ($moduleSexualActivity->had_sexual_activity !== null || $moduleSexualActivity->sexual_activity_type !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleHealth !== null) {
+            if ($this->entry->moduleHealth->health !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleDayType !== null) {
+            if ($this->entry->moduleDayType->day_type !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleTravel !== null) {
+            $moduleTravel = $this->entry->moduleTravel;
+            if ($moduleTravel->has_traveled_today !== null || $moduleTravel->travel_details !== null || $moduleTravel->travel_mode !== null) {
                 $hasContent = true;
             }
         }
