@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Date;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 /**
  * Class JournalEntry
@@ -33,6 +34,7 @@ final class JournalEntry extends Model
 {
     /** @use HasFactory<\Database\Factories\JournalEntryFactory> */
     use HasFactory;
+    use HasRichText;
 
     /**
      * The table associated with the model.
@@ -67,6 +69,15 @@ final class JournalEntry extends Model
             'notes' => 'encrypted',
         ];
     }
+
+    /**
+     * The dynamic rich text attributes.
+     *
+     * @var array<int|string, string>
+     */
+    protected $richTextAttributes = [
+        'notes',
+    ];
 
     /**
      * Get the journal associated with the entry.

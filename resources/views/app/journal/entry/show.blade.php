@@ -132,7 +132,7 @@
     </div>
 
     <div class="bg-white border-l border-gray-200">
-
+      @include('app.journal.entry.partials.note', ['entry' => $entry])
     </div>
   </div>
 </x-app-layout>

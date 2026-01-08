@@ -1,3 +1,4 @@
+import "./libs/trix";
 import 'instant.page';
 
 // --- Turbo Drive ---
