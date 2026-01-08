@@ -17,8 +17,8 @@
     <div class="space-y-2">
       <p>{{ __('Did you have the kids today?') }}</p>
       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-        <x-button.yes name="had_kids_today" value="yes" x-target="kids-container notifications kids-reset days-listing months-listing" :action="$module['had_kids_today_url']" selected="{{ $entry->had_kids_today === 'yes' }}" />
-        <x-button.no name="had_kids_today" value="no" x-target="kids-container notifications kids-reset days-listing months-listing" :action="$module['had_kids_today_url']" selected="{{ $entry->had_kids_today === 'no' }}" />
+        <x-button.yes name="had_kids_today" value="yes" x-target="kids-container notifications kids-reset days-listing months-listing" :action="$module['had_kids_today_url']" selected="{{ $entry->moduleKids?->had_kids_today === 'yes' }}" />
+        <x-button.no name="had_kids_today" value="no" x-target="kids-container notifications kids-reset days-listing months-listing" :action="$module['had_kids_today_url']" selected="{{ $entry->moduleKids?->had_kids_today === 'no' }}" />
       </div>
     </div>
   </div>

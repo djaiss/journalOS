@@ -6,6 +6,7 @@ namespace Tests\Unit\Presenters;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleKids;
 use App\View\Presenters\KidsModulePresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -26,7 +27,6 @@ final class KidsModulePresenterTest extends TestCase
             'year' => 2024,
             'month' => 12,
             'day' => 25,
-            'had_kids_today' => null,
         ]);
 
         $presenter = new KidsModulePresenter($entry);
@@ -66,6 +66,9 @@ final class KidsModulePresenterTest extends TestCase
         $journal = Journal::factory()->create();
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleKids::factory()->create([
+            'journal_entry_id' => $entry->id,
             'had_kids_today' => 'yes',
         ]);
 

@@ -24,7 +24,6 @@ final class KidsControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_kids_today' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -39,7 +38,7 @@ final class KidsControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->had_kids_today);
+        $this->assertEquals('yes', $entry->moduleKids?->had_kids_today);
     }
 
     #[Test]
@@ -51,7 +50,6 @@ final class KidsControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_kids_today' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -66,7 +64,7 @@ final class KidsControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->had_kids_today);
+        $this->assertEquals('no', $entry->moduleKids?->had_kids_today);
     }
 
     #[Test]

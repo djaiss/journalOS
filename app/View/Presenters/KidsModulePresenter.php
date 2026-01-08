@@ -14,6 +14,8 @@ final readonly class KidsModulePresenter
 
     public function build(): array
     {
+        $moduleKids = $this->entry->moduleKids;
+
         return [
             'had_kids_today_url' => route('journal.entry.kids.update', [
                 'slug' => $this->entry->journal->slug,
@@ -27,7 +29,7 @@ final readonly class KidsModulePresenter
                 'month' => $this->entry->month,
                 'day' => $this->entry->day,
             ]),
-            'display_reset' => $this->entry->had_kids_today !== null,
+            'display_reset' => $moduleKids?->had_kids_today !== null,
         ];
     }
 }

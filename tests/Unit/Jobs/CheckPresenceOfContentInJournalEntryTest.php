@@ -7,6 +7,7 @@ namespace Tests\Unit\Jobs;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleKids;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleWork;
@@ -27,7 +28,6 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
             'has_content' => true,
-            'had_kids_today' => null,
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);
@@ -45,7 +45,6 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
             'has_content' => false,
-            'had_kids_today' => null,
         ]);
         ModuleWork::factory()->create([
             'journal_entry_id' => $entry->id,
@@ -67,7 +66,6 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
             'has_content' => false,
-            'had_kids_today' => null,
         ]);
         ModulePhysicalActivity::factory()->create([
             'journal_entry_id' => $entry->id,
@@ -89,11 +87,31 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
             'has_content' => false,
-            'had_kids_today' => null,
         ]);
         ModuleSexualActivity::factory()->create([
             'journal_entry_id' => $entry->id,
             'had_sexual_activity' => 'yes',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_kids_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModuleKids::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'had_kids_today' => 'yes',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);

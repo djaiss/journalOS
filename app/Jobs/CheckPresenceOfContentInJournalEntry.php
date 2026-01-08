@@ -25,6 +25,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
     {
         $this->entry->loadMissing([
             'moduleEnergy',
+            'moduleKids',
             'modulePhysicalActivity',
             'moduleMood',
             'moduleSleep',
@@ -74,6 +75,12 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
         if (! $hasContent && $this->entry->moduleEnergy !== null) {
             if ($this->entry->moduleEnergy->energy !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleKids !== null) {
+            if ($this->entry->moduleKids->had_kids_today !== null) {
                 $hasContent = true;
             }
         }
