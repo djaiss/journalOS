@@ -25,7 +25,6 @@ final class SocialDensityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -81,7 +80,7 @@ final class SocialDensityControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('alone', $entry->social_density);
+        $this->assertEquals('alone', $entry->moduleSocialDensity?->social_density);
     }
 
     #[Test]
@@ -93,7 +92,6 @@ final class SocialDensityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -119,7 +117,7 @@ final class SocialDensityControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('few people', $entry->social_density);
+        $this->assertEquals('few people', $entry->moduleSocialDensity?->social_density);
     }
 
     #[Test]
@@ -131,7 +129,6 @@ final class SocialDensityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -157,7 +154,7 @@ final class SocialDensityControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('crowd', $entry->social_density);
+        $this->assertEquals('crowd', $entry->moduleSocialDensity?->social_density);
     }
 
     #[Test]
@@ -169,7 +166,6 @@ final class SocialDensityControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'social_density' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -195,7 +191,7 @@ final class SocialDensityControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('too much', $entry->social_density);
+        $this->assertEquals('too much', $entry->moduleSocialDensity?->social_density);
     }
 
     #[Test]

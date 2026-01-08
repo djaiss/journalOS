@@ -24,12 +24,18 @@ final readonly class LogSocialDensity
     {
         $this->validate();
 
-        $this->entry->social_density = $this->socialDensity;
-        $this->entry->save();
+        $moduleSocialDensity = $this->entry->moduleSocialDensity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleSocialDensity->social_density = $this->socialDensity;
+        $moduleSocialDensity->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleSocialDensity');
 
         return $this->entry;
     }

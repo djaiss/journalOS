@@ -14,6 +14,8 @@ final readonly class SocialDensityModulePresenter
 
     public function build(): array
     {
+        $moduleSocialDensity = $this->entry->moduleSocialDensity;
+
         return [
             'social_density_url' => route('journal.entry.social-density.update', [
                 'slug' => $this->entry->journal->slug,
@@ -28,12 +30,14 @@ final readonly class SocialDensityModulePresenter
                 'day' => $this->entry->day,
             ]),
             'social_density_options' => $this->socialDensityOptions(),
-            'display_reset' => $this->entry->social_density !== null,
+            'display_reset' => $moduleSocialDensity?->social_density !== null,
         ];
     }
 
     private function socialDensityOptions(): array
     {
+        $moduleSocialDensity = $this->entry->moduleSocialDensity;
+
         return collect(['alone', 'few people', 'crowd', 'too much'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
@@ -43,7 +47,7 @@ final readonly class SocialDensityModulePresenter
                 'too much' => __('Too much'),
                 default => $value,
             },
-            'is_selected' => $this->entry->social_density === $value,
+            'is_selected' => $moduleSocialDensity?->social_density === $value,
         ])->all();
     }
 }

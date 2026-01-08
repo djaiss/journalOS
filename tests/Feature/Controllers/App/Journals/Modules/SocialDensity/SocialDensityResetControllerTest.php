@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\SocialDensity;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleSocialDensity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class SocialDensityResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleSocialDensity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'social_density' => 'crowd',
         ]);
 
@@ -38,7 +42,7 @@ final class SocialDensityResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->social_density);
+        $this->assertNull($entry->moduleSocialDensity?->social_density);
     }
 
     #[Test]
@@ -67,6 +71,9 @@ final class SocialDensityResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleSocialDensity::factory()->create([
+            'journal_entry_id' => $entry->id,
             'social_density' => 'few people',
         ]);
 

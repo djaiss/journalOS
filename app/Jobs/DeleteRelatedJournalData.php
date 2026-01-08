@@ -31,6 +31,7 @@ final class DeleteRelatedJournalData implements ShouldQueue
         'module_day_type' => 'journal_entry_id',
         'module_physical_activity' => 'journal_entry_id',
         'module_primary_obligation' => 'journal_entry_id',
+        'module_social_density' => 'journal_entry_id',
     ];
 
     public function __construct(
