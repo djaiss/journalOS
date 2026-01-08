@@ -41,7 +41,7 @@ final class LogNotesTest extends TestCase
         ))->execute();
 
         $this->assertNotNull($result->notes);
-        $this->assertStringContainsString('Today was great!', $result->notes);
+        $this->assertSame('Today was great!', $result->notes->toPlainText());
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -88,8 +88,8 @@ final class LogNotesTest extends TestCase
         ))->execute();
 
         $this->assertNotNull($result->notes);
-        $this->assertStringNotContainsString('<script>', $result->notes);
-        $this->assertStringContainsString('Safe content', $result->notes);
+        $this->assertStringNotContainsString('<script>', $result->notes->toHtml());
+        $this->assertStringContainsString('Safe content', $result->notes->toPlainText());
     }
 
     #[Test]
@@ -110,8 +110,8 @@ final class LogNotesTest extends TestCase
             notes: '<p>New notes</p>',
         ))->execute();
 
-        $this->assertStringContainsString('New notes', $result->notes);
-        $this->assertStringNotContainsString('Old notes', $result->notes);
+        $this->assertStringContainsString('New notes', $result->notes->toPlainText());
+        $this->assertStringNotContainsString('Old notes', $result->notes->toPlainText());
     }
 
     #[Test]

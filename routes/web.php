@@ -39,8 +39,8 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                     ->name('journal.entry.show');
 
                 // notes
-                Route::get('journals/{slug}/entries/{year}/{month}/{day}/notes/create', [Journals\Notes\NotesController::class, 'create'])
-                    ->name('journal.entry.notes.create');
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}/notes/edit', [Journals\Notes\NotesController::class, 'edit'])->name('journal.entry.notes.edit');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/notes', [Journals\Notes\NotesController::class, 'update'])->name('journal.entry.notes.update');
 
                 // sleep tracking
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}/sleep/{bedtime}/{wake_up_time}', [Journals\Modules\Sleep\SleepController::class, 'show'])
