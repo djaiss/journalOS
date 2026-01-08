@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\Kids;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleKids;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class KidsResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModuleKids::factory()->create([
+            'journal_entry_id' => $entry->id,
             'had_kids_today' => 'yes',
         ]);
 
@@ -38,7 +42,7 @@ final class KidsResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->had_kids_today);
+        $this->assertNull($entry->moduleKids?->had_kids_today);
     }
 
     #[Test]
@@ -67,7 +71,6 @@ final class KidsResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
-            'had_kids_today' => 'no',
         ]);
 
         $response = $this->actingAs($user)->put(

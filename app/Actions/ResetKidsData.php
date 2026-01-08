@@ -22,12 +22,16 @@ final readonly class ResetKidsData
     {
         $this->validate();
 
-        $this->entry->had_kids_today = null;
-        $this->entry->save();
+        $moduleKids = $this->entry->moduleKids;
+        if ($moduleKids !== null) {
+            $moduleKids->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleKids');
 
         return $this->entry;
     }

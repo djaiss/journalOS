@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
- * @property string|null $had_kids_today # Format: 'yes'|'no'
  * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
  * @property string|null $social_density # Format: 'alone', 'few people', 'crowd', 'too much'
@@ -55,7 +54,6 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
-        'had_kids_today',
         'primary_obligation',
         'health',
         'social_density',
@@ -70,7 +68,6 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
-            'had_kids_today' => 'encrypted',
             'primary_obligation' => 'encrypted',
             'social_density' => 'encrypted',
         ];
@@ -106,6 +103,16 @@ final class JournalEntry extends Model
     public function moduleSleep(): HasOne
     {
         return $this->hasOne(ModuleSleep::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the kids module data for this entry.
+     *
+     * @return HasOne<ModuleKids, $this>
+     */
+    public function moduleKids(): HasOne
+    {
+        return $this->hasOne(ModuleKids::class, 'journal_entry_id');
     }
 
     /**

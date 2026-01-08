@@ -40,7 +40,7 @@ final class KidsControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.kids.had_kids_today', 'yes');
 
         $entry->refresh();
-        $this->assertEquals('yes', $entry->had_kids_today);
+        $this->assertEquals('yes', $entry->moduleKids?->had_kids_today);
     }
 
     #[Test]
@@ -67,7 +67,7 @@ final class KidsControllerTest extends TestCase
         $response->assertJsonPath('data.attributes.modules.kids.had_kids_today', 'no');
 
         $entry->refresh();
-        $this->assertEquals('no', $entry->had_kids_today);
+        $this->assertEquals('no', $entry->moduleKids?->had_kids_today);
     }
 
     #[Test]

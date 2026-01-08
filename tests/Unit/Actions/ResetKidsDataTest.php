@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleKids;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetKidsDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        $moduleKids = ModuleKids::factory()->create([
+            'journal_entry_id' => $entry->id,
             'had_kids_today' => 'yes',
         ]);
 
@@ -40,7 +44,10 @@ final class ResetKidsDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->had_kids_today);
+        $this->assertNull($result->moduleKids?->had_kids_today);
+        $this->assertDatabaseMissing('module_kids', [
+            'id' => $moduleKids->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,6 +87,9 @@ final class ResetKidsDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        ModuleKids::factory()->create([
+            'journal_entry_id' => $entry->id,
             'had_kids_today' => 'yes',
         ]);
 

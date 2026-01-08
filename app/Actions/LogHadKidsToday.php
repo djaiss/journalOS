@@ -27,12 +27,18 @@ final readonly class LogHadKidsToday
     {
         $this->validate();
 
-        $this->entry->had_kids_today = $this->hadKidsToday;
-        $this->entry->save();
+        $moduleKids = $this->entry->moduleKids()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleKids->had_kids_today = $this->hadKidsToday;
+        $moduleKids->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('moduleKids');
 
         return $this->entry;
     }

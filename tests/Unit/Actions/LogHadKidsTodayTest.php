@@ -33,7 +33,6 @@ final class LogHadKidsTodayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_kids_today' => null,
         ]);
 
         $result = (new LogHadKidsToday(
@@ -42,7 +41,10 @@ final class LogHadKidsTodayTest extends TestCase
             hadKidsToday: 'yes',
         ))->execute();
 
-        $this->assertEquals('yes', $result->had_kids_today);
+        $this->assertEquals('yes', $result->moduleKids?->had_kids_today);
+        $this->assertDatabaseHas('module_kids', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +82,6 @@ final class LogHadKidsTodayTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'had_kids_today' => null,
         ]);
 
         $result = (new LogHadKidsToday(
@@ -89,7 +90,10 @@ final class LogHadKidsTodayTest extends TestCase
             hadKidsToday: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->had_kids_today);
+        $this->assertEquals('no', $result->moduleKids?->had_kids_today);
+        $this->assertDatabaseHas('module_kids', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
