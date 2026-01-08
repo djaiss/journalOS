@@ -22,12 +22,16 @@ final readonly class ResetPrimaryObligationData
     {
         $this->validate();
 
-        $this->entry->primary_obligation = null;
-        $this->entry->save();
+        $modulePrimaryObligation = $this->entry->modulePrimaryObligation;
+        if ($modulePrimaryObligation !== null) {
+            $modulePrimaryObligation->delete();
+        }
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('modulePrimaryObligation');
 
         return $this->entry;
     }

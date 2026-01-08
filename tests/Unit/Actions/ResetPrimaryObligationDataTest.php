@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModulePrimaryObligation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -32,6 +33,9 @@ final class ResetPrimaryObligationDataTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        $modulePrimaryObligation = ModulePrimaryObligation::factory()->create([
+            'journal_entry_id' => $entry->id,
             'primary_obligation' => 'work',
         ]);
 
@@ -40,11 +44,9 @@ final class ResetPrimaryObligationDataTest extends TestCase
             entry: $entry,
         ))->execute();
 
-        $this->assertNull($result->primary_obligation);
-
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'primary_obligation' => null,
+        $this->assertNull($result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseMissing('module_primary_obligation', [
+            'id' => $modulePrimaryObligation->id,
         ]);
 
         $this->assertInstanceOf(JournalEntry::class, $result);

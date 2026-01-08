@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\App\Journals\Modules\PrimaryObligation;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModulePrimaryObligation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,6 +28,9 @@ final class PrimaryObligationResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModulePrimaryObligation::factory()->create([
+            'journal_entry_id' => $entry->id,
             'primary_obligation' => 'work',
         ]);
 
@@ -38,7 +42,7 @@ final class PrimaryObligationResetControllerTest extends TestCase
         $response->assertSessionHas('status');
 
         $entry->refresh();
-        $this->assertNull($entry->primary_obligation);
+        $this->assertNull($entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]
@@ -67,6 +71,9 @@ final class PrimaryObligationResetControllerTest extends TestCase
             'year' => 2022,
             'month' => 1,
             'day' => 1,
+        ]);
+        ModulePrimaryObligation::factory()->create([
+            'journal_entry_id' => $entry->id,
             'primary_obligation' => 'family',
         ]);
 

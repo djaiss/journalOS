@@ -14,6 +14,8 @@ final readonly class PrimaryObligationModulePresenter
 
     public function build(): array
     {
+        $modulePrimaryObligation = $this->entry->modulePrimaryObligation;
+
         return [
             'primary_obligation_url' => route('journal.entry.primary-obligation.update', [
                 'slug' => $this->entry->journal->slug,
@@ -28,12 +30,14 @@ final readonly class PrimaryObligationModulePresenter
                 'day' => $this->entry->day,
             ]),
             'primary_obligation_options' => $this->primaryObligationOptions(),
-            'display_reset' => $this->entry->primary_obligation !== null,
+            'display_reset' => $modulePrimaryObligation?->primary_obligation !== null,
         ];
     }
 
     private function primaryObligationOptions(): array
     {
+        $modulePrimaryObligation = $this->entry->modulePrimaryObligation;
+
         return collect(['work', 'family', 'personal', 'health', 'travel', 'none'])->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
@@ -45,7 +49,7 @@ final readonly class PrimaryObligationModulePresenter
                 'none' => __('None'),
                 default => $value,
             },
-            'is_selected' => $this->entry->primary_obligation === $value,
+            'is_selected' => $modulePrimaryObligation?->primary_obligation === $value,
         ])->all();
     }
 }
