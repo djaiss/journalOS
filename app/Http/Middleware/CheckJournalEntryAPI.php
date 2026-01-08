@@ -49,6 +49,12 @@ final class CheckJournalEntryAPI
             'moduleDayType',
             'modulePhysicalActivity',
             'moduleSexualActivity',
+            'moduleHealth',
+            'moduleMood',
+            'moduleEnergy',
+            'moduleKids',
+            'modulePrimaryObligation',
+            'moduleSocialDensity',
         );
 
         $request->attributes->add(['journal_entry' => $entry]);
