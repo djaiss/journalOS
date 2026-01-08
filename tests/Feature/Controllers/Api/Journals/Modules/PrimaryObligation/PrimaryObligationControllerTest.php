@@ -25,7 +25,6 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -80,7 +79,7 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('work', $entry->primary_obligation);
+        $this->assertEquals('work', $entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]
@@ -92,7 +91,6 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -118,7 +116,7 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('family', $entry->primary_obligation);
+        $this->assertEquals('family', $entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]
@@ -130,7 +128,6 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -156,7 +153,7 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('personal', $entry->primary_obligation);
+        $this->assertEquals('personal', $entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]
@@ -168,7 +165,6 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -194,7 +190,7 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('health', $entry->primary_obligation);
+        $this->assertEquals('health', $entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]
@@ -206,7 +202,6 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -232,7 +227,7 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('travel', $entry->primary_obligation);
+        $this->assertEquals('travel', $entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]
@@ -244,7 +239,6 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
             'year' => 2024,
             'month' => 6,
             'day' => 15,
@@ -270,7 +264,7 @@ final class PrimaryObligationControllerTest extends TestCase
         ]);
 
         $entry->refresh();
-        $this->assertEquals('none', $entry->primary_obligation);
+        $this->assertEquals('none', $entry->modulePrimaryObligation?->primary_obligation);
     }
 
     #[Test]

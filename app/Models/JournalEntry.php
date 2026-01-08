@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
- * @property string|null $primary_obligation # Format: 'work', 'family', 'personal', 'health', 'travel', 'none'
  * @property string|null $health # Format: 'good', 'okay', 'not great'
  * @property string|null $social_density # Format: 'alone', 'few people', 'crowd', 'too much'
  * @property Carbon $created_at
@@ -54,7 +53,6 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
-        'primary_obligation',
         'health',
         'social_density',
     ];
@@ -68,7 +66,6 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
-            'primary_obligation' => 'encrypted',
             'social_density' => 'encrypted',
         ];
     }
@@ -103,6 +100,16 @@ final class JournalEntry extends Model
     public function moduleSleep(): HasOne
     {
         return $this->hasOne(ModuleSleep::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the primary obligation module data for this entry.
+     *
+     * @return HasOne<ModulePrimaryObligation, $this>
+     */
+    public function modulePrimaryObligation(): HasOne
+    {
+        return $this->hasOne(ModulePrimaryObligation::class, 'journal_entry_id');
     }
 
     /**

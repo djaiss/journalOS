@@ -9,6 +9,7 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleKids;
 use App\Models\ModulePhysicalActivity;
+use App\Models\ModulePrimaryObligation;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleWork;
 use App\Models\User;
@@ -112,6 +113,27 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         ModuleKids::factory()->create([
             'journal_entry_id' => $entry->id,
             'had_kids_today' => 'yes',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_primary_obligation_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModulePrimaryObligation::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'primary_obligation' => 'work',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);

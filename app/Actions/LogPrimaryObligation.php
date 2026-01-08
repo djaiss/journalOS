@@ -24,12 +24,18 @@ final readonly class LogPrimaryObligation
     {
         $this->validate();
 
-        $this->entry->primary_obligation = $this->primaryObligation;
-        $this->entry->save();
+        $modulePrimaryObligation = $this->entry->modulePrimaryObligation()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePrimaryObligation->primary_obligation = $this->primaryObligation;
+        $modulePrimaryObligation->save();
 
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
+
+        $this->entry->load('modulePrimaryObligation');
 
         return $this->entry;
     }

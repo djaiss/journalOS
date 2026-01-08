@@ -33,7 +33,6 @@ final class LogPrimaryObligationTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
         ]);
 
         $result = (new LogPrimaryObligation(
@@ -42,7 +41,10 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'work',
         ))->execute();
 
-        $this->assertEquals('work', $result->primary_obligation);
+        $this->assertEquals('work', $result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseHas('module_primary_obligation', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -80,7 +82,6 @@ final class LogPrimaryObligationTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
         ]);
 
         $result = (new LogPrimaryObligation(
@@ -89,7 +90,10 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'family',
         ))->execute();
 
-        $this->assertEquals('family', $result->primary_obligation);
+        $this->assertEquals('family', $result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseHas('module_primary_obligation', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -127,7 +131,6 @@ final class LogPrimaryObligationTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
         ]);
 
         $result = (new LogPrimaryObligation(
@@ -136,7 +139,10 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'personal',
         ))->execute();
 
-        $this->assertEquals('personal', $result->primary_obligation);
+        $this->assertEquals('personal', $result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseHas('module_primary_obligation', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -174,7 +180,6 @@ final class LogPrimaryObligationTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
         ]);
 
         $result = (new LogPrimaryObligation(
@@ -183,7 +188,10 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'health',
         ))->execute();
 
-        $this->assertEquals('health', $result->primary_obligation);
+        $this->assertEquals('health', $result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseHas('module_primary_obligation', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -221,7 +229,6 @@ final class LogPrimaryObligationTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
         ]);
 
         $result = (new LogPrimaryObligation(
@@ -230,7 +237,10 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'travel',
         ))->execute();
 
-        $this->assertEquals('travel', $result->primary_obligation);
+        $this->assertEquals('travel', $result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseHas('module_primary_obligation', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -268,7 +278,6 @@ final class LogPrimaryObligationTest extends TestCase
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
-            'primary_obligation' => null,
         ]);
 
         $result = (new LogPrimaryObligation(
@@ -277,7 +286,10 @@ final class LogPrimaryObligationTest extends TestCase
             primaryObligation: 'none',
         ))->execute();
 
-        $this->assertEquals('none', $result->primary_obligation);
+        $this->assertEquals('none', $result->modulePrimaryObligation?->primary_obligation);
+        $this->assertDatabaseHas('module_primary_obligation', [
+            'journal_entry_id' => $entry->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
