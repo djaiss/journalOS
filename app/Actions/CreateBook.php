@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Book;
@@ -37,7 +38,7 @@ final class CreateBook
     {
         $this->book = Book::query()->create([
             'user_id' => $this->user->id,
-            'name' => $this->name,
+            'name' => TextSanitizer::plainText($this->name),
         ]);
     }
 

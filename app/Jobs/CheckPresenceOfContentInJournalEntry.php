@@ -117,6 +117,10 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             }
         }
 
+        if (! $hasContent && $this->entry->notes !== null && $this->entry->notes !== '') {
+            $hasContent = true;
+        }
+
         $this->entry->has_content = $hasContent;
         $this->entry->save();
     }

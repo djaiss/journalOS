@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->integer('month');
             $table->integer('year');
             $table->boolean('has_content')->default(false);
+            $table->mediumText('notes')->nullable();
             $table->timestamps();
             $table->foreign('journal_id')->references('id')->on('journals')->onDelete('cascade');
         });

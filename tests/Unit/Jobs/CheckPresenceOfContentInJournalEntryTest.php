@@ -10,8 +10,8 @@ use App\Models\JournalEntry;
 use App\Models\ModuleKids;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModulePrimaryObligation;
-use App\Models\ModuleSocialDensity;
 use App\Models\ModuleSexualActivity;
+use App\Models\ModuleSocialDensity;
 use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -163,5 +163,41 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
 
         $entry->refresh();
         $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_notes_exist(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+            'notes' => '<p>Today was great!</p>',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_false_when_notes_are_empty(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => true,
+            'notes' => '',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertFalse($entry->has_content);
     }
 }

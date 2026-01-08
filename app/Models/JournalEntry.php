@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
+ * @property string|null $notes
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -51,6 +52,7 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
+        'notes',
     ];
 
     /**
@@ -62,6 +64,7 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
+            'notes' => 'encrypted',
         ];
     }
 

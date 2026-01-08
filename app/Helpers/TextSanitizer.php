@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Helpers;
 
+use Stevebauman\Purify\Facades\Purify;
+
 /**
  * Provides utility methods for cleaning user input.
  *
@@ -55,5 +57,23 @@ final class TextSanitizer
         $sanitized = self::plainText($value);
 
         return $sanitized === '' ? null : $sanitized;
+    }
+
+    /**
+     * Sanitize HTML content by removing dangerous tags and attributes.
+     *
+     * This method uses HTMLPurifier to clean HTML input while preserving
+     * safe formatting tags like paragraphs, bold, italic, lists, etc.
+     * It removes scripts, iframes, and other potentially dangerous elements.
+     *
+     * Use this when you need to accept rich text (HTML) from users but want
+     * to ensure it's safe from XSS attacks.
+     *
+     * @param string $value The HTML content to sanitize
+     * @return string The sanitized HTML with dangerous elements removed
+     */
+    public static function html(string $value): string
+    {
+        return Purify::clean($value);
     }
 }
