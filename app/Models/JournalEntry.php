@@ -58,6 +58,15 @@ final class JournalEntry extends Model
     ];
 
     /**
+     * The dynamic rich text attributes.
+     *
+     * @var array<int|string, string>
+     */
+    protected $richTextAttributes = [
+        'notes',
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -69,15 +78,6 @@ final class JournalEntry extends Model
             'notes' => 'encrypted',
         ];
     }
-
-    /**
-     * The dynamic rich text attributes.
-     *
-     * @var array<int|string, string>
-     */
-    protected $richTextAttributes = [
-        'notes',
-    ];
 
     /**
      * Get the journal associated with the entry.

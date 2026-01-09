@@ -29,7 +29,7 @@ final class NotesStoreControllerTest extends TestCase
             'year' => 2026,
         ]);
 
-        $response = $this->actingAs($user)->post(
+        $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2026/1/8/notes",
             ['notes' => 'Hello from Trix'],
         );
@@ -37,7 +37,7 @@ final class NotesStoreControllerTest extends TestCase
         $response->assertRedirect("/journals/{$journal->slug}/entries/2026/1/8");
         $response->assertSessionHas('status', __('Changes saved'));
 
-        $this->assertStringContainsString('Hello from Trix', $entry->fresh()->notes->toPlainText());
+        $this->assertStringContainsString('Hello from Trix', (string) $entry->fresh()->notes);
     }
 
     #[Test]
@@ -54,7 +54,7 @@ final class NotesStoreControllerTest extends TestCase
             'year' => 2026,
         ]);
 
-        $response = $this->actingAs($user)->post(
+        $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2026/1/8/notes",
             ['notes' => ''],
         );
@@ -74,7 +74,7 @@ final class NotesStoreControllerTest extends TestCase
             'year' => 2026,
         ]);
 
-        $response = $this->actingAs($user)->post(
+        $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2026/1/8/notes",
             ['notes' => 'Hello from Trix'],
         );
@@ -93,7 +93,7 @@ final class NotesStoreControllerTest extends TestCase
             'year' => 2026,
         ]);
 
-        $response = $this->post(
+        $response = $this->put(
             "/journals/{$journal->slug}/entries/2026/1/8/notes",
             ['notes' => 'Hello from Trix'],
         );

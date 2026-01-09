@@ -84,6 +84,8 @@ final readonly class JournalEntryPresenter
             $socialDensity = [];
         }
 
+        $notes = new NotesPresenter($this->entry)->build();
+
         return [
             'sleep' => $sleep,
             'work' => $work,
@@ -97,6 +99,7 @@ final readonly class JournalEntryPresenter
             'sexual_activity' => $sexualActivity,
             'energy' => $energy,
             'social_density' => $socialDensity,
+            'notes' => $notes,
         ];
     }
 }

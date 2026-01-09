@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\Helpers\TextSanitizer;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -12,12 +11,11 @@ use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-final readonly class LogNotes
+final readonly class ResetNotes
 {
     public function __construct(
         private User $user,
         private JournalEntry $entry,
-        private string $notes,
     ) {}
 
     public function execute(): JournalEntry
@@ -34,7 +32,7 @@ final readonly class LogNotes
     private function validate(): void
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
-            throw new ModelNotFoundException('Journal entry not found');
+            throw new ModelNotFoundException('Journal not found');
         }
     }
 
@@ -42,7 +40,7 @@ final readonly class LogNotes
     {
         $this->entry->richTextNotes()->updateOrCreate(
             ['field' => 'notes'],
-            ['body' => TextSanitizer::html($this->notes)],
+            ['body' => ''],
         );
         $this->entry->touch();
         $this->entry->unsetRelation('richTextNotes');
@@ -53,8 +51,8 @@ final readonly class LogNotes
         LogUserAction::dispatch(
             user: $this->user,
             journal: $this->entry->journal,
-            action: 'journal_entry_notes_logged',
-            description: sprintf('Logged notes for journal entry on %s', $this->entry->day),
+            action: 'notes_reset',
+            description: 'Reset notes for journal entry on ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 

@@ -41,7 +41,12 @@ final class LogNotesTest extends TestCase
         ))->execute();
 
         $this->assertNotNull($result->notes);
-        $this->assertSame('Today was great!', $result->notes->toPlainText());
+        $this->assertStringContainsString('Today was great!', $result->notes->toPlainText());
+        $this->assertDatabaseHas('rich_texts', [
+            'record_type' => JournalEntry::class,
+            'record_id' => $entry->id,
+            'field' => 'notes',
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',

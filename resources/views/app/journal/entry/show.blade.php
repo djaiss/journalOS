@@ -131,8 +131,8 @@
       </div>
     </div>
 
-    <div class="bg-white border-l border-gray-200">
-      @include('app.journal.entry.partials.note', ['entry' => $entry])
+    <div class="border-l border-gray-200 bg-white">
+      @include('app.journal.entry.partials.note', ['entry' => $entry, 'module' => $modules['notes']])
     </div>
   </div>
 </x-app-layout>

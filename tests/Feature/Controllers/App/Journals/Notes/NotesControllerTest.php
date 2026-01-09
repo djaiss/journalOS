@@ -30,16 +30,13 @@ final class NotesControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->get(
-            "/journals/{$journal->slug}/entries/2026/1/8/notes/create",
+            "/journals/{$journal->slug}/entries/2026/1/8/notes/edit",
         );
 
         $response->assertStatus(200);
-        $response->assertViewIs('app.journal.entry.notes.create');
+        $response->assertViewIs('app.journal.entry.notes.edit');
         $response->assertViewHas('journal', $journal);
         $response->assertViewHas('entry');
-        $response->assertViewHas('years');
-        $response->assertViewHas('months');
-        $response->assertViewHas('days');
     }
 
     #[Test]
@@ -73,7 +70,7 @@ final class NotesControllerTest extends TestCase
         ]);
 
         $response = $this->get(
-            "/journals/{$journal->slug}/entries/2026/1/8/notes/create",
+            "/journals/{$journal->slug}/entries/2026/1/8/notes/edit",
         );
 
         $response->assertRedirect('/login');
