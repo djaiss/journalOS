@@ -29,6 +29,9 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @property string|null $notes
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
+ * @property \Tonysm\RichTextLaravel\Models\RichText|null $richTextNotes
+ *
+ * @method \Illuminate\Database\Eloquent\Relations\MorphOne richTextNotes()
  */
 final class JournalEntry extends Model
 {

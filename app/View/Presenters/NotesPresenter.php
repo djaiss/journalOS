@@ -15,8 +15,9 @@ final readonly class NotesPresenter
 
     public function build(): array
     {
-        $notesRendered = mb_trim($this->entry->notes->render());
-        $hasNotes = $this->entry->notes->toPlainText() !== '';
+        $richText = $this->entry->richTextNotes;
+        $notesRendered = $richText ? mb_trim($richText->render()) : '';
+        $hasNotes = $richText ? $richText->toPlainText() !== '' : false;
 
         return [
             'notes_edit_url' => route('journal.entry.notes.edit', [

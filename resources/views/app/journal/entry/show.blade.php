@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <div class="border-l border-gray-200 bg-white">
+    <div class="flex h-full border-l border-gray-200 bg-white">
       @include('app.journal.entry.partials.note', ['entry' => $entry, 'module' => $modules['notes']])
     </div>
   </div>
