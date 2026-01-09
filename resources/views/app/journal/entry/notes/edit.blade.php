@@ -32,7 +32,7 @@
           <x-error :messages="$errors->get('notes')" />
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-10">
           <x-button.secondary
             href="{{ route('journal.entry.show', [
             'slug' => $journal->slug,
