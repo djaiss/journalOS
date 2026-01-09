@@ -38,6 +38,11 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}', [Journals\JournalEntryController::class, 'show'])
                     ->name('journal.entry.show');
 
+                // notes
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}/notes/edit', [Journals\Notes\NotesController::class, 'edit'])->name('journal.entry.notes.edit');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/notes', [Journals\Notes\NotesController::class, 'update'])->name('journal.entry.notes.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/notes/reset', [Journals\Notes\NotesResetController::class, 'update'])->name('journal.entry.notes.reset');
+
                 // sleep tracking
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}/sleep/{bedtime}/{wake_up_time}', [Journals\Modules\Sleep\SleepController::class, 'show'])
                     ->where(

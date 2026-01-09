@@ -49,9 +49,9 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-4 gap-4 p-4">
+  <div class="grid grid-cols-4 gap-4">
     <!-- Life lane -->
-    <div>
+    <div class="py-4 pl-4">
       <div class="mb-4">
         <h3 class="text-md font-semibold">{{ __('Life') }}</h3>
         <p class="text-gray-600 dark:text-gray-400">{{ __('What happened today') }}</p>
@@ -74,7 +74,7 @@
     </div>
 
     <!-- Day lane -->
-    <div>
+    <div class="py-4">
       <div class="mb-4">
         <h3 class="text-md font-semibold">{{ __('Day') }}</h3>
         <p class="text-gray-600 dark:text-gray-400">{{ __('What shaped the day') }}</p>
@@ -113,7 +113,7 @@
     </div>
 
     <!-- Leisure lane -->
-    <div>
+    <div class="py-4">
       <div class="mb-4">
         <h3 class="text-md font-semibold">{{ __('Leisure') }}</h3>
         <p class="text-gray-600 dark:text-gray-400">{{ __('What you did for yourself') }}</p>
@@ -129,6 +129,10 @@
           @include('app.journal.entry.partials.sexual_activity', ['module' => $modules['sexual_activity'], 'entry' => $entry])
         @endif
       </div>
+    </div>
+
+    <div class="flex h-full border-l border-gray-200 bg-white">
+      @include('app.journal.entry.partials.note', ['entry' => $entry, 'module' => $modules['notes']])
     </div>
   </div>
 </x-app-layout>

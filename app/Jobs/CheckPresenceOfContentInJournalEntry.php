@@ -117,6 +117,11 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             }
         }
 
+        $richTextNotes = $this->entry->richTextNotes;
+        if (! $hasContent && $richTextNotes !== null && ! $richTextNotes->isEmpty()) {
+            $hasContent = true;
+        }
+
         $this->entry->has_content = $hasContent;
         $this->entry->save();
     }

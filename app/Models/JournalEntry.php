@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Date;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 /**
  * Class JournalEntry
@@ -25,13 +26,18 @@ use Illuminate\Support\Facades\Date;
  * @property int $month
  * @property int $year
  * @property bool $has_content
+ * @property string|null $notes
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
+ * @property \Tonysm\RichTextLaravel\Models\RichText|null $richTextNotes
+ *
+ * @method \Illuminate\Database\Eloquent\Relations\MorphOne richTextNotes()
  */
 final class JournalEntry extends Model
 {
     /** @use HasFactory<\Database\Factories\JournalEntryFactory> */
     use HasFactory;
+    use HasRichText;
 
     /**
      * The table associated with the model.
@@ -51,6 +57,16 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
+        'notes',
+    ];
+
+    /**
+     * The dynamic rich text attributes.
+     *
+     * @var array<int|string, string>
+     */
+    protected $richTextAttributes = [
+        'notes',
     ];
 
     /**
@@ -62,6 +78,7 @@ final class JournalEntry extends Model
     {
         return [
             'has_content' => 'boolean',
+            'notes' => 'encrypted',
         ];
     }
 
