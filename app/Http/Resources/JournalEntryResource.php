@@ -20,6 +20,10 @@ final class JournalEntryResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $richTextNotes = $this->richTextNotes;
+        $notes = $richTextNotes ? mb_trim($richTextNotes->render()) : null;
+        $notes = $richTextNotes && $richTextNotes->toPlainText() === '' ? null : $notes;
+
         return [
             'type' => 'journal_entry',
             'id' => (string) $this->id,
@@ -28,6 +32,7 @@ final class JournalEntryResource extends JsonResource
                 'day' => $this->day,
                 'month' => $this->month,
                 'year' => $this->year,
+                'notes' => $notes,
                 'modules' => [
                     'sleep' => [
                         'bedtime' => $this->moduleSleep?->bedtime,

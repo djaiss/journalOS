@@ -24,6 +24,8 @@ use App\Http\Controllers\Api\Journals\Modules\Work\WorkController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkLoadController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkModeController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkProcrastinatedController;
+use App\Http\Controllers\Api\Journals\Notes\NotesController;
+use App\Http\Controllers\Api\Journals\Notes\NotesResetController;
 use App\Http\Controllers\Api\Settings;
 use App\Http\Controllers\Api\Settings\Account\DestroyAccountController;
 use App\Http\Controllers\Api\Settings\Account\PruneAccountController;
@@ -165,6 +167,18 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.social-density.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/notes', [NotesController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.notes.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/notes/reset', [NotesResetController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.notes.reset');
             });
 
             // settings

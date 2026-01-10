@@ -55,6 +55,7 @@ final class CheckJournalEntryAPI
             'moduleKids',
             'modulePrimaryObligation',
             'moduleSocialDensity',
+            'richTextNotes',
         );
 
         $request->attributes->add(['journal_entry' => $entry]);

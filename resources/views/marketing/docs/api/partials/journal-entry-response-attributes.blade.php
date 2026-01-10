@@ -6,6 +6,7 @@
   <x-marketing.docs.attribute name="attributes.day" type="integer" description="The day of the journal entry." />
   <x-marketing.docs.attribute name="attributes.month" type="integer" description="The month of the journal entry." />
   <x-marketing.docs.attribute name="attributes.year" type="integer" description="The year of the journal entry." />
+  <x-marketing.docs.attribute name="attributes.notes" type="string" description="The rich text notes for the journal entry, rendered as HTML." />
   <x-marketing.docs.attribute name="attributes.modules" type="object" description="The modules included with the journal entry." />
   <x-marketing.docs.attribute name="attributes.modules.sleep" type="object" description="The sleep module payload." />
   <x-marketing.docs.attribute name="attributes.modules.sleep.bedtime" type="string" description="The bedtime time of the journal entry." />

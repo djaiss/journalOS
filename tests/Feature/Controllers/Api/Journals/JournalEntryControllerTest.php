@@ -26,6 +26,7 @@ final class JournalEntryControllerTest extends TestCase
                 'day',
                 'month',
                 'year',
+                'notes',
                 'modules' => [
                     'sleep' => [
                         'bedtime',
@@ -62,12 +63,18 @@ final class JournalEntryControllerTest extends TestCase
             'month' => 4,
             'year' => 2025,
         ]);
+        $entry->richTextNotes()->create([
+            'field' => 'notes',
+            'body' => '<p>Notes for the entry.</p>',
+        ]);
         ModuleSleep::factory()->create([
             'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',
             'wake_up_time' => '06:45',
             'sleep_duration_in_minutes' => '495',
         ]);
+        $entry->load('richTextNotes');
+        $expectedNotes = mb_trim($entry->richTextNotes->render());
 
         Sanctum::actingAs($user);
 
@@ -84,6 +91,7 @@ final class JournalEntryControllerTest extends TestCase
                     'day' => 12,
                     'month' => 4,
                     'year' => 2025,
+                    'notes' => $expectedNotes,
                     'modules' => [
                         'sleep' => [
                             'bedtime' => '22:30',
