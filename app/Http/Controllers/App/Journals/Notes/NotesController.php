@@ -29,7 +29,7 @@ final class NotesController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'notes' => ['required', 'string'],
+            'notes' => ['required', 'string', 'max:100000'],
         ]);
 
         new LogNotes(
