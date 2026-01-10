@@ -68,6 +68,14 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel/mode', [Journals\Modules\Travel\TravelModeController::class, 'update'])->name('journal.entry.travel.mode.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel/reset', [Journals\Modules\Travel\TravelResetController::class, 'update'])->name('journal.entry.travel.reset');
 
+                // shopping
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping', [Journals\Modules\Shopping\ShoppingController::class, 'update'])->name('journal.entry.shopping.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/type', [Journals\Modules\Shopping\ShoppingTypeController::class, 'update'])->name('journal.entry.shopping.type.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/intent', [Journals\Modules\Shopping\ShoppingIntentController::class, 'update'])->name('journal.entry.shopping.intent.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/context', [Journals\Modules\Shopping\ShoppingContextController::class, 'update'])->name('journal.entry.shopping.context.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/for', [Journals\Modules\Shopping\ShoppingForController::class, 'update'])->name('journal.entry.shopping.for.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/reset', [Journals\Modules\Shopping\ShoppingResetController::class, 'update'])->name('journal.entry.shopping.reset');
+
                 // kids
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/kids', [Journals\Modules\Kids\KidsController::class, 'update'])->name('journal.entry.kids.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/kids/reset', [Journals\Modules\Kids\KidsResetController::class, 'update'])->name('journal.entry.kids.reset');

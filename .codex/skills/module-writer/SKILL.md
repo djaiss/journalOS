@@ -107,6 +107,7 @@ Create a factory for the model.
 1. Marketing docs live in `resources/views/marketing/docs/api`.
 1. Add a new module in the modules folder.
 1. Update the resources/views/marketing/docs/api/partials/journal-entry-response.blade.php partial.
+1. Update the sidebar to include this new entry.
 1. Add a new controller for the documentation of this module.
 1. Add a controller test that asserts the content loads.
 

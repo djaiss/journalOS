@@ -13,6 +13,11 @@ use App\Http\Controllers\Api\Journals\Modules\Kids\KidsController as KidsModuleC
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
 use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligationController as PrimaryObligationModuleController;
+use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingContextController;
+use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingController;
+use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingForController;
+use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingIntentController;
+use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingTypeController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityTypeController;
 use App\Http\Controllers\Api\Journals\Modules\SocialDensity\SocialDensityController as SocialDensityModuleController;
@@ -107,6 +112,36 @@ Route::name('api.')->group(function (): void {
                     ->whereNumber('month')
                     ->whereNumber('day')
                     ->name('journal.entry.travel.mode.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/shopping', [ShoppingController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.shopping.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/shopping/type', [ShoppingTypeController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.shopping.type.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/shopping/intent', [ShoppingIntentController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.shopping.intent.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/shopping/context', [ShoppingContextController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.shopping.context.update');
+
+                Route::put('journals/{id}/{year}/{month}/{day}/shopping/for', [ShoppingForController::class, 'update'])
+                    ->whereNumber('year')
+                    ->whereNumber('month')
+                    ->whereNumber('day')
+                    ->name('journal.entry.shopping.for.update');
 
                 Route::put('journals/{id}/{year}/{month}/{day}/kids', [KidsModuleController::class, 'update'])
                     ->whereNumber('year')

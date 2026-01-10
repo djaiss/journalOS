@@ -9,7 +9,7 @@
     <div class="inline-flex h-9 items-center justify-start gap-1 rounded-lg bg-gray-100 p-1 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
       <button type="button" @click="activeTab = 'all'" :class="activeTab === 'all' ? 'bg-white text-gray-900 shadow dark:bg-gray-950 dark:text-gray-50' : ''" class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap ring-offset-white transition-all hover:bg-white hover:shadow focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 hover:dark:bg-gray-950 hover:dark:text-gray-50 dark:focus-visible:ring-gray-300">
         <span>{{ __('All') }}</span>
-        <span class="rounded-full bg-gray-200 px-2 py-0.5 text-xs dark:bg-gray-700">12</span>
+        <span class="rounded-full bg-gray-200 px-2 py-0.5 text-xs dark:bg-gray-700">13</span>
       </button>
       <button type="button" @click="activeTab = 'body'" :class="activeTab === 'body' ? 'bg-white text-gray-900 shadow dark:bg-gray-950 dark:text-gray-50' : ''" class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap ring-offset-white transition-all hover:bg-white hover:shadow focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 hover:dark:bg-gray-950 hover:dark:text-gray-50 dark:focus-visible:ring-gray-300">
         <span>💪</span>
@@ -34,7 +34,7 @@
       <button type="button" @click="activeTab = 'places'" :class="activeTab === 'places' ? 'bg-white text-gray-900 shadow dark:bg-gray-950 dark:text-gray-50' : ''" class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap ring-offset-white transition-all hover:bg-white hover:shadow focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 hover:dark:bg-gray-950 hover:dark:text-gray-50 dark:focus-visible:ring-gray-300">
         <span>📍</span>
         <span>{{ __('Places') }}</span>
-        <span class="rounded-full bg-gray-200 px-2 py-0.5 text-xs dark:bg-gray-700">1</span>
+        <span class="rounded-full bg-gray-200 px-2 py-0.5 text-xs dark:bg-gray-700">2</span>
       </button>
     </div>
   </div>
@@ -151,6 +151,17 @@
           <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Travel module') }}</p>
           <div class="w-full justify-self-start">
             <x-toggle name="enabled" :checked="$journal->show_travel_module">{{ $journal->show_travel_module ? __('Enabled') : __('Disabled') }}</x-toggle>
+          </div>
+        </div>
+      </x-form>
+
+      <!-- shopping module -->
+      <x-form method="put" action="{{ route('journal.settings.modules.update', ['slug' => $journal->slug]) }}" x-target="modules-container notifications" x-target.back="modules-container" id="shopping-module-form">
+        <input type="hidden" name="module" value="shopping" />
+        <div class="grid grid-cols-3 items-center border-b border-gray-200 p-3 hover:bg-blue-50 dark:border-gray-700 dark:hover:bg-gray-800">
+          <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Shopping module') }}</p>
+          <div class="w-full justify-self-start">
+            <x-toggle name="enabled" :checked="$journal->show_shopping_module">{{ $journal->show_shopping_module ? __('Enabled') : __('Disabled') }}</x-toggle>
           </div>
         </div>
       </x-form>
@@ -341,10 +352,21 @@
       <!-- travel module -->
       <x-form method="put" action="{{ route('journal.settings.modules.update', ['slug' => $journal->slug]) }}" x-target="modules-container notifications" x-target.back="modules-container">
         <input type="hidden" name="module" value="travel" />
-        <div class="grid grid-cols-3 items-center rounded-lg p-3 hover:bg-blue-50 dark:hover:bg-gray-800">
+        <div class="grid grid-cols-3 items-center border-b border-gray-200 p-3 hover:bg-blue-50 dark:border-gray-700 dark:hover:bg-gray-800">
           <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Travel module') }}</p>
           <div class="w-full justify-self-start">
             <x-toggle name="enabled" :checked="$journal->show_travel_module">{{ $journal->show_travel_module ? __('Enabled') : __('Disabled') }}</x-toggle>
+          </div>
+        </div>
+      </x-form>
+
+      <!-- shopping module -->
+      <x-form method="put" action="{{ route('journal.settings.modules.update', ['slug' => $journal->slug]) }}" x-target="modules-container notifications" x-target.back="modules-container">
+        <input type="hidden" name="module" value="shopping" />
+        <div class="grid grid-cols-3 items-center rounded-b-lg p-3 hover:bg-blue-50 dark:hover:bg-gray-800">
+          <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Shopping module') }}</p>
+          <div class="w-full justify-self-start">
+            <x-toggle name="enabled" :checked="$journal->show_shopping_module">{{ $journal->show_shopping_module ? __('Enabled') : __('Disabled') }}</x-toggle>
           </div>
         </div>
       </x-form>

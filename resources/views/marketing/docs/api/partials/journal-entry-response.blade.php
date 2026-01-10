@@ -78,6 +78,34 @@
   ]
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"shopping": {</div>
+<div class="pl-20">
+  "has_shopped_today":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "shopping_type": [
+  <span class="text-lime-700">"groceries"</span>
+  ,
+  <span class="text-lime-700">"online_shopping"</span>
+  ]
+</div>
+<div class="pl-20">
+  "shopping_intent":
+  <span class="text-lime-700">"planned"</span>
+  ,
+</div>
+<div class="pl-20">
+  "shopping_context":
+  <span class="text-lime-700">"with_partner"</span>
+  ,
+</div>
+<div class="pl-20">
+  "shopping_for":
+  <span class="text-lime-700">"for_household"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"kids": {</div>
 <div class="pl-20">
   "had_kids_today":

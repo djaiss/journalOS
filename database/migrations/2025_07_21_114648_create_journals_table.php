@@ -29,6 +29,7 @@ return new class extends Migration {
             $table->boolean('show_energy_module')->default(true);
             $table->boolean('show_sexual_activity_module')->default(false);
             $table->boolean('show_social_density_module')->default(true);
+            $table->boolean('show_shopping_module')->default(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

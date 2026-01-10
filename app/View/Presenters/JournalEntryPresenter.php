@@ -30,6 +30,12 @@ final readonly class JournalEntryPresenter
             $travel = [];
         }
 
+        if ($this->entry->journal->show_shopping_module) {
+            $shopping = new ShoppingModulePresenter($this->entry)->build();
+        } else {
+            $shopping = [];
+        }
+
         if ($this->entry->journal->show_kids_module) {
             $kids = new KidsModulePresenter($this->entry)->build();
         } else {
@@ -90,6 +96,7 @@ final readonly class JournalEntryPresenter
             'sleep' => $sleep,
             'work' => $work,
             'travel' => $travel,
+            'shopping' => $shopping,
             'kids' => $kids,
             'day_type' => $dayType,
             'primary_obligation' => $primaryObligation,

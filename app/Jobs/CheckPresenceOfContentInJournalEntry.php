@@ -36,6 +36,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleHealth',
             'moduleDayType',
             'moduleTravel',
+            'moduleShopping',
         ]);
 
         $hasContent = false;
@@ -113,6 +114,13 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
         if (! $hasContent && $this->entry->moduleTravel !== null) {
             $moduleTravel = $this->entry->moduleTravel;
             if ($moduleTravel->has_traveled_today !== null || $moduleTravel->travel_details !== null || $moduleTravel->travel_mode !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleShopping !== null) {
+            $moduleShopping = $this->entry->moduleShopping;
+            if ($moduleShopping->has_shopped_today !== null || $moduleShopping->shopping_type !== null || $moduleShopping->shopping_intent !== null || $moduleShopping->shopping_context !== null || $moduleShopping->shopping_for !== null) {
                 $hasContent = true;
             }
         }
