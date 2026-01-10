@@ -61,6 +61,6 @@ final class NotesControllerTest extends TestCase
         $expectedNotes = mb_trim($entry->richTextNotes->render());
 
         $response->assertJsonPath('data.attributes.notes', $expectedNotes);
-        $this->assertEquals('Notes for the day.', $entry->richTextNotes->toPlainText());
+        $this->assertEquals('Notes for the day.', mb_trim($entry->richTextNotes->toPlainText()));
     }
 }

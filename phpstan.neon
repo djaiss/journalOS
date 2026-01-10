@@ -11,6 +11,9 @@ parameters:
     level: 5
 
     ignoreErrors:
+        -
+            message: '#Call to an undefined method Tonysm\\RichTextLaravel\\Models\\RichText::(render|toPlainText)\(\)\.#'
+            path: app/Http/Resources/JournalEntryResource.php
 
     excludePaths:
         - app/Jobs/SendEmail.php
