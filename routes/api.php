@@ -54,131 +54,74 @@ Route::name('api.')->group(function (): void {
             Route::get('journals/{id}', [Journals\JournalController::class, 'show'])->name('journal.show');
 
             Route::middleware(['journal.entry.api'])->group(function (): void {
-                Route::get('journals/{id}/{year}/{month}/{day}', [JournalEntryController::class, 'show'])
+                Route::prefix('journals/{id}/{year}/{month}/{day}')
                     ->whereNumber('year')
                     ->whereNumber('month')
                     ->whereNumber('day')
-                    ->name('journal.entry.show');
+                    ->group(function (): void {
+                        Route::get('', [JournalEntryController::class, 'show'])
+                            ->name('journal.entry.show');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/sleep/bedtime', [SleepBedTimeController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.sleep.bedtime.update');
+                        Route::put('sleep/bedtime', [SleepBedTimeController::class, 'update'])
+                            ->name('journal.entry.sleep.bedtime.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/sleep/wake_up_time', [SleepWakeUpTimeController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.sleep.wake_up_time.update');
+                        Route::put('sleep/wake_up_time', [SleepWakeUpTimeController::class, 'update'])
+                            ->name('journal.entry.sleep.wake_up_time.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/work', [WorkController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.work.update');
+                        Route::put('work', [WorkController::class, 'update'])
+                            ->name('journal.entry.work.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/work/mode', [WorkModeController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.work.mode.update');
+                        Route::put('work/mode', [WorkModeController::class, 'update'])
+                            ->name('journal.entry.work.mode.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/work/load', [WorkLoadController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.work.load.update');
+                        Route::put('work/load', [WorkLoadController::class, 'update'])
+                            ->name('journal.entry.work.load.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/work/procrastinated', [WorkProcrastinatedController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.work.procrastinated.update');
+                        Route::put('work/procrastinated', [WorkProcrastinatedController::class, 'update'])
+                            ->name('journal.entry.work.procrastinated.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/travel', [TravelController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.travel.update');
+                        Route::put('travel', [TravelController::class, 'update'])
+                            ->name('journal.entry.travel.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/travel/mode', [TravelModeController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.travel.mode.update');
+                        Route::put('travel/mode', [TravelModeController::class, 'update'])
+                            ->name('journal.entry.travel.mode.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/kids', [KidsModuleController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.kids.update');
+                        Route::put('kids', [KidsModuleController::class, 'update'])
+                            ->name('journal.entry.kids.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/day-type', [DayTypeController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.day-type.update');
+                        Route::put('day-type', [DayTypeController::class, 'update'])
+                            ->name('journal.entry.day-type.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/primary-obligation', [PrimaryObligationModuleController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.primary-obligation.update');
+                        Route::put('primary-obligation', [PrimaryObligationModuleController::class, 'update'])
+                            ->name('journal.entry.primary-obligation.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/physical-activity', [PhysicalActivityController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.physical-activity.update');
+                        Route::put('physical-activity', [PhysicalActivityController::class, 'update'])
+                            ->name('journal.entry.physical-activity.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/sexual-activity', [SexualActivityController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.sexual-activity.update');
+                        Route::put('sexual-activity', [SexualActivityController::class, 'update'])
+                            ->name('journal.entry.sexual-activity.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/sexual-activity/type', [SexualActivityTypeController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.sexual-activity.type.update');
+                        Route::put('sexual-activity/type', [SexualActivityTypeController::class, 'update'])
+                            ->name('journal.entry.sexual-activity.type.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/health', [HealthModuleController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.health.update');
+                        Route::put('health', [HealthModuleController::class, 'update'])
+                            ->name('journal.entry.health.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/mood', [MoodModuleController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.mood.update');
+                        Route::put('mood', [MoodModuleController::class, 'update'])
+                            ->name('journal.entry.mood.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/energy', [EnergyModuleController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.energy.update');
+                        Route::put('energy', [EnergyModuleController::class, 'update'])
+                            ->name('journal.entry.energy.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/social-density', [SocialDensityModuleController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.social-density.update');
+                        Route::put('social-density', [SocialDensityModuleController::class, 'update'])
+                            ->name('journal.entry.social-density.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/notes', [NotesController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.notes.update');
+                        Route::put('notes', [NotesController::class, 'update'])
+                            ->name('journal.entry.notes.update');
 
-                Route::put('journals/{id}/{year}/{month}/{day}/notes/reset', [NotesResetController::class, 'update'])
-                    ->whereNumber('year')
-                    ->whereNumber('month')
-                    ->whereNumber('day')
-                    ->name('journal.entry.notes.reset');
+                        Route::put('notes/reset', [NotesResetController::class, 'update'])
+                            ->name('journal.entry.notes.reset');
+                    });
             });
 
             // settings
