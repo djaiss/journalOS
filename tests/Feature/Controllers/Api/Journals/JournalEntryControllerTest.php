@@ -127,6 +127,21 @@ final class JournalEntryControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_returns_not_found_for_non_numeric_date_segments(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        Sanctum::actingAs($user);
+
+        $response = $this->json('GET', '/api/journals/' . $journal->id . '/year/4/12');
+
+        $response->assertStatus(404);
+    }
+
+    #[Test]
     public function it_restricts_access_to_journal_entries_the_user_does_not_own(): void
     {
         $user = User::factory()->create();
