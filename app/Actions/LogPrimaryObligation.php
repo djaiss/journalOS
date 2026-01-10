@@ -23,14 +23,7 @@ final readonly class LogPrimaryObligation
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $modulePrimaryObligation = $this->entry->modulePrimaryObligation()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $modulePrimaryObligation->primary_obligation = $this->primaryObligation;
-        $modulePrimaryObligation->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogPrimaryObligation
                 'primary_obligation' => 'Invalid primary obligation value.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $modulePrimaryObligation = $this->entry->modulePrimaryObligation()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePrimaryObligation->primary_obligation = $this->primaryObligation;
+        $modulePrimaryObligation->save();
     }
 
     private function logUserAction(): void

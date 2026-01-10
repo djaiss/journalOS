@@ -56,6 +56,16 @@ final readonly class LogTravelMode
         }
     }
 
+    private function log(): void
+    {
+        $moduleTravel = $this->entry->moduleTravel()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleTravel->travel_mode = $this->travelModes;
+        $moduleTravel->save();
+    }
+
     private function logUserAction(): void
     {
         LogUserAction::dispatch(
@@ -69,16 +79,6 @@ final readonly class LogTravelMode
     private function updateUserLastActivityDate(): void
     {
         UpdateUserLastActivityDate::dispatch($this->user)->onQueue('low');
-    }
-
-    private function log(): void
-    {
-        $moduleTravel = $this->entry->moduleTravel()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleTravel->travel_mode = $this->travelModes;
-        $moduleTravel->save();
     }
 
     private function refreshContentPresenceStatus(): void

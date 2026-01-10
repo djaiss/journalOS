@@ -23,14 +23,7 @@ final readonly class LogHasDonePhysicalActivity
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;
-        $modulePhysicalActivity->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogHasDonePhysicalActivity
                 'has_done_physical_activity' => 'Invalid physical activity status.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;
+        $modulePhysicalActivity->save();
     }
 
     private function logUserAction(): void

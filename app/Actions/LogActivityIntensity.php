@@ -23,14 +23,7 @@ final readonly class LogActivityIntensity
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $modulePhysicalActivity->activity_intensity = $this->activityIntensity;
-        $modulePhysicalActivity->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogActivityIntensity
                 'activity_intensity' => 'Invalid activity intensity.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePhysicalActivity->activity_intensity = $this->activityIntensity;
+        $modulePhysicalActivity->save();
     }
 
     private function logUserAction(): void
