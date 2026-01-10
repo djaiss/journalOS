@@ -93,7 +93,7 @@ final class LogControllerTest extends TestCase
             ],
         ]);
 
-        $firstLog = $logs->sortByDesc('created_at')->first();
+        $firstLog = $logs->sortByDesc('created_at')->sortByDesc('id')->first();
         $response->assertJson([
             'data' => [
                 [
