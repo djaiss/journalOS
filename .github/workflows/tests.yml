@@ -134,6 +134,7 @@ jobs:
         run: |
           sudo systemctl start postgresql.service
           sudo -u postgres psql --command="CREATE USER journalos PASSWORD 'secret'" --command="\du"
+          sudo -u postgres psql --command="ALTER USER journalos CREATEDB"
           sudo -u postgres createdb --owner=journalos journalos
           PGPASSWORD=secret psql --username=journalos --host=localhost --list journalos
 
@@ -158,6 +159,6 @@ jobs:
 
       - name: Run tests (pgsql)
         if: matrix.connection == 'pgsql'
-        run: php artisan test
+        run: php artisan test --parallel --recreate-databases
         env:
           DB_CONNECTION: ${{ matrix.connection }}
