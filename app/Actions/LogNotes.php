@@ -44,7 +44,7 @@ final readonly class LogNotes
             ['field' => 'notes'],
             ['body' => TextSanitizer::html($this->notes)],
         );
-        $this->entry->touch();
+        $this->entry->refresh()->touch();
         $this->entry->unsetRelation('richTextNotes');
     }
 
