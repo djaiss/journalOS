@@ -28,12 +28,7 @@ final readonly class LogSexualActivityType
     public function execute(): JournalEntry
     {
         $this->validate();
-        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-        $moduleSexualActivity->sexual_activity_type = $this->sexualActivityType;
-        $moduleSexualActivity->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +47,16 @@ final readonly class LogSexualActivityType
         if (! in_array($this->sexualActivityType, self::VALID_TYPES, true)) {
             throw new InvalidArgumentException('sexualActivityType must be one of: ' . implode(', ', self::VALID_TYPES));
         }
+    }
+
+    private function log(): void
+    {
+        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleSexualActivity->sexual_activity_type = $this->sexualActivityType;
+        $moduleSexualActivity->save();
     }
 
     private function logUserAction(): void

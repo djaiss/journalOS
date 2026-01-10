@@ -23,14 +23,7 @@ final readonly class LogMood
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $moduleMood = $this->entry->moduleMood()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleMood->mood = $this->mood;
-        $moduleMood->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogMood
                 'mood' => 'Invalid mood value.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $moduleMood = $this->entry->moduleMood()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleMood->mood = $this->mood;
+        $moduleMood->save();
     }
 
     private function logUserAction(): void

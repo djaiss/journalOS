@@ -23,14 +23,7 @@ final readonly class LogEnergy
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $moduleEnergy = $this->entry->moduleEnergy()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleEnergy->energy = $this->energy;
-        $moduleEnergy->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogEnergy
                 'energy' => 'Invalid energy value.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $moduleEnergy = $this->entry->moduleEnergy()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleEnergy->energy = $this->energy;
+        $moduleEnergy->save();
     }
 
     private function logUserAction(): void

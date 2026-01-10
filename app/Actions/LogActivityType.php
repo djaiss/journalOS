@@ -23,14 +23,7 @@ final readonly class LogActivityType
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $modulePhysicalActivity->activity_type = $this->activityType;
-        $modulePhysicalActivity->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogActivityType
                 'activity_type' => 'Invalid activity type.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $modulePhysicalActivity->activity_type = $this->activityType;
+        $modulePhysicalActivity->save();
     }
 
     private function logUserAction(): void

@@ -26,12 +26,7 @@ final readonly class LogHadSexualActivity
     public function execute(): JournalEntry
     {
         $this->validate();
-        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-        $moduleSexualActivity->had_sexual_activity = $this->hadSexualActivity;
-        $moduleSexualActivity->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -50,6 +45,16 @@ final readonly class LogHadSexualActivity
         if ($this->hadSexualActivity !== 'yes' && $this->hadSexualActivity !== 'no') {
             throw new InvalidArgumentException('hadSexualActivity must be either "yes" or "no"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleSexualActivity->had_sexual_activity = $this->hadSexualActivity;
+        $moduleSexualActivity->save();
     }
 
     private function logUserAction(): void

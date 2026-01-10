@@ -29,15 +29,7 @@ final readonly class LogBook
     public function execute(): void
     {
         $this->validate();
-
-        DB::table('book_journal_entry')->insert([
-            'book_id' => $this->book->id,
-            'journal_entry_id' => $this->entry->id,
-            'status' => $this->status->value,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +44,17 @@ final readonly class LogBook
         if ($this->book->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Book not found');
         }
+    }
+
+    private function log(): void
+    {
+        DB::table('book_journal_entry')->insert([
+            'book_id' => $this->book->id,
+            'journal_entry_id' => $this->entry->id,
+            'status' => $this->status->value,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     private function logUserAction(): void

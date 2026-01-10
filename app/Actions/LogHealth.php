@@ -23,14 +23,7 @@ final readonly class LogHealth
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $moduleHealth = $this->entry->moduleHealth()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleHealth->health = $this->health;
-        $moduleHealth->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogHealth
                 'health' => 'Invalid health value.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $moduleHealth = $this->entry->moduleHealth()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleHealth->health = $this->health;
+        $moduleHealth->save();
     }
 
     private function logUserAction(): void

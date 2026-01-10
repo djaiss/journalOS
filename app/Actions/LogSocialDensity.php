@@ -23,14 +23,7 @@ final readonly class LogSocialDensity
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $moduleSocialDensity = $this->entry->moduleSocialDensity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleSocialDensity->social_density = $this->socialDensity;
-        $moduleSocialDensity->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogSocialDensity
                 'social_density' => 'Invalid social density value.',
             ]);
         }
+    }
+
+    private function log(): void
+    {
+        $moduleSocialDensity = $this->entry->moduleSocialDensity()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleSocialDensity->social_density = $this->socialDensity;
+        $moduleSocialDensity->save();
     }
 
     private function logUserAction(): void

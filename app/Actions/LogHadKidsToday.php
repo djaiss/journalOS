@@ -26,14 +26,7 @@ final readonly class LogHadKidsToday
     public function execute(): JournalEntry
     {
         $this->validate();
-
-        $moduleKids = $this->entry->moduleKids()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
-
-        $moduleKids->had_kids_today = $this->hadKidsToday;
-        $moduleKids->save();
-
+        $this->log();
         $this->logUserAction();
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
@@ -52,6 +45,16 @@ final readonly class LogHadKidsToday
         if ($this->hadKidsToday !== 'yes' && $this->hadKidsToday !== 'no') {
             throw new InvalidArgumentException('hadKidsToday must be either "yes" or "no"');
         }
+    }
+
+    private function log(): void
+    {
+        $moduleKids = $this->entry->moduleKids()->firstOrCreate(
+            ['journal_entry_id' => $this->entry->id],
+        );
+
+        $moduleKids->had_kids_today = $this->hadKidsToday;
+        $moduleKids->save();
     }
 
     private function logUserAction(): void

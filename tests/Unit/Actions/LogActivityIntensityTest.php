@@ -42,6 +42,7 @@ final class LogActivityIntensityTest extends TestCase
         ))->execute();
 
         $this->assertEquals('light', $result->modulePhysicalActivity->activity_intensity);
+        $this->assertSame($entry->id, $result->modulePhysicalActivity->journal_entry_id);
 
         Queue::assertPushedOn(
             queue: 'low',
