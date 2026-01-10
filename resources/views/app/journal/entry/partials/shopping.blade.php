@@ -13,7 +13,7 @@
     </div>
   </x-slot>
 
-  <div id="shopping-container" class="space-y-4" x-data="{
+  <div id="shopping-container" x-data="{
     showShoppingDetails:
       {{ $module['has_shopped_today'] === 'yes' ? 'true' : 'false' }},
   }">
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div x-show="showShoppingDetails" x-cloak class="space-y-4">
+    <div x-show="showShoppingDetails" x-cloak class="mt-4 space-y-4">
       <div class="space-y-2">
         <p>{{ __('Shopping type') }}</p>
         <x-form x-target="shopping-container notifications shopping-reset days-listing months-listing" :action="$module['shopping_type_url']" method="put" id="shopping-type-form">
