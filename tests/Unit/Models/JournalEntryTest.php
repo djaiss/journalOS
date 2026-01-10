@@ -12,6 +12,7 @@ use App\Models\ModuleHealth;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
 use App\Models\ModulePhysicalActivity;
+use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
@@ -175,6 +176,25 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleTravel->id, $entry->moduleTravel->id);
         $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
         $this->assertEquals(['train'], $entry->moduleTravel->travel_mode);
+    }
+
+    #[Test]
+    public function it_has_one_module_shopping(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleShopping = ModuleShopping::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'has_shopped_today' => 'yes',
+            'shopping_type' => ['groceries'],
+        ]);
+
+        $this->assertTrue($entry->moduleShopping()->exists());
+        $this->assertEquals($moduleShopping->id, $entry->moduleShopping->id);
+        $this->assertEquals('yes', $entry->moduleShopping->has_shopped_today);
+        $this->assertEquals(['groceries'], $entry->moduleShopping->shopping_type);
     }
 
     #[Test]

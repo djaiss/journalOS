@@ -49,6 +49,13 @@ final class JournalEntryResource extends JsonResource
                         'has_traveled_today' => $this->moduleTravel?->has_traveled_today,
                         'travel_mode' => $this->moduleTravel?->travel_mode,
                     ],
+                    'shopping' => [
+                        'has_shopped_today' => $this->moduleShopping?->has_shopped_today,
+                        'shopping_type' => $this->moduleShopping?->shopping_type,
+                        'shopping_intent' => $this->moduleShopping?->shopping_intent,
+                        'shopping_context' => $this->moduleShopping?->shopping_context,
+                        'shopping_for' => $this->moduleShopping?->shopping_for,
+                    ],
                     'kids' => [
                         'had_kids_today' => $this->moduleKids?->had_kids_today,
                     ],

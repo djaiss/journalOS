@@ -11,7 +11,7 @@
         </x-button.secondary>
       </div>
     @else
-      <div class="prose prose-slate dark:prose-invert mt-12 max-w-none leading-6 relative">
+      <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
         <div id="note-reset" class="absolute top-0 right-0 -mt-6 mr-0 text-xs">
           @if ($module['display_reset'])
             <x-form x-target="note-container notifications note-reset days-listing months-listing" :action="$module['reset_url']" method="put">
