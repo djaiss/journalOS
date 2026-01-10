@@ -14,7 +14,9 @@ final class LogController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
-        $logs = Log::query()->where('user_id', Auth::user()->id)->latest()
+        $logs = Log::query()->where('user_id', Auth::user()->id)
+            ->latest()
+            ->latest('id')
             ->paginate(10);
 
         return LogResource::collection($logs);
