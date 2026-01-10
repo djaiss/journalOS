@@ -9,6 +9,19 @@ You may use either the server I host, or host your own! You can try the product 
 ### Features
 
 - Daily logging of your life
+  - Day type
+  - Energy
+  - Health
+  - Kids
+  - Mood
+  - Physical activity
+  - Primary obligation
+  - Sexual activity
+  - Shopping
+  - Sleep
+  - Social density
+  - Travel
+  - Work
 - Monthly/yearly statistics
 - Random email reminders of what happened in the past
 - Fully translated in English and French
