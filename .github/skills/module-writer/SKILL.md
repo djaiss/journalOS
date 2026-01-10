@@ -1,11 +1,11 @@
 ---
 name: module-writer
-description: Everything needed to write a module used by a journal.
+description: Create or update a journal entry module (database, model, actions, views, controllers, API, docs, tests). Use when adding a new journal module or changing an existing module such as mood, health, or obligations.
 ---
 
-# Action Writer
+# Module Writer
 
-This Skill helps you create a module used by journal entries in a journal. A module is a set of attributes of a journal entry, for instance Mood, which lets users track their mood every day/
+This Skill helps you create a module used by journal entries. A module is a small, focused set of attributes for one journal entry (example: Mood tracks daily mood).
 
 ## When to use this Skill
 
@@ -15,15 +15,24 @@ Use this Skill when:
 
 ## Instructions
 
+## Quick start
+
+- Pick a module name and ModuleType category.
+- Add migration + model + factory.
+- Add actions + tests.
+- Add view + web controller + presenter + tests.
+- Add API controller + resource + tests.
+- Update docs, Bruno, translations.
+
 ### Step 1: Write the database migration
 
-First, verify that the migration doesn't exist yet. If it doesn't exist, create it using regular Laravel artisan command.
+1. Verify the migration doesn't exist. Create it via Artisan with `--no-interaction`.
 
 ```bash
-php artisan make:migration create_module_MODULE_NAME_table
+php artisan make:migration create_module_MODULE_NAME_table --no-interaction
 ```
 
-A module is always about a journal entry. It should be written like this:
+1. A module always belongs to a journal entry. Use this pattern:
 
 ```
 Schema::create('module_health', function (Blueprint $table): void {
@@ -36,368 +45,81 @@ Schema::create('module_health', function (Blueprint $table): void {
 });
 ```
 
-A module always has a category, which is an entry of the ModuleType enum. Do not create a new module type. Choose one of the available category as appropriate. Use your best judgment for that.
+1. A module always has a category from `ModuleType`. Do not add new types. Choose the closest existing category.
+1. Add a `journal_entries` migration for a boolean `show_{module}_module`.
+1. Default to `true` only if the module is broadly applicable, low effort, non-sensitive, and useful with partial data. Otherwise default to `false` and require opt-in. Enable a module by default only if it is broadly applicable to most users on most days, immediately understandable without explanation, low-effort to use, non-sensitive in nature, and delivers clear value even with incomplete data; otherwise, keep it disabled by default and require explicit user opt-in.
 
 ### Step 2: Create related model
 
-1. All models live in App\Models. Take inspiration of the different modules available in the project. ModuleHealth is a good example. Add comments at the top of the file to document the model.
-2. Add corresponding method name to the JournalEntry model, like `moduleHealth` method. We can only have one module type per day, so it's always HasOne method.
+1. Models live in `App\Models`. Follow existing module models (e.g., `ModuleHealth`). Add a brief header PHPDoc for the model.
+1. Add a `module{ModuleName}` method to `JournalEntry`. One module per day, so always `HasOne`.
 
 ### Step 3: Create the factory
 
-Add a factory for the model.
+Create a factory for the model.
 
 ### Step 4: Create tests
 
-1. Create a test for the model. At first the test should only check the existence of the relationship with journal entry.
-2. Add the test of the new method in the JournalEntry model test.
-
-**Personal Skills** (`~/.claude/skills/`):
-- Individual workflows and preferences
-- Experimental Skills
-- Personal productivity tools
-
-**Project Skills** (`.claude/skills/`):
-- Team workflows and conventions
-- Project-specific expertise
-- Shared utilities (committed to git)
-
-### Step 3: Create Skill structure
-
-Create the directory and files:
+1. Add a model test for the relationship to `JournalEntry`.
+1. Add a test for the new `JournalEntry` relationship method.
+1. Never use `for()` on factories. Set `user_id` explicitly.
 
-```bash
-# Personal
-mkdir -p ~/.claude/skills/skill-name
+### Step 5: Create the actions to manage the data
 
-# Project
-mkdir -p .claude/skills/skill-name
-```
+1. Create `Log{ModuleName}` (follow existing actions like `LogHealth`).
+1. Action flow: validate -> log data -> log user action -> update last activity -> refresh content presence.
+1. Add tests for happy path and edge cases.
+1. Create `Reset{ModuleName}Data` (see `ResetHealthData`).
 
-For multi-file Skills:
-```
-skill-name/
-├── SKILL.md (required)
-├── reference.md (optional)
-├── examples.md (optional)
-├── scripts/
-│   └── helper.py (optional)
-└── templates/
-    └── template.txt (optional)
-```
+### Step 6: Update the CheckPresenceOfContentInJournalEntry job
 
-### Step 4: Write SKILL.md frontmatter
+1. Add the presence of the data of the new module in `app/Jobs/CheckPresenceOfContentInJournalEntry.php`.
+1. Update the test to reflect it.
 
-Create YAML frontmatter with required fields:
+### Step 7: Create a view that will let users interact with the module
 
-```yaml
----
-name: skill-name
-description: Brief description of what this does and when to use it
----
-```
+1. Views are stored in the `resources/views/app/journal/entry/partials` folder.
+1. If the module has Yes/No buttons, use the existing components.
+1. If the module uses multiple choices, group the choices together like in the health.blade.php view file.
+1. If the module uses multiple choices with multiple accepted values, display them like in the primary_obligation.blade.php view file.
+1. Add the view at the right place within the `resources/views/app/journal/entry/show.blade.php` file.
 
-**Field requirements**:
+### Step 8: Create the web controller to pilot the view
 
-- **name**:
-  - Lowercase letters, numbers, hyphens only
-  - Max 64 characters
-  - Must match directory name
-  - Good: `pdf-processor`, `git-commit-helper`
-  - Bad: `PDF_Processor`, `Git Commits!`
+1. Add a controller to call the right view.
+1. Controller names should follow project convention and include the module name (example: `HealthController.php`).
+1. Sanitize input with `TextSanitizer` before actions.
+1. Validate inline (no Form Requests). Strings must be strings and within max length.
+1. Create a presenter for module data.
+1. Update the main journal entry presenter to load this data.
+1. Test both presenters.
+1. Add the appropriate web route.
+1. Create controller tests for happy path and edge cases.
 
-- **description**:
-  - Max 1024 characters
-  - Include BOTH what it does AND when to use it
-  - Use specific trigger words users would say
-  - Mention file types, operations, and context
+### Step 9: Create the api controller
 
-**Optional frontmatter fields**:
+1. Create an API controller that uses the same actions for log/reset.
+1. Update `JournalEntryResource` to include the new data.
+1. Add API controller tests.
 
-- **allowed-tools**: Restrict tool access (comma-separated list)
-  ```yaml
-  allowed-tools: Read, Grep, Glob
-  ```
-  Use for:
-  - Read-only Skills
-  - Security-sensitive workflows
-  - Limited-scope operations
+### Step 10: Add marketing documentation
 
-### Step 5: Write effective descriptions
+1. Marketing docs live in `resources/views/marketing/docs/api`.
+1. Add a new module in the modules folder.
+1. Update the resources/views/marketing/docs/api/partials/journal-entry-response.blade.php partial.
+1. Add a new controller for the documentation of this module.
+1. Add a controller test that asserts the content loads.
 
-The description is critical for Claude to discover your Skill.
+### Step 11: Add appropriate Bruno API documentation
 
-**Formula**: `[What it does] + [When to use it] + [Key triggers]`
+1. Add Bruno tests for the new API methods in `docs/bruno`.
 
-**Examples**:
+### Step 12: Update translations
 
-✅ **Good**:
-```yaml
-description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
-```
+1. Run `composer journalos:locale`.
+1. Ensure there are no empty entries in `lang/fr.json`.
 
-✅ **Good**:
-```yaml
-description: Analyze Excel spreadsheets, create pivot tables, and generate charts. Use when working with Excel files, spreadsheets, or analyzing tabular data in .xlsx format.
-```
+### Step 13: Test and lint
 
-❌ **Too vague**:
-```yaml
-description: Helps with documents
-description: For data analysis
-```
-
-**Tips**:
-- Include specific file extensions (.pdf, .xlsx, .json)
-- Mention common user phrases ("analyze", "extract", "generate")
-- List concrete operations (not generic verbs)
-- Add context clues ("Use when...", "For...")
-
-### Step 6: Structure the Skill content
-
-Use clear Markdown sections:
-
-```markdown
-# Skill Name
-
-Brief overview of what this Skill does.
-
-## Quick start
-
-Provide a simple example to get started immediately.
-
-## Instructions
-
-Step-by-step guidance for Claude:
-1. First step with clear action
-2. Second step with expected outcome
-3. Handle edge cases
-
-## Examples
-
-Show concrete usage examples with code or commands.
-
-## Best practices
-
-- Key conventions to follow
-- Common pitfalls to avoid
-- When to use vs. not use
-
-## Requirements
-
-List any dependencies or prerequisites:
-```bash
-pip install package-name
-```
-
-## Advanced usage
-
-For complex scenarios, see [reference.md](reference.md).
-```
-
-### Step 7: Add supporting files (optional)
-
-Create additional files for progressive disclosure:
-
-**reference.md**: Detailed API docs, advanced options
-**examples.md**: Extended examples and use cases
-**scripts/**: Helper scripts and utilities
-**templates/**: File templates or boilerplate
-
-Reference them from SKILL.md:
-```markdown
-For advanced usage, see [reference.md](reference.md).
-
-Run the helper script:
-\`\`\`bash
-python scripts/helper.py input.txt
-\`\`\`
-```
-
-### Step 8: Validate the Skill
-
-Check these requirements:
-
-✅ **File structure**:
-- [ ] SKILL.md exists in correct location
-- [ ] Directory name matches frontmatter `name`
-
-✅ **YAML frontmatter**:
-- [ ] Opening `---` on line 1
-- [ ] Closing `---` before content
-- [ ] Valid YAML (no tabs, correct indentation)
-- [ ] `name` follows naming rules
-- [ ] `description` is specific and < 1024 chars
-
-✅ **Content quality**:
-- [ ] Clear instructions for Claude
-- [ ] Concrete examples provided
-- [ ] Edge cases handled
-- [ ] Dependencies listed (if any)
-
-✅ **Testing**:
-- [ ] Description matches user questions
-- [ ] Skill activates on relevant queries
-- [ ] Instructions are clear and actionable
-
-### Step 9: Test the Skill
-
-1. **Restart Claude Code** (if running) to load the Skill
-
-2. **Ask relevant questions** that match the description:
-   ```
-   Can you help me extract text from this PDF?
-   ```
-
-3. **Verify activation**: Claude should use the Skill automatically
-
-4. **Check behavior**: Confirm Claude follows the instructions correctly
-
-### Step 10: Debug if needed
-
-If Claude doesn't use the Skill:
-
-1. **Make description more specific**:
-   - Add trigger words
-   - Include file types
-   - Mention common user phrases
-
-2. **Check file location**:
-   ```bash
-   ls ~/.claude/skills/skill-name/SKILL.md
-   ls .claude/skills/skill-name/SKILL.md
-   ```
-
-3. **Validate YAML**:
-   ```bash
-   cat SKILL.md | head -n 10
-   ```
-
-4. **Run debug mode**:
-   ```bash
-   claude --debug
-   ```
-
-## Common patterns
-
-### Read-only Skill
-
-```yaml
----
-name: code-reader
-description: Read and analyze code without making changes. Use for code review, understanding codebases, or documentation.
-allowed-tools: Read, Grep, Glob
----
-```
-
-### Script-based Skill
-
-```yaml
----
-name: data-processor
-description: Process CSV and JSON data files with Python scripts. Use when analyzing data files or transforming datasets.
----
-
-# Data Processor
-
-## Instructions
-
-1. Use the processing script:
-\`\`\`bash
-python scripts/process.py input.csv --output results.json
-\`\`\`
-
-2. Validate output with:
-\`\`\`bash
-python scripts/validate.py results.json
-\`\`\`
-```
-
-### Multi-file Skill with progressive disclosure
-
-```yaml
----
-name: api-designer
-description: Design REST APIs following best practices. Use when creating API endpoints, designing routes, or planning API architecture.
----
-
-# API Designer
-
-Quick start: See [examples.md](examples.md)
-
-Detailed reference: See [reference.md](reference.md)
-
-## Instructions
-
-1. Gather requirements
-2. Design endpoints (see examples.md)
-3. Document with OpenAPI spec
-4. Review against best practices (see reference.md)
-```
-
-## Best practices for Skill authors
-
-1. **One Skill, one purpose**: Don't create mega-Skills
-2. **Specific descriptions**: Include trigger words users will say
-3. **Clear instructions**: Write for Claude, not humans
-4. **Concrete examples**: Show real code, not pseudocode
-5. **List dependencies**: Mention required packages in description
-6. **Test with teammates**: Verify activation and clarity
-7. **Version your Skills**: Document changes in content
-8. **Use progressive disclosure**: Put advanced details in separate files
-
-## Validation checklist
-
-Before finalizing a Skill, verify:
-
-- [ ] Name is lowercase, hyphens only, max 64 chars
-- [ ] Description is specific and < 1024 chars
-- [ ] Description includes "what" and "when"
-- [ ] YAML frontmatter is valid
-- [ ] Instructions are step-by-step
-- [ ] Examples are concrete and realistic
-- [ ] Dependencies are documented
-- [ ] File paths use forward slashes
-- [ ] Skill activates on relevant queries
-- [ ] Claude follows instructions correctly
-
-## Troubleshooting
-
-**Skill doesn't activate**:
-- Make description more specific with trigger words
-- Include file types and operations in description
-- Add "Use when..." clause with user phrases
-
-**Multiple Skills conflict**:
-- Make descriptions more distinct
-- Use different trigger words
-- Narrow the scope of each Skill
-
-**Skill has errors**:
-- Check YAML syntax (no tabs, proper indentation)
-- Verify file paths (use forward slashes)
-- Ensure scripts have execute permissions
-- List all dependencies
-
-## Examples
-
-See the documentation for complete examples:
-- Simple single-file Skill (commit-helper)
-- Skill with tool permissions (code-reviewer)
-- Multi-file Skill (pdf-processing)
-
-## Output format
-
-When creating a Skill, I will:
-
-1. Ask clarifying questions about scope and requirements
-2. Suggest a Skill name and location
-3. Create the SKILL.md file with proper frontmatter
-4. Include clear instructions and examples
-5. Add supporting files if needed
-6. Provide testing instructions
-7. Validate against all requirements
-
-The result will be a complete, working Skill that follows all best practices and validation rules.
-
-1428 x 893
+1. Run relevant PHPUnit tests for the new module.
+1. When tests pass, run `composer test` if needed for coverage.
