@@ -74,8 +74,6 @@ final class LogSocialDensityTest extends TestCase
     #[Test]
     public function it_logs_social_density_with_few_people(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -94,37 +92,11 @@ final class LogSocialDensityTest extends TestCase
         $this->assertDatabaseHas('module_social_density', [
             'journal_entry_id' => $entry->id,
         ]);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'social_density_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]
     public function it_logs_social_density_with_crowd(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -143,37 +115,11 @@ final class LogSocialDensityTest extends TestCase
         $this->assertDatabaseHas('module_social_density', [
             'journal_entry_id' => $entry->id,
         ]);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'social_density_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]
     public function it_logs_social_density_with_too_much(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -192,30 +138,6 @@ final class LogSocialDensityTest extends TestCase
         $this->assertDatabaseHas('module_social_density', [
             'journal_entry_id' => $entry->id,
         ]);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'social_density_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]

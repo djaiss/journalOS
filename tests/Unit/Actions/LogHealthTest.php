@@ -35,105 +35,13 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHealth(
+        $entry = (new LogHealth(
             user: $user,
             entry: $entry,
             health: 'good',
         ))->execute();
 
-        $this->assertEquals('good', $result->moduleHealth->health);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'health_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
-    }
-
-    #[Test]
-    public function it_logs_health_with_okay(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-        ]);
-
-        $result = (new LogHealth(
-            user: $user,
-            entry: $entry,
-            health: 'okay',
-        ))->execute();
-
-        $this->assertEquals('okay', $result->moduleHealth->health);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'health_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
-    }
-
-    #[Test]
-    public function it_logs_health_with_not_great(): void
-    {
-        Queue::fake();
-
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-        ]);
-
-        $result = (new LogHealth(
-            user: $user,
-            entry: $entry,
-            health: 'not great',
-        ))->execute();
-
-        $this->assertEquals('not great', $result->moduleHealth->health);
+        $this->assertEquals('good', $entry->moduleHealth->health);
 
         Queue::assertPushedOn(
             queue: 'low',

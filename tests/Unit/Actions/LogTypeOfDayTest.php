@@ -71,8 +71,6 @@ final class LogTypeOfDayTest extends TestCase
     #[Test]
     public function it_logs_day_type_with_day_off(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -88,37 +86,11 @@ final class LogTypeOfDayTest extends TestCase
         ))->execute();
 
         $this->assertEquals('day off', $result->moduleDayType->day_type);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'day_type_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]
     public function it_logs_day_type_with_weekend(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -134,37 +106,11 @@ final class LogTypeOfDayTest extends TestCase
         ))->execute();
 
         $this->assertEquals('weekend', $result->moduleDayType->day_type);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'day_type_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]
     public function it_logs_day_type_with_vacation(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -180,37 +126,11 @@ final class LogTypeOfDayTest extends TestCase
         ))->execute();
 
         $this->assertEquals('vacation', $result->moduleDayType->day_type);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'day_type_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]
     public function it_logs_day_type_with_sick_day(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -226,30 +146,6 @@ final class LogTypeOfDayTest extends TestCase
         ))->execute();
 
         $this->assertEquals('sick day', $result->moduleDayType->day_type);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'day_type_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]

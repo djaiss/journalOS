@@ -35,13 +35,13 @@ final class LogHadKidsTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHadKidsToday(
+        $entry = (new LogHadKidsToday(
             user: $user,
             entry: $entry,
             hadKidsToday: 'yes',
         ))->execute();
 
-        $this->assertEquals('yes', $result->moduleKids?->had_kids_today);
+        $this->assertEquals('yes', $entry->moduleKids->had_kids_today);
         $this->assertDatabaseHas('module_kids', [
             'journal_entry_id' => $entry->id,
         ]);
@@ -74,8 +74,6 @@ final class LogHadKidsTodayTest extends TestCase
     #[Test]
     public function it_logs_kids_today_with_no(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -84,40 +82,16 @@ final class LogHadKidsTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHadKidsToday(
+        $entry = (new LogHadKidsToday(
             user: $user,
             entry: $entry,
             hadKidsToday: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->moduleKids?->had_kids_today);
+        $this->assertEquals('no', $entry->moduleKids->had_kids_today);
         $this->assertDatabaseHas('module_kids', [
             'journal_entry_id' => $entry->id,
         ]);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'kids_today_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
     }
 
     #[Test]

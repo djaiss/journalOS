@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogEnergy;
+use App\Actions\LogSleep;
+use App\Jobs\CalculateSleepDuration;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -18,12 +19,12 @@ use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class LogEnergyTest extends TestCase
+final class LogSleepTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function it_logs_energy_with_very_low(): void
+    public function it_logs_bedtime(): void
     {
         Queue::fake();
 
@@ -35,19 +36,20 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogEnergy(
+        $entry = new LogSleep(
             user: $user,
             entry: $entry,
-            energy: 'very low',
-        ))->execute();
+            bedtime: '23:30',
+            wakeUpTime: null,
+        )->execute();
 
-        $this->assertEquals('very low', $entry->moduleEnergy->energy);
+        $this->assertEquals('23:30', $entry->moduleSleep->bedtime);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'energy_logged' && $job->user->id === $user->id;
+                return $job->action === 'sleep_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -61,6 +63,14 @@ final class LogEnergyTest extends TestCase
 
         Queue::assertPushedOn(
             queue: 'low',
+            job: CalculateSleepDuration::class,
+            callback: function (CalculateSleepDuration $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
             callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
                 return $job->entry->id === $entry->id;
@@ -69,7 +79,7 @@ final class LogEnergyTest extends TestCase
     }
 
     #[Test]
-    public function it_logs_energy_with_low(): void
+    public function it_logs_wake_up_time(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -79,17 +89,18 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = new LogSleep(
             user: $user,
             entry: $entry,
-            energy: 'low',
-        ))->execute();
+            bedtime: null,
+            wakeUpTime: '07:00',
+        )->execute();
 
-        $this->assertEquals('low', $result->moduleEnergy->energy);
+        $this->assertEquals('07:00', $entry->moduleSleep->wake_up_time);
     }
 
     #[Test]
-    public function it_logs_energy_with_normal(): void
+    public function it_logs_both_bedtime_and_wake_up_time(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -99,57 +110,41 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = new LogSleep(
             user: $user,
             entry: $entry,
-            energy: 'normal',
-        ))->execute();
+            bedtime: '23:30',
+            wakeUpTime: '07:00',
+        )->execute();
 
-        $this->assertEquals('normal', $result->moduleEnergy->energy);
+        $this->assertEquals('23:30', $entry->moduleSleep->bedtime);
+        $this->assertEquals('07:00', $entry->moduleSleep->wake_up_time);
     }
 
     #[Test]
-    public function it_logs_energy_with_high(): void
+    public function it_throws_when_entry_does_not_belong_to_user(): void
     {
+        $this->expectException(ModelNotFoundException::class);
+
         $user = User::factory()->create();
+        $otherUser = User::factory()->create();
         $journal = Journal::factory()->create([
-            'user_id' => $user->id,
+            'user_id' => $otherUser->id,
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        new LogSleep(
             user: $user,
             entry: $entry,
-            energy: 'high',
-        ))->execute();
-
-        $this->assertEquals('high', $result->moduleEnergy->energy);
+            bedtime: '23:30',
+            wakeUpTime: null,
+        )->execute();
     }
 
     #[Test]
-    public function it_logs_energy_with_very_high(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-        ]);
-
-        $result = (new LogEnergy(
-            user: $user,
-            entry: $entry,
-            energy: 'very high',
-        ))->execute();
-
-        $this->assertEquals('very high', $result->moduleEnergy->energy);
-    }
-
-    #[Test]
-    public function it_throws_validation_exception_for_invalid_energy_value(): void
+    public function it_throws_when_both_values_are_null(): void
     {
         $this->expectException(ValidationException::class);
 
@@ -161,31 +156,95 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogEnergy(
+        new LogSleep(
             user: $user,
             entry: $entry,
-            energy: 'invalid',
-        ))->execute();
+            bedtime: null,
+            wakeUpTime: null,
+        )->execute();
     }
 
     #[Test]
-    public function it_throws_exception_when_user_does_not_own_journal(): void
+    public function it_throws_when_bedtime_format_is_invalid(): void
     {
-        $this->expectException(ModelNotFoundException::class);
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $anotherUser = User::factory()->create();
         $journal = Journal::factory()->create([
-            'user_id' => $anotherUser->id,
+            'user_id' => $user->id,
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
 
-        (new LogEnergy(
+        new LogSleep(
             user: $user,
             entry: $entry,
-            energy: 'normal',
-        ))->execute();
+            bedtime: 'invalid',
+            wakeUpTime: null,
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_wake_up_time_format_is_invalid(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogSleep(
+            user: $user,
+            entry: $entry,
+            bedtime: null,
+            wakeUpTime: 'invalid',
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_bedtime_has_invalid_hour(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogSleep(
+            user: $user,
+            entry: $entry,
+            bedtime: '25:00',
+            wakeUpTime: null,
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_wake_up_time_has_invalid_minutes(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogSleep(
+            user: $user,
+            entry: $entry,
+            bedtime: null,
+            wakeUpTime: '07:61',
+        )->execute();
     }
 }

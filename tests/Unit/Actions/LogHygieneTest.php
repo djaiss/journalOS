@@ -35,7 +35,7 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHygiene(
+        $entry = (new LogHygiene(
             user: $user,
             entry: $entry,
             showered: 'yes',
@@ -43,7 +43,7 @@ final class LogHygieneTest extends TestCase
             skincare: null,
         ))->execute();
 
-        $this->assertEquals('yes', $result->moduleHygiene->showered);
+        $this->assertEquals('yes', $entry->moduleHygiene->showered);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -73,8 +73,6 @@ final class LogHygieneTest extends TestCase
     #[Test]
     public function it_logs_hygiene_with_brushed_teeth(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -83,7 +81,7 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHygiene(
+        $entry = (new LogHygiene(
             user: $user,
             entry: $entry,
             showered: null,
@@ -91,14 +89,12 @@ final class LogHygieneTest extends TestCase
             skincare: null,
         ))->execute();
 
-        $this->assertEquals('am', $result->moduleHygiene->brushed_teeth);
+        $this->assertEquals('am', $entry->moduleHygiene->brushed_teeth);
     }
 
     #[Test]
     public function it_logs_hygiene_with_skincare(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -107,7 +103,7 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHygiene(
+        $entry = (new LogHygiene(
             user: $user,
             entry: $entry,
             showered: null,
@@ -115,7 +111,7 @@ final class LogHygieneTest extends TestCase
             skincare: 'no',
         ))->execute();
 
-        $this->assertEquals('no', $result->moduleHygiene->skincare);
+        $this->assertEquals('no', $entry->moduleHygiene->skincare);
     }
 
     #[Test]

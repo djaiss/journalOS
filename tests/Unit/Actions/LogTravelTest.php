@@ -18,12 +18,12 @@ use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class LogTravelModeTest extends TestCase
+final class LogTravelTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function it_logs_single_travel_mode(): void
+    public function it_logs_has_traveled_yes(): void
     {
         Queue::fake();
 
@@ -35,14 +35,14 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTravel(
+        $entry = new LogTravel(
             user: $user,
             entry: $entry,
-            hasTraveled: null,
-            travelModes: ['car'],
-        ))->execute();
+            hasTraveled: 'yes',
+            travelModes: null,
+        )->execute();
 
-        $this->assertEquals(['car'], $result->moduleTravel->travel_mode);
+        $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -70,10 +70,8 @@ final class LogTravelModeTest extends TestCase
     }
 
     #[Test]
-    public function it_logs_multiple_travel_modes(): void
+    public function it_logs_has_traveled_no(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -82,24 +80,61 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTravel(
+        $entry = new LogTravel(
+            user: $user,
+            entry: $entry,
+            hasTraveled: 'no',
+            travelModes: null,
+        )->execute();
+
+        $this->assertEquals('no', $entry->moduleTravel->has_traveled_today);
+    }
+
+    #[Test]
+    public function it_logs_single_travel_mode(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $entry = new LogTravel(
+            user: $user,
+            entry: $entry,
+            hasTraveled: null,
+            travelModes: ['car'],
+        )->execute();
+
+        $this->assertEquals(['car'], $entry->moduleTravel->travel_mode);
+    }
+
+    #[Test]
+    public function it_logs_multiple_travel_modes(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $entry = new LogTravel(
             user: $user,
             entry: $entry,
             hasTraveled: null,
             travelModes: ['car', 'plane', 'train'],
-        ))->execute();
+        )->execute();
 
-        $this->assertEquals(['car', 'plane', 'train'], $result->moduleTravel->travel_mode);
-        $this->assertContains('car', $result->moduleTravel->travel_mode);
-        $this->assertContains('plane', $result->moduleTravel->travel_mode);
-        $this->assertContains('train', $result->moduleTravel->travel_mode);
+        $this->assertEquals(['car', 'plane', 'train'], $entry->moduleTravel->travel_mode);
     }
 
     #[Test]
     public function it_logs_all_valid_travel_modes(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -108,32 +143,42 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
-
-        $result = (new LogTravel(
+        $entry = new LogTravel(
             user: $user,
             entry: $entry,
             hasTraveled: null,
-            travelModes: $allModes,
-        ))->execute();
+            travelModes: ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'],
+        )->execute();
 
-        $this->assertEquals($allModes, $result->moduleTravel->travel_mode);
-        $this->assertCount(8, $result->moduleTravel->travel_mode);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
+        $this->assertEquals(['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'], $entry->moduleTravel->travel_mode);
     }
 
     #[Test]
-    public function it_throws_when_journal_does_not_belong_to_user(): void
+    public function it_logs_both_fields(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $entry = new LogTravel(
+            user: $user,
+            entry: $entry,
+            hasTraveled: 'yes',
+            travelModes: ['car', 'train'],
+        )->execute();
+
+        $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
+        $this->assertEquals(['car', 'train'], $entry->moduleTravel->travel_mode);
+    }
+
+    #[Test]
+    public function it_throws_when_entry_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -144,12 +189,54 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTravel(
+        new LogTravel(
+            user: $user,
+            entry: $entry,
+            hasTraveled: 'yes',
+            travelModes: null,
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_both_values_are_null(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogTravel(
             user: $user,
             entry: $entry,
             hasTraveled: null,
-            travelModes: ['car'],
-        ))->execute();
+            travelModes: null,
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_has_traveled_is_invalid(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogTravel(
+            user: $user,
+            entry: $entry,
+            hasTraveled: 'invalid',
+            travelModes: null,
+        )->execute();
     }
 
     #[Test]
@@ -165,12 +252,12 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTravel(
+        new LogTravel(
             user: $user,
             entry: $entry,
             hasTraveled: null,
             travelModes: [],
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -186,11 +273,11 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTravel(
+        new LogTravel(
             user: $user,
             entry: $entry,
             hasTraveled: null,
-            travelModes: ['car', 'invalid', 'plane'],
-        ))->execute();
+            travelModes: ['invalid'],
+        )->execute();
     }
 }
