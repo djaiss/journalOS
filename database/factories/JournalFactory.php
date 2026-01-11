@@ -27,6 +27,7 @@ final class JournalFactory extends Factory
             'user_id' => User::factory(),
             'name' => $this->faker->word(),
             'slug' => null,
+            'can_edit_past' => true,
         ];
     }
 

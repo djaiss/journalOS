@@ -23,6 +23,7 @@ You may use either the server I host, or host your own! You can try the product 
   - Social density
   - Travel
   - Work
+- Ability to prevent editing older journal entries
 - Monthly/yearly statistics
 - Random email reminders of what happened in the past
 - Fully translated in English and French
