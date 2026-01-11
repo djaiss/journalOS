@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Controllers\App\Journals;
 
 use App\Models\Journal;
+use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -19,16 +20,30 @@ final class JournalControllerTest extends TestCase
     public function it_shows_the_journals_of_the_user(): void
     {
         $user = User::factory()->create();
-        Journal::factory()->create([
+        $journal = Journal::factory()->create([
             'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
             'slug' => 'dunder-mifflin',
+        ]);
+
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => true,
+        ]);
+        JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
         ]);
 
         $response = $this->actingAs($user)->get('/journals');
 
         $response->assertStatus(200);
         $response->assertSee('Dunder Mifflin');
+        $response->assertSee('2 entries');
     }
 
     #[Test]
