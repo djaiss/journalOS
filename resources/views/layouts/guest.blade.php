@@ -1,7 +1,14 @@
+<?php
+/**
+ * @var \Illuminate\View\ComponentSlot $slot
+ * @var string|null $title
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
-    @include('components.meta')
+    @include('components.meta', ['title' => $title ?? null])
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

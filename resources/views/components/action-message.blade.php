@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var string $on
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'on',
 ])

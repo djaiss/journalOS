@@ -16,9 +16,19 @@ final class ProfileControllerTest extends TestCase
     #[Test]
     public function it_shows_the_profile_page(): void
     {
-        $this->actingAs(User::factory()->create());
+        $user = User::factory()->create();
 
-        $this->get('/settings/profile')->assertOk();
+        $this
+            ->actingAs($user)
+            ->get('/settings/profile')
+            ->assertOk()
+            ->assertViewHasAll([
+                'user',
+                'logs',
+                'emails',
+                'hasMoreLogs',
+                'hasMoreEmails',
+            ]);
     }
 
     #[Test]

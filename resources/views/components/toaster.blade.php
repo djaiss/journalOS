@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <div class="pointer-events-none fixed bottom-0 z-50 flex w-full flex-col items-end p-4 sm:p-6 rtl:items-start" role="status" aria-live="polite">
   <div x-sync id="notifications" class="pointer-events-auto relative w-full max-w-xs transform transition duration-300 ease-in-out">
     @if ($message = Session::get('status'))

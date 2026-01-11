@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-layouts.app :title="__('Appearance | Settings')">
   <div class="flex flex-col items-start">
     @include('partials.settings-heading')

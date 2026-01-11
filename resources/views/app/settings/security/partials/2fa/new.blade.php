@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var string $qrCodeSvg
+ * @var string $secret
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-form :action="route('settings.security.2fa.store')" method="post" id="authenticator-app" x-target="authenticator-app notifications" x-target.back="authenticator-app" class="border-b border-gray-200 p-4 dark:border-gray-700">
   <div class="flex flex-col gap-y-4">
     <p>

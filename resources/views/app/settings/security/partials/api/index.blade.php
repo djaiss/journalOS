@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @var \Illuminate\Support\Collection $apiKeys
  */
 ?>

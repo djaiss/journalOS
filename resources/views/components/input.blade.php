@@ -1,3 +1,22 @@
+<?php
+/**
+ * @var string $size
+ * @var string $type
+ * @var bool $passManagerDisabled
+ * @var bool $required
+ * @var string|null $id
+ * @var string|null $label
+ * @var string|null $autocomplete
+ * @var string|null $error
+ * @var string|null $placeholder
+ * @var string|null $value
+ * @var string|null $help
+ * @var bool $autofocus
+ * @var bool $disabled
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ */
+?>
+
 @props([
   'size' => 'base',
   'type' => 'text',

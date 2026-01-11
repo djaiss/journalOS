@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-marketing-docs-layout :breadcrumbItems="[
   ['label' => 'Home', 'route' => route('marketing.index')],
   ['label' => 'Documentation', 'route' => route('marketing.docs.api.index')],

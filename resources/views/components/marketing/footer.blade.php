@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <footer class="border-t border-gray-200 bg-white pt-12 pb-8 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
   <div class="mx-auto max-w-7xl px-6 lg:px-0">
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">

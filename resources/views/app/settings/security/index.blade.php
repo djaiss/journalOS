@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var \App\Models\User $user
+ * @var \Illuminate\Support\Collection $apiKeys
+ * @var string|null $preferredMethod
+ * @var bool $has2fa
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-app-layout>
   <x-slot:title>
     {{ __('Security and access') }}
@@ -17,13 +27,17 @@
     <section class="p-4 sm:p-8">
       <div class="mx-auto max-w-2xl space-y-6 sm:px-0">
         <!-- user password -->
-        @include('app.settings.security.partials.password', ['user' => $user])
+        @include('app.settings.security.partials.password', ['user' => $user, 'errors' => $errors])
 
         <!-- two factor authentication -->
-        @include('app.settings.security.partials.2fa.index')
+        @include('app.settings.security.partials.2fa.index', [
+          'has2fa' => $has2fa,
+          'preferredMethod' => $preferredMethod,
+          'errors' => $errors,
+        ])
 
         <!-- auto delete account -->
-        @include('app.settings.security.partials.auto-delete')
+        @include('app.settings.security.partials.auto-delete', ['errors' => $errors])
 
         <!-- api keys -->
         @include('app.settings.security.partials.api.index', ['apiKeys' => $apiKeys])

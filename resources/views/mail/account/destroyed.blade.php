@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var string $activeSince
+ * @var string $reason
+ */
+?>
+
 <x-mail::message>
 Account deleted
 

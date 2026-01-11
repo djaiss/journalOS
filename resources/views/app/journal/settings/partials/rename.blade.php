@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\Models\Journal $journal
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-box padding="p-0">
   <x-slot:title>{{ __('Rename journal') }}</x-slot>
 

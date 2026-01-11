@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-mail::message>
 # Login attempt on {{ config('app.name') }}
 

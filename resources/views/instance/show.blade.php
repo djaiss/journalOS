@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\Models\User $user
+ * @var \Illuminate\Support\Collection $logs
+ */
+?>
+
 <x-app-layout>
   @include('instance.partials.banner')
 

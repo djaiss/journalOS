@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var string $name
+ * @var bool $checked
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'name',
   'checked' => false,

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var string $link
+ */
+?>
+
 Your login link for {{ config('app.name') }}
 
 {{ $link }}

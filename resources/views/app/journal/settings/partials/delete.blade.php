@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Models\Journal $journal
+ */
+?>
+
 <x-box>
   <x-slot:title>
     {{ __('Delete journal') }}

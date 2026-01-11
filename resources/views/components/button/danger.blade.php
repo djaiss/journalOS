@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var string|null $href
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ * @var \Illuminate\View\ComponentSlot|null $icon
+ */
+?>
+
 @props([
   'href',
 ])

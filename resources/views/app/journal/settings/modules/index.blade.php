@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Models\Journal $journal
+ */
+?>
+
 <x-app-layout :journal="$journal">
   <x-slot:title>
     {{ __('Modules') }}
@@ -14,7 +20,7 @@
 
     <section class="p-4 sm:p-8">
       <div class="flex w-full flex-col gap-y-8">
-        @include('app.journal.settings.partials.modules')
+        @include('app.journal.settings.partials.modules', ['journal' => $journal])
       </div>
     </section>
   </div>

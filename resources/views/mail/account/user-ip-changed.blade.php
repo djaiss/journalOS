@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var string $email
+ * @var string $ip
+ */
+?>
+
 <x-mail::message>
 Hi,
 

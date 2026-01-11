@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var int|string $width
+ * @var int|string $height
+ */
+?>
+
 @props(['width' => 400, 'height' => 400])
 
 <svg xmlns="http://www.w3.org/2000/svg" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">

@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var string|null $title
+ * @var string|null $emoji
+ * @var \Illuminate\View\ComponentSlot|null $action
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'title' => null,
   'emoji' => null,

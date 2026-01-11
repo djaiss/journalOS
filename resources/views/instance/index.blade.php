@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var \Illuminate\Support\Collection $users
+ * @var int $totalUsers
+ * @var int $last7DaysUsers
+ * @var int $last30DaysUsers
+ */
+?>
+
 <x-app-layout>
   @include('instance.partials.banner')
 
