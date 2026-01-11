@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <aside class="flex-col border-b border-gray-200 bg-white px-4 py-4 sm:flex sm:rounded-bl-lg sm:border-r sm:border-b-0 dark:border-gray-700 dark:bg-gray-900">
   <nav class="flex flex-col gap-1">
     <p class="mb-1 text-xs font-medium text-gray-500 uppercase">{{ __('Account') }}</p>

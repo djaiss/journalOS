@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <div>{</div>
 <div class="pl-4">"data": [</div>
 <div class="pl-8">{</div>

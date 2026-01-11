@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var string|null $title
+ * @var string|null $description
+ * @var string $padding
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'title' => null,
   'padding' => 'p-4',

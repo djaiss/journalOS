@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \Illuminate\Support\Collection $logs
+ * @var bool $hasMoreLogs
+ */
+?>
+
 <x-box padding="p-0">
   <x-slot:title>{{ __('Logs') }}</x-slot>
   <x-slot:description>

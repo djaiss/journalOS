@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var string $id
+ * @var string $name
+ * @var string $value
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ */
+?>
+
 @props([
   'id',
   'name',

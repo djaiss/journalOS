@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var string|null $title
+ * @var string|null $verb
+ * @var string|null $verbClass
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'title' => 'Code',
   'verb' => '',

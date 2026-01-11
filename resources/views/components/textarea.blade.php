@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var string $placeholder
+ * @var string $height
+ * @var string $xRef
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'placeholder' => '',
   'height' => 'h-auto min-h-[80px]',

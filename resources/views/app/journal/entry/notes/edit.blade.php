@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var \App\Models\Journal $journal
+ * @var \App\Models\JournalEntry $entry
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-app-layout :journal="$journal">
   <x-slot:title>
     {{ __('Add a note') }}

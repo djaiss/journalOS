@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 Login attempt on {{ config('app.name') }}
 
 A user (hopefully it's you) tried to login to your account but failed.

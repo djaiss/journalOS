@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var bool $turbo
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'turbo' => true,
 ])

@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var string $email
+ * @var string $ip
+ */
+?>
+
 Hi,
 
 Your {{ config('app.name') }} account {{ $email }} was recently signed-in from a new location, device or browser.

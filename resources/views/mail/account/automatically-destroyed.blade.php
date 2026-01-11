@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var int $age
+ */
+?>
+
 <x-mail::message>
 Account deleted
 

@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-marketing.docs.response-attributes>
   <x-marketing.docs.attribute name="type" type="string" description="The type of the resource." />
   <x-marketing.docs.attribute name="id" type="string" description="The ID of the journal entry." />

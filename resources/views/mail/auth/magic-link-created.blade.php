@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var string $link
+ */
+?>
+
 <x-mail::message>
 # Your login link for {{ config('app.name') }}
 

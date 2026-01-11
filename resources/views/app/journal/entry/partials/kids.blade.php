@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\Models\JournalEntry $entry
+ * @var array<string, mixed> $module
+ */
+?>
+
 <x-module>
   <x-slot:title>{{ __('Kids today') }}</x-slot>
   <x-slot:emoji>🧒</x-slot>

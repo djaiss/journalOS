@@ -1,3 +1,17 @@
+<?php
+/**
+ * @var bool $required
+ * @var string|null $id
+ * @var string|null $label
+ * @var string|array|null $error
+ * @var string|null $value
+ * @var string|null $help
+ * @var array<int|string, string> $options
+ * @var string|int|null $selected
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ */
+?>
+
 @props([
   'required' => false,
   'id' => null,

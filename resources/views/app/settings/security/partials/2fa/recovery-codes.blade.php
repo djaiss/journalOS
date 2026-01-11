@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var array<int, string> $recoveryCodes
+ */
+?>
+
 <div id="recovery-codes" class="border-b border-gray-200 p-4 dark:border-gray-700">
   <div class="mb-4 flex items-center">
     <x-phosphor-toolbox class="h-5 w-5 text-gray-500" />

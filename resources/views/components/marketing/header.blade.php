@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <div class="w-full" x-data="{ mobileMenuOpen: false }">
   <!-- main nav -->
   <nav class="max-w-8xl mx-auto flex h-12 items-center justify-between border-b border-gray-300 bg-zinc-100 px-3 sm:px-6 dark:border-slate-600 dark:bg-gray-800 dark:text-slate-200">

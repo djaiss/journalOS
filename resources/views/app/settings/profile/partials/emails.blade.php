@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \Illuminate\Support\Collection $emails
+ * @var bool $hasMoreEmails
+ */
+?>
+
 <x-box padding="p-0">
   <x-slot:title>{{ __('Emails sent') }}</x-slot>
 
