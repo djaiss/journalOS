@@ -1,0 +1,19 @@
+meta {
+  name: Log physical activity
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/physical-activity
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "has_done_physical_activity": "yes",
+    "activity_type": "running",
+    "activity_intensity": "moderate"
+  }
+}

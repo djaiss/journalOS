@@ -1,0 +1,17 @@
+meta {
+  name: Log shopping intent
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/shopping/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "shopping_intent": "planned"
+  }
+}
