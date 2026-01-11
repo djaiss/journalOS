@@ -26,6 +26,12 @@ final class ModuleHealth extends Model
     /** @use HasFactory<\Database\Factories\ModuleHealthFactory> */
     use HasFactory;
 
+    public const array HEALTH_VALUES = [
+        'not great',
+        'okay',
+        'good',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleSocialDensity;
 
 final readonly class SocialDensityModulePresenter
 {
@@ -38,7 +39,7 @@ final readonly class SocialDensityModulePresenter
     {
         $moduleSocialDensity = $this->entry->moduleSocialDensity;
 
-        return collect(['alone', 'few people', 'crowd', 'too much'])->map(fn($value) => [
+        return collect(ModuleSocialDensity::SOCIAL_DENSITY_VALUES)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'alone' => __('Alone'),

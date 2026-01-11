@@ -26,6 +26,14 @@ final class ModuleEnergy extends Model
     /** @use HasFactory<\Database\Factories\ModuleEnergyFactory> */
     use HasFactory;
 
+    public const array ENERGY_LEVELS = [
+        'very low',
+        'low',
+        'normal',
+        'high',
+        'very high',
+    ];
+
     /**
      * The table associated with the model.
      *

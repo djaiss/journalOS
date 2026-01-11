@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModulePhysicalActivity;
 
 final readonly class PhysicalActivityModulePresenter
 {
@@ -40,7 +41,7 @@ final readonly class PhysicalActivityModulePresenter
 
     private function activityTypes(?string $selectedType): array
     {
-        return collect(['running', 'cycling', 'swimming', 'gym', 'walking'])->map(fn($value) => [
+        return collect(ModulePhysicalActivity::ACTIVITY_TYPES)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'running' => __('Running'),
@@ -56,7 +57,7 @@ final readonly class PhysicalActivityModulePresenter
 
     private function activityIntensities(?string $selectedIntensity): array
     {
-        return collect(['light', 'moderate', 'intense'])->map(fn($value) => [
+        return collect(ModulePhysicalActivity::ACTIVITY_INTENSITIES)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'light' => __('Light'),

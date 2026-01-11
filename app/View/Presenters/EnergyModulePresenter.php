@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleEnergy;
 
 final readonly class EnergyModulePresenter
 {
@@ -38,7 +39,7 @@ final readonly class EnergyModulePresenter
     {
         $energy = $this->entry->moduleEnergy?->energy;
 
-        return collect(['very low', 'low', 'normal', 'high', 'very high'])->map(fn($value) => [
+        return collect(ModuleEnergy::ENERGY_LEVELS)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'very low' => __('Very low'),

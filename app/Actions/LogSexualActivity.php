@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleSexualActivity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -52,7 +53,7 @@ final readonly class LogSexualActivity
             ]);
         }
 
-        if ($this->sexualActivityType !== null && ! in_array($this->sexualActivityType, ['solo', 'with-partner', 'intimate-contact'], true)) {
+        if ($this->sexualActivityType !== null && ! in_array($this->sexualActivityType, ModuleSexualActivity::SEXUAL_ACTIVITY_TYPES, true)) {
             throw ValidationException::withMessages([
                 'sexual_activity_type' => 'Invalid sexual activity type value.',
             ]);

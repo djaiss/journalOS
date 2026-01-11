@@ -26,6 +26,14 @@ final class ModuleDayType extends Model
     /** @use HasFactory<\Database\Factories\ModuleDayTypeFactory> */
     use HasFactory;
 
+    public const array DAY_TYPES = [
+        'workday',
+        'day off',
+        'weekend',
+        'vacation',
+        'sick day',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleHygiene;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -53,7 +54,7 @@ final readonly class LogHygiene
             ]);
         }
 
-        if ($this->brushedTeeth !== null && ! in_array($this->brushedTeeth, ['no', 'am', 'pm'], true)) {
+        if ($this->brushedTeeth !== null && ! in_array($this->brushedTeeth, ModuleHygiene::BRUSHED_TEETH_VALUES, true)) {
             throw ValidationException::withMessages([
                 'brushed_teeth' => 'Invalid brushed teeth value.',
             ]);

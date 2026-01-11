@@ -7,9 +7,11 @@ namespace App\Http\Controllers\App\Journals\Modules\Work;
 use App\Actions\LogWork;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleWork;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 final class WorkController extends Controller
 {
@@ -19,8 +21,8 @@ final class WorkController extends Controller
 
         $validated = $request->validate([
             'worked' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:work_mode,work_load,work_procrastinated'],
-            'work_mode' => ['nullable', 'string', 'max:255', 'in:on-site,remote,hybrid', 'required_without_all:worked,work_load,work_procrastinated'],
-            'work_load' => ['nullable', 'string', 'max:255', 'in:light,medium,heavy', 'required_without_all:worked,work_mode,work_procrastinated'],
+            'work_mode' => ['nullable', 'string', 'max:255', Rule::in(ModuleWork::WORK_MODES), 'required_without_all:worked,work_load,work_procrastinated'],
+            'work_load' => ['nullable', 'string', 'max:255', Rule::in(ModuleWork::WORK_LOADS), 'required_without_all:worked,work_mode,work_procrastinated'],
             'work_procrastinated' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:worked,work_mode,work_load'],
         ]);
 

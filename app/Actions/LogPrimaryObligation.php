@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModulePrimaryObligation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -39,8 +40,7 @@ final readonly class LogPrimaryObligation
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validObligationValues = ['work', 'family', 'personal', 'health', 'travel', 'none'];
-        if (! in_array($this->primaryObligation, $validObligationValues, true)) {
+        if (! in_array($this->primaryObligation, ModulePrimaryObligation::PRIMARY_OBLIGATIONS, true)) {
             throw ValidationException::withMessages([
                 'primary_obligation' => 'Invalid primary obligation value.',
             ]);

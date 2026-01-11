@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleMood;
 
 final readonly class MoodModulePresenter
 {
@@ -34,7 +35,7 @@ final readonly class MoodModulePresenter
 
     private function moodOptions(): array
     {
-        return collect(['terrible', 'bad', 'okay', 'good', 'great'])->map(fn($value) => [
+        return collect(ModuleMood::MOOD_VALUES)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'terrible' => __('Terrible'),

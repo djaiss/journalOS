@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleTravel;
 
 final readonly class TravelModulePresenter
 {
@@ -29,7 +30,7 @@ final readonly class TravelModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $travelModes = collect(['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'])->map(fn($mode) => [
+        $travelModes = collect(ModuleTravel::TRAVEL_MODES)->map(fn($mode) => [
             'value' => $mode,
             'label' => match ($mode) {
                 'car' => __('Car'),

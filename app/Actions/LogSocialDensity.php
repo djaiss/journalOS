@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleSocialDensity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -39,8 +40,7 @@ final readonly class LogSocialDensity
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validSocialDensityValues = ['alone', 'few people', 'crowd', 'too much'];
-        if (! in_array($this->socialDensity, $validSocialDensityValues, true)) {
+        if (! in_array($this->socialDensity, ModuleSocialDensity::SOCIAL_DENSITY_VALUES, true)) {
             throw ValidationException::withMessages([
                 'social_density' => 'Invalid social density value.',
             ]);

@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModulePhysicalActivity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -47,13 +48,13 @@ final readonly class LogPhysicalActivity
             ]);
         }
 
-        if ($this->activityType !== null && ! in_array($this->activityType, ['running', 'cycling', 'swimming', 'gym', 'walking'], true)) {
+        if ($this->activityType !== null && ! in_array($this->activityType, ModulePhysicalActivity::ACTIVITY_TYPES, true)) {
             throw ValidationException::withMessages([
                 'activity_type' => 'Invalid activity type value.',
             ]);
         }
 
-        if ($this->activityIntensity !== null && ! in_array($this->activityIntensity, ['light', 'moderate', 'intense'], true)) {
+        if ($this->activityIntensity !== null && ! in_array($this->activityIntensity, ModulePhysicalActivity::ACTIVITY_INTENSITIES, true)) {
             throw ValidationException::withMessages([
                 'activity_intensity' => 'Invalid activity intensity value.',
             ]);

@@ -7,8 +7,10 @@ namespace App\Http\Controllers\App\Journals\Modules\Health;
 use App\Actions\LogHealth;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleHealth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class HealthController extends Controller
@@ -18,7 +20,7 @@ final class HealthController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'health' => ['required', 'string', 'max:255', 'in:good,okay,not great'],
+            'health' => ['required', 'string', 'max:255', Rule::in(ModuleHealth::HEALTH_VALUES)],
         ]);
 
         new LogHealth(

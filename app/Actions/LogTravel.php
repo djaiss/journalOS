@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleTravel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -59,10 +60,8 @@ final readonly class LogTravel
                 ]);
             }
 
-            $validModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
-
             foreach ($this->travelModes as $mode) {
-                if (! is_string($mode) || ! in_array($mode, $validModes, true)) {
+                if (! is_string($mode) || ! in_array($mode, ModuleTravel::TRAVEL_MODES, true)) {
                     throw ValidationException::withMessages([
                         'travel_modes' => 'Invalid travel mode value.',
                     ]);

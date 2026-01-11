@@ -27,6 +27,12 @@ final class ModuleSexualActivity extends Model
     /** @use HasFactory<\Database\Factories\ModuleSexualActivityFactory> */
     use HasFactory;
 
+    public const array SEXUAL_ACTIVITY_TYPES = [
+        'solo',
+        'with-partner',
+        'intimate-contact',
+    ];
+
     /**
      * The table associated with the model.
      *

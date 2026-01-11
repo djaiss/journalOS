@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleShopping;
 
 final readonly class ShoppingModulePresenter
 {
@@ -46,16 +47,7 @@ final readonly class ShoppingModulePresenter
     {
         $selectedTypes = $this->entry->moduleShopping?->shopping_type;
 
-        return collect([
-            'groceries',
-            'clothes',
-            'electronics_tech',
-            'household_essentials',
-            'books_media',
-            'gifts',
-            'online_shopping',
-            'other',
-        ])->map(fn(string $type) => [
+        return collect(ModuleShopping::SHOPPING_TYPES)->map(fn(string $type) => [
             'value' => $type,
             'label' => match ($type) {
                 'groceries' => __('Groceries'),
@@ -76,7 +68,7 @@ final readonly class ShoppingModulePresenter
     {
         $intent = $this->entry->moduleShopping?->shopping_intent;
 
-        return collect(['planned', 'opportunistic', 'impulse', 'replacement'])->map(fn(string $value) => [
+        return collect(ModuleShopping::SHOPPING_INTENTS)->map(fn(string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'planned' => __('Planned'),
@@ -93,7 +85,7 @@ final readonly class ShoppingModulePresenter
     {
         $context = $this->entry->moduleShopping?->shopping_context;
 
-        return collect(['alone', 'with_partner', 'with_kids'])->map(fn(string $value) => [
+        return collect(ModuleShopping::SHOPPING_CONTEXTS)->map(fn(string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'alone' => __('Alone'),
@@ -109,7 +101,7 @@ final readonly class ShoppingModulePresenter
     {
         $shoppingFor = $this->entry->moduleShopping?->shopping_for;
 
-        return collect(['for_self', 'for_household', 'for_others'])->map(fn(string $value) => [
+        return collect(ModuleShopping::SHOPPING_FOR_OPTIONS)->map(fn(string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'for_self' => __('For self'),

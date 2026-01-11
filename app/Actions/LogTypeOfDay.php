@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleDayType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use InvalidArgumentException;
@@ -42,8 +43,10 @@ final readonly class LogTypeOfDay
             throw new ModelNotFoundException('Journal not found');
         }
 
-        if (! in_array($this->dayType, ['workday', 'day off', 'weekend', 'vacation', 'sick day'])) {
-            throw new InvalidArgumentException('dayType must be one of: "workday", "day off", "weekend", "vacation", "sick day"');
+        if (! in_array($this->dayType, ModuleDayType::DAY_TYPES, true)) {
+            $dayTypes = implode('", "', ModuleDayType::DAY_TYPES);
+
+            throw new InvalidArgumentException('dayType must be one of: "' . $dayTypes . '"');
         }
     }
 

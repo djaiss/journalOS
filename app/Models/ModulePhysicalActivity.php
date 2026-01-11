@@ -28,6 +28,20 @@ final class ModulePhysicalActivity extends Model
     /** @use HasFactory<\Database\Factories\ModulePhysicalActivityFactory> */
     use HasFactory;
 
+    public const array ACTIVITY_TYPES = [
+        'running',
+        'cycling',
+        'swimming',
+        'gym',
+        'walking',
+    ];
+
+    public const array ACTIVITY_INTENSITIES = [
+        'light',
+        'moderate',
+        'intense',
+    ];
+
     /**
      * The table associated with the model.
      *
