@@ -11,6 +11,8 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Book;
 use App\Models\JournalEntry;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +21,8 @@ use Illuminate\Support\Facades\DB;
  */
 final readonly class LogBook
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -44,6 +48,8 @@ final readonly class LogBook
         if ($this->book->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Book not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
     }
 
     private function log(): void
