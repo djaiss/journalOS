@@ -19,9 +19,9 @@ final class PhysicalActivityController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:activity_type,activity_intensity'],
-            'activity_type' => ['nullable', 'string', 'max:255', 'in:running,cycling,swimming,gym,walking', 'required_without_all:has_done_physical_activity,activity_intensity'],
-            'activity_intensity' => ['nullable', 'string', 'max:255', 'in:light,moderate,intense', 'required_without_all:has_done_physical_activity,activity_type'],
+            'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no'],
+            'activity_type' => ['nullable', 'string', 'max:255', 'in:running,cycling,swimming,gym,walking'],
+            'activity_intensity' => ['nullable', 'string', 'max:255', 'in:light,moderate,intense'],
         ]);
 
         $entry = new LogPhysicalActivity(

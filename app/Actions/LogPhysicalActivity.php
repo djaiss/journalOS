@@ -41,15 +41,6 @@ final readonly class LogPhysicalActivity
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        if ($this->hasDonePhysicalActivity === null
-            && $this->activityType === null
-            && $this->activityIntensity === null
-        ) {
-            throw ValidationException::withMessages([
-                'physical_activity' => 'At least one physical activity value is required.',
-            ]);
-        }
-
         if ($this->hasDonePhysicalActivity !== null && ! in_array($this->hasDonePhysicalActivity, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'has_done_physical_activity' => 'Invalid physical activity status value.',
