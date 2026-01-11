@@ -6,7 +6,8 @@
 - [ ] notion of denormalized data
 - [ ] ability to reset an entire day
 - [ ] add og images for marketing sharing
-- [ ] add an endpoint to let LLMs query the data
+- [ ] add an endpoint to let LLMs query the data\
+- [ ] add ability to indicate after how long we can't edit data from the past
 
 Life
 - [x] Sleep
