@@ -6,7 +6,6 @@
   <x-breadcrumb :items="[
     ['label' => __('Dashboard'), 'route' => route('journal.index')],
     ['label' => $journal->name, 'route' => route('journal.show', ['slug' => $journal->slug]) ],
-    ['label' => __('Settings'), 'route' => route('journal.settings.modules.index', ['slug' => $journal->slug])],
     ['label' => __('Modules')]
   ]" />
 
