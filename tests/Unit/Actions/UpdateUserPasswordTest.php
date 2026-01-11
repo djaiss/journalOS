@@ -19,11 +19,16 @@ final class UpdateUserPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_updates_user_password(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'password' => Hash::make('current-password'),
         ]);

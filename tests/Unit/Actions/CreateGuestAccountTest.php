@@ -19,10 +19,16 @@ final class CreateGuestAccountTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_creates_a_guest_account(): void
     {
-        Queue::fake();
         Carbon::setTestNow(Carbon::create(2025, 12, 16));
 
         $user = (new CreateGuestAccount())->execute();
@@ -64,8 +70,6 @@ final class CreateGuestAccountTest extends TestCase
     #[Test]
     public function it_creates_first_journal_for_guest(): void
     {
-        Queue::fake();
-
         $user = (new CreateGuestAccount())->execute();
 
         $this->assertDatabaseHas('journals', [
@@ -87,8 +91,6 @@ final class CreateGuestAccountTest extends TestCase
     #[Test]
     public function it_creates_unique_email_for_each_guest(): void
     {
-        Queue::fake();
-
         $user1 = (new CreateGuestAccount())->execute();
         $user2 = (new CreateGuestAccount())->execute();
 
@@ -100,7 +102,6 @@ final class CreateGuestAccountTest extends TestCase
     #[Test]
     public function it_sets_guest_expiration_to_seven_days(): void
     {
-        Queue::fake();
         Carbon::setTestNow(Carbon::create(2025, 12, 16, 14, 30, 0));
 
         $user = (new CreateGuestAccount())->execute();

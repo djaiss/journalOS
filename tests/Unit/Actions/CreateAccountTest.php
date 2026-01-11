@@ -19,10 +19,16 @@ final class CreateAccountTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_creates_an_account(): void
     {
-        Queue::fake();
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
 
         $user = (new CreateAccount(

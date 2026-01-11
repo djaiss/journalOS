@@ -20,10 +20,16 @@ final class CreateJournalTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_creates_a_journal(): void
     {
-        Queue::fake();
         Carbon::setTestNow(Carbon::parse('2025-03-17 10:00:00'));
 
         $user = User::factory()->create();

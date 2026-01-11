@@ -18,11 +18,16 @@ final class CreateApiKeyTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_creates_an_api_key(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
 
         (new CreateApiKey(

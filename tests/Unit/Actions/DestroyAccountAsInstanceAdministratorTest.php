@@ -8,12 +8,20 @@ use App\Models\User;
 use App\Actions\DestroyAccountAsInstanceAdministrator;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 final class DestroyAccountAsInstanceAdministratorTest extends TestCase
 {
     use DatabaseTransactions;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
 
     #[Test]
     public function it_destroys_an_account_as_instance_administrator(): void

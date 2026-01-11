@@ -18,11 +18,16 @@ final class DestroyApiKeyTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_deletes_an_api_key(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $user->createToken('Test API Key');
 

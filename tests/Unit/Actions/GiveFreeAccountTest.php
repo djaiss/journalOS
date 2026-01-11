@@ -8,12 +8,20 @@ use App\Models\User;
 use App\Actions\GiveFreeAccount;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 final class GiveFreeAccountTest extends TestCase
 {
     use DatabaseTransactions;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
 
     #[Test]
     public function it_gives_free_account_to_an_account(): void

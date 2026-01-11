@@ -19,11 +19,16 @@ final class DestroyBookTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_destroys_a_book(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $book = Book::factory()->create([
             'user_id' => $user->id,

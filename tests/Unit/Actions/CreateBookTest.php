@@ -18,11 +18,16 @@ final class CreateBookTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_creates_a_book(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
 
         $book = (new CreateBook(
@@ -60,8 +65,6 @@ final class CreateBookTest extends TestCase
     #[Test]
     public function it_allows_duplicate_book_names_for_same_user(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
 
         $book1 = (new CreateBook(
@@ -82,8 +85,6 @@ final class CreateBookTest extends TestCase
     #[Test]
     public function it_allows_same_book_name_for_different_users(): void
     {
-        Queue::fake();
-
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
 

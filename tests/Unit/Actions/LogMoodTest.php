@@ -22,11 +22,16 @@ final class LogMoodTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_logs_mood_with_terrible(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -71,8 +76,6 @@ final class LogMoodTest extends TestCase
     #[Test]
     public function it_logs_mood_with_bad(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -117,8 +120,6 @@ final class LogMoodTest extends TestCase
     #[Test]
     public function it_logs_mood_with_okay(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -163,8 +164,6 @@ final class LogMoodTest extends TestCase
     #[Test]
     public function it_logs_mood_with_good(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -209,8 +208,6 @@ final class LogMoodTest extends TestCase
     #[Test]
     public function it_logs_mood_with_great(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,

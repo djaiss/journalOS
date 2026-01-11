@@ -19,11 +19,16 @@ final class Validate2faQRCodeTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_validates_the_2fa_qr_code_and_generates_recovery_codes(): void
     {
-        Queue::fake();
-
         $secret = 'JBSWY3DPEHPK3PXP';
 
         $user = User::factory()->create([
@@ -66,8 +71,6 @@ final class Validate2faQRCodeTest extends TestCase
     #[Test]
     public function it_throws_exception_when_token_is_invalid(): void
     {
-        Queue::fake();
-
         $secret = 'JBSWY3DPEHPK3PXP';
 
         $user = User::factory()->create([
@@ -98,8 +101,6 @@ final class Validate2faQRCodeTest extends TestCase
     #[Test]
     public function it_does_not_update_recovery_codes_when_token_is_invalid(): void
     {
-        Queue::fake();
-
         $secret = 'JBSWY3DPEHPK3PXP';
 
         $user = User::factory()->create([

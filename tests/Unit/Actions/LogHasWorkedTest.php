@@ -22,11 +22,16 @@ final class LogHasWorkedTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_logs_has_worked_with_yes(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -74,8 +79,6 @@ final class LogHasWorkedTest extends TestCase
     #[Test]
     public function it_logs_has_worked_with_no(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,

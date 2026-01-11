@@ -6,12 +6,20 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\GenerateJournalAvatar;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
 final class GenerateJournalAvatarTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
 
     #[Test]
     public function it_generates_a_base64_encoded_svg_avatar(): void

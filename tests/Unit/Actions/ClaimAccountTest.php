@@ -19,10 +19,16 @@ final class ClaimAccountTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_claims_a_guest_account(): void
     {
-        Queue::fake();
         Carbon::setTestNow(Carbon::create(2025, 12, 16, 9, 0, 0));
 
         $guest = User::factory()->create([

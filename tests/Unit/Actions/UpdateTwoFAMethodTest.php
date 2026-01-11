@@ -17,11 +17,16 @@ final class UpdateTwoFAMethodTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_updates_user_2fa_method(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'two_factor_preferred_method' => 'email',
         ]);

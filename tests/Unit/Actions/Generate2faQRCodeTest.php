@@ -18,10 +18,16 @@ final class Generate2faQRCodeTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_generates_a_2fa_qr_code(): void
     {
-        Queue::fake();
         Carbon::setTestNow(Carbon::parse('2025-07-16 10:00:00'));
 
         $user = User::factory()->create([
