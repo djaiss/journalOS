@@ -35,13 +35,13 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'very low',
         ))->execute();
 
-        $this->assertEquals('very low', $result->moduleEnergy->energy);
+        $this->assertEquals('very low', $entry->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',
@@ -71,8 +71,6 @@ final class LogEnergyTest extends TestCase
     #[Test]
     public function it_logs_energy_with_low(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -81,44 +79,18 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'low',
         ))->execute();
 
-        $this->assertEquals('low', $result->moduleEnergy->energy);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'energy_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
+        $this->assertEquals('low', $entry->moduleEnergy->energy);
     }
 
     #[Test]
     public function it_logs_energy_with_normal(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -127,44 +99,18 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'normal',
         ))->execute();
 
-        $this->assertEquals('normal', $result->moduleEnergy->energy);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'energy_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
+        $this->assertEquals('normal', $entry->moduleEnergy->energy);
     }
 
     #[Test]
     public function it_logs_energy_with_high(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -173,44 +119,18 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'high',
         ))->execute();
 
-        $this->assertEquals('high', $result->moduleEnergy->energy);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'energy_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
+        $this->assertEquals('high', $entry->moduleEnergy->energy);
     }
 
     #[Test]
     public function it_logs_energy_with_very_high(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -219,37 +139,13 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'very high',
         ))->execute();
 
-        $this->assertEquals('very high', $result->moduleEnergy->energy);
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'energy_logged' && $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
-        );
+        $this->assertEquals('very high', $entry->moduleEnergy->energy);
     }
 
     #[Test]

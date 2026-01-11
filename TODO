@@ -8,6 +8,9 @@
 - [ ] add og images for marketing sharing
 - [ ] add an endpoint to let LLMs query the data\
 - [ ] add ability to indicate after how long we can't edit data from the past
+- [ ] extract allowed values from `$validMoodValues = ['terrible', 'bad', 'okay', 'good', 'great'];` to model instead
+- [ ] in some controllers we use user: $request->user(), instead of Auth user
+- [ ] in most tests when calling actions, we shuold add queue fake
 
 Life
 - [x] Sleep

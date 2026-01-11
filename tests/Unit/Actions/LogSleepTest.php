@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogPrimaryObligation;
+use App\Actions\LogSleep;
+use App\Jobs\CalculateSleepDuration;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -18,12 +19,12 @@ use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class LogPrimaryObligationTest extends TestCase
+final class LogSleepTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function it_logs_primary_obligation_with_work(): void
+    public function it_logs_bedtime(): void
     {
         Queue::fake();
 
@@ -35,22 +36,20 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogSleep(
             user: $user,
             entry: $entry,
-            primaryObligation: 'work',
-        ))->execute();
+            bedtime: '23:30',
+            wakeUpTime: null,
+        )->execute();
 
-        $this->assertEquals('work', $entry->modulePrimaryObligation?->primary_obligation);
-        $this->assertDatabaseHas('module_primary_obligation', [
-            'journal_entry_id' => $entry->id,
-        ]);
+        $this->assertEquals('23:30', $entry->moduleSleep->bedtime);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'primary_obligation_logged' && $job->user->id === $user->id;
+                return $job->action === 'sleep_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -64,6 +63,14 @@ final class LogPrimaryObligationTest extends TestCase
 
         Queue::assertPushedOn(
             queue: 'low',
+            job: CalculateSleepDuration::class,
+            callback: function (CalculateSleepDuration $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
             callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
                 return $job->entry->id === $entry->id;
@@ -72,7 +79,7 @@ final class LogPrimaryObligationTest extends TestCase
     }
 
     #[Test]
-    public function it_logs_primary_obligation_with_family(): void
+    public function it_logs_wake_up_time(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -82,20 +89,18 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogSleep(
             user: $user,
             entry: $entry,
-            primaryObligation: 'family',
-        ))->execute();
+            bedtime: null,
+            wakeUpTime: '07:00',
+        )->execute();
 
-        $this->assertEquals('family', $entry->modulePrimaryObligation?->primary_obligation);
-        $this->assertDatabaseHas('module_primary_obligation', [
-            'journal_entry_id' => $entry->id,
-        ]);
+        $this->assertEquals('07:00', $entry->moduleSleep->wake_up_time);
     }
 
     #[Test]
-    public function it_logs_primary_obligation_with_personal(): void
+    public function it_logs_both_bedtime_and_wake_up_time(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -105,89 +110,41 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogSleep(
             user: $user,
             entry: $entry,
-            primaryObligation: 'personal',
-        ))->execute();
+            bedtime: '23:30',
+            wakeUpTime: '07:00',
+        )->execute();
 
-        $this->assertEquals('personal', $entry->modulePrimaryObligation?->primary_obligation);
-        $this->assertDatabaseHas('module_primary_obligation', [
-            'journal_entry_id' => $entry->id,
-        ]);
+        $this->assertEquals('23:30', $entry->moduleSleep->bedtime);
+        $this->assertEquals('07:00', $entry->moduleSleep->wake_up_time);
     }
 
     #[Test]
-    public function it_logs_primary_obligation_with_health(): void
+    public function it_throws_when_entry_does_not_belong_to_user(): void
     {
+        $this->expectException(ModelNotFoundException::class);
+
         $user = User::factory()->create();
+        $otherUser = User::factory()->create();
         $journal = Journal::factory()->create([
-            'user_id' => $user->id,
+            'user_id' => $otherUser->id,
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        new LogSleep(
             user: $user,
             entry: $entry,
-            primaryObligation: 'health',
-        ))->execute();
-
-        $this->assertEquals('health', $entry->modulePrimaryObligation?->primary_obligation);
-        $this->assertDatabaseHas('module_primary_obligation', [
-            'journal_entry_id' => $entry->id,
-        ]);
+            bedtime: '23:30',
+            wakeUpTime: null,
+        )->execute();
     }
 
     #[Test]
-    public function it_logs_primary_obligation_with_travel(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-        ]);
-
-        $entry = (new LogPrimaryObligation(
-            user: $user,
-            entry: $entry,
-            primaryObligation: 'travel',
-        ))->execute();
-
-        $this->assertEquals('travel', $entry->modulePrimaryObligation?->primary_obligation);
-        $this->assertDatabaseHas('module_primary_obligation', [
-            'journal_entry_id' => $entry->id,
-        ]);
-    }
-
-    #[Test]
-    public function it_logs_primary_obligation_with_none(): void
-    {
-        $user = User::factory()->create();
-        $journal = Journal::factory()->create([
-            'user_id' => $user->id,
-        ]);
-        $entry = JournalEntry::factory()->create([
-            'journal_id' => $journal->id,
-        ]);
-
-        $entry = (new LogPrimaryObligation(
-            user: $user,
-            entry: $entry,
-            primaryObligation: 'none',
-        ))->execute();
-
-        $this->assertEquals('none', $entry->modulePrimaryObligation?->primary_obligation);
-        $this->assertDatabaseHas('module_primary_obligation', [
-            'journal_entry_id' => $entry->id,
-        ]);
-    }
-
-    #[Test]
-    public function it_throws_validation_exception_for_invalid_primary_obligation_value(): void
+    public function it_throws_when_both_values_are_null(): void
     {
         $this->expectException(ValidationException::class);
 
@@ -199,31 +156,95 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogPrimaryObligation(
+        new LogSleep(
             user: $user,
             entry: $entry,
-            primaryObligation: 'invalid',
-        ))->execute();
+            bedtime: null,
+            wakeUpTime: null,
+        )->execute();
     }
 
     #[Test]
-    public function it_throws_exception_when_user_does_not_own_journal(): void
+    public function it_throws_when_bedtime_format_is_invalid(): void
     {
-        $this->expectException(ModelNotFoundException::class);
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
-        $anotherUser = User::factory()->create();
         $journal = Journal::factory()->create([
-            'user_id' => $anotherUser->id,
+            'user_id' => $user->id,
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
 
-        (new LogPrimaryObligation(
+        new LogSleep(
             user: $user,
             entry: $entry,
-            primaryObligation: 'work',
-        ))->execute();
+            bedtime: 'invalid',
+            wakeUpTime: null,
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_wake_up_time_format_is_invalid(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogSleep(
+            user: $user,
+            entry: $entry,
+            bedtime: null,
+            wakeUpTime: 'invalid',
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_bedtime_has_invalid_hour(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogSleep(
+            user: $user,
+            entry: $entry,
+            bedtime: '25:00',
+            wakeUpTime: null,
+        )->execute();
+    }
+
+    #[Test]
+    public function it_throws_when_wake_up_time_has_invalid_minutes(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        new LogSleep(
+            user: $user,
+            entry: $entry,
+            bedtime: null,
+            wakeUpTime: '07:61',
+        )->execute();
     }
 }

@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\LogPhysicalActivity;
+use App\Jobs\CheckPresenceOfContentInJournalEntry;
+use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\User;
@@ -13,6 +16,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Queue;
 
 final class LogPhysicalActivityTest extends TestCase
 {
@@ -21,6 +25,8 @@ final class LogPhysicalActivityTest extends TestCase
     #[Test]
     public function it_logs_has_done_physical_activity_yes(): void
     {
+        Queue::fake();
+
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -38,6 +44,30 @@ final class LogPhysicalActivityTest extends TestCase
         )->execute();
 
         $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: LogUserAction::class,
+            callback: function (LogUserAction $job) use ($user): bool {
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
     }
 
     #[Test]
