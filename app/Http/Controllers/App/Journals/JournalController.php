@@ -86,7 +86,7 @@ final class JournalController extends Controller
         ]);
 
         new RenameJournal(
-            user: $request->user(),
+            user: Auth::user(),
             journal: $journal,
             name: TextSanitizer::plainText($validated['journal_name']),
         )->execute();

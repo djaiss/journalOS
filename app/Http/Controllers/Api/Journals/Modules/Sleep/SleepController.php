@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class SleepController extends Controller
 {
@@ -22,7 +23,7 @@ final class SleepController extends Controller
         ]);
 
         $entry = new LogSleep(
-            user: $request->user(),
+            user: Auth::user(),
             entry: $journalEntry,
             bedtime: array_key_exists('bedtime', $validated)
                 ? TextSanitizer::nullablePlainText($validated['bedtime'])
