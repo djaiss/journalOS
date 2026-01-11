@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogWorkProcrastinated;
+use App\Actions\LogWork;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,9 +35,12 @@ final class LogWorkProcrastinatedTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogWorkProcrastinated(
+        $result = (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
+            workMode: null,
+            workLoad: null,
             workProcrastinated: 'yes',
         ))->execute();
 
@@ -47,7 +50,7 @@ final class LogWorkProcrastinatedTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'work_procrastinated_logged' && $job->user->id === $user->id;
+                return $job->action === 'work_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,9 +84,12 @@ final class LogWorkProcrastinatedTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogWorkProcrastinated(
+        $result = (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
+            workMode: null,
+            workLoad: null,
             workProcrastinated: 'no',
         ))->execute();
 
@@ -93,7 +99,7 @@ final class LogWorkProcrastinatedTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'work_procrastinated_logged' && $job->user->id === $user->id;
+                return $job->action === 'work_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -118,7 +124,7 @@ final class LogWorkProcrastinatedTest extends TestCase
     public function it_throws_when_journal_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal not found');
+        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -129,9 +135,12 @@ final class LogWorkProcrastinatedTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWorkProcrastinated(
+        (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
+            workMode: null,
+            workLoad: null,
             workProcrastinated: 'yes',
         ))->execute();
     }
@@ -139,8 +148,7 @@ final class LogWorkProcrastinatedTest extends TestCase
     #[Test]
     public function it_throws_when_work_procrastinated_is_not_yes_or_no(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('workProcrastinated must be either "yes" or "no"');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -150,9 +158,12 @@ final class LogWorkProcrastinatedTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWorkProcrastinated(
+        (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
+            workMode: null,
+            workLoad: null,
             workProcrastinated: 'maybe',
         ))->execute();
     }

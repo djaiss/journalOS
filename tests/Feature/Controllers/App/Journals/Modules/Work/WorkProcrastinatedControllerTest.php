@@ -30,7 +30,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/procrastinated",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_procrastinated' => 'yes'],
         );
 
@@ -56,7 +56,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/procrastinated",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_procrastinated' => 'no'],
         );
 
@@ -82,7 +82,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/procrastinated",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_procrastinated' => 'maybe'],
         );
 
@@ -104,7 +104,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/procrastinated",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             [],
         );
 
@@ -123,7 +123,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/procrastinated",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_procrastinated' => 'yes'],
         );
 
@@ -146,7 +146,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/procrastinated",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_procrastinated' => 'yes'],
         );
 

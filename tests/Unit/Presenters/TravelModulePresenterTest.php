@@ -34,9 +34,8 @@ final class TravelModulePresenterTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('has_traveled_today', $result);
-        $this->assertArrayHasKey('has_traveled_url', $result);
+        $this->assertArrayHasKey('travel_url', $result);
         $this->assertArrayHasKey('travel_mode', $result);
-        $this->assertArrayHasKey('travel_mode_url', $result);
         $this->assertArrayHasKey('travel_modes', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
@@ -48,17 +47,7 @@ final class TravelModulePresenterTest extends TestCase
                 'month' => $entry->month,
                 'day' => $entry->day,
             ]),
-            $result['has_traveled_url'],
-        );
-
-        $this->assertEquals(
-            route('journal.entry.travel.mode.update', [
-                'slug' => $entry->journal->slug,
-                'year' => $entry->year,
-                'month' => $entry->month,
-                'day' => $entry->day,
-            ]),
-            $result['travel_mode_url'],
+            $result['travel_url'],
         );
 
         $this->assertEquals(

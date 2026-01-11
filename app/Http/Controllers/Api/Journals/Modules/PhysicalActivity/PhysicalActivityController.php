@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Journals\Modules\PhysicalActivity;
 
-use App\Actions\LogActivityIntensity;
-use App\Actions\LogActivityType;
-use App\Actions\LogHasDonePhysicalActivity;
+use App\Actions\LogPhysicalActivity;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
@@ -21,37 +19,24 @@ final class PhysicalActivityController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no'],
-            'activity_type' => ['nullable', 'string', 'max:255', 'in:running,cycling,swimming,gym,walking'],
-            'activity_intensity' => ['nullable', 'string', 'max:255', 'in:light,moderate,intense'],
+            'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:activity_type,activity_intensity'],
+            'activity_type' => ['nullable', 'string', 'max:255', 'in:running,cycling,swimming,gym,walking', 'required_without_all:has_done_physical_activity,activity_intensity'],
+            'activity_intensity' => ['nullable', 'string', 'max:255', 'in:light,moderate,intense', 'required_without_all:has_done_physical_activity,activity_type'],
         ]);
 
-        // Log has_done_physical_activity if provided
-        if (isset($validated['has_done_physical_activity'])) {
-            $entry = new LogHasDonePhysicalActivity(
-                user: Auth::user(),
-                entry: $entry,
-                hasDonePhysicalActivity: TextSanitizer::nullablePlainText($validated['has_done_physical_activity']),
-            )->execute();
-        }
-
-        // Log activity_type if provided
-        if (isset($validated['activity_type'])) {
-            $entry = new LogActivityType(
-                user: Auth::user(),
-                entry: $entry,
-                activityType: TextSanitizer::nullablePlainText($validated['activity_type']),
-            )->execute();
-        }
-
-        // Log activity_intensity if provided
-        if (isset($validated['activity_intensity'])) {
-            $entry = new LogActivityIntensity(
-                user: Auth::user(),
-                entry: $entry,
-                activityIntensity: TextSanitizer::nullablePlainText($validated['activity_intensity']),
-            )->execute();
-        }
+        $entry = new LogPhysicalActivity(
+            user: Auth::user(),
+            entry: $entry,
+            hasDonePhysicalActivity: array_key_exists('has_done_physical_activity', $validated)
+                ? TextSanitizer::nullablePlainText($validated['has_done_physical_activity'])
+                : null,
+            activityType: array_key_exists('activity_type', $validated)
+                ? TextSanitizer::nullablePlainText($validated['activity_type'])
+                : null,
+            activityIntensity: array_key_exists('activity_intensity', $validated)
+                ? TextSanitizer::nullablePlainText($validated['activity_intensity'])
+                : null,
+        )->execute();
 
         return response()->json([
             'data' => new JournalEntryResource($entry),

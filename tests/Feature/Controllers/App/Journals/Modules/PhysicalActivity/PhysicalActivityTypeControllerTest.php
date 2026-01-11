@@ -30,7 +30,7 @@ final class PhysicalActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_type' => 'running'],
         );
 
@@ -56,7 +56,7 @@ final class PhysicalActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_type' => 'cycling'],
         );
 
@@ -82,7 +82,7 @@ final class PhysicalActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_type' => 'swimming'],
         );
 
@@ -108,7 +108,7 @@ final class PhysicalActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_type' => 'gym'],
         );
 
@@ -134,7 +134,7 @@ final class PhysicalActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_type' => 'walking'],
         );
 
@@ -160,7 +160,7 @@ final class PhysicalActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_type' => 'invalid'],
         );
 

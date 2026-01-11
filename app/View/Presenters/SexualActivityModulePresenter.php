@@ -14,14 +14,7 @@ final readonly class SexualActivityModulePresenter
 
     public function build(): array
     {
-        $hasSexualActivityUrl = route('journal.entry.sexual-activity.update', [
-            'slug' => $this->entry->journal->slug,
-            'year' => $this->entry->year,
-            'month' => $this->entry->month,
-            'day' => $this->entry->day,
-        ]);
-
-        $sexualActivityTypeUrl = route('journal.entry.sexual-activity.type.update', [
+        $sexualActivityUrl = route('journal.entry.sexual-activity.update', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
             'month' => $this->entry->month,
@@ -47,8 +40,7 @@ final readonly class SexualActivityModulePresenter
         ]);
 
         return [
-            'has_sexual_activity_url' => $hasSexualActivityUrl,
-            'sexual_activity_type_url' => $sexualActivityTypeUrl,
+            'sexual_activity_url' => $sexualActivityUrl,
             'sexual_activity_types' => $activityTypes,
             'reset_url' => $resetUrl,
             'display_reset' => ! is_null($this->entry->moduleSexualActivity?->had_sexual_activity)

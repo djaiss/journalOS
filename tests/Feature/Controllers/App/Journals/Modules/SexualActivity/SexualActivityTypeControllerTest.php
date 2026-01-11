@@ -30,7 +30,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             ['sexual_activity_type' => 'solo'],
         );
 
@@ -56,7 +56,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             ['sexual_activity_type' => 'with-partner'],
         );
 
@@ -82,7 +82,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             ['sexual_activity_type' => 'intimate-contact'],
         );
 
@@ -108,7 +108,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             ['sexual_activity_type' => 'invalid'],
         );
 
@@ -130,7 +130,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             [],
         );
 
@@ -149,7 +149,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             ['sexual_activity_type' => 'solo'],
         );
 
@@ -172,7 +172,7 @@ final class SexualActivityTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/sexual-activity",
             ['sexual_activity_type' => 'solo'],
         );
 

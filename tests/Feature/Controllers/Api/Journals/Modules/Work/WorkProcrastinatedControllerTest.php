@@ -66,7 +66,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/procrastinated', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_procrastinated' => 'yes',
         ]);
 
@@ -99,7 +99,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/procrastinated', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_procrastinated' => 'maybe',
         ]);
 
@@ -117,7 +117,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/procrastinated', []);
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('work_procrastinated');
@@ -131,7 +131,7 @@ final class WorkProcrastinatedControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/procrastinated', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_procrastinated' => 'yes',
         ]);
 

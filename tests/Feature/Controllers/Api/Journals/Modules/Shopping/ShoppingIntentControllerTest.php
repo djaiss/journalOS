@@ -32,7 +32,7 @@ final class ShoppingIntentControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/intent", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_intent' => 'planned',
         ]);
 
@@ -60,7 +60,7 @@ final class ShoppingIntentControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/intent", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_intent' => 'impulse',
         ]);
 
@@ -88,7 +88,7 @@ final class ShoppingIntentControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/intent", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_intent' => 'invalid',
         ]);
 
@@ -112,7 +112,7 @@ final class ShoppingIntentControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/intent", []);
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['shopping_intent']);
@@ -129,7 +129,7 @@ final class ShoppingIntentControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/intent", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_intent' => 'planned',
         ]);
 
@@ -150,7 +150,7 @@ final class ShoppingIntentControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/intent", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_intent' => 'planned',
         ]);
 

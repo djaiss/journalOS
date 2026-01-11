@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogWorkMode;
+use App\Actions\LogWork;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,10 +35,13 @@ final class LogWorkModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogWorkMode(
+        $result = (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
             workMode: 'on-site',
+            workLoad: null,
+            workProcrastinated: null,
         ))->execute();
 
         $this->assertEquals('on-site', $result->moduleWork?->work_mode);
@@ -47,7 +50,7 @@ final class LogWorkModeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'work_mode_logged' && $job->user->id === $user->id;
+                return $job->action === 'work_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,10 +84,13 @@ final class LogWorkModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogWorkMode(
+        $result = (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
             workMode: 'remote',
+            workLoad: null,
+            workProcrastinated: null,
         ))->execute();
 
         $this->assertEquals('remote', $result->moduleWork?->work_mode);
@@ -93,7 +99,7 @@ final class LogWorkModeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'work_mode_logged' && $job->user->id === $user->id;
+                return $job->action === 'work_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -127,10 +133,13 @@ final class LogWorkModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogWorkMode(
+        $result = (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
             workMode: 'hybrid',
+            workLoad: null,
+            workProcrastinated: null,
         ))->execute();
 
         $this->assertEquals('hybrid', $result->moduleWork?->work_mode);
@@ -139,7 +148,7 @@ final class LogWorkModeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'work_mode_logged' && $job->user->id === $user->id;
+                return $job->action === 'work_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -164,7 +173,7 @@ final class LogWorkModeTest extends TestCase
     public function it_throws_when_journal_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal not found');
+        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -175,18 +184,20 @@ final class LogWorkModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWorkMode(
+        (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
             workMode: 'on-site',
+            workLoad: null,
+            workProcrastinated: null,
         ))->execute();
     }
 
     #[Test]
     public function it_throws_when_work_mode_is_invalid(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('workMode must be either "on-site", "remote", or "hybrid"');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -196,10 +207,13 @@ final class LogWorkModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWorkMode(
+        (new LogWork(
             user: $user,
             entry: $entry,
+            worked: null,
             workMode: 'invalid',
+            workLoad: null,
+            workProcrastinated: null,
         ))->execute();
     }
 }

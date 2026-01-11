@@ -36,7 +36,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/1/15/sleep/wake_up_time",
+            "/journals/{$journal->slug}/entries/2024/1/15/sleep",
             ['wake_up_time' => '<b>07:30</b>'],
         );
 
@@ -60,7 +60,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/1/15/sleep/wake_up_time",
+            "/journals/{$journal->slug}/entries/2024/1/15/sleep",
             ['wake_up_time' => '07:30'],
         );
 
@@ -85,7 +85,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/1/15/sleep/wake_up_time",
+            "/journals/{$journal->slug}/entries/2024/1/15/sleep",
             ['wake_up_time' => '07:30'],
         );
 

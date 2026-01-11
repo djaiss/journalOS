@@ -18,43 +18,19 @@ final readonly class ShoppingModulePresenter
 
         return [
             'has_shopped_today' => $moduleShopping?->has_shopped_today,
-            'has_shopped_url' => route('journal.entry.shopping.update', [
+            'shopping_url' => route('journal.entry.shopping.update', [
                 'slug' => $this->entry->journal->slug,
                 'year' => $this->entry->year,
                 'month' => $this->entry->month,
                 'day' => $this->entry->day,
             ]),
             'shopping_type' => $moduleShopping?->shopping_type,
-            'shopping_type_url' => route('journal.entry.shopping.type.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
             'shopping_types' => $this->shoppingTypes(),
             'shopping_intent' => $moduleShopping?->shopping_intent,
-            'shopping_intent_url' => route('journal.entry.shopping.intent.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
             'shopping_intents' => $this->shoppingIntents(),
             'shopping_context' => $moduleShopping?->shopping_context,
-            'shopping_context_url' => route('journal.entry.shopping.context.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
             'shopping_contexts' => $this->shoppingContexts(),
             'shopping_for' => $moduleShopping?->shopping_for,
-            'shopping_for_url' => route('journal.entry.shopping.for.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
             'shopping_for_options' => $this->shoppingForOptions(),
             'reset_url' => route('journal.entry.shopping.reset', [
                 'slug' => $this->entry->journal->slug,

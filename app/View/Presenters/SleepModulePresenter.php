@@ -65,14 +65,7 @@ final readonly class SleepModulePresenter
             'wake_up_time' => SleepHelper::shift($wake_up_time, +5),
         ]);
 
-        $bedtimeUpdateUrl = route('journal.entry.sleep.bedtime.update', [
-            'slug' => $this->entry->journal->slug,
-            'year' => $this->entry->year,
-            'month' => $this->entry->month,
-            'day' => $this->entry->day,
-        ]);
-
-        $wakeUpTimeUpdateUrl = route('journal.entry.sleep.wake_up_time.update', [
+        $sleepUrl = route('journal.entry.sleep.update', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
             'month' => $this->entry->month,
@@ -93,8 +86,7 @@ final readonly class SleepModulePresenter
             'next_bedtime_url' => $nextBedtimeUrl,
             'previous_wake_up_url' => $previousWakeUpUrl,
             'next_wake_up_url' => $nextWakeUpUrl,
-            'bedtime_update_url' => $bedtimeUpdateUrl,
-            'wake_up_time_update_url' => $wakeUpTimeUpdateUrl,
+            'sleep_url' => $sleepUrl,
             'reset_url' => $resetUrl,
             'display_reset' => ! is_null($moduleSleep?->bedtime) || ! is_null($moduleSleep?->wake_up_time),
         ];

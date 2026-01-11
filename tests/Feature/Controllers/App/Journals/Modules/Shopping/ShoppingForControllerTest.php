@@ -30,7 +30,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_for' => 'for_self'],
         );
 
@@ -56,7 +56,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_for' => 'for_household'],
         );
 
@@ -82,7 +82,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_for' => 'for_others'],
         );
 
@@ -108,7 +108,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_for' => 'invalid'],
         );
 
@@ -130,7 +130,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             [],
         );
 
@@ -149,7 +149,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_for' => 'for_self'],
         );
 
@@ -169,7 +169,7 @@ final class ShoppingForControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/for",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_for' => 'for_self'],
         );
 

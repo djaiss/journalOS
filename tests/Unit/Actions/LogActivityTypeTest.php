@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogActivityType;
+use App\Actions\LogPhysicalActivity;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -35,10 +35,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityType(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'running',
+            activityIntensity: null,
         ))->execute();
 
         $this->assertEquals('running', $result->modulePhysicalActivity->activity_type);
@@ -47,7 +49,7 @@ final class LogActivityTypeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_type_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,10 +83,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityType(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'cycling',
+            activityIntensity: null,
         ))->execute();
 
         $this->assertEquals('cycling', $result->modulePhysicalActivity->activity_type);
@@ -93,7 +97,7 @@ final class LogActivityTypeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_type_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -127,10 +131,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityType(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'swimming',
+            activityIntensity: null,
         ))->execute();
 
         $this->assertEquals('swimming', $result->modulePhysicalActivity->activity_type);
@@ -139,7 +145,7 @@ final class LogActivityTypeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_type_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -173,10 +179,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityType(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'gym',
+            activityIntensity: null,
         ))->execute();
 
         $this->assertEquals('gym', $result->modulePhysicalActivity->activity_type);
@@ -185,7 +193,7 @@ final class LogActivityTypeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_type_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -219,10 +227,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityType(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'walking',
+            activityIntensity: null,
         ))->execute();
 
         $this->assertEquals('walking', $result->modulePhysicalActivity->activity_type);
@@ -231,7 +241,7 @@ final class LogActivityTypeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_type_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -267,10 +277,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogActivityType(
+        (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'running',
+            activityIntensity: null,
         ))->execute();
     }
 
@@ -287,10 +299,12 @@ final class LogActivityTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogActivityType(
+        (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'invalid',
+            activityIntensity: null,
         ))->execute();
     }
 }

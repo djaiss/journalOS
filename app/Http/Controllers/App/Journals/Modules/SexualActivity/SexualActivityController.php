@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\App\Journals\Modules\SexualActivity;
 
-use App\Actions\LogHadSexualActivity;
+use App\Actions\LogSexualActivity;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -18,13 +18,19 @@ final class SexualActivityController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'had_sexual_activity' => ['required', 'string', 'max:255', 'in:yes,no'],
+            'had_sexual_activity' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:sexual_activity_type'],
+            'sexual_activity_type' => ['nullable', 'string', 'max:255', 'in:solo,with-partner,intimate-contact', 'required_without_all:had_sexual_activity'],
         ]);
 
-        new LogHadSexualActivity(
+        new LogSexualActivity(
             user: Auth::user(),
             entry: $journalEntry,
-            hadSexualActivity: TextSanitizer::plainText($validated['had_sexual_activity']),
+            hadSexualActivity: array_key_exists('had_sexual_activity', $validated)
+                ? TextSanitizer::plainText($validated['had_sexual_activity'])
+                : null,
+            sexualActivityType: array_key_exists('sexual_activity_type', $validated)
+                ? TextSanitizer::plainText($validated['sexual_activity_type'])
+                : null,
         )->execute();
 
         return to_route('journal.entry.show', [

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogTravelMode;
+use App\Actions\LogTravel;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,9 +35,10 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTravelMode(
+        $result = (new LogTravel(
             user: $user,
             entry: $entry,
+            hasTraveled: null,
             travelModes: ['car'],
         ))->execute();
 
@@ -47,7 +48,7 @@ final class LogTravelModeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'travel_mode_logged' && $job->user->id === $user->id;
+                return $job->action === 'travel_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,9 +82,10 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTravelMode(
+        $result = (new LogTravel(
             user: $user,
             entry: $entry,
+            hasTraveled: null,
             travelModes: ['car', 'plane', 'train'],
         ))->execute();
 
@@ -108,9 +110,10 @@ final class LogTravelModeTest extends TestCase
 
         $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
 
-        $result = (new LogTravelMode(
+        $result = (new LogTravel(
             user: $user,
             entry: $entry,
+            hasTraveled: null,
             travelModes: $allModes,
         ))->execute();
 
@@ -130,7 +133,7 @@ final class LogTravelModeTest extends TestCase
     public function it_throws_when_journal_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal not found');
+        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -141,9 +144,10 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTravelMode(
+        (new LogTravel(
             user: $user,
             entry: $entry,
+            hasTraveled: null,
             travelModes: ['car'],
         ))->execute();
     }
@@ -151,8 +155,7 @@ final class LogTravelModeTest extends TestCase
     #[Test]
     public function it_throws_when_travel_modes_is_empty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('travelModes cannot be empty');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -162,9 +165,10 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTravelMode(
+        (new LogTravel(
             user: $user,
             entry: $entry,
+            hasTraveled: null,
             travelModes: [],
         ))->execute();
     }
@@ -172,8 +176,7 @@ final class LogTravelModeTest extends TestCase
     #[Test]
     public function it_throws_when_travel_mode_is_invalid(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Each travelMode must be one of: car, plane, train, bike, bus, walk, boat, other');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -183,9 +186,10 @@ final class LogTravelModeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTravelMode(
+        (new LogTravel(
             user: $user,
             entry: $entry,
+            hasTraveled: null,
             travelModes: ['car', 'invalid', 'plane'],
         ))->execute();
     }

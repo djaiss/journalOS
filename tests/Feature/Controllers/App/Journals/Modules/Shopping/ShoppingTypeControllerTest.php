@@ -30,7 +30,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => ['groceries']],
         );
 
@@ -57,7 +57,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => ['groceries', 'books_media', 'gifts']],
         );
 
@@ -89,7 +89,7 @@ final class ShoppingTypeControllerTest extends TestCase
         $allTypes = ['groceries', 'clothes', 'electronics_tech', 'household_essentials', 'books_media', 'gifts', 'online_shopping', 'other'];
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => $allTypes],
         );
 
@@ -117,7 +117,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => 'groceries'],
         );
 
@@ -139,7 +139,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => []],
         );
 
@@ -161,7 +161,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => ['groceries', 'invalid', 'gifts']],
         );
 
@@ -183,7 +183,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             [],
         );
 
@@ -202,7 +202,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => ['groceries']],
         );
 
@@ -222,7 +222,7 @@ final class ShoppingTypeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/type",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_types' => ['groceries']],
         );
 

@@ -14,22 +14,12 @@ use App\Http\Controllers\Api\Journals\Modules\Kids\KidsController as KidsModuleC
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
 use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligationController as PrimaryObligationModuleController;
-use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingContextController;
 use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingController;
-use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingForController;
-use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingIntentController;
-use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingTypeController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
-use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityTypeController;
 use App\Http\Controllers\Api\Journals\Modules\SocialDensity\SocialDensityController as SocialDensityModuleController;
-use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepBedTimeController;
-use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepWakeUpTimeController;
+use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepController;
 use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
-use App\Http\Controllers\Api\Journals\Modules\Travel\TravelModeController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkController;
-use App\Http\Controllers\Api\Journals\Modules\Work\WorkLoadController;
-use App\Http\Controllers\Api\Journals\Modules\Work\WorkModeController;
-use App\Http\Controllers\Api\Journals\Modules\Work\WorkProcrastinatedController;
 use App\Http\Controllers\Api\Journals\Notes\NotesController;
 use App\Http\Controllers\Api\Journals\Notes\NotesResetController;
 use App\Http\Controllers\Api\Settings;
@@ -68,44 +58,18 @@ Route::name('api.')->group(function (): void {
                         Route::get('', [JournalEntryController::class, 'show'])
                             ->name('journal.entry.show');
 
-                        Route::put('sleep/bedtime', [SleepBedTimeController::class, 'update'])
-                            ->name('journal.entry.sleep.bedtime.update');
-
-                        Route::put('sleep/wake_up_time', [SleepWakeUpTimeController::class, 'update'])
-                            ->name('journal.entry.sleep.wake_up_time.update');
+                        Route::put('sleep', [SleepController::class, 'update'])
+                            ->name('journal.entry.sleep.update');
 
                         Route::put('work', [WorkController::class, 'update'])
                             ->name('journal.entry.work.update');
 
-                        Route::put('work/mode', [WorkModeController::class, 'update'])
-                            ->name('journal.entry.work.mode.update');
-
-                        Route::put('work/load', [WorkLoadController::class, 'update'])
-                            ->name('journal.entry.work.load.update');
-
-                        Route::put('work/procrastinated', [WorkProcrastinatedController::class, 'update'])
-                            ->name('journal.entry.work.procrastinated.update');
-
                         Route::put('travel', [TravelController::class, 'update'])
                             ->name('journal.entry.travel.update');
-
-                        Route::put('travel/mode', [TravelModeController::class, 'update'])
-                            ->name('journal.entry.travel.mode.update');
 
                         Route::put('shopping', [ShoppingController::class, 'update'])
                             ->name('journal.entry.shopping.update');
 
-                        Route::put('shopping/type', [ShoppingTypeController::class, 'update'])
-                            ->name('journal.entry.shopping.type.update');
-
-                        Route::put('shopping/intent', [ShoppingIntentController::class, 'update'])
-                            ->name('journal.entry.shopping.intent.update');
-
-                        Route::put('shopping/context', [ShoppingContextController::class, 'update'])
-                            ->name('journal.entry.shopping.context.update');
-
-                        Route::put('shopping/for', [ShoppingForController::class, 'update'])
-                            ->name('journal.entry.shopping.for.update');
 
                         Route::put('kids', [KidsModuleController::class, 'update'])
                             ->name('journal.entry.kids.update');
@@ -122,8 +86,6 @@ Route::name('api.')->group(function (): void {
                         Route::put('sexual-activity', [SexualActivityController::class, 'update'])
                             ->name('journal.entry.sexual-activity.update');
 
-                        Route::put('sexual-activity/type', [SexualActivityTypeController::class, 'update'])
-                            ->name('journal.entry.sexual-activity.type.update');
 
                         Route::put('health', [HealthModuleController::class, 'update'])
                             ->name('journal.entry.health.update');

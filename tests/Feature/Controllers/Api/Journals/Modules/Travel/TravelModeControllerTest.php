@@ -32,7 +32,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => ['car'],
         ]);
 
@@ -60,7 +60,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => ['car', 'train', 'plane'],
         ]);
 
@@ -90,7 +90,7 @@ final class TravelModeControllerTest extends TestCase
 
         $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => $allModes,
         ]);
 
@@ -118,7 +118,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => 'car',
         ]);
 
@@ -142,7 +142,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => [],
         ]);
 
@@ -166,7 +166,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => ['car', 'invalid'],
         ]);
 
@@ -190,7 +190,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", []);
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['travel_modes']);
@@ -207,7 +207,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => ['car'],
         ]);
 
@@ -228,7 +228,7 @@ final class TravelModeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel/mode", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/travel", [
             'travel_modes' => ['car'],
         ]);
 

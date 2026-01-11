@@ -32,7 +32,7 @@ final class ShoppingContextControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/context", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_context' => 'alone',
         ]);
 
@@ -60,7 +60,7 @@ final class ShoppingContextControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/context", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_context' => 'with_kids',
         ]);
 
@@ -88,7 +88,7 @@ final class ShoppingContextControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/context", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_context' => 'invalid',
         ]);
 
@@ -112,7 +112,7 @@ final class ShoppingContextControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/context", []);
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['shopping_context']);
@@ -129,7 +129,7 @@ final class ShoppingContextControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/context", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_context' => 'alone',
         ]);
 
@@ -150,7 +150,7 @@ final class ShoppingContextControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/context", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_context' => 'alone',
         ]);
 

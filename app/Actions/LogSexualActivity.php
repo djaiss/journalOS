@@ -12,12 +12,13 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogHasDonePhysicalActivity
+final readonly class LogSexualActivity
 {
     public function __construct(
         private User $user,
         private JournalEntry $entry,
-        private string $hasDonePhysicalActivity,
+        private ?string $hadSexualActivity,
+        private ?string $sexualActivityType,
     ) {}
 
     public function execute(): JournalEntry
@@ -28,7 +29,7 @@ final readonly class LogHasDonePhysicalActivity
         $this->updateUserLastActivityDate();
         $this->refreshContentPresenceStatus();
 
-        $this->entry->load('modulePhysicalActivity');
+        $this->entry->load('moduleSexualActivity');
 
         return $this->entry;
     }
@@ -39,22 +40,40 @@ final readonly class LogHasDonePhysicalActivity
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validValues = ['yes', 'no'];
-        if (!in_array($this->hasDonePhysicalActivity, $validValues)) {
+        if ($this->hadSexualActivity === null && $this->sexualActivityType === null) {
             throw ValidationException::withMessages([
-                'has_done_physical_activity' => 'Invalid physical activity status.',
+                'sexual_activity' => 'At least one sexual activity value is required.',
+            ]);
+        }
+
+        if ($this->hadSexualActivity !== null && ! in_array($this->hadSexualActivity, ['yes', 'no'], true)) {
+            throw ValidationException::withMessages([
+                'had_sexual_activity' => 'Invalid sexual activity status value.',
+            ]);
+        }
+
+        if ($this->sexualActivityType !== null && ! in_array($this->sexualActivityType, ['solo', 'with-partner', 'intimate-contact'], true)) {
+            throw ValidationException::withMessages([
+                'sexual_activity_type' => 'Invalid sexual activity type value.',
             ]);
         }
     }
 
     private function log(): void
     {
-        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
+        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
             ['journal_entry_id' => $this->entry->id],
         );
 
-        $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;
-        $modulePhysicalActivity->save();
+        if ($this->hadSexualActivity !== null) {
+            $moduleSexualActivity->had_sexual_activity = $this->hadSexualActivity;
+        }
+
+        if ($this->sexualActivityType !== null) {
+            $moduleSexualActivity->sexual_activity_type = $this->sexualActivityType;
+        }
+
+        $moduleSexualActivity->save();
     }
 
     private function logUserAction(): void
@@ -62,8 +81,8 @@ final readonly class LogHasDonePhysicalActivity
         LogUserAction::dispatch(
             user: $this->user,
             journal: $this->entry->journal,
-            action: 'has_done_physical_activity_logged',
-            description: 'Logged physical activity status for ' . $this->entry->getDate(),
+            action: 'sexual_activity_logged',
+            description: 'Logged sexual activity for ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 

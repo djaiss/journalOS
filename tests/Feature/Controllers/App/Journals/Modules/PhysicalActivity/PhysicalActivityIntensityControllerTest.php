@@ -30,7 +30,7 @@ final class PhysicalActivityIntensityControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/intensity",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_intensity' => 'light'],
         );
 
@@ -56,7 +56,7 @@ final class PhysicalActivityIntensityControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/intensity",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_intensity' => 'moderate'],
         );
 
@@ -82,7 +82,7 @@ final class PhysicalActivityIntensityControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/intensity",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_intensity' => 'intense'],
         );
 
@@ -108,7 +108,7 @@ final class PhysicalActivityIntensityControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/intensity",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             ['activity_intensity' => 'invalid'],
         );
 
@@ -130,7 +130,7 @@ final class PhysicalActivityIntensityControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity/intensity",
+            "/journals/{$journal->slug}/entries/2024/6/15/physical-activity",
             [],
         );
 

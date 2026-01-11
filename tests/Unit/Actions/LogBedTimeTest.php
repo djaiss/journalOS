@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogBedTime;
+use App\Actions\LogSleep;
 use App\Jobs\CalculateSleepDuration;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
@@ -12,9 +12,9 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\User;
-use Exception;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,10 +35,11 @@ final class LogBedTimeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogBedTime(
+        (new LogSleep(
             user: $user,
             entry: $entry,
             bedtime: '22:30',
+            wakeUpTime: null,
         ))->execute();
 
         $entry->refresh();
@@ -49,7 +50,7 @@ final class LogBedTimeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'sleep_bedtime_logged' && $job->user->id === $user->id;
+                return $job->action === 'sleep_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,8 +82,7 @@ final class LogBedTimeTest extends TestCase
     #[Test]
     public function it_throws_for_invalid_bedtime_format(): void
     {
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage('Invalid bedtime format. Expected HH:MM');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -92,10 +92,11 @@ final class LogBedTimeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $action = new LogBedTime(
+        $action = new LogSleep(
             user: $user,
             entry: $entry,
             bedtime: '10pm',
+            wakeUpTime: null,
         );
 
         $action->execute();

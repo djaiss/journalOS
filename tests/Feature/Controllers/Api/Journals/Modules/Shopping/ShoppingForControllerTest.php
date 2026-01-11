@@ -32,7 +32,7 @@ final class ShoppingForControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/for", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_for' => 'for_self',
         ]);
 
@@ -60,7 +60,7 @@ final class ShoppingForControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/for", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_for' => 'for_others',
         ]);
 
@@ -88,7 +88,7 @@ final class ShoppingForControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/for", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_for' => 'invalid',
         ]);
 
@@ -112,7 +112,7 @@ final class ShoppingForControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/for", []);
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['shopping_for']);
@@ -129,7 +129,7 @@ final class ShoppingForControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/for", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_for' => 'for_self',
         ]);
 
@@ -150,7 +150,7 @@ final class ShoppingForControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/for", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_for' => 'for_self',
         ]);
 

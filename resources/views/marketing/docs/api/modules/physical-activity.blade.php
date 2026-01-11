@@ -17,7 +17,7 @@
     <div class="mb-10 grid grid-cols-1 gap-6 border-b border-gray-200 pb-10 sm:grid-cols-2 dark:border-gray-700">
       <div>
         <p class="mb-2">The physical activity module endpoint lets you log physical activity details for a journal entry.</p>
-        <p class="mb-2">The endpoint returns the updated journal entry.</p>
+        <p class="mb-2">Send any physical activity fields you have. At least one field is required.</p>
       </div>
       <div>
         <x-marketing.docs.code title="Endpoints">
@@ -35,7 +35,7 @@
     <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div>
         <x-marketing.docs.h2 id="log-physical-activity" title="Log physical activity" />
-        <p class="mb-10">This endpoint logs physical activity details for a journal entry. You can log whether you did physical activity, the type of activity, and its intensity.</p>
+        <p class="mb-10">This endpoint logs physical activity details for a journal entry.</p>
 
         <!-- url parameters -->
         <x-marketing.docs.url-parameters>
@@ -47,9 +47,9 @@
 
         <!-- query parameters -->
         <x-marketing.docs.query-parameters>
-          <x-marketing.docs.attribute required name="has_done_physical_activity" type="string" description="Whether you did physical activity. Accepted values are: yes, no." />
-          <x-marketing.docs.attribute name="activity_type" type="string" description="The type of activity performed. Accepted values are: running, cycling, swimming, gym, walking." />
-          <x-marketing.docs.attribute name="activity_intensity" type="string" description="The intensity of the activity. Accepted values are: light, moderate, intense." />
+          <x-marketing.docs.attribute name="has_done_physical_activity" type="string" description="Whether you did physical activity today. Accepted values are: yes, no." />
+          <x-marketing.docs.attribute name="activity_type" type="string" description="The activity type. Accepted values are: running, cycling, swimming, gym, walking." />
+          <x-marketing.docs.attribute name="activity_intensity" type="string" description="The activity intensity. Accepted values are: light, moderate, intense." />
         </x-marketing.docs.query-parameters>
 
         <!-- response attributes -->

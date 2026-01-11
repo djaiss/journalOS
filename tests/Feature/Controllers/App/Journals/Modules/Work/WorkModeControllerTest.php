@@ -30,7 +30,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_mode' => 'remote'],
         );
 
@@ -56,7 +56,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_mode' => 'on-site'],
         );
 
@@ -82,7 +82,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_mode' => 'hybrid'],
         );
 
@@ -108,7 +108,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_mode' => 'invalid'],
         );
 
@@ -130,7 +130,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             [],
         );
 
@@ -149,7 +149,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_mode' => 'remote'],
         );
 
@@ -169,7 +169,7 @@ final class WorkModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_mode' => 'remote'],
         );
 
