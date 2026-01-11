@@ -27,9 +27,9 @@ final class HygieneController extends Controller
         $entry = new LogHygiene(
             user: Auth::user(),
             entry: $entry,
-            showered: array_key_exists('showered', $validated) ? TextSanitizer::plainText($validated['showered']) : null,
-            brushedTeeth: array_key_exists('brushed_teeth', $validated) ? TextSanitizer::plainText($validated['brushed_teeth']) : null,
-            skincare: array_key_exists('skincare', $validated) ? TextSanitizer::plainText($validated['skincare']) : null,
+            showered: array_key_exists('showered', $validated) ? TextSanitizer::nullablePlainText($validated['showered']) : null,
+            brushedTeeth: array_key_exists('brushed_teeth', $validated) ? TextSanitizer::nullablePlainText($validated['brushed_teeth']) : null,
+            skincare: array_key_exists('skincare', $validated) ? TextSanitizer::nullablePlainText($validated['skincare']) : null,
         )->execute();
 
         return response()->json([
