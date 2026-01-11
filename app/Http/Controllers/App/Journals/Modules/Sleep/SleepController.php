@@ -19,6 +19,14 @@ final class SleepController extends Controller
     {
         $journalEntry = $request->attributes->get('journal_entry');
 
+        // Sanitize inputs before validation
+        if ($request->has('bedtime')) {
+            $request->merge(['bedtime' => TextSanitizer::plainText($request->input('bedtime'))]);
+        }
+        if ($request->has('wake_up_time')) {
+            $request->merge(['wake_up_time' => TextSanitizer::plainText($request->input('wake_up_time'))]);
+        }
+
         $validated = $request->validate([
             'bedtime' => ['nullable', 'date_format:H:i', 'required_without_all:wake_up_time'],
             'wake_up_time' => ['nullable', 'date_format:H:i', 'required_without_all:bedtime'],
@@ -27,12 +35,8 @@ final class SleepController extends Controller
         new LogSleep(
             user: Auth::user(),
             entry: $journalEntry,
-            bedtime: array_key_exists('bedtime', $validated)
-                ? TextSanitizer::plainText($validated['bedtime'])
-                : null,
-            wakeUpTime: array_key_exists('wake_up_time', $validated)
-                ? TextSanitizer::plainText($validated['wake_up_time'])
-                : null,
+            bedtime: $validated['bedtime'] ?? null,
+            wakeUpTime: $validated['wake_up_time'] ?? null,
         )->execute();
 
         return to_route('journal.entry.show', [
