@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->text('name');
             $table->text('slug')->nullable();
+            $table->boolean('can_edit_past')->default(false);
             $table->boolean('show_sleep_module')->default(true);
             $table->boolean('show_work_module')->default(true);
             $table->boolean('show_travel_module')->default(true);

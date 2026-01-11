@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int|null $user_id
  * @property string $name
  * @property ?string $slug
+ * @property bool $can_edit_past
  * @property bool $show_sleep_module
  * @property bool $show_work_module
  * @property bool $show_travel_module
@@ -58,6 +59,7 @@ final class Journal extends Model
         'user_id',
         'name',
         'slug',
+        'can_edit_past',
         'show_sleep_module',
         'show_work_module',
         'show_travel_module',
@@ -84,6 +86,7 @@ final class Journal extends Model
         return [
             'name' => 'encrypted',
             'slug' => 'encrypted',
+            'can_edit_past' => 'boolean',
             'show_sleep_module' => 'boolean',
             'show_work_module' => 'boolean',
             'show_travel_module' => 'boolean',
