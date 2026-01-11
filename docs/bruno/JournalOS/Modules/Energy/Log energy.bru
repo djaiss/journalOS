@@ -1,0 +1,17 @@
+meta {
+  name: Log energy
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/energy
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "energy": "normal"
+  }
+}

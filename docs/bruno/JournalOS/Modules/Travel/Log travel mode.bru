@@ -1,0 +1,20 @@
+meta {
+  name: Log travel mode
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/travel/mode
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "travel_modes": [
+      "train",
+      "walk"
+    ]
+  }
+}
