@@ -10,6 +10,7 @@ use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -20,6 +21,8 @@ final class ResetNotesTest extends TestCase
     #[Test]
     public function it_resets_notes(): void
     {
+        Queue::fake();
+
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -49,6 +52,8 @@ final class ResetNotesTest extends TestCase
     #[Test]
     public function it_throws_exception_if_entry_does_not_belong_to_user(): void
     {
+        Queue::fake();
+
         $user = User::factory()->create();
         $anotherUser = User::factory()->create();
         $journal = Journal::factory()->create([

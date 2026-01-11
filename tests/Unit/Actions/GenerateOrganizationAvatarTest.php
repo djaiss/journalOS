@@ -6,6 +6,7 @@ namespace Tests\Unit\Actions;
 
 use App\Actions\GenerateOrganizationAvatar;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -16,6 +17,8 @@ final class GenerateOrganizationAvatarTest extends TestCase
     #[Test]
     public function it_generates_a_base64_encoded_svg_avatar(): void
     {
+        Queue::fake();
+
         $generator = new GenerateOrganizationAvatar(
             seed: 'test-seed',
         );

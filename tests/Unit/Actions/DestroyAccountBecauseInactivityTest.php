@@ -9,6 +9,7 @@ use App\Mail\AccountAutomaticallyDestroyed;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -20,6 +21,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
     public function it_destroys_an_inactive_account(): void
     {
         Mail::fake();
+        Queue::fake();
         config(['journalos.account_deletion_notification_email' => 'admin@journalos.cloud']);
 
         $user = User::factory()->create([
@@ -44,6 +46,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
     public function it_does_not_destroy_a_recently_active_account(): void
     {
         Mail::fake();
+        Queue::fake();
 
         $user = User::factory()->create([
             'last_activity_at' => now()->subMonths(3),
@@ -64,6 +67,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
     public function it_does_not_destroy_account_without_activity_record(): void
     {
         Mail::fake();
+        Queue::fake();
 
         $user = User::factory()->create([
             'last_activity_at' => null,
