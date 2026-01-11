@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class WorkController extends Controller
 {
@@ -24,7 +25,7 @@ final class WorkController extends Controller
         ]);
 
         $entry = new LogWork(
-            user: $request->user(),
+            user: Auth::user(),
             entry: $journalEntry,
             worked: array_key_exists('worked', $validated) ? TextSanitizer::nullablePlainText($validated['worked']) : null,
             workMode: array_key_exists('work_mode', $validated) ? TextSanitizer::nullablePlainText($validated['work_mode']) : null,

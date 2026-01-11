@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class SexualActivityController extends Controller
 {
@@ -22,7 +23,7 @@ final class SexualActivityController extends Controller
         ]);
 
         $entry = new LogSexualActivity(
-            user: $request->user(),
+            user: Auth::user(),
             entry: $journalEntry,
             hadSexualActivity: array_key_exists('had_sexual_activity', $validated)
                 ? TextSanitizer::nullablePlainText($validated['had_sexual_activity'])

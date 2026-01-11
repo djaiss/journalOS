@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class KidsController extends Controller
 {
@@ -21,7 +22,7 @@ final class KidsController extends Controller
         ]);
 
         $entry = new LogHadKidsToday(
-            user: $request->user(),
+            user: Auth::user(),
             entry: $journalEntry,
             hadKidsToday: TextSanitizer::plainText($validated['had_kids_today']),
         )->execute();
