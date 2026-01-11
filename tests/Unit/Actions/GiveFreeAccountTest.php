@@ -16,11 +16,16 @@ final class GiveFreeAccountTest extends TestCase
 {
     use DatabaseTransactions;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_gives_free_account_to_an_account(): void
     {
-        Queue::fake();
-
         $account = User::factory()->create();
         $user = User::factory()->create([
             'is_instance_admin' => true,
@@ -40,8 +45,6 @@ final class GiveFreeAccountTest extends TestCase
     #[Test]
     public function it_fails_if_user_is_not_instance_administrator(): void
     {
-        Queue::fake();
-
         $account = User::factory()->create();
         $user = User::factory()->create([
             'is_instance_admin' => false,

@@ -14,11 +14,16 @@ final class GenerateJournalAvatarTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_generates_a_base64_encoded_svg_avatar(): void
     {
-        Queue::fake();
-
         $generator = new GenerateJournalAvatar(
             seed: 'test-seed',
         );

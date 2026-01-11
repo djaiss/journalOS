@@ -19,11 +19,16 @@ final class UpdateUserInformationTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_updates_user_information(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'first_name' => 'Ross',
             'last_name' => 'Geller',
@@ -73,7 +78,6 @@ final class UpdateUserInformationTest extends TestCase
     public function it_triggers_email_verification_when_email_changes(): void
     {
         Event::fake();
-        Queue::fake();
 
         $user = User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
@@ -98,7 +102,6 @@ final class UpdateUserInformationTest extends TestCase
     public function it_does_not_trigger_email_verification_when_email_stays_same(): void
     {
         Event::fake();
-        Queue::fake();
 
         $user = User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',

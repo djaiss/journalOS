@@ -18,11 +18,16 @@ final class CreateEmailSentTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_creates_an_email_sent(): void
     {
-        Queue::fake();
-
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create();
 
@@ -54,8 +59,6 @@ final class CreateEmailSentTest extends TestCase
     #[Test]
     public function it_sanitizes_the_body_and_strips_any_links(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
 
         $emailSent = (new CreateEmailSent(
@@ -76,8 +79,6 @@ final class CreateEmailSentTest extends TestCase
     #[Test]
     public function it_creates_an_email_sent_with_a_uuid(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $uuid = Str::uuid();
 

@@ -16,11 +16,16 @@ final class VerifyTwoFactorCodeTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_verifies_a_rescue_code_and_updates_last_activity(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'two_factor_recovery_codes' => ['code-one', 'code-two'],
         ]);
@@ -45,8 +50,6 @@ final class VerifyTwoFactorCodeTest extends TestCase
     #[Test]
     public function it_returns_false_and_skips_activity_update_for_invalid_codes(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'two_factor_recovery_codes' => ['code-one'],
         ]);

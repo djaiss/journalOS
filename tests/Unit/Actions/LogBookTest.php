@@ -23,11 +23,16 @@ final class LogBookTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_logs_book_with_started_status(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -80,8 +85,6 @@ final class LogBookTest extends TestCase
     #[Test]
     public function it_logs_book_with_continued_status(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -110,8 +113,6 @@ final class LogBookTest extends TestCase
     #[Test]
     public function it_logs_book_with_finished_status(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,

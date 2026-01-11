@@ -17,11 +17,16 @@ final class CreateMagicLinkTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_returns_a_string(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'email' => 'test@example.com',
         ]);
@@ -44,8 +49,6 @@ final class CreateMagicLinkTest extends TestCase
     #[Test]
     public function it_contains_the_app_url_with_magic_link_structure(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create([
             'email' => 'test@example.com',
         ]);
@@ -62,8 +65,6 @@ final class CreateMagicLinkTest extends TestCase
     #[Test]
     public function it_throws_an_exception_if_user_not_found(): void
     {
-        Queue::fake();
-
         $nonExistentEmail = 'nonexistent@example.com';
 
         $this->expectException(ModelNotFoundException::class);

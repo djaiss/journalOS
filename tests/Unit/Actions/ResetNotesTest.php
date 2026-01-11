@@ -18,11 +18,16 @@ final class ResetNotesTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
     #[Test]
     public function it_resets_notes(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
@@ -52,8 +57,6 @@ final class ResetNotesTest extends TestCase
     #[Test]
     public function it_throws_exception_if_entry_does_not_belong_to_user(): void
     {
-        Queue::fake();
-
         $user = User::factory()->create();
         $anotherUser = User::factory()->create();
         $journal = Journal::factory()->create([
