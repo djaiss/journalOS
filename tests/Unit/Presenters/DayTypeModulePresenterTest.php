@@ -94,7 +94,7 @@ final class DayTypeModulePresenterTest extends TestCase
         $presenter = new DayTypeModulePresenter($entry);
         $result = $presenter->build();
 
-        $this->assertCount(5, $result['day_types']);
+        $this->assertCount(count(ModuleDayType::DAY_TYPES), $result['day_types']);
         $this->assertEquals(__('Workday'), $result['day_types'][0]['label']);
         $this->assertEquals(__('Day off'), $result['day_types'][1]['label']);
         $this->assertEquals(__('Weekend'), $result['day_types'][2]['label']);

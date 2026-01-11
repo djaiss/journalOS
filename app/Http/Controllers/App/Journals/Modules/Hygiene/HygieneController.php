@@ -7,8 +7,10 @@ namespace App\Http\Controllers\App\Journals\Modules\Hygiene;
 use App\Actions\LogHygiene;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleHygiene;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class HygieneController extends Controller
@@ -19,7 +21,7 @@ final class HygieneController extends Controller
 
         $validated = $request->validate([
             'showered' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:brushed_teeth,skincare'],
-            'brushed_teeth' => ['nullable', 'string', 'max:255', 'in:no,am,pm', 'required_without_all:showered,skincare'],
+            'brushed_teeth' => ['nullable', 'string', 'max:255', Rule::in(ModuleHygiene::BRUSHED_TEETH_VALUES), 'required_without_all:showered,skincare'],
             'skincare' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:showered,brushed_teeth'],
         ]);
 

@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleShopping;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -67,19 +68,8 @@ final readonly class LogShopping
                 ]);
             }
 
-            $validTypes = [
-                'groceries',
-                'clothes',
-                'electronics_tech',
-                'household_essentials',
-                'books_media',
-                'gifts',
-                'online_shopping',
-                'other',
-            ];
-
             foreach ($this->shoppingTypes as $type) {
-                if (! is_string($type) || ! in_array($type, $validTypes, true)) {
+                if (! is_string($type) || ! in_array($type, ModuleShopping::SHOPPING_TYPES, true)) {
                     throw ValidationException::withMessages([
                         'shopping_types' => 'Invalid shopping type value.',
                     ]);
@@ -87,19 +77,19 @@ final readonly class LogShopping
             }
         }
 
-        if ($this->shoppingIntent !== null && ! in_array($this->shoppingIntent, ['planned', 'opportunistic', 'impulse', 'replacement'], true)) {
+        if ($this->shoppingIntent !== null && ! in_array($this->shoppingIntent, ModuleShopping::SHOPPING_INTENTS, true)) {
             throw ValidationException::withMessages([
                 'shopping_intent' => 'Invalid shopping intent value.',
             ]);
         }
 
-        if ($this->shoppingContext !== null && ! in_array($this->shoppingContext, ['alone', 'with_partner', 'with_kids'], true)) {
+        if ($this->shoppingContext !== null && ! in_array($this->shoppingContext, ModuleShopping::SHOPPING_CONTEXTS, true)) {
             throw ValidationException::withMessages([
                 'shopping_context' => 'Invalid shopping context value.',
             ]);
         }
 
-        if ($this->shoppingFor !== null && ! in_array($this->shoppingFor, ['for_self', 'for_household', 'for_others'], true)) {
+        if ($this->shoppingFor !== null && ! in_array($this->shoppingFor, ModuleShopping::SHOPPING_FOR_OPTIONS, true)) {
             throw ValidationException::withMessages([
                 'shopping_for' => 'Invalid shopping for value.',
             ]);

@@ -29,6 +29,18 @@ final class ModuleWork extends Model
     /** @use HasFactory<\Database\Factories\ModuleWorkFactory> */
     use HasFactory;
 
+    public const array WORK_MODES = [
+        'remote',
+        'on-site',
+        'hybrid',
+    ];
+
+    public const array WORK_LOADS = [
+        'light',
+        'medium',
+        'heavy',
+    ];
+
     /**
      * The table associated with the model.
      *

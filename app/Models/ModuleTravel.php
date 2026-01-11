@@ -28,6 +28,17 @@ final class ModuleTravel extends Model
     /** @use HasFactory<\Database\Factories\ModuleTravelFactory> */
     use HasFactory;
 
+    public const array TRAVEL_MODES = [
+        'car',
+        'plane',
+        'train',
+        'bike',
+        'bus',
+        'walk',
+        'boat',
+        'other',
+    ];
+
     /**
      * The table associated with the model.
      *

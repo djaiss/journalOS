@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleWork;
 
 final readonly class WorkModulePresenter
 {
@@ -30,7 +31,7 @@ final readonly class WorkModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $workModes = collect(['remote', 'on-site', 'hybrid'])->map(fn($mode) => [
+        $workModes = collect(ModuleWork::WORK_MODES)->map(fn($mode) => [
             'value' => $mode,
             'label' => match ($mode) {
                 'remote' => __('Remote'),
@@ -41,7 +42,7 @@ final readonly class WorkModulePresenter
             'is_selected' => $mode === $moduleWork?->work_mode,
         ]);
 
-        $workLoads = collect(['light', 'medium', 'heavy'])->map(fn($load) => [
+        $workLoads = collect(ModuleWork::WORK_LOADS)->map(fn($load) => [
             'value' => $load,
             'label' => match ($load) {
                 'light' => __('Light'),

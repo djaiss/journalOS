@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleMood;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -39,8 +40,7 @@ final readonly class LogMood
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validMoodValues = ['terrible', 'bad', 'okay', 'good', 'great'];
-        if (! in_array($this->mood, $validMoodValues, true)) {
+        if (! in_array($this->mood, ModuleMood::MOOD_VALUES, true)) {
             throw ValidationException::withMessages([
                 'mood' => 'Invalid mood value.',
             ]);

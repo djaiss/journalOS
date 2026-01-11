@@ -30,6 +30,36 @@ final class ModuleShopping extends Model
     /** @use HasFactory<\Database\Factories\ModuleShoppingFactory> */
     use HasFactory;
 
+    public const array SHOPPING_TYPES = [
+        'groceries',
+        'clothes',
+        'electronics_tech',
+        'household_essentials',
+        'books_media',
+        'gifts',
+        'online_shopping',
+        'other',
+    ];
+
+    public const array SHOPPING_INTENTS = [
+        'planned',
+        'opportunistic',
+        'impulse',
+        'replacement',
+    ];
+
+    public const array SHOPPING_CONTEXTS = [
+        'alone',
+        'with_partner',
+        'with_kids',
+    ];
+
+    public const array SHOPPING_FOR_OPTIONS = [
+        'for_self',
+        'for_household',
+        'for_others',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModulePrimaryObligation;
 
 final readonly class PrimaryObligationModulePresenter
 {
@@ -38,7 +39,7 @@ final readonly class PrimaryObligationModulePresenter
     {
         $modulePrimaryObligation = $this->entry->modulePrimaryObligation;
 
-        return collect(['work', 'family', 'personal', 'health', 'travel', 'none'])->map(fn($value) => [
+        return collect(ModulePrimaryObligation::PRIMARY_OBLIGATIONS)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'work' => __('Work'),

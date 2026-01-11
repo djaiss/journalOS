@@ -7,9 +7,11 @@ namespace App\Http\Controllers\App\Journals\Modules\Travel;
 use App\Actions\LogTravel;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleTravel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 final class TravelController extends Controller
 {
@@ -23,7 +25,7 @@ final class TravelController extends Controller
             'travel_modes.*' => [
                 'string',
                 'max:255',
-                'in:car,plane,train,bike,bus,walk,boat,other',
+                Rule::in(ModuleTravel::TRAVEL_MODES),
             ],
         ]);
 

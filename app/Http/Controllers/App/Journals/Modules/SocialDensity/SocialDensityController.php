@@ -7,8 +7,10 @@ namespace App\Http\Controllers\App\Journals\Modules\SocialDensity;
 use App\Actions\LogSocialDensity;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleSocialDensity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class SocialDensityController extends Controller
@@ -18,7 +20,7 @@ final class SocialDensityController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'social_density' => ['required', 'string', 'max:255', 'in:alone,few people,crowd,too much'],
+            'social_density' => ['required', 'string', 'max:255', Rule::in(ModuleSocialDensity::SOCIAL_DENSITY_VALUES)],
         ]);
 
         new LogSocialDensity(

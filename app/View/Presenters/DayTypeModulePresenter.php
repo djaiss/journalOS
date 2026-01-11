@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleDayType;
 
 final readonly class DayTypeModulePresenter
 {
@@ -30,7 +31,7 @@ final readonly class DayTypeModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $dayTypes = collect(['workday', 'day off', 'weekend', 'vacation', 'sick day'])->map(fn($type) => [
+        $dayTypes = collect(ModuleDayType::DAY_TYPES)->map(fn($type) => [
             'value' => $type,
             'label' => match ($type) {
                 'workday' => __('Workday'),

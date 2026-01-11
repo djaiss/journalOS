@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleEnergy;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -39,8 +40,7 @@ final readonly class LogEnergy
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validEnergyValues = ['very low', 'low', 'normal', 'high', 'very high'];
-        if (! in_array($this->energy, $validEnergyValues, true)) {
+        if (! in_array($this->energy, ModuleEnergy::ENERGY_LEVELS, true)) {
             throw ValidationException::withMessages([
                 'energy' => 'Invalid energy value.',
             ]);

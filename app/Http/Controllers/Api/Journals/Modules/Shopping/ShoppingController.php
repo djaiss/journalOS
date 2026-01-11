@@ -8,9 +8,11 @@ use App\Actions\LogShopping;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
+use App\Models\ModuleShopping;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 final class ShoppingController extends Controller
 {
@@ -24,11 +26,11 @@ final class ShoppingController extends Controller
             'shopping_types.*' => [
                 'string',
                 'max:255',
-                'in:groceries,clothes,electronics_tech,household_essentials,books_media,gifts,online_shopping,other',
+                Rule::in(ModuleShopping::SHOPPING_TYPES),
             ],
-            'shopping_intent' => ['nullable', 'string', 'max:255', 'in:planned,opportunistic,impulse,replacement', 'required_without_all:has_shopped,shopping_types,shopping_context,shopping_for'],
-            'shopping_context' => ['nullable', 'string', 'max:255', 'in:alone,with_partner,with_kids', 'required_without_all:has_shopped,shopping_types,shopping_intent,shopping_for'],
-            'shopping_for' => ['nullable', 'string', 'max:255', 'in:for_self,for_household,for_others', 'required_without_all:has_shopped,shopping_types,shopping_intent,shopping_context'],
+            'shopping_intent' => ['nullable', 'string', 'max:255', Rule::in(ModuleShopping::SHOPPING_INTENTS), 'required_without_all:has_shopped,shopping_types,shopping_context,shopping_for'],
+            'shopping_context' => ['nullable', 'string', 'max:255', Rule::in(ModuleShopping::SHOPPING_CONTEXTS), 'required_without_all:has_shopped,shopping_types,shopping_intent,shopping_for'],
+            'shopping_for' => ['nullable', 'string', 'max:255', Rule::in(ModuleShopping::SHOPPING_FOR_OPTIONS), 'required_without_all:has_shopped,shopping_types,shopping_intent,shopping_context'],
         ]);
 
         $entry = new LogShopping(

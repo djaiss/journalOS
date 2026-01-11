@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleSexualActivity;
 
 final readonly class SexualActivityModulePresenter
 {
@@ -28,7 +29,7 @@ final readonly class SexualActivityModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $activityTypes = collect(['solo', 'with-partner', 'intimate-contact'])->map(fn($type) => [
+        $activityTypes = collect(ModuleSexualActivity::SEXUAL_ACTIVITY_TYPES)->map(fn($type) => [
             'value' => $type,
             'label' => match ($type) {
                 'solo' => __('Solo'),

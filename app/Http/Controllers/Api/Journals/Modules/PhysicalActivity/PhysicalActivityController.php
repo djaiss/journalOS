@@ -8,9 +8,11 @@ use App\Actions\LogPhysicalActivity;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
+use App\Models\ModulePhysicalActivity;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 final class PhysicalActivityController extends Controller
 {
@@ -20,8 +22,8 @@ final class PhysicalActivityController extends Controller
 
         $validated = $request->validate([
             'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no'],
-            'activity_type' => ['nullable', 'string', 'max:255', 'in:running,cycling,swimming,gym,walking'],
-            'activity_intensity' => ['nullable', 'string', 'max:255', 'in:light,moderate,intense'],
+            'activity_type' => ['nullable', 'string', 'max:255', Rule::in(ModulePhysicalActivity::ACTIVITY_TYPES)],
+            'activity_intensity' => ['nullable', 'string', 'max:255', Rule::in(ModulePhysicalActivity::ACTIVITY_INTENSITIES)],
         ]);
 
         $entry = new LogPhysicalActivity(

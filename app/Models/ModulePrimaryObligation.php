@@ -26,6 +26,15 @@ final class ModulePrimaryObligation extends Model
     /** @use HasFactory<\Database\Factories\ModulePrimaryObligationFactory> */
     use HasFactory;
 
+    public const array PRIMARY_OBLIGATIONS = [
+        'work',
+        'family',
+        'personal',
+        'health',
+        'travel',
+        'none',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -8,6 +8,7 @@ use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
+use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -58,13 +59,13 @@ final readonly class LogWork
             ]);
         }
 
-        if ($this->workMode !== null && ! in_array($this->workMode, ['on-site', 'remote', 'hybrid'], true)) {
+        if ($this->workMode !== null && ! in_array($this->workMode, ModuleWork::WORK_MODES, true)) {
             throw ValidationException::withMessages([
                 'work_mode' => 'Invalid work mode value.',
             ]);
         }
 
-        if ($this->workLoad !== null && ! in_array($this->workLoad, ['light', 'medium', 'heavy'], true)) {
+        if ($this->workLoad !== null && ! in_array($this->workLoad, ModuleWork::WORK_LOADS, true)) {
             throw ValidationException::withMessages([
                 'work_load' => 'Invalid work load value.',
             ]);

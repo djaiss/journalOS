@@ -26,6 +26,13 @@ final class ModuleSocialDensity extends Model
     /** @use HasFactory<\Database\Factories\ModuleSocialDensityFactory> */
     use HasFactory;
 
+    public const array SOCIAL_DENSITY_VALUES = [
+        'alone',
+        'few people',
+        'crowd',
+        'too much',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Presenters;
 
 use App\Models\JournalEntry;
+use App\Models\ModuleHealth;
 
 final readonly class HealthModulePresenter
 {
@@ -38,7 +39,7 @@ final readonly class HealthModulePresenter
     {
         $health = $this->entry->moduleHealth?->health;
 
-        return collect(['not great', 'okay', 'good'])->map(fn($value) => [
+        return collect(ModuleHealth::HEALTH_VALUES)->map(fn($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'not great' => __('Not great'),

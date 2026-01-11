@@ -28,6 +28,12 @@ final class ModuleHygiene extends Model
     /** @use HasFactory<\Database\Factories\ModuleHygieneFactory> */
     use HasFactory;
 
+    public const array BRUSHED_TEETH_VALUES = [
+        'no',
+        'am',
+        'pm',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -26,6 +26,14 @@ final class ModuleMood extends Model
     /** @use HasFactory<\Database\Factories\ModuleMoodFactory> */
     use HasFactory;
 
+    public const array MOOD_VALUES = [
+        'terrible',
+        'bad',
+        'okay',
+        'good',
+        'great',
+    ];
+
     /**
      * The table associated with the model.
      *

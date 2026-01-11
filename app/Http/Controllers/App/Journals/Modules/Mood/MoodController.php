@@ -7,8 +7,10 @@ namespace App\Http\Controllers\App\Journals\Modules\Mood;
 use App\Actions\LogMood;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use App\Models\ModuleMood;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class MoodController extends Controller
@@ -18,7 +20,7 @@ final class MoodController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'mood' => ['required', 'string', 'max:255', 'in:terrible,bad,okay,good,great'],
+            'mood' => ['required', 'string', 'max:255', Rule::in(ModuleMood::MOOD_VALUES)],
         ]);
 
         new LogMood(
