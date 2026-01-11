@@ -10,11 +10,14 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\ModuleSexualActivity;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
 final readonly class LogSexualActivity
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -40,6 +43,8 @@ final readonly class LogSexualActivity
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal entry not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if ($this->hadSexualActivity === null && $this->sexualActivityType === null) {
             throw ValidationException::withMessages([

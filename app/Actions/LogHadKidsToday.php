@@ -9,6 +9,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use InvalidArgumentException;
 
@@ -17,6 +18,8 @@ use InvalidArgumentException;
  */
 final readonly class LogHadKidsToday
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -41,6 +44,8 @@ final readonly class LogHadKidsToday
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if ($this->hadKidsToday !== 'yes' && $this->hadKidsToday !== 'no') {
             throw new InvalidArgumentException('hadKidsToday must be either "yes" or "no"');

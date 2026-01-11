@@ -10,6 +10,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Date;
@@ -17,6 +18,8 @@ use Illuminate\Validation\ValidationException;
 
 final readonly class LogSleep
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -43,6 +46,8 @@ final readonly class LogSleep
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal entry not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if ($this->bedtime === null && $this->wakeUpTime === null) {
             throw ValidationException::withMessages([

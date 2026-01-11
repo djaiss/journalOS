@@ -10,11 +10,14 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\ModuleHygiene;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
 final readonly class LogHygiene
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -41,6 +44,8 @@ final readonly class LogHygiene
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal entry not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if ($this->showered === null && $this->brushedTeeth === null && $this->skincare === null) {
             throw ValidationException::withMessages([

@@ -10,11 +10,14 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\ModuleHealth;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
 final readonly class LogHealth
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -39,6 +42,8 @@ final readonly class LogHealth
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal entry not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if (! in_array($this->health, ModuleHealth::HEALTH_VALUES, true)) {
             throw ValidationException::withMessages([

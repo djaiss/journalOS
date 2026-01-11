@@ -10,6 +10,7 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\ModuleDayType;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use InvalidArgumentException;
 
@@ -18,6 +19,8 @@ use InvalidArgumentException;
  */
 final readonly class LogTypeOfDay
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -42,6 +45,8 @@ final readonly class LogTypeOfDay
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if (! in_array($this->dayType, ModuleDayType::DAY_TYPES, true)) {
             $dayTypes = implode('", "', ModuleDayType::DAY_TYPES);
