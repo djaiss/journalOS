@@ -12,6 +12,7 @@ You may use either the server I host, or host your own! You can try the product 
   - Day type
   - Energy
   - Health
+  - Hygiene
   - Kids
   - Mood
   - Physical activity
