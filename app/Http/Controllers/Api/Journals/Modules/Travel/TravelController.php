@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class TravelController extends Controller
 {
@@ -27,7 +28,7 @@ final class TravelController extends Controller
         ]);
 
         $entry = new LogTravel(
-            user: $request->user(),
+            user: Auth::user(),
             entry: $journalEntry,
             hasTraveled: array_key_exists('has_traveled', $validated) ? TextSanitizer::nullablePlainText($validated['has_traveled']) : null,
             travelModes: array_key_exists('travel_modes', $validated)

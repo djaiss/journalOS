@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\JournalEntryResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class DayTypeController extends Controller
 {
@@ -21,7 +22,7 @@ final class DayTypeController extends Controller
         ]);
 
         $entry = new LogTypeOfDay(
-            user: $request->user(),
+            user: Auth::user(),
             entry: $journalEntry,
             dayType: TextSanitizer::plainText($validated['day_type']),
         )->execute();
