@@ -31,7 +31,7 @@ final class PhysicalActivityController extends Controller
             $entry = new LogHasDonePhysicalActivity(
                 user: Auth::user(),
                 entry: $entry,
-                hasDonePhysicalActivity: TextSanitizer::plainText($validated['has_done_physical_activity']),
+                hasDonePhysicalActivity: TextSanitizer::nullablePlainText($validated['has_done_physical_activity']),
             )->execute();
         }
 
@@ -40,7 +40,7 @@ final class PhysicalActivityController extends Controller
             $entry = new LogActivityType(
                 user: Auth::user(),
                 entry: $entry,
-                activityType: TextSanitizer::plainText($validated['activity_type']),
+                activityType: TextSanitizer::nullablePlainText($validated['activity_type']),
             )->execute();
         }
 
@@ -49,7 +49,7 @@ final class PhysicalActivityController extends Controller
             $entry = new LogActivityIntensity(
                 user: Auth::user(),
                 entry: $entry,
-                activityIntensity: TextSanitizer::plainText($validated['activity_intensity']),
+                activityIntensity: TextSanitizer::nullablePlainText($validated['activity_intensity']),
             )->execute();
         }
 

@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\Api\Journals\Modules\PhysicalActivity;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModulePhysicalActivity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -351,6 +352,42 @@ final class PhysicalActivityControllerTest extends TestCase
         $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
         $this->assertEquals('swimming', $entry->modulePhysicalActivity->activity_type);
         $this->assertEquals('moderate', $entry->modulePhysicalActivity->activity_intensity);
+    }
+
+    #[Test]
+    public function it_ignores_nullable_fields_when_they_are_null(): void
+    {
+        $user = User::factory()->create();
+        Sanctum::actingAs($user);
+
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => 2024,
+            'month' => 6,
+            'day' => 15,
+        ]);
+        ModulePhysicalActivity::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'has_done_physical_activity' => 'yes',
+            'activity_type' => 'running',
+            'activity_intensity' => 'light',
+        ]);
+
+        $response = $this->putJson("/api/journals/{$journal->id}/2024/6/15/physical-activity", [
+            'has_done_physical_activity' => null,
+            'activity_type' => null,
+            'activity_intensity' => null,
+        ]);
+
+        $response->assertStatus(200);
+
+        $entry->refresh();
+        $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
+        $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
+        $this->assertEquals('light', $entry->modulePhysicalActivity->activity_intensity);
     }
 
     #[Test]
