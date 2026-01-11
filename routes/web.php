@@ -103,6 +103,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health', [Journals\Modules\Health\HealthController::class, 'update'])->name('journal.entry.health.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/health/reset', [Journals\Modules\Health\HealthResetController::class, 'update'])->name('journal.entry.health.reset');
 
+                // hygiene
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/hygiene', [Journals\Modules\Hygiene\HygieneController::class, 'update'])->name('journal.entry.hygiene.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/hygiene/reset', [Journals\Modules\Hygiene\HygieneResetController::class, 'update'])->name('journal.entry.hygiene.reset');
+
                 // mood
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood', [Journals\Modules\Mood\MoodController::class, 'update'])->name('journal.entry.mood.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood/reset', [Journals\Modules\Mood\MoodResetController::class, 'update'])->name('journal.entry.mood.reset');

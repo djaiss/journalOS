@@ -185,6 +185,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the hygiene module data for this entry.
+     *
+     * @return HasOne<ModuleHygiene, $this>
+     */
+    public function moduleHygiene(): HasOne
+    {
+        return $this->hasOne(ModuleHygiene::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the day type module data for this entry.
      *
      * @return HasOne<ModuleDayType, $this>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Journals\JournalEntryController;
 use App\Http\Controllers\Api\Journals\Modules\DayType\DayTypeController;
 use App\Http\Controllers\Api\Journals\Modules\Energy\EnergyController as EnergyModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Health\HealthController as HealthModuleController;
+use App\Http\Controllers\Api\Journals\Modules\Hygiene\HygieneController as HygieneModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Kids\KidsController as KidsModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
@@ -126,6 +127,9 @@ Route::name('api.')->group(function (): void {
 
                         Route::put('health', [HealthModuleController::class, 'update'])
                             ->name('journal.entry.health.update');
+
+                        Route::put('hygiene', [HygieneModuleController::class, 'update'])
+                            ->name('journal.entry.hygiene.update');
 
                         Route::put('mood', [MoodModuleController::class, 'update'])
                             ->name('journal.entry.mood.update');

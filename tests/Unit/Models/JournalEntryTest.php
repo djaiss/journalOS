@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleHealth;
+use App\Models\ModuleHygiene;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
 use App\Models\ModulePhysicalActivity;
@@ -140,6 +141,23 @@ final class JournalEntryTest extends TestCase
         $this->assertTrue($entry->moduleHealth()->exists());
         $this->assertEquals($moduleHealth->id, $entry->moduleHealth->id);
         $this->assertEquals('okay', $entry->moduleHealth->health);
+    }
+
+    #[Test]
+    public function it_has_one_module_hygiene(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleHygiene = ModuleHygiene::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'showered' => 'yes',
+        ]);
+
+        $this->assertTrue($entry->moduleHygiene()->exists());
+        $this->assertEquals($moduleHygiene->id, $entry->moduleHygiene->id);
+        $this->assertEquals('yes', $entry->moduleHygiene->showered);
     }
 
     #[Test]
