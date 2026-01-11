@@ -21,6 +21,9 @@ final class JournalController extends Controller
     {
         $journals = Journal::query()
             ->where('user_id', Auth::user()->id)
+            ->withCount(['entries as entries_count' => function ($query): void {
+                $query->where('has_content', true);
+            }])
             ->get();
 
         return view('app.journal.index', [
