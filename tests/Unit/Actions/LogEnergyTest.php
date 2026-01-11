@@ -79,13 +79,13 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'low',
         ))->execute();
 
-        $this->assertEquals('low', $result->moduleEnergy->energy);
+        $this->assertEquals('low', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -99,13 +99,13 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'normal',
         ))->execute();
 
-        $this->assertEquals('normal', $result->moduleEnergy->energy);
+        $this->assertEquals('normal', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -119,13 +119,13 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'high',
         ))->execute();
 
-        $this->assertEquals('high', $result->moduleEnergy->energy);
+        $this->assertEquals('high', $entry->moduleEnergy->energy);
     }
 
     #[Test]
@@ -139,13 +139,13 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogEnergy(
+        $entry = (new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'very high',
         ))->execute();
 
-        $this->assertEquals('very high', $result->moduleEnergy->energy);
+        $this->assertEquals('very high', $entry->moduleEnergy->energy);
     }
 
     #[Test]
