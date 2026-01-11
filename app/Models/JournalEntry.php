@@ -252,4 +252,19 @@ final class JournalEntry extends Model
         return Date::create($this->year, $this->month, $this->day)
             ->format('l F jS, Y');
     }
+
+    /**
+     * Determine if the journal entry is editable by the user.
+     */
+    public function isEditable(): bool
+    {
+        if ($this->journal->can_edit_past) {
+            return true;
+        }
+
+        $sevenDaysAgo = now()->subDays(7)->startOfDay();
+        $entryDate = Carbon::create($this->year, $this->month, $this->day)->startOfDay();
+
+        return $entryDate->greaterThanOrEqualTo($sevenDaysAgo);
+    }
 }
