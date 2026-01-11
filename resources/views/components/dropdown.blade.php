@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var string $align
+ * @var string $width
+ * @var string $contentClasses
+ * @var \Illuminate\View\ComponentSlot $trigger
+ * @var \Illuminate\View\ComponentSlot $content
+ */
+?>
+
 @props(['align' => 'right', 'width' => '48', 'contentClasses' => 'bg-white py-1 dark:bg-gray-700'])
 
 @php

@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-box>
   <x-slot:title>
     {{ __('Prune your account') }}

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-box padding="p-0">
   <x-slot:title>
     {{ __('Auto delete account') }}

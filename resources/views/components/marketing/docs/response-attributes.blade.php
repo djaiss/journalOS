@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 <div x-cloak x-data="{ open: false }">
   <div @click="open = !open" x-bind:class="open ? 'border-b border-gray-200 dark:border-gray-700' : ''" class="flex cursor-pointer items-center justify-between pb-2">
     <p class="font-semibold">Response attributes</p>

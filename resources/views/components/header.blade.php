@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\Models\Journal|null $journal
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ */
+?>
+
 @if (Auth::user()->isInTrial())
   <div class="relative mx-auto flex w-full flex-wrap items-center justify-center gap-4 bg-linear-to-r from-amber-100 via-yellow-50 to-white px-4 py-2 text-center ring-1 ring-amber-200/70 transition duration-150 sm:flex-nowrap sm:justify-center sm:text-left dark:from-yellow-900/40 dark:via-amber-900/20 dark:to-gray-900 dark:ring-amber-700/40" x-data="{ showTooltip: false }" @mouseenter="showTooltip = true" @mouseleave="showTooltip = false">
     <div class="flex items-center gap-3">

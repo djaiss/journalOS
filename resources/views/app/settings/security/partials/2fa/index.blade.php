@@ -1,11 +1,12 @@
 <?php
-/*
- * @var Collection $apiKeys
+/**
  * @var bool $has2fa
+ * @var string|null $preferredMethod
+ * @var \Illuminate\Support\ViewErrorBag $errors
  */
 ?>
 
-@include('app.settings.security.partials.2fa.preferred-method')
+@include('app.settings.security.partials.2fa.preferred-method', ['preferredMethod' => $preferredMethod, 'errors' => $errors])
 
 <x-box padding="p-0">
   <!-- Authenticator app -->

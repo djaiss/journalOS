@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-guest-layout>
   <div class="grid min-h-screen w-screen grid-cols-1 lg:grid-cols-2">
     <!-- Left side - Login form -->

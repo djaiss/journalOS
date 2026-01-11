@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Models\Journal $journal
+ */
+?>
+
 <div class="flex flex-col gap-4" x-data="{ activeTab: 'all' }">
   <h2 class="font-semi-bold mb-1 text-lg">{{ __('Modules') }}</h2>
   <div class="mb-2 flex flex-col gap-y-2 text-sm text-gray-500 dark:text-gray-400">

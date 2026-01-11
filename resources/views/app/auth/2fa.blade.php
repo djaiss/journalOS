@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-guest-layout>
   <div class="grid min-h-screen w-screen grid-cols-1 lg:grid-cols-2">
     <!-- Left side - 2FA form -->

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \Illuminate\Support\Collection $journals
+ */
+?>
+
 <x-app-layout>
   <x-slot:title>
     {{ __('Dashboard') }}

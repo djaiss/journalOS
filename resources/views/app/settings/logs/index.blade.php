@@ -1,6 +1,6 @@
 <?php
-/*
- * @var $logs
+/**
+ * @var \Illuminate\Support\Collection $logs
  */
 ?>
 

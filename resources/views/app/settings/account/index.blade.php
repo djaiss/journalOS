@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-app-layout>
   <x-slot:title>
     {{ __('Account administration') }}

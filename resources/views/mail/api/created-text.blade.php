@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var string $label
+ */
+?>
+
 New API key created
 
 A personal API key with the label {{ $label }} has been created on {{ config('app.name') }}.

@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var string $text
+ * @var \Illuminate\View\ComponentAttributeBag $attributes
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'text',
 ])

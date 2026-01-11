@@ -1,6 +1,6 @@
 <?php
-/*
- * @var $emails
+/**
+ * @var \Illuminate\Support\Collection $emails
  */
 ?>
 

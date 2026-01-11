@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var string $label
+ */
+?>
+
 <x-mail::message>
   # New API key created
 

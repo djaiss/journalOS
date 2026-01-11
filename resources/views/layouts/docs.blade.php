@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var array<int, array<string, mixed>> $breadcrumbItems
+ * @var \Illuminate\View\ComponentSlot $slot
+ */
+?>
+
 @props([
   'marketingPage',
   'breadcrumbItems' => [],

@@ -1,3 +1,14 @@
+<?php
+/**
+ * @var \App\Models\Journal $journal
+ * @var \App\Models\JournalEntry $entry
+ * @var array<string, mixed> $modules
+ * @var \Illuminate\Support\Collection $years
+ * @var \Illuminate\Support\Collection $months
+ * @var \Illuminate\Support\Collection $days
+ */
+?>
+
 <x-app-layout :journal="$journal">
   <x-slot:title>
     {{ __('Journal') }}
@@ -72,7 +83,7 @@
         @endif
 
         @if ($journal->show_kids_module)
-          @include('app.journal.entry.partials.kids', ['module' => $modules['kids']])
+          @include('app.journal.entry.partials.kids', ['module' => $modules['kids'], 'entry' => $entry])
         @endif
       </div>
     </div>

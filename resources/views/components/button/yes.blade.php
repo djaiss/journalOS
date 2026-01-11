@@ -1,3 +1,13 @@
+<?php
+/**
+ * @var string $name
+ * @var string $value
+ * @var string $xTarget
+ * @var string $action
+ * @var string|bool $selected
+ */
+?>
+
 @props([
   'name' => '',
   'value' => '',

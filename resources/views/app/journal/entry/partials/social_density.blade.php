@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var array<string, mixed> $module
+ */
+?>
+
 <x-module>
   <x-slot:title>{{ __('Social density') }}</x-slot>
   <x-slot:emoji>👥</x-slot>

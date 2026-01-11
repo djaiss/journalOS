@@ -1,3 +1,9 @@
+<?php
+/**
+ * No view data.
+ */
+?>
+
 <x-layouts.app :title="__('Password | Settings')">
   <section class="w-full">
     @include('partials.settings-heading')

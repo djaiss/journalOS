@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var string $name
+ * @var string $type
+ * @var string $description
+ * @var bool $required
+ */
+?>
+
 @props([
   'name',
   'type',

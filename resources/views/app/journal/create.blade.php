@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-app-layout>
   <x-slot:title>
     {{ __('Create journal') }}

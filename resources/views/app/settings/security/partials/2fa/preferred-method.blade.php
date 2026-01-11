@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var string|null $preferredMethod
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
 <x-box padding="p-0">
   <x-slot:title>{{ __('Two-factor authentication') }}</x-slot>
   <x-slot:description>
