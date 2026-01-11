@@ -10,11 +10,14 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\ModulePhysicalActivity;
 use App\Models\User;
+use App\Traits\PreventPastEntryEdits;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
 final readonly class LogPhysicalActivity
 {
+    use PreventPastEntryEdits;
+
     public function __construct(
         private User $user,
         private JournalEntry $entry,
@@ -41,6 +44,8 @@ final readonly class LogPhysicalActivity
         if ($this->entry->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal entry not found');
         }
+
+        $this->preventPastEditsAllowed($this->entry);
 
         if ($this->hasDonePhysicalActivity !== null && ! in_array($this->hasDonePhysicalActivity, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
