@@ -6,9 +6,9 @@ namespace App\Http\Controllers\App\Journals\Settings;
 
 use App\Actions\ToggleJournalPastEditing;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class JournalPastEditingController extends Controller
 {

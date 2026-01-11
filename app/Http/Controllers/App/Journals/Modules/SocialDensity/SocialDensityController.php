@@ -11,7 +11,7 @@ use App\Models\ModuleSocialDensity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Illuminate\Http\RedirectResponse;
 
 final class SocialDensityController extends Controller
 {

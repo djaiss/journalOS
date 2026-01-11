@@ -11,9 +11,9 @@
       <p class="col-span-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Can edit past entries') }}</p>
       <div class="col-span-1 w-full justify-self-end">
         <x-select id="can_edit_past" name="can_edit_past" :options="[
-          true => __('Yes'),
-          false => __('No')
-        ]" selected="{{ old('can_edit_past', $journal->can_edit_past ? true : false) }}" required :error="$errors->get('can_edit_past')" />
+          '1' => __('Yes'),
+          '0' => __('No')
+        ]" selected="{{ old('can_edit_past', $journal->can_edit_past ? '1' : '0') }}" required :error="$errors->get('can_edit_past')" />
       </div>
     </div>
 
