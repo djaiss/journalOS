@@ -32,6 +32,10 @@
   <x-marketing.docs.attribute name="attributes.modules.primary_obligation.primary_obligation" type="string" description="What demanded most of your attention." />
   <x-marketing.docs.attribute name="attributes.modules.health" type="object" description="The health module payload." />
   <x-marketing.docs.attribute name="attributes.modules.health.health" type="string" description="How you felt on that day." />
+  <x-marketing.docs.attribute name="attributes.modules.hygiene" type="object" description="The hygiene module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.hygiene.showered" type="string" description="Whether you showered." />
+  <x-marketing.docs.attribute name="attributes.modules.hygiene.brushed_teeth" type="string" description="When you brushed your teeth." />
+  <x-marketing.docs.attribute name="attributes.modules.hygiene.skincare" type="string" description="Whether you did skincare." />
   <x-marketing.docs.attribute name="attributes.modules.mood" type="object" description="The mood module payload." />
   <x-marketing.docs.attribute name="attributes.modules.mood.mood" type="string" description="The mood for that day." />
   <x-marketing.docs.attribute name="attributes.modules.energy" type="object" description="The energy module payload." />

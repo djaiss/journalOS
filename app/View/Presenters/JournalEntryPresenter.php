@@ -66,6 +66,12 @@ final readonly class JournalEntryPresenter
             $health = [];
         }
 
+        if ($this->entry->journal->show_hygiene_module) {
+            $hygiene = new HygieneModulePresenter($this->entry)->build();
+        } else {
+            $hygiene = [];
+        }
+
         if ($this->entry->journal->show_mood_module) {
             $mood = new MoodModulePresenter($this->entry)->build();
         } else {
@@ -102,6 +108,7 @@ final readonly class JournalEntryPresenter
             'primary_obligation' => $primaryObligation,
             'physical_activity' => $physicalActivity,
             'health' => $health,
+            'hygiene' => $hygiene,
             'mood' => $mood,
             'sexual_activity' => $sexualActivity,
             'energy' => $energy,

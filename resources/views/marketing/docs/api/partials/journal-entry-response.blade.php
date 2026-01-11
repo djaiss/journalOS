@@ -130,6 +130,22 @@
   <span class="text-lime-700">"good"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"hygiene": {</div>
+<div class="pl-20">
+  "showered":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "brushed_teeth":
+  <span class="text-lime-700">"am"</span>
+  ,
+</div>
+<div class="pl-20">
+  "skincare":
+  <span class="text-lime-700">"no"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"mood": {</div>
 <div class="pl-20">
   "mood":

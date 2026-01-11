@@ -73,6 +73,11 @@ final class JournalEntryResource extends JsonResource
                     'health' => [
                         'health' => $this->moduleHealth?->health,
                     ],
+                    'hygiene' => [
+                        'showered' => $this->moduleHygiene?->showered,
+                        'brushed_teeth' => $this->moduleHygiene?->brushed_teeth,
+                        'skincare' => $this->moduleHygiene?->skincare,
+                    ],
                     'mood' => [
                         'mood' => $this->moduleMood?->mood,
                     ],

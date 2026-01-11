@@ -102,6 +102,10 @@
           @include('app.journal.entry.partials.health', ['module' => $modules['health']])
         @endif
 
+        @if ($journal->show_hygiene_module)
+          @include('app.journal.entry.partials.hygiene', ['module' => $modules['hygiene']])
+        @endif
+
         @if ($journal->show_mood_module)
           @include('app.journal.entry.partials.mood', ['module' => $modules['mood']])
         @endif
