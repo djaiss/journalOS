@@ -17,19 +17,7 @@ final readonly class PhysicalActivityModulePresenter
         $modulePhysicalActivity = $this->entry->modulePhysicalActivity;
 
         return [
-            'has_done_url' => route('journal.entry.physical-activity.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
-            'activity_type_url' => route('journal.entry.physical-activity.type.update', [
-                'slug' => $this->entry->journal->slug,
-                'year' => $this->entry->year,
-                'month' => $this->entry->month,
-                'day' => $this->entry->day,
-            ]),
-            'activity_intensity_url' => route('journal.entry.physical-activity.intensity.update', [
+            'physical_activity_url' => route('journal.entry.physical-activity.update', [
                 'slug' => $this->entry->journal->slug,
                 'year' => $this->entry->year,
                 'month' => $this->entry->month,

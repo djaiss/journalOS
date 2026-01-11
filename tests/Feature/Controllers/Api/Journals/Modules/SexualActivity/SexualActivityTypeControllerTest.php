@@ -64,7 +64,7 @@ final class SexualActivityTypeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity/type', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity', [
             'sexual_activity_type' => 'with-partner',
         ]);
 
@@ -90,7 +90,7 @@ final class SexualActivityTypeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity/type', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity', [
             'sexual_activity_type' => 'invalid',
         ]);
 
@@ -108,7 +108,7 @@ final class SexualActivityTypeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity/type', []);
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity', []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('sexual_activity_type');
@@ -122,7 +122,7 @@ final class SexualActivityTypeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity/type', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sexual-activity', [
             'sexual_activity_type' => 'solo',
         ]);
 

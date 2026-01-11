@@ -34,18 +34,14 @@ final class ShoppingModulePresenterTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('has_shopped_today', $result);
-        $this->assertArrayHasKey('has_shopped_url', $result);
+        $this->assertArrayHasKey('shopping_url', $result);
         $this->assertArrayHasKey('shopping_type', $result);
-        $this->assertArrayHasKey('shopping_type_url', $result);
         $this->assertArrayHasKey('shopping_types', $result);
         $this->assertArrayHasKey('shopping_intent', $result);
-        $this->assertArrayHasKey('shopping_intent_url', $result);
         $this->assertArrayHasKey('shopping_intents', $result);
         $this->assertArrayHasKey('shopping_context', $result);
-        $this->assertArrayHasKey('shopping_context_url', $result);
         $this->assertArrayHasKey('shopping_contexts', $result);
         $this->assertArrayHasKey('shopping_for', $result);
-        $this->assertArrayHasKey('shopping_for_url', $result);
         $this->assertArrayHasKey('shopping_for_options', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
@@ -57,47 +53,7 @@ final class ShoppingModulePresenterTest extends TestCase
                 'month' => $entry->month,
                 'day' => $entry->day,
             ]),
-            $result['has_shopped_url'],
-        );
-
-        $this->assertEquals(
-            route('journal.entry.shopping.type.update', [
-                'slug' => $entry->journal->slug,
-                'year' => $entry->year,
-                'month' => $entry->month,
-                'day' => $entry->day,
-            ]),
-            $result['shopping_type_url'],
-        );
-
-        $this->assertEquals(
-            route('journal.entry.shopping.intent.update', [
-                'slug' => $entry->journal->slug,
-                'year' => $entry->year,
-                'month' => $entry->month,
-                'day' => $entry->day,
-            ]),
-            $result['shopping_intent_url'],
-        );
-
-        $this->assertEquals(
-            route('journal.entry.shopping.context.update', [
-                'slug' => $entry->journal->slug,
-                'year' => $entry->year,
-                'month' => $entry->month,
-                'day' => $entry->day,
-            ]),
-            $result['shopping_context_url'],
-        );
-
-        $this->assertEquals(
-            route('journal.entry.shopping.for.update', [
-                'slug' => $entry->journal->slug,
-                'year' => $entry->year,
-                'month' => $entry->month,
-                'day' => $entry->day,
-            ]),
-            $result['shopping_for_url'],
+            $result['shopping_url'],
         );
 
         $this->assertEquals(

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogActivityIntensity;
+use App\Actions\LogPhysicalActivity;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -35,9 +35,11 @@ final class LogActivityIntensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityIntensity(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'light',
         ))->execute();
 
@@ -48,7 +50,7 @@ final class LogActivityIntensityTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_intensity_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -82,9 +84,11 @@ final class LogActivityIntensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityIntensity(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'moderate',
         ))->execute();
 
@@ -94,7 +98,7 @@ final class LogActivityIntensityTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_intensity_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -128,9 +132,11 @@ final class LogActivityIntensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogActivityIntensity(
+        $result = (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'intense',
         ))->execute();
 
@@ -140,7 +146,7 @@ final class LogActivityIntensityTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'activity_intensity_logged' && $job->user->id === $user->id;
+                return $job->action === 'physical_activity_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -176,9 +182,11 @@ final class LogActivityIntensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogActivityIntensity(
+        (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'light',
         ))->execute();
     }
@@ -196,9 +204,11 @@ final class LogActivityIntensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogActivityIntensity(
+        (new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'invalid',
         ))->execute();
     }

@@ -30,7 +30,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_load' => 'light'],
         );
 
@@ -56,7 +56,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_load' => 'medium'],
         );
 
@@ -82,7 +82,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_load' => 'heavy'],
         );
 
@@ -108,7 +108,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_load' => 'invalid'],
         );
 
@@ -130,7 +130,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             [],
         );
 
@@ -149,7 +149,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_load' => 'light'],
         );
 
@@ -169,7 +169,7 @@ final class WorkLoadControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/work/load",
+            "/journals/{$journal->slug}/entries/2024/6/15/work",
             ['work_load' => 'light'],
         );
 

@@ -30,7 +30,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_context' => 'alone'],
         );
 
@@ -56,7 +56,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_context' => 'with_partner'],
         );
 
@@ -82,7 +82,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_context' => 'with_kids'],
         );
 
@@ -108,7 +108,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_context' => 'invalid'],
         );
 
@@ -130,7 +130,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             [],
         );
 
@@ -149,7 +149,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_context' => 'alone'],
         );
 
@@ -169,7 +169,7 @@ final class ShoppingContextControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/context",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_context' => 'alone'],
         );
 

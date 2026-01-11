@@ -10,17 +10,15 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\JournalEntry;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 
-/**
- * This action logs whether the user had sexual activity on this day.
- */
-final readonly class LogHadSexualActivity
+final readonly class LogSexualActivity
 {
     public function __construct(
         private User $user,
         private JournalEntry $entry,
-        private string $hadSexualActivity,
+        private ?string $hadSexualActivity,
+        private ?string $sexualActivityType,
     ) {}
 
     public function execute(): JournalEntry
@@ -39,11 +37,25 @@ final readonly class LogHadSexualActivity
     private function validate(): void
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
-            throw new ModelNotFoundException('Journal not found');
+            throw new ModelNotFoundException('Journal entry not found');
         }
 
-        if ($this->hadSexualActivity !== 'yes' && $this->hadSexualActivity !== 'no') {
-            throw new InvalidArgumentException('hadSexualActivity must be either "yes" or "no"');
+        if ($this->hadSexualActivity === null && $this->sexualActivityType === null) {
+            throw ValidationException::withMessages([
+                'sexual_activity' => 'At least one sexual activity value is required.',
+            ]);
+        }
+
+        if ($this->hadSexualActivity !== null && ! in_array($this->hadSexualActivity, ['yes', 'no'], true)) {
+            throw ValidationException::withMessages([
+                'had_sexual_activity' => 'Invalid sexual activity status value.',
+            ]);
+        }
+
+        if ($this->sexualActivityType !== null && ! in_array($this->sexualActivityType, ['solo', 'with-partner', 'intimate-contact'], true)) {
+            throw ValidationException::withMessages([
+                'sexual_activity_type' => 'Invalid sexual activity type value.',
+            ]);
         }
     }
 
@@ -53,7 +65,14 @@ final readonly class LogHadSexualActivity
             ['journal_entry_id' => $this->entry->id],
         );
 
-        $moduleSexualActivity->had_sexual_activity = $this->hadSexualActivity;
+        if ($this->hadSexualActivity !== null) {
+            $moduleSexualActivity->had_sexual_activity = $this->hadSexualActivity;
+        }
+
+        if ($this->sexualActivityType !== null) {
+            $moduleSexualActivity->sexual_activity_type = $this->sexualActivityType;
+        }
+
         $moduleSexualActivity->save();
     }
 
@@ -63,7 +82,7 @@ final readonly class LogHadSexualActivity
             user: $this->user,
             journal: $this->entry->journal,
             action: 'sexual_activity_logged',
-            description: 'Logged sexual activity on ' . $this->entry->getDate(),
+            description: 'Logged sexual activity for ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 

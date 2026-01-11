@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogShoppingType;
+use App\Actions\LogShopping;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,10 +35,14 @@ final class LogShoppingTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogShoppingType(
+        $result = (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
             shoppingTypes: ['groceries'],
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
 
         $this->assertEquals(['groceries'], $result->moduleShopping->shopping_type);
@@ -47,7 +51,7 @@ final class LogShoppingTypeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'shopping_type_logged' && $job->user->id === $user->id;
+                return $job->action === 'shopping_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,10 +85,14 @@ final class LogShoppingTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogShoppingType(
+        $result = (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
             shoppingTypes: ['groceries', 'books_media', 'gifts'],
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
 
         $this->assertEquals(['groceries', 'books_media', 'gifts'], $result->moduleShopping->shopping_type);
@@ -94,7 +102,7 @@ final class LogShoppingTypeTest extends TestCase
     public function it_throws_when_journal_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal not found');
+        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -105,18 +113,21 @@ final class LogShoppingTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingType(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
             shoppingTypes: ['groceries'],
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
     }
 
     #[Test]
     public function it_throws_when_shopping_types_are_empty(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('shoppingTypes cannot be empty');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -126,18 +137,21 @@ final class LogShoppingTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingType(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
             shoppingTypes: [],
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
     }
 
     #[Test]
     public function it_throws_when_shopping_type_is_invalid(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Each shoppingType must be one of: groceries, clothes, electronics_tech, household_essentials, books_media, gifts, online_shopping, other');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -147,10 +161,14 @@ final class LogShoppingTypeTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingType(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
             shoppingTypes: ['invalid'],
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
     }
 }

@@ -33,8 +33,7 @@ final class SexualActivityModulePresenterTest extends TestCase
         $result = $presenter->build();
 
         $this->assertIsArray($result);
-        $this->assertArrayHasKey('has_sexual_activity_url', $result);
-        $this->assertArrayHasKey('sexual_activity_type_url', $result);
+        $this->assertArrayHasKey('sexual_activity_url', $result);
         $this->assertArrayHasKey('sexual_activity_types', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
@@ -46,17 +45,7 @@ final class SexualActivityModulePresenterTest extends TestCase
                 'month' => $entry->month,
                 'day' => $entry->day,
             ]),
-            $result['has_sexual_activity_url'],
-        );
-
-        $this->assertEquals(
-            route('journal.entry.sexual-activity.type.update', [
-                'slug' => $entry->journal->slug,
-                'year' => $entry->year,
-                'month' => $entry->month,
-                'day' => $entry->day,
-            ]),
-            $result['sexual_activity_type_url'],
+            $result['sexual_activity_url'],
         );
 
         $this->assertEquals(

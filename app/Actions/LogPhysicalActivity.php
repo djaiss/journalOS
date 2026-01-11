@@ -12,12 +12,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-final readonly class LogHasDonePhysicalActivity
+final readonly class LogPhysicalActivity
 {
     public function __construct(
         private User $user,
         private JournalEntry $entry,
-        private string $hasDonePhysicalActivity,
+        private ?string $hasDonePhysicalActivity,
+        private ?string $activityType,
+        private ?string $activityIntensity,
     ) {}
 
     public function execute(): JournalEntry
@@ -39,10 +41,21 @@ final readonly class LogHasDonePhysicalActivity
             throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $validValues = ['yes', 'no'];
-        if (!in_array($this->hasDonePhysicalActivity, $validValues)) {
+        if ($this->hasDonePhysicalActivity !== null && ! in_array($this->hasDonePhysicalActivity, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
-                'has_done_physical_activity' => 'Invalid physical activity status.',
+                'has_done_physical_activity' => 'Invalid physical activity status value.',
+            ]);
+        }
+
+        if ($this->activityType !== null && ! in_array($this->activityType, ['running', 'cycling', 'swimming', 'gym', 'walking'], true)) {
+            throw ValidationException::withMessages([
+                'activity_type' => 'Invalid activity type value.',
+            ]);
+        }
+
+        if ($this->activityIntensity !== null && ! in_array($this->activityIntensity, ['light', 'moderate', 'intense'], true)) {
+            throw ValidationException::withMessages([
+                'activity_intensity' => 'Invalid activity intensity value.',
             ]);
         }
     }
@@ -53,7 +66,18 @@ final readonly class LogHasDonePhysicalActivity
             ['journal_entry_id' => $this->entry->id],
         );
 
-        $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;
+        if ($this->hasDonePhysicalActivity !== null) {
+            $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;
+        }
+
+        if ($this->activityType !== null) {
+            $modulePhysicalActivity->activity_type = $this->activityType;
+        }
+
+        if ($this->activityIntensity !== null) {
+            $modulePhysicalActivity->activity_intensity = $this->activityIntensity;
+        }
+
         $modulePhysicalActivity->save();
     }
 
@@ -62,8 +86,8 @@ final readonly class LogHasDonePhysicalActivity
         LogUserAction::dispatch(
             user: $this->user,
             journal: $this->entry->journal,
-            action: 'has_done_physical_activity_logged',
-            description: 'Logged physical activity status for ' . $this->entry->getDate(),
+            action: 'physical_activity_logged',
+            description: 'Logged physical activity for ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 

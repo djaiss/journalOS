@@ -65,7 +65,7 @@ final class WorkLoadControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/load', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_load' => 'heavy',
         ]);
 
@@ -98,7 +98,7 @@ final class WorkLoadControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/load', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_load' => 'invalid',
         ]);
 
@@ -116,7 +116,7 @@ final class WorkLoadControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/load', []);
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('work_load');
@@ -130,7 +130,7 @@ final class WorkLoadControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/load', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_load' => 'heavy',
         ]);
 

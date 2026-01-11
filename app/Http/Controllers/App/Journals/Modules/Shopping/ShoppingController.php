@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Shopping;
 
-use App\Actions\LogShoppedToday;
+use App\Actions\LogShopping;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -18,13 +18,28 @@ final class ShoppingController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'has_shopped' => ['required', 'string', 'max:255', 'in:yes,no'],
+            'has_shopped' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:shopping_types,shopping_intent,shopping_context,shopping_for'],
+            'shopping_types' => ['nullable', 'array', 'min:1', 'required_without_all:has_shopped,shopping_intent,shopping_context,shopping_for'],
+            'shopping_types.*' => [
+                'string',
+                'max:255',
+                'in:groceries,clothes,electronics_tech,household_essentials,books_media,gifts,online_shopping,other',
+            ],
+            'shopping_intent' => ['nullable', 'string', 'max:255', 'in:planned,opportunistic,impulse,replacement', 'required_without_all:has_shopped,shopping_types,shopping_context,shopping_for'],
+            'shopping_context' => ['nullable', 'string', 'max:255', 'in:alone,with_partner,with_kids', 'required_without_all:has_shopped,shopping_types,shopping_intent,shopping_for'],
+            'shopping_for' => ['nullable', 'string', 'max:255', 'in:for_self,for_household,for_others', 'required_without_all:has_shopped,shopping_types,shopping_intent,shopping_context'],
         ]);
 
-        new LogShoppedToday(
+        new LogShopping(
             user: Auth::user(),
             entry: $journalEntry,
-            hasShopped: TextSanitizer::plainText($validated['has_shopped']),
+            hasShopped: array_key_exists('has_shopped', $validated) ? TextSanitizer::plainText($validated['has_shopped']) : null,
+            shoppingTypes: array_key_exists('shopping_types', $validated)
+                ? array_map(TextSanitizer::plainText(...), $validated['shopping_types'])
+                : null,
+            shoppingIntent: array_key_exists('shopping_intent', $validated) ? TextSanitizer::plainText($validated['shopping_intent']) : null,
+            shoppingContext: array_key_exists('shopping_context', $validated) ? TextSanitizer::plainText($validated['shopping_context']) : null,
+            shoppingFor: array_key_exists('shopping_for', $validated) ? TextSanitizer::plainText($validated['shopping_for']) : null,
         )->execute();
 
         return to_route('journal.entry.show', [

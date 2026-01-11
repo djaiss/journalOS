@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogActivityIntensity;
-use App\Actions\LogActivityType;
-use App\Actions\LogHasDonePhysicalActivity;
+use App\Actions\LogPhysicalActivity;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\User;
@@ -31,10 +29,12 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = new LogHasDonePhysicalActivity(
+        $entry = new LogPhysicalActivity(
             user: $user,
             entry: $entry,
             hasDonePhysicalActivity: 'yes',
+            activityType: null,
+            activityIntensity: null,
         )->execute();
 
         $this->assertEquals('yes', $entry->modulePhysicalActivity->has_done_physical_activity);
@@ -51,10 +51,12 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = new LogHasDonePhysicalActivity(
+        $entry = new LogPhysicalActivity(
             user: $user,
             entry: $entry,
             hasDonePhysicalActivity: 'no',
+            activityType: null,
+            activityIntensity: null,
         )->execute();
 
         $this->assertEquals('no', $entry->modulePhysicalActivity->has_done_physical_activity);
@@ -71,10 +73,12 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = new LogActivityType(
+        $entry = new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'running',
+            activityIntensity: null,
         )->execute();
 
         $this->assertEquals('running', $entry->modulePhysicalActivity->activity_type);
@@ -91,9 +95,11 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = new LogActivityIntensity(
+        $entry = new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'moderate',
         )->execute();
 
@@ -114,10 +120,12 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        new LogHasDonePhysicalActivity(
+        new LogPhysicalActivity(
             user: $user,
             entry: $entry,
             hasDonePhysicalActivity: 'yes',
+            activityType: null,
+            activityIntensity: null,
         )->execute();
     }
 
@@ -134,10 +142,12 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        new LogHasDonePhysicalActivity(
+        new LogPhysicalActivity(
             user: $user,
             entry: $entry,
             hasDonePhysicalActivity: 'invalid',
+            activityType: null,
+            activityIntensity: null,
         )->execute();
     }
 
@@ -154,10 +164,12 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        new LogActivityType(
+        new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
             activityType: 'invalid',
+            activityIntensity: null,
         )->execute();
     }
 
@@ -174,9 +186,11 @@ final class LogPhysicalActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        new LogActivityIntensity(
+        new LogPhysicalActivity(
             user: $user,
             entry: $entry,
+            hasDonePhysicalActivity: null,
+            activityType: null,
             activityIntensity: 'invalid',
         )->execute();
     }

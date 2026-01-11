@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogHadSexualActivity;
+use App\Actions\LogSexualActivity;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,10 +35,11 @@ final class LogHadSexualActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHadSexualActivity(
+        $result = (new LogSexualActivity(
             user: $user,
             entry: $entry,
             hadSexualActivity: 'yes',
+            sexualActivityType: null,
         ))->execute();
 
         $this->assertEquals('yes', $result->moduleSexualActivity->had_sexual_activity);
@@ -81,10 +82,11 @@ final class LogHadSexualActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogHadSexualActivity(
+        $result = (new LogSexualActivity(
             user: $user,
             entry: $entry,
             hadSexualActivity: 'no',
+            sexualActivityType: null,
         ))->execute();
 
         $this->assertEquals('no', $result->moduleSexualActivity->had_sexual_activity);
@@ -118,7 +120,7 @@ final class LogHadSexualActivityTest extends TestCase
     public function it_throws_when_journal_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal not found');
+        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -129,18 +131,18 @@ final class LogHadSexualActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHadSexualActivity(
+        (new LogSexualActivity(
             user: $user,
             entry: $entry,
             hadSexualActivity: 'yes',
+            sexualActivityType: null,
         ))->execute();
     }
 
     #[Test]
     public function it_throws_when_had_sexual_activity_is_not_yes_or_no(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('hadSexualActivity must be either "yes" or "no"');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -150,10 +152,11 @@ final class LogHadSexualActivityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHadSexualActivity(
+        (new LogSexualActivity(
             user: $user,
             entry: $entry,
             hadSexualActivity: 'maybe',
+            sexualActivityType: null,
         ))->execute();
     }
 }

@@ -21,8 +21,8 @@
       <div class="space-y-2">
         <p>{{ __('Did you have sexual activity?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="had_sexual_activity" value="yes" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['has_sexual_activity_url']" selected="{{ $entry->moduleSexualActivity?->had_sexual_activity === 'yes' }}" @click="showSexualActivityDetails = true" />
-          <x-button.no name="had_sexual_activity" value="no" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['has_sexual_activity_url']" selected="{{ $entry->moduleSexualActivity?->had_sexual_activity === 'no' }}" @click="showSexualActivityDetails = false" />
+          <x-button.yes name="had_sexual_activity" value="yes" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['sexual_activity_url']" selected="{{ $entry->moduleSexualActivity?->had_sexual_activity === 'yes' }}" @click="showSexualActivityDetails = true" />
+          <x-button.no name="had_sexual_activity" value="no" x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['sexual_activity_url']" selected="{{ $entry->moduleSexualActivity?->had_sexual_activity === 'no' }}" @click="showSexualActivityDetails = false" />
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
         <p>{{ __('What kind of sexual activity?') }}</p>
         <div class="flex flex-wrap justify-center gap-2">
           @foreach ($module['sexual_activity_types'] as $option)
-            <x-form x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['sexual_activity_type_url']" method="put">
+            <x-form x-target="sexual-activity-container notifications sexual-activity-reset days-listing months-listing" :action="$module['sexual_activity_url']" method="put">
               <input type="hidden" name="sexual_activity_type" value="{{ $option['value'] }}" />
               <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
                 {{ $option['label'] }}

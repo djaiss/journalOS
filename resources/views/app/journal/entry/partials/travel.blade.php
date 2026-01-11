@@ -22,8 +22,8 @@
       <div class="space-y-2">
         <p>{{ __('Have you traveled today?') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          <x-button.yes name="has_traveled" value="yes" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['has_traveled_url']" selected="{{ $module['has_traveled_today'] === 'yes' }}" @click="showTravelDetails = true" />
-          <x-button.no name="has_traveled" value="no" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['has_traveled_url']" selected="{{ $module['has_traveled_today'] === 'no' }}" @click="showTravelDetails = false" />
+          <x-button.yes name="has_traveled" value="yes" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['travel_url']" selected="{{ $module['has_traveled_today'] === 'yes' }}" @click="showTravelDetails = true" />
+          <x-button.no name="has_traveled" value="no" x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['travel_url']" selected="{{ $module['has_traveled_today'] === 'no' }}" @click="showTravelDetails = false" />
         </div>
       </div>
 
@@ -31,7 +31,7 @@
         <!-- Travel mode -->
         <div class="space-y-2">
           <p>{{ __('How did you travel?') }}</p>
-          <x-form x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['travel_mode_url']" method="put" id="travel-mode-form">
+          <x-form x-target="travel-container notifications travel-reset days-listing months-listing" :action="$module['travel_url']" method="put" id="travel-mode-form">
             <div class="grid grid-cols-4 gap-2">
               @foreach ($module['travel_modes'] as $option)
                 <label class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">

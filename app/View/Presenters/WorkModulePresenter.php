@@ -16,28 +16,7 @@ final readonly class WorkModulePresenter
     {
         $moduleWork = $this->entry->moduleWork;
 
-        $hasWorkedURL = route('journal.entry.work.update', [
-            'slug' => $this->entry->journal->slug,
-            'year' => $this->entry->year,
-            'month' => $this->entry->month,
-            'day' => $this->entry->day,
-        ]);
-
-        $workModeURL = route('journal.entry.work.mode.update', [
-            'slug' => $this->entry->journal->slug,
-            'year' => $this->entry->year,
-            'month' => $this->entry->month,
-            'day' => $this->entry->day,
-        ]);
-
-        $workLoadURL = route('journal.entry.work.load.update', [
-            'slug' => $this->entry->journal->slug,
-            'year' => $this->entry->year,
-            'month' => $this->entry->month,
-            'day' => $this->entry->day,
-        ]);
-
-        $workProcrastinatedURL = route('journal.entry.work.procrastinated.update', [
+        $workUrl = route('journal.entry.work.update', [
             'slug' => $this->entry->journal->slug,
             'year' => $this->entry->year,
             'month' => $this->entry->month,
@@ -74,13 +53,10 @@ final readonly class WorkModulePresenter
         ]);
 
         return [
-            'has_worked_url' => $hasWorkedURL,
+            'work_url' => $workUrl,
             'worked' => $moduleWork?->worked,
-            'work_mode_url' => $workModeURL,
             'work_modes' => $workModes,
-            'work_load_url' => $workLoadURL,
             'work_loads' => $workLoads,
-            'work_procrastinated_url' => $workProcrastinatedURL,
             'work_procrastinated' => $moduleWork?->work_procrastinated,
             'reset_url' => $resetUrl,
             'display_reset' => ! is_null($moduleWork?->worked)

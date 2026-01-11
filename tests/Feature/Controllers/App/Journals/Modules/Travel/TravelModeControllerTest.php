@@ -30,7 +30,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => ['car']],
         );
 
@@ -57,7 +57,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => ['car', 'plane', 'train']],
         );
 
@@ -89,7 +89,7 @@ final class TravelModeControllerTest extends TestCase
         $allModes = ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'];
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => $allModes],
         );
 
@@ -117,7 +117,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => 'car'],
         );
 
@@ -139,7 +139,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => []],
         );
 
@@ -161,7 +161,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => ['car', 'invalid', 'plane']],
         );
 
@@ -183,7 +183,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             [],
         );
 
@@ -202,7 +202,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => ['car']],
         );
 
@@ -222,7 +222,7 @@ final class TravelModeControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/travel/mode",
+            "/journals/{$journal->slug}/entries/2024/6/15/travel",
             ['travel_modes' => ['car']],
         );
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogShoppedToday;
+use App\Actions\LogShopping;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -14,7 +14,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use InvalidArgumentException;
+use Illuminate\Validation\ValidationException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -35,10 +35,14 @@ final class LogShoppedTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogShoppedToday(
+        $result = (new LogShopping(
             user: $user,
             entry: $entry,
             hasShopped: 'yes',
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
 
         $this->assertEquals('yes', $result->moduleShopping->has_shopped_today);
@@ -47,7 +51,7 @@ final class LogShoppedTodayTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'has_shopped_logged' && $job->user->id === $user->id;
+                return $job->action === 'shopping_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -81,10 +85,14 @@ final class LogShoppedTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogShoppedToday(
+        $result = (new LogShopping(
             user: $user,
             entry: $entry,
             hasShopped: 'no',
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
 
         $this->assertEquals('no', $result->moduleShopping->has_shopped_today);
@@ -93,7 +101,7 @@ final class LogShoppedTodayTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'has_shopped_logged' && $job->user->id === $user->id;
+                return $job->action === 'shopping_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -118,7 +126,7 @@ final class LogShoppedTodayTest extends TestCase
     public function it_throws_when_journal_does_not_belong_to_user(): void
     {
         $this->expectException(ModelNotFoundException::class);
-        $this->expectExceptionMessage('Journal not found');
+        $this->expectExceptionMessage('Journal entry not found');
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -129,18 +137,21 @@ final class LogShoppedTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppedToday(
+        (new LogShopping(
             user: $user,
             entry: $entry,
             hasShopped: 'yes',
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
     }
 
     #[Test]
     public function it_throws_when_has_shopped_is_not_yes_or_no(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('hasShopped must be either "yes" or "no"');
+        $this->expectException(ValidationException::class);
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -150,10 +161,14 @@ final class LogShoppedTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppedToday(
+        (new LogShopping(
             user: $user,
             entry: $entry,
             hasShopped: 'maybe',
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
+            shoppingFor: null,
         ))->execute();
     }
 }

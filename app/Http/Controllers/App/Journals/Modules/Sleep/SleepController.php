@@ -4,13 +4,49 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
+use App\Actions\LogSleep;
+use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\View\Presenters\SleepModulePresenter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 final class SleepController extends Controller
 {
+    public function update(Request $request): RedirectResponse
+    {
+        $journalEntry = $request->attributes->get('journal_entry');
+
+        // Sanitize inputs before validation
+        if ($request->has('bedtime')) {
+            $request->merge(['bedtime' => TextSanitizer::plainText($request->input('bedtime'))]);
+        }
+        if ($request->has('wake_up_time')) {
+            $request->merge(['wake_up_time' => TextSanitizer::plainText($request->input('wake_up_time'))]);
+        }
+
+        $validated = $request->validate([
+            'bedtime' => ['nullable', 'date_format:H:i', 'required_without_all:wake_up_time'],
+            'wake_up_time' => ['nullable', 'date_format:H:i', 'required_without_all:bedtime'],
+        ]);
+
+        new LogSleep(
+            user: Auth::user(),
+            entry: $journalEntry,
+            bedtime: $validated['bedtime'] ?? null,
+            wakeUpTime: $validated['wake_up_time'] ?? null,
+        )->execute();
+
+        return to_route('journal.entry.show', [
+            'slug' => $journalEntry->journal->slug,
+            'year' => $journalEntry->year,
+            'month' => $journalEntry->month,
+            'day' => $journalEntry->day,
+        ])->with('status', __('Changes saved'));
+    }
+
     public function show(Request $request): View
     {
         $journalEntry = $request->attributes->get('journal_entry');

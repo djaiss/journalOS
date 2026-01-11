@@ -64,7 +64,7 @@ final class WorkModeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/mode', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_mode' => 'remote',
         ]);
 
@@ -97,7 +97,7 @@ final class WorkModeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/mode', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_mode' => 'invalid',
         ]);
 
@@ -115,7 +115,7 @@ final class WorkModeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/mode', []);
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('work_mode');
@@ -129,7 +129,7 @@ final class WorkModeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work/mode', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/work', [
             'work_mode' => 'remote',
         ]);
 

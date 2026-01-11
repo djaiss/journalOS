@@ -30,7 +30,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'planned'],
         );
 
@@ -56,7 +56,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'opportunistic'],
         );
 
@@ -82,7 +82,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'impulse'],
         );
 
@@ -108,7 +108,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'replacement'],
         );
 
@@ -134,7 +134,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'invalid'],
         );
 
@@ -156,7 +156,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             [],
         );
 
@@ -175,7 +175,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'planned'],
         );
 
@@ -195,7 +195,7 @@ final class ShoppingIntentControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->put(
-            "/journals/{$journal->slug}/entries/2024/6/15/shopping/intent",
+            "/journals/{$journal->slug}/entries/2024/6/15/shopping",
             ['shopping_intent' => 'planned'],
         );
 

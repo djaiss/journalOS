@@ -64,7 +64,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep/wake_up_time', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep', [
             'wake_up_time' => '06:45',
         ]);
 
@@ -98,7 +98,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep/wake_up_time', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep', [
             'wake_up_time' => '06-45',
         ]);
 
@@ -114,7 +114,7 @@ final class SleepWakeUpTimeControllerTest extends TestCase
 
         Sanctum::actingAs($user);
 
-        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep/wake_up_time', [
+        $response = $this->json('PUT', '/api/journals/' . $journal->id . '/2025/4/12/sleep', [
             'wake_up_time' => '06:45',
         ]);
 

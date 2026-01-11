@@ -39,8 +39,7 @@ final class SleepModulePresenterTest extends TestCase
         $this->assertArrayHasKey('next_bedtime_url', $result);
         $this->assertArrayHasKey('previous_wake_up_url', $result);
         $this->assertArrayHasKey('next_wake_up_url', $result);
-        $this->assertArrayHasKey('bedtime_update_url', $result);
-        $this->assertArrayHasKey('wake_up_time_update_url', $result);
+        $this->assertArrayHasKey('sleep_url', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
 
@@ -60,7 +59,8 @@ final class SleepModulePresenterTest extends TestCase
             'month' => 12,
             'day' => 25,
         ]);
-        ModuleSleep::factory()->for($entry, 'entry')->create([
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -93,7 +93,8 @@ final class SleepModulePresenterTest extends TestCase
             'month' => 12,
             'day' => 25,
         ]);
-        ModuleSleep::factory()->for($entry, 'entry')->create([
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -117,7 +118,8 @@ final class SleepModulePresenterTest extends TestCase
             'month' => 12,
             'day' => 25,
         ]);
-        ModuleSleep::factory()->for($entry, 'entry')->create([
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '22:00',
             'wake_up_time' => '06:00',
         ]);
@@ -174,22 +176,14 @@ final class SleepModulePresenterTest extends TestCase
         $presenter = new SleepModulePresenter($entry);
         $result = $presenter->build();
 
-        $expectedBedtimeUrl = route('journal.entry.sleep.bedtime.update', [
+        $expectedSleepUrl = route('journal.entry.sleep.update', [
             'slug' => $journal->slug,
             'year' => 2024,
             'month' => 12,
             'day' => 25,
         ]);
 
-        $expectedWakeUpUrl = route('journal.entry.sleep.wake_up_time.update', [
-            'slug' => $journal->slug,
-            'year' => 2024,
-            'month' => 12,
-            'day' => 25,
-        ]);
-
-        $this->assertEquals($expectedBedtimeUrl, $result['bedtime_update_url']);
-        $this->assertEquals($expectedWakeUpUrl, $result['wake_up_time_update_url']);
+        $this->assertEquals($expectedSleepUrl, $result['sleep_url']);
     }
 
     #[Test]
@@ -225,7 +219,8 @@ final class SleepModulePresenterTest extends TestCase
             'month' => 12,
             'day' => 25,
         ]);
-        ModuleSleep::factory()->for($entry, 'entry')->create([
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => 'invalid',
             'wake_up_time' => null,
         ]);
@@ -247,7 +242,8 @@ final class SleepModulePresenterTest extends TestCase
             'month' => 12,
             'day' => 25,
         ]);
-        ModuleSleep::factory()->for($entry, 'entry')->create([
+        ModuleSleep::factory()->create([
+            'journal_entry_id' => $entry->id,
             'bedtime' => '',
             'wake_up_time' => '  ',
         ]);

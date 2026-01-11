@@ -32,7 +32,7 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_types' => ['groceries'],
         ]);
 
@@ -62,7 +62,7 @@ final class ShoppingTypeControllerTest extends TestCase
 
         $types = ['groceries', 'books_media', 'gifts'];
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_types' => $types,
         ]);
 
@@ -90,7 +90,7 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_types' => 'groceries',
         ]);
 
@@ -114,7 +114,7 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_types' => ['groceries', 'invalid'],
         ]);
 
@@ -138,7 +138,7 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", []);
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", []);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['shopping_types']);
@@ -155,7 +155,7 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_types' => ['groceries'],
         ]);
 
@@ -176,7 +176,7 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 1,
         ]);
 
-        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping/type", [
+        $response = $this->putJson("/api/journals/{$journal->id}/2022/1/1/shopping", [
             'shopping_types' => ['groceries'],
         ]);
 

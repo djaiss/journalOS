@@ -13,13 +13,15 @@ use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Validation\ValidationException;
 
-final readonly class LogWakeUpTime
+final readonly class LogSleep
 {
     public function __construct(
         private User $user,
         private JournalEntry $entry,
-        private string $wakeUpTime,
+        private ?string $bedtime,
+        private ?string $wakeUpTime,
     ) {}
 
     public function execute(): JournalEntry
@@ -39,10 +41,22 @@ final readonly class LogWakeUpTime
     private function validate(): void
     {
         if ($this->entry->journal->user_id !== $this->user->id) {
-            throw new ModelNotFoundException('Journal not found');
+            throw new ModelNotFoundException('Journal entry not found');
         }
 
-        $this->validateTimeFormat($this->wakeUpTime, 'Invalid wake-up time format. Expected HH:MM');
+        if ($this->bedtime === null && $this->wakeUpTime === null) {
+            throw ValidationException::withMessages([
+                'sleep' => 'At least one sleep value is required.',
+            ]);
+        }
+
+        if ($this->bedtime !== null) {
+            $this->validateTimeFormat($this->bedtime, 'Invalid bedtime format. Expected HH:MM');
+        }
+
+        if ($this->wakeUpTime !== null) {
+            $this->validateTimeFormat($this->wakeUpTime, 'Invalid wake up time format. Expected HH:MM');
+        }
     }
 
     private function validateTimeFormat(string $time, string $message): void
@@ -50,11 +64,15 @@ final readonly class LogWakeUpTime
         try {
             $parsed = Date::createFromFormat('H:i', $time);
         } catch (Exception) {
-            throw new Exception($message);
+            throw ValidationException::withMessages([
+                'sleep' => $message,
+            ]);
         }
 
         if ($parsed === false || $parsed->format('H:i') !== $time) {
-            throw new Exception($message);
+            throw ValidationException::withMessages([
+                'sleep' => $message,
+            ]);
         }
     }
 
@@ -64,7 +82,14 @@ final readonly class LogWakeUpTime
             ['journal_entry_id' => $this->entry->id],
         );
 
-        $moduleSleep->wake_up_time = $this->wakeUpTime;
+        if ($this->bedtime !== null) {
+            $moduleSleep->bedtime = $this->bedtime;
+        }
+
+        if ($this->wakeUpTime !== null) {
+            $moduleSleep->wake_up_time = $this->wakeUpTime;
+        }
+
         $moduleSleep->save();
     }
 
@@ -73,8 +98,8 @@ final readonly class LogWakeUpTime
         LogUserAction::dispatch(
             user: $this->user,
             journal: $this->entry->journal,
-            action: 'sleep_wake_up_logged',
-            description: 'Logged wake-up time for journal entry on ' . $this->entry->getDate(),
+            action: 'sleep_logged',
+            description: 'Logged sleep for journal entry on ' . $this->entry->getDate(),
         )->onQueue('low');
     }
 

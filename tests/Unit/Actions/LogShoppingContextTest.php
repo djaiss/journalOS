@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogShoppingContext;
+use App\Actions\LogShopping;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -35,10 +35,14 @@ final class LogShoppingContextTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogShoppingContext(
+        $result = (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
+            shoppingTypes: null,
+            shoppingIntent: null,
             shoppingContext: 'with_partner',
+            shoppingFor: null,
         ))->execute();
 
         $this->assertEquals('with_partner', $result->moduleShopping->shopping_context);
@@ -47,7 +51,7 @@ final class LogShoppingContextTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'shopping_context_logged' && $job->user->id === $user->id;
+                return $job->action === 'shopping_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -83,10 +87,14 @@ final class LogShoppingContextTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingContext(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
+            shoppingTypes: null,
+            shoppingIntent: null,
             shoppingContext: 'alone',
+            shoppingFor: null,
         ))->execute();
     }
 
@@ -103,10 +111,14 @@ final class LogShoppingContextTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingContext(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
+            shoppingTypes: null,
+            shoppingIntent: null,
             shoppingContext: 'invalid',
+            shoppingFor: null,
         ))->execute();
     }
 }

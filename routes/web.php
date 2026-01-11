@@ -52,28 +52,19 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                         ],
                     )
                     ->name('journal.entry.sleep.show');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/bedtime', [Journals\Modules\Sleep\SleepBedTimeController::class, 'update'])->name('journal.entry.sleep.bedtime.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/wake_up_time', [Journals\Modules\Sleep\SleepWakeUpTimeController::class, 'update'])->name('journal.entry.sleep.wake_up_time.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep', [Journals\Modules\Sleep\SleepController::class, 'update'])->name('journal.entry.sleep.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/sleep/reset', [Journals\Modules\Sleep\SleepResetController::class, 'update'])->name('journal.entry.sleep.reset');
 
                 // work
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/work', [Journals\Modules\Work\WorkController::class, 'update'])->name('journal.entry.work.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/work/mode', [Journals\Modules\Work\WorkModeController::class, 'update'])->name('journal.entry.work.mode.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/work/load', [Journals\Modules\Work\WorkLoadController::class, 'update'])->name('journal.entry.work.load.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/work/procrastinated', [Journals\Modules\Work\WorkProcrastinatedController::class, 'update'])->name('journal.entry.work.procrastinated.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/work/reset', [Journals\Modules\Work\WorkResetController::class, 'update'])->name('journal.entry.work.reset');
 
                 // travel
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel', [Journals\Modules\Travel\TravelController::class, 'update'])->name('journal.entry.travel.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel/mode', [Journals\Modules\Travel\TravelModeController::class, 'update'])->name('journal.entry.travel.mode.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/travel/reset', [Journals\Modules\Travel\TravelResetController::class, 'update'])->name('journal.entry.travel.reset');
 
                 // shopping
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping', [Journals\Modules\Shopping\ShoppingController::class, 'update'])->name('journal.entry.shopping.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/type', [Journals\Modules\Shopping\ShoppingTypeController::class, 'update'])->name('journal.entry.shopping.type.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/intent', [Journals\Modules\Shopping\ShoppingIntentController::class, 'update'])->name('journal.entry.shopping.intent.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/context', [Journals\Modules\Shopping\ShoppingContextController::class, 'update'])->name('journal.entry.shopping.context.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/for', [Journals\Modules\Shopping\ShoppingForController::class, 'update'])->name('journal.entry.shopping.for.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/reset', [Journals\Modules\Shopping\ShoppingResetController::class, 'update'])->name('journal.entry.shopping.reset');
 
                 // kids
@@ -90,13 +81,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
                 // physical activity
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity', [Journals\Modules\PhysicalActivity\PhysicalActivityController::class, 'update'])->name('journal.entry.physical-activity.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/type', [Journals\Modules\PhysicalActivity\PhysicalActivityTypeController::class, 'update'])->name('journal.entry.physical-activity.type.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/intensity', [Journals\Modules\PhysicalActivity\PhysicalActivityIntensityController::class, 'update'])->name('journal.entry.physical-activity.intensity.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/physical-activity/reset', [Journals\Modules\PhysicalActivity\PhysicalActivityResetController::class, 'update'])->name('journal.entry.physical-activity.reset');
 
                 // sexual activity
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity', [Journals\Modules\SexualActivity\SexualActivityController::class, 'update'])->name('journal.entry.sexual-activity.update');
-                Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity/type', [Journals\Modules\SexualActivity\SexualActivityTypeController::class, 'update'])->name('journal.entry.sexual-activity.type.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/sexual-activity/reset', [Journals\Modules\SexualActivity\SexualActivityResetController::class, 'update'])->name('journal.entry.sexual-activity.reset');
 
                 // health

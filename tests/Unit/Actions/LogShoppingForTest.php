@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\LogShoppingFor;
+use App\Actions\LogShopping;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
@@ -35,9 +35,13 @@ final class LogShoppingForTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogShoppingFor(
+        $result = (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
             shoppingFor: 'for_household',
         ))->execute();
 
@@ -47,7 +51,7 @@ final class LogShoppingForTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'shopping_for_logged' && $job->user->id === $user->id;
+                return $job->action === 'shopping_logged' && $job->user->id === $user->id;
             },
         );
 
@@ -83,9 +87,13 @@ final class LogShoppingForTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingFor(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
             shoppingFor: 'for_self',
         ))->execute();
     }
@@ -103,9 +111,13 @@ final class LogShoppingForTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogShoppingFor(
+        (new LogShopping(
             user: $user,
             entry: $entry,
+            hasShopped: null,
+            shoppingTypes: null,
+            shoppingIntent: null,
+            shoppingContext: null,
             shoppingFor: 'invalid',
         ))->execute();
     }
