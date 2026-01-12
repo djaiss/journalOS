@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.6.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.5.0...djaiss/journalos-v0.6.0) (2026-01-12)
+
+
+### Features
+
+* add a banner when entry cant be edited ([#163](https://github.com/djaiss/journalOS/issues/163)) ([2417e97](https://github.com/djaiss/journalOS/commit/2417e9708e0a40878819c6c15e343f0c24127390))
+* add entries count to journal index view ([#153](https://github.com/djaiss/journalOS/issues/153)) ([7243d12](https://github.com/djaiss/journalOS/commit/7243d127cc745b182fc302a611a8800f4791fae2))
+* add hygiene module ([#149](https://github.com/djaiss/journalOS/issues/149)) ([9136f2a](https://github.com/djaiss/journalOS/commit/9136f2a12b5d9f7267c4129306758ae302395499))
+* add settings to avoid edit past entries ([#160](https://github.com/djaiss/journalOS/issues/160)) ([680c0a6](https://github.com/djaiss/journalOS/commit/680c0a62f5dca7c1ead1fd9aec01d62d0b24b61f))
+* prevent actions to edit entries if past ([#161](https://github.com/djaiss/journalOS/issues/161)) ([2f45ad2](https://github.com/djaiss/journalOS/commit/2f45ad2a5042ffe22bc9e720cd0c1c03f70340d0))
+
+
+### Bug Fixes
+
+* adjust spacing in shopping module for better layout ([#147](https://github.com/djaiss/journalOS/issues/147)) ([8859615](https://github.com/djaiss/journalOS/commit/88596153d9528ba2c137cb9d2dbf5ee0b89950a5))
+* avoid typeerror for nullable physical activity inputs ([#150](https://github.com/djaiss/journalOS/issues/150)) ([86514fb](https://github.com/djaiss/journalOS/commit/86514fb03945f1a2dc9e2cba09bd7f7e442d36e8))
+
+
+### Miscellaneous Chores
+
+* add ideas ([#152](https://github.com/djaiss/journalOS/issues/152)) ([0b3940c](https://github.com/djaiss/journalOS/commit/0b3940c93b611dabdd41c60d22ebb56933e30578))
+* add new skills ([#143](https://github.com/djaiss/journalOS/issues/143)) ([11f9535](https://github.com/djaiss/journalOS/commit/11f9535c199317ad579e52bd95da61faaeb36396))
+* remove settings breadcrumb from journal modules index view ([#154](https://github.com/djaiss/journalOS/issues/154)) ([9e150cd](https://github.com/djaiss/journalOS/commit/9e150cdef34ebdb3f38a20fb6841b146ec82aaed))
+* **views:** annotate Blade views with expected data and make includes explicit ([#162](https://github.com/djaiss/journalOS/issues/162)) ([3481fc3](https://github.com/djaiss/journalOS/commit/3481fc352f1cb0718c385cc80a50d74e926902be))
+
 ## [0.5.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.4.0...djaiss/journalos-v0.5.0) (2026-01-10)
 
 
