@@ -272,4 +272,122 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals('yes', $entry->moduleSexualActivity->had_sexual_activity);
         $this->assertEquals('solo', $entry->moduleSexualActivity->sexual_activity_type);
     }
+
+    #[Test]
+    public function it_is_editable_when_can_edit_past_is_true(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => true,
+        ]);
+        $thirtyDaysAgo = now()->subDays(30);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => $thirtyDaysAgo->year,
+            'month' => $thirtyDaysAgo->month,
+            'day' => $thirtyDaysAgo->day,
+        ]);
+
+        $this->assertTrue($entry->isEditable());
+    }
+
+    #[Test]
+    public function it_is_editable_for_very_old_entries_when_can_edit_past_is_true(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => true,
+        ]);
+        $oneYearAgo = now()->subDays(365);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => $oneYearAgo->year,
+            'month' => $oneYearAgo->month,
+            'day' => $oneYearAgo->day,
+        ]);
+
+        $this->assertTrue($entry->isEditable());
+    }
+
+    #[Test]
+    public function it_is_editable_for_todays_entry(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => false,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => now()->year,
+            'month' => now()->month,
+            'day' => now()->day,
+        ]);
+
+        $this->assertTrue($entry->isEditable());
+    }
+
+    #[Test]
+    public function it_is_editable_for_entries_within_seven_days(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => false,
+        ]);
+        $sixDaysAgo = now()->subDays(6);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => $sixDaysAgo->year,
+            'month' => $sixDaysAgo->month,
+            'day' => $sixDaysAgo->day,
+        ]);
+
+        $this->assertTrue($entry->isEditable());
+    }
+
+    #[Test]
+    public function it_is_editable_for_entries_exactly_seven_days_old(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => false,
+        ]);
+        $sevenDaysAgo = now()->subDays(7);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => $sevenDaysAgo->year,
+            'month' => $sevenDaysAgo->month,
+            'day' => $sevenDaysAgo->day,
+        ]);
+
+        $this->assertTrue($entry->isEditable());
+    }
+
+    #[Test]
+    public function it_is_not_editable_for_entries_older_than_seven_days_when_can_edit_past_is_false(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => false,
+        ]);
+        $eightDaysAgo = now()->subDays(8);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => $eightDaysAgo->year,
+            'month' => $eightDaysAgo->month,
+            'day' => $eightDaysAgo->day,
+        ]);
+
+        $this->assertFalse($entry->isEditable());
+    }
+
+    #[Test]
+    public function it_is_not_editable_for_entries_much_older_than_seven_days(): void
+    {
+        $journal = Journal::factory()->create([
+            'can_edit_past' => false,
+        ]);
+        $thirtyDaysAgo = now()->subDays(30);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'year' => $thirtyDaysAgo->year,
+            'month' => $thirtyDaysAgo->month,
+            'day' => $thirtyDaysAgo->day,
+        ]);
+
+        $this->assertFalse($entry->isEditable());
+    }
 }

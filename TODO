@@ -8,7 +8,6 @@
 - [ ] add og images for marketing sharing
 - [ ] add an endpoint to let LLMs query the data\
 - [ ] add ability to indicate after how long we can't edit data from the past
-- [ ] add in every view, a comment at the top listing variables that are used (exmaple detials.balde.php)
 - [ ] cache to make things fast
 
 Life
