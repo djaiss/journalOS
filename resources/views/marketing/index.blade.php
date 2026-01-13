@@ -244,12 +244,12 @@
           </p>
         </div>
         <div class="flex items-center lg:col-span-1 lg:items-start">
-          <div class="flex flex-col " x-data="{ isRotating: false }">
+          <div class="flex flex-col" x-data="{ isRotating: false }">
             <div class="relative">
               <x-image src="{{ asset('images/marketing/regis.webp') }}" srcset="{{ asset('images/marketing/regis.webp') }} 1x, {{ asset('images/marketing/regis@2x.webp') }} 2x" alt="Monica" class="mb-3 w-40 rounded-lg transition-all duration-[2000ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:rotate-[360deg] lg:rotate-4" @mouseenter="isRotating = true" @mouseleave="isRotating = false" @transitionend="isRotating = false" width="187" height="187" />
 
               <!-- Tooltip -->
-                <div x-show="isRotating" x-transition.opacity class="bg-opacity-75 absolute top-1/2 right-full mr-3 -translate-y-1/2 rounded-lg bg-black px-3 py-2 text-sm whitespace-nowrap text-white">Please stooooop this! 😵‍💫</div>
+              <div x-show="isRotating" x-transition.opacity class="bg-opacity-75 absolute top-1/2 right-full mr-3 -translate-y-1/2 rounded-lg bg-black px-3 py-2 text-sm whitespace-nowrap text-white">Please stooooop this! 😵‍💫</div>
             </div>
             <p class="text-xs text-gray-600 lg:rotate-4">Régis</p>
           </div>
@@ -271,7 +271,7 @@
           <div class="mb-2 flex justify-center">
             <x-phosphor-eye class="h-6 w-6 text-green-600" />
           </div>
-        <h4 class="mb-3 text-center text-lg font-bold">{{ __('Transparent by nature') }}</h4>
+          <h4 class="mb-3 text-center text-lg font-bold">{{ __('Transparent by nature') }}</h4>
           <p>{{ __('Our code is open source, so you can see exactly how we build JournalOS.') }}</p>
         </div>
         <div class="rounded-lg bg-gray-50 p-4">
@@ -285,14 +285,14 @@
           <div class="mb-2 flex justify-center">
             <x-phosphor-eye-slash class="h-6 w-6 text-green-600" />
           </div>
-        <h4 class="mb-3 text-center text-lg font-bold">{{ __('We do not track you') }}</h4>
+          <h4 class="mb-3 text-center text-lg font-bold">{{ __('We do not track you') }}</h4>
           <p>{{ __('There are no JavaScript trackers or ads on this website. We only measure page views to improve the site.') }}</p>
         </div>
         <div class="rounded-lg bg-gray-50 p-4">
           <div class="mb-2 flex justify-center">
             <x-phosphor-brain class="h-6 w-6 text-green-600" />
           </div>
-        <h4 class="mb-3 text-center text-lg font-bold">{{ __('No AI shortcuts') }}</h4>
+          <h4 class="mb-3 text-center text-lg font-bold">{{ __('No AI shortcuts') }}</h4>
           <p>{{ __('We do not rely on AI in the application. It is not ready for prime time and would create privacy issues.') }}</p>
         </div>
       </div>
