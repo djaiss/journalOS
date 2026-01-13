@@ -18,7 +18,9 @@ final readonly class DestroyJournal
     public function __construct(
         private User $user,
         private Journal $journal,
-    ) {}
+    ) {
+        $this->journalName = $this->journal->name;
+    }
 
     public function execute(): void
     {
@@ -34,8 +36,6 @@ final readonly class DestroyJournal
         if ($this->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
         }
-
-        $this->journalName = $this->journal->name;
     }
 
     private function delete(): void
