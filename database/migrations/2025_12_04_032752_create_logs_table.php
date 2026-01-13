@@ -15,13 +15,13 @@ return new class extends Migration {
         Schema::create('logs', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->index('user_id');
             $table->unsignedBigInteger('journal_id')->nullable();
+            $table->index('journal_id');
             $table->string('journal_name')->nullable();
             $table->string('action');
             $table->string('description');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('journal_id')->references('id')->on('journals');
         });
     }
 

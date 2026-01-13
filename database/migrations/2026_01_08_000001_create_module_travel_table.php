@@ -16,12 +16,12 @@ return new class extends Migration {
         Schema::create('module_travel', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->string('category')->default(ModuleType::MOVEMENT_PLACES->value);
+            $table->index('journal_entry_id');
+            $table->string('category')->default(ModuleType::RELATIONSHIPS_SOCIAL_LIFE->value);
             $table->text('has_traveled_today')->nullable();
             $table->text('travel_details')->nullable();
             $table->text('travel_mode')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

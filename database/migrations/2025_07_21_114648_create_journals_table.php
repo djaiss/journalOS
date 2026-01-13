@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('journals', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->index('user_id');
             $table->text('name');
             $table->text('slug')->nullable();
             $table->boolean('can_edit_past')->default(false);
@@ -33,7 +34,6 @@ return new class extends Migration {
             $table->boolean('show_shopping_module')->default(true);
             $table->boolean('show_hygiene_module')->default(true);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

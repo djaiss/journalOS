@@ -16,12 +16,12 @@ return new class extends Migration {
         Schema::create('module_physical_activity', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
+            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::BODY_HEALTH->value);
             $table->text('has_done_physical_activity')->nullable();
             $table->text('activity_type')->nullable();
             $table->text('activity_intensity')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

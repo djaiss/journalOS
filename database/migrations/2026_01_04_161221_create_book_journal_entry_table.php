@@ -15,11 +15,11 @@ return new class extends Migration {
         Schema::create('book_journal_entry', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('book_id');
+            $table->index('book_id');
             $table->unsignedBigInteger('journal_entry_id');
+            $table->index('journal_entry_id');
             $table->string('status');
             $table->timestamps();
-            $table->foreign('book_id')->references('id')->on('books');
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 
