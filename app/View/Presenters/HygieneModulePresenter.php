@@ -32,8 +32,11 @@ final readonly class HygieneModulePresenter
                 'month' => $this->entry->month,
                 'day' => $this->entry->day,
             ]),
+            'showered' => $module?->showered,
             'showered_options' => $this->yesNoOptions($module?->showered),
+            'brushed_teeth' => $module?->brushed_teeth,
             'brushed_teeth_options' => $this->brushedTeethOptions($module?->brushed_teeth),
+            'skincare' => $module?->skincare,
             'skincare_options' => $this->yesNoOptions($module?->skincare),
             'display_reset' => $displayReset,
         ];

@@ -34,8 +34,11 @@ final class HygieneModulePresenterTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('hygiene_url', $result);
+        $this->assertArrayHasKey('showered', $result);
         $this->assertArrayHasKey('showered_options', $result);
+        $this->assertArrayHasKey('brushed_teeth', $result);
         $this->assertArrayHasKey('brushed_teeth_options', $result);
+        $this->assertArrayHasKey('skincare', $result);
         $this->assertArrayHasKey('skincare_options', $result);
         $this->assertArrayHasKey('reset_url', $result);
         $this->assertArrayHasKey('display_reset', $result);
@@ -121,6 +124,9 @@ final class HygieneModulePresenterTest extends TestCase
         $this->assertTrue($result['showered_options'][0]['is_selected']);
         $this->assertTrue($result['brushed_teeth_options'][2]['is_selected']);
         $this->assertTrue($result['skincare_options'][1]['is_selected']);
+        $this->assertSame('yes', $result['showered']);
+        $this->assertSame('pm', $result['brushed_teeth']);
+        $this->assertSame('no', $result['skincare']);
     }
 
     #[Test]
