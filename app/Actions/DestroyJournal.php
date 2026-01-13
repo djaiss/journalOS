@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final readonly class DestroyJournal
 {
+    private string $journalName;
+
     public function __construct(
         private User $user,
         private Journal $journal,
@@ -21,8 +23,8 @@ final readonly class DestroyJournal
     public function execute(): void
     {
         $this->validate();
-        $this->delete();
         $this->deleteRelatedData();
+        $this->delete();
         $this->log();
         $this->updateUserLastActivityDate();
     }
@@ -32,6 +34,8 @@ final readonly class DestroyJournal
         if ($this->journal->user_id !== $this->user->id) {
             throw new ModelNotFoundException('Journal not found');
         }
+
+        $this->journalName = $this->journal->name;
     }
 
     private function delete(): void
@@ -50,7 +54,7 @@ final readonly class DestroyJournal
             user: $this->user,
             journal: null,
             action: 'journal_deletion',
-            description: sprintf('Deleted the journal called %s', $this->journal->name),
+            description: sprintf('Deleted the journal called %s', $this->journalName),
         )->onQueue('low');
     }
 
