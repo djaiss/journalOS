@@ -24,16 +24,8 @@
       <div class="flex flex-col gap-2">
         <p>{{ __('Showered') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          @foreach ($module['showered_options'] as $option)
-            <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-              <x-form x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" method="put">
-                <input type="hidden" name="showered" value="{{ $option['value'] }}" />
-                <button type="submit" class="{{ $option['is_selected'] ? 'bg-blue-50 font-bold dark:bg-blue-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-blue-50 dark:hover:bg-blue-900/40">
-                  {{ $option['label'] }}
-                </button>
-              </x-form>
-            </div>
-          @endforeach
+          <x-button.yes name="showered" value="yes" x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" selected="{{ $module['showered'] === 'yes' }}" />
+          <x-button.no name="showered" value="no" x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" selected="{{ $module['showered'] === 'no' }}" />
         </div>
       </div>
 
@@ -44,7 +36,7 @@
             <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
               <x-form x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" method="put">
                 <input type="hidden" name="brushed_teeth" value="{{ $option['value'] }}" />
-                <button type="submit" class="{{ $option['is_selected'] ? 'bg-blue-50 font-bold dark:bg-blue-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-blue-50 dark:hover:bg-blue-900/40">
+                <button type="submit" class="{{ $option['is_selected'] ? 'bg-green-50 font-bold dark:bg-green-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">
                   {{ $option['label'] }}
                 </button>
               </x-form>
@@ -56,16 +48,8 @@
       <div class="flex flex-col gap-2">
         <p>{{ __('Skincare') }}</p>
         <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
-          @foreach ($module['skincare_options'] as $option)
-            <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-              <x-form x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" method="put">
-                <input type="hidden" name="skincare" value="{{ $option['value'] }}" />
-                <button type="submit" class="{{ $option['is_selected'] ? 'bg-blue-50 font-bold dark:bg-blue-900/40' : '' }} flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-blue-50 dark:hover:bg-blue-900/40">
-                  {{ $option['label'] }}
-                </button>
-              </x-form>
-            </div>
-          @endforeach
+          <x-button.yes name="skincare" value="yes" x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" selected="{{ $module['skincare'] === 'yes' }}" />
+          <x-button.no name="skincare" value="no" x-target="hygiene-container notifications hygiene-reset days-listing months-listing" :action="$module['hygiene_url']" selected="{{ $module['skincare'] === 'no' }}" />
         </div>
       </div>
     </div>
