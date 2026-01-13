@@ -41,13 +41,14 @@ Schema::create('module_health', function (Blueprint $table): void {
     $table->string('category')->default(ModuleType::BODY_HEALTH->value);
     $table->text('health')->nullable();
     $table->timestamps();
-    $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+    $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
 });
 ```
 
 1. A module always has a category from `ModuleType`. Do not add new types. Choose the closest existing category.
 1. Add a `journal_entries` migration for a boolean `show_{module}_module`.
 1. Default to `true` only if the module is broadly applicable, low effort, non-sensitive, and useful with partial data. Otherwise default to `false` and require opt-in. Enable a module by default only if it is broadly applicable to most users on most days, immediately understandable without explanation, low-effort to use, non-sensitive in nature, and delivers clear value even with incomplete data; otherwise, keep it disabled by default and require explicit user opt-in.
+1. Never use foreign keys constraints.
 
 ### Step 2: Create related model
 
@@ -70,6 +71,7 @@ Create a factory for the model.
 1. Action flow: validate -> log data -> log user action -> update last activity -> refresh content presence.
 1. Add tests for happy path and edge cases.
 1. Create `Reset{ModuleName}Data` (see `ResetHealthData`).
+1. Add related table to DeleteRelatedJournalData.
 
 ### Step 6: Update the CheckPresenceOfContentInJournalEntry job
 

@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->string('description');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('journal_id')->references('id')->on('journals')->onDelete('set null');
+            $table->foreign('journal_id')->references('id')->on('journals');
         });
     }
 

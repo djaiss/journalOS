@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->text('had_sexual_activity')->nullable();
             $table->text('sexual_activity_type')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

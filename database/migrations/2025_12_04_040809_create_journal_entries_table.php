@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->integer('year');
             $table->boolean('has_content')->default(false);
             $table->timestamps();
-            $table->foreign('journal_id')->references('id')->on('journals')->onDelete('cascade');
+            $table->foreign('journal_id')->references('id')->on('journals');
         });
     }
 

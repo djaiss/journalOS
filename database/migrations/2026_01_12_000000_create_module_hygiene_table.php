@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->text('brushed_teeth')->nullable();
             $table->text('skincare')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

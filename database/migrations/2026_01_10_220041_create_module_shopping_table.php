@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->text('shopping_context')->nullable();
             $table->text('shopping_for')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

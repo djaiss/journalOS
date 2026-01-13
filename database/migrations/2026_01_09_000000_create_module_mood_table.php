@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('category')->default(ModuleType::MIND_EMOTION->value);
             $table->text('mood')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('journal_entry_id');
             $table->string('status');
             $table->timestamps();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 

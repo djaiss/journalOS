@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->text('wake_up_time')->nullable();
             $table->text('sleep_duration_in_minutes')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
         });
     }
 
