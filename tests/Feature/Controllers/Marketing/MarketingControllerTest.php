@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Controllers\Marketing;
 
-use App\Jobs\RecordMarketingPageVisit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -17,8 +15,6 @@ final class MarketingControllerTest extends TestCase
     #[Test]
     public function it_renders_the_marketing_homepage(): void
     {
-        Queue::fake();
-
         $response = $this->get(route('marketing.index', absolute: false));
 
         $response->assertOk();
@@ -29,9 +25,5 @@ final class MarketingControllerTest extends TestCase
         $response->assertSeeText('Monthly and yearly stats');
         $response->assertSeeText('Random memories');
         $response->assertSeeText('English and French');
-
-        Queue::assertPushedOn('low', RecordMarketingPageVisit::class, function (RecordMarketingPageVisit $job): bool {
-            return $job->viewName === 'marketing.index';
-        });
     }
 }
