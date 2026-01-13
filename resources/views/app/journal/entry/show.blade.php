@@ -174,4 +174,24 @@
       @include('app.journal.entry.partials.note', ['entry' => $entry, 'module' => $modules['notes']])
     </div>
   </div>
+
+  @if ($journal->can_edit_past)
+    <div class="border-t border-gray-200 bg-white px-4 py-4 dark:border-gray-700 dark:bg-gray-900">
+      <div class="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+          {{ __('Reset every module and note for this day.') }}
+        </div>
+        <x-form :action="route('journal.entry.reset', [
+          'slug' => $journal->slug,
+          'year' => $entry->year,
+          'month' => $entry->month,
+          'day' => $entry->day,
+        ])" method="put">
+          <x-button.danger>
+            {{ __('Reset day') }}
+          </x-button.danger>
+        </x-form>
+      </div>
+    </div>
+  @endif
 </x-app-layout>
