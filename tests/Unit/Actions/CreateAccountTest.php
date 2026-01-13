@@ -47,6 +47,9 @@ final class CreateAccountTest extends TestCase
         $this->assertEquals('michael.scott@dundermifflin.com', $user->email);
         $this->assertEquals('Michael', $user->first_name);
         $this->assertEquals('Scott', $user->last_name);
+        $this->assertDatabaseHas('journals', [
+            'user_id' => $user->id,
+        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
