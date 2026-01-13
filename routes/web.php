@@ -139,7 +139,6 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
     // security
     Route::get('settings/security', [Settings\Security\SecurityController::class, 'index'])->name('settings.security.index');
     Route::put('settings/password', [Settings\Security\PasswordController::class, 'update'])->name('settings.password.update');
-    Route::get('settings/appearance', [Settings\Security\AppearanceController::class, 'edit'])->name('settings.appearance.edit');
 
     // 2fa
     Route::put('settings/security/2fa', [Settings\Security\PreferredTwoFAController::class, 'update'])->name('settings.security.2fa.update');
