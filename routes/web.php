@@ -37,6 +37,8 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
             Route::middleware(['journal.entry'])->group(function (): void {
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}', [Journals\JournalEntryController::class, 'show'])
                     ->name('journal.entry.show');
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}/report', [Journals\JournalEntryController::class, 'report'])
+                    ->name('journal.entry.report');
 
                 // notes
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}/notes/edit', [Journals\Notes\NotesController::class, 'edit'])->name('journal.entry.notes.edit');

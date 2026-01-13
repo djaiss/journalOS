@@ -56,6 +56,27 @@ final class JournalEntryControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_shows_a_journal_entry_report(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'day' => 15,
+            'month' => 6,
+            'year' => 2024,
+        ]);
+
+        $response = $this->actingAs($user)->get(
+            "/journals/{$journal->slug}/entries/2024/6/15/report",
+        );
+
+        $response->assertStatus(200);
+    }
+
+    #[Test]
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
