@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('journal_entry_id');
             $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::WORK_RESPONSABILITIES->value);
-            $table->text('has_worked_today')->nullable();
+            $table->text('worked')->nullable();
             $table->text('work_mode')->nullable();
             $table->text('work_load')->nullable();
             $table->text('work_procrastinated')->nullable();
