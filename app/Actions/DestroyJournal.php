@@ -14,11 +14,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 final readonly class DestroyJournal
 {
     private string $journalName;
+    private int $journalId;
 
     public function __construct(
         private User $user,
         private Journal $journal,
     ) {
+        $this->journalId = $this->journal->id;
         $this->journalName = $this->journal->name;
     }
 
@@ -45,7 +47,7 @@ final readonly class DestroyJournal
 
     private function deleteRelatedData(): void
     {
-        DeleteRelatedJournalData::dispatch($this->journal->id)->onQueue('low');
+        DeleteRelatedJournalData::dispatch($this->journalId)->onQueue('low');
     }
 
     private function log(): void
