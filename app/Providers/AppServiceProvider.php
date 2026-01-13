@@ -24,9 +24,9 @@ final class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict(! app()->isProduction());
 
         // Enable prohibition of destructive commands in production environments
-        DB::prohibitDestructiveCommands(
-            app()->isProduction(),
-        );
+        // DB::prohibitDestructiveCommands(
+        //     app()->isProduction(),
+        // );
 
         // Enable lazy loading prevention in non-production environments
         // This will throw an exception if a lazy loading query is attempted
