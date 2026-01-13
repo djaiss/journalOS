@@ -15,12 +15,12 @@ return new class extends Migration {
         Schema::create('journal_entries', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_id');
+            $table->index('journal_id');
             $table->integer('day');
             $table->integer('month');
             $table->integer('year');
             $table->boolean('has_content')->default(false);
             $table->timestamps();
-            $table->foreign('journal_id')->references('id')->on('journals')->onDelete('cascade');
         });
     }
 

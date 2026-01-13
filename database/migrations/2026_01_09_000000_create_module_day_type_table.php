@@ -16,10 +16,10 @@ return new class extends Migration {
         Schema::create('module_day_type', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
+            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::WORK_RESPONSABILITIES->value);
             $table->text('day_type')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

@@ -16,12 +16,12 @@ return new class extends Migration {
         Schema::create('module_hygiene', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
+            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::BODY_HEALTH->value);
             $table->text('showered')->nullable();
             $table->text('brushed_teeth')->nullable();
             $table->text('skincare')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 
