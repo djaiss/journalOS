@@ -12,7 +12,7 @@
         @if (config('journalos.show_marketing_site'))
           <p class="group mb-10 flex items-center gap-x-1 text-sm text-gray-600">
             <x-phosphor-arrow-left class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1" />
-            <x-link href="" class="group-hover:underline">{{ __('Back to the marketing website') }}</x-link>
+            <x-link href="{{ route('marketing.index') }}" class="group-hover:underline">{{ __('Back to the marketing website') }}</x-link>
           </p>
         @endif
 
@@ -68,7 +68,7 @@
               {{--
                 <div class="mt-4 mb-0">
                 <x-turnstile data-size="flexible" />
-                
+
                 <x-input-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
                 </div>
               --}}
