@@ -30,11 +30,14 @@
         @include('app.settings.security.partials.password', ['user' => $user, 'errors' => $errors])
 
         <!-- two factor authentication -->
-        @include('app.settings.security.partials.2fa.index', [
-          'has2fa' => $has2fa,
-          'preferredMethod' => $preferredMethod,
-          'errors' => $errors,
-        ])
+        @include(
+          'app.settings.security.partials.2fa.index',
+          [
+            'has2fa' => $has2fa,
+            'preferredMethod' => $preferredMethod,
+            'errors' => $errors,
+          ]
+        )
 
         <!-- auto delete account -->
         @include('app.settings.security.partials.auto-delete', ['errors' => $errors])

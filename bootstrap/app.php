@@ -32,6 +32,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'subscription' => CheckSubscription::class,
             'marketing' => CheckMarketing::class,
         ]);
+
+        $middleware->redirectUsersTo(fn() => route('journal.index'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

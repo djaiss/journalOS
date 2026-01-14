@@ -37,4 +37,10 @@ return [
         ],
     ],
 
+    'cloudflare' => [
+        'zone_id' => env('CLOUDFLARE_ZONE_ID'),
+        'api_token' => env('CLOUDFLARE_API_TOKEN'),
+        'purge_secret' => env('CLOUDFLARE_PURGE_SECRET'),
+        'purge_chunk' => env('CLOUDFLARE_PURGE_CHUNK', 30),
+    ],
 ];

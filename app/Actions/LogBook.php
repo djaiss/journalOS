@@ -12,7 +12,6 @@ use App\Models\Book;
 use App\Models\JournalEntry;
 use App\Models\User;
 use App\Traits\PreventPastEntryEdits;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 

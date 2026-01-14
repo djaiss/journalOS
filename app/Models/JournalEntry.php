@@ -263,7 +263,7 @@ final class JournalEntry extends Model
         }
 
         $sevenDaysAgo = now()->subDays(7)->startOfDay();
-        $entryDate = Carbon::create($this->year, $this->month, $this->day)->startOfDay();
+        $entryDate = Date::create($this->year, $this->month, $this->day)->startOfDay();
 
         return $entryDate->greaterThanOrEqualTo($sevenDaysAgo);
     }

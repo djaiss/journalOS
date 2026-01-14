@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('emails_sent', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->index('user_id');
             $table->string('uuid')->nullable();
             $table->text('email_type');
             $table->text('email_address');
@@ -24,7 +25,6 @@ return new class extends Migration {
             $table->datetime('delivered_at')->nullable();
             $table->datetime('bounced_at')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

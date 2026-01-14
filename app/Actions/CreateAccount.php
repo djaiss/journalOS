@@ -26,6 +26,7 @@ final class CreateAccount
     public function execute(): User
     {
         $this->create();
+        $this->addFirstJournal();
         $this->updateUserLastActivityDate();
         $this->log();
 
@@ -41,6 +42,14 @@ final class CreateAccount
             'password' => Hash::make($this->password),
             'trial_ends_at' => now()->addDays(30),
         ]);
+    }
+
+    private function addFirstJournal(): void
+    {
+        new CreateJournal(
+            user: $this->user,
+            name: 'My first journal',
+        )->execute();
     }
 
     private function log(): void

@@ -16,13 +16,13 @@ return new class extends Migration {
         Schema::create('module_work', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
+            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::WORK_RESPONSABILITIES->value);
             $table->text('worked')->nullable();
             $table->text('work_mode')->nullable();
             $table->text('work_load')->nullable();
             $table->text('work_procrastinated')->nullable();
             $table->timestamps();
-            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 
