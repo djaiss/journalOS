@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Marketing\CloudflarePurgeMarketingController;
 use App\Http\Controllers\Marketing\Docs;
 use App\Http\Controllers\Marketing\MarketingController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/infra/cloudflare/purge-marketing', CloudflarePurgeMarketingController::class);
+
 Route::middleware(['marketing'])->group(function (): void {
+
     Route::get('/', [MarketingController::class, 'index'])->name('marketing.index');
     Route::get('/docs', [Docs\DocController::class, 'index'])->name('marketing.docs.index');
     Route::get('/docs/concepts/hierarchical-structure', [Docs\Concepts\HierarchicalStructureController::class, 'index'])->name('marketing.docs.concepts.hierarchical-structure');
