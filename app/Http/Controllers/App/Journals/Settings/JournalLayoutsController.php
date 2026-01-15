@@ -10,12 +10,22 @@ use App\Actions\UpdateLayout;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\Layout;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 final class JournalLayoutsController extends Controller
 {
+    public function create(Request $request): View
+    {
+        $journal = $request->attributes->get('journal');
+
+        return view('app.journal.settings.partials.layouts.create', [
+            'journal' => $journal,
+        ]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $journal = $request->attributes->get('journal');
