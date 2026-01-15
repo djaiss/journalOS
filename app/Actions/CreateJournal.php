@@ -26,6 +26,7 @@ final class CreateJournal
         $this->validate();
         $this->create();
         $this->generateSlug();
+        $this->addDefaultLayout();
         $this->updateUserLastActivityDate();
         $this->log();
 
@@ -56,6 +57,11 @@ final class CreateJournal
             'user_id' => $this->user->id,
             'name' => $this->name,
         ]);
+    }
+
+    private function addDefaultLayout(): void
+    {
+        (new CreateDefaultLayoutForJournal($this->journal))->execute();
     }
 
     private function generateSlug(): void
