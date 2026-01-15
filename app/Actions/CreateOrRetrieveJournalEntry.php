@@ -66,8 +66,13 @@ final class CreateOrRetrieveJournalEntry
         if ($existingEntry) {
             $this->entry = $existingEntry;
         } else {
+            $activeLayout = $this->journal->layouts()
+                ->where('is_active', true)
+                ->first();
+
             $this->entry = JournalEntry::query()->create([
                 'journal_id' => $this->journal->id,
+                'layout_id' => $activeLayout?->id,
                 'day' => $this->day,
                 'month' => $this->month,
                 'year' => $this->year,

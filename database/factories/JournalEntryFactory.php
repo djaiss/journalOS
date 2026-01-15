@@ -24,6 +24,7 @@ final class JournalEntryFactory extends Factory
     {
         return [
             'journal_id' => Journal::factory(),
+            'layout_id' => null,
             'day' => fake()->numberBetween(1, 31),
             'month' => fake()->numberBetween(1, 12),
             'year' => fake()->year(),

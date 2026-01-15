@@ -9,6 +9,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\Layout;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -97,6 +98,29 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
         ))->execute();
 
         $this->assertEquals($existingEntry->id, $entry->id);
+    }
+
+    #[Test]
+    public function it_assigns_the_active_layout_when_creating_an_entry(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
+            'is_active' => true,
+        ]);
+
+        $entry = (new CreateOrRetrieveJournalEntry(
+            user: $user,
+            journal: $journal,
+            day: 5,
+            month: 4,
+            year: 2024,
+        ))->execute();
+
+        $this->assertEquals($layout->id, $entry->layout_id);
     }
 
     #[Test]

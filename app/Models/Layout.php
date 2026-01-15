@@ -80,4 +80,14 @@ final class Layout extends Model
     {
         return $this->hasMany(LayoutModule::class);
     }
+
+    /**
+     * Get the journal entries associated with the layout.
+     *
+     * @return HasMany<JournalEntry, $this>
+     */
+    public function entries(): HasMany
+    {
+        return $this->hasMany(JournalEntry::class);
+    }
 }

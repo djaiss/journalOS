@@ -22,6 +22,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  *
  * @property int $id
  * @property int $journal_id
+ * @property int|null $layout_id
  * @property int $day
  * @property int $month
  * @property int $year
@@ -53,6 +54,7 @@ final class JournalEntry extends Model
      */
     protected $fillable = [
         'journal_id',
+        'layout_id',
         'day',
         'month',
         'year',
@@ -90,6 +92,16 @@ final class JournalEntry extends Model
     public function journal(): BelongsTo
     {
         return $this->belongsTo(Journal::class);
+    }
+
+    /**
+     * Get the layout associated with the entry.
+     *
+     * @return BelongsTo<Layout, $this>
+     */
+    public function layout(): BelongsTo
+    {
+        return $this->belongsTo(Layout::class);
     }
 
     /**
