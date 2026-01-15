@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-<link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml" />
+<link rel="icon" href="{{ asset('favicon/favicon.svg') }}" type="image/svg+xml" />
 
 <meta name="description" content="{{ config('journalos.description') }}" />
 <link rel="icon" type="image/png" href="{{ asset('favicon/favicon-96x96.png') }}" sizes="96x96" />
