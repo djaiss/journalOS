@@ -21,7 +21,7 @@ final class CreateLayout
         private readonly User $user,
         private readonly Journal $journal,
         private string $name,
-        private int $columnsCount,
+        private readonly int $columnsCount,
     ) {}
 
     public function execute(): Layout

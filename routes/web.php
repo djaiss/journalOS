@@ -121,6 +121,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
             Route::delete('journals/{slug}/settings/layouts/{layout}', [Journals\Settings\JournalLayoutsController::class, 'destroy'])->name('journal.settings.layouts.destroy');
             Route::put('journals/{slug}/settings/layouts/{layout}', [Journals\Settings\JournalLayoutsController::class, 'update'])->name('journal.settings.layouts.update');
             Route::put('journals/{slug}/settings/layouts/{layout}/default', [Journals\Settings\JournalLayoutDefaultController::class, 'update'])->name('journal.settings.layouts.default');
+            Route::get('journals/{slug}/settings/layouts/{layout}/modules', [Journals\Settings\JournalLayoutModulesController::class, 'show'])->name('journal.settings.layouts.modules.index');
+            Route::post('journals/{slug}/settings/layouts/{layout}/modules', [Journals\Settings\JournalLayoutModulesController::class, 'store'])->name('journal.settings.layouts.modules.store');
+            Route::delete('journals/{slug}/settings/layouts/{layout}/modules/{moduleKey}', [Journals\Settings\JournalLayoutModulesController::class, 'destroy'])->name('journal.settings.layouts.modules.destroy');
+            Route::put('journals/{slug}/settings/layouts/{layout}/modules/reorder', [Journals\Settings\JournalLayoutModulesController::class, 'reorder'])->name('journal.settings.layouts.modules.reorder');
 
             // settings - edit past
             Route::put('journals/{slug}/settings/edit-past', [Journals\Settings\JournalPastEditingController::class, 'update'])->name('journal.settings.edit-past.update');

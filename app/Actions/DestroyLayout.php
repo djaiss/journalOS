@@ -12,11 +12,11 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
-final class DestroyLayout
+final readonly class DestroyLayout
 {
     public function __construct(
-        private readonly User $user,
-        private readonly Layout $layout,
+        private User $user,
+        private Layout $layout,
     ) {}
 
     public function execute(): void

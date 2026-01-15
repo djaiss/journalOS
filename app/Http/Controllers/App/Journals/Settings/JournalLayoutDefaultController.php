@@ -21,10 +21,10 @@ final class JournalLayoutDefaultController extends Controller
             ->where('journal_id', $journal->id)
             ->findOrFail($layout);
 
-        (new SetActiveLayout(
+        new SetActiveLayout(
             user: Auth::user(),
             layout: $layout,
-        ))->execute();
+        )->execute();
 
         return to_route('journal.settings.modules.index', [
             'slug' => $journal->slug,

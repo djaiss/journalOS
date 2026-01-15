@@ -22,8 +22,8 @@ final class ReorderLayoutModule
         private readonly User $user,
         private readonly Layout $layout,
         private string $moduleKey,
-        private int $columnNumber,
-        private int $position,
+        private readonly int $columnNumber,
+        private readonly int $position,
     ) {}
 
     public function execute(): LayoutModule

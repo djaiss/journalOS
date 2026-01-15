@@ -8,8 +8,10 @@ use App\Helpers\TextSanitizer;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Layout;
+use App\Models\LayoutModule;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 final class UpdateLayout
@@ -18,7 +20,7 @@ final class UpdateLayout
         private readonly User $user,
         private readonly Layout $layout,
         private string $name,
-        private int $columnsCount,
+        private readonly int $columnsCount,
     ) {}
 
     public function execute(): Layout
@@ -60,10 +62,21 @@ final class UpdateLayout
 
     private function update(): void
     {
-        $this->layout->update([
-            'name' => $this->name,
-            'columns_count' => $this->columnsCount,
-        ]);
+        $currentColumns = $this->layout->columns_count;
+
+        DB::transaction(function () use ($currentColumns): void {
+            if ($this->columnsCount < $currentColumns) {
+                LayoutModule::query()
+                    ->where('layout_id', $this->layout->id)
+                    ->where('column_number', '>', $this->columnsCount)
+                    ->delete();
+            }
+
+            $this->layout->update([
+                'name' => $this->name,
+                'columns_count' => $this->columnsCount,
+            ]);
+        });
     }
 
     private function log(): void

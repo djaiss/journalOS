@@ -51,7 +51,7 @@
 
             <!-- buttons -->
             <div class="flex items-center gap-2">
-              <x-button.secondary type="button" x-show="!editing" x-cloak class="text-sm" x-on:click="editing = true" data-test="edit-layout-{{ $layout->id }}">
+              <x-button.secondary href="{{ route('journal.settings.layouts.modules.index', ['slug' => $journal->slug, 'layout' => $layout->id]) }}" class="text-sm" data-test="edit-layout-modules-{{ $layout->id }}">
                 {{ __('Edit modules') }}
               </x-button.secondary>
 

@@ -55,10 +55,10 @@ final class JournalLayoutsController extends Controller
             ->where('journal_id', $journal->id)
             ->findOrFail($layout);
 
-        (new DestroyLayout(
+        new DestroyLayout(
             user: Auth::user(),
             layout: $layout,
-        ))->execute();
+        )->execute();
 
         return to_route('journal.settings.modules.index', [
             'slug' => $journal->slug,
@@ -78,12 +78,12 @@ final class JournalLayoutsController extends Controller
             ->where('journal_id', $journal->id)
             ->findOrFail($layout);
 
-        (new UpdateLayout(
+        new UpdateLayout(
             user: Auth::user(),
             layout: $layout,
             name: TextSanitizer::plainText($validated['name']),
             columnsCount: (int) $validated['columns_count'],
-        ))->execute();
+        )->execute();
 
         return to_route('journal.settings.modules.index', [
             'slug' => $journal->slug,

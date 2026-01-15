@@ -9,6 +9,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\Layout;
+use App\Models\LayoutModule;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -69,6 +70,45 @@ final class UpdateLayoutTest extends TestCase
                 return $job->user->id === $user->id;
             },
         );
+    }
+
+    #[Test]
+    public function it_removes_modules_in_deleted_columns_when_updating_layout(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
+            'columns_count' => 3,
+        ]);
+        $keptModule = LayoutModule::factory()->create([
+            'layout_id' => $layout->id,
+            'module_key' => 'sleep',
+            'column_number' => 2,
+            'position' => 1,
+        ]);
+        $removedModule = LayoutModule::factory()->create([
+            'layout_id' => $layout->id,
+            'module_key' => 'work',
+            'column_number' => 3,
+            'position' => 1,
+        ]);
+
+        (new UpdateLayout(
+            user: $user,
+            layout: $layout,
+            name: 'Updated Layout',
+            columnsCount: 2,
+        ))->execute();
+
+        $this->assertDatabaseHas('layout_modules', [
+            'id' => $keptModule->id,
+        ]);
+        $this->assertDatabaseMissing('layout_modules', [
+            'id' => $removedModule->id,
+        ]);
     }
 
     #[Test]

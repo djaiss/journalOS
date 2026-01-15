@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'pages' => [
         'marketing/docs/api/account/account' => '2026-01-11 23:29:42',
@@ -29,14 +27,14 @@ return [
         'marketing/docs/api/modules/work' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/api-response' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/email-response' => '2026-01-11 23:29:42',
-        'marketing/docs/api/partials/journal-entry-response-attributes' => '2026-01-11 23:29:42',
-        'marketing/docs/api/partials/journal-entry-response' => '2026-01-11 23:29:42',
+        'marketing/docs/api/partials/journal-entry-response-attributes' => '2026-01-15 01:20:57',
+        'marketing/docs/api/partials/journal-entry-response' => '2026-01-15 01:20:57',
         'marketing/docs/api/partials/journal-response' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/log-response' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/profile-response' => '2026-01-11 23:29:42',
         'marketing/docs/concepts/hierarchy-structure' => '2026-01-11 23:29:42',
         'marketing/docs/concepts/permissions' => '2026-01-11 23:29:42',
         'marketing/docs/index' => '2026-01-11 23:29:42',
-        'marketing/index' => '2026-01-14 23:13:56',
+        'marketing/index' => '2026-01-15 00:31:16',
     ],
 ];

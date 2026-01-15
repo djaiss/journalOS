@@ -23,8 +23,8 @@ final class AddModuleToLayout
         private readonly User $user,
         private readonly Layout $layout,
         private string $moduleKey,
-        private int $columnNumber,
-        private ?int $requestedPosition = null,
+        private readonly int $columnNumber,
+        private readonly ?int $requestedPosition = null,
     ) {}
 
     public function execute(): LayoutModule

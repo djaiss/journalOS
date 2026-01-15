@@ -10,11 +10,11 @@ use App\Models\Layout;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-final class SetActiveLayout
+final readonly class SetActiveLayout
 {
     public function __construct(
-        private readonly User $user,
-        private readonly Layout $layout,
+        private User $user,
+        private Layout $layout,
     ) {}
 
     public function execute(): Layout

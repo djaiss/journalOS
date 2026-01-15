@@ -47,4 +47,34 @@ final class ModuleCatalog
 
         return $tables;
     }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function moduleLabels(): array
+    {
+        return [
+            'sleep' => __('Sleep module'),
+            'work' => __('Work module'),
+            'travel' => __('Travel module'),
+            'shopping' => __('Shopping module'),
+            'kids' => __('Kids module'),
+            'day_type' => __('Day type module'),
+            'primary_obligation' => __('Primary obligation module'),
+            'physical_activity' => __('Physical activity module'),
+            'health' => __('Health module'),
+            'hygiene' => __('Hygiene module'),
+            'mood' => __('Mood module'),
+            'sexual_activity' => __('Sexual activity module'),
+            'energy' => __('Energy module'),
+            'social_density' => __('Social density module'),
+        ];
+    }
+
+    public static function labelFor(string $moduleKey): string
+    {
+        $labels = self::moduleLabels();
+
+        return $labels[$moduleKey] ?? $moduleKey;
+    }
 }
