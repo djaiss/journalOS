@@ -114,8 +114,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
             Route::put('journals/{slug}', [Journals\JournalController::class, 'update'])->name('journal.update');
             Route::delete('journals/{slug}', [Journals\JournalController::class, 'destroy'])->name('journal.destroy');
 
-            // settings - modules
-            Route::put('journals/{slug}/settings/modules', [Journals\Settings\JournalModulesController::class, 'update'])->name('journal.settings.modules.update');
+            // settings - modules and layouts
             Route::get('journals/{slug}/settings/layouts/create', [Journals\Settings\JournalLayoutsController::class, 'create'])->name('journal.settings.layouts.create');
             Route::post('journals/{slug}/settings/layouts', [Journals\Settings\JournalLayoutsController::class, 'store'])->name('journal.settings.layouts.store');
             Route::delete('journals/{slug}/settings/layouts/{layout}', [Journals\Settings\JournalLayoutsController::class, 'destroy'])->name('journal.settings.layouts.destroy');
