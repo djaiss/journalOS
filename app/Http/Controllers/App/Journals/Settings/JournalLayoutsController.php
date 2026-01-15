@@ -6,6 +6,8 @@ namespace App\Http\Controllers\App\Journals\Settings;
 
 use App\Actions\CreateLayout;
 use App\Actions\DestroyLayout;
+use App\Actions\SetActiveLayout;
+use App\Actions\UpdateLayout;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\Layout;
@@ -52,5 +54,48 @@ final class JournalLayoutsController extends Controller
         return to_route('journal.settings.modules.index', [
             'slug' => $journal->slug,
         ])->with('status', __('Layout deleted'));
+    }
+
+    public function update(Request $request, string $slug, int $layout): RedirectResponse
+    {
+        $journal = $request->attributes->get('journal');
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'columns_count' => ['required', 'integer', 'min:1', 'max:4'],
+        ]);
+
+        $layout = Layout::query()
+            ->where('journal_id', $journal->id)
+            ->findOrFail($layout);
+
+        (new UpdateLayout(
+            user: Auth::user(),
+            layout: $layout,
+            name: TextSanitizer::plainText($validated['name']),
+            columnsCount: (int) $validated['columns_count'],
+        ))->execute();
+
+        return to_route('journal.settings.modules.index', [
+            'slug' => $journal->slug,
+        ])->with('status', __('Layout updated'));
+    }
+
+    public function setDefault(Request $request, string $slug, int $layout): RedirectResponse
+    {
+        $journal = $request->attributes->get('journal');
+
+        $layout = Layout::query()
+            ->where('journal_id', $journal->id)
+            ->findOrFail($layout);
+
+        (new SetActiveLayout(
+            user: Auth::user(),
+            layout: $layout,
+        ))->execute();
+
+        return to_route('journal.settings.modules.index', [
+            'slug' => $journal->slug,
+        ])->with('status', __('Layout set as default'));
     }
 }

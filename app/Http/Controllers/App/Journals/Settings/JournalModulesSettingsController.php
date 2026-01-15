@@ -14,7 +14,6 @@ final class JournalModulesSettingsController extends Controller
     {
         $journal = $request->attributes->get('journal');
         $layouts = $journal->layouts()
-            ->orderByDesc('is_active')
             ->orderByDesc('created_at')
             ->get();
 
