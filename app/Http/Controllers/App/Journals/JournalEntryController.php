@@ -35,7 +35,7 @@ final class JournalEntryController extends Controller
             day: $journalEntry->day,
         );
 
-        $modules = new JournalEntryPresenter($journalEntry)->build();
+        $payload = new JournalEntryPresenter($journalEntry)->build();
 
         return view('app.journal.entry.show', [
             'journal' => $journal,
@@ -43,7 +43,9 @@ final class JournalEntryController extends Controller
             'years' => $years,
             'months' => $months,
             'days' => $days,
-            'modules' => $modules,
+            'columns' => $payload['columns'],
+            'notes' => $payload['notes'],
+            'layoutColumnsCount' => $payload['layout_columns_count'],
         ]);
     }
 }

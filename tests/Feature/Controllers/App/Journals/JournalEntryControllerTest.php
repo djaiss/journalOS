@@ -6,10 +6,11 @@ namespace Tests\Feature\Controllers\App\Journals;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\Layout;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class JournalEntryControllerTest extends TestCase
 {
@@ -22,8 +23,12 @@ final class JournalEntryControllerTest extends TestCase
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+            'layout_id' => $layout->id,
             'day' => 15,
             'month' => 6,
             'year' => 2024,
@@ -41,8 +46,12 @@ final class JournalEntryControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+            'layout_id' => $layout->id,
             'day' => 15,
             'month' => 6,
             'year' => 2024,
@@ -59,8 +68,12 @@ final class JournalEntryControllerTest extends TestCase
     public function it_redirects_guests_to_login(): void
     {
         $journal = Journal::factory()->create();
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
+            'layout_id' => $layout->id,
             'day' => 15,
             'month' => 6,
             'year' => 2024,

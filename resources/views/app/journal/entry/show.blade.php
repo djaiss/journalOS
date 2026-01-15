@@ -2,7 +2,9 @@
 /**
  * @var \App\Models\Journal $journal
  * @var \App\Models\JournalEntry $entry
- * @var array<string, mixed> $modules
+ * @var array<int, array<int, array{key: string, view: string, data: array<string, mixed>}>> $columns
+ * @var array<string, mixed> $notes
+ * @var int $layoutColumnsCount
  * @var \Illuminate\Support\Collection $years
  * @var \Illuminate\Support\Collection $months
  * @var \Illuminate\Support\Collection $days
@@ -75,83 +77,24 @@
   @endif
 
   <!-- entry content -->
-  <div class="grid grid-cols-4 gap-4 rounded-b-lg bg-gray-50 dark:bg-gray-950">
-    <!-- Life lane -->
-    <div class="py-4 pl-4">
-      <!-- modules -->
-      <div class="space-y-2"></div>
-    </div>
+  @php
+    $columnCount = $layoutColumnsCount > 0 ? $layoutColumnsCount : count($columns);
+    $gridColumns = $columnCount + 1;
+  @endphp
 
-    <!-- Day lane -->
-    <div class="py-4">
-      <!-- modules -->
-      <div class="space-y-2">
-        @if ($journal->show_day_type_module)
-          @include('app.journal.entry.partials.day_type', ['module' => $modules['day_type']])
-        @endif
-
-        @if ($journal->show_primary_obligation_module)
-          @include('app.journal.entry.partials.primary_obligation', ['module' => $modules['primary_obligation']])
-        @endif
-
-        @if ($journal->show_work_module)
-          @include('app.journal.entry.partials.work', ['module' => $modules['work']])
-        @endif
-
-        @if ($journal->show_health_module)
-          @include('app.journal.entry.partials.health', ['module' => $modules['health']])
-        @endif
-
-        @if ($journal->show_hygiene_module)
-          @include('app.journal.entry.partials.hygiene', ['module' => $modules['hygiene']])
-        @endif
-
-        @if ($journal->show_mood_module)
-          @include('app.journal.entry.partials.mood', ['module' => $modules['mood']])
-        @endif
-
-        @if ($journal->show_energy_module)
-          @include('app.journal.entry.partials.energy', ['module' => $modules['energy']])
-        @endif
-
-        @if ($journal->show_social_density_module)
-          @include('app.journal.entry.partials.social_density', ['module' => $modules['social_density']])
-        @endif
+  <div class="grid gap-4 rounded-b-lg bg-gray-50 dark:bg-gray-950" style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr))">
+    @foreach ($columns as $column)
+      <div class="{{ $loop->first ? 'pl-4' : '' }} py-4">
+        <div class="space-y-2">
+          @foreach ($column as $module)
+            @include($module['view'], $module['data'])
+          @endforeach
+        </div>
       </div>
-    </div>
+    @endforeach
 
-    <!-- Leisure lane -->
-    <div class="py-4">
-      <!-- modules -->
-      <div class="space-y-2">
-        @if ($journal->show_sleep_module)
-          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
-        @endif
-
-        @if ($journal->show_travel_module)
-          @include('app.journal.entry.partials.travel', ['module' => $modules['travel']])
-        @endif
-
-        @if ($journal->show_shopping_module)
-          @include('app.journal.entry.partials.shopping', ['module' => $modules['shopping']])
-        @endif
-
-        @if ($journal->show_kids_module)
-          @include('app.journal.entry.partials.kids', ['module' => $modules['kids'], 'entry' => $entry])
-        @endif
-
-        @if ($journal->show_physical_activity_module)
-          @include('app.journal.entry.partials.physical_activity', ['module' => $modules['physical_activity']])
-        @endif
-
-        @if ($journal->show_sexual_activity_module)
-          @include('app.journal.entry.partials.sexual_activity', ['module' => $modules['sexual_activity'], 'entry' => $entry])
-        @endif
-      </div>
-    </div>
-
-    <div class="flex h-full border-l border-gray-200 bg-white">
-      @include('app.journal.entry.partials.note', ['entry' => $entry, 'module' => $modules['notes']])
+    <div class="flex h-full border-l border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+      @include('app.journal.entry.partials.note', ['module' => $notes])
     </div>
   </div>
 </x-app-layout>

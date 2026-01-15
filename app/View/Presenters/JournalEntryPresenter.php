@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\View\Presenters;
 
+use App\Models\Layout;
 use App\Models\JournalEntry;
 
 final readonly class JournalEntryPresenter
@@ -12,108 +13,159 @@ final readonly class JournalEntryPresenter
 
     public function build(): array
     {
-        if ($this->entry->journal->show_sleep_module) {
-            $sleep = new SleepModulePresenter($this->entry)->build('20:00', '06:00');
-        } else {
-            $sleep = [];
-        }
-
-        if ($this->entry->journal->show_work_module) {
-            $work = new WorkModulePresenter($this->entry)->build();
-        } else {
-            $work = [];
-        }
-
-        if ($this->entry->journal->show_travel_module) {
-            $travel = new TravelModulePresenter($this->entry)->build();
-        } else {
-            $travel = [];
-        }
-
-        if ($this->entry->journal->show_shopping_module) {
-            $shopping = new ShoppingModulePresenter($this->entry)->build();
-        } else {
-            $shopping = [];
-        }
-
-        if ($this->entry->journal->show_kids_module) {
-            $kids = new KidsModulePresenter($this->entry)->build();
-        } else {
-            $kids = [];
-        }
-
-        if ($this->entry->journal->show_day_type_module) {
-            $dayType = new DayTypeModulePresenter($this->entry)->build();
-        } else {
-            $dayType = [];
-        }
-
-        if ($this->entry->journal->show_primary_obligation_module) {
-            $primaryObligation = new PrimaryObligationModulePresenter($this->entry)->build();
-        } else {
-            $primaryObligation = [];
-        }
-
-        if ($this->entry->journal->show_physical_activity_module) {
-            $physicalActivity = new PhysicalActivityModulePresenter($this->entry)->build();
-        } else {
-            $physicalActivity = [];
-        }
-
-        if ($this->entry->journal->show_health_module) {
-            $health = new HealthModulePresenter($this->entry)->build();
-        } else {
-            $health = [];
-        }
-
-        if ($this->entry->journal->show_hygiene_module) {
-            $hygiene = new HygieneModulePresenter($this->entry)->build();
-        } else {
-            $hygiene = [];
-        }
-
-        if ($this->entry->journal->show_mood_module) {
-            $mood = new MoodModulePresenter($this->entry)->build();
-        } else {
-            $mood = [];
-        }
-
-        if ($this->entry->journal->show_sexual_activity_module) {
-            $sexualActivity = new SexualActivityModulePresenter($this->entry)->build();
-        } else {
-            $sexualActivity = [];
-        }
-
-        if ($this->entry->journal->show_energy_module) {
-            $energy = new EnergyModulePresenter($this->entry)->build();
-        } else {
-            $energy = [];
-        }
-
-        if ($this->entry->journal->show_social_density_module) {
-            $socialDensity = new SocialDensityModulePresenter($this->entry)->build();
-        } else {
-            $socialDensity = [];
-        }
-
+        $layout = $this->resolveLayout();
+        $columns = $this->buildColumns($layout);
         $notes = new NotesPresenter($this->entry)->build();
 
         return [
-            'sleep' => $sleep,
-            'work' => $work,
-            'travel' => $travel,
-            'shopping' => $shopping,
-            'kids' => $kids,
-            'day_type' => $dayType,
-            'primary_obligation' => $primaryObligation,
-            'physical_activity' => $physicalActivity,
-            'health' => $health,
-            'hygiene' => $hygiene,
-            'mood' => $mood,
-            'sexual_activity' => $sexualActivity,
-            'energy' => $energy,
-            'social_density' => $socialDensity,
+            'columns' => $columns,
             'notes' => $notes,
+            'layout_columns_count' => $layout->columns_count ?? 0,
         ];
+    }
+
+    /**
+     * @return array<int, array<int, array{key: string, view: string, data: array<string, mixed>}>>
+     */
+    private function buildColumns(?Layout $layout): array
+    {
+        $columns = [];
+
+        if (! $layout) {
+            return $columns;
+        }
+
+        for ($column = 1; $column <= $layout->columns_count; $column++) {
+            $columns[$column] = [];
+        }
+
+        $layoutModules = $layout->layoutModules()
+            ->orderBy('column_number')
+            ->orderBy('position')
+            ->get();
+
+        foreach ($layoutModules as $layoutModule) {
+            if (! $this->isModuleVisible($layoutModule->module_key)) {
+                continue;
+            }
+
+            $module = $this->buildModulePayload($layoutModule->module_key);
+
+            if (! $module) {
+                continue;
+            }
+
+            $columns[$layoutModule->column_number][] = $module;
+        }
+
+        return $columns;
+    }
+
+    /**
+     * @return array{key: string, view: string, data: array<string, mixed>}|null
+     */
+    private function buildModulePayload(string $moduleKey): ?array
+    {
+        return match ($moduleKey) {
+            'sleep' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.sleep',
+                'data' => ['module' => (new SleepModulePresenter($this->entry))->build('20:00', '06:00')],
+            ],
+            'work' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.work',
+                'data' => ['module' => (new WorkModulePresenter($this->entry))->build()],
+            ],
+            'travel' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.travel',
+                'data' => ['module' => (new TravelModulePresenter($this->entry))->build()],
+            ],
+            'shopping' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.shopping',
+                'data' => ['module' => (new ShoppingModulePresenter($this->entry))->build()],
+            ],
+            'kids' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.kids',
+                'data' => [
+                    'entry' => $this->entry,
+                    'module' => (new KidsModulePresenter($this->entry))->build(),
+                ],
+            ],
+            'day_type' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.day_type',
+                'data' => ['module' => (new DayTypeModulePresenter($this->entry))->build()],
+            ],
+            'primary_obligation' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.primary_obligation',
+                'data' => ['module' => (new PrimaryObligationModulePresenter($this->entry))->build()],
+            ],
+            'physical_activity' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.physical_activity',
+                'data' => ['module' => (new PhysicalActivityModulePresenter($this->entry))->build()],
+            ],
+            'health' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.health',
+                'data' => ['module' => (new HealthModulePresenter($this->entry))->build()],
+            ],
+            'hygiene' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.hygiene',
+                'data' => ['module' => (new HygieneModulePresenter($this->entry))->build()],
+            ],
+            'mood' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.mood',
+                'data' => ['module' => (new MoodModulePresenter($this->entry))->build()],
+            ],
+            'sexual_activity' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.sexual_activity',
+                'data' => [
+                    'entry' => $this->entry,
+                    'module' => (new SexualActivityModulePresenter($this->entry))->build(),
+                ],
+            ],
+            'energy' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.energy',
+                'data' => ['module' => (new EnergyModulePresenter($this->entry))->build()],
+            ],
+            'social_density' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.social_density',
+                'data' => ['module' => (new SocialDensityModulePresenter($this->entry))->build()],
+            ],
+            default => null,
+        };
+    }
+
+    private function isModuleVisible(string $moduleKey): bool
+    {
+        $attribute = 'show_' . $moduleKey . '_module';
+
+        if (! array_key_exists($attribute, $this->entry->journal->getAttributes())) {
+            return false;
+        }
+
+        return (bool) $this->entry->journal->{$attribute};
+    }
+
+    private function resolveLayout(): ?Layout
+    {
+        if ($this->entry->layout_id) {
+            return $this->entry->layout;
+        }
+
+        return $this->entry->journal->layouts()
+            ->where('is_active', true)
+            ->first();
     }
 }
