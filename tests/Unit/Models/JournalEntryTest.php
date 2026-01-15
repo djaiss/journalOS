@@ -8,6 +8,7 @@ use App\Enums\BookStatus;
 use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\Layout;
 use App\Models\ModuleHealth;
 use App\Models\ModuleHygiene;
 use App\Models\ModuleDayType;
@@ -37,6 +38,21 @@ final class JournalEntryTest extends TestCase
         ]);
 
         $this->assertTrue($journalEntry->journal()->exists());
+    }
+
+    #[Test]
+    public function it_belongs_to_a_layout(): void
+    {
+        $journal = Journal::factory()->create();
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $journalEntry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'layout_id' => $layout->id,
+        ]);
+
+        $this->assertTrue($journalEntry->layout()->exists());
     }
 
     #[Test]

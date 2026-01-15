@@ -125,6 +125,16 @@ final class Journal extends Model
     }
 
     /**
+     * Get the layouts associated with the journal.
+     *
+     * @return HasMany<Layout, $this>
+     */
+    public function layouts(): HasMany
+    {
+        return $this->hasMany(Layout::class);
+    }
+
+    /**
      * Get the journal avatar.
      */
     public function avatar(): string

@@ -6,6 +6,7 @@ namespace Tests\Unit\Models;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\Layout;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -36,6 +37,18 @@ final class JournalTest extends TestCase
 
         $this->assertCount(3, $journal->entries);
         $this->assertTrue($journal->entries()->exists());
+    }
+
+    #[Test]
+    public function it_has_many_layouts(): void
+    {
+        $journal = Journal::factory()->create();
+        Layout::factory()->count(2)->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $this->assertCount(2, $journal->layouts);
+        $this->assertTrue($journal->layouts()->exists());
     }
 
     #[Test]

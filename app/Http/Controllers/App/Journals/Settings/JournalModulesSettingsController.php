@@ -13,9 +13,13 @@ final class JournalModulesSettingsController extends Controller
     public function show(Request $request): View
     {
         $journal = $request->attributes->get('journal');
+        $layouts = $journal->layouts()
+            ->orderByDesc('created_at')
+            ->get();
 
         return view('app.journal.settings.modules.index', [
             'journal' => $journal,
+            'layouts' => $layouts,
         ]);
     }
 }

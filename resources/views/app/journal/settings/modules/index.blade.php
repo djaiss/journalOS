@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Models\Journal $journal
+ * @var \Illuminate\Support\Collection $layouts
  */
 ?>
 
@@ -20,6 +21,8 @@
 
     <section class="p-4 sm:p-8">
       <div class="flex w-full flex-col gap-y-8">
+        @include('app.journal.settings.partials.layouts.index', ['journal' => $journal, 'layouts' => $layouts, 'errors' => $errors])
+
         @include('app.journal.settings.partials.modules', ['journal' => $journal])
       </div>
     </section>

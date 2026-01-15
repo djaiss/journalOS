@@ -19,7 +19,7 @@
   ]" />
 
   <!-- settings layout -->
-  <div class="grid flex-grow sm:grid-cols-[220px_1fr]">
+  <div class="grid flex-grow bg-gray-50 sm:grid-cols-[220px_1fr] dark:bg-gray-950">
     <!-- Sidebar -->
     @include('app.settings.partials.sidebar')
 
