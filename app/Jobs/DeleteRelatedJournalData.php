@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Jobs;
 
+use App\Helpers\ModuleCatalog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Collection;
@@ -16,24 +17,10 @@ final class DeleteRelatedJournalData implements ShouldQueue
     private const int BATCH_SIZE = 1000;
 
     /**
-     * Add every table that has a journal_entry_id FK here.
+     * Add every non-module table that has a journal_entry_id FK here.
      */
     private const array ENTRY_RELATED_TABLES = [
         'book_journal_entry' => 'journal_entry_id',
-        'module_energy' => 'journal_entry_id',
-        'module_kids' => 'journal_entry_id',
-        'module_sleep' => 'journal_entry_id',
-        'module_sexual_activity' => 'journal_entry_id',
-        'module_work' => 'journal_entry_id',
-        'module_travel' => 'journal_entry_id',
-        'module_health' => 'journal_entry_id',
-        'module_hygiene' => 'journal_entry_id',
-        'module_mood' => 'journal_entry_id',
-        'module_day_type' => 'journal_entry_id',
-        'module_physical_activity' => 'journal_entry_id',
-        'module_primary_obligation' => 'journal_entry_id',
-        'module_social_density' => 'journal_entry_id',
-        'module_shopping' => 'journal_entry_id',
     ];
 
     public function __construct(
@@ -82,7 +69,7 @@ final class DeleteRelatedJournalData implements ShouldQueue
                     $entryIds = $rows->pluck('id')->all();
 
                     DB::transaction(function () use ($entryIds): void {
-                        foreach (self::ENTRY_RELATED_TABLES as $table => $fkColumn) {
+                        foreach ($this->entryRelatedTables() as $table => $fkColumn) {
                             DB::table($table)
                                 ->whereIn($fkColumn, $entryIds)
                                 ->delete();
@@ -95,6 +82,14 @@ final class DeleteRelatedJournalData implements ShouldQueue
                 },
                 column: 'id',
             );
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function entryRelatedTables(): array
+    {
+        return array_merge(self::ENTRY_RELATED_TABLES, ModuleCatalog::entryModuleTables());
     }
 
     private function deleteLogs(): void

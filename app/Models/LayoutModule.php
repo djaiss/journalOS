@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Helpers\ModuleCatalog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -74,21 +75,6 @@ final class LayoutModule extends Model
      */
     public static function allowedModuleKeys(): array
     {
-        return [
-            'sleep',
-            'work',
-            'travel',
-            'shopping',
-            'kids',
-            'day_type',
-            'primary_obligation',
-            'physical_activity',
-            'health',
-            'hygiene',
-            'mood',
-            'sexual_activity',
-            'energy',
-            'social_density',
-        ];
+        return ModuleCatalog::moduleKeys();
     }
 }
