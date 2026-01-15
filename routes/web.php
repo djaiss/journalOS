@@ -119,7 +119,7 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
             Route::post('journals/{slug}/settings/layouts', [Journals\Settings\JournalLayoutsController::class, 'store'])->name('journal.settings.layouts.store');
             Route::delete('journals/{slug}/settings/layouts/{layout}', [Journals\Settings\JournalLayoutsController::class, 'destroy'])->name('journal.settings.layouts.destroy');
             Route::put('journals/{slug}/settings/layouts/{layout}', [Journals\Settings\JournalLayoutsController::class, 'update'])->name('journal.settings.layouts.update');
-            Route::put('journals/{slug}/settings/layouts/{layout}/default', [Journals\Settings\JournalLayoutsController::class, 'setDefault'])->name('journal.settings.layouts.default');
+            Route::put('journals/{slug}/settings/layouts/{layout}/default', [Journals\Settings\JournalLayoutDefaultController::class, 'update'])->name('journal.settings.layouts.default');
 
             // settings - edit past
             Route::put('journals/{slug}/settings/edit-past', [Journals\Settings\JournalPastEditingController::class, 'update'])->name('journal.settings.edit-past.update');

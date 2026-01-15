@@ -6,7 +6,6 @@ namespace App\Http\Controllers\App\Journals\Settings;
 
 use App\Actions\CreateLayout;
 use App\Actions\DestroyLayout;
-use App\Actions\SetActiveLayout;
 use App\Actions\UpdateLayout;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
@@ -79,23 +78,5 @@ final class JournalLayoutsController extends Controller
         return to_route('journal.settings.modules.index', [
             'slug' => $journal->slug,
         ])->with('status', __('Layout updated'));
-    }
-
-    public function setDefault(Request $request, string $slug, int $layout): RedirectResponse
-    {
-        $journal = $request->attributes->get('journal');
-
-        $layout = Layout::query()
-            ->where('journal_id', $journal->id)
-            ->findOrFail($layout);
-
-        (new SetActiveLayout(
-            user: Auth::user(),
-            layout: $layout,
-        ))->execute();
-
-        return to_route('journal.settings.modules.index', [
-            'slug' => $journal->slug,
-        ])->with('status', __('Layout set as default'));
     }
 }
