@@ -15,7 +15,7 @@
     ['label' => __('Modules')]
   ]" />
 
-  <div class="grid grow sm:grid-cols-[220px_1fr]">
+  <div class="grid grow bg-gray-50 sm:grid-cols-[220px_1fr] dark:bg-gray-950">
     @include('app.journal.settings.partials.sidebar', ['journal' => $journal])
 
     <section class="p-4 sm:p-8">

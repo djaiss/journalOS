@@ -14,17 +14,12 @@
     {{ __('Journal') }}
   </x-slot>
 
-  <x-breadcrumb :items="[
-    ['label' => __('Dashboard'), 'route' => route('journal.index')],
-    ['label' => $journal->name]
-  ]" />
-
   <!-- list of years -->
   @if (count($years) > 1)
-    <div id="years-listing" class="bg-white dark:bg-gray-900">
+    <div id="years-listing" class="rounded-tl-lg rounded-tr-lg bg-white dark:bg-gray-900">
       <div class="mx-auto grid divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700" style="grid-template-columns: repeat({{ count($years) }}, minmax(0, 1fr))">
         @foreach ($years as $year)
-          <a href="{{ $year->url }}" class="group {{ $year->is_selected ? 'border-indigo-200 bg-indigo-50' : '' }} relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50">
+          <a href="{{ $year->url }}" class="group {{ $year->is_selected ? 'border-indigo-200 bg-indigo-50' : '' }} relative cursor-pointer px-2 py-1 text-center transition-colors first:rounded-tl-lg last:rounded-tr-lg hover:bg-indigo-50">
             <div class="text-sm font-medium text-gray-900">{{ $year->year }}</div>
             <div class="{{ $year->is_selected ? 'scale-x-100' : '' }} absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
           </a>
@@ -80,41 +75,15 @@
   @endif
 
   <!-- entry content -->
-  <div class="grid grid-cols-4 gap-4">
+  <div class="grid grid-cols-4 gap-4 rounded-b-lg bg-gray-50 dark:bg-gray-950">
     <!-- Life lane -->
     <div class="py-4 pl-4">
-      <div class="mb-4">
-        <h3 class="text-md font-semibold">{{ __('Life') }}</h3>
-        <p class="text-gray-600 dark:text-gray-400">{{ __('What happened today') }}</p>
-      </div>
-
       <!-- modules -->
-      <div class="space-y-2">
-        @if ($journal->show_sleep_module)
-          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
-        @endif
-
-        @if ($journal->show_travel_module)
-          @include('app.journal.entry.partials.travel', ['module' => $modules['travel']])
-        @endif
-
-        @if ($journal->show_shopping_module)
-          @include('app.journal.entry.partials.shopping', ['module' => $modules['shopping']])
-        @endif
-
-        @if ($journal->show_kids_module)
-          @include('app.journal.entry.partials.kids', ['module' => $modules['kids'], 'entry' => $entry])
-        @endif
-      </div>
+      <div class="space-y-2"></div>
     </div>
 
     <!-- Day lane -->
     <div class="py-4">
-      <div class="mb-4">
-        <h3 class="text-md font-semibold">{{ __('Day') }}</h3>
-        <p class="text-gray-600 dark:text-gray-400">{{ __('What shaped the day') }}</p>
-      </div>
-
       <!-- modules -->
       <div class="space-y-2">
         @if ($journal->show_day_type_module)
@@ -153,13 +122,24 @@
 
     <!-- Leisure lane -->
     <div class="py-4">
-      <div class="mb-4">
-        <h3 class="text-md font-semibold">{{ __('Leisure') }}</h3>
-        <p class="text-gray-600 dark:text-gray-400">{{ __('What you did for yourself') }}</p>
-      </div>
-
       <!-- modules -->
       <div class="space-y-2">
+        @if ($journal->show_sleep_module)
+          @include('app.journal.entry.partials.sleep', ['module' => $modules['sleep']])
+        @endif
+
+        @if ($journal->show_travel_module)
+          @include('app.journal.entry.partials.travel', ['module' => $modules['travel']])
+        @endif
+
+        @if ($journal->show_shopping_module)
+          @include('app.journal.entry.partials.shopping', ['module' => $modules['shopping']])
+        @endif
+
+        @if ($journal->show_kids_module)
+          @include('app.journal.entry.partials.kids', ['module' => $modules['kids'], 'entry' => $entry])
+        @endif
+
         @if ($journal->show_physical_activity_module)
           @include('app.journal.entry.partials.physical_activity', ['module' => $modules['physical_activity']])
         @endif
