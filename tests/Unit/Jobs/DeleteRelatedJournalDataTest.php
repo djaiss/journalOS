@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\Log;
+use App\Models\Layout;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
 use App\Models\ModuleHealth;
@@ -38,6 +39,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
+        ]);
+        $layout = Layout::factory()->create([
+            'journal_id' => $journal->id,
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
@@ -96,6 +100,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
 
         $this->assertDatabaseMissing('journal_entries', [
             'id' => $entry->id,
+        ]);
+        $this->assertDatabaseMissing('layouts', [
+            'id' => $layout->id,
         ]);
         $this->assertDatabaseMissing('module_sleep', [
             'journal_entry_id' => $entry->id,
@@ -247,6 +254,12 @@ final class DeleteRelatedJournalDataTest extends TestCase
         $journal2 = Journal::factory()->create([
             'user_id' => $user->id,
         ]);
+        $layout1 = Layout::factory()->create([
+            'journal_id' => $journal1->id,
+        ]);
+        $layout2 = Layout::factory()->create([
+            'journal_id' => $journal2->id,
+        ]);
 
         $entry1 = JournalEntry::factory()->create([
             'journal_id' => $journal1->id,
@@ -315,6 +328,12 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ]);
         $this->assertDatabaseHas('journal_entries', [
             'id' => $entry2->id,
+        ]);
+        $this->assertDatabaseMissing('layouts', [
+            'id' => $layout1->id,
+        ]);
+        $this->assertDatabaseHas('layouts', [
+            'id' => $layout2->id,
         ]);
         $this->assertDatabaseMissing('module_sleep', [
             'journal_entry_id' => $entry1->id,

@@ -42,8 +42,29 @@ final class DeleteRelatedJournalData implements ShouldQueue
 
     public function handle(): void
     {
+        $this->deleteLayouts();
         $this->deleteJournalEntriesAndModules();
         $this->deleteLogs();
+    }
+
+    private function deleteLayouts(): void
+    {
+        DB::table('layouts')
+            ->where('journal_id', $this->journalId)
+            ->select('id')
+            ->orderedChunkById(
+                self::BATCH_SIZE,
+                function (Collection $rows): void {
+                    $layoutIds = $rows->pluck('id')->all();
+
+                    DB::transaction(function () use ($layoutIds): void {
+                        DB::table('layouts')
+                            ->whereIn('id', $layoutIds)
+                            ->delete();
+                    });
+                },
+                column: 'id',
+            );
     }
 
     private function deleteJournalEntriesAndModules(): void
