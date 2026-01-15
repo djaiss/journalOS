@@ -27,7 +27,7 @@
         <div class="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 class="text-lg font-semibold">{{ $layout->name }}</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">{{ __(':count columns', ['count' => $layout->columns_count]) }}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Manage the modules available for this journal. Disabling a module will not delete its data. It will only hide the module from the journal.') }}</p>
           </div>
         </div>
 
@@ -71,45 +71,51 @@
             <input type="hidden" name="position" x-ref="reorderPosition" />
           </x-form>
 
-          <div class="flex flex-col gap-4 sm:grid" style="grid-template-columns: repeat({{ $layout->columns_count }}, minmax(0, 1fr))">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
             @foreach ($columns as $columnNumber => $modules)
-              <div class="flex min-h-[16rem] flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-800 dark:bg-gray-900">
-                <div class="mb-3 flex items-center justify-between">
-                  <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ __('Column :number', ['number' => $columnNumber]) }}</p>
-                  <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-300">{{ count($modules) }}</span>
-                </div>
+              <div class="flex flex-1 flex-col gap-4">
+                <div class="flex min-h-[16rem] flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-800 dark:bg-gray-900">
+                  <div class="mb-3 flex items-center justify-between">
+                    <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ __('Column :number', ['number' => $columnNumber]) }}</p>
+                    <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-300">{{ count($modules) }}</span>
+                  </div>
 
-                <div class="flex flex-1 flex-col gap-2">
-                  @forelse ($modules as $module)
-                    <div draggable="true" @dragstart="startDrag('{{ $module['key'] }}', {{ $columnNumber }})" @dragend="clearDrag()" @dragover.prevent="markDropTarget({{ $columnNumber }}, {{ $module['position'] }})" @drop.prevent="reorder({{ $columnNumber }}, {{ $module['position'] }})" :class="dropTarget === '{{ $columnNumber }}:{{ $module['position'] }}' ? 'border-blue-400 ring-2 ring-blue-200 dark:ring-blue-900/40' : 'border-gray-200 dark:border-gray-700'" class="group flex items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm text-gray-700 shadow-xs transition dark:bg-gray-950 dark:text-gray-100">
-                      <div class="flex items-center gap-2">
-                        <x-phosphor-dots-six-vertical class="h-4 w-4 text-gray-400 cursor-move" />
-                        <span>{{ $module['label'] }}</span>
+                  <div class="flex flex-col gap-2">
+                    @forelse ($modules as $module)
+                      <div draggable="true" @dragstart="startDrag('{{ $module['key'] }}', {{ $columnNumber }})" @dragend="clearDrag()" @dragover.prevent="markDropTarget({{ $columnNumber }}, {{ $module['position'] }})" @drop.prevent="reorder({{ $columnNumber }}, {{ $module['position'] }})" :class="dropTarget === '{{ $columnNumber }}:{{ $module['position'] }}' ? 'border-blue-400 ring-2 ring-blue-200 dark:ring-blue-900/40' : 'border-gray-200 dark:border-gray-700'" class="group flex items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm text-gray-700 shadow-xs transition dark:bg-gray-950 dark:text-gray-100">
+                        <div class="flex items-center gap-2">
+                          <x-phosphor-dots-six-vertical class="h-4 w-4 cursor-move text-gray-400" />
+                          <span>{{ $module['label'] }}</span>
+                        </div>
+                        <x-form x-target="layout-modules-container notifications" method="delete" action="{{ route('journal.settings.layouts.modules.destroy', ['slug' => $journal->slug, 'layout' => $layout->id, 'moduleKey' => $module['key']]) }}">
+                          <x-button.secondary class="text-xs">
+                            {{ __('Remove') }}
+                          </x-button.secondary>
+                        </x-form>
                       </div>
-                      <x-form x-target="layout-modules-container notifications" method="delete" action="{{ route('journal.settings.layouts.modules.destroy', ['slug' => $journal->slug, 'layout' => $layout->id, 'moduleKey' => $module['key']]) }}">
-                        <x-button.secondary class="text-xs">
-                          {{ __('Remove') }}
-                        </x-button.secondary>
-                      </x-form>
-                    </div>
-                  @empty
-                    <div class="flex flex-1 items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 p-3 text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
-                      {{ __('No modules yet') }}
-                    </div>
-                  @endforelse
+                    @empty
+                      <div class="flex items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 p-8 text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                        {{ __('No modules yet') }}
+                      </div>
+                    @endforelse
 
-                  <div class="rounded-lg border border-dashed border-gray-200 bg-gray-50 p-2 text-center text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400" @dragover.prevent="markDropTarget({{ $columnNumber }}, {{ count($modules) + 1 }})" @drop.prevent="reorder({{ $columnNumber }}, {{ count($modules) + 1 }}, {{ max(1, count($modules)) }})" :class="dropTarget === '{{ $columnNumber }}:{{ count($modules) + 1 }}' ? 'border-blue-400 text-blue-700 dark:text-blue-200' : ''">
-                    {{ __('Drop here to move') }}
+                    <div class="rounded-lg border border-dashed border-gray-200 bg-gray-50 p-2 text-center text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400" @dragover.prevent="markDropTarget({{ $columnNumber }}, {{ count($modules) + 1 }})" @drop.prevent="reorder({{ $columnNumber }}, {{ count($modules) + 1 }}, {{ max(1, count($modules)) }})" :class="dropTarget === '{{ $columnNumber }}:{{ count($modules) + 1 }}' ? 'border-blue-400 text-blue-700 dark:text-blue-200' : ''">
+                      {{ __('Drop here to move') }}
+                    </div>
                   </div>
                 </div>
 
-                <div class="mt-4 border-t border-gray-200 pt-3 dark:border-gray-800" x-data="{ open: false }">
-                  <x-button.secondary type="button" class="text-sm" x-on:click="open = !open">
-                    {{ __('Add module') }}
-                  </x-button.secondary>
+                <!-- add module -->
+                <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-800 dark:bg-gray-900" x-data="{ open: false }">
+                  <div class="text-center">
+                    <x-button.secondary type="button" class="text-sm" x-on:click="open = !open" x-show="!open" x-cloak>
+                      <x-slot:icon><x-phosphor-plus-circle class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1" /></x-slot>
+                      {{ __('Add module') }}
+                    </x-button.secondary>
+                  </div>
 
                   <!-- modal to add module -->
-                  <div x-show="open" x-cloak class="mt-3">
+                  <div x-show="open" x-cloak>
                     @if (count($availableModules) > 0)
                       <x-form method="post" action="{{ route('journal.settings.layouts.modules.store', ['slug' => $journal->slug, 'layout' => $layout->id]) }}" x-target="layout-modules-container notifications" class="flex flex-col gap-2">
                         <input type="hidden" name="column_number" value="{{ $columnNumber }}" />
@@ -122,9 +128,15 @@
                           </select>
                           <x-error :messages="$errors->get('module_key')" />
                         </div>
-                        <x-button.secondary type="submit" class="text-sm">
-                          {{ __('Add') }}
-                        </x-button.secondary>
+
+                        <div class="mt-2 flex items-center justify-between gap-2">
+                          <x-button.secondary type="button" class="text-sm" x-on:click="open = false">
+                            {{ __('Cancel') }}
+                          </x-button.secondary>
+                          <x-button type="submit" class="text-sm">
+                            {{ __('Add') }}
+                          </x-button>
+                        </div>
                       </x-form>
                     @else
                       <p class="text-xs text-gray-500 dark:text-gray-400">{{ __('All modules are already in this layout.') }}</p>
