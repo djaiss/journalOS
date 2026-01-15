@@ -10,6 +10,7 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\Log;
 use App\Models\Layout;
+use App\Models\LayoutModule;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
 use App\Models\ModuleHealth;
@@ -42,6 +43,12 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ]);
         $layout = Layout::factory()->create([
             'journal_id' => $journal->id,
+        ]);
+        $layoutModule = LayoutModule::factory()->create([
+            'layout_id' => $layout->id,
+            'module_key' => 'sleep',
+            'column_number' => 1,
+            'position' => 1,
         ]);
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
@@ -103,6 +110,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ]);
         $this->assertDatabaseMissing('layouts', [
             'id' => $layout->id,
+        ]);
+        $this->assertDatabaseMissing('layout_modules', [
+            'id' => $layoutModule->id,
         ]);
         $this->assertDatabaseMissing('module_sleep', [
             'journal_entry_id' => $entry->id,
@@ -260,6 +270,18 @@ final class DeleteRelatedJournalDataTest extends TestCase
         $layout2 = Layout::factory()->create([
             'journal_id' => $journal2->id,
         ]);
+        $layoutModule1 = LayoutModule::factory()->create([
+            'layout_id' => $layout1->id,
+            'module_key' => 'sleep',
+            'column_number' => 1,
+            'position' => 1,
+        ]);
+        $layoutModule2 = LayoutModule::factory()->create([
+            'layout_id' => $layout2->id,
+            'module_key' => 'sleep',
+            'column_number' => 1,
+            'position' => 1,
+        ]);
 
         $entry1 = JournalEntry::factory()->create([
             'journal_id' => $journal1->id,
@@ -334,6 +356,12 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ]);
         $this->assertDatabaseHas('layouts', [
             'id' => $layout2->id,
+        ]);
+        $this->assertDatabaseMissing('layout_modules', [
+            'id' => $layoutModule1->id,
+        ]);
+        $this->assertDatabaseHas('layout_modules', [
+            'id' => $layoutModule2->id,
         ]);
         $this->assertDatabaseMissing('module_sleep', [
             'journal_entry_id' => $entry1->id,

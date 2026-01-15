@@ -58,6 +58,10 @@ final class DeleteRelatedJournalData implements ShouldQueue
                     $layoutIds = $rows->pluck('id')->all();
 
                     DB::transaction(function () use ($layoutIds): void {
+                        DB::table('layout_modules')
+                            ->whereIn('layout_id', $layoutIds)
+                            ->delete();
+
                         DB::table('layouts')
                             ->whereIn('id', $layoutIds)
                             ->delete();
