@@ -116,6 +116,8 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
             // settings - modules
             Route::put('journals/{slug}/settings/modules', [Journals\Settings\JournalModulesController::class, 'update'])->name('journal.settings.modules.update');
+            Route::post('journals/{slug}/settings/layouts', [Journals\Settings\JournalLayoutsController::class, 'store'])->name('journal.settings.layouts.store');
+            Route::delete('journals/{slug}/settings/layouts/{layout}', [Journals\Settings\JournalLayoutsController::class, 'destroy'])->name('journal.settings.layouts.destroy');
 
             // settings - edit past
             Route::put('journals/{slug}/settings/edit-past', [Journals\Settings\JournalPastEditingController::class, 'update'])->name('journal.settings.edit-past.update');

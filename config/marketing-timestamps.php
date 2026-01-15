@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'pages' => [
         'marketing/docs/api/account/account' => '2026-01-11 23:29:42',
