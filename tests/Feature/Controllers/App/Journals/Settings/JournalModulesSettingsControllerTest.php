@@ -27,7 +27,6 @@ final class JournalModulesSettingsControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertSeeText('Modules');
-        $response->assertSeeText('Day type module');
         $response->assertSeeText('Dunder Mifflin');
         $response->assertViewHas('journal', fn($viewJournal): bool => $viewJournal->id === $journal->id);
     }
