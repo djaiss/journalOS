@@ -20,7 +20,7 @@ final readonly class JournalEntryPresenter
         return [
             'columns' => $columns,
             'notes' => $notes,
-            'layout_columns_count' => $layout?->columns_count ?? 0,
+            'layout_columns_count' => $layout->columns_count ?? 0,
         ];
     }
 
