@@ -25,8 +25,8 @@
     </x-button.secondary>
   </div>
 
-  @if (! $layouts->isEmpty())
-    <div id="layouts-list">
+  <div id="layouts-list">
+    @if (! $layouts->isEmpty())
       @foreach ($layouts as $layout)
         <div x-data="{
           editing: {{ (int) old('layout_id') === $layout->id ? 'true' : 'false' }},
@@ -88,6 +88,6 @@
           @include('app.journal.settings.partials.layouts.edit', ['isLast' => $loop->last])
         </div>
       @endforeach
-    </div>
-  @endif
+    @endif
+  </div>
 </x-box>

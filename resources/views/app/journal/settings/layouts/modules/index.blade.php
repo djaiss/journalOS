@@ -29,9 +29,6 @@
             <h2 class="text-lg font-semibold">{{ $layout->name }}</h2>
             <p class="text-sm text-gray-500 dark:text-gray-400">{{ __(':count columns', ['count' => $layout->columns_count]) }}</p>
           </div>
-          <x-button.secondary href="{{ route('journal.settings.modules.index', ['slug' => $journal->slug]) }}" class="text-sm">
-            {{ __('Back to modules') }}
-          </x-button.secondary>
         </div>
 
         <div
@@ -86,7 +83,7 @@
                   @forelse ($modules as $module)
                     <div draggable="true" @dragstart="startDrag('{{ $module['key'] }}', {{ $columnNumber }})" @dragend="clearDrag()" @dragover.prevent="markDropTarget({{ $columnNumber }}, {{ $module['position'] }})" @drop.prevent="reorder({{ $columnNumber }}, {{ $module['position'] }})" :class="dropTarget === '{{ $columnNumber }}:{{ $module['position'] }}' ? 'border-blue-400 ring-2 ring-blue-200 dark:ring-blue-900/40' : 'border-gray-200 dark:border-gray-700'" class="group flex items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm text-gray-700 shadow-xs transition dark:bg-gray-950 dark:text-gray-100">
                       <div class="flex items-center gap-2">
-                        <x-phosphor-dots-six-vertical class="h-4 w-4 text-gray-400" />
+                        <x-phosphor-dots-six-vertical class="h-4 w-4 text-gray-400 cursor-move" />
                         <span>{{ $module['label'] }}</span>
                       </div>
                       <x-form x-target="layout-modules-container notifications" method="delete" action="{{ route('journal.settings.layouts.modules.destroy', ['slug' => $journal->slug, 'layout' => $layout->id, 'moduleKey' => $module['key']]) }}">
@@ -111,6 +108,7 @@
                     {{ __('Add module') }}
                   </x-button.secondary>
 
+                  <!-- modal to add module -->
                   <div x-show="open" x-cloak class="mt-3">
                     @if (count($availableModules) > 0)
                       <x-form method="post" action="{{ route('journal.settings.layouts.modules.store', ['slug' => $journal->slug, 'layout' => $layout->id]) }}" x-target="layout-modules-container notifications" class="flex flex-col gap-2">
