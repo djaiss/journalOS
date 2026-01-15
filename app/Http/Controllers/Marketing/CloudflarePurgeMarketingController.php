@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Marketing;
 
 use Illuminate\Http\Request;
@@ -21,14 +23,14 @@ final class CloudflarePurgeMarketingController extends Controller
         }
 
         $middleware = (string) $request->query('middleware', 'marketing');
-        $appUrl = rtrim((string) config('app.url'), '/');
+        $appUrl = mb_rtrim((string) config('app.url'), '/');
 
         $urls = collect(Route::getRoutes())
             ->filter(fn($route) => in_array('GET', $route->methods(), true) || in_array('HEAD', $route->methods(), true))
             ->filter(fn($route) => in_array($middleware, $route->gatherMiddleware(), true))
             ->map(fn($route) => $route->uri())
-            ->filter(fn($uri) => !Str::contains($uri, '{')) // safety
-            ->map(fn($uri) => $uri === '/' ? $appUrl . '/' : $appUrl . '/' . ltrim($uri, '/'))
+            ->reject(fn($uri): bool => Str::contains($uri, '{')) // safety
+            ->map(fn($uri) => $uri === '/' ? $appUrl . '/' : $appUrl . '/' . mb_ltrim((string) $uri, '/'))
             ->unique()
             ->values();
 
@@ -45,7 +47,7 @@ final class CloudflarePurgeMarketingController extends Controller
         foreach ($urls->chunk($chunkSize) as $chunk) {
             $res = Http::withToken($token)->post(
                 "https://api.cloudflare.com/client/v4/zones/{$zoneId}/purge_cache",
-                ['files' => $chunk->all()]
+                ['files' => $chunk->all()],
             );
 
             if (!$res->ok() || $res->json('success') !== true) {
@@ -68,8 +70,12 @@ final class CloudflarePurgeMarketingController extends Controller
 
     private function isValidSignature(string $ts, string $sig): bool
     {
-        if ($ts === '' || $sig === '') return false;
-        if (abs(time() - (int) $ts) > 300) return false;
+        if ($ts === '' || $sig === '') {
+            return false;
+        }
+        if (abs(time() - (int) $ts) > 300) {
+            return false;
+        }
 
         $secret = (string) config('services.cloudflare.purge_secret');
         $expected = hash_hmac('sha256', $ts, $secret);

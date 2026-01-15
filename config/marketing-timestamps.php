@@ -35,6 +35,6 @@ return [
         'marketing/docs/concepts/hierarchy-structure' => '2026-01-11 23:29:42',
         'marketing/docs/concepts/permissions' => '2026-01-11 23:29:42',
         'marketing/docs/index' => '2026-01-11 23:29:42',
-        'marketing/index' => '2026-01-13 22:47:24',
+        'marketing/index' => '2026-01-14 23:13:56',
     ],
 ];

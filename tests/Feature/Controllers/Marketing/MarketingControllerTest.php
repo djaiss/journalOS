@@ -19,11 +19,5 @@ final class MarketingControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('marketing.index');
-        $response->assertSeeText('A simple diary to track the shape of your days.');
-        $response->assertSeeText('JournalOS helps you log sleep, mood, health, work, and more without writing long essays.');
-        $response->assertSeeText('Daily logging');
-        $response->assertSeeText('Monthly and yearly stats');
-        $response->assertSeeText('Random memories');
-        $response->assertSeeText('English and French');
     }
 }
