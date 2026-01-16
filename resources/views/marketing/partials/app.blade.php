@@ -1,126 +1,3 @@
-<header class="flex w-full max-w-[1920px] items-center px-2 sm:pr-4 sm:pl-9" journal='{"id":4,"user_id":1,"name":"My life at Dunder Mifflin","slug":"4-my-life-at-dunder-mifflin","can_edit_past":false,"show_sleep_module":1,"show_work_module":1,"show_travel_module":1,"show_kids_module":0,"show_day_type_module":1,"show_primary_obligation_module":1,"show_physical_activity_module":1,"show_health_module":1,"show_mood_module":1,"show_energy_module":1,"show_sexual_activity_module":0,"show_social_density_module":1,"show_shopping_module":1,"show_hygiene_module":1,"created_at":"2026-01-16T01:45:32.000000Z","updated_at":"2026-01-16T01:45:32.000000Z"}'>
-  <!-- normal desktop header -->
-  <nav class="hidden flex-1 items-center gap-3 pt-2 pb-2 sm:flex">
-    <a href="/" class="flex items-center">
-      <img src="http://journalos.test/logo/30x30.webp" alt="JournalOS logo" width="20" height="20" srcset="http://journalos.test/logo/30x30.webp 1x, http://journalos.test/logo/30x30@2x.webp 2x" loading="lazy" class="transition-transform duration-150 hover:scale-145" />
-    </a>
-
-    <!-- selectors -->
-    <div class="flex items-center gap-1">
-      <a href="http://journalos.test/journals" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">Dashboard</a>
-      <span class="text-gray-500">/</span>
-      <div class="flex items-center pl-2">My life at Dunder Mifflin</div>
-    </div>
-
-    <div class="ml-4">
-      <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/settings/modules" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">Settings</a>
-    </div>
-
-    <!-- separator -->
-    <div class="-ml-4 flex-1"></div>
-
-    <!-- right side menu -->
-    <div class="flex items-center gap-1">
-      <a class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800" href="/">
-        <svg class="size-4 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" /></svg>
-        Search
-      </a>
-
-      <a href="http://journalos.test/docs" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
-        <svg class="size-4 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm39.1,131.79a47.84,47.84,0,0,0,0-55.58l28.5-28.49a87.83,87.83,0,0,1,0,112.56ZM96,128a32,32,0,1,1,32,32A32,32,0,0,1,96,128Zm88.28-67.6L155.79,88.9a47.84,47.84,0,0,0-55.58,0L71.72,60.4a87.83,87.83,0,0,1,112.56,0ZM60.4,71.72l28.5,28.49a47.84,47.84,0,0,0,0,55.58L60.4,184.28a87.83,87.83,0,0,1,0-112.56ZM71.72,195.6l28.49-28.5a47.84,47.84,0,0,0,55.58,0l28.49,28.5a87.83,87.83,0,0,1-112.56,0Z" /></svg>
-        Docs
-      </a>
-
-      <div x-data="{ menuOpen: false }" @click.away="menuOpen = false" class="relative">
-        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100 dark:bg-gray-800' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
-          Menu
-          <svg x-bind:class="{ 'rotate-180': menuOpen }" class="size-4 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z" /></svg>
-        </button>
-
-        <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-56 min-w-32 rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" x-cloak>
-          <a @click="menuOpen = false" href="http://journalos.test/instance" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
-            <svg class="mr-2 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" /></svg>
-            Instance administration
-          </a>
-
-          <div class="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-
-          <a @click="menuOpen = false" href="http://journalos.test/settings/profile" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
-            <svg class="mr-2 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" /></svg>
-            Profile
-          </a>
-
-          <div class="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-
-          <form method="POST" action="http://journalos.test/logout" class="w-full">
-            <input type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
-            <button @click="menuOpen = false" type="submit" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
-              <svg class="mr-2 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z" /></svg>
-              Logout
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- mobile header -->
-  <nav class="flex w-full items-center justify-between gap-3 pt-2 pb-2 sm:hidden" x-data="{ mobileMenuOpen: false }">
-    <a href="/">
-      <img src="http://journalos.test/logo/30x30.webp" alt="JournalOS logo" width="20" height="20" srcset="http://journalos.test/logo/30x30.webp 1x, http://journalos.test/logo/30x30@2x.webp 2x" loading="lazy" />
-    </a>
-
-    <button @click="mobileMenuOpen = true" class="flex items-center gap-2 rounded-md border border-transparent py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
-      <svg class="size-5 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z" /></svg>
-    </button>
-
-    <!-- Mobile Menu Overlay -->
-    <div x-cloak x-show="mobileMenuOpen" x-transition:enter="transition duration-50 ease-out" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-50 ease-in" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-white dark:bg-gray-900">
-      <div class="flex h-full flex-col">
-        <!-- Mobile Menu Header -->
-        <div class="flex items-center justify-between border-b border-gray-200 px-2 py-1 dark:border-gray-700">
-          <img src="http://journalos.test/logo/30x30.webp" alt="JournalOS logo" width="20" height="20" srcset="http://journalos.test/logo/30x30.webp 1x, http://journalos.test/logo/30x30@2x.webp 2x" loading="lazy" />
-
-          <button @click="mobileMenuOpen = false" class="flex items-center gap-2 rounded-md border border-transparent py-2 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-600 dark:hover:bg-gray-800">
-            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" /></svg>
-          </button>
-        </div>
-
-        <!-- Mobile Menu Content -->
-        <div class="flex-1 space-y-4 p-4">
-          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Dashboard</a>
-
-          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
-            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" /></svg>
-            Search
-          </a>
-
-          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
-            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm39.1,131.79a47.84,47.84,0,0,0,0-55.58l28.5-28.49a87.83,87.83,0,0,1,0,112.56ZM96,128a32,32,0,1,1,32,32A32,32,0,0,1,96,128Zm88.28-67.6L155.79,88.9a47.84,47.84,0,0,0-55.58,0L71.72,60.4a87.83,87.83,0,0,1,112.56,0ZM60.4,71.72l28.5,28.49a47.84,47.84,0,0,0,0,55.58L60.4,184.28a87.83,87.83,0,0,1,0-112.56ZM71.72,195.6l28.49-28.5a47.84,47.84,0,0,0,55.58,0l28.49,28.5a87.83,87.83,0,0,1-112.56,0Z" /></svg>
-            Docs
-          </a>
-
-          <a @click="mobileMenuOpen = false" href="http://journalos.test/settings/profile" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
-            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" /></svg>
-            Profile
-          </a>
-        </div>
-
-        <!-- Mobile Menu Footer -->
-        <div class="border-t border-gray-200 p-4 dark:border-gray-700">
-          <form method="POST" action="http://journalos.test/logout" class="w-full">
-            <input type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
-            <button @click="mobileMenuOpen = false" type="submit" class="flex w-full items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
-              <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z" /></svg>
-              Logout
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
-
 <main class="flex flex-1 flex-col px-2 py-px">
   <div class="mx-auto flex w-full grow flex-col items-stretch rounded-lg bg-gray-50 shadow-xs ring-1 ring-[#E6E7E9] dark:bg-gray-950 dark:ring-gray-800">
     <!-- list of years -->
@@ -128,66 +5,66 @@
     <!-- list of months -->
     <div id="months-listing" class="bg-white dark:bg-gray-900">
       <div class="mx-auto grid grid-cols-12 divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700">
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/1" class="group relative cursor-pointer border-indigo-200 bg-indigo-50 px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:border-indigo-400/60 dark:bg-indigo-900/40 dark:hover:bg-indigo-900/40">
+        <div class="group relative cursor-pointer border-indigo-200 bg-indigo-50 px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:border-indigo-400/60 dark:bg-indigo-900/40 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">January</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">1 entry</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 scale-x-100 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/2/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">February</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/3/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">March</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/4/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">April</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/5/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">May</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/6/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">June</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/7/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">July</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/8/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">August</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/9/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">September</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/10/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">October</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/11/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">November</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/12/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+        </div>
+        <div class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
           <div class="text-sm font-medium text-gray-900 dark:text-gray-100">December</div>
           <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
           <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -195,190 +72,190 @@
     <div id="days-listing" class="bg-white dark:bg-gray-900">
       <div class="days-grid-31 mx-auto grid divide-x divide-gray-200 dark:divide-gray-700">
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/1" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">1</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/2" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">2</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/3" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">3</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/4" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">4</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/5" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">5</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/6" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">6</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/7" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">7</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/8" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">8</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/9" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">9</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/10" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">10</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/11" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">11</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/12" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">12</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/13" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">13</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/14" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">14</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/15" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">15</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 border-b-indigo-200 bg-indigo-50 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:border-b-indigo-400/60 dark:bg-indigo-900/40 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">16</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-green-500"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/17" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">17</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/18" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">18</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/19" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">19</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/20" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">20</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/21" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">21</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/22" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">22</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/23" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">23</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/24" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">24</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/25" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">25</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/26" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">26</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/27" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">27</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/28" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">28</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/29" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">29</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/30" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">30</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
         <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/31" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+          <div  class="flex h-full flex-col items-center justify-center">
             <span class="text-sm font-medium text-gray-900 dark:text-gray-100">31</span>
             <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -1470,9 +1347,3 @@
     </div>
   </div>
 </main>
-
-<footer class="flex w-full max-w-[1920px] items-center pr-4 pl-9">
-  <div class="flex py-3 text-sm text-gray-600">
-    <div class="flex">&copy; JournalOS &middot; 2026</div>
-  </div>
-</footer>

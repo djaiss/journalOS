@@ -65,6 +65,7 @@
   </div>
 
   <!-- App section -->
+  @include('marketing.partials.app')
 
   <!-- Feature section -->
   <div id="features" class="bg-gray-50 py-12">

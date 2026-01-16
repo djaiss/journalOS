@@ -19,5 +19,6 @@ final class MarketingControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('marketing.index');
+        $response->assertDontSee('<form', false);
     }
 }
