@@ -94,7 +94,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             ->pluck('module_key')
             ->toArray();
 
-        $this->assertEquals(['health', 'hygiene', 'energy', 'physical_activity', 'sleep'], $column1Modules);
+        $this->assertEquals(['sleep', 'energy', 'health', 'physical_activity', 'hygiene'], $column1Modules);
 
         $column2Modules = LayoutModule::query()
             ->where('layout_id', $layout->id)
