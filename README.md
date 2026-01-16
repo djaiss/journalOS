@@ -9,20 +9,45 @@ You may use either the server I host, or host your own! You can try the product 
 ### Features
 
 - Daily logging of your life
-  - Day type
-  - Energy
-  - Health
-  - Hygiene
-  - Kids
-  - Mood
-  - Physical activity
-  - Primary obligation
-  - Sexual activity
-  - Shopping
-  - Sleep
-  - Social density
-  - Travel
-  - Work
+  <details>
+  <summary>💪 Body & Health (4 modules)</summary>
+
+  - 🌖 Sleep
+  - 🏃‍♂️ Physical activity
+  - ❤️ Health
+  - 🧼 Hygiene
+  </details>
+
+  <details>
+  <summary>🧠 Mind & Emotions (2 modules)</summary>
+
+  - 🙂 Mood
+  - ⚡️ Energy
+  </details>
+
+  <details>
+  <summary>💼 Work (3 modules)</summary>
+
+  - 💼 Work
+  - 🎯 Primary obligation
+  - 📅 Day type
+  </details>
+
+  <details>
+  <summary>👥 Social (3 modules)</summary>
+
+  - 👥 Social density
+  - 🧒 Kids
+  - ❤️ Sexual activity
+  </details>
+
+  <details>
+  <summary>📍 Places (2 modules)</summary>
+
+  - ✈️ Travel
+  - 🛍️ Shopping
+  </details>
+
 - Ability to prevent editing older journal entries
 - Monthly/yearly statistics
 - Random email reminders of what happened in the past
