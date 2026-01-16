@@ -49,7 +49,7 @@ Structure:
 - Daily logging of your life
   <details>
   <summary>💪 Body & Health (4 modules)</summary>
-  
+
   - 🌖 Sleep
   - 🏃‍♂️ Physical activity
   - ❤️ Health
@@ -58,14 +58,14 @@ Structure:
 
   <details>
   <summary>🧠 Mind & Emotions (2 modules)</summary>
-  
+
   - 🙂 Mood
   - ⚡️ Energy
   </details>
 
   <details>
   <summary>💼 Work (3 modules)</summary>
-  
+
   - 💼 Work
   - 🎯 Primary obligation
   - 📅 Day type
@@ -73,7 +73,7 @@ Structure:
 
   <details>
   <summary>👥 Social (3 modules)</summary>
-  
+
   - 👥 Social density
   - 🧒 Kids
   - ❤️ Sexual activity
@@ -81,7 +81,7 @@ Structure:
 
   <details>
   <summary>📍 Places (2 modules)</summary>
-  
+
   - ✈️ Travel
   - 🛍️ Shopping
   </details>
