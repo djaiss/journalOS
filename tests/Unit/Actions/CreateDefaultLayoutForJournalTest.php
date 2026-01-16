@@ -94,7 +94,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             ->pluck('module_key')
             ->toArray();
 
-        $this->assertEquals(['health', 'hygiene', 'energy', 'physical_activity', 'sleep'], $column1Modules);
+        $this->assertEquals(['sleep', 'energy', 'health', 'physical_activity', 'hygiene'], $column1Modules);
 
         $column2Modules = LayoutModule::query()
             ->where('layout_id', $layout->id)
@@ -129,21 +129,21 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             ->where('journal_id', $journal->id)
             ->first();
 
-        $healthModule = LayoutModule::query()
-            ->where('layout_id', $layout->id)
-            ->where('module_key', 'health')
-            ->first();
-
-        $this->assertEquals(1, $healthModule->column_number);
-        $this->assertEquals(1, $healthModule->position);
-
         $sleepModule = LayoutModule::query()
             ->where('layout_id', $layout->id)
             ->where('module_key', 'sleep')
             ->first();
 
         $this->assertEquals(1, $sleepModule->column_number);
-        $this->assertEquals(5, $sleepModule->position);
+        $this->assertEquals(1, $sleepModule->position);
+
+        $healthModule = LayoutModule::query()
+            ->where('layout_id', $layout->id)
+            ->where('module_key', 'health')
+            ->first();
+
+        $this->assertEquals(1, $healthModule->column_number);
+        $this->assertEquals(3, $healthModule->position);
 
         $socialDensityModule = LayoutModule::query()
             ->where('layout_id', $layout->id)
