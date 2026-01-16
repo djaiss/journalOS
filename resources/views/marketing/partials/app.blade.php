@@ -1,7 +1,6 @@
-<main class="flex flex-1 flex-col px-2 py-px">
+<div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
+<main class="text-xs flex flex-1 flex-col px-2 py-px">
   <div class="mx-auto flex w-full grow flex-col items-stretch rounded-lg bg-gray-50 shadow-xs ring-1 ring-[#E6E7E9] dark:bg-gray-950 dark:ring-gray-800">
-    <!-- list of years -->
-
     <!-- list of months -->
     <div id="months-listing" class="bg-white dark:bg-gray-900">
       <div class="mx-auto grid grid-cols-12 divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700">
@@ -1104,3 +1103,4 @@
     </div>
   </div>
 </main>
+</div>
