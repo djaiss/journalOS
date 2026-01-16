@@ -285,17 +285,17 @@
                   <div class="flex items-center justify-between">
                     <p>Time you went to sleep</p>
                     <div class="flex gap-1">
-                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/15:00/06:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                      <a x-target="sleep-container" href="" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
                         <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z" /></svg>
                       </a>
-                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/01:00/06:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                      <a x-target="sleep-container" href="" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
                         <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z" /></svg>
                       </a>
                     </div>
                   </div>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="bedtime" value="20:00" />
@@ -303,7 +303,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="bedtime" value="21:00" />
@@ -311,7 +311,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="bedtime" value="22:00" />
@@ -319,7 +319,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="bedtime" value="23:00" />
@@ -327,7 +327,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="bedtime" value="00:00" />
@@ -342,17 +342,17 @@
                   <div class="flex items-center justify-between">
                     <p>Time you woke up</p>
                     <div class="flex gap-1">
-                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/20:00/01:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                      <a x-target="sleep-container" href="" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
                         <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z" /></svg>
                       </a>
-                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/20:00/11:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                      <a x-target="sleep-container" href="" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
                         <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z" /></svg>
                       </a>
                     </div>
                   </div>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="wake_up_time" value="06:00" />
@@ -360,7 +360,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="wake_up_time" value="07:00" />
@@ -368,7 +368,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="wake_up_time" value="08:00" />
@@ -376,7 +376,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="wake_up_time" value="09:00" />
@@ -384,7 +384,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="wake_up_time" value="10:00" />
@@ -413,7 +413,7 @@
                   <p>How was your energy today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="energy" value="very low" />
@@ -421,7 +421,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="energy" value="low" />
@@ -429,7 +429,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="energy" value="normal" />
@@ -437,7 +437,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="energy" value="high" />
@@ -445,7 +445,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="energy" value="very high" />
@@ -474,7 +474,7 @@
                   <p>How did you feel today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/health" x-target="health-container notifications health-reset days-listing months-listing">
+                      <form method="post" action="" x-target="health-container notifications health-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="health" value="not great" />
@@ -482,7 +482,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/health" x-target="health-container notifications health-reset days-listing months-listing">
+                      <form method="post" action="" x-target="health-container notifications health-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="health" value="okay" />
@@ -490,7 +490,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/health" x-target="health-container notifications health-reset days-listing months-listing">
+                      <form method="post" action="" x-target="health-container notifications health-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="health" value="good" />
@@ -523,7 +523,7 @@
                     <p>Did you do physical activity?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="has_done_physical_activity" value="yes" />
@@ -531,7 +531,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="has_done_physical_activity" value="no" />
@@ -548,31 +548,31 @@
                   <div class="space-y-2">
                     <p>What type of activity?</p>
                     <div class="flex flex-wrap justify-center gap-2">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="activity_type" value="running" />
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Running</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="activity_type" value="cycling" />
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Cycling</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="activity_type" value="swimming" />
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Swimming</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="activity_type" value="gym" />
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Gym</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="activity_type" value="walking" />
@@ -586,7 +586,7 @@
                     <p>How intense was it?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="activity_intensity" value="light" />
@@ -594,7 +594,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="activity_intensity" value="moderate" />
@@ -602,7 +602,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="activity_intensity" value="intense" />
@@ -633,7 +633,7 @@
                     <p>Showered</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="showered" value="yes" />
@@ -641,7 +641,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="showered" value="no" />
@@ -655,7 +655,7 @@
                     <p>Brushed teeth</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="brushed_teeth" value="no" />
@@ -663,7 +663,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="brushed_teeth" value="am" />
@@ -671,7 +671,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="brushed_teeth" value="pm" />
@@ -685,7 +685,7 @@
                     <p>Skincare</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="skincare" value="yes" />
@@ -693,7 +693,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="skincare" value="no" />
@@ -727,7 +727,7 @@
                   <p>How was your mood today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="mood" value="terrible" />
@@ -735,7 +735,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="mood" value="bad" />
@@ -743,7 +743,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="mood" value="okay" />
@@ -751,7 +751,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="mood" value="good" />
@@ -759,7 +759,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="mood" value="great" />
@@ -792,7 +792,7 @@
                     <p>Have you worked today?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="worked" value="yes" />
@@ -800,7 +800,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="worked" value="no" />
@@ -816,7 +816,7 @@
                       <p>How did you work?</p>
                       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_mode" value="remote" />
@@ -824,7 +824,7 @@
                           </form>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_mode" value="on-site" />
@@ -832,7 +832,7 @@
                           </form>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_mode" value="hybrid" />
@@ -847,7 +847,7 @@
                       <p>How much did you work?</p>
                       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_load" value="light" />
@@ -855,7 +855,7 @@
                           </form>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_load" value="medium" />
@@ -863,7 +863,7 @@
                           </form>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_load" value="heavy" />
@@ -878,7 +878,7 @@
                       <p>Did you procrastinate (be honest)?</p>
                       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_procrastinated" value="yes" />
@@ -886,7 +886,7 @@
                           </form>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                             <input hidden type="hidden" name="_method" value="put" />
                             <input type="hidden" name="work_procrastinated" value="no" />
@@ -917,31 +917,31 @@
                 <div class="space-y-2">
                   <p>What type of day was it?</p>
                   <div class="flex flex-wrap justify-center gap-2">
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="day_type" value="workday" />
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Workday</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="day_type" value="day off" />
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Day off</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="day_type" value="weekend" />
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Weekend</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="day_type" value="vacation" />
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Vacation</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="day_type" value="sick day" />
@@ -969,37 +969,37 @@
                   <p>What demanded most of your attention today?</p>
                   <p class="text-sm text-gray-600 dark:text-gray-400">It captures priority, not time spent and not emotion.</p>
                   <div class="grid grid-cols-3 gap-2">
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="primary_obligation" value="work" />
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Work</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="primary_obligation" value="family" />
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Family</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="primary_obligation" value="personal" />
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Personal</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="primary_obligation" value="health" />
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Health</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="primary_obligation" value="travel" />
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Travel</button>
                     </form>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <input type="hidden" name="primary_obligation" value="none" />
@@ -1029,7 +1029,7 @@
                   <p>Shopped today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="has_shopped" value="yes" />
@@ -1037,7 +1037,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="has_shopped" value="no" />
@@ -1050,7 +1050,7 @@
                 <div x-show="showShoppingDetails" x-cloak class="mt-4 space-y-4">
                   <div class="space-y-2">
                     <p>Shopping type</p>
-                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing" id="shopping-type-form">
+                    <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing" id="shopping-type-form">
                       <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                       <input hidden type="hidden" name="_method" value="put" />
                       <div class="grid grid-cols-2 gap-2">
@@ -1093,25 +1093,25 @@
                   <div class="space-y-2">
                     <p>Intent</p>
                     <div class="grid grid-cols-2 gap-2">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_intent" value="planned" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Planned</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_intent" value="opportunistic" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Opportunistic</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_intent" value="impulse" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Impulse</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_intent" value="replacement" />
@@ -1123,19 +1123,19 @@
                   <div class="space-y-2">
                     <p>Shopping context</p>
                     <div class="grid grid-cols-3 gap-2">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_context" value="alone" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Alone</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_context" value="with_partner" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">With partner</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_context" value="with_kids" />
@@ -1147,19 +1147,19 @@
                   <div class="space-y-2">
                     <p>Shopping for</p>
                     <div class="grid grid-cols-3 gap-2">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_for" value="for_self" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For self</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_for" value="for_household" />
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For household</button>
                       </form>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="shopping_for" value="for_others" />
@@ -1196,7 +1196,7 @@
                     <p>Have you traveled today?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/travel" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="has_traveled" value="yes" />
@@ -1204,7 +1204,7 @@
                         </form>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/travel" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
+                        <form method="post" action="" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
                           <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                           <input hidden type="hidden" name="_method" value="put" />
                           <input type="hidden" name="has_traveled" value="no" />
@@ -1218,7 +1218,7 @@
                     <!-- Travel mode -->
                     <div class="space-y-2">
                       <p>How did you travel?</p>
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/travel" x-target="travel-container notifications travel-reset days-listing months-listing" id="travel-mode-form">
+                      <form method="post" action="" x-target="travel-container notifications travel-reset days-listing months-listing" id="travel-mode-form">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <div class="grid grid-cols-4 gap-2">
@@ -1279,7 +1279,7 @@
                   <p>How was your social density today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="social_density" value="alone" />
@@ -1287,7 +1287,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="social_density" value="few people" />
@@ -1295,7 +1295,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="social_density" value="crowd" />
@@ -1303,7 +1303,7 @@
                       </form>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                         <input hidden type="hidden" name="_method" value="put" />
                         <input type="hidden" name="social_density" value="too much" />
@@ -1323,7 +1323,7 @@
           <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
             <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
               <div id="note-reset" class="absolute top-0 right-0 -mt-6 mr-0 text-xs">
-                <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/notes/reset" x-target="note-container notifications note-reset days-listing months-listing">
+                <form method="post" action="" x-target="note-container notifications note-reset days-listing months-listing">
                   <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
                   <input hidden type="hidden" name="_method" value="put" />
                   <button type="submit" class="inline cursor-pointer underline decoration-gray-300 underline-offset-4 transition-colors duration-200 hover:text-blue-600 hover:decoration-blue-400 hover:decoration-[1.15px] dark:decoration-gray-600 dark:hover:text-blue-400 dark:hover:decoration-blue-400">Reset</button>
