@@ -295,29 +295,29 @@
                   </div>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">20:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">21:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">22:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">23:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">00:00</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -337,29 +337,29 @@
                   </div>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">06:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">07:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">08:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">09:00</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                      <div class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">10:00</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -383,29 +383,29 @@
                   <p>How was your energy today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <div x-target="energy-container notifications energy-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Very low</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <div x-target="energy-container notifications energy-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Low</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <div x-target="energy-container notifications energy-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Normal</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <div x-target="energy-container notifications energy-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">High</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="energy-container notifications energy-reset days-listing months-listing">
+                      <div x-target="energy-container notifications energy-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Very high</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -429,19 +429,19 @@
                   <p>How did you feel today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="health-container notifications health-reset days-listing months-listing">
+                      <div x-target="health-container notifications health-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Not great</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="health-container notifications health-reset days-listing months-listing">
+                      <div x-target="health-container notifications health-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Okay</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="health-container notifications health-reset days-listing months-listing">
+                      <div x-target="health-container notifications health-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Good</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -469,14 +469,14 @@
                     <p>Did you do physical activity?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <div class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <div class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -488,21 +488,21 @@
                   <div class="space-y-2">
                     <p>What type of activity?</p>
                     <div class="flex flex-wrap justify-center gap-2">
-                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Running</button>
-                      </form>
-                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      </div>
+                      <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Cycling</button>
-                      </form>
-                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      </div>
+                      <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Swimming</button>
-                      </form>
-                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      </div>
+                      <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Gym</button>
-                      </form>
-                      <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                      </div>
+                      <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                         <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Walking</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
 
@@ -511,19 +511,19 @@
                     <p>How intense was it?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Light</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Moderate</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <div x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Intense</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -549,14 +549,14 @@
                     <p>Showered</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -565,19 +565,19 @@
                     <p>Brushed teeth</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">No</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">AM</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">PM</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -586,14 +586,14 @@
                     <p>Skincare</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                        <div class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -622,29 +622,29 @@
                   <p>How was your mood today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <div x-target="mood-container notifications mood-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Terrible</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <div x-target="mood-container notifications mood-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Bad</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <div x-target="mood-container notifications mood-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Okay</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <div x-target="mood-container notifications mood-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Good</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="mood-container notifications mood-reset days-listing months-listing">
+                      <div x-target="mood-container notifications mood-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Great</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -672,14 +672,14 @@
                     <p>Have you worked today?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                        <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                           <button @click="showWorkDetails = true" type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                        <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                           <button @click="showWorkDetails = false" type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -690,19 +690,19 @@
                       <p>How did you work?</p>
                       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Remote</button>
-                          </form>
+                          </div>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">On-site</button>
-                          </form>
+                          </div>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Hybrid</button>
-                          </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -712,19 +712,19 @@
                       <p>How much did you work?</p>
                       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Light</button>
-                          </form>
+                          </div>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Medium</button>
-                          </form>
+                          </div>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Heavy</button>
-                          </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -734,14 +734,14 @@
                       <p>Did you procrastinate (be honest)?</p>
                       <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                          </form>
+                          </div>
                         </div>
                         <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                          <form method="post" action="" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <div class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
                             <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                          </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -767,21 +767,21 @@
                 <div class="space-y-2">
                   <p>What type of day was it?</p>
                   <div class="flex flex-wrap justify-center gap-2">
-                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    <div x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Workday</button>
-                    </form>
-                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    </div>
+                    <div x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Day off</button>
-                    </form>
-                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    </div>
+                    <div x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Weekend</button>
-                    </form>
-                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    </div>
+                    <div x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Vacation</button>
-                    </form>
-                    <form method="post" action="" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                    </div>
+                    <div x-target="day-type-container notifications day-type-reset days-listing months-listing">
                       <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Sick day</button>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -804,24 +804,24 @@
                   <p>What demanded most of your attention today?</p>
                   <p class="text-sm text-gray-600 dark:text-gray-400">It captures priority, not time spent and not emotion.</p>
                   <div class="grid grid-cols-3 gap-2">
-                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    <div x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Work</button>
-                    </form>
-                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    </div>
+                    <div x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Family</button>
-                    </form>
-                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    </div>
+                    <div x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Personal</button>
-                    </form>
-                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    </div>
+                    <div x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Health</button>
-                    </form>
-                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    </div>
+                    <div x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Travel</button>
-                    </form>
-                    <form method="post" action="" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                    </div>
+                    <div x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
                       <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">None</button>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -846,14 +846,14 @@
                   <p>Shopped today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <div class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <div class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -861,7 +861,7 @@
                 <div x-show="showShoppingDetails" x-cloak class="mt-4 space-y-4">
                   <div class="space-y-2">
                     <p>Shopping type</p>
-                    <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing" id="shopping-type-form">
+                    <div x-target="shopping-container notifications shopping-reset days-listing months-listing" id="shopping-type-form">
                       <div class="grid grid-cols-2 gap-2">
                         <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
                           <input type="checkbox" name="shopping_types[]" value="groceries" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
@@ -896,54 +896,54 @@
                           <span>Other</span>
                         </label>
                       </div>
-                    </form>
+                    </div>
                   </div>
 
                   <div class="space-y-2">
                     <p>Intent</p>
                     <div class="grid grid-cols-2 gap-2">
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Planned</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Opportunistic</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Impulse</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Replacement</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
 
                   <div class="space-y-2">
                     <p>Shopping context</p>
                     <div class="grid grid-cols-3 gap-2">
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Alone</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">With partner</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">With kids</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
 
                   <div class="space-y-2">
                     <p>Shopping for</p>
                     <div class="grid grid-cols-3 gap-2">
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For self</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For household</button>
-                      </form>
-                      <form method="post" action="" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                      </div>
+                      <div x-target="shopping-container notifications shopping-reset days-listing months-listing">
                         <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For others</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -975,14 +975,14 @@
                     <p>Have you traveled today?</p>
                     <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
+                        <div class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
-                        </form>
+                        </div>
                       </div>
                       <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                        <form method="post" action="" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
+                        <div class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
                           <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -991,7 +991,7 @@
                     <!-- Travel mode -->
                     <div class="space-y-2">
                       <p>How did you travel?</p>
-                      <form method="post" action="" x-target="travel-container notifications travel-reset days-listing months-listing" id="travel-mode-form">
+                      <div x-target="travel-container notifications travel-reset days-listing months-listing" id="travel-mode-form">
                         <div class="grid grid-cols-4 gap-2">
                           <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
                             <input type="checkbox" name="travel_modes[]" value="car" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
@@ -1026,7 +1026,7 @@
                             <span>Other</span>
                           </label>
                         </div>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1050,24 +1050,24 @@
                   <p>How was your social density today?</p>
                   <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <div x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Alone</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <div x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Few people</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <div x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Crowd</button>
-                      </form>
+                      </div>
                     </div>
                     <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
-                      <form method="post" action="" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                      <div x-target="social-density-container notifications social-density-reset days-listing months-listing">
                         <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Too much</button>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1082,9 +1082,9 @@
           <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
             <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
               <div id="note-reset" class="absolute top-0 right-0 -mt-6 mr-0 text-xs">
-                <form method="post" action="" x-target="note-container notifications note-reset days-listing months-listing">
+                <div x-target="note-container notifications note-reset days-listing months-listing">
                   <button type="submit" class="inline cursor-pointer underline decoration-gray-300 underline-offset-4 transition-colors duration-200 hover:text-blue-600 hover:decoration-blue-400 hover:decoration-[1.15px] dark:decoration-gray-600 dark:hover:text-blue-400 dark:hover:decoration-blue-400">Reset</button>
-                </form>
+                </div>
               </div>
               <div class="trix-content">
                 <div class="trix-content">
