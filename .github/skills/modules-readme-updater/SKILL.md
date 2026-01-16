@@ -1,80 +1,121 @@
 ---
 name: modules-readme-updater
-description: Update the README.md file to list all available journal modules under the Features section. Use when adding, removing, or reorganizing modules and keeping documentation in sync.
+description: Update the README.md file to list all available journal modules under the Features section with categorized, collapsible sections. Use when adding, removing, or reorganizing modules and keeping documentation in sync.
 ---
 
 # Modules README Updater
 
-This Skill updates the project README.md to accurately document all existing journal modules in a clear, consistent, and properly indented structure under the Features section.
+This Skill updates the project README.md to accurately document all existing journal modules in a categorized, collapsible structure under the Features section, preserving existing text and formatting.
 
 ## When to use this Skill
 
 Use this Skill when:
 - A new module is added or removed
-- Module names change
+- Module names or emojis change
+- Module categories need to be updated
 - The README documentation is outdated
-- You want to ensure modules are documented consistently and alphabetically
+- You want to ensure modules are documented consistently with the codebase
 
 ## Instructions
 
-### Step 1: Locate the insertion point
+### Step 1: Discover all modules and their emojis
 
-1. Open README.md.
-2. Start updating from line 12.
-3. Preserve existing indentation and formatting.
+1. Scan `resources/views/app/journal/entry/partials/*.blade.php` files.
+2. Extract the emoji from each module's `<x-slot:emoji>` tag.
+3. Extract the title from each module's `<x-slot:title>` tag.
+4. Build a complete list of all modules with their emojis.
 
-### Step 2: Update the Features section
+### Step 2: Categorize modules
 
-1. Ensure the section header exists:
+Based on the application's categorization logic, organize modules into these categories:
 
+- 💪 **Body & Health**: Sleep, Physical activity, Health, Hygiene
+- 🧠 **Mind & Emotions**: Mood, Energy
+- 💼 **Work**: Work, Primary obligation, Day type
+- 👥 **Social**: Social density, Kids, Sexual activity
+- 📍 **Places**: Travel, Shopping
+
+### Step 3: Update the Features section
+
+1. Locate the Features section in README.md (starts around line 10).
+2. Preserve the introductory text: "Daily logging of your life"
+3. Replace the module list with categorized collapsible sections.
+
+Structure:
+
+```markdown
 ### Features
 
-2. Under Features, add or update the parent bullet:
-
 - Daily logging of your life
+  <details>
+  <summary>💪 Body & Health (4 modules)</summary>
 
-### Step 3: List all modules as sub-items
+  - 🌖 Sleep
+  - 🏃‍♂️ Physical activity
+  - ❤️ Health
+  - 🧼 Hygiene
+  </details>
 
-1. Add all modules as child list items under “Daily logging of your life”.
-2. Each module must:
-   - Be indented as a sub-list
-   - Represent exactly one module
-   - Use consistent naming
+  <details>
+  <summary>🧠 Mind & Emotions (2 modules)</summary>
 
-Example structure:
+  - 🙂 Mood
+  - ⚡️ Energy
+  </details>
 
-### Features
+  <details>
+  <summary>💼 Work (3 modules)</summary>
 
-- Daily logging of your life
-  - Energy
-  - Health
-  - Mood
-  - Sexual activity
-  - Sleep
+  - 💼 Work
+  - 🎯 Primary obligation
+  - 📅 Day type
+  </details>
 
-### Step 4: Alphabetical ordering
+  <details>
+  <summary>👥 Social (3 modules)</summary>
 
-1. Sort all module names alphabetically.
-2. Do not group, filter, or reorder manually beyond alphabetical order.
-3. Do not omit any existing module.
+  - 👥 Social density
+  - 🧒 Kids
+  - ❤️ Sexual activity
+  </details>
+
+  <details>
+  <summary>📍 Places (2 modules)</summary>
+
+  - ✈️ Travel
+  - 🛍️ Shopping
+  </details>
+
+- Ability to prevent editing older journal entries
+```
+
+### Step 4: Preserve existing content
+
+1. DO NOT modify the introductory paragraphs above Features.
+2. DO NOT modify sections below Features (Core principles, User and developer principles, etc.).
+3. DO NOT change the "Ability to prevent editing older journal entries" line.
+4. Only update the module list within the collapsible sections.
 
 ### Step 5: Formatting rules
 
-- Use spaces, not tabs
-- Keep indentation consistent
-- Do not add descriptions or extra text
-- Do not modify other sections of README.md
+- Use HTML `<details>` and `<summary>` tags for collapsible sections.
+- Maintain consistent indentation (2 spaces per level).
+- Include a blank line after `<summary>` tag for proper rendering.
+- Keep module count in parentheses accurate.
+- Use the correct emoji for each module from the codebase.
+- Maintain alphabetical or logical ordering within each category.
 
 ## Validation checklist
 
-- README.md updated starting at line 12
-- Features section exists
-- “Daily logging of your life” is the parent item
-- All modules are listed
-- Modules are alphabetically ordered
-- Markdown indentation is correct
-- No unrelated content was changed
+- All modules from `resources/views/app/journal/entry/partials/` are included.
+- Each module has the correct emoji from its blade file.
+- Modules are categorized correctly (Body & Health, Mind & Emotions, Work, Social, Places).
+- Module counts in summaries are accurate.
+- Collapsible sections use proper HTML `<details>` tags.
+- Markdown indentation is correct (2 spaces per level).
+- No unrelated content was changed.
+- Introductory text and other features remain unchanged.
 
 ## Output expectation
 
-The Features section clearly documents all journal modules as sub-features of daily life logging, using clean and valid Markdown.
+The Features section clearly documents all journal modules organized into categorized, collapsible sections with emojis, using clean and valid Markdown/HTML that renders properly on GitHub.
