@@ -30,7 +30,7 @@ final class CreateDefaultLayoutForJournal
 
         $modules = [
             // Column 1: Body & Health
-            1 => ['health', 'hygiene', 'energy', 'physical_activity', 'sleep'],
+            1 => ['sleep', 'energy', 'health', 'physical_activity', 'hygiene'],
             // Column 2: Mind & Work
             2 => ['mood', 'work', 'day_type', 'primary_obligation', 'shopping'],
             // Column 3: Movement & Social

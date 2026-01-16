@@ -1,0 +1,1478 @@
+<header class="flex w-full max-w-[1920px] items-center px-2 sm:pr-4 sm:pl-9" journal='{"id":4,"user_id":1,"name":"My life at Dunder Mifflin","slug":"4-my-life-at-dunder-mifflin","can_edit_past":false,"show_sleep_module":1,"show_work_module":1,"show_travel_module":1,"show_kids_module":0,"show_day_type_module":1,"show_primary_obligation_module":1,"show_physical_activity_module":1,"show_health_module":1,"show_mood_module":1,"show_energy_module":1,"show_sexual_activity_module":0,"show_social_density_module":1,"show_shopping_module":1,"show_hygiene_module":1,"created_at":"2026-01-16T01:45:32.000000Z","updated_at":"2026-01-16T01:45:32.000000Z"}'>
+  <!-- normal desktop header -->
+  <nav class="hidden flex-1 items-center gap-3 pt-2 pb-2 sm:flex">
+    <a href="/" class="flex items-center">
+      <img src="http://journalos.test/logo/30x30.webp" alt="JournalOS logo" width="20" height="20" srcset="http://journalos.test/logo/30x30.webp 1x, http://journalos.test/logo/30x30@2x.webp 2x" loading="lazy" class="transition-transform duration-150 hover:scale-145" />
+    </a>
+
+    <!-- selectors -->
+    <div class="flex items-center gap-1">
+      <a href="http://journalos.test/journals" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">Dashboard</a>
+      <span class="text-gray-500">/</span>
+      <div class="flex items-center pl-2">My life at Dunder Mifflin</div>
+    </div>
+
+    <div class="ml-4">
+      <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/settings/modules" data-turbo="true" class="rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">Settings</a>
+    </div>
+
+    <!-- separator -->
+    <div class="-ml-4 flex-1"></div>
+
+    <!-- right side menu -->
+    <div class="flex items-center gap-1">
+      <a class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800" href="/">
+        <svg class="size-4 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" /></svg>
+        Search
+      </a>
+
+      <a href="http://journalos.test/docs" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
+        <svg class="size-4 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm39.1,131.79a47.84,47.84,0,0,0,0-55.58l28.5-28.49a87.83,87.83,0,0,1,0,112.56ZM96,128a32,32,0,1,1,32,32A32,32,0,0,1,96,128Zm88.28-67.6L155.79,88.9a47.84,47.84,0,0,0-55.58,0L71.72,60.4a87.83,87.83,0,0,1,112.56,0ZM60.4,71.72l28.5,28.49a47.84,47.84,0,0,0,0,55.58L60.4,184.28a87.83,87.83,0,0,1,0-112.56ZM71.72,195.6l28.49-28.5a47.84,47.84,0,0,0,55.58,0l28.49,28.5a87.83,87.83,0,0,1-112.56,0Z" /></svg>
+        Docs
+      </a>
+
+      <div x-data="{ menuOpen: false }" @click.away="menuOpen = false" class="relative">
+        <button @click="menuOpen = !menuOpen" :class="{ 'bg-gray-100 dark:bg-gray-800' : menuOpen }" class="flex cursor-pointer items-center gap-1 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
+          Menu
+          <svg x-bind:class="{ 'rotate-180': menuOpen }" class="size-4 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z" /></svg>
+        </button>
+
+        <div x-cloak x-show="menuOpen" x-transition:enter="transition duration-50 ease-linear" x-transition:enter-start="-translate-y-1 opacity-90" x-transition:enter-end="translate-y-0 opacity-100" class="absolute top-0 right-0 z-50 mt-10 w-56 min-w-32 rounded-md border border-gray-200/70 bg-white p-1 text-sm text-gray-800 shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" x-cloak>
+          <a @click="menuOpen = false" href="http://journalos.test/instance" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
+            <svg class="mr-2 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" /></svg>
+            Instance administration
+          </a>
+
+          <div class="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+
+          <a @click="menuOpen = false" href="http://journalos.test/settings/profile" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
+            <svg class="mr-2 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" /></svg>
+            Profile
+          </a>
+
+          <div class="-mx-1 my-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+
+          <form method="POST" action="http://journalos.test/logout" class="w-full">
+            <input type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+            <button @click="menuOpen = false" type="submit" class="relative flex w-full cursor-default items-center rounded px-2 py-1.5 outline-none select-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100">
+              <svg class="mr-2 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z" /></svg>
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- mobile header -->
+  <nav class="flex w-full items-center justify-between gap-3 pt-2 pb-2 sm:hidden" x-data="{ mobileMenuOpen: false }">
+    <a href="/">
+      <img src="http://journalos.test/logo/30x30.webp" alt="JournalOS logo" width="20" height="20" srcset="http://journalos.test/logo/30x30.webp 1x, http://journalos.test/logo/30x30@2x.webp 2x" loading="lazy" />
+    </a>
+
+    <button @click="mobileMenuOpen = true" class="flex items-center gap-2 rounded-md border border-transparent py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
+      <svg class="size-5 text-gray-600 transition-transform duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z" /></svg>
+    </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div x-cloak x-show="mobileMenuOpen" x-transition:enter="transition duration-50 ease-out" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-50 ease-in" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-white dark:bg-gray-900">
+      <div class="flex h-full flex-col">
+        <!-- Mobile Menu Header -->
+        <div class="flex items-center justify-between border-b border-gray-200 px-2 py-1 dark:border-gray-700">
+          <img src="http://journalos.test/logo/30x30.webp" alt="JournalOS logo" width="20" height="20" srcset="http://journalos.test/logo/30x30.webp 1x, http://journalos.test/logo/30x30@2x.webp 2x" loading="lazy" />
+
+          <button @click="mobileMenuOpen = false" class="flex items-center gap-2 rounded-md border border-transparent py-2 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-600 dark:hover:bg-gray-800">
+            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" /></svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Content -->
+        <div class="flex-1 space-y-4 p-4">
+          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Dashboard</a>
+
+          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
+            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" /></svg>
+            Search
+          </a>
+
+          <a @click="mobileMenuOpen = false" href="/" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
+            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm39.1,131.79a47.84,47.84,0,0,0,0-55.58l28.5-28.49a87.83,87.83,0,0,1,0,112.56ZM96,128a32,32,0,1,1,32,32A32,32,0,0,1,96,128Zm88.28-67.6L155.79,88.9a47.84,47.84,0,0,0-55.58,0L71.72,60.4a87.83,87.83,0,0,1,112.56,0ZM60.4,71.72l28.5,28.49a47.84,47.84,0,0,0,0,55.58L60.4,184.28a87.83,87.83,0,0,1,0-112.56ZM71.72,195.6l28.49-28.5a47.84,47.84,0,0,0,55.58,0l28.49,28.5a87.83,87.83,0,0,1-112.56,0Z" /></svg>
+            Docs
+          </a>
+
+          <a @click="mobileMenuOpen = false" href="http://journalos.test/settings/profile" class="flex items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
+            <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" /></svg>
+            Profile
+          </a>
+        </div>
+
+        <!-- Mobile Menu Footer -->
+        <div class="border-t border-gray-200 p-4 dark:border-gray-700">
+          <form method="POST" action="http://journalos.test/logout" class="w-full">
+            <input type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+            <button @click="mobileMenuOpen = false" type="submit" class="flex w-full items-center gap-3 rounded-md p-3 text-lg font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">
+              <svg class="size-5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z" /></svg>
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="flex flex-1 flex-col px-2 py-px">
+  <div class="mx-auto flex w-full grow flex-col items-stretch rounded-lg bg-gray-50 shadow-xs ring-1 ring-[#E6E7E9] dark:bg-gray-950 dark:ring-gray-800">
+    <!-- list of years -->
+
+    <!-- list of months -->
+    <div id="months-listing" class="bg-white dark:bg-gray-900">
+      <div class="mx-auto grid grid-cols-12 divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700">
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/1" class="group relative cursor-pointer border-indigo-200 bg-indigo-50 px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:border-indigo-400/60 dark:bg-indigo-900/40 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">January</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">1 entry</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 scale-x-100 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/2/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">February</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/3/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">March</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/4/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">April</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/5/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">May</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/6/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">June</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/7/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">July</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/8/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">August</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/9/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">September</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/10/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">October</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/11/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">November</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+        <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/12/1" class="group relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
+          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">December</div>
+          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">No entries</div>
+          <div class="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- list of days -->
+    <div id="days-listing" class="bg-white dark:bg-gray-900">
+      <div class="days-grid-31 mx-auto grid divide-x divide-gray-200 dark:divide-gray-700">
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/1" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">1</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/2" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">2</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/3" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">3</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/4" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">4</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/5" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">5</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/6" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">6</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/7" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">7</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/8" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">8</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/9" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">9</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/10" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">10</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/11" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">11</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/12" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">12</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/13" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">13</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/14" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">14</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/15" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">15</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 border-b-indigo-200 bg-indigo-50 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:border-b-indigo-400/60 dark:bg-indigo-900/40 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">16</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-green-500"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/17" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">17</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/18" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">18</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/19" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">19</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/20" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">20</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/21" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">21</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/22" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">22</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/23" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">23</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/24" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">24</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/25" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">25</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/26" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">26</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/27" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">27</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/28" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">28</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/29" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">29</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/30" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">30</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+        <div class="group relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
+          <a href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/31" data-turbo="false" class="flex h-full flex-col items-center justify-center">
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">31</span>
+            <div class="mt-1 h-1.5 w-1.5 rounded-full bg-transparent"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- lock status -->
+
+    <!-- entry content -->
+
+    <div class="grid gap-4 rounded-b-lg bg-gray-50 dark:bg-gray-950" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+      <div class="py-4 pl-4">
+        <div class="space-y-2">
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">🌖</span>
+
+                <h2 class="font-semibold">Sleep tracking</h2>
+              </div>
+
+              <div id="reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="sleep-container" class="space-y-4">
+                <div class="space-y-2">
+                  <!-- Time you went to sleep -->
+                  <div class="flex items-center justify-between">
+                    <p>Time you went to sleep</p>
+                    <div class="flex gap-1">
+                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/15:00/06:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                        <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z" /></svg>
+                      </a>
+                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/01:00/06:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                        <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z" /></svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="bedtime" value="20:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">20:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="bedtime" value="21:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">21:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="bedtime" value="22:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">22:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="bedtime" value="23:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">23:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="bedtime" value="00:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">00:00</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Time you woke up -->
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <p>Time you woke up</p>
+                    <div class="flex gap-1">
+                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/20:00/01:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                        <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z" /></svg>
+                      </a>
+                      <a x-target="sleep-container" href="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep/20:00/11:00" class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
+                        <svg class="size-4 cursor-pointer text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z" /></svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="wake_up_time" value="06:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">06:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="wake_up_time" value="07:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">07:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="wake_up_time" value="08:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">08:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="wake_up_time" value="09:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">09:00</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/sleep" class="h-full" x-target="sleep-container notifications reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="wake_up_time" value="10:00" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">10:00</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">⚡️</span>
+
+                <h2 class="font-semibold">Energy</h2>
+              </div>
+
+              <div id="energy-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="energy-container">
+                <div class="space-y-2">
+                  <p>How was your energy today?</p>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="energy" value="very low" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Very low</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="energy" value="low" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Low</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="energy" value="normal" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Normal</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="energy" value="high" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">High</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/energy" x-target="energy-container notifications energy-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="energy" value="very high" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Very high</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">❤️</span>
+
+                <h2 class="font-semibold">Health</h2>
+              </div>
+
+              <div id="health-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="health-container">
+                <div class="space-y-2">
+                  <p>How did you feel today?</p>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/health" x-target="health-container notifications health-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="health" value="not great" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Not great</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/health" x-target="health-container notifications health-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="health" value="okay" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Okay</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/health" x-target="health-container notifications health-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="health" value="good" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Good</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">🏃‍♂️</span>
+
+                <h2 class="font-semibold">Physical Activity</h2>
+              </div>
+
+              <div id="physical-activity-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="physical-activity-container" x-data="{
+                showActivityDetails: false,
+              }">
+                <div>
+                  <!-- Did you do physical activity? -->
+                  <div class="space-y-2">
+                    <p>Did you do physical activity?</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="has_done_physical_activity" value="yes" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" class="h-full" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="has_done_physical_activity" value="no" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Activity details (shown when has_done_physical_activity is 'yes') -->
+                <div x-show="showActivityDetails" x-cloak class="mt-4 space-y-4">
+                  <!-- Activity type -->
+                  <div class="space-y-2">
+                    <p>What type of activity?</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="activity_type" value="running" />
+                        <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Running</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="activity_type" value="cycling" />
+                        <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Cycling</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="activity_type" value="swimming" />
+                        <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Swimming</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="activity_type" value="gym" />
+                        <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Gym</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="activity_type" value="walking" />
+                        <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Walking</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <!-- Activity intensity -->
+                  <div class="mt-4 space-y-2">
+                    <p>How intense was it?</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="activity_intensity" value="light" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Light</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="activity_intensity" value="moderate" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Moderate</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/physical-activity" x-target="physical-activity-container notifications physical-activity-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="activity_intensity" value="intense" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Intense</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">🧼</span>
+
+                <h2 class="font-semibold">Hygiene</h2>
+              </div>
+
+              <div id="hygiene-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="hygiene-container">
+                <div class="flex flex-col gap-4">
+                  <div class="flex flex-col gap-2">
+                    <p>Showered</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="showered" value="yes" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="showered" value="no" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-2">
+                    <p>Brushed teeth</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="brushed_teeth" value="no" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">No</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="brushed_teeth" value="am" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">AM</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="brushed_teeth" value="pm" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">PM</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col gap-2">
+                    <p>Skincare</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="skincare" value="yes" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/hygiene" class="h-full" x-target="hygiene-container notifications hygiene-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="skincare" value="no" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-4">
+        <div class="space-y-2">
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">🙂</span>
+
+                <h2 class="font-semibold">Mood</h2>
+              </div>
+
+              <div id="mood-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="mood-container">
+                <div class="space-y-2">
+                  <p>How was your mood today?</p>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="mood" value="terrible" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Terrible</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="mood" value="bad" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Bad</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="mood" value="okay" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Okay</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="mood" value="good" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Good</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/mood" x-target="mood-container notifications mood-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="mood" value="great" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Great</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">💼</span>
+
+                <h2 class="font-semibold">Work</h2>
+              </div>
+
+              <div id="work-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="work-container" class="space-y-4" x-data="{
+                showWorkDetails: false,
+              }">
+                <div>
+                  <!-- Have you worked today? -->
+                  <div class="space-y-2">
+                    <p>Have you worked today?</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="worked" value="yes" />
+                          <button @click="showWorkDetails = true" type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="worked" value="no" />
+                          <button @click="showWorkDetails = false" type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div x-show="showWorkDetails" x-cloak class="mt-4 space-y-4">
+                    <!-- Work mode -->
+                    <div class="space-y-2">
+                      <p>How did you work?</p>
+                      <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_mode" value="remote" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Remote</button>
+                          </form>
+                        </div>
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_mode" value="on-site" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">On-site</button>
+                          </form>
+                        </div>
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_mode" value="hybrid" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Hybrid</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Work load -->
+                    <div class="space-y-2">
+                      <p>How much did you work?</p>
+                      <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_load" value="light" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Light</button>
+                          </form>
+                        </div>
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_load" value="medium" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Medium</button>
+                          </form>
+                        </div>
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_load" value="heavy" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Heavy</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Procrastination -->
+                    <div class="space-y-2">
+                      <p>Did you procrastinate (be honest)?</p>
+                      <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_procrastinated" value="yes" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                          </form>
+                        </div>
+                        <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                          <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/work" class="h-full" x-target="work-container notifications work-reset days-listing months-listing">
+                            <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                            <input hidden type="hidden" name="_method" value="put" />
+                            <input type="hidden" name="work_procrastinated" value="no" />
+                            <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">📅</span>
+
+                <h2 class="font-semibold">Day type</h2>
+              </div>
+
+              <div id="day-type-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="day-type-container" class="space-y-4">
+                <!-- Day type -->
+                <div class="space-y-2">
+                  <p>What type of day was it?</p>
+                  <div class="flex flex-wrap justify-center gap-2">
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="day_type" value="workday" />
+                      <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Workday</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="day_type" value="day off" />
+                      <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Day off</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="day_type" value="weekend" />
+                      <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Weekend</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="day_type" value="vacation" />
+                      <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Vacation</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/day-type" x-target="day-type-container notifications day-type-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="day_type" value="sick day" />
+                      <button type="submit" class="cursor-pointer rounded-lg border border-gray-200 px-3 py-2 hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Sick day</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">🎯</span>
+
+                <h2 class="font-semibold">Primary obligation</h2>
+              </div>
+
+              <div id="primary-obligation-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="primary-obligation-container">
+                <div class="space-y-2">
+                  <p>What demanded most of your attention today?</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">It captures priority, not time spent and not emotion.</p>
+                  <div class="grid grid-cols-3 gap-2">
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="primary_obligation" value="work" />
+                      <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Work</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="primary_obligation" value="family" />
+                      <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Family</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="primary_obligation" value="personal" />
+                      <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Personal</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="primary_obligation" value="health" />
+                      <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Health</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="primary_obligation" value="travel" />
+                      <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Travel</button>
+                    </form>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/primary-obligation" x-target="primary-obligation-container notifications primary-obligation-reset days-listing months-listing">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <input type="hidden" name="primary_obligation" value="none" />
+                      <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">None</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">🛍️</span>
+
+                <h2 class="font-semibold">Shopping</h2>
+              </div>
+
+              <div id="shopping-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="shopping-container" x-data="{
+                showShoppingDetails: false,
+              }">
+                <div class="space-y-2">
+                  <p>Shopped today?</p>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="has_shopped" value="yes" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" class="h-full" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="has_shopped" value="no" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div x-show="showShoppingDetails" x-cloak class="mt-4 space-y-4">
+                  <div class="space-y-2">
+                    <p>Shopping type</p>
+                    <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing" id="shopping-type-form">
+                      <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                      <input hidden type="hidden" name="_method" value="put" />
+                      <div class="grid grid-cols-2 gap-2">
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="groceries" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Groceries</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="clothes" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Clothes</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="electronics_tech" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Electronics / tech</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="household_essentials" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Household / essentials</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="books_media" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Books / media</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="gifts" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Gifts</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="online_shopping" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Online shopping</span>
+                        </label>
+                        <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                          <input type="checkbox" name="shopping_types[]" value="other" onchange="document.getElementById('shopping-type-form').requestSubmit()" class="hidden" />
+                          <span>Other</span>
+                        </label>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p>Intent</p>
+                    <div class="grid grid-cols-2 gap-2">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_intent" value="planned" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Planned</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_intent" value="opportunistic" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Opportunistic</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_intent" value="impulse" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Impulse</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_intent" value="replacement" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Replacement</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p>Shopping context</p>
+                    <div class="grid grid-cols-3 gap-2">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_context" value="alone" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Alone</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_context" value="with_partner" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">With partner</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_context" value="with_kids" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">With kids</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p>Shopping for</p>
+                    <div class="grid grid-cols-3 gap-2">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_for" value="for_self" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For self</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_for" value="for_household" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For household</button>
+                      </form>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/shopping" x-target="shopping-container notifications shopping-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="shopping_for" value="for_others" />
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">For others</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-4">
+        <div class="space-y-2">
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">✈️</span>
+
+                <h2 class="font-semibold">Travel</h2>
+              </div>
+
+              <div id="travel-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="travel-container" class="space-y-4" x-data="{
+                showTravelDetails: false,
+              }">
+                <div>
+                  <!-- Have you traveled today? -->
+                  <div class="space-y-2">
+                    <p>Have you traveled today?</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/travel" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="has_traveled" value="yes" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-green-50 dark:hover:bg-green-900/40">Yes</button>
+                        </form>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/travel" class="h-full" x-target="travel-container notifications travel-reset days-listing months-listing">
+                          <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                          <input hidden type="hidden" name="_method" value="put" />
+                          <input type="hidden" name="has_traveled" value="no" />
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center first:rounded-l-lg last:rounded-r-lg hover:bg-red-50 dark:hover:bg-red-900/40">No</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div x-show="showTravelDetails" x-cloak class="mt-4 space-y-4">
+                    <!-- Travel mode -->
+                    <div class="space-y-2">
+                      <p>How did you travel?</p>
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/travel" x-target="travel-container notifications travel-reset days-listing months-listing" id="travel-mode-form">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <div class="grid grid-cols-4 gap-2">
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="car" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Car</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="plane" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Plane</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="train" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Train</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="bike" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Bike</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="bus" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Bus</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="walk" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Walk</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="boat" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Boat</span>
+                          </label>
+                          <label class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">
+                            <input type="checkbox" name="travel_modes[]" value="other" onchange="document.getElementById('travel-mode-form').requestSubmit()" class="hidden" />
+                            <span>Other</span>
+                          </label>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+            <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+              <div class="flex items-center">
+                <span class="mr-2">👥</span>
+
+                <h2 class="font-semibold">Social density</h2>
+              </div>
+
+              <div id="social-density-reset"></div>
+            </div>
+
+            <div class="p-2">
+              <div id="social-density-container">
+                <div class="space-y-2">
+                  <p>How was your social density today?</p>
+                  <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="social_density" value="alone" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Alone</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="social_density" value="few people" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Few people</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="social_density" value="crowd" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Crowd</button>
+                      </form>
+                    </div>
+                    <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                      <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/social-density" x-target="social-density-container notifications social-density-reset days-listing months-listing">
+                        <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                        <input hidden type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="social_density" value="too much" />
+                        <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:hover:bg-green-900/40">Too much</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex h-full border-l border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+        <div id="note-container" class="relative h-full w-full overflow-hidden bg-[#fdf9f0] text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.06)] ring-1 ring-black/5 before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(transparent_1.45rem,_rgba(13,13,13,0.06)_1.45rem,_rgba(13,13,13,0.06)_1.5rem)] before:bg-[length:100%_1.5rem] after:pointer-events-none after:absolute after:inset-y-0 after:left-8 after:w-px after:bg-red-300/70 dark:bg-slate-900 dark:text-gray-100 dark:ring-white/10 dark:before:bg-[linear-gradient(transparent_1.45rem,_rgba(255,255,255,0.08)_1.45rem,_rgba(255,255,255,0.08)_1.5rem)] dark:after:bg-red-400/40">
+          <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
+            <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
+              <div id="note-reset" class="absolute top-0 right-0 -mt-6 mr-0 text-xs">
+                <form method="post" action="http://journalos.test/journals/4-my-life-at-dunder-mifflin/entries/2026/1/16/notes/reset" x-target="note-container notifications note-reset days-listing months-listing">
+                  <input hidden type="hidden" name="_token" value="vpUaWdKEgEzxlTuMW4h47e9g29LuNHCuwkB6rCPe" autocomplete="off" />
+                  <input hidden type="hidden" name="_method" value="put" />
+                  <button type="submit" class="inline cursor-pointer underline decoration-gray-300 underline-offset-4 transition-colors duration-200 hover:text-blue-600 hover:decoration-blue-400 hover:decoration-[1.15px] dark:decoration-gray-600 dark:hover:text-blue-400 dark:hover:decoration-blue-400">Reset</button>
+                </form>
+              </div>
+              <div class="trix-content">
+                <div class="trix-content">
+                  I arrived at Dunder Mifflin at 7:12 a.m., which is early by Scranton standards and therefore a tactical advantage. I performed a full perimeter check of the parking lot. No threats detected, except Kevin eating a breakfast sandwich in his car. Noted.
+                  <br />
+                  <br />
+                  Michael attempted to run a “motivational meeting.” I corrected him three times. Once about the definition of motivation, once about the proper use of a whiteboard marker, and once about the history of paper in feudal Europe. He thanked me by telling me to “lighten up.” I did not.
+                  <br />
+                  <br />
+                  Sales were adequate. I closed one deal by maintaining unbroken eye contact for four minutes. The client blinked first. This confirms my theory that fear is an underused sales tool. Jim tried to distract me with a fake memo about mandatory desk yoga. I reported it to Toby. Nothing happened. Typical.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="flex w-full max-w-[1920px] items-center pr-4 pl-9">
+  <div class="flex py-3 text-sm text-gray-600">
+    <div class="flex">&copy; JournalOS &middot; 2026</div>
+  </div>
+</footer>
