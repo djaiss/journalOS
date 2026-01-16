@@ -20,10 +20,8 @@
     @include('app.journal.settings.partials.sidebar', ['journal' => $journal])
 
     <section class="p-4 sm:p-8">
-      <div class="flex w-full flex-col gap-y-8">
+      <div class="mx-auto flex max-w-3xl flex-col gap-y-8 sm:px-0">
         @include('app.journal.settings.partials.layouts.index', ['journal' => $journal, 'layouts' => $layouts, 'errors' => $errors])
-
-        @include('app.journal.settings.partials.modules', ['journal' => $journal])
       </div>
     </section>
   </div>

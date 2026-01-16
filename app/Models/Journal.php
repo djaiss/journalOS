@@ -21,20 +21,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property ?string $slug
  * @property bool $can_edit_past
- * @property bool $show_sleep_module
- * @property bool $show_work_module
- * @property bool $show_travel_module
- * @property bool $show_kids_module
- * @property bool $show_day_type_module
- * @property bool $show_primary_obligation_module
- * @property bool $show_physical_activity_module
- * @property bool $show_health_module
- * @property bool $show_hygiene_module
- * @property bool $show_mood_module
- * @property bool $show_sexual_activity_module
- * @property bool $show_energy_module
- * @property bool $show_social_density_module
- * @property bool $show_shopping_module
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -60,20 +46,6 @@ final class Journal extends Model
         'name',
         'slug',
         'can_edit_past',
-        'show_sleep_module',
-        'show_work_module',
-        'show_travel_module',
-        'show_kids_module',
-        'show_day_type_module',
-        'show_primary_obligation_module',
-        'show_physical_activity_module',
-        'show_health_module',
-        'show_hygiene_module',
-        'show_mood_module',
-        'show_sexual_activity_module',
-        'show_energy_module',
-        'show_social_density_module',
-        'show_shopping_module',
     ];
 
     /**
@@ -87,20 +59,6 @@ final class Journal extends Model
             'name' => 'encrypted',
             'slug' => 'encrypted',
             'can_edit_past' => 'boolean',
-            'show_sleep_module' => 'boolean',
-            'show_work_module' => 'boolean',
-            'show_travel_module' => 'boolean',
-            'show_kids_module' => 'boolean',
-            'show_day_type_module' => 'boolean',
-            'show_primary_obligation_module' => 'boolean',
-            'show_physical_activity_module' => 'boolean',
-            'show_health_module' => 'boolean',
-            'show_hygiene_module' => 'boolean',
-            'show_mood_module' => 'boolean',
-            'show_sexual_activity_module' => 'boolean',
-            'show_energy_module' => 'boolean',
-            'show_social_density_module' => 'boolean',
-            'show_shopping_module' => 'boolean',
         ];
     }
 

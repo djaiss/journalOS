@@ -149,13 +149,7 @@ final readonly class JournalEntryPresenter
 
     private function isModuleVisible(string $moduleKey): bool
     {
-        $attribute = 'show_' . $moduleKey . '_module';
-
-        if (! array_key_exists($attribute, $this->entry->journal->getAttributes())) {
-            return false;
-        }
-
-        return (bool) $this->entry->journal->{$attribute};
+        return true;
     }
 
     private function resolveLayout(): ?Layout
