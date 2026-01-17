@@ -35,6 +35,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleSexualActivity',
             'moduleHealth',
             'moduleHygiene',
+            'moduleMeal',
             'moduleDayType',
             'moduleTravel',
             'moduleShopping',
@@ -109,6 +110,13 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
         if (! $hasContent && $this->entry->moduleHygiene !== null) {
             $moduleHygiene = $this->entry->moduleHygiene;
             if ($moduleHygiene->showered !== null || $moduleHygiene->brushed_teeth !== null || $moduleHygiene->skincare !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleMeal !== null) {
+            $moduleMeal = $this->entry->moduleMeal;
+            if ($moduleMeal->breakfast !== null || $moduleMeal->lunch !== null || $moduleMeal->dinner !== null || $moduleMeal->snack !== null || $moduleMeal->meal_type !== null || $moduleMeal->social_context !== null || $moduleMeal->notes !== null) {
                 $hasContent = true;
             }
         }

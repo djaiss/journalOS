@@ -13,6 +13,7 @@ use App\Models\ModuleHygiene;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
 use App\Models\ModulePhysicalActivity;
+use App\Models\ModuleMeal;
 use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSleep;
@@ -213,6 +214,25 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleShopping->id, $entry->moduleShopping->id);
         $this->assertEquals('yes', $entry->moduleShopping->has_shopped_today);
         $this->assertEquals(['groceries'], $entry->moduleShopping->shopping_type);
+    }
+
+    #[Test]
+    public function it_has_one_module_meal(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleMeal = ModuleMeal::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'breakfast' => 'yes',
+            'meal_type' => 'home_cooked',
+        ]);
+
+        $this->assertTrue($entry->moduleMeal()->exists());
+        $this->assertEquals($moduleMeal->id, $entry->moduleMeal->id);
+        $this->assertEquals('yes', $entry->moduleMeal->breakfast);
+        $this->assertEquals('home_cooked', $entry->moduleMeal->meal_type);
     }
 
     #[Test]

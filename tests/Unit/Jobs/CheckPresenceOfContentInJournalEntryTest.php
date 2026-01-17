@@ -9,6 +9,7 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\ModuleKids;
 use App\Models\ModuleHygiene;
+use App\Models\ModuleMeal;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModulePrimaryObligation;
 use App\Models\ModuleShopping;
@@ -200,6 +201,27 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         ModuleShopping::factory()->create([
             'journal_entry_id' => $entry->id,
             'shopping_for' => 'for_self',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_meal_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModuleMeal::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'breakfast' => 'yes',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);

@@ -152,6 +152,42 @@
   <span class="text-lime-700">"no"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"meal": {</div>
+<div class="pl-20">
+  "breakfast":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "lunch":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "dinner":
+  <span class="text-lime-700">"no"</span>
+  ,
+</div>
+<div class="pl-20">
+  "snack":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "meal_type":
+  <span class="text-lime-700">"home_cooked"</span>
+  ,
+</div>
+<div class="pl-20">
+  "social_context":
+  <span class="text-lime-700">"family"</span>
+  ,
+</div>
+<div class="pl-20">
+  "notes":
+  <span class="text-lime-700">"Family dinner at home."</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"mood": {</div>
 <div class="pl-20">
   "mood":

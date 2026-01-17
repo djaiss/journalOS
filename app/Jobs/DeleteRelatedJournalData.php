@@ -28,6 +28,7 @@ final class DeleteRelatedJournalData implements ShouldQueue
         'module_travel' => 'journal_entry_id',
         'module_health' => 'journal_entry_id',
         'module_hygiene' => 'journal_entry_id',
+        'module_meal' => 'journal_entry_id',
         'module_mood' => 'journal_entry_id',
         'module_day_type' => 'journal_entry_id',
         'module_physical_activity' => 'journal_entry_id',

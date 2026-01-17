@@ -42,6 +42,14 @@
   <x-marketing.docs.attribute name="attributes.modules.hygiene.showered" type="string" description="Whether you showered." />
   <x-marketing.docs.attribute name="attributes.modules.hygiene.brushed_teeth" type="string" description="When you brushed your teeth." />
   <x-marketing.docs.attribute name="attributes.modules.hygiene.skincare" type="string" description="Whether you did skincare." />
+  <x-marketing.docs.attribute name="attributes.modules.meal" type="object" description="The meal module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.breakfast" type="string" description="Whether you had breakfast." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.lunch" type="string" description="Whether you had lunch." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.dinner" type="string" description="Whether you had dinner." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.snack" type="string" description="Whether you had a snack." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.meal_type" type="string" description="How meals were prepared." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.social_context" type="string" description="Who you ate with." />
+  <x-marketing.docs.attribute name="attributes.modules.meal.notes" type="string" description="Additional notes about meals." />
   <x-marketing.docs.attribute name="attributes.modules.mood" type="object" description="The mood module payload." />
   <x-marketing.docs.attribute name="attributes.modules.mood.mood" type="string" description="The mood for that day." />
   <x-marketing.docs.attribute name="attributes.modules.energy" type="object" description="The energy module payload." />

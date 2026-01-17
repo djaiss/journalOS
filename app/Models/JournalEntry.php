@@ -225,6 +225,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the meal module data for this entry.
+     *
+     * @return HasOne<ModuleMeal, $this>
+     */
+    public function moduleMeal(): HasOne
+    {
+        return $this->hasOne(ModuleMeal::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the physical activity module data for this entry.
      *
      * @return HasOne<ModulePhysicalActivity, $this>
