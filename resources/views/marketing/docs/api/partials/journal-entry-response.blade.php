@@ -84,6 +84,27 @@
   ]
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"weather": {</div>
+<div class="pl-20">
+  "condition":
+  <span class="text-lime-700">"sunny"</span>
+  ,
+</div>
+<div class="pl-20">
+  "temperature_range":
+  <span class="text-lime-700">"warm"</span>
+  ,
+</div>
+<div class="pl-20">
+  "precipitation":
+  <span class="text-lime-700">"none"</span>
+  ,
+</div>
+<div class="pl-20">
+  "daylight":
+  <span class="text-lime-700">"normal"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"shopping": {</div>
 <div class="pl-20">
   "has_shopped_today":

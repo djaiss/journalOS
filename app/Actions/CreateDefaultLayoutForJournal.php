@@ -34,7 +34,7 @@ final class CreateDefaultLayoutForJournal
             // Column 2: Mind & Work
             2 => ['mood', 'work', 'day_type', 'primary_obligation', 'shopping'],
             // Column 3: Movement & Social
-            3 => ['travel', 'social_density'],
+            3 => ['travel', 'weather', 'social_density'],
         ];
 
         $insertData = [];

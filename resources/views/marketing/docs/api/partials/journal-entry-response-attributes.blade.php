@@ -24,6 +24,11 @@
   <x-marketing.docs.attribute name="attributes.modules.travel" type="object" description="The travel module payload." />
   <x-marketing.docs.attribute name="attributes.modules.travel.has_traveled_today" type="string" description="Whether you traveled today." />
   <x-marketing.docs.attribute name="attributes.modules.travel.travel_mode" type="array" description="The travel modes used for the journal entry." />
+  <x-marketing.docs.attribute name="attributes.modules.weather" type="object" description="The weather module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.weather.condition" type="string" description="The weather condition." />
+  <x-marketing.docs.attribute name="attributes.modules.weather.temperature_range" type="string" description="The temperature range for the day." />
+  <x-marketing.docs.attribute name="attributes.modules.weather.precipitation" type="string" description="The precipitation level." />
+  <x-marketing.docs.attribute name="attributes.modules.weather.daylight" type="string" description="The daylight length." />
   <x-marketing.docs.attribute name="attributes.modules.shopping" type="object" description="The shopping module payload." />
   <x-marketing.docs.attribute name="attributes.modules.shopping.has_shopped_today" type="string" description="Whether you shopped today." />
   <x-marketing.docs.attribute name="attributes.modules.shopping.shopping_type" type="array" description="The shopping types for the journal entry." />
