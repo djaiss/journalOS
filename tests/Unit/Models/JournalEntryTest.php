@@ -18,6 +18,7 @@ use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
+use App\Models\ModuleWeather;
 use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -210,6 +211,29 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleTravel->id, $entry->moduleTravel->id);
         $this->assertEquals('yes', $entry->moduleTravel->has_traveled_today);
         $this->assertEquals(['train'], $entry->moduleTravel->travel_mode);
+    }
+
+    #[Test]
+    public function it_has_one_module_weather(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleWeather = ModuleWeather::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'condition' => 'sunny',
+            'temperature_range' => 'warm',
+            'precipitation' => 'none',
+            'daylight' => 'normal',
+        ]);
+
+        $this->assertTrue($entry->moduleWeather()->exists());
+        $this->assertEquals($moduleWeather->id, $entry->moduleWeather->id);
+        $this->assertEquals('sunny', $entry->moduleWeather->condition);
+        $this->assertEquals('warm', $entry->moduleWeather->temperature_range);
+        $this->assertEquals('none', $entry->moduleWeather->precipitation);
+        $this->assertEquals('normal', $entry->moduleWeather->daylight);
     }
 
     #[Test]
