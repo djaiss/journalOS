@@ -8,16 +8,16 @@ use App\Models\Journal;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Support\Facades\DB;
 
-final class CreateDefaultLayoutForJournal
+final readonly class CreateDefaultLayoutForJournal
 {
     public function __construct(
-        private readonly Journal $journal,
+        private Journal $journal,
     ) {}
 
     public function execute(): void
     {
         /** @var Encrypter $encrypter */
-        $encrypter = app(Encrypter::class);
+        $encrypter = resolve(Encrypter::class);
 
         $layoutId = DB::table('layouts')->insertGetId([
             'journal_id' => $this->journal->id,
