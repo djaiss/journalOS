@@ -105,6 +105,27 @@
   <span class="text-lime-700">"normal"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"weather_influence": {</div>
+<div class="pl-20">
+  "mood_effect":
+  <span class="text-lime-700">"positive"</span>
+  ,
+</div>
+<div class="pl-20">
+  "energy_effect":
+  <span class="text-lime-700">"boosted"</span>
+  ,
+</div>
+<div class="pl-20">
+  "plans_influence":
+  <span class="text-lime-700">"slight"</span>
+  ,
+</div>
+<div class="pl-20">
+  "outside_time":
+  <span class="text-lime-700">"some"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"shopping": {</div>
 <div class="pl-20">
   "has_shopped_today":

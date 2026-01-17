@@ -1,0 +1,20 @@
+meta {
+  name: Log weather influence
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/weather-influence
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "mood_effect": "positive",
+    "energy_effect": "boosted",
+    "plans_influence": "slight",
+    "outside_time": "some"
+  }
+}

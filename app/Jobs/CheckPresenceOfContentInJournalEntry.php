@@ -38,6 +38,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleDayType',
             'moduleTravel',
             'moduleWeather',
+            'moduleWeatherInfluence',
             'moduleShopping',
         ]);
 
@@ -133,6 +134,17 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
                 || $moduleWeather->temperature_range !== null
                 || $moduleWeather->precipitation !== null
                 || $moduleWeather->daylight !== null
+            ) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleWeatherInfluence !== null) {
+            $moduleWeatherInfluence = $this->entry->moduleWeatherInfluence;
+            if ($moduleWeatherInfluence->mood_effect !== null
+                || $moduleWeatherInfluence->energy_effect !== null
+                || $moduleWeatherInfluence->plans_influence !== null
+                || $moduleWeatherInfluence->outside_time !== null
             ) {
                 $hasContent = true;
             }

@@ -55,6 +55,12 @@ final class JournalEntryResource extends JsonResource
                         'precipitation' => $this->moduleWeather?->precipitation,
                         'daylight' => $this->moduleWeather?->daylight,
                     ],
+                    'weather_influence' => [
+                        'mood_effect' => $this->moduleWeatherInfluence?->mood_effect,
+                        'energy_effect' => $this->moduleWeatherInfluence?->energy_effect,
+                        'plans_influence' => $this->moduleWeatherInfluence?->plans_influence,
+                        'outside_time' => $this->moduleWeatherInfluence?->outside_time,
+                    ],
                     'shopping' => [
                         'has_shopped_today' => $this->moduleShopping?->has_shopped_today,
                         'shopping_type' => $this->moduleShopping?->shopping_type,

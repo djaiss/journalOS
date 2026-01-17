@@ -87,6 +87,11 @@ final readonly class JournalEntryPresenter
                 'view' => 'app.journal.entry.partials.weather',
                 'data' => ['module' => new WeatherModulePresenter($this->entry)->build()],
             ],
+            'weather_influence' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.weather_influence',
+                'data' => ['module' => new WeatherInfluenceModulePresenter($this->entry)->build()],
+            ],
             'shopping' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.shopping',

@@ -48,6 +48,13 @@ final class JournalEntryPresenterTest extends TestCase
             'position' => 1,
         ]);
 
+        LayoutModule::factory()->create([
+            'layout_id' => $layout->id,
+            'module_key' => 'weather_influence',
+            'column_number' => 2,
+            'position' => 2,
+        ]);
+
         $entry = JournalEntry::factory()->create([
             'journal_id' => $journal->id,
             'layout_id' => $layout->id,
@@ -68,5 +75,6 @@ final class JournalEntryPresenterTest extends TestCase
         $this->assertSame('sleep', $result['columns'][1][0]['key']);
         $this->assertSame('work', $result['columns'][1][1]['key']);
         $this->assertSame('mood', $result['columns'][2][0]['key']);
+        $this->assertSame('weather_influence', $result['columns'][2][1]['key']);
     }
 }

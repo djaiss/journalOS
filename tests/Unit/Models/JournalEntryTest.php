@@ -19,6 +19,7 @@ use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
 use App\Models\ModuleWeather;
+use App\Models\ModuleWeatherInfluence;
 use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -234,6 +235,29 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals('warm', $entry->moduleWeather->temperature_range);
         $this->assertEquals('none', $entry->moduleWeather->precipitation);
         $this->assertEquals('normal', $entry->moduleWeather->daylight);
+    }
+
+    #[Test]
+    public function it_has_one_module_weather_influence(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleWeatherInfluence = ModuleWeatherInfluence::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'mood_effect' => 'positive',
+            'energy_effect' => 'boosted',
+            'plans_influence' => 'slight',
+            'outside_time' => 'some',
+        ]);
+
+        $this->assertTrue($entry->moduleWeatherInfluence()->exists());
+        $this->assertEquals($moduleWeatherInfluence->id, $entry->moduleWeatherInfluence->id);
+        $this->assertEquals('positive', $entry->moduleWeatherInfluence->mood_effect);
+        $this->assertEquals('boosted', $entry->moduleWeatherInfluence->energy_effect);
+        $this->assertEquals('slight', $entry->moduleWeatherInfluence->plans_influence);
+        $this->assertEquals('some', $entry->moduleWeatherInfluence->outside_time);
     }
 
     #[Test]
