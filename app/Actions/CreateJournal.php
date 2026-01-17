@@ -61,7 +61,7 @@ final class CreateJournal
 
     private function addDefaultLayout(): void
     {
-        (new CreateDefaultLayoutForJournal($this->journal))->execute();
+        new CreateDefaultLayoutForJournal($this->journal)->execute();
     }
 
     private function generateSlug(): void

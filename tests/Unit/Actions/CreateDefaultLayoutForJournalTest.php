@@ -70,6 +70,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
         $this->assertContains('primary_obligation', $moduleKeys);
         $this->assertContains('shopping', $moduleKeys);
         $this->assertContains('travel', $moduleKeys);
+        $this->assertContains('weather', $moduleKeys);
         $this->assertContains('social_density', $moduleKeys);
     }
 
@@ -112,7 +113,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             ->pluck('module_key')
             ->toArray();
 
-        $this->assertEquals(['travel', 'social_density'], $column3Modules);
+        $this->assertEquals(['travel', 'weather', 'social_density'], $column3Modules);
     }
 
     #[Test]
@@ -151,6 +152,6 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             ->first();
 
         $this->assertEquals(3, $socialDensityModule->column_number);
-        $this->assertEquals(2, $socialDensityModule->position);
+        $this->assertEquals(3, $socialDensityModule->position);
     }
 }
