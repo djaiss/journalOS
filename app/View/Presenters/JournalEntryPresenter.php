@@ -70,78 +70,88 @@ final readonly class JournalEntryPresenter
             'sleep' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.sleep',
-                'data' => ['module' => (new SleepModulePresenter($this->entry))->build('20:00', '06:00')],
+                'data' => ['module' => new SleepModulePresenter($this->entry)->build('20:00', '06:00')],
             ],
             'work' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.work',
-                'data' => ['module' => (new WorkModulePresenter($this->entry))->build()],
+                'data' => ['module' => new WorkModulePresenter($this->entry)->build()],
             ],
             'travel' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.travel',
-                'data' => ['module' => (new TravelModulePresenter($this->entry))->build()],
+                'data' => ['module' => new TravelModulePresenter($this->entry)->build()],
+            ],
+            'weather' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.weather',
+                'data' => ['module' => new WeatherModulePresenter($this->entry)->build()],
+            ],
+            'weather_influence' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.weather_influence',
+                'data' => ['module' => new WeatherInfluenceModulePresenter($this->entry)->build()],
             ],
             'shopping' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.shopping',
-                'data' => ['module' => (new ShoppingModulePresenter($this->entry))->build()],
+                'data' => ['module' => new ShoppingModulePresenter($this->entry)->build()],
             ],
             'kids' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.kids',
                 'data' => [
                     'entry' => $this->entry,
-                    'module' => (new KidsModulePresenter($this->entry))->build(),
+                    'module' => new KidsModulePresenter($this->entry)->build(),
                 ],
             ],
             'day_type' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.day_type',
-                'data' => ['module' => (new DayTypeModulePresenter($this->entry))->build()],
+                'data' => ['module' => new DayTypeModulePresenter($this->entry)->build()],
             ],
             'primary_obligation' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.primary_obligation',
-                'data' => ['module' => (new PrimaryObligationModulePresenter($this->entry))->build()],
+                'data' => ['module' => new PrimaryObligationModulePresenter($this->entry)->build()],
             ],
             'physical_activity' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.physical_activity',
-                'data' => ['module' => (new PhysicalActivityModulePresenter($this->entry))->build()],
+                'data' => ['module' => new PhysicalActivityModulePresenter($this->entry)->build()],
             ],
             'health' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.health',
-                'data' => ['module' => (new HealthModulePresenter($this->entry))->build()],
+                'data' => ['module' => new HealthModulePresenter($this->entry)->build()],
             ],
             'hygiene' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.hygiene',
-                'data' => ['module' => (new HygieneModulePresenter($this->entry))->build()],
+                'data' => ['module' => new HygieneModulePresenter($this->entry)->build()],
             ],
             'mood' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.mood',
-                'data' => ['module' => (new MoodModulePresenter($this->entry))->build()],
+                'data' => ['module' => new MoodModulePresenter($this->entry)->build()],
             ],
             'sexual_activity' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.sexual_activity',
                 'data' => [
                     'entry' => $this->entry,
-                    'module' => (new SexualActivityModulePresenter($this->entry))->build(),
+                    'module' => new SexualActivityModulePresenter($this->entry)->build(),
                 ],
             ],
             'energy' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.energy',
-                'data' => ['module' => (new EnergyModulePresenter($this->entry))->build()],
+                'data' => ['module' => new EnergyModulePresenter($this->entry)->build()],
             ],
             'social_density' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.social_density',
-                'data' => ['module' => (new SocialDensityModulePresenter($this->entry))->build()],
+                'data' => ['module' => new SocialDensityModulePresenter($this->entry)->build()],
             ],
             default => null,
         };

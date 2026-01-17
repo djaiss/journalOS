@@ -81,7 +81,7 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.27.1", "", { "os": "win32", "cpu": "x64" }, "sha512-d5X6RMYv6taIymSk8JBP+nxv8DQAMY6A51GPgusqLdK9wBz5wWIXy1KjTck6HnjE9hqJzJRdk+1p/t5soSbCtw=="],
 
-    "@hotwired/turbo": ["@hotwired/turbo@8.0.20", "", {}, "sha512-IilkH/+h92BRLeY/rMMR3MUh1gshIfdra/qZzp/Bl5FmiALD/6sQZK/ecxSbumeyOYiWr/JRI+Au1YQmkJGnoA=="],
+    "@hotwired/turbo": ["@hotwired/turbo@8.0.21", "", {}, "sha512-fJTv3JnzFHeDxBb23esZSOhT4r142xf5o3lKMFMvzPC6AllkqbBKk5Yb31UZhtIsKQCwmO/pUQrtTUlYl5CHAQ=="],
 
     "@imacrayon/alpine-ajax": ["@imacrayon/alpine-ajax@0.12.6", "", {}, "sha512-Cu4Qh+C3m+TXhzSCqnKLqd5zR/RsliE/8KpNash21hh/ZJgUrRgsdtwpOSPWY4hIYOocjvy3ellvfvujXkBnnQ=="],
 

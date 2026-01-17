@@ -41,13 +41,10 @@ Schema::create('module_health', function (Blueprint $table): void {
     $table->string('category')->default(ModuleType::BODY_HEALTH->value);
     $table->text('health')->nullable();
     $table->timestamps();
-    $table->foreign('journal_entry_id')->references('id')->on('journal_entries');
 });
 ```
 
 1. A module always has a category from `ModuleType`. Do not add new types. Choose the closest existing category.
-1. Add a `journal_entries` migration for a boolean `show_{module}_module`.
-1. Default to `true` only if the module is broadly applicable, low effort, non-sensitive, and useful with partial data. Otherwise default to `false` and require opt-in. Enable a module by default only if it is broadly applicable to most users on most days, immediately understandable without explanation, low-effort to use, non-sensitive in nature, and delivers clear value even with incomplete data; otherwise, keep it disabled by default and require explicit user opt-in.
 1. Never use foreign keys constraints.
 
 ### Step 2: Create related model
@@ -65,7 +62,16 @@ Create a factory for the model.
 1. Add a test for the new `JournalEntry` relationship method.
 1. Never use `for()` on factories. Set `user_id` explicitly.
 
-### Step 5: Create the actions to manage the data
+### Step 5: Add module to ModuleCatalog class
+
+1. All modules are documented within ModuleCatalog so we can reference it later dynamically.
+
+### Step 6: Decide if the module should be added to the default layout for journal action
+
+1. When we create a journal, some modules are added to the layout by default. It's defined in `CreateDefaultLayoutForJournal` action.
+1. Enable a module by default only if it is broadly applicable to most users on most days, immediately understandable without explanation, low-effort to use, non-sensitive in nature, and delivers clear value even with incomplete data; otherwise, keep it disabled by default and require explicit user opt-in.
+
+### Step 7: Create the actions to manage the data
 
 1. Create `Log{ModuleName}` (follow existing actions like `LogHealth`).
 1. Action flow: validate -> log data -> log user action -> update last activity -> refresh content presence.
@@ -73,12 +79,12 @@ Create a factory for the model.
 1. Create `Reset{ModuleName}Data` (see `ResetHealthData`).
 1. Add related table to DeleteRelatedJournalData.
 
-### Step 6: Update the CheckPresenceOfContentInJournalEntry job
+### Step 8: Update the CheckPresenceOfContentInJournalEntry job
 
 1. Add the presence of the data of the new module in `app/Jobs/CheckPresenceOfContentInJournalEntry.php`.
 1. Update the test to reflect it.
 
-### Step 7: Create a view that will let users interact with the module
+### Step 9: Create a view that will let users interact with the module
 
 1. Views are stored in the `resources/views/app/journal/entry/partials` folder.
 1. If the module has Yes/No buttons, use the existing components.
@@ -86,7 +92,7 @@ Create a factory for the model.
 1. If the module uses multiple choices with multiple accepted values, display them like in the primary_obligation.blade.php view file.
 1. Add the view at the right place within the `resources/views/app/journal/entry/show.blade.php` file.
 
-### Step 8: Create the web controller to pilot the view
+### Step 10: Create the web controller to pilot the view
 
 1. Add a controller to call the right view.
 1. Controller names should follow project convention and include the module name (example: `HealthController.php`).
@@ -98,13 +104,13 @@ Create a factory for the model.
 1. Add the appropriate web route.
 1. Create controller tests for happy path and edge cases.
 
-### Step 9: Create the api controller
+### Step 11: Create the api controller
 
 1. Create an API controller that uses the same actions for log/reset.
 1. Update `JournalEntryResource` to include the new data.
 1. Add API controller tests.
 
-### Step 10: Add marketing documentation
+### Step 12: Add marketing documentation
 
 1. Marketing docs live in `resources/views/marketing/docs/api`.
 1. Add a new module in the modules folder.
@@ -113,16 +119,16 @@ Create a factory for the model.
 1. Add a new controller for the documentation of this module.
 1. Add a controller test that asserts the content loads.
 
-### Step 11: Add appropriate Bruno API documentation
+### Step 13: Add appropriate Bruno API documentation
 
 1. Add Bruno tests for the new API methods in `docs/bruno`.
 
-### Step 12: Update translations
+### Step 14: Update translations
 
 1. Run `composer journalos:locale`.
 1. Ensure there are no empty entries in `lang/fr.json`.
 
-### Step 13: Test and lint
+### Step 15: Test and lint
 
 1. Run relevant PHPUnit tests for the new module.
 1. When tests pass, run `composer test` if needed for coverage.

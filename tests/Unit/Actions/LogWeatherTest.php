@@ -1,0 +1,128 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Unit\Actions;
+
+use App\Actions\LogWeather;
+use App\Jobs\CheckPresenceOfContentInJournalEntry;
+use App\Jobs\LogUserAction;
+use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\Journal;
+use App\Models\JournalEntry;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
+
+final class LogWeatherTest extends TestCase
+{
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Queue::fake();
+    }
+
+    #[Test]
+    public function it_logs_weather_values(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $entry = (new LogWeather(
+            user: $user,
+            entry: $entry,
+            condition: 'sunny',
+            temperatureRange: 'warm',
+            precipitation: 'none',
+            daylight: 'normal',
+        ))->execute();
+
+        $this->assertEquals('sunny', $entry->moduleWeather->condition);
+        $this->assertEquals('warm', $entry->moduleWeather->temperature_range);
+        $this->assertEquals('none', $entry->moduleWeather->precipitation);
+        $this->assertEquals('normal', $entry->moduleWeather->daylight);
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: LogUserAction::class,
+            callback: function (LogUserAction $job) use ($user): bool {
+                return $job->action === 'weather_logged' && $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: UpdateUserLastActivityDate::class,
+            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
+                return $job->user->id === $user->id;
+            },
+        );
+
+        Queue::assertPushedOn(
+            queue: 'low',
+            job: CheckPresenceOfContentInJournalEntry::class,
+            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
+                return $job->entry->id === $entry->id;
+            },
+        );
+    }
+
+    #[Test]
+    public function it_throws_validation_exception_for_invalid_condition_value(): void
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        (new LogWeather(
+            user: $user,
+            entry: $entry,
+            condition: 'stormy',
+            temperatureRange: null,
+            precipitation: null,
+            daylight: null,
+        ))->execute();
+    }
+
+    #[Test]
+    public function it_throws_exception_when_user_does_not_own_journal(): void
+    {
+        $this->expectException(ModelNotFoundException::class);
+
+        $user = User::factory()->create();
+        $anotherUser = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $anotherUser->id,
+        ]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        (new LogWeather(
+            user: $user,
+            entry: $entry,
+            condition: 'sunny',
+            temperatureRange: 'warm',
+            precipitation: 'none',
+            daylight: 'normal',
+        ))->execute();
+    }
+}

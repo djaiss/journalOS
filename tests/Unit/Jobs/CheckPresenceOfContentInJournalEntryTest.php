@@ -15,6 +15,8 @@ use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSocialDensity;
 use App\Models\ModuleWork;
+use App\Models\ModuleWeather;
+use App\Models\ModuleWeatherInfluence;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -200,6 +202,48 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         ModuleShopping::factory()->create([
             'journal_entry_id' => $entry->id,
             'shopping_for' => 'for_self',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_weather_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModuleWeather::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'condition' => 'rain',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_weather_influence_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModuleWeatherInfluence::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'mood_effect' => 'positive',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);

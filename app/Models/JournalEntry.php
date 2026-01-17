@@ -217,6 +217,26 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the weather module data for this entry.
+     *
+     * @return HasOne<ModuleWeather, $this>
+     */
+    public function moduleWeather(): HasOne
+    {
+        return $this->hasOne(ModuleWeather::class, 'journal_entry_id');
+    }
+
+    /**
+     * Get the weather influence module data for this entry.
+     *
+     * @return HasOne<ModuleWeatherInfluence, $this>
+     */
+    public function moduleWeatherInfluence(): HasOne
+    {
+        return $this->hasOne(ModuleWeatherInfluence::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the travel module data for this entry.
      *
      * @return HasOne<ModuleTravel, $this>
