@@ -64,14 +64,12 @@
 
             <!-- Terms and conditions -->
 
-            @if (config('journalos.enable_anti_spam'))
-              {{--
-                <div class="mt-4 mb-0">
+            @if (config('journalos.show_marketing_site'))
+              <div class="mt-4 mb-0">
                 <x-turnstile data-size="flexible" />
-                
-                <x-input-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
-                </div>
-              --}}
+
+                <x-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
+              </div>
             @endif
 
             <div class="flex items-center justify-between">

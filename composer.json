@@ -24,6 +24,7 @@
     "laravel/tinker": "^2.10.1",
     "pragmarx/google2fa-laravel": "^2.3",
     "resend/resend-laravel": "^1.0.0",
+    "njoguamos/laravel-turnstile": "^3.0",
     "spatie/laravel-login-link": "^1.6",
     "spatie/laravel-sitemap": "^7.3",
     "stevebauman/purify": "^6.3",

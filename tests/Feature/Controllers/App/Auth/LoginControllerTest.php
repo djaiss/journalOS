@@ -27,6 +27,7 @@ final class LoginControllerTest extends TestCase
     #[Test]
     public function it_authenticates_a_user(): void
     {
+        config(['journalos.show_marketing_site' => false]);
         $user = User::factory()->create();
 
         $response = $this->post('/login', [
@@ -41,6 +42,7 @@ final class LoginControllerTest extends TestCase
     #[Test]
     public function it_does_not_authenticate_a_user_with_invalid_password(): void
     {
+        config(['journalos.show_marketing_site' => false]);
         $user = User::factory()->create();
 
         $this->post('/login', [
@@ -54,6 +56,7 @@ final class LoginControllerTest extends TestCase
     #[Test]
     public function it_rejects_overlong_login_email(): void
     {
+        config(['journalos.show_marketing_site' => false]);
         $response = $this->from('/login')->post('/login', [
             'email' => str_repeat('a', 250) . '@example.com',
             'password' => 'password',
@@ -67,6 +70,7 @@ final class LoginControllerTest extends TestCase
     public function it_sends_an_email_on_failed_login(): void
     {
         Queue::fake();
+        config(['journalos.show_marketing_site' => false]);
 
         $user = User::factory()->create();
 
@@ -83,6 +87,7 @@ final class LoginControllerTest extends TestCase
     #[Test]
     public function it_logs_out_a_user(): void
     {
+        config(['journalos.show_marketing_site' => false]);
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post('/logout');

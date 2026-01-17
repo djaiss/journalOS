@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use NjoguAmos\Turnstile\Rules\TurnstileRule;
 
 final class LoginController extends Controller
 {
@@ -30,6 +31,12 @@ final class LoginController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        if (config('journalos.show_marketing_site')) {
+            $request->validate([
+                'cf-turnstile-response' => ['required', new TurnstileRule()],
+            ]);
+        }
+
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
