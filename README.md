@@ -46,6 +46,8 @@ You may use either the server I host, or host your own! You can try the product 
 
   - ✈️ Travel
   - 🛍️ Shopping
+  - 🌦️ Weather
+  - 🌬️ Weather influence
   </details>
 
 - Ability to prevent editing older journal entries
