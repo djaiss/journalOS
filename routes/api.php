@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\Journals\Modules\SocialDensity\SocialDensityControl
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepController;
 use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
 use App\Http\Controllers\Api\Journals\Modules\Weather\WeatherController as WeatherModuleController;
+use App\Http\Controllers\Api\Journals\Modules\WeatherInfluence\WeatherInfluenceController;
 use App\Http\Controllers\Api\Journals\Modules\Work\WorkController;
 use App\Http\Controllers\Api\Journals\Notes\NotesController;
 use App\Http\Controllers\Api\Journals\Notes\NotesResetController;
@@ -70,6 +71,9 @@ Route::name('api.')->group(function (): void {
 
                         Route::put('weather', [WeatherModuleController::class, 'update'])
                             ->name('journal.entry.weather.update');
+
+                        Route::put('weather-influence', [WeatherInfluenceController::class, 'update'])
+                            ->name('journal.entry.weather-influence.update');
 
                         Route::put('shopping', [ShoppingController::class, 'update'])
                             ->name('journal.entry.shopping.update');

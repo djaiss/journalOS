@@ -40,5 +40,6 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs/api/modules/sleep', [Docs\Api\Modules\SleepController::class, 'index'])->name('marketing.docs.api.modules.sleep');
     Route::get('/docs/api/modules/travel', [Docs\Api\Modules\TravelController::class, 'index'])->name('marketing.docs.api.modules.travel');
     Route::get('/docs/api/modules/weather', [Docs\Api\Modules\WeatherController::class, 'index'])->name('marketing.docs.api.modules.weather');
+    Route::get('/docs/api/modules/weather-influence', [Docs\Api\Modules\WeatherInfluenceController::class, 'index'])->name('marketing.docs.api.modules.weather-influence');
     Route::get('/docs/api/modules/work', [Docs\Api\Modules\WorkController::class, 'index'])->name('marketing.docs.api.modules.work');
 });
