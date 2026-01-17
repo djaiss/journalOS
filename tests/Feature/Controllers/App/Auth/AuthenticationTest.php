@@ -25,7 +25,8 @@ final class AuthenticationTest extends TestCase
     #[Test]
     public function users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->create([
+        config(['journalos.show_marketing_site' => false]);
+        User::factory()->create([
             'email' => 'michael.scott@dundermifflin.com',
             'password' => Hash::make('5UTHSmdj'),
         ]);

@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use NjoguAmos\Turnstile\Rules\TurnstileRule;
 
 final class RegistrationController extends Controller
 {
@@ -25,7 +26,7 @@ final class RegistrationController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class, 'disposable_email'],
@@ -38,11 +39,17 @@ final class RegistrationController extends Controller
             ],
         ]);
 
+        if (config('journalos.show_marketing_site')) {
+            $request->validate([
+                'cf-turnstile-response' => ['required', new TurnstileRule()],
+            ]);
+        }
+
         $user = new CreateAccount(
-            email: mb_strtolower(TextSanitizer::plainText((string) $request->input('email'))),
-            password: $request->input('password'),
-            firstName: TextSanitizer::plainText((string) $request->input('first_name')),
-            lastName: TextSanitizer::plainText((string) $request->input('last_name')),
+            email: mb_strtolower(TextSanitizer::plainText((string) $validated['email'])),
+            password: $validated['password'],
+            firstName: TextSanitizer::plainText((string) $validated['first_name']),
+            lastName: TextSanitizer::plainText((string) $validated['last_name']),
         )->execute();
 
         event(new Registered($user));

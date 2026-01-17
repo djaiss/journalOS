@@ -43,4 +43,9 @@ return [
         'purge_secret' => env('CLOUDFLARE_PURGE_SECRET'),
         'purge_chunk' => env('CLOUDFLARE_PURGE_CHUNK', 30),
     ],
+
+    'turnstile' => [
+        'key' => env('TURNSTILE_SITE_KEY'),
+        'secret' => env('TURNSTILE_SECRET_KEY'),
+    ],
 ];

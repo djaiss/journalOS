@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'description' => env('APP_DESCRIPTION', 'JournalOS lets you document your life.'),
+    'description' => env('APP_DESCRIPTION', 'JournalOS is an online bullet journal designed to help you document your life.'),
 
     /*
     |--------------------------------------------------------------------------
