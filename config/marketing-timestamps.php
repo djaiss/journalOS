@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'pages' => [
         'marketing/docs/api/account/account' => '2026-01-11 23:29:42',
@@ -13,6 +11,7 @@ return [
         'marketing/docs/api/entries/journal-entry' => '2026-01-11 23:29:42',
         'marketing/docs/api/introduction' => '2026-01-11 23:29:42',
         'marketing/docs/api/journals/journals' => '2026-01-11 23:29:42',
+        'marketing/docs/api/modules/cognitive-load' => '2026-01-18 14:38:00',
         'marketing/docs/api/modules/day-type' => '2026-01-11 23:29:42',
         'marketing/docs/api/modules/energy' => '2026-01-11 23:29:42',
         'marketing/docs/api/modules/health' => '2026-01-11 23:29:42',
@@ -26,19 +25,20 @@ return [
         'marketing/docs/api/modules/sleep' => '2026-01-11 23:29:42',
         'marketing/docs/api/modules/social-density' => '2026-01-11 23:29:42',
         'marketing/docs/api/modules/travel' => '2026-01-11 23:29:42',
-        'marketing/docs/api/modules/weather' => '2026-01-17 18:02:29',
+        'marketing/docs/api/modules/weather-influence' => '2026-01-18 14:38:00',
+        'marketing/docs/api/modules/weather' => '2026-01-18 14:38:00',
         'marketing/docs/api/modules/work' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/api-response' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/email-response' => '2026-01-11 23:29:42',
-        'marketing/docs/api/partials/journal-entry-response-attributes' => '2026-01-17 18:02:29',
-        'marketing/docs/api/partials/journal-entry-response' => '2026-01-17 18:02:29',
+        'marketing/docs/api/partials/journal-entry-response-attributes' => '2026-01-18 14:38:00',
+        'marketing/docs/api/partials/journal-entry-response' => '2026-01-18 14:38:00',
         'marketing/docs/api/partials/journal-response' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/log-response' => '2026-01-11 23:29:42',
         'marketing/docs/api/partials/profile-response' => '2026-01-11 23:29:42',
         'marketing/docs/concepts/hierarchy-structure' => '2026-01-11 23:29:42',
         'marketing/docs/concepts/permissions' => '2026-01-11 23:29:42',
         'marketing/docs/index' => '2026-01-11 23:29:42',
-        'marketing/index' => '2026-01-16 02:54:39',
-        'marketing/partials/app' => '2026-01-16 02:54:39',
+        'marketing/index' => '2026-01-18 14:38:00',
+        'marketing/partials/app' => '2026-01-18 14:38:00',
     ],
 ];

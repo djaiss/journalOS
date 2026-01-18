@@ -3,7 +3,7 @@
   "workspaces": {
     "": {
       "dependencies": {
-        "@hotwired/turbo": "^8.0.20",
+        "@hotwired/turbo": "^8.0.21",
         "@imacrayon/alpine-ajax": "^0.12.6",
         "alpinejs": "^3.15.4",
         "instant.page": "^5.2.0",
