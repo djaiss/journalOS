@@ -20,8 +20,7 @@
   </x-slot>
 
   <div id="meals-container" class="space-y-4" x-data="{
-    showMealNotes:
-      {{ $module['has_notes'] === 'yes' ? 'true' : 'false' }},
+    showMealNotes: {{ $module['has_notes'] === 'yes' ? 'true' : 'false' }},
   }">
     <div class="space-y-2">
       <p>{{ __('Meal presence') }}</p>
@@ -76,7 +75,7 @@
     <div x-show="showMealNotes" x-cloak class="space-y-2">
       <x-form x-target="meals-container notifications meals-reset days-listing months-listing" :action="$module['meals_url']" method="put" class="space-y-2">
         <input type="hidden" name="has_notes" value="yes" />
-        <x-textarea name="notes" placeholder="{{ __('Optional note about meals') }}">{{ $module['notes'] ?? '' }}</x-textarea>
+        <x-textarea name="notes" placeholder="{{ __('Optional note about meals') }}" class="w-full">{{ $module['notes'] ?? '' }}</x-textarea>
         <div class="flex justify-end">
           <x-button type="submit">
             {{ __('Save note') }}
