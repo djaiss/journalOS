@@ -5,11 +5,6 @@
  */
 ?>
 
-@props([
-  'marketingPage',
-  'breadcrumbItems' => [],
-])
-
 <x-marketing-layout>
   @if (! empty($breadcrumbItems))
     <x-breadcrumb :items="$breadcrumbItems" />

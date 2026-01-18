@@ -26,6 +26,10 @@
 
       <!-- Page Content -->
       <main>
+        @if (! empty($breadcrumbItems))
+          <x-breadcrumb :items="$breadcrumbItems" />
+        @endif
+
         {{ $slot }}
       </main>
 
