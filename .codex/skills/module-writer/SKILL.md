@@ -132,3 +132,9 @@ Create a factory for the model.
 
 1. Run relevant PHPUnit tests for the new module.
 1. When tests pass, run `composer test` if needed for coverage.
+
+### Step 16: Add module name to README
+
+1. Add the new module to the README file in the appropriate section: the name and the emoji.
+
+Do NOT forget any step. Be extremely thorough in your analysis. DO NOT FORGET ANY STEP.
