@@ -5,7 +5,7 @@
       <span class="text-gray-600">{{ __('About') }}</span>
     </a>
 
-    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ request()->routeIs('marketing.company.handbook.index') ? 'border-b-3 border-blue-400' : 'border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white">
+    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white">
       <x-phosphor-book-open class="h-4 w-4 text-gray-500" />
       <span class="text-gray-600">{{ __('Handbook') }}</span>
     </a>

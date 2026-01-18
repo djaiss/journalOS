@@ -15,7 +15,7 @@ return [
         'marketing/company/handbook/why-open-source' => '2026-01-18 19:27:14',
         'marketing/company/handbook/writing' => '2026-01-18 19:27:14',
         'marketing/company/index' => '2026-01-18 15:49:46',
-        'marketing/company/partials/company-header' => '2026-01-18 15:57:15',
+        'marketing/company/partials/company-header' => '2026-01-18 19:50:37',
         'marketing/docs/api/account/account' => '2026-01-11 23:29:42',
         'marketing/docs/api/account/api-management' => '2026-01-11 23:29:42',
         'marketing/docs/api/account/emails' => '2026-01-11 23:29:42',

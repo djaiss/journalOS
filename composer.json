@@ -103,11 +103,7 @@
       "@journalos:marketing"
     ],
     "clean": [
-      "@journalos:rector",
-      "@journalos:static",
-      "@journalos:update-blacklist-domains",
       "@journalos:prettier",
-      "@journalos:update",
       "@journalos:locale",
       "@journalos:lint",
       "@journalos:marketing"
