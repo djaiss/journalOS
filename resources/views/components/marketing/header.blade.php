@@ -54,7 +54,7 @@
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Community</p>
         </a>
 
-        <a href="{{ route('marketing.company.handbook.index') }}" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex items-center gap-x-2 rounded-sm px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-building class="h-4 w-4 text-indigo-600 group-hover:text-indigo-700" />
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Company</p>
         </a>
