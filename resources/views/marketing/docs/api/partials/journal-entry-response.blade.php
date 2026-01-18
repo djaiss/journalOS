@@ -154,6 +154,34 @@
   <span class="text-lime-700">"for_household"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"meals": {</div>
+<div class="pl-20">
+  "meal_presence": [
+  <span class="text-lime-700">"breakfast"</span>
+  ,
+  <span class="text-lime-700">"dinner"</span>
+  ]
+</div>
+<div class="pl-20">
+  "meal_type":
+  <span class="text-lime-700">"home_cooked"</span>
+  ,
+</div>
+<div class="pl-20">
+  "social_context":
+  <span class="text-lime-700">"family"</span>
+  ,
+</div>
+<div class="pl-20">
+  "has_notes":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "notes":
+  <span class="text-lime-700">"Cooked a new pasta recipe"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"kids": {</div>
 <div class="pl-20">
   "had_kids_today":

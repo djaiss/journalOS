@@ -10,11 +10,12 @@ You may use either the server I host, or host your own! You can try the product 
 
 - Daily logging of your life
   <details>
-  <summary>💪 Body & Health (4 modules)</summary>
+  <summary>💪 Body & Health (5 modules)</summary>
 
   - 🌖 Sleep
   - 🏃‍♂️ Physical activity
   - ❤️ Health
+  - 🍽️ Meals
   - 🧼 Hygiene
   </details>
 

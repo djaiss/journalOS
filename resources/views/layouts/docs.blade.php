@@ -132,6 +132,9 @@
                 <a href="{{ route('marketing.docs.api.modules.hygiene') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.hygiene') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Hygiene</a>
               </div>
               <div>
+                <a href="{{ route('marketing.docs.api.modules.meals') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.meals') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Meals</a>
+              </div>
+              <div>
                 <a href="{{ route('marketing.docs.api.modules.energy') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.energy') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Energy</a>
               </div>
               <div>

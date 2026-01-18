@@ -41,6 +41,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleWeather',
             'moduleWeatherInfluence',
             'moduleShopping',
+            'moduleMeals',
         ]);
 
         $hasContent = false;
@@ -161,6 +162,13 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
         if (! $hasContent && $this->entry->moduleShopping !== null) {
             $moduleShopping = $this->entry->moduleShopping;
             if ($moduleShopping->has_shopped_today !== null || $moduleShopping->shopping_type !== null || $moduleShopping->shopping_intent !== null || $moduleShopping->shopping_context !== null || $moduleShopping->shopping_for !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleMeals !== null) {
+            $moduleMeals = $this->entry->moduleMeals;
+            if ($moduleMeals->meal_presence !== null || $moduleMeals->meal_type !== null || $moduleMeals->social_context !== null || $moduleMeals->has_notes !== null || $moduleMeals->notes !== null) {
                 $hasContent = true;
             }
         }
