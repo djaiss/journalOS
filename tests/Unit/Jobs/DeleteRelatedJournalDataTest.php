@@ -17,6 +17,7 @@ use App\Models\ModuleEnergy;
 use App\Models\ModuleHealth;
 use App\Models\ModuleHygiene;
 use App\Models\ModuleKids;
+use App\Models\ModuleMeals;
 use App\Models\ModuleMood;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModulePrimaryObligation;
@@ -108,6 +109,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
         ModuleShopping::factory()->create([
             'journal_entry_id' => $entry->id,
         ]);
+        ModuleMeals::factory()->create([
+            'journal_entry_id' => $entry->id,
+        ]);
 
         $book = Book::factory()->create([
             'user_id' => $user->id,
@@ -178,6 +182,9 @@ final class DeleteRelatedJournalDataTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
         $this->assertDatabaseMissing('module_shopping', [
+            'journal_entry_id' => $entry->id,
+        ]);
+        $this->assertDatabaseMissing('module_meals', [
             'journal_entry_id' => $entry->id,
         ]);
     }

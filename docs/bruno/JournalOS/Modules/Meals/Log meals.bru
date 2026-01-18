@@ -1,0 +1,21 @@
+meta {
+  name: Log meals
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{URL}}/journals/1/2025/12/29/meals
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "meal_presence": ["breakfast", "dinner"],
+    "meal_type": "home_cooked",
+    "social_context": "family",
+    "has_notes": "yes",
+    "notes": "Cooking together"
+  }
+}

@@ -75,6 +75,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping', [Journals\Modules\Shopping\ShoppingController::class, 'update'])->name('journal.entry.shopping.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/shopping/reset', [Journals\Modules\Shopping\ShoppingResetController::class, 'update'])->name('journal.entry.shopping.reset');
 
+                // meals
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/meals', [Journals\Modules\Meals\MealsController::class, 'update'])->name('journal.entry.meals.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/meals/reset', [Journals\Modules\Meals\MealsResetController::class, 'update'])->name('journal.entry.meals.reset');
+
                 // kids
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/kids', [Journals\Modules\Kids\KidsController::class, 'update'])->name('journal.entry.kids.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/kids/reset', [Journals\Modules\Kids\KidsResetController::class, 'update'])->name('journal.entry.kids.reset');

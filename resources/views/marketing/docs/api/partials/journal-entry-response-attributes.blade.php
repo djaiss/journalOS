@@ -40,6 +40,12 @@
   <x-marketing.docs.attribute name="attributes.modules.shopping.shopping_intent" type="string" description="The intent behind the shopping." />
   <x-marketing.docs.attribute name="attributes.modules.shopping.shopping_context" type="string" description="The shopping context for the entry." />
   <x-marketing.docs.attribute name="attributes.modules.shopping.shopping_for" type="string" description="Who the shopping was for." />
+  <x-marketing.docs.attribute name="attributes.modules.meals" type="object" description="The meals module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.meals.meal_presence" type="array" description="The meals you had. Possible values: breakfast, lunch, dinner, snack." />
+  <x-marketing.docs.attribute name="attributes.modules.meals.meal_type" type="string" description="The meal type. Accepted values are: home_cooked, takeout, restaurant, work_cafeteria." />
+  <x-marketing.docs.attribute name="attributes.modules.meals.social_context" type="string" description="Who you ate with. Accepted values are: alone, family, friends, colleagues." />
+  <x-marketing.docs.attribute name="attributes.modules.meals.has_notes" type="string" description="Whether meal notes are enabled." />
+  <x-marketing.docs.attribute name="attributes.modules.meals.notes" type="string" description="Optional notes about your meals." />
   <x-marketing.docs.attribute name="attributes.modules.kids" type="object" description="The kids module payload." />
   <x-marketing.docs.attribute name="attributes.modules.kids.had_kids_today" type="string" description="Whether you had the kids today." />
   <x-marketing.docs.attribute name="attributes.modules.day_type" type="object" description="The day type module payload." />

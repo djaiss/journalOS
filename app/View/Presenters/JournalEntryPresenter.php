@@ -97,6 +97,11 @@ final readonly class JournalEntryPresenter
                 'view' => 'app.journal.entry.partials.shopping',
                 'data' => ['module' => new ShoppingModulePresenter($this->entry)->build()],
             ],
+            'meals' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.meals',
+                'data' => ['module' => new MealsModulePresenter($this->entry)->build()],
+            ],
             'kids' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.kids',

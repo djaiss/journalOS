@@ -68,6 +68,13 @@ final class JournalEntryResource extends JsonResource
                         'shopping_context' => $this->moduleShopping?->shopping_context,
                         'shopping_for' => $this->moduleShopping?->shopping_for,
                     ],
+                    'meals' => [
+                        'meal_presence' => $this->moduleMeals?->meal_presence,
+                        'meal_type' => $this->moduleMeals?->meal_type,
+                        'social_context' => $this->moduleMeals?->social_context,
+                        'has_notes' => $this->moduleMeals?->has_notes,
+                        'notes' => $this->moduleMeals?->notes,
+                    ],
                     'kids' => [
                         'had_kids_today' => $this->moduleKids?->had_kids_today,
                     ],
