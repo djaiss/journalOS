@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var array $stats
+ */
+?>
+
+{{-- @llms-title: Where --}}
+{{-- @llms-description: Where am I going with this --}}
+{{-- @llms-route: /company/handbook/where --}}
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Where am I going with this'],
+]">
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Where am I going with this</h1>
+
+  <div class="prose dark:prose-invert">
+    <p class="mb-2">This project has one scope: it's about documenting your life and the information you know about the people you care about. That's the only scope.</p>
+
+    <p class="mb-2">This project is not meant to be:</p>
+
+    <ul>
+      <li>a social network,</li>
+      <li>a repository for all your photos,</li>
+      <li>a contact book storing all your contacts,</li>
+      <li>a place where all the possible very specific use cases could live, like things that match your particular life and not the lives of many others.</li>
+    </ul>
+
+    <p class="mb-2">A great project is the direct result of all the no's, not the yes's. For one yes, there should be a thousand no.</p>
+
+    <p class="mb-10">I don't want JournalOS to become a software where everything is configurable through an option. The more options, the harder it is for testing the software with all the possible edge cases. Options are generally bad in consumer products. We'll make a new option only if we have no choice.</p>
+  </div>
+
+  <x-slot name="rightSidebar">
+    <x-marketing.handbook-stats :stats="$stats" />
+  </x-slot>
+</x-marketing-handbook-layout>

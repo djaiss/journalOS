@@ -57,7 +57,7 @@
       </p>
       <p class="mb-2">
         The documentation is included in the GitHub repository, under the
-        <x-link href="https://github.com/djaiss/peopleOS/tree/main/docs" target="_blank">docs</x-link>
+        <x-link href="https://github.com/djaiss/journalOS/tree/main/docs" target="_blank">docs</x-link>
         folder.
       </p>
       <p>Why these tools? Because they're fresh, new, free and open source under the MIT license, and I really like their ethos.</p>
