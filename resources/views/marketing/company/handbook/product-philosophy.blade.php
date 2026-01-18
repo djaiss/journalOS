@@ -1,6 +1,6 @@
 <?php
 /**
- * No view data.
+ * @var array $stats
  */
 ?>
 
