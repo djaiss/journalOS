@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var array $stats
+ */
+?>
+
+{{-- @llms-title: Social media --}}
+{{-- @llms-description: Social media --}}
+{{-- @llms-route: /company/handbook/social-media --}}
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Social media'],
+]">
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Social media</h1>
+
+  <div class="prose dark:prose-invert">
+    <p class="mb-2">On social media, we want to have a distinct, non serious voice. We should talk about two things: the product itself, and funny things.</p>
+
+    <p class="mb-2">We should target our core audience. The problem is how difficult is to know our target audience. JournalOS is used by many people with completely different background and context. How can we fine tune our message so it matches their interests?</p>
+
+    <p class="mb-2">The only audience I really know, is me. I would use JournalOS. I know I'm a very specific niche: a nerd with some social anxiety. But I'll do like I create the product: I'll do something that matches my values and my personnality.</p>
+
+    <p class="mb-10">If you have a business, you really should never follow my advice. The good thing is that JournalOS is not a business for me.</p>
+  </div>
+
+  <x-slot name="rightSidebar">
+    <x-marketing.handbook-stats :stats="$stats" />
+  </x-slot>
+</x-marketing-handbook-layout>

@@ -128,7 +128,7 @@
               <p class="text-primary/50 dark:text-primary-dark/50 m-0 line-clamp-1 text-sm leading-tight">Project maintainer</p>
             </div>
             <div class="flex-shrink-0 px-4 py-2">
-              <x-image src="{{ asset('marketing/regis.webp') }}" srcset="{{ asset('marketing/regis.webp') }}, {{ asset('marketing/regis@2x.webp') }} 2x" alt="Regis" width="48" height="48" class="h-12 w-12 rounded-full" />
+              <x-image src="{{ asset('images/marketing/regis.webp') }}" srcset="{{ asset('images/marketing/regis.webp') }}, {{ asset('images/marketing/regis@2x.webp') }} 2x" alt="Regis" width="48" height="48" class="h-12 w-12 rounded-full" />
             </div>
           </a>
         </div>
