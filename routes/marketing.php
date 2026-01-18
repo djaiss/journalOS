@@ -47,15 +47,15 @@ Route::middleware(['marketing'])->group(function (): void {
 
     // company
     Route::get('/company/handbook', [Handbook\HandbookController::class, 'index'])->name('marketing.company.handbook.index');
-    Route::get('/company/handbook/project', [Marketing\MarketingHandbookController::class, 'project'])->name('marketing.company.handbook.project');
-    Route::get('/company/handbook/principles', [Marketing\MarketingHandbookController::class, 'principles'])->name('marketing.company.handbook.principles');
-    Route::get('/company/handbook/shipping', [Marketing\MarketingHandbookController::class, 'shipping'])->name('marketing.company.handbook.shipping');
-    Route::get('/company/handbook/money', [Marketing\MarketingHandbookController::class, 'money'])->name('marketing.company.handbook.money');
-    Route::get('/company/handbook/why-open-source', [Marketing\MarketingHandbookController::class, 'why'])->name('marketing.company.handbook.why-open-source');
-    Route::get('/company/handbook/where-am-I-going-with-this', [Marketing\MarketingHandbookController::class, 'where'])->name('marketing.company.handbook.where');
-    Route::get('/company/handbook/marketing', [Marketing\MarketingHandbookController::class, 'marketing'])->name('marketing.company.handbook.marketing.envision');
-    Route::get('/company/handbook/social-media', [Marketing\MarketingHandbookController::class, 'socialMedia'])->name('marketing.company.handbook.marketing.social-media');
-    Route::get('/company/handbook/writing', [Marketing\MarketingHandbookController::class, 'writing'])->name('marketing.company.handbook.marketing.writing');
-    Route::get('/company/handbook/product-philosophy', [Marketing\MarketingHandbookController::class, 'philosophy'])->name('marketing.company.handbook.marketing.product-philosophy');
-    Route::get('/company/handbook/prioritize', [Marketing\MarketingHandbookController::class, 'prioritize'])->name('marketing.company.handbook.marketing.prioritize');
+    Route::get('/company/handbook/project', [Handbook\HandbookProjectController::class, 'index'])->name('marketing.company.handbook.project');
+    Route::get('/company/handbook/principles', [Handbook\HandbookPrinciplesController::class, 'index'])->name('marketing.company.handbook.principles');
+    Route::get('/company/handbook/shipping', [Handbook\HandbookShippingController::class, 'index'])->name('marketing.company.handbook.shipping');
+    Route::get('/company/handbook/money', [Handbook\HandbookMoneyController::class, 'index'])->name('marketing.company.handbook.money');
+    Route::get('/company/handbook/why-open-source', [Handbook\HandbookWhyOpenSourceController::class, 'index'])->name('marketing.company.handbook.why-open-source');
+    Route::get('/company/handbook/where-am-I-going-with-this', [Handbook\HandbookWhereController::class, 'index'])->name('marketing.company.handbook.where');
+    Route::get('/company/handbook/marketing', [Handbook\HandbookMarketingController::class, 'index'])->name('marketing.company.handbook.marketing.envision');
+    Route::get('/company/handbook/social-media', [Handbook\HandbookSocialMediaController::class, 'index'])->name('marketing.company.handbook.marketing.social-media');
+    Route::get('/company/handbook/writing', [Handbook\HandbookWritingController::class, 'index'])->name('marketing.company.handbook.marketing.writing');
+    Route::get('/company/handbook/product-philosophy', [Handbook\HandbookProductPhilosophyController::class, 'index'])->name('marketing.company.handbook.marketing.product-philosophy');
+    Route::get('/company/handbook/prioritize', [Handbook\HandbookPrioritizeController::class, 'index'])->name('marketing.company.handbook.marketing.prioritize');
 });
