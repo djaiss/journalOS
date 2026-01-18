@@ -35,7 +35,22 @@
               <div>
                 <a href="{{ route('marketing.company.handbook.project') }}" class="{{ request()->routeIs('marketing.company.handbook.project') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Who I am and what is this project') }}</a>
               </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.principles') }}" class="{{ request()->routeIs('marketing.company.handbook.principles') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Principles') }}</a>
               </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.shipping') }}" class="{{ request()->routeIs('marketing.company.handbook.shipping') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Shipping is better than not shipping') }}</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.money') }}" class="{{ request()->routeIs('marketing.company.handbook.money') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('How does this project make money') }}</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.why-open-source') }}" class="{{ request()->routeIs('marketing.company.handbook.why-open-source') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Why open source') }}</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.where') }}" class="{{ request()->routeIs('marketing.company.handbook.where') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Where am I going with this') }}</a>
+              </div>
+            </div>
           </div>
 
           <div @click="marketing = !marketing" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50">
@@ -48,7 +63,19 @@
               <div>
                 <a href="{{ route('marketing.company.handbook.marketing.envision') }}" class="{{ request()->routeIs('marketing.company.handbook.marketing.envision') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('How do I envision marketing') }}</a>
               </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.marketing.social-media') }}" class="{{ request()->routeIs('marketing.company.handbook.marketing.social-media') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Social media') }}</a>
               </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.marketing.writing') }}" class="{{ request()->routeIs('marketing.company.handbook.marketing.writing') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Writing for JournalOS') }}</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.marketing.product-philosophy') }}" class="{{ request()->routeIs('marketing.company.handbook.marketing.product-philosophy') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Product philosophy') }}</a>
+              </div>
+              <div>
+                <a href="{{ route('marketing.company.handbook.marketing.prioritize') }}" class="{{ request()->routeIs('marketing.company.handbook.marketing.prioritize') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('How do we prioritize features?') }}</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
