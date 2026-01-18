@@ -91,11 +91,6 @@
         {{ __('Modules') }}
       </a>
 
-      <a class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800" href="/">
-        <x-phosphor-magnifying-glass class="size-4 text-gray-600 transition-transform duration-150" />
-        {{ __('Search') }}
-      </a>
-
       <a href="{{ route('marketing.docs.index') }}" class="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 font-medium hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800">
         <x-phosphor-lifebuoy class="size-4 text-gray-600 transition-transform duration-150" />
         {{ __('Docs') }}
