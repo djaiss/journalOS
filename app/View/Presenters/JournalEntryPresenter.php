@@ -148,6 +148,11 @@ final readonly class JournalEntryPresenter
                 'view' => 'app.journal.entry.partials.energy',
                 'data' => ['module' => new EnergyModulePresenter($this->entry)->build()],
             ],
+            'cognitive_load' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.cognitive_load',
+                'data' => ['module' => new CognitiveLoadModulePresenter($this->entry)->build()],
+            ],
             'social_density' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.social_density',

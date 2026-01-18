@@ -56,6 +56,10 @@
   <x-marketing.docs.attribute name="attributes.modules.mood.mood" type="string" description="The mood for that day." />
   <x-marketing.docs.attribute name="attributes.modules.energy" type="object" description="The energy module payload." />
   <x-marketing.docs.attribute name="attributes.modules.energy.energy" type="string" description="The energy level for that day." />
+  <x-marketing.docs.attribute name="attributes.modules.cognitive_load" type="object" description="The cognitive load module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.cognitive_load.cognitive_load" type="string" description="The cognitive load for that day." />
+  <x-marketing.docs.attribute name="attributes.modules.cognitive_load.primary_source" type="string" description="The primary source of the cognitive load." />
+  <x-marketing.docs.attribute name="attributes.modules.cognitive_load.load_quality" type="string" description="The quality of the cognitive load." />
   <x-marketing.docs.attribute name="attributes.modules.social_density" type="object" description="The social density module payload." />
   <x-marketing.docs.attribute name="attributes.modules.social_density.social_density" type="string" description="How crowded the day felt." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity" type="object" description="The physical activity module payload." />

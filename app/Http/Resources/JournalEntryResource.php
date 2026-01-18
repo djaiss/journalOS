@@ -100,6 +100,11 @@ final class JournalEntryResource extends JsonResource
                     'energy' => [
                         'energy' => $this->moduleEnergy?->energy,
                     ],
+                    'cognitive_load' => [
+                        'cognitive_load' => $this->moduleCognitiveLoad?->cognitive_load,
+                        'primary_source' => $this->moduleCognitiveLoad?->primary_source,
+                        'load_quality' => $this->moduleCognitiveLoad?->load_quality,
+                    ],
                     'social_density' => [
                         'social_density' => $this->moduleSocialDensity?->social_density,
                     ],
