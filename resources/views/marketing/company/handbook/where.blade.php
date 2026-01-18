@@ -1,25 +1,18 @@
 <?php
-/*
- * @var array $stats
- * @var \App\Models\MarketingPage $marketingPage
- * @var string $viewName
+/**
+ * No view data.
  */
 ?>
 
 {{-- @llms-title: Where --}}
 {{-- @llms-description: Where am I going with this --}}
 {{-- @llms-route: /company/handbook/where --}}
-<x-marketing-handbook-layout :marketing-page="$marketingPage" :view-name="$viewName">
-  <x-slot name="breadcrumb">
-    <a href="{{ route('marketing.index') }}" class="text-blue-500 hover:underline">{{ __('Home') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.index') }}" class="text-blue-500 hover:underline">{{ __('Company') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.handbook.index') }}" class="text-blue-500 hover:underline">{{ __('Handbook') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <span class="text-gray-600">{{ __('Where am I going with this') }}</span>
-  </x-slot>
-
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Where am I going with this'],
+]">
   <h1 class="mb-6 text-2xl font-bold">Where am I going with this</h1>
 
   <div class="prose">
@@ -36,11 +29,7 @@
 
     <p class="mb-2">A great project is the direct result of all the no's, not the yes's. For one yes, there should be a thousand no.</p>
 
-    <p class="mb-10">I don't want PeopleOS to become a software where everything is configurable through an option. The more options, the harder it is for testing the software with all the possible edge cases. Options are generally bad in consumer products. We'll make a new option only if we have no choice.</p>
-  </div>
-
-  <div>
-    <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
+    <p class="mb-10">I don't want JournalOS to become a software where everything is configurable through an option. The more options, the harder it is for testing the software with all the possible edge cases. Options are generally bad in consumer products. We'll make a new option only if we have no choice.</p>
   </div>
 
   <x-slot name="rightSidebar">

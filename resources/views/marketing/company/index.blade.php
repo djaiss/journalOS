@@ -7,7 +7,7 @@
 {{-- @llms-title: Company --}}
 {{-- @llms-description: Our handbook --}}
 {{-- @llms-route: /company --}}
-<x-marketing-layout  :breadcrumbItems="[
+<x-marketing-layout :breadcrumbItems="[
   ['label' => 'Home', 'route' => route('marketing.index')],
   ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Handbook'],

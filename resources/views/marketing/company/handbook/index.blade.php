@@ -66,7 +66,7 @@
       <p class="text-gray-600">{{ \App\Helpers\MarketingHelper::countWords('marketing.company.handbook.social-media') }} words</p>
     </div>
     <div class="flex items-center justify-between pl-6">
-      <a href="{{ route('marketing.company.handbook.marketing.writing') }}" class="text-blue-500 hover:underline">Writing for PeopleOS</a>
+      <a href="{{ route('marketing.company.handbook.marketing.writing') }}" class="text-blue-500 hover:underline">Writing for JournalOS</a>
       <div class="mx-4 flex-grow border-b border-dashed border-gray-800"></div>
       <p class="text-gray-600">{{ \App\Helpers\MarketingHelper::countWords('marketing.company.handbook.writing') }} words</p>
     </div>
@@ -79,10 +79,6 @@
       <a href="{{ route('marketing.company.handbook.marketing.prioritize') }}" class="text-blue-500 hover:underline">How do we prioritize features?</a>
       <div class="mx-4 flex-grow border-b border-dashed border-gray-800"></div>
       <p class="text-gray-600">{{ \App\Helpers\MarketingHelper::countWords('marketing.company.handbook.prioritize') }} words</p>
-    </div>
-
-    <div>
-      <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
     </div>
   </div>
 </x-marketing-handbook-layout>

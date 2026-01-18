@@ -1,25 +1,18 @@
 <?php
-/*
- * @var array $stats
- * @var \App\Models\MarketingPage $marketingPage
- * @var string $viewName
+/**
+ * No view data.
  */
 ?>
 
 {{-- @llms-title: Shipping --}}
 {{-- @llms-description: Shipping is better than not shipping --}}
 {{-- @llms-route: /company/handbook/shipping --}}
-<x-marketing-handbook-layout :marketing-page="$marketingPage" :view-name="$viewName">
-  <x-slot name="breadcrumb">
-    <a href="{{ route('marketing.index') }}" class="text-blue-500 hover:underline">{{ __('Home') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.index') }}" class="text-blue-500 hover:underline">{{ __('Company') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.handbook.index') }}" class="text-blue-500 hover:underline">{{ __('Handbook') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <span class="text-gray-600">{{ __('Shipping is better than not shipping') }}</span>
-  </x-slot>
-
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Shipping is better than not shipping'],
+]">
   <h1 class="mb-6 text-2xl font-bold">Shipping is better than not shipping</h1>
 
   <div class="prose">
@@ -30,10 +23,6 @@
     <p class="mb-2">It's a trap. Most users prefer a functional, unpolished feature over one that hasn't been released. It's all about the value you bring. SAAS with lots of VCs funding and lots of designers advocate for the perfect user experience. And are very vocal about spending months on features so it's perfect. Yeah. Sure. They have a gazillion dollars to burn on their craft. I think that generally, design and user experience is greatly overrated. What users truly want is value. If the tool offers good value, users will endure poor interfaces all day long.</p>
 
     <p class="mb-10">That doesn't mean we don't aim for a good user interface and overall great user experience. But this shouldn't get in the way of launching features in production.</p>
-  </div>
-
-  <div>
-    <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
   </div>
 
   <x-slot name="rightSidebar">

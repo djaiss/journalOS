@@ -24,15 +24,11 @@
 
     <p class="mb-2">For people like me, solo developers who prefer to code a feature than writing content or promoting it, I'd say that marketing is about writing about the product and nothing else. Let the product do the work for you. Promote it inside the product itself, and on your social platforms, and that's it.</p>
 
-    <p class="mb-2">We will never say things like "PeopleOS is the best way to...". No. It's not the best, not the first, not the only. PeopleOS is humble. It lets you do one thing well (ie document your life). It's not a revolution. It's a useful tool for a very specific set of people.</p>
+    <p class="mb-2">We will never say things like "JournalOS is the best way to...". No. It's not the best, not the first, not the only. JournalOS is humble. It lets you do one thing well (ie document your life). It's not a revolution. It's a useful tool for a very specific set of people.</p>
 
     <p class="mb-2">This is why I'll never write blog posts about crappy inspirational things just for the SEO and written by AI. Blog posts will be about the product and things I care about, nothing else. Just the thought of having to do a keyword analysis depresses me.</p>
 
     <p class="mb-10">I'll do what you should probably not do. I'll do marketing as if I was the user target.</p>
-  </div>
-
-  <div>
-    <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
   </div>
 
   <x-slot name="rightSidebar">

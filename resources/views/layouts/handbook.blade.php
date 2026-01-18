@@ -1,0 +1,65 @@
+<x-marketing-layout>
+  @include('marketing.company.partials.company-header')
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
+    <div class="grid grid-cols-1 gap-x-16 lg:grid-cols-[300px_1fr_250px]">
+      <div class="hidden w-full flex-shrink-0 flex-col justify-self-end sm:border-r sm:border-gray-200 sm:pr-3 lg:flex">
+        <div
+          x-data="{
+            generalInformation:
+              {{ request()->routeIs('marketing.company.handbook.*') ? 'true' : 'false' }},
+            marketing:
+              {{ request()->routeIs('marketing.company.handbook.marketing.*') ? 'true' : 'false' }},
+            productManagement:
+              {{ request()->routeIs('marketing.company.handbook.product-management') ? 'false' : 'false' }},
+            support:
+              {{ request()->routeIs('marketing.company.handbook.support') ? 'false' : 'false' }},
+            sales:
+              {{ request()->routeIs('marketing.company.handbook.sales') ? 'false' : 'false' }},
+            development:
+              {{ request()->routeIs('marketing.company.handbook.development') ? 'false' : 'false' }},
+          }"
+          class="bg-light dark:bg-dark z-10 pt-16">
+
+          <div class="mb-2 flex items-center justify-between rounded-md px-2 py-1">
+            <a href="{{ route('marketing.company.handbook.index') }}" class="hover:underline">{{ __('Table of contents') }}</a>
+          </div>
+
+          <div @click="generalInformation = !generalInformation" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50">
+            <h3>{{ __('General information') }}</h3>
+            <x-phosphor-caret-right x-bind:class="generalInformation ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
+          </div>
+
+          <div x-cloak x-show="generalInformation" class="mb-4 ml-3">
+            <div class="mb-3 flex flex-col gap-y-2">
+              <div>
+                <a href="{{ route('marketing.company.handbook.project') }}" class="{{ request()->routeIs('marketing.company.handbook.project') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('Who I am and what is this project') }}</a>
+              </div>
+              </div>
+          </div>
+
+          <div @click="marketing = !marketing" class="mb-2 flex cursor-pointer items-center justify-between rounded-md border border-transparent px-2 py-1 hover:border-gray-200 hover:bg-blue-50">
+            <h3>{{ __('Marketing') }}</h3>
+            <x-phosphor-caret-right x-bind:class="marketing ? 'rotate-90' : ''" class="h-4 w-4 text-gray-500 transition-transform duration-300" />
+          </div>
+
+          <div x-cloak x-show="marketing" class="mb-4 ml-3">
+            <div class="mb-3 flex flex-col gap-y-2">
+              <div>
+                <a href="{{ route('marketing.company.handbook.marketing.envision') }}" class="{{ request()->routeIs('marketing.company.handbook.marketing.envision') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">{{ __('How do I envision marketing') }}</a>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-16">
+        {{ $slot }}
+      </div>
+
+      <div class="hidden w-full flex-shrink-0 flex-col justify-self-end py-16 sm:border-l sm:border-gray-200 sm:pl-6 lg:flex">
+        {{ $rightSidebar ?? '' }}
+      </div>
+    </div>
+  </div>
+</x-marketing-layout>

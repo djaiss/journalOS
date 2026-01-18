@@ -1,25 +1,18 @@
 <?php
-/*
- * @var array $stats
- * @var \App\Models\MarketingPage $marketingPage
- * @var string $viewName
+/**
+ * No view data.
  */
 ?>
 
 {{-- @llms-title: Principles --}}
 {{-- @llms-description: Principles --}}
 {{-- @llms-route: /company/handbook/principles --}}
-<x-marketing-handbook-layout :marketing-page="$marketingPage" :view-name="$viewName">
-  <x-slot name="breadcrumb">
-    <a href="{{ route('marketing.index') }}" class="text-blue-500 hover:underline">{{ __('Home') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.index') }}" class="text-blue-500 hover:underline">{{ __('Company') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.handbook.index') }}" class="text-blue-500 hover:underline">{{ __('Handbook') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <span class="text-gray-600">{{ __('Principles') }}</span>
-  </x-slot>
-
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Principles'],
+]">
   <h1 class="mb-6 text-2xl font-bold">Principles</h1>
 
   <div class="prose">
@@ -45,11 +38,7 @@
     <p class="mb-2">Things should be simple. Take decisions for the user, and stick with them. You will not create a great product if there are too many options.</p>
 
     <h3>Openness</h3>
-    <p class="mb-10">My own political and ideological considerations have no place in the products I create. Each person's life is different, and I must only consider what I believe is more important than what others think. That is why PeopleOS does not judge and allows users to configure the tool as they wish.</p>
-  </div>
-
-  <div>
-    <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
+    <p class="mb-10">My own political and ideological considerations have no place in the products I create. Each person's life is different, and I must only consider what I believe is more important than what others think. That is why JournalOS does not judge and allows users to configure the tool as they wish.</p>
   </div>
 
   <x-slot name="rightSidebar">

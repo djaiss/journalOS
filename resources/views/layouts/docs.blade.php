@@ -48,10 +48,10 @@
           <div x-show="conceptsDocumentation" x-cloak class="mb-2 ml-3">
             <div class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.concepts.hierarchical-structure') }}"  class="{{ request()->routeIs('marketing.docs.concepts.hierarchical-structure') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Hierarchical structure</a>
+                <a href="{{ route('marketing.docs.concepts.hierarchical-structure') }}" class="{{ request()->routeIs('marketing.docs.concepts.hierarchical-structure') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Hierarchical structure</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.concepts.permissions') }}"  class="{{ request()->routeIs('marketing.docs.concepts.permissions') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Permissions</a>
+                <a href="{{ route('marketing.docs.concepts.permissions') }}" class="{{ request()->routeIs('marketing.docs.concepts.permissions') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Permissions</a>
               </div>
             </div>
           </div>
@@ -66,13 +66,13 @@
           <div x-show="openApiDocumentation" x-cloak class="mb-10 ml-3">
             <div class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.api.index') }}"  class="{{ request()->routeIs('marketing.docs.api.index') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Introduction</a>
+                <a href="{{ route('marketing.docs.api.index') }}" class="{{ request()->routeIs('marketing.docs.api.index') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Introduction</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.authentication') }}"  class="{{ request()->routeIs('marketing.docs.api.authentication') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Authentication</a>
+                <a href="{{ route('marketing.docs.api.authentication') }}" class="{{ request()->routeIs('marketing.docs.api.authentication') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Authentication</a>
               </div>
               <div>
-                <a href=""  class="{{ request()->routeIs('marketing.docs.api.errors') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">HTTP status codes</a>
+                <a href="" class="{{ request()->routeIs('marketing.docs.api.errors') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">HTTP status codes</a>
               </div>
             </div>
 
@@ -83,19 +83,19 @@
             </div>
             <div x-show="accountManagementDocumentation" class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.api.account.profile') }}"  class="{{ request()->routeIs('marketing.docs.api.account.profile') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Profile</a>
+                <a href="{{ route('marketing.docs.api.account.profile') }}" class="{{ request()->routeIs('marketing.docs.api.account.profile') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Profile</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.account.logs') }}"  class="{{ request()->routeIs('marketing.docs.api.account.logs') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Logs</a>
+                <a href="{{ route('marketing.docs.api.account.logs') }}" class="{{ request()->routeIs('marketing.docs.api.account.logs') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Logs</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.account.emails') }}"  class="{{ request()->routeIs('marketing.docs.api.account.emails') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Emails</a>
+                <a href="{{ route('marketing.docs.api.account.emails') }}" class="{{ request()->routeIs('marketing.docs.api.account.emails') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Emails</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.account.api-management') }}"  class="{{ request()->routeIs('marketing.docs.api.account.api-management') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">API management</a>
+                <a href="{{ route('marketing.docs.api.account.api-management') }}" class="{{ request()->routeIs('marketing.docs.api.account.api-management') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">API management</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.account') }}"  class="{{ request()->routeIs('marketing.docs.api.account') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Manage account</a>
+                <a href="{{ route('marketing.docs.api.account') }}" class="{{ request()->routeIs('marketing.docs.api.account') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Manage account</a>
               </div>
             </div>
 
@@ -106,10 +106,10 @@
             </div>
             <div x-show="journalsDocumentation" class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.api.journals') }}"  class="{{ request()->routeIs('marketing.docs.api.journals') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journals</a>
+                <a href="{{ route('marketing.docs.api.journals') }}" class="{{ request()->routeIs('marketing.docs.api.journals') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journals</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.journal-entries') }}"  class="{{ request()->routeIs('marketing.docs.api.journal-entries') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journal entries</a>
+                <a href="{{ route('marketing.docs.api.journal-entries') }}" class="{{ request()->routeIs('marketing.docs.api.journal-entries') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Journal entries</a>
               </div>
             </div>
 
@@ -120,55 +120,55 @@
             </div>
             <div x-show="modulesDocumentation" class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.api.modules.day-type') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.day-type') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Day type</a>
+                <a href="{{ route('marketing.docs.api.modules.day-type') }}" class="{{ request()->routeIs('marketing.docs.api.modules.day-type') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Day type</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.primary-obligation') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.primary-obligation') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Primary obligation</a>
+                <a href="{{ route('marketing.docs.api.modules.primary-obligation') }}" class="{{ request()->routeIs('marketing.docs.api.modules.primary-obligation') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Primary obligation</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.health') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.health') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Health</a>
+                <a href="{{ route('marketing.docs.api.modules.health') }}" class="{{ request()->routeIs('marketing.docs.api.modules.health') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Health</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.hygiene') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.hygiene') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Hygiene</a>
+                <a href="{{ route('marketing.docs.api.modules.hygiene') }}" class="{{ request()->routeIs('marketing.docs.api.modules.hygiene') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Hygiene</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.energy') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.energy') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Energy</a>
+                <a href="{{ route('marketing.docs.api.modules.energy') }}" class="{{ request()->routeIs('marketing.docs.api.modules.energy') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Energy</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.cognitive-load') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.cognitive-load') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Cognitive load</a>
+                <a href="{{ route('marketing.docs.api.modules.cognitive-load') }}" class="{{ request()->routeIs('marketing.docs.api.modules.cognitive-load') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Cognitive load</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.social-density') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.social-density') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Social density</a>
+                <a href="{{ route('marketing.docs.api.modules.social-density') }}" class="{{ request()->routeIs('marketing.docs.api.modules.social-density') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Social density</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.mood') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.mood') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Mood</a>
+                <a href="{{ route('marketing.docs.api.modules.mood') }}" class="{{ request()->routeIs('marketing.docs.api.modules.mood') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Mood</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.physical-activity') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.physical-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Physical activity</a>
+                <a href="{{ route('marketing.docs.api.modules.physical-activity') }}" class="{{ request()->routeIs('marketing.docs.api.modules.physical-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Physical activity</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.sexual-activity') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.sexual-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sexual activity</a>
+                <a href="{{ route('marketing.docs.api.modules.sexual-activity') }}" class="{{ request()->routeIs('marketing.docs.api.modules.sexual-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sexual activity</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.sleep') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.sleep') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sleep</a>
+                <a href="{{ route('marketing.docs.api.modules.sleep') }}" class="{{ request()->routeIs('marketing.docs.api.modules.sleep') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Sleep</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.travel') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.travel') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Travel</a>
+                <a href="{{ route('marketing.docs.api.modules.travel') }}" class="{{ request()->routeIs('marketing.docs.api.modules.travel') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Travel</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.weather') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.weather') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Weather</a>
+                <a href="{{ route('marketing.docs.api.modules.weather') }}" class="{{ request()->routeIs('marketing.docs.api.modules.weather') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Weather</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.weather-influence') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.weather-influence') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Weather influence</a>
+                <a href="{{ route('marketing.docs.api.modules.weather-influence') }}" class="{{ request()->routeIs('marketing.docs.api.modules.weather-influence') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Weather influence</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.shopping') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.shopping') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Shopping</a>
+                <a href="{{ route('marketing.docs.api.modules.shopping') }}" class="{{ request()->routeIs('marketing.docs.api.modules.shopping') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Shopping</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.kids') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.kids') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Kids</a>
+                <a href="{{ route('marketing.docs.api.modules.kids') }}" class="{{ request()->routeIs('marketing.docs.api.modules.kids') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Kids</a>
               </div>
               <div>
-                <a href="{{ route('marketing.docs.api.modules.work') }}"  class="{{ request()->routeIs('marketing.docs.api.modules.work') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Work</a>
+                <a href="{{ route('marketing.docs.api.modules.work') }}" class="{{ request()->routeIs('marketing.docs.api.modules.work') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Work</a>
               </div>
             </div>
           </div>

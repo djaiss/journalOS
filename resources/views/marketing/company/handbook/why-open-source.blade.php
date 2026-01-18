@@ -1,25 +1,18 @@
 <?php
-/*
- * @var array $stats
- * @var \App\Models\MarketingPage $marketingPage
- * @var string $viewName
+/**
+ * No view data.
  */
 ?>
 
 {{-- @llms-title: Why open source --}}
 {{-- @llms-description: Why open source --}}
 {{-- @llms-route: /company/handbook/why-open-source --}}
-<x-marketing-handbook-layout :marketing-page="$marketingPage" :view-name="$viewName">
-  <x-slot name="breadcrumb">
-    <a href="{{ route('marketing.index') }}" class="text-blue-500 hover:underline">{{ __('Home') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.index') }}" class="text-blue-500 hover:underline">{{ __('Company') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.handbook.index') }}" class="text-blue-500 hover:underline">{{ __('Handbook') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <span class="text-gray-600">{{ __('Why open source') }}</span>
-  </x-slot>
-
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Why open source'],
+]">
   <h1 class="mb-6 text-2xl font-bold">Why open source</h1>
 
   <div class="prose">
@@ -31,13 +24,9 @@
 
     <p class="mb-2">Thirdly, a product is better when people can contribute to it. Of course, these contributions must be aligned with the values of the project, and its direction. When it does, it's amazing. People from all over the world will fix a bug, improve a feature or add new stuff completely. And since the project is MIT, everyone will benefit from all those changes, forever.</p>
 
-    <p class="mb-2">An open-source project allows for trust and transparency. In the instance I control (i.e., https://peopleos.software), the code that is in the GitHub repository is directly pushed to production without any alteration. When your software is about storing personal information, it's even more essential that you understand how the underlying system works so you can trust the system that stores your precious data.</p>
+    <p class="mb-2">An open-source project allows for trust and transparency. In the instance I control (i.e., https://JournalOS.software), the code that is in the GitHub repository is directly pushed to production without any alteration. When your software is about storing personal information, it's even more essential that you understand how the underlying system works so you can trust the system that stores your precious data.</p>
 
     <p class="mb-10">Last but not least, open source can be sustained over time by the community, in the event where the founder of the project gets either demotivated or is hit by a bus. In that case, the software will outlive the original founder, and this is a good thing.</p>
-  </div>
-
-  <div>
-    <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
   </div>
 
   <x-slot name="rightSidebar">

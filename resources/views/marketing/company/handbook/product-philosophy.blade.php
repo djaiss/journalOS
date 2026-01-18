@@ -1,25 +1,18 @@
 <?php
-/*
- * @var array $stats
- * @var \App\Models\MarketingPage $marketingPage
-  * @var string $viewName
+/**
+ * No view data.
  */
 ?>
 
 {{-- @llms-title: Product philosophy --}}
 {{-- @llms-description: Product philosophy --}}
 {{-- @llms-route: /company/handbook/product-philosophy --}}
-<x-marketing-handbook-layout :marketing-page="$marketingPage" :view-name="$viewName">
-  <x-slot name="breadcrumb">
-    <a href="{{ route('marketing.index') }}" class="text-blue-500 hover:underline">{{ __('Home') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.index') }}" class="text-blue-500 hover:underline">{{ __('Company') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <a href="{{ route('marketing.company.handbook.index') }}" class="text-blue-500 hover:underline">{{ __('Handbook') }}</a>
-    <span class="text-gray-500">&gt;</span>
-    <span class="text-gray-600">{{ __('Product philosophy') }}</span>
-  </x-slot>
-
+<x-marketing-handbook-layout :breadcrumbItems="[
+  ['label' => 'Home', 'route' => route('marketing.index')],
+  ['label' => 'Company', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
+  ['label' => 'Product philosophy'],
+]">
   <h1 class="mb-6 text-2xl font-bold">Product philosophy</h1>
 
   <div class="prose">
@@ -35,11 +28,7 @@
       . Read this.
     </p>
 
-    <p class="mb-10">Finally, we will never implement a feature that removes the need to make an effort in maintaining healthy relationships. What do I mean by that? Having a social circle requires time and effort. There is no easy way to have great relationships. PeopleOS will help you document but it won't replace the need to, you know, actually work on your relationships.</p>
-  </div>
-
-  <div>
-    <x-marketing-page-widget :marketing-page="$marketingPage" :view-name="$viewName" />
+    <p class="mb-10">Finally, we will never implement a feature that removes the need to make an effort in maintaining healthy relationships. What do I mean by that? Having a social circle requires time and effort. There is no easy way to have great relationships. JournalOS will help you document but it won't replace the need to, you know, actually work on your relationships.</p>
   </div>
 
   <x-slot name="rightSidebar">
