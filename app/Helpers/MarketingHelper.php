@@ -7,7 +7,7 @@ namespace App\Helpers;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
-class MarketingHelper
+final class MarketingHelper
 {
     /**
      * Get the last modified date of a view file.
@@ -23,7 +23,7 @@ class MarketingHelper
 
         $timestamp = config("marketing-timestamps.pages.{$viewPath}");
 
-        return $timestamp ? Carbon::parse($timestamp) : null;
+        return $timestamp ? \Illuminate\Support\Facades\Date::parse($timestamp) : null;
     }
 
     /**

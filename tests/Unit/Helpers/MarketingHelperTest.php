@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class MarketingHelperTest extends TestCase
+final class MarketingHelperTest extends TestCase
 {
     #[Test]
     public function it_returns_carbon_instance_when_timestamp_exists(): void

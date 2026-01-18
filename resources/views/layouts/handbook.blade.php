@@ -20,7 +20,6 @@
               {{ request()->routeIs('marketing.company.handbook.development') ? 'false' : 'false' }},
           }"
           class="bg-light dark:bg-dark z-10 pt-16">
-
           <div class="mb-2 flex items-center justify-between rounded-md px-2 py-1">
             <a href="{{ route('marketing.company.handbook.index') }}" class="hover:underline">{{ __('Table of contents') }}</a>
           </div>
