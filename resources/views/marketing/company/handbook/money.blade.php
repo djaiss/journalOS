@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'How does this project make money'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">How does this project make money</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">How does this project make money</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">First of all, the goal of this project is not to make money. The primary goal is to create a tool that I need, to learn new programming techniques, to improve what I already know, and to have fun. It's my way of releasing the pressure of my other real job. JournalOS is given for free as an open source tool, and you can install, modify or delete whatever you want and do whatever you want with it and I have no problem with that.</p>
 
     <p class="mb-2">But considering the extreme amount of time I put into trying to create a nice tool for everyone and not just for me, it'd be nice if it brought some money too so I can buy a new computer, a new bike or a new gadget. And not just for that. Yes, hosting the database itself costs almost nothing, but we still need to pay for the system that sends reminders and other services which, unfortunately, have a monthly fee attached to them.</p>

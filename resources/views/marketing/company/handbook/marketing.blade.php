@@ -15,9 +15,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'How do I envision marketing'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">How do I envision marketing</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">How do I envision marketing</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">Marketing has bad press. I used to hate marketing. Trying to find ways to sell a crappy product is why marketing has such a bad press. However, when you do create a product that you truly think will benefit a lot of people, you want the world to know. So how can you do that?</p>
 
     <p class="mb-2">I still hate marketing by the way. But I hate because I'm bad at it, not because it's a bad practice per se.</p>

@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Shipping is better than not shipping'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">Shipping is better than not shipping</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Shipping is better than not shipping</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">What matters most is that the project keeps moving. We should constantly be releasing new features or bug fixes. This is what matters most. Releasing features into production boosts morale at every level.</p>
 
     <p class="mb-2">It's easy to stop releasing new stuff frequently. It's tempting. You might want to delay a feature because it's not polished enough. Because it's not complete enough. Because if you wait just a little longer to add this animation, or this design, or this behaviour, it'll be better.</p>

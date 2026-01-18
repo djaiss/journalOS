@@ -1,23 +1,23 @@
-<div class="border-b border-gray-200 py-3 text-sm">
+<div class="border-b border-gray-200 py-3 text-sm dark:border-gray-700">
   <div class="mx-auto flex max-w-7xl items-center justify-center gap-x-4 px-6 lg:px-8 xl:px-0">
-    <a href="" class="{{ request()->routeIs('marketing.company.index') ? 'border-b-3 border-blue-400' : 'border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white">
-      <x-phosphor-storefront class="h-4 w-4 text-gray-500" />
-      <span class="text-gray-600">About</span>
+    <a href="" class="{{ request()->routeIs('marketing.company.index') ? 'border-b-3 border-blue-400' : 'border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-gray-600 dark:hover:bg-gray-700/60">
+      <x-phosphor-storefront class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+      <span class="text-gray-600 dark:text-gray-300">About</span>
     </a>
 
-    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white">
-      <x-phosphor-book-open class="h-4 w-4 text-gray-500" />
-      <span class="text-gray-600">Handbook</span>
+    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-gray-600 dark:hover:bg-gray-700/60">
+      <x-phosphor-book-open class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+      <span class="text-gray-600 dark:text-gray-300">Handbook</span>
     </a>
 
-    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook.1',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white">
-      <x-phosphor-map-trifold class="h-4 w-4 text-gray-500" />
-      <span class="text-gray-600">Roadmap</span>
+    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook.1',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-gray-600 dark:hover:bg-gray-700/60">
+      <x-phosphor-map-trifold class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+      <span class="text-gray-600 dark:text-gray-300">Roadmap</span>
     </a>
 
-    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook.2',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white">
-      <x-phosphor-article class="h-4 w-4 text-gray-500" />
-      <span class="text-gray-600">Changelog</span>
+    <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.handbook.2',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex cursor-pointer flex-col items-center justify-center gap-x-2 gap-y-1 rounded-sm border px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-gray-600 dark:hover:bg-gray-700/60">
+      <x-phosphor-article class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+      <span class="text-gray-600 dark:text-gray-300">Changelog</span>
     </a>
   </div>
 </div>

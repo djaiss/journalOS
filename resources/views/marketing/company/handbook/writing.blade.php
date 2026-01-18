@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Writing for JournalOS'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">Writing for JournalOS</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Writing for JournalOS</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">There are two ways of writing for JournalOS:</p>
 
     <ul>

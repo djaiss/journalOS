@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Where am I going with this'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">Where am I going with this</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Where am I going with this</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">This project has one scope: it's about documenting your life and the information you know about the people you care about. That's the only scope.</p>
 
     <p class="mb-2">This project is not meant to be:</p>

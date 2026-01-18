@@ -14,7 +14,7 @@
 ]">
   @include('marketing.company.partials.company-header')
 
-  <h1 class="mb-6 text-2xl font-bold">Our handbook</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Our handbook</h1>
 
-  <p>This handbook explains what I do, how I think and how I want to move this project forward.</p>
+  <p class="dark:text-gray-300">This handbook explains what I do, how I think and how I want to move this project forward.</p>
 </x-marketing-layout>

@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Product philosophy'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">Product philosophy</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Product philosophy</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">A product should be simple to use. Users should never have to look for help to do something. That being said, a link to the help center should be present on every screen in order to assist users if, unfortunately, the UI is not clear enough.</p>
 
     <p class="mb-2">We should always iterate. The first version of a feature should be an embarrassing but very functional solution to a problem or a need. Then, using a fast-paced build-measure-learn feedback loop, we can create a better version.</p>

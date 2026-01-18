@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'How do we prioritize features?'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">How do we prioritize features?</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">How do we prioritize features?</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">This one is spicy. As a project maintainer, I have to battle two constant conflicting thoughts. On one hand we have what the user wants and needs. On the other hand, I have what I like to work on. Sometimes these priorities align, and other times they do not.</p>
 
     <p class="mb-2">I've built JournalOS for myself. I've open sourced it so others can take advantage of it too. And I've decided to host my own version so people can use it too.</p>

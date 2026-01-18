@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Principles'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">Principles</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Principles</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <h3>Inspiration</h3>
     <p class="mb-2">I’ve been passionate about web products for many years. Even though I’m in my 40s now, I’m trying to stay updated with all the new technologies and things I enjoy. Over the years, I've seen and read many things that have been a huge inspiration.</p>
     <p class="mb-2">Here is a condensed list:</p>

@@ -13,9 +13,9 @@
   ['label' => 'Handbook', 'route' => route('marketing.company.handbook.index')],
   ['label' => 'Social media'],
 ]">
-  <h1 class="mb-6 text-2xl font-bold">Social media</h1>
+  <h1 class="mb-6 text-2xl font-bold dark:text-gray-100">Social media</h1>
 
-  <div class="prose">
+  <div class="prose dark:prose-invert">
     <p class="mb-2">On social media, we want to have a distinct, non serious voice. We should talk about two things: the product itself, and funny things.</p>
 
     <p class="mb-2">We should target our core audience. The problem is how difficult is to know our target audience. JournalOS is used by many people with completely different background and context. How can we fine tune our message so it matches their interests?</p>
