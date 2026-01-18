@@ -167,6 +167,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the cognitive load module data for this entry.
+     *
+     * @return HasOne<ModuleCognitiveLoad, $this>
+     */
+    public function moduleCognitiveLoad(): HasOne
+    {
+        return $this->hasOne(ModuleCognitiveLoad::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the sexual activity module data for this entry.
      *
      * @return HasOne<ModuleSexualActivity, $this>

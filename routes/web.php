@@ -111,6 +111,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy', [Journals\Modules\Energy\EnergyController::class, 'update'])->name('journal.entry.energy.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy/reset', [Journals\Modules\Energy\EnergyResetController::class, 'update'])->name('journal.entry.energy.reset');
 
+                // cognitive load
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/cognitive-load', [Journals\Modules\CognitiveLoad\CognitiveLoadController::class, 'update'])->name('journal.entry.cognitive-load.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/cognitive-load/reset', [Journals\Modules\CognitiveLoad\CognitiveLoadResetController::class, 'update'])->name('journal.entry.cognitive-load.reset');
+
                 // social density
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-density', [Journals\Modules\SocialDensity\SocialDensityController::class, 'update'])->name('journal.entry.social-density.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-density/reset', [Journals\Modules\SocialDensity\SocialDensityResetController::class, 'update'])->name('journal.entry.social-density.reset');

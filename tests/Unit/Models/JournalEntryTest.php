@@ -13,6 +13,7 @@ use App\Models\ModuleHealth;
 use App\Models\ModuleHygiene;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
+use App\Models\ModuleCognitiveLoad;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
@@ -142,6 +143,23 @@ final class JournalEntryTest extends TestCase
         $this->assertTrue($entry->moduleEnergy()->exists());
         $this->assertEquals($moduleEnergy->id, $entry->moduleEnergy->id);
         $this->assertEquals('normal', $entry->moduleEnergy->energy);
+    }
+
+    #[Test]
+    public function it_has_one_module_cognitive_load(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleCognitiveLoad = ModuleCognitiveLoad::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'cognitive_load' => 'high',
+        ]);
+
+        $this->assertTrue($entry->moduleCognitiveLoad()->exists());
+        $this->assertEquals($moduleCognitiveLoad->id, $entry->moduleCognitiveLoad->id);
+        $this->assertEquals('high', $entry->moduleCognitiveLoad->cognitive_load);
     }
 
     #[Test]

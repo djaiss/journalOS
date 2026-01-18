@@ -25,6 +25,7 @@ final class ModuleCatalog
         'mood' => ['table' => 'module_mood'],
         'sexual_activity' => ['table' => 'module_sexual_activity'],
         'energy' => ['table' => 'module_energy'],
+        'cognitive_load' => ['table' => 'module_cognitive_load'],
         'social_density' => ['table' => 'module_social_density'],
     ];
 
@@ -71,6 +72,7 @@ final class ModuleCatalog
             'mood' => __('Mood module'),
             'sexual_activity' => __('Sexual activity module'),
             'energy' => __('Energy module'),
+            'cognitive_load' => __('Cognitive load module'),
             'social_density' => __('Social density module'),
         ];
     }

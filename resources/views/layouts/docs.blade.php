@@ -135,6 +135,9 @@
                 <a href="{{ route('marketing.docs.api.modules.energy') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.energy') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Energy</a>
               </div>
               <div>
+                <a href="{{ route('marketing.docs.api.modules.cognitive-load') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.cognitive-load') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Cognitive load</a>
+              </div>
+              <div>
                 <a href="{{ route('marketing.docs.api.modules.social-density') }}" wire:navigate class="{{ request()->routeIs('marketing.docs.api.modules.social-density') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Social density</a>
               </div>
               <div>

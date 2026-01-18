@@ -26,6 +26,7 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs/api/account', [Docs\Api\AccountController::class, 'index'])->name('marketing.docs.api.account');
     Route::get('/docs/api/journals', [Docs\Api\JournalController::class, 'index'])->name('marketing.docs.api.journals');
     Route::get('/docs/api/journal-entries', [Docs\Api\JournalEntryController::class, 'index'])->name('marketing.docs.api.journal-entries');
+    Route::get('/docs/api/modules/cognitive-load', [Docs\Api\Modules\CognitiveLoadController::class, 'index'])->name('marketing.docs.api.modules.cognitive-load');
     Route::get('/docs/api/modules/day-type', [Docs\Api\Modules\DayTypeController::class, 'index'])->name('marketing.docs.api.modules.day-type');
     Route::get('/docs/api/modules/energy', [Docs\Api\Modules\EnergyController::class, 'index'])->name('marketing.docs.api.modules.energy');
     Route::get('/docs/api/modules/health', [Docs\Api\Modules\HealthController::class, 'index'])->name('marketing.docs.api.modules.health');

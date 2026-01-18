@@ -206,6 +206,22 @@
   <span class="text-lime-700">"high"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"cognitive_load": {</div>
+<div class="pl-20">
+  "cognitive_load":
+  <span class="text-lime-700">"high"</span>
+  ,
+</div>
+<div class="pl-20">
+  "primary_source":
+  <span class="text-lime-700">"work"</span>
+  ,
+</div>
+<div class="pl-20">
+  "load_quality":
+  <span class="text-lime-700">"productive"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"social_density": {</div>
 <div class="pl-20">
   "social_density":
