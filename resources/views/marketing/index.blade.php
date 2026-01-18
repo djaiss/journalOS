@@ -42,13 +42,9 @@
   <div class="relative bg-white dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-6 py-8 text-center sm:pt-20 sm:pb-8 lg:px-8 xl:px-0">
       <h1 class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">A simple diary to track the shape of your days.</h1>
-      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
-        JournalOS is a bullet journal that helps you log sleep, mood, health, work, and more without writing long essays.
-      </p>
+      <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">JournalOS is a bullet journal that helps you log sleep, mood, health, work, and more without writing long essays.</p>
       <div class="mt-10 mb-5 flex items-center justify-center gap-x-6">
-        <a href="{{ route('register') }}" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-          Get started for free
-        </a>
+        <a href="{{ route('register') }}" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-600">Get started for free</a>
         <x-tooltip text="Just kidding. We have no sales teams.">
           <p class="cursor-pointer text-sm leading-6 font-semibold text-gray-900 dark:text-gray-100">
             Talk to sales
@@ -73,9 +69,7 @@
       <!-- Title -->
       <div class="mx-auto max-w-2xl lg:text-center">
         <h2 class="text-base leading-7 font-semibold text-green-600">Your personal diary</h2>
-        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">
-          Every feature is crafted to help you remember your days with clarity
-        </p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Every feature is crafted to help you remember your days with clarity</p>
       </div>
 
       <!-- 3 benefits -->
@@ -153,9 +147,7 @@
         <div class="mx-auto text-center">
           <a href="" class="group mb-3 inline-flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 bg-white px-3 py-2 transition-colors duration-150 hover:bg-white dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
             <x-phosphor-building class="h-4 w-4 text-indigo-600 group-hover:text-indigo-700" />
-            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">
-              See every module you can track
-            </span>
+            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">See every module you can track</span>
           </a>
           <p class="text-sm text-gray-600 italic dark:text-gray-400">A diary that stays simple, fast, and genuinely useful.</p>
         </div>
@@ -168,9 +160,7 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
       <!-- Title -->
       <div class="mx-auto mb-10 max-w-2xl lg:text-center">
-        <p class="mb-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">
-          JournalOS is proudly open source.
-        </p>
+        <p class="mb-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">JournalOS is proudly open source.</p>
         <h2 class="text-base leading-7 font-semibold text-green-600">Like really. Not open core.</h2>
       </div>
 
@@ -178,24 +168,18 @@
         <div class="flex items-center justify-center gap-x-8">
           <a href="https://github.com/djaiss/journalos" target="_blank" class="group inline-flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 bg-white px-3 py-2 transition-colors duration-150 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
             <x-phosphor-github-logo class="h-4 w-4 text-gray-600 dark:text-gray-300" />
-            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">
-              Read the code on GitHub
-            </span>
+            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">Read the code on GitHub</span>
           </a>
 
           <a href="https://github.com/djaiss/journalos" target="_blank" class="group inline-flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 bg-white px-3 py-2 transition-colors duration-150 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
             <x-phosphor-star class="h-4 w-4 text-gray-600 dark:text-gray-300" />
-            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">
-              Stars
-            </span>
+            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">Stars</span>
             <span class="rounded-full bg-gray-100 px-2 py-0.5 font-mono text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300">{{ $stars ?? 0 }}</span>
           </a>
 
           <a href="https://github.com/djaiss/journalos" target="_blank" class="group inline-flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 bg-white px-3 py-2 transition-colors duration-150 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
             <x-phosphor-scales class="h-4 w-4 text-gray-600 dark:text-gray-300" />
-            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">
-              MIT licensed
-            </span>
+            <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">MIT licensed</span>
           </a>
         </div>
       </div>
@@ -262,9 +246,7 @@
   <!-- CTA Section -->
   <div id="privacy" class="bg-gray-50 py-12 sm:py-20 dark:bg-gray-800">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
-      <h3 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">
-        Privacy and transparency are at the core of what we do.
-      </h3>
+      <h3 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Privacy and transparency are at the core of what we do.</h3>
       <p class="mb-10 text-xl dark:text-gray-300">You are not our product. You are the reason we exist.</p>
 
       <div class="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-4">
@@ -351,16 +333,10 @@
   <div class="bg-gray-50 dark:bg-gray-800">
     <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-0">
       <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-        <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          Take control of your days and go out there. Life is not lived in front of a computer screen.
-        </h2>
-        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-          But if you cannot, we can help with a simple tool to remember what matters.
-        </p>
+        <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">Take control of your days and go out there. Life is not lived in front of a computer screen.</h2>
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">But if you cannot, we can help with a simple tool to remember what matters.</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-            Get started for free
-          </a>
+          <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get started for free</a>
           <a href="{{ route('login') }}" class="text-sm leading-6 font-semibold text-white">
             Sign in
             <span aria-hidden="true">→</span>
