@@ -18,7 +18,7 @@
       </div>
 
       <!-- module list -->
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="columns-1 gap-6 sm:columns-2 lg:columns-3">
         <x-marketing.module emoji="😴" name="Sleep">
           <x-slot:trackedData>
             <li>Bedtime</li>
