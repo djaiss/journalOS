@@ -145,7 +145,7 @@
         </dl>
 
         <div class="mx-auto text-center">
-          <a href="{{  route('marketing.features.modules') }}" data-turbo="true" class="group mb-3 inline-flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 bg-white px-3 py-2 transition-colors duration-150 hover:bg-white dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
+          <a href="{{ route('marketing.features.modules') }}" data-turbo="true" class="group mb-3 inline-flex items-center gap-x-2 rounded-sm border border-b-3 border-gray-400 bg-white px-3 py-2 transition-colors duration-150 hover:bg-white dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600">
             <x-phosphor-building class="h-4 w-4 text-indigo-600 group-hover:text-indigo-700" />
             <span class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-100">See every module you can track</span>
           </a>

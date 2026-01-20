@@ -1073,6 +1073,143 @@
                 </div>
               </div>
             </div>
+            <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+              <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+                <div class="flex items-center">
+                  <span class="mr-2">🌤️</span>
+
+                  <h2 class="font-semibold dark:text-gray-100">Weather</h2>
+                </div>
+
+                <div id="weather-reset"></div>
+              </div>
+
+              <div class="p-2">
+                <div id="weather-container" class="space-y-4">
+                  <div class="space-y-2">
+                    <p class="dark:text-gray-300">Weather condition</p>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Sunny</button>
+                      </div>
+                      <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Cloudy</button>
+                      </div>
+                      <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Rainy</button>
+                      </div>
+                      <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                        <button type="submit" class="w-full rounded-lg border border-gray-200 p-2 text-center hover:bg-green-50 dark:border-gray-700 dark:hover:bg-green-900/40">Snowy</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p class="dark:text-gray-300">Temperature</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Cold</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Mild</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Warm</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="weather-container notifications weather-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Hot</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+              <div class="flex items-center justify-between border-b border-gray-200 p-2 dark:border-gray-700">
+                <div class="flex items-center">
+                  <span class="mr-2">🍽️</span>
+
+                  <h2 class="font-semibold dark:text-gray-100">Meals</h2>
+                </div>
+
+                <div id="meals-reset"></div>
+              </div>
+
+              <div class="p-2">
+                <div id="meals-container" class="space-y-4">
+                  <div class="space-y-2">
+                    <p class="dark:text-gray-300">Breakfast</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Home</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Restaurant</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Skipped</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p class="dark:text-gray-300">Lunch</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Home</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Restaurant</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Skipped</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p class="dark:text-gray-300">Dinner</p>
+                    <div class="flex w-full rounded-lg border border-gray-200 dark:border-gray-700">
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Home</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Restaurant</button>
+                        </div>
+                      </div>
+                      <div class="flex-1 border-r border-gray-200 first:overflow-hidden first:rounded-l-lg last:rounded-r-lg last:border-r-0 dark:border-gray-700">
+                        <div x-target="meals-container notifications meals-reset days-listing months-listing">
+                          <button type="submit" class="flex h-full w-full cursor-pointer items-center justify-center p-2 text-center hover:bg-green-50 dark:text-gray-100 dark:hover:bg-green-900/40">Skipped</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
