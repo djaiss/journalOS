@@ -9,8 +9,14 @@ use Illuminate\View\View;
 
 final class MarketingLayout extends Component
 {
+    public function __construct(
+        public array $breadcrumbItems = [],
+    ) {}
+
     public function render(): View
     {
-        return view('layouts.marketing');
+        return view('layouts.marketing', [
+            'breadcrumbItems' => $this->breadcrumbItems,
+        ]);
     }
 }

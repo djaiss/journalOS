@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Marketing\CloudflarePurgeMarketingController;
 use App\Http\Controllers\Marketing\Company\Handbook;
 use App\Http\Controllers\Marketing\Docs;
+use App\Http\Controllers\Marketing\Features;
 use App\Http\Controllers\Marketing\MarketingController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,9 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs/api/modules/weather', [Docs\Api\Modules\WeatherController::class, 'index'])->name('marketing.docs.api.modules.weather');
     Route::get('/docs/api/modules/weather-influence', [Docs\Api\Modules\WeatherInfluenceController::class, 'index'])->name('marketing.docs.api.modules.weather-influence');
     Route::get('/docs/api/modules/work', [Docs\Api\Modules\WorkController::class, 'index'])->name('marketing.docs.api.modules.work');
+
+    // features
+    Route::get('/features/modules', [Features\FeaturesController::class, 'index'])->name('marketing.features.modules');
 
     // company
     Route::get('/company/handbook', [Handbook\HandbookController::class, 'index'])->name('marketing.company.handbook.index');

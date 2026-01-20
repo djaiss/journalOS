@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Feature\Controllers\Marketing\Features;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
+
+final class FeaturesControllerTest extends TestCase
+{
+    use RefreshDatabase;
+
+    #[Test]
+    public function it_renders_the_modules_catalog(): void
+    {
+        $response = $this->get(route('marketing.features.modules', absolute: false));
+
+        $response->assertOk();
+        $response->assertViewIs('marketing.features.modules');
+    }
+}
