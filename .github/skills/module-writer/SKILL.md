@@ -137,4 +137,8 @@ Create a factory for the model.
 
 1. Add the new module to the README file in the appropriate section: the name and the emoji.
 
+### Step 17: Add module to the /features/modules marketing view
+
+1. Add the module to the list of modules in the marketing site.
+
 Do NOT forget any step. Be extremely thorough in your analysis. DO NOT FORGET ANY STEP.
