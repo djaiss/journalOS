@@ -14,7 +14,7 @@
   </div>
 
   <!-- information -->
-  <div class="flex items-start space-x-2 p-4 border-b border-gray-200 dark:border-gray-700">
+  <div class="flex items-start space-x-2 border-b border-gray-200 p-4 dark:border-gray-700">
     <x-phosphor-fingerprint class="mt-1 h-4 w-4 shrink-0 text-gray-500 dark:text-gray-400" />
     <div class="space-y-1">
       <p class="text-gray-600 dark:text-gray-300">Tracked data</p>
@@ -26,10 +26,10 @@
   </div>
 
   <!-- category -->
-  <div class="flex items-start space-x-2 p-4">
-    <x-phosphor-folder-open class="mt-1 h-4 w-4 shrink-0 text-gray-500 dark:text-gray-400" />
+  <div class="flex items-center space-x-2 px-4 py-1 text-xs">
+    <x-phosphor-folder-open class="h-4 w-4 shrink-0 text-gray-500 dark:text-gray-400" />
     <div class="space-y-1">
-      <p class="text-sm">{{ $category }}</p>
+      <x-tooltip text="Name of the category"><p>{{ $category }}</p></x-tooltip>
     </div>
   </div>
 </div>

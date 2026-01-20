@@ -27,19 +27,21 @@
               <li>Wake up time</li>
               <li>Sleep duration</li>
             </x-slot>
-            <x-slot:category>Body & Health</x-slot:category>
+            <x-slot:category>Body & Health</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="😊" name="Mood">
             <x-slot:trackedData>
               <li>Overall mood</li>
             </x-slot>
+            <x-slot:category>Mind & Emotions</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="⚡" name="Energy">
             <x-slot:trackedData>
               <li>Energy level</li>
             </x-slot>
+            <x-slot:category>Mind & Emotions</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="💼" name="Work">
@@ -49,6 +51,7 @@
               <li>Workload</li>
               <li>Did you procrastinate?</li>
             </x-slot>
+            <x-slot:category>Work</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🌤️" name="Weather">
@@ -58,6 +61,7 @@
               <li>Precipitation</li>
               <li>Daylight duration</li>
             </x-slot>
+            <x-slot:category>Places</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🌦️" name="Weather Influence">
@@ -67,6 +71,7 @@
               <li>Plans influence</li>
               <li>Time spent outside</li>
             </x-slot>
+            <x-slot:category>Places</x-slot>
           </x-marketing.module>
         </div>
 
@@ -80,6 +85,7 @@
               <li>Shopping context</li>
               <li>Shopping for whom</li>
             </x-slot>
+            <x-slot:category>Places</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🍽️" name="Meals">
@@ -89,24 +95,28 @@
               <li>Social context</li>
               <li>Notes</li>
             </x-slot>
+            <x-slot:category>Body & Health</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="👶" name="Kids">
             <x-slot:trackedData>
               <li>Had kids today?</li>
             </x-slot>
+            <x-slot:category>Social</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="📅" name="Day Type">
             <x-slot:trackedData>
               <li>Type of day (workday/weekend/vacation/sick)</li>
             </x-slot>
+            <x-slot:category>Work</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🎯" name="Primary Obligation">
             <x-slot:trackedData>
               <li>What demanded most attention</li>
             </x-slot>
+            <x-slot:category>Work</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🏃" name="Physical Activity">
@@ -115,6 +125,7 @@
               <li>Activity type</li>
               <li>Activity intensity</li>
             </x-slot>
+            <x-slot:category>Body & Health</x-slot>
           </x-marketing.module>
         </div>
 
@@ -124,6 +135,7 @@
             <x-slot:trackedData>
               <li>Health status</li>
             </x-slot>
+            <x-slot:category>Body & Health</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🧼" name="Hygiene">
@@ -132,6 +144,7 @@
               <li>Brushed teeth?</li>
               <li>Skincare?</li>
             </x-slot>
+            <x-slot:category>Body & Health</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="❤️" name="Sexual Activity">
@@ -139,6 +152,7 @@
               <li>Had sexual activity?</li>
               <li>Sexual activity type</li>
             </x-slot>
+            <x-slot:category>Social</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="🧠" name="Cognitive Load">
@@ -147,12 +161,14 @@
               <li>Primary source</li>
               <li>Load quality</li>
             </x-slot>
+            <x-slot:category>Mind & Emotions</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="👥" name="Social Density">
             <x-slot:trackedData>
               <li>Social density level</li>
             </x-slot>
+            <x-slot:category>Social</x-slot>
           </x-marketing.module>
 
           <x-marketing.module emoji="✈️" name="Travel">
@@ -161,6 +177,7 @@
               <li>Travel details</li>
               <li>Travel mode</li>
             </x-slot>
+            <x-slot:category>Places</x-slot>
           </x-marketing.module>
         </div>
       </div>
