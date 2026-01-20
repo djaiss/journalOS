@@ -21,7 +21,7 @@ JournalOS is a simple diary, released under the MIT license. It lets you track y
 
 I don't like writing long essays, I've never succeeded in getting into the habit of writing daily. But I still wanted to document my life in a simple and efficient way. Since this didn't exist, I've created something that I would use every day (like [my previous project](https://github.com/monicahq/monica)).
 
-You may use either the server I host, or host your own! You can try the product without even having to create your own account.
+You may use either <a href="https://journalos.cloud">the server I host</a>, or host your own! You can try the product without even having to create your own account.
 
 This is what it looks like.
 
