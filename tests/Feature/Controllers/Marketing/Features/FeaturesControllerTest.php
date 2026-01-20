@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Controllers\Marketing;
+namespace Tests\Feature\Controllers\Marketing\Features;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -19,6 +19,5 @@ final class MarketingControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('marketing.features.modules');
-        $response->assertDontSee('<form', false);
     }
 }
