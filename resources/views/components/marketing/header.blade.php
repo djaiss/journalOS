@@ -9,7 +9,7 @@
   <nav class="max-w-8xl mx-auto flex h-12 items-center justify-between border-b border-gray-300 bg-zinc-100 px-3 sm:px-6 dark:border-slate-600 dark:bg-gray-800 dark:text-slate-200">
     <!-- Logo -->
     <div class="flex items-center">
-      <a href="{{ route('marketing.index') }}" class="group flex items-center gap-x-2 transition-transform ease-in-out">
+      <a href="{{ route('marketing.index') }}" data-turbo="true" class="group flex items-center gap-x-2 transition-transform ease-in-out">
         <div class="transition-all duration-400 group-hover:-translate-y-0.5 group-hover:-rotate-3">
           <x-image src="{{ asset('logo/30x30.webp') }}" srcset="{{ asset('logo/30x30.webp') }} 1x, {{ asset('logo/30x30@2x.webp') }} 2x" width="20" height="20" alt="JournalOS logo" />
         </div>
@@ -44,7 +44,7 @@
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Pricing</p>
         </a>
 
-        <a href="{{ route('marketing.docs.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.docs.',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex items-center gap-x-2 rounded-sm px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="{{ route('marketing.docs.index') }}" data-turbo="true" class="{{ str_starts_with( request()->route()->getName(),'marketing.docs.',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex items-center gap-x-2 rounded-sm px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-book-open class="h-4 w-4 text-amber-600 group-hover:text-amber-700" />
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Docs</p>
         </a>
@@ -54,7 +54,7 @@
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Community</p>
         </a>
 
-        <a href="{{ route('marketing.company.handbook.index') }}" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex items-center gap-x-2 rounded-sm px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="{{ route('marketing.company.handbook.index') }}" data-turbo="true" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex items-center gap-x-2 rounded-sm px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-building class="h-4 w-4 text-indigo-600 group-hover:text-indigo-700" />
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Company</p>
         </a>
