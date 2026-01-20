@@ -1,7 +1,7 @@
 <?php
 /**
  * @var array<int, array<string, mixed>> $breadcrumbItems
- * @var \Illuminate\View\ComponentSlot $slot
+ * @var Illuminate\View\ComponentSlot $slot
  */
 ?>
 
@@ -43,10 +43,7 @@
           <div x-show="conceptsDocumentation" x-cloak class="mb-2 ml-3">
             <div class="mb-3 flex flex-col gap-y-2">
               <div>
-                <a href="{{ route('marketing.docs.concepts.hierarchical-structure') }}" class="{{ request()->routeIs('marketing.docs.concepts.hierarchical-structure') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Hierarchical structure</a>
-              </div>
-              <div>
-                <a href="{{ route('marketing.docs.concepts.permissions') }}" class="{{ request()->routeIs('marketing.docs.concepts.permissions') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Permissions</a>
+                <a href="{{ route('marketing.docs.modules') }}" class="{{ request()->routeIs('marketing.docs.modules') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Modules</a>
               </div>
             </div>
           </div>
