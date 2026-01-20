@@ -1,5 +1,59 @@
 # Changelog
 
+## [0.6.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.5.0...djaiss/journalos-v0.6.0) (2026-01-20)
+
+
+### Features
+
+* add a banner when entry cant be edited ([#163](https://github.com/djaiss/journalOS/issues/163)) ([2417e97](https://github.com/djaiss/journalOS/commit/2417e9708e0a40878819c6c15e343f0c24127390))
+* add cloudflare turnstile ([#188](https://github.com/djaiss/journalOS/issues/188)) ([d9b91c6](https://github.com/djaiss/journalOS/commit/d9b91c6b870864dd6e71e934776673df324ce5b6))
+* add cognitive load module ([#193](https://github.com/djaiss/journalOS/issues/193)) ([9d7bc7c](https://github.com/djaiss/journalOS/commit/9d7bc7cb49be5ec52c8fa18d5083f024b6feb465))
+* add entries count to journal index view ([#153](https://github.com/djaiss/journalOS/issues/153)) ([7243d12](https://github.com/djaiss/journalOS/commit/7243d127cc745b182fc302a611a8800f4791fae2))
+* add first journal on account creation ([#173](https://github.com/djaiss/journalOS/issues/173)) ([e6fec08](https://github.com/djaiss/journalOS/commit/e6fec086b1c60b3ed5f668c51bf5d35ec47641e3))
+* add homepage ([#172](https://github.com/djaiss/journalOS/issues/172)) ([68ee4fb](https://github.com/djaiss/journalOS/commit/68ee4fb241b8a978702e5d6de737f166c4b96955))
+* add hygiene module ([#149](https://github.com/djaiss/journalOS/issues/149)) ([9136f2a](https://github.com/djaiss/journalOS/commit/9136f2a12b5d9f7267c4129306758ae302395499))
+* add meals module ([#194](https://github.com/djaiss/journalOS/issues/194)) ([e9ae080](https://github.com/djaiss/journalOS/commit/e9ae0806d0c2784ce5253b5b86264fcbfcbda298))
+* add mockup on homepage ([#186](https://github.com/djaiss/journalOS/issues/186)) ([57d56a3](https://github.com/djaiss/journalOS/commit/57d56a3d34973229e5de8712864edde70391055f))
+* add modules catalog ([#198](https://github.com/djaiss/journalOS/issues/198)) ([38f8df9](https://github.com/djaiss/journalOS/commit/38f8df95f175d4a340e51cb941411bec8a58cec2))
+* add route to marketing page ([#174](https://github.com/djaiss/journalOS/issues/174)) ([bfdbbe3](https://github.com/djaiss/journalOS/commit/bfdbbe30af39c780e318f33bc7d15c4a54fd9326))
+* add settings to avoid edit past entries ([#160](https://github.com/djaiss/journalOS/issues/160)) ([680c0a6](https://github.com/djaiss/journalOS/commit/680c0a62f5dca7c1ead1fd9aec01d62d0b24b61f))
+* add weather influence module ([#189](https://github.com/djaiss/journalOS/issues/189)) ([bd804dc](https://github.com/djaiss/journalOS/commit/bd804dcbf6521f5828b1b02631b339fd6045c59d))
+* add weather module ([#187](https://github.com/djaiss/journalOS/issues/187)) ([8e863cf](https://github.com/djaiss/journalOS/commit/8e863cfed424ebc99ad92fd187afb46d291121bc))
+* apply layouts on journal entry view ([#182](https://github.com/djaiss/journalOS/issues/182)) ([a2e6e44](https://github.com/djaiss/journalOS/commit/a2e6e44ec3bd6261785a513559ee35a54b710b49))
+* clear cloudflare cache ([#177](https://github.com/djaiss/journalOS/issues/177)) ([30e8f1b](https://github.com/djaiss/journalOS/commit/30e8f1bfdd168714baf24fbeace9115f2da4a2c3))
+* create default layout for journals ([#181](https://github.com/djaiss/journalOS/issues/181)) ([00210d0](https://github.com/djaiss/journalOS/commit/00210d00d6e278bbb25d7d6b8595064b6b0ecb80))
+* enhance modules readme updater with categorized sections ([#185](https://github.com/djaiss/journalOS/issues/185)) ([a279d1e](https://github.com/djaiss/journalOS/commit/a279d1e4433f60cd1294e08f10b46a95292e88a7))
+* manage modules in journal layouts ([#180](https://github.com/djaiss/journalOS/issues/180)) ([1f042e4](https://github.com/djaiss/journalOS/commit/1f042e49181564dc4c7f876c30fd26548030f9b1))
+* prevent actions to edit entries if past ([#161](https://github.com/djaiss/journalOS/issues/161)) ([2f45ad2](https://github.com/djaiss/journalOS/commit/2f45ad2a5042ffe22bc9e720cd0c1c03f70340d0))
+* remove notion of show modules ([#183](https://github.com/djaiss/journalOS/issues/183)) ([fe893de](https://github.com/djaiss/journalOS/commit/fe893de527c79aeb98e5c3057fbef52892e0061a))
+* remove search ([#196](https://github.com/djaiss/journalOS/issues/196)) ([432be3f](https://github.com/djaiss/journalOS/commit/432be3f826ce4c283d692e4459ca9102b455c4d8))
+* reorganize features section with categorized modules ([#184](https://github.com/djaiss/journalOS/issues/184)) ([af07f50](https://github.com/djaiss/journalOS/commit/af07f5083cb7da94b5c503d879641dd1931e4034))
+
+
+### Bug Fixes
+
+* adjust spacing in shopping module for better layout ([#147](https://github.com/djaiss/journalOS/issues/147)) ([8859615](https://github.com/djaiss/journalOS/commit/88596153d9528ba2c137cb9d2dbf5ee0b89950a5))
+* align hygiene buttons with module styles ([#166](https://github.com/djaiss/journalOS/issues/166)) ([c99a9aa](https://github.com/djaiss/journalOS/commit/c99a9aae72912ec14d13971a7f0b1578a3ecf246))
+* avoid typeerror for nullable physical activity inputs ([#150](https://github.com/djaiss/journalOS/issues/150)) ([86514fb](https://github.com/djaiss/journalOS/commit/86514fb03945f1a2dc9e2cba09bd7f7e442d36e8))
+* fix turnstile script ([#190](https://github.com/djaiss/journalOS/issues/190)) ([975cc78](https://github.com/djaiss/journalOS/commit/975cc7834a6f210c0cc4750578707edc0b4008f2))
+* remove limitation ([#171](https://github.com/djaiss/journalOS/issues/171)) ([b40e0be](https://github.com/djaiss/journalOS/commit/b40e0bea0c7ccf02c37859265c6e2cb250eb4892))
+* remove unused files ([#168](https://github.com/djaiss/journalOS/issues/168)) ([01426c3](https://github.com/djaiss/journalOS/commit/01426c3c1a91c6b1b056742d3b5f4cd70feac50a))
+* update links to redirect users to the journal index ([#178](https://github.com/djaiss/journalOS/issues/178)) ([3553905](https://github.com/djaiss/journalOS/commit/3553905f16d0f270e9ec3fa039d739b0be1a3306))
+
+
+### Miscellaneous Chores
+
+* add ideas ([#152](https://github.com/djaiss/journalOS/issues/152)) ([0b3940c](https://github.com/djaiss/journalOS/commit/0b3940c93b611dabdd41c60d22ebb56933e30578))
+* add new skills ([#143](https://github.com/djaiss/journalOS/issues/143)) ([11f9535](https://github.com/djaiss/journalOS/commit/11f9535c199317ad579e52bd95da61faaeb36396))
+* add octane ([#167](https://github.com/djaiss/journalOS/issues/167)) ([4942255](https://github.com/djaiss/journalOS/commit/4942255a4a706acf74b2d614aed0883eb4222cfd))
+* few marketing changes ([#179](https://github.com/djaiss/journalOS/issues/179)) ([1330c92](https://github.com/djaiss/journalOS/commit/1330c92b21316b3303a04a6f89fd5862b8108e11))
+* remove foreign keys constraints ([#169](https://github.com/djaiss/journalOS/issues/169)) ([7a7077c](https://github.com/djaiss/journalOS/commit/7a7077cf549c16766fb91cb142cc4f423bcef47a))
+* remove page visit recording from marketing docs controllers ([#176](https://github.com/djaiss/journalOS/issues/176)) ([9b7c2c7](https://github.com/djaiss/journalOS/commit/9b7c2c72a8aa7a2dc91b64deb10157182b8f80e3))
+* remove settings breadcrumb from journal modules index view ([#154](https://github.com/djaiss/journalOS/issues/154)) ([9e150cd](https://github.com/djaiss/journalOS/commit/9e150cdef34ebdb3f38a20fb6841b146ec82aaed))
+* replace logo in footer ([#175](https://github.com/djaiss/journalOS/issues/175)) ([5e1347f](https://github.com/djaiss/journalOS/commit/5e1347fa190fe2017d5a73f8bb2e674ea5793784))
+* temporarily remove limitation ([#170](https://github.com/djaiss/journalOS/issues/170)) ([a336b60](https://github.com/djaiss/journalOS/commit/a336b60a7ac4c56099f471e1faf2ea636d6dc5f3))
+* **views:** annotate Blade views with expected data and make includes explicit ([#162](https://github.com/djaiss/journalOS/issues/162)) ([3481fc3](https://github.com/djaiss/journalOS/commit/3481fc352f1cb0718c385cc80a50d74e926902be))
+
 ## [0.5.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.4.0...djaiss/journalos-v0.5.0) (2026-01-10)
 
 
