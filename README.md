@@ -1,3 +1,20 @@
+<p align="center">
+ <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="static/logo_github_dark.png">
+  <img alt="Text changing depending on mode. Light: 'So light!' Dark: 'So dark!'" src="static/logo_github.png">
+</picture>
+</p>
+
+<p align="center">
+<em>Awesome, simple personal diary</em>
+</p>
+
+<hr/>
+
+<p align="center">
+  <a href="https://github.com/djaiss/journalOS/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT license" /></a>
+</p>
+
 ## What is this?
 
 JournalOS is a simple diary, released under the MIT license. It lets you track your life, like how you slept, if you are in a good mood, if you've worked remotely today, or how many friends you've talked to.
