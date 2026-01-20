@@ -23,6 +23,15 @@ I don't like writing long essays, I've never succeeded in getting into the habit
 
 You may use either the server I host, or host your own! You can try the product without even having to create your own account.
 
+This is what it looks like.
+
+<p align="center">
+ <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="static/app_github_dark.png">
+  <img alt="Text changing depending on mode. Light: 'So light!' Dark: 'So dark!'" src="static/app_github.png">
+</picture>
+</p>
+
 ### Features
 
 - Daily logging of your life
