@@ -111,6 +111,12 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood', [Journals\Modules\Mood\MoodController::class, 'update'])->name('journal.entry.mood.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/mood/reset', [Journals\Modules\Mood\MoodResetController::class, 'update'])->name('journal.entry.mood.reset');
 
+                // reading
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/reading', [Journals\Modules\Reading\ReadingController::class, 'update'])->name('journal.entry.reading.update');
+                Route::post('journals/{slug}/entries/{year}/{month}/{day}/reading/books', [Journals\Modules\Reading\ReadingBookController::class, 'store'])->name('journal.entry.reading.books.store');
+                Route::delete('journals/{slug}/entries/{year}/{month}/{day}/reading/books/{book}', [Journals\Modules\Reading\ReadingBookController::class, 'destroy'])->name('journal.entry.reading.books.destroy');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/reading/reset', [Journals\Modules\Reading\ReadingResetController::class, 'update'])->name('journal.entry.reading.reset');
+
                 // energy
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy', [Journals\Modules\Energy\EnergyController::class, 'update'])->name('journal.entry.energy.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/energy/reset', [Journals\Modules\Energy\EnergyResetController::class, 'update'])->name('journal.entry.energy.reset');

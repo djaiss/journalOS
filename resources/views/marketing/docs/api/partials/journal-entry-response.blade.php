@@ -228,6 +228,52 @@
   <span class="text-lime-700">"great"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"reading": {</div>
+<div class="pl-20">
+  "did_read_today":
+  <span class="text-lime-700">"yes"</span>
+  ,
+</div>
+<div class="pl-20">
+  "books": [
+  {
+  "id":
+  <span class="text-rose-800">12</span>
+  ,
+  "name":
+  <span class="text-lime-700">"Dune"</span>
+  ,
+  "status":
+  <span class="text-lime-700">"continued"</span>
+  }
+  ]
+  ,
+</div>
+<div class="pl-20">
+  "reading_amount":
+  <span class="text-lime-700">"one solid session"</span>
+  ,
+</div>
+<div class="pl-20">
+  "mental_state":
+  <span class="text-lime-700">"stimulated"</span>
+  ,
+</div>
+<div class="pl-20">
+  "reading_feel":
+  <span class="text-lime-700">"engaging"</span>
+  ,
+</div>
+<div class="pl-20">
+  "want_continue":
+  <span class="text-lime-700">"strongly"</span>
+  ,
+</div>
+<div class="pl-20">
+  "reading_limit":
+  <span class="text-lime-700">"time"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"energy": {</div>
 <div class="pl-20">
   "energy":

@@ -46,10 +46,12 @@ This is what it looks like.
   </details>
 
   <details>
-  <summary>🧠 Mind & Emotions (2 modules)</summary>
+  <summary>🧠 Mind & Emotions (4 modules)</summary>
 
   - 🙂 Mood
   - ⚡️ Energy
+  - 🧠 Cognitive load
+  - 📚 Reading
   </details>
 
   <details>
@@ -69,7 +71,7 @@ This is what it looks like.
   </details>
 
   <details>
-  <summary>📍 Places (2 modules)</summary>
+  <summary>📍 Places (4 modules)</summary>
 
   - ✈️ Travel
   - 🛍️ Shopping

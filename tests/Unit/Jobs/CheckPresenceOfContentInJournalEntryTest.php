@@ -7,6 +7,7 @@ namespace Tests\Unit\Jobs;
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\ModuleReading;
 use App\Models\ModuleCognitiveLoad;
 use App\Models\ModuleKids;
 use App\Models\ModuleHygiene;
@@ -19,6 +20,7 @@ use App\Models\ModuleSocialDensity;
 use App\Models\ModuleWork;
 use App\Models\ModuleWeather;
 use App\Models\ModuleWeatherInfluence;
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -57,6 +59,27 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         ModuleWork::factory()->create([
             'journal_entry_id' => $entry->id,
             'worked' => 'yes',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_reading_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModuleReading::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'reading_amount' => 'a few pages',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);
@@ -247,6 +270,27 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
             'journal_entry_id' => $entry->id,
             'meal_type' => 'home_cooked',
         ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_books_are_logged(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        $book = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        $entry->books()->attach($book, ['status' => 'continued']);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);
         $job->handle();

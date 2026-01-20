@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\Journals\Modules\Kids\KidsController as KidsModuleC
 use App\Http\Controllers\Api\Journals\Modules\Meals\MealsController as MealsModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Mood\MoodController as MoodModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PhysicalActivity\PhysicalActivityController;
+use App\Http\Controllers\Api\Journals\Modules\Reading\ReadingBookController;
+use App\Http\Controllers\Api\Journals\Modules\Reading\ReadingController as ReadingModuleController;
 use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligationController as PrimaryObligationModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
@@ -108,6 +110,15 @@ Route::name('api.')->group(function (): void {
 
                         Route::put('mood', [MoodModuleController::class, 'update'])
                             ->name('journal.entry.mood.update');
+
+                        Route::put('reading', [ReadingModuleController::class, 'update'])
+                            ->name('journal.entry.reading.update');
+
+                        Route::post('reading/books', [ReadingBookController::class, 'store'])
+                            ->name('journal.entry.reading.books.store');
+
+                        Route::delete('reading/books/{book}', [ReadingBookController::class, 'destroy'])
+                            ->name('journal.entry.reading.books.destroy');
 
                         Route::put('energy', [EnergyModuleController::class, 'update'])
                             ->name('journal.entry.energy.update');
