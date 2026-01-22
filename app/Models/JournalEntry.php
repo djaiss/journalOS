@@ -197,6 +197,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the reading module data for this entry.
+     *
+     * @return HasOne<ModuleReading, $this>
+     */
+    public function moduleReading(): HasOne
+    {
+        return $this->hasOne(ModuleReading::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the health module data for this entry.
      *
      * @return HasOne<ModuleHealth, $this>

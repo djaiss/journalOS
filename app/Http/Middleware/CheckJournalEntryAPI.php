@@ -51,10 +51,12 @@ final class CheckJournalEntryAPI
             'moduleSexualActivity',
             'moduleHealth',
             'moduleMood',
+            'moduleReading',
             'moduleEnergy',
             'moduleKids',
             'modulePrimaryObligation',
             'moduleSocialDensity',
+            'books',
             'richTextNotes',
         );
 

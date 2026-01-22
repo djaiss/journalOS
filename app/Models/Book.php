@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $progress
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
+ * @property \Illuminate\Database\Eloquent\Relations\Pivot|null $pivot
+ * @property string|null $pivot->status
  */
 final class Book extends Model
 {

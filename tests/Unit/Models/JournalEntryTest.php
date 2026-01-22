@@ -16,6 +16,7 @@ use App\Models\ModuleEnergy;
 use App\Models\ModuleCognitiveLoad;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleMeals;
+use App\Models\ModuleReading;
 use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleSleep;
@@ -195,6 +196,25 @@ final class JournalEntryTest extends TestCase
         $this->assertTrue($entry->moduleHygiene()->exists());
         $this->assertEquals($moduleHygiene->id, $entry->moduleHygiene->id);
         $this->assertEquals('yes', $entry->moduleHygiene->showered);
+    }
+
+    #[Test]
+    public function it_has_one_module_reading(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleReading = ModuleReading::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'did_read_today' => 'yes',
+            'reading_amount' => 'one solid session',
+        ]);
+
+        $this->assertTrue($entry->moduleReading()->exists());
+        $this->assertEquals($moduleReading->id, $entry->moduleReading->id);
+        $this->assertEquals('yes', $entry->moduleReading->did_read_today);
+        $this->assertEquals('one solid session', $entry->moduleReading->reading_amount);
     }
 
     #[Test]

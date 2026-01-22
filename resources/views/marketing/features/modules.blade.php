@@ -13,9 +13,9 @@
     selectedCategory: 'All',
     searchQuery: '',
     categories: [
-      { name: 'All', emoji: '📋', count: 18 },
+      { name: 'All', emoji: '📋', count: 19 },
       { name: 'Body & Health', emoji: '💪', count: 5 },
-      { name: 'Mind & Emotions', emoji: '🧠', count: 3 },
+      { name: 'Mind & Emotions', emoji: '🧠', count: 4 },
       { name: 'Work', emoji: '💼', count: 3 },
       { name: 'Social', emoji: '👥', count: 3 },
       { name: 'Places', emoji: '📍', count: 4 },
@@ -25,7 +25,7 @@
       <!-- title -->
       <div class="mb-20 text-center">
         <h2 class="mb-6 text-4xl font-semibold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">All the modules you can use in your journal</h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">We have 18 modules to track different aspects of your daily life.</p>
+        <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">We have 19 modules to track different aspects of your daily life.</p>
       </div>
 
       <!-- tabs filter + search field -->
@@ -91,6 +91,22 @@
             <x-marketing.module emoji="⚡" name="Energy">
               <x-slot:trackedData>
                 <li>Energy level</li>
+              </x-slot>
+              <x-slot:category>Mind & Emotions</x-slot>
+            </x-marketing.module>
+          </div>
+
+          <div x-show="
+            (selectedCategory === 'All' || selectedCategory === 'Mind & Emotions') &&
+              (searchQuery === '' || 'reading'.includes(searchQuery.toLowerCase()))
+          " x-transition>
+            <x-marketing.module emoji="📚" name="Reading">
+              <x-slot:trackedData>
+                <li>Books read</li>
+                <li>Reading amount</li>
+                <li>Mental state</li>
+                <li>Reading feel</li>
+                <li>Reading limits</li>
               </x-slot>
               <x-slot:category>Mind & Emotions</x-slot>
             </x-marketing.module>
