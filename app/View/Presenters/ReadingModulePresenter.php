@@ -58,8 +58,8 @@ final readonly class ReadingModulePresenter
         $this->entry->loadMissing('books');
 
         return $this->entry->books
-            ->sortBy('name')
-            ->map(fn($book) => [
+            ->sortBy(fn(Book $book) => $book->name)
+            ->map(fn(Book $book) => [
                 'id' => $book->id,
                 'name' => $book->name,
                 'status' => $book->pivot?->status,
