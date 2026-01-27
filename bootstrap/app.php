@@ -11,6 +11,7 @@ use App\Http\Middleware\CheckJournal;
 use App\Http\Middleware\CheckJournalAPI;
 use App\Http\Middleware\CheckJournalEntry;
 use App\Http\Middleware\CheckJournalEntryAPI;
+use App\Http\Middleware\CheckJournalLlmAccess;
 use App\Http\Middleware\CheckMarketing;
 use App\Http\Middleware\CheckSubscription;
 
@@ -28,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'journal.api' => CheckJournalAPI::class,
             'journal.entry' => CheckJournalEntry::class,
             'journal.entry.api' => CheckJournalEntryAPI::class,
+            'journal.llm' => CheckJournalLlmAccess::class,
             'instance.admin' => CheckInstanceAdministrator::class,
             'subscription' => CheckSubscription::class,
             'marketing' => CheckMarketing::class,

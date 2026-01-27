@@ -6,12 +6,18 @@ use App\Http\Controllers\App;
 use App\Http\Controllers\App\Journals;
 use App\Http\Controllers\App\Settings;
 use App\Http\Controllers\Instance;
+use App\Http\Controllers\Llm;
 use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/marketing.php';
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
+
+Route::middleware(['throttle:30,1', 'journal.llm'])->group(function (): void {
+    Route::get('llm/{accessKey}/{year}/{month}/{day}', [Llm\JournalEntryController::class, 'show'])
+        ->name('llm.journal.entry.show');
+});
 
 Route::middleware(['throttle:30,1'])->group(function (): void {
     Route::get('demo', [App\DemoAccountController::class, 'index'])->name('demo.index');
