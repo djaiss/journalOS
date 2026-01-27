@@ -54,7 +54,7 @@ final readonly class ToggleLLMForJournal
             user: $this->user,
             journal: $this->journal,
             action: 'journal_llm_visibility_toggled',
-            description: sprintf('LLM visibility %s', $state),
+            description: sprintf('LLM visibility %s for journal %s', $state, $this->journal->name),
         )->onQueue('low');
     }
 

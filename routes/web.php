@@ -151,7 +151,8 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
             Route::put('journals/{slug}/settings/edit-past', [Journals\Settings\JournalPastEditingController::class, 'update'])->name('journal.settings.edit-past.update');
 
             // llm
-            Route::get('journals/{slug}/settings/llm', [Settings\Security\ApiKeyController::class, 'create'])->name('journal.settings.llm.index');
+            Route::get('journals/{slug}/settings/llm', [Journals\Settings\JournalLLMSettingsController::class, 'show'])->name('journal.settings.llm.index');
+            Route::put('journals/{slug}/settings/llm', [Journals\Settings\JournalLLMSettingsController::class, 'update'])->name('journal.settings.llm.update');
         });
     });
 
