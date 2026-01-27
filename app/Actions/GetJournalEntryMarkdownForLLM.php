@@ -30,7 +30,7 @@ final class GetJournalEntryMarkdownForLLM
         $moduleKeys = $this->resolveModuleKeys($layout);
 
         $entry->loadMissing(array_merge(
-            $this->relationshipsForModules($moduleKeys),
+            self::relationshipsForModules($moduleKeys),
             ['richTextNotes'],
         ));
 
@@ -72,44 +72,20 @@ final class GetJournalEntryMarkdownForLLM
      */
     private function resolveModuleKeys(?Layout $layout): array
     {
-        if (! $layout) {
-            return [];
-        }
-
-        return $layout->layoutModules()
-            ->orderBy('column_number')
-            ->orderBy('position')
-            ->pluck('module_key')
-            ->all();
+        return self::moduleKeysForLayout($layout);
     }
 
     /**
      * @param  array<int, string>  $moduleKeys
      * @return array<int, string>
      */
-    private function relationshipsForModules(array $moduleKeys): array
+    /**
+     * @param  array<int, string>  $moduleKeys
+     * @return array<int, string>
+     */
+    public static function relationshipsForModules(array $moduleKeys): array
     {
-        $relationshipMap = [
-            'sleep' => 'moduleSleep',
-            'work' => 'moduleWork',
-            'travel' => 'moduleTravel',
-            'weather' => 'moduleWeather',
-            'weather_influence' => 'moduleWeatherInfluence',
-            'shopping' => 'moduleShopping',
-            'meals' => 'moduleMeals',
-            'kids' => 'moduleKids',
-            'day_type' => 'moduleDayType',
-            'primary_obligation' => 'modulePrimaryObligation',
-            'physical_activity' => 'modulePhysicalActivity',
-            'health' => 'moduleHealth',
-            'hygiene' => 'moduleHygiene',
-            'mood' => 'moduleMood',
-            'reading' => 'moduleReading',
-            'sexual_activity' => 'moduleSexualActivity',
-            'energy' => 'moduleEnergy',
-            'cognitive_load' => 'moduleCognitiveLoad',
-            'social_density' => 'moduleSocialDensity',
-        ];
+        $relationshipMap = self::relationshipMap();
 
         $relationships = [];
 
@@ -127,16 +103,72 @@ final class GetJournalEntryMarkdownForLLM
     }
 
     /**
+     * @return array<int, string>
+     */
+    public static function allRelationships(): array
+    {
+        $relationships = array_values(self::relationshipMap());
+        $relationships[] = 'books';
+
+        return array_values(array_unique($relationships));
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public static function moduleKeysForLayout(?Layout $layout): array
+    {
+        if (! $layout) {
+            return [];
+        }
+
+        $modules = $layout->relationLoaded('layoutModules')
+            ? $layout->layoutModules->sortBy([
+                ['column_number', 'asc'],
+                ['position', 'asc'],
+            ])
+            : $layout->layoutModules()
+                ->orderBy('column_number')
+                ->orderBy('position')
+                ->get();
+
+        return $modules->pluck('module_key')->all();
+    }
+
+    /**
      * @param  array<int, string>  $moduleKeys
      */
     private function buildMarkdown(JournalEntry $entry, array $moduleKeys): string
     {
+        return self::entryMarkdown($this->journal, $entry, $moduleKeys);
+    }
+
+    /**
+     * @param  array<int, string>  $moduleKeys
+     */
+    public static function entryMarkdown(Journal $journal, JournalEntry $entry, array $moduleKeys): string
+    {
         $lines = [];
-        $lines[] = sprintf('# Journal entry — %04d-%02d-%02d', $this->year, $this->month, $this->day);
-        $lines[] = sprintf('Journal: %s', $this->journal->name);
+        $lines[] = sprintf('# Journal entry — %04d-%02d-%02d', $entry->year, $entry->month, $entry->day);
+        $lines[] = sprintf('Journal: %s', $journal->name);
         $lines[] = '';
 
-        $notes = $this->notesFor($entry);
+        $content = self::entryContent($entry, $moduleKeys);
+        if ($content !== '') {
+            $lines[] = $content;
+        }
+
+        return mb_rtrim(implode("\n", $lines)) . "\n";
+    }
+
+    /**
+     * @param  array<int, string>  $moduleKeys
+     */
+    public static function entryContent(JournalEntry $entry, array $moduleKeys): string
+    {
+        $lines = [];
+
+        $notes = self::notesFor($entry);
         if ($notes !== null) {
             $lines[] = '## Notes';
             $lines[] = $notes;
@@ -147,7 +179,7 @@ final class GetJournalEntryMarkdownForLLM
             $lines[] = '## Modules';
 
             foreach ($moduleKeys as $moduleKey) {
-                $moduleLines = $this->moduleLines($entry, $moduleKey);
+                $moduleLines = self::moduleLines($entry, $moduleKey);
 
                 if ($moduleLines === []) {
                     continue;
@@ -159,10 +191,10 @@ final class GetJournalEntryMarkdownForLLM
             }
         }
 
-        return mb_rtrim(implode("\n", $lines)) . "\n";
+        return mb_rtrim(implode("\n", $lines));
     }
 
-    private function notesFor(JournalEntry $entry): ?string
+    private static function notesFor(JournalEntry $entry): ?string
     {
         $richTextNotes = $entry->richTextNotes;
         $notes = $richTextNotes?->toPlainText();
@@ -174,9 +206,9 @@ final class GetJournalEntryMarkdownForLLM
     /**
      * @return array<int, string>
      */
-    private function moduleLines(JournalEntry $entry, string $moduleKey): array
+    private static function moduleLines(JournalEntry $entry, string $moduleKey): array
     {
-        $data = $this->moduleData($entry, $moduleKey);
+        $data = self::moduleData($entry, $moduleKey);
         if ($data === null) {
             return [];
         }
@@ -184,7 +216,7 @@ final class GetJournalEntryMarkdownForLLM
         $lines = [];
 
         foreach ($data as $label => $value) {
-            $formatted = $this->formatValue($value);
+            $formatted = self::formatValue($value);
 
             if ($formatted === null) {
                 continue;
@@ -213,7 +245,7 @@ final class GetJournalEntryMarkdownForLLM
     /**
      * @return array<string, mixed>|null
      */
-    private function moduleData(JournalEntry $entry, string $moduleKey): ?array
+    private static function moduleData(JournalEntry $entry, string $moduleKey): ?array
     {
         return match ($moduleKey) {
             'sleep' => [
@@ -310,7 +342,7 @@ final class GetJournalEntryMarkdownForLLM
         };
     }
 
-    private function formatValue(mixed $value): ?string
+    private static function formatValue(mixed $value): ?string
     {
         if ($value === null) {
             return null;
@@ -321,7 +353,7 @@ final class GetJournalEntryMarkdownForLLM
         }
 
         if (is_array($value)) {
-            $formatted = array_filter(array_map(fn($item) => $this->formatScalar($item), $value));
+            $formatted = array_filter(array_map(fn($item) => self::formatScalar($item), $value));
 
             return $formatted !== [] ? implode(', ', $formatted) : null;
         }
@@ -336,10 +368,10 @@ final class GetJournalEntryMarkdownForLLM
 
         $value = TextSanitizer::plainText($value);
 
-        return $this->formatScalar($value);
+        return self::formatScalar($value);
     }
 
-    private function formatScalar(mixed $value): ?string
+    private static function formatScalar(mixed $value): ?string
     {
         if ($value === null) {
             return null;
@@ -360,5 +392,33 @@ final class GetJournalEntryMarkdownForLLM
         }
 
         return $value;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function relationshipMap(): array
+    {
+        return [
+            'sleep' => 'moduleSleep',
+            'work' => 'moduleWork',
+            'travel' => 'moduleTravel',
+            'weather' => 'moduleWeather',
+            'weather_influence' => 'moduleWeatherInfluence',
+            'shopping' => 'moduleShopping',
+            'meals' => 'moduleMeals',
+            'kids' => 'moduleKids',
+            'day_type' => 'moduleDayType',
+            'primary_obligation' => 'modulePrimaryObligation',
+            'physical_activity' => 'modulePhysicalActivity',
+            'health' => 'moduleHealth',
+            'hygiene' => 'moduleHygiene',
+            'mood' => 'moduleMood',
+            'reading' => 'moduleReading',
+            'sexual_activity' => 'moduleSexualActivity',
+            'energy' => 'moduleEnergy',
+            'cognitive_load' => 'moduleCognitiveLoad',
+            'social_density' => 'moduleSocialDensity',
+        ];
     }
 }

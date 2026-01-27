@@ -17,6 +17,10 @@ Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update'
 Route::middleware(['throttle:30,1', 'journal.llm'])->group(function (): void {
     Route::get('llm/{accessKey}/{year}/{month}/{day}', [Llm\JournalEntryController::class, 'show'])
         ->name('llm.journal.entry.show');
+    Route::get('llm/{accessKey}/{year}/{month}', [Llm\JournalEntryController::class, 'showMonth'])
+        ->name('llm.journal.month.show');
+    Route::get('llm/{accessKey}/{year}', [Llm\JournalEntryController::class, 'showYear'])
+        ->name('llm.journal.year.show');
 });
 
 Route::middleware(['throttle:30,1'])->group(function (): void {
