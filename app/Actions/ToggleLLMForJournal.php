@@ -9,6 +9,7 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 final readonly class ToggleLLMForJournal
@@ -23,6 +24,7 @@ final readonly class ToggleLLMForJournal
         $this->validate();
 
         $this->journal->has_llm_access = !$this->journal->has_llm_access;
+        $this->setAccessKeyIfEnabled();
         $this->journal->save();
 
         $this->logUserAction();
@@ -56,6 +58,17 @@ final readonly class ToggleLLMForJournal
             action: 'journal_llm_visibility_toggled',
             description: sprintf('LLM visibility %s for journal %s', $state, $this->journal->name),
         )->onQueue('low');
+    }
+
+    private function setAccessKeyIfEnabled(): void
+    {
+        if ($this->journal->has_llm_access) {
+            $this->journal->llm_access_key = Str::random(64);
+
+            return;
+        }
+
+        $this->journal->llm_access_key = null;
     }
 
     private function updateUserLastActivityDate(): void

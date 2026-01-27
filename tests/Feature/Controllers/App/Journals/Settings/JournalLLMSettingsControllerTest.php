@@ -35,6 +35,38 @@ final class JournalLLMSettingsControllerTest extends TestCase
     }
 
     #[Test]
+    public function it_shows_access_key_when_llm_access_is_enabled(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'has_llm_access' => true,
+            'llm_access_key' => 'llm-test-key',
+        ]);
+
+        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/llm');
+
+        $response->assertOk();
+        $response->assertSeeText('llm-test-key');
+    }
+
+    #[Test]
+    public function it_hides_access_key_when_llm_access_is_disabled(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'has_llm_access' => false,
+            'llm_access_key' => 'llm-test-key',
+        ]);
+
+        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/llm');
+
+        $response->assertOk();
+        $response->assertDontSeeText('llm-test-key');
+    }
+
+    #[Test]
     public function it_returns_not_found_if_user_does_not_own_the_journal(): void
     {
         $user = User::factory()->create();

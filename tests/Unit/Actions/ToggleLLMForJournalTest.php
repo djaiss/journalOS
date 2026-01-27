@@ -28,12 +28,13 @@ final class ToggleLLMForJournalTest extends TestCase
     }
 
     #[Test]
-    public function it_toggles_llm_visibility(): void
+    public function it_toggles_llm_visibility_and_sets_access_key(): void
     {
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,
-            'has_llm_access' => true,
+            'has_llm_access' => false,
+            'llm_access_key' => null,
         ]);
 
         $updatedJournal = (new ToggleLLMForJournal(
@@ -41,11 +42,13 @@ final class ToggleLLMForJournalTest extends TestCase
             journal: $journal,
         ))->execute();
 
-        $this->assertFalse($updatedJournal->has_llm_access);
+        $this->assertTrue($updatedJournal->has_llm_access);
+        $this->assertNotNull($updatedJournal->llm_access_key);
+        $this->assertSame(64, mb_strlen($updatedJournal->llm_access_key));
 
         $this->assertDatabaseHas('journals', [
             'id' => $journal->id,
-            'has_llm_access' => false,
+            'has_llm_access' => true,
         ]);
 
         Queue::assertPushedOn(
@@ -65,6 +68,31 @@ final class ToggleLLMForJournalTest extends TestCase
                 return $job->user->is($user);
             },
         );
+    }
+
+    #[Test]
+    public function it_clears_access_key_when_disabling(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'has_llm_access' => true,
+            'llm_access_key' => 'existing-key',
+        ]);
+
+        $updatedJournal = (new ToggleLLMForJournal(
+            user: $user,
+            journal: $journal,
+        ))->execute();
+
+        $this->assertFalse($updatedJournal->has_llm_access);
+        $this->assertNull($updatedJournal->llm_access_key);
+
+        $this->assertDatabaseHas('journals', [
+            'id' => $journal->id,
+            'has_llm_access' => false,
+            'llm_access_key' => null,
+        ]);
     }
 
     #[Test]
