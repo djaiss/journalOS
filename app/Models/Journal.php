@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property ?string $slug
  * @property bool $can_edit_past
+ * @property bool $has_llm_access
+ * @property string|null $llm_access_key
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
  */
@@ -46,6 +48,8 @@ final class Journal extends Model
         'name',
         'slug',
         'can_edit_past',
+        'has_llm_access',
+        'llm_access_key',
     ];
 
     /**
@@ -59,6 +63,7 @@ final class Journal extends Model
             'name' => 'encrypted',
             'slug' => 'encrypted',
             'can_edit_past' => 'boolean',
+            'has_llm_access' => 'boolean',
         ];
     }
 
