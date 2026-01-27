@@ -16,9 +16,15 @@ final class JournalLLMSettingsController extends Controller
     public function show(Request $request): View
     {
         $journal = $request->attributes->get('journal');
+        $accessLogs = $journal->llmAccessLogs()
+            ->latest()
+            ->take(11)
+            ->get();
 
         return view('app.journal.settings.llm.index', [
             'journal' => $journal,
+            'accessLogs' => $accessLogs->take(10)->values(),
+            'hasMoreAccessLogs' => $accessLogs->count() > 10,
         ]);
     }
 

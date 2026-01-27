@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\Llm;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\JournalLlmAccessLog;
 use App\Models\Layout;
 use App\Models\LayoutModule;
 use App\Models\ModuleSleep;
@@ -60,6 +61,17 @@ final class JournalEntryControllerTest extends TestCase
         $response->assertSee('Journal entry — 2026-01-27');
         $response->assertSee('Sleep module');
         $response->assertSee('Bedtime: 23:00');
+
+        $this->assertDatabaseHas('journal_llm_access_logs', [
+            'journal_id' => $journal->id,
+            'requested_year' => 2026,
+            'requested_month' => 1,
+            'requested_day' => 27,
+        ]);
+
+        $log = JournalLlmAccessLog::query()->first();
+        $this->assertNotNull($log);
+        $this->assertSame(url('/llm/llm-key-123/2026/1/27'), $log->request_url);
     }
 
     #[Test]

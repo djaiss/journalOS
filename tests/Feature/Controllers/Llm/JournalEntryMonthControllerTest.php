@@ -6,6 +6,7 @@ namespace Tests\Feature\Controllers\Llm;
 
 use App\Models\Journal;
 use App\Models\JournalEntry;
+use App\Models\JournalLlmAccessLog;
 use App\Models\Layout;
 use App\Models\LayoutModule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -51,6 +52,17 @@ final class JournalEntryMonthControllerTest extends TestCase
         $response->assertHeader('Content-Type', 'text/markdown; charset=UTF-8');
         $response->assertSee('Journal entries — 2026-01');
         $response->assertSee('## 2026-01-27');
+
+        $this->assertDatabaseHas('journal_llm_access_logs', [
+            'journal_id' => $journal->id,
+            'requested_year' => 2026,
+            'requested_month' => 1,
+            'requested_day' => null,
+        ]);
+
+        $log = JournalLlmAccessLog::query()->first();
+        $this->assertNotNull($log);
+        $this->assertSame(url('/llm/llm-key-123/2026/1'), $log->request_url);
     }
 
     #[Test]

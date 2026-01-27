@@ -7,6 +7,7 @@ namespace Tests\Feature\Controllers\App\Journals\Settings;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
+use App\Models\JournalLlmAccessLog;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
@@ -48,6 +49,51 @@ final class JournalLLMSettingsControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertSeeText('llm-test-key');
+    }
+
+    #[Test]
+    public function it_shows_recent_llm_access_logs(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'has_llm_access' => true,
+            'llm_access_key' => 'llm-test-key',
+        ]);
+
+        JournalLlmAccessLog::factory()->create([
+            'journal_id' => $journal->id,
+            'requested_year' => 2026,
+            'requested_month' => 1,
+            'requested_day' => 27,
+            'request_url' => 'https://journalos.test/llm/llm-test-key/2026/1/27',
+        ]);
+
+        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/llm');
+
+        $response->assertOk();
+        $response->assertSeeText('2026-01-27');
+        $response->assertSeeText('https://journalos.test/llm/llm-test-key/2026/1/27');
+    }
+
+    #[Test]
+    public function it_shows_view_more_link_when_access_logs_exceed_limit(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+            'has_llm_access' => true,
+            'llm_access_key' => 'llm-test-key',
+        ]);
+
+        JournalLlmAccessLog::factory()->count(11)->create([
+            'journal_id' => $journal->id,
+        ]);
+
+        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/llm');
+
+        $response->assertOk();
+        $response->assertSeeText('View more');
     }
 
     #[Test]

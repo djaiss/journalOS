@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Llm;
 
 use App\Actions\GetJournalEntryMarkdownForLLM;
+use App\Actions\LogJournalLlmAccess;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -19,13 +20,21 @@ final class JournalEntryController extends Controller
 
         $journal = $request->attributes->get('journal');
 
+        new LogJournalLlmAccess(
+            journal: $journal,
+            requestUrl: $request->fullUrl(),
+            year: (int) $year,
+            month: (int) $month,
+            day: (int) $day,
+        )->execute();
+
         try {
-            $markdown = (new GetJournalEntryMarkdownForLLM(
+            $markdown = new GetJournalEntryMarkdownForLLM(
                 journal: $journal,
                 year: (int) $year,
                 month: (int) $month,
                 day: (int) $day,
-            ))->execute();
+            )->execute();
         } catch (ValidationException|ModelNotFoundException) {
             abort(404);
         }

@@ -36,12 +36,7 @@
         <p>{{ __('Books read') }}</p>
         <x-form x-target="reading-container notifications reading-reset days-listing months-listing" :action="$module['books_url']" method="post" class="flex flex-col gap-2 sm:flex-row">
           <div class="flex-1">
-            <input
-              type="text"
-              name="book_name"
-              list="reading-book-suggestions"
-              class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
-              placeholder="{{ __('Add a book') }}" />
+            <input type="text" name="book_name" list="reading-book-suggestions" class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" placeholder="{{ __('Add a book') }}" />
             <datalist id="reading-book-suggestions">
               @foreach ($module['book_suggestions'] as $bookName)
                 <option value="{{ $bookName }}"></option>

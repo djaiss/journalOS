@@ -12,13 +12,13 @@ use App\Models\Layout;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
-final class GetJournalEntryMarkdownForLLM
+final readonly class GetJournalEntryMarkdownForLLM
 {
     public function __construct(
-        private readonly Journal $journal,
-        private readonly int $year,
-        private readonly int $month,
-        private readonly int $day,
+        private Journal $journal,
+        private int $year,
+        private int $month,
+        private int $day,
     ) {}
 
     public function execute(): string
@@ -197,7 +197,7 @@ final class GetJournalEntryMarkdownForLLM
     private static function notesFor(JournalEntry $entry): ?string
     {
         $richTextNotes = $entry->richTextNotes;
-        $notes = $richTextNotes?->toPlainText();
+        $notes = $richTextNotes?->body?->toPlainText();
         $notes = $notes ? TextSanitizer::plainText($notes) : '';
 
         return $notes !== '' ? $notes : null;
@@ -353,7 +353,7 @@ final class GetJournalEntryMarkdownForLLM
         }
 
         if (is_array($value)) {
-            $formatted = array_filter(array_map(fn($item) => self::formatScalar($item), $value));
+            $formatted = array_filter(array_map(self::formatScalar(...), $value));
 
             return $formatted !== [] ? implode(', ', $formatted) : null;
         }

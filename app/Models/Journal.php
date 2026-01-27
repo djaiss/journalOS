@@ -98,6 +98,16 @@ final class Journal extends Model
     }
 
     /**
+     * Get the LLM access logs associated with the journal.
+     *
+     * @return HasMany<JournalLlmAccessLog, $this>
+     */
+    public function llmAccessLogs(): HasMany
+    {
+        return $this->hasMany(JournalLlmAccessLog::class);
+    }
+
+    /**
      * Get the journal avatar.
      */
     public function avatar(): string

@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
-final class GetJournalEntriesMarkdownForLLM
+final readonly class GetJournalEntriesMarkdownForLLM
 {
     public function __construct(
-        private readonly Journal $journal,
-        private readonly int $year,
-        private readonly ?int $month,
+        private Journal $journal,
+        private int $year,
+        private ?int $month,
     ) {}
 
     public function execute(): string
@@ -63,7 +63,7 @@ final class GetJournalEntriesMarkdownForLLM
             ->get();
 
         if ($entries->isEmpty()) {
-            throw (new ModelNotFoundException())->setModel(JournalEntry::class);
+            throw new ModelNotFoundException()->setModel(JournalEntry::class);
         }
 
         return $entries;

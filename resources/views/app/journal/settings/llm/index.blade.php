@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\Models\Journal $journal
+ * @var \Illuminate\Support\Collection $accessLogs
+ * @var bool $hasMoreAccessLogs
  * @var \Illuminate\Support\ViewErrorBag $errors
  */
 ?>
@@ -83,9 +85,54 @@
                   <span x-text="copied ? '{{ __('Copied') }}' : '{{ __('Copy') }}'"></span>
                 </button>
               </div>
-
             </x-box>
           @endif
+        </div>
+
+        <div class="mt-4">
+          <x-box padding="p-0">
+            <x-slot:title>
+              {{ __('Access history') }}
+            </x-slot>
+
+            <x-slot:description>
+              {{ __('We keep track of each LLM access to help you monitor usage.') }}
+            </x-slot>
+
+            @forelse ($accessLogs as $log)
+              @php
+                $requestedDate = sprintf('%04d', $log->requested_year);
+                if ($log->requested_month !== null) {
+                  $requestedDate .= '-' . sprintf('%02d', $log->requested_month);
+                }
+                if ($log->requested_day !== null) {
+                  $requestedDate .= '-' . sprintf('%02d', $log->requested_day);
+                }
+              @endphp
+
+              <div class="flex items-center justify-between border-b border-gray-200 p-3 text-sm first:rounded-t-lg last:rounded-b-lg last:border-b-0 hover:bg-blue-50 dark:border-gray-700 dark:hover:bg-gray-800">
+                <div class="flex items-center gap-3">
+                  <x-phosphor-pulse class="size-3 min-w-3 text-zinc-600 dark:text-zinc-400" />
+                  <div class="flex flex-col gap-y-2">
+                    <p class="font-mono text-xs text-zinc-500 dark:text-zinc-400">{{ $requestedDate }}</p>
+                    <p class="font-mono text-xs break-all">{{ $log->request_url }}</p>
+                  </div>
+                </div>
+
+                <x-tooltip text="{{ $log->created_at->format('Y-m-d H:i:s') }}">
+                  <p class="font-mono text-xs">{{ $log->created_at->diffForHumans() }}</p>
+                </x-tooltip>
+              </div>
+            @empty
+              <p class="p-3 text-sm text-gray-600 dark:text-gray-300">{{ __('No LLM accesses yet.') }}</p>
+            @endforelse
+
+            @if ($hasMoreAccessLogs)
+              <div class="flex justify-center rounded-b-lg p-3 text-sm">
+                <x-link href="{{ route('journal.settings.llm.logs.index', ['slug' => $journal->slug]) }}" class="text-center">{{ __('View more') }}</x-link>
+              </div>
+            @endif
+          </x-box>
         </div>
       </div>
     </section>
