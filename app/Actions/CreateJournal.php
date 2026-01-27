@@ -56,6 +56,8 @@ final class CreateJournal
         $this->journal = Journal::query()->create([
             'user_id' => $this->user->id,
             'name' => $this->name,
+            'has_llm_access' => false,
+            'llm_access_key' => null,
         ]);
     }
 

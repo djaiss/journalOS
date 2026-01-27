@@ -29,7 +29,7 @@ final class ReadingController extends Controller
             'reading_limit' => ['nullable', 'string', 'max:255', Rule::in(ModuleReading::READING_LIMITS), 'required_without_all:did_read_today,reading_amount,mental_state,reading_feel,want_continue'],
         ]);
 
-        $entry = (new LogReading(
+        $entry = new LogReading(
             user: Auth::user(),
             entry: $entry,
             didReadToday: array_key_exists('did_read_today', $validated) ? TextSanitizer::plainText($validated['did_read_today']) : null,
@@ -38,7 +38,7 @@ final class ReadingController extends Controller
             readingFeel: array_key_exists('reading_feel', $validated) ? TextSanitizer::plainText($validated['reading_feel']) : null,
             wantContinue: array_key_exists('want_continue', $validated) ? TextSanitizer::plainText($validated['want_continue']) : null,
             readingLimit: array_key_exists('reading_limit', $validated) ? TextSanitizer::plainText($validated['reading_limit']) : null,
-        ))->execute();
+        )->execute();
 
         $entry->load('moduleReading', 'books');
 

@@ -132,8 +132,7 @@
         </x-marketing.docs.url-parameters>
 
         <!-- query parameters -->
-        <x-marketing.docs.query-parameters>
-        </x-marketing.docs.query-parameters>
+        <x-marketing.docs.query-parameters></x-marketing.docs.query-parameters>
 
         <!-- response attributes -->
         @include('marketing.docs.api.partials.journal-entry-response-attributes')

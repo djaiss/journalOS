@@ -6,12 +6,22 @@ use App\Http\Controllers\App;
 use App\Http\Controllers\App\Journals;
 use App\Http\Controllers\App\Settings;
 use App\Http\Controllers\Instance;
+use App\Http\Controllers\Llm;
 use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/marketing.php';
 
 Route::put('/locale', [LocaleController::class, 'update'])->name('locale.update');
+
+Route::middleware(['throttle:30,1', 'journal.llm'])->group(function (): void {
+    Route::get('llm/{accessKey}/{year}/{month}/{day}', [Llm\JournalEntryController::class, 'show'])
+        ->name('llm.journal.entry.show');
+    Route::get('llm/{accessKey}/{year}/{month}', [Llm\JournalEntryMonthController::class, 'index'])
+        ->name('llm.journal.month.show');
+    Route::get('llm/{accessKey}/{year}', [Llm\JournalEntryYearController::class, 'index'])
+        ->name('llm.journal.year.show');
+});
 
 Route::middleware(['throttle:30,1'])->group(function (): void {
     Route::get('demo', [App\DemoAccountController::class, 'index'])->name('demo.index');
@@ -149,6 +159,12 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
 
             // settings - edit past
             Route::put('journals/{slug}/settings/edit-past', [Journals\Settings\JournalPastEditingController::class, 'update'])->name('journal.settings.edit-past.update');
+
+            // llm
+            Route::get('journals/{slug}/settings/llm', [Journals\Settings\JournalLLMSettingsController::class, 'show'])->name('journal.settings.llm.index');
+            Route::put('journals/{slug}/settings/llm', [Journals\Settings\JournalLLMSettingsController::class, 'update'])->name('journal.settings.llm.update');
+            Route::get('journals/{slug}/settings/llm/logs', [Journals\Settings\JournalLlmAccessLogController::class, 'index'])
+                ->name('journal.settings.llm.logs.index');
         });
     });
 

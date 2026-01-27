@@ -235,19 +235,13 @@
   ,
 </div>
 <div class="pl-20">
-  "books": [
-  {
-  "id":
+  "books": [ { "id":
   <span class="text-rose-800">12</span>
-  ,
-  "name":
+  , "name":
   <span class="text-lime-700">"Dune"</span>
-  ,
-  "status":
+  , "status":
   <span class="text-lime-700">"continued"</span>
-  }
-  ]
-  ,
+  } ] ,
 </div>
 <div class="pl-20">
   "reading_amount":

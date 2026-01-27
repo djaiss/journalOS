@@ -28,6 +28,8 @@ final class JournalFactory extends Factory
             'name' => $this->faker->word(),
             'slug' => null,
             'can_edit_past' => true,
+            'has_llm_access' => false,
+            'llm_access_key' => null,
         ];
     }
 

@@ -32,12 +32,12 @@ final class ReadingBookController extends Controller
 
         $alreadyLogged = $entry->books()->where('books.id', $book->id)->exists();
         if (! $alreadyLogged) {
-            (new LogBook(
+            new LogBook(
                 user: Auth::user(),
                 entry: $entry,
                 book: $book,
                 status: BookStatus::CONTINUED,
-            ))->execute();
+            )->execute();
         }
 
         $entry->load('moduleReading', 'books');
@@ -56,11 +56,11 @@ final class ReadingBookController extends Controller
             ->where('user_id', Auth::id())
             ->findOrFail($bookId);
 
-        (new RemoveBook(
+        new RemoveBook(
             user: Auth::user(),
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
 
         $entry->load('moduleReading', 'books');
 
@@ -80,9 +80,9 @@ final class ReadingBookController extends Controller
             return $existingBook;
         }
 
-        return (new CreateBook(
+        return new CreateBook(
             user: $user,
             name: $bookName,
-        ))->execute();
+        )->execute();
     }
 }
