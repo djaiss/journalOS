@@ -8,17 +8,16 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\Layout;
 use App\Models\LayoutModule;
-use App\Models\ModuleSleep;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class JournalEntryControllerTest extends TestCase
+final class JournalEntryMonthControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     #[Test]
-    public function it_returns_markdown_for_a_valid_entry(): void
+    public function it_returns_markdown_for_a_month_request(): void
     {
         $journal = Journal::factory()->create([
             'has_llm_access' => true,
@@ -38,7 +37,7 @@ final class JournalEntryControllerTest extends TestCase
             'position' => 1,
         ]);
 
-        $entry = JournalEntry::factory()->create([
+        JournalEntry::factory()->create([
             'journal_id' => $journal->id,
             'layout_id' => $layout->id,
             'year' => 2026,
@@ -46,53 +45,25 @@ final class JournalEntryControllerTest extends TestCase
             'day' => 27,
         ]);
 
-        ModuleSleep::factory()->create([
-            'journal_entry_id' => $entry->id,
-            'bedtime' => '23:00',
-            'wake_up_time' => '07:15',
-            'sleep_duration_in_minutes' => 495,
-        ]);
-
-        $response = $this->get('/llm/llm-key-123/2026/1/27');
+        $response = $this->get('/llm/llm-key-123/2026/1');
 
         $response->assertOk();
         $response->assertHeader('Content-Type', 'text/markdown; charset=UTF-8');
-        $response->assertSee('Journal entry — 2026-01-27');
-        $response->assertSee('Sleep module');
-        $response->assertSee('Bedtime: 23:00');
+        $response->assertSee('Journal entries — 2026-01');
+        $response->assertSee('## 2026-01-27');
     }
 
     #[Test]
-    public function it_returns_not_found_for_invalid_key(): void
-    {
-        $response = $this->get('/llm/invalid/2026/1/27');
-
-        $response->assertNotFound();
-    }
-
-    #[Test]
-    public function it_returns_not_found_for_invalid_date(): void
+    public function it_returns_not_found_for_invalid_month_request(): void
     {
         $journal = Journal::factory()->create([
             'has_llm_access' => true,
             'llm_access_key' => 'llm-key-123',
         ]);
 
-        $response = $this->get('/llm/' . $journal->llm_access_key . '/2026/2/30');
+        $response = $this->get('/llm/' . $journal->llm_access_key . '/2026/13');
 
         $response->assertNotFound();
     }
 
-    #[Test]
-    public function it_returns_not_found_when_entry_is_missing(): void
-    {
-        $journal = Journal::factory()->create([
-            'has_llm_access' => true,
-            'llm_access_key' => 'llm-key-123',
-        ]);
-
-        $response = $this->get('/llm/' . $journal->llm_access_key . '/2026/1/27');
-
-        $response->assertNotFound();
-    }
 }

@@ -4,27 +4,26 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Llm;
 
-use App\Actions\GetJournalEntryMarkdownForLLM;
+use App\Actions\GetJournalEntriesMarkdownForLLM;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
-final class JournalEntryController extends Controller
+final class JournalEntryYearController extends Controller
 {
-    public function show(Request $request, string $accessKey, string $year, string $month, string $day): Response
+    public function index(Request $request, string $accessKey, string $year): Response
     {
-        $this->ensureValidDate($year, $month, $day);
+        $this->ensureValidYear($year);
 
         $journal = $request->attributes->get('journal');
 
         try {
-            $markdown = (new GetJournalEntryMarkdownForLLM(
+            $markdown = (new GetJournalEntriesMarkdownForLLM(
                 journal: $journal,
                 year: (int) $year,
-                month: (int) $month,
-                day: (int) $day,
+                month: null,
             ))->execute();
         } catch (ValidationException|ModelNotFoundException) {
             abort(404);
@@ -35,17 +34,14 @@ final class JournalEntryController extends Controller
         ]);
     }
 
-    private function ensureValidDate(string $year, string $month, string $day): void
+    private function ensureValidYear(string $year): void
     {
-        if ($year === '' || ! ctype_digit($year)
-            || $month === '' || ! ctype_digit($month)
-            || $day === '' || ! ctype_digit($day)) {
+        if ($year === '' || ! ctype_digit($year)) {
             abort(404);
         }
 
-        if (! checkdate((int) $month, (int) $day, (int) $year)) {
+        if (! checkdate(1, 1, (int) $year)) {
             abort(404);
         }
     }
-
 }
