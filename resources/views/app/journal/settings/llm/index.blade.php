@@ -60,7 +60,29 @@
                 {{ __('Keep this key private. Anyone with it can access your data in read-only mode.') }}
               </x-slot>
 
-              <code class="break-all">{{ $journal->llm_access_key }}</code>
+              <div class="flex items-center gap-x-2" x-data="{
+                copied: false,
+                copyToClipboard() {
+                  const el = document.createElement('textarea')
+                  el.value = '{{ $journal->llm_access_key }}'
+                  document.body.appendChild(el)
+                  el.select()
+                  document.execCommand('copy')
+                  document.body.removeChild(el)
+
+                  this.copied = true
+                  setTimeout(() => {
+                    this.copied = false
+                  }, 2000)
+                },
+              }">
+                <code class="flex-1 break-all">{{ $journal->llm_access_key }}</code>
+                <button @click="copyToClipboard()" class="inline-flex items-center rounded-md border border-green-200 bg-white px-3 py-2 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none dark:border-green-700 dark:bg-gray-900 dark:text-green-300 dark:hover:bg-gray-800">
+                  <x-phosphor-check x-show="copied" class="mr-1 h-4 w-4" />
+                  <x-phosphor-copy x-show="!copied" class="mr-1 h-4 w-4" />
+                  <span x-text="copied ? '{{ __('Copied') }}' : '{{ __('Copy') }}'"></span>
+                </button>
+              </div>
 
             </x-box>
           @endif
