@@ -44,6 +44,15 @@ return [
         'purge_chunk' => env('CLOUDFLARE_PURGE_CHUNK', 30),
     ],
 
+    'journalos' => [
+        'description' => env('APP_DESCRIPTION', 'JournalOS is an online bullet journal designed to help you document your life.'),
+        'show_marketing_site' => env('SHOW_MARKETING_SITE', true),
+        'enable_paid_version' => env('ENABLE_PAID_VERSION', false),
+        'supported_locales' => ['en', 'fr'],
+        'use_resend' => env('USE_RESEND', false),
+        'account_deletion_notification_email' => env('ACCOUNT_DELETION_NOTIFICATION_EMAIL', 'hello@example.com'),
+    ],
+
     'turnstile' => [
         'key' => env('TURNSTILE_SITE_KEY'),
         'secret' => env('TURNSTILE_SECRET_KEY'),

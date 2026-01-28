@@ -15,7 +15,7 @@ final class LocaleController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'locale' => ['required', 'string', 'max:255', Rule::in(config('journalos.supported_locales'))],
+            'locale' => ['required', 'string', 'max:255', Rule::in(config('services.journalos.supported_locales'))],
         ]);
 
         App::setLocale($validated['locale']);

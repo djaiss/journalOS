@@ -20,7 +20,7 @@ final class DestroyAccountControllerTest extends TestCase
     public function it_deletes_the_authenticated_users_account(): void
     {
         Mail::fake();
-        config(['journalos.account_deletion_notification_email' => 'regis@journalos.cloud']);
+        config(['services.journalos.account_deletion_notification_email' => 'regis@journalos.cloud']);
 
         $user = User::factory()->create();
         $otherUser = User::factory()->create();

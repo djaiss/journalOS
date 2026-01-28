@@ -28,7 +28,7 @@ final readonly class DestroyAccountBecauseInactivity
         if ($this->user->last_activity_at->diffInMonths(now()) >= 6) {
             $this->user->delete();
 
-            Mail::to(config('journalos.account_deletion_notification_email'))
+            Mail::to(config('services.journalos.account_deletion_notification_email'))
                 ->queue(new AccountAutomaticallyDestroyed(
                     age: $this->user->created_at->diffInMonths(now()) . ' months',
                 ));

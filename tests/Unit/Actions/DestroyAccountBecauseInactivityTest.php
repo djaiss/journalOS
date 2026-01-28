@@ -28,7 +28,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
     public function it_destroys_an_inactive_account(): void
     {
         Mail::fake();
-        config(['journalos.account_deletion_notification_email' => 'admin@journalos.cloud']);
+        config(['services.journalos.account_deletion_notification_email' => 'admin@journalos.cloud']);
 
         $user = User::factory()->create([
             'last_activity_at' => now()->subMonths(7),

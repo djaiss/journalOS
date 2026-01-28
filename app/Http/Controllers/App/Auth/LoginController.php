@@ -31,7 +31,7 @@ final class LoginController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        if (config('journalos.show_marketing_site')) {
+        if (config('services.journalos.show_marketing_site')) {
             $request->validate([
                 'cf-turnstile-response' => ['required', new TurnstileRule()],
             ]);

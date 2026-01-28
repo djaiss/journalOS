@@ -20,7 +20,7 @@ final class DeleteInactiveAccountsTest extends TestCase
     public function it_deletes_inactive_accounts_with_auto_delete_enabled(): void
     {
         Mail::fake();
-        config(['journalos.account_deletion_notification_email' => 'admin@journalos.cloud']);
+        config(['services.journalos.account_deletion_notification_email' => 'admin@journalos.cloud']);
 
         // Create an inactive user with auto_delete_account enabled
         $inactiveUser = User::factory()->create([
