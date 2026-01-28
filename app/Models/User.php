@@ -188,7 +188,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      */
     public function isInTrial(): bool
     {
-        return config('journalos.enable_paid_version')
+        return config('app.enable_paid_version')
             && ! $this->has_lifetime_access
             && $this->trial_ends_at->isFuture()
             && ! $this->is_guest;
@@ -201,7 +201,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      */
     public function needsToPay(): bool
     {
-        return config('journalos.enable_paid_version')
+        return config('app.enable_paid_version')
             && ! $this->has_lifetime_access
             && $this->trial_ends_at->isPast();
     }

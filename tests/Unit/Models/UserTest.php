@@ -91,7 +91,7 @@ final class UserTest extends TestCase
     #[Test]
     public function it_checks_if_the_account_is_in_trial(): void
     {
-        config(['journalos.enable_paid_version' => true]);
+        config(['app.enable_paid_version' => true]);
         $user = User::factory()->create([
             'has_lifetime_access' => false,
             'trial_ends_at' => now()->addDays(30),
@@ -106,7 +106,7 @@ final class UserTest extends TestCase
     #[Test]
     public function it_checks_if_the_account_needs_to_pay(): void
     {
-        config(['journalos.enable_paid_version' => true]);
+        config(['app.enable_paid_version' => true]);
         $user = User::factory()->create([
             'has_lifetime_access' => false,
             'trial_ends_at' => now()->subMinutes(1),
@@ -123,7 +123,7 @@ final class UserTest extends TestCase
         ]);
         $this->assertFalse($user->needsToPay());
 
-        config(['journalos.enable_paid_version' => false]);
+        config(['app.enable_paid_version' => false]);
         $user = User::factory()->create([
             'has_lifetime_access' => false,
             'trial_ends_at' => now()->subDays(31),
