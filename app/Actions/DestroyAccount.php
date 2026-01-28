@@ -38,7 +38,7 @@ final readonly class DestroyAccount
 
     private function sendMail($userCreatedAt): void
     {
-        Mail::to(config('services.journalos.account_deletion_notification_email'))
+        Mail::to(config('app.account_deletion_notification_email'))
             ->queue(new AccountDestroyed(
                 reason: $this->reason,
                 activeSince: $userCreatedAt->format('Y-m-d'),

@@ -24,7 +24,7 @@ final class SendEmailTest extends TestCase
     #[Test]
     public function it_sends_email_the_traditional_way(): void
     {
-        Config::set('services.journalos.use_resend', false);
+        Config::set('app.use_resend', false);
         Config::set('mail.from.address', 'noreply@example.com');
         Mail::fake();
 
@@ -54,7 +54,7 @@ final class SendEmailTest extends TestCase
     #[Test]
     public function it_sends_email_with_resend_facade(): void
     {
-        Config::set('services.journalos.use_resend', true);
+        Config::set('app.use_resend', true);
         Config::set('mail.from.address', 'noreply@example.com');
 
         $resendMock = Mockery::mock();

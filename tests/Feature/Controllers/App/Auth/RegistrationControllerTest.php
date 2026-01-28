@@ -23,7 +23,7 @@ final class RegistrationControllerTest extends TestCase
     #[Test]
     public function it_registers_a_new_organization(): void
     {
-        config(['services.journalos.show_marketing_site' => false]);
+        config(['app.show_marketing_site' => false]);
 
         $response = $this->post('/register', [
             'first_name' => 'Michael',

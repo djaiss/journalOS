@@ -10,7 +10,7 @@
   <head>
     @include('components.meta', ['title' => $title ?? null])
 
-    @if (config('services.journalos.show_marketing_site'))
+    @if (config('app.show_marketing_site'))
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     @endif
 

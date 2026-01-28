@@ -39,7 +39,7 @@ final class RegistrationController extends Controller
             ],
         ]);
 
-        if (config('services.journalos.show_marketing_site')) {
+        if (config('app.show_marketing_site')) {
             $request->validate([
                 'cf-turnstile-response' => ['required', new TurnstileRule()],
             ]);
