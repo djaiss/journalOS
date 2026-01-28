@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.6.0...djaiss/journalos-v0.7.0) (2026-01-28)
+
+
+### Features
+
+* add llm endpoints ([#214](https://github.com/djaiss/journalOS/issues/214)) ([474c7d1](https://github.com/djaiss/journalOS/commit/474c7d11a862ad5c7b87be2bf3f12c40b8c282ef))
+* add reading module ([#201](https://github.com/djaiss/journalOS/issues/201)) ([ae8fcb5](https://github.com/djaiss/journalOS/commit/ae8fcb550f37337d66d8f5cdacd3fb6f8b0d4eb0))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump barryvdh/laravel-debugbar from 3.16.3 to 4.0.2 ([#210](https://github.com/djaiss/journalOS/issues/210)) ([6c843cd](https://github.com/djaiss/journalOS/commit/6c843cd09627ba3cd8232c08986adfa17ab6136a))
+
 ## [0.6.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.5.0...djaiss/journalos-v0.6.0) (2026-01-20)
 
 
