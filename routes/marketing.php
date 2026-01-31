@@ -15,8 +15,9 @@ Route::middleware(['marketing'])->group(function (): void {
 
     Route::get('/', [MarketingController::class, 'index'])->name('marketing.index');
     Route::get('/docs', [Docs\DocController::class, 'index'])->name('marketing.docs.index');
-    Route::get('/docs/concepts/hierarchical-structure', [Docs\Concepts\HierarchicalStructureController::class, 'index'])->name('marketing.docs.concepts.hierarchical-structure');
-    Route::get('/docs/concepts/permissions', [Docs\Concepts\PermissionController::class, 'index'])->name('marketing.docs.concepts.permissions');
+
+    // docs about modules
+    Route::get('/docs/modules', [Docs\Modules\ModulesController::class, 'index'])->name('marketing.docs.modules');
 
     // api docs
     Route::get('/docs/api', [Docs\Api\ApiIntroductionController::class, 'index'])->name('marketing.docs.api.index');
