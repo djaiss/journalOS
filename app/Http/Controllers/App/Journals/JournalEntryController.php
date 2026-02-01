@@ -1,12 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\App\Journals;
 
 use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
 use App\View\Presenters\JournalEntryPresenter;
+use App\View\Presenters\JournalEntryShowPresenter;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -45,7 +46,7 @@ final class JournalEntryController extends Controller
             day: $journalEntry->day,
         );
 
-        $payload = new JournalEntryPresenter($journalEntry)->build();
+        $payload = new JournalEntryShowPresenter($journalEntry)->build();
 
         return view('app.journal.entry.show', [
             'journal' => $journal,
@@ -53,9 +54,9 @@ final class JournalEntryController extends Controller
             'years' => $years,
             'months' => $months,
             'days' => $days,
-            'columns' => $payload['columns'],
-            'notes' => $payload['notes'],
-            'layoutColumnsCount' => $payload['layout_columns_count'],
+            'entryDate' => $payload['date'],
+            'notesMarkdown' => $payload['notes_markdown'],
+            'modules' => $payload['modules'],
         ]);
     }
 

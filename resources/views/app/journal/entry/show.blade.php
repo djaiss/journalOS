@@ -2,9 +2,14 @@
 /**
  * @var \App\Models\Journal $journal
  * @var \App\Models\JournalEntry $entry
- * @var array<int, array<int, array{key: string, view: string, data: array<string, mixed>}>> $columns
- * @var array<string, mixed> $notes
- * @var int $layoutColumnsCount
+ * @var string $entryDate
+ * @var string|null $notesMarkdown
+ * @var array<int, array{
+ *   key: string,
+ *   emoji: string,
+ *   title: string,
+ *   rows: array<int, array{label: string, value: string|array<int, string>}>
+ * }> $modules
  * @var \Illuminate\Support\Collection $years
  * @var \Illuminate\Support\Collection $months
  * @var \Illuminate\Support\Collection $days
@@ -44,38 +49,56 @@
     </div>
   @endif
 
-  <div class="w-5xl mx-auto py-8 px-4 sm:px-8 ">
-  <div class="relative h-full w-full overflow-hidden bg-[#fdf9f0] text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.06)] ring-1 ring-black/5 before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(transparent_1.45rem,_rgba(13,13,13,0.06)_1.45rem,_rgba(13,13,13,0.06)_1.5rem)] before:bg-[length:100%_1.5rem] after:pointer-events-none after:absolute after:inset-y-0 after:left-8 after:w-px after:bg-red-300/70 dark:bg-slate-900 dark:text-gray-100 dark:ring-white/10 dark:before:bg-[linear-gradient(transparent_1.45rem,_rgba(255,255,255,0.08)_1.45rem,_rgba(255,255,255,0.08)_1.5rem)] dark:after:bg-red-400/40">
-    <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
-    <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
-      <p class="font-bold mb-6">Entry for January 4, 2025</p>
+  <div class="w-5xl mx-auto px-4 py-8 sm:px-8">
+    <div class="relative h-full w-full overflow-hidden bg-[#fdf9f0] text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.06)] ring-1 ring-black/5 before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(transparent_1.45rem,_rgba(13,13,13,0.06)_1.45rem,_rgba(13,13,13,0.06)_1.5rem)] before:bg-[length:100%_1.5rem] after:pointer-events-none after:absolute after:inset-y-0 after:left-8 after:w-px after:bg-red-300/70 dark:bg-slate-900 dark:text-gray-100 dark:ring-white/10 dark:before:bg-[linear-gradient(transparent_1.45rem,_rgba(255,255,255,0.08)_1.45rem,_rgba(255,255,255,0.08)_1.5rem)] dark:after:bg-red-400/40">
+      <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
+        <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
+          <p class="mb-6 font-bold">{{ __('Entry for :date', ['date' => $entryDate]) }}</p>
 
-      <!-- health -->
-      <div>
-      <p class="flex items-center gap-x-2 font-semibold">
-        <span>❤️</span>
-        Health information
-      </p>
+          @if ($notesMarkdown)
+            <div class="space-y-2">
+              <p class="flex items-center gap-x-2 font-semibold">
+                <span>📝</span>
+                {{ __('Notes') }}
+              </p>
+              <div class="prose prose-slate dark:prose-invert max-w-none">
+                {!! $notesMarkdown !!}
+              </div>
+            </div>
+          @endif
 
-      <div class="pl-1">
-        <div class="gap-x-2"><span>Health:</span> Awesome</div>
-        <div class="gap-x-2"><span>Health:</span> Awesome</div>
-      </div>
-      </div>
+          @forelse ($modules as $module)
+            <div class="space-y-1">
+              <p class="flex items-center gap-x-2 font-semibold">
+                <span>{{ $module['emoji'] }}</span>
+                {{ $module['title'] }}
+              </p>
 
-      <div>
-      <p class="flex items-center gap-x-2 font-semibold">
-        <span>❤️</span>
-        Health information
-      </p>
-
-      <div class="pl-1">
-        <div class="gap-x-2"><span>Health:</span> Awesome</div>
-        <div class="gap-x-2"><span>Health:</span> Awesome</div>
-      </div>
+              <div class="space-y-1 pl-1 text-sm">
+                @foreach ($module['rows'] as $row)
+                  @if (is_array($row['value']))
+                    <div class="space-y-1">
+                      <span class="font-medium text-gray-600 dark:text-gray-300">{{ $row['label'] }}:</span>
+                      <ul class="list-disc space-y-0.5 pl-5">
+                        @foreach ($row['value'] as $item)
+                          <li>{{ $item }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @else
+                    <div class="flex flex-wrap gap-x-2">
+                      <span class="font-medium text-gray-600 dark:text-gray-300">{{ $row['label'] }}:</span>
+                      <span>{{ $row['value'] }}</span>
+                    </div>
+                  @endif
+                @endforeach
+              </div>
+            </div>
+          @empty
+            <p class="text-sm text-gray-600 dark:text-gray-300">{{ __('No modules were filled for this entry yet.') }}</p>
+          @endforelse
+        </div>
       </div>
     </div>
   </div>
-  </div>
-</div>
 </x-app-layout>
