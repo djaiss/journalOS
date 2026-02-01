@@ -44,21 +44,17 @@ final class PruneAccountTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return (
+            callback: fn (LogUserAction $job) => (
                     $job->action === 'account_pruning'
                     && $job->user->id === $user->id
                     && $job->description === 'Deleted all journals and related data from your account'
-                );
-            },
+                ),
         );
     }
 }

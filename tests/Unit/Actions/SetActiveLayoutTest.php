@@ -56,23 +56,19 @@ final class SetActiveLayoutTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal, $targetLayout): bool {
-                return (
+            callback: fn (LogUserAction $job) => (
                     $job->action === 'layout_set_active'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
                     && str_contains($job->description, $targetLayout->name)
                     && str_contains($job->description, $journal->name)
-                );
-            },
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 

@@ -63,9 +63,7 @@ final class Validate2faQRCodeTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 

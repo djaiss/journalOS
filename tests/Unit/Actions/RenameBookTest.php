@@ -51,17 +51,13 @@ final class RenameBookTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'book_rename' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'book_rename' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 

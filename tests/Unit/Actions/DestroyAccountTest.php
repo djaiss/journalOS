@@ -37,8 +37,6 @@ final class DestroyAccountTest extends TestCase
             'reason' => 'the service is not working',
         ]);
 
-        Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
-            return $job->reason === 'the service is not working' && $job->to[0]['address'] === 'regis@journalos.cloud';
-        });
+        Mail::assertQueued(AccountDestroyed::class, fn (AccountDestroyed $job): bool => $job->reason === 'the service is not working' && $job->to[0]['address'] === 'regis@journalos.cloud');
     }
 }

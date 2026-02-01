@@ -43,9 +43,7 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
             'id' => $user->id,
         ]);
 
-        Mail::assertQueued(AccountAutomaticallyDestroyed::class, function (AccountAutomaticallyDestroyed $job): bool {
-            return $job->to[0]['address'] === 'admin@journalos.cloud';
-        });
+        Mail::assertQueued(AccountAutomaticallyDestroyed::class, fn (AccountAutomaticallyDestroyed $job): bool => $job->to[0]['address'] === 'admin@journalos.cloud');
     }
 
     #[Test]

@@ -42,21 +42,17 @@ final class UpdateTwoFAMethodTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return (
+            callback: fn (LogUserAction $job) => (
                     $job->user->id === $user->id
                     && $job->action === 'update_preferred_method'
                     && $job->description === 'Updated their preferred 2FA method'
-                );
-            },
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 }

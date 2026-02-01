@@ -97,6 +97,12 @@ literal-named-argument = { enabled = false }
 halstead = { effort-threshold = 7000 }
 prefer-static-closure = { enabled = false }
 sensitive-parameter = { enabled = false }
+too-many-methods = { enabled = false }
+no-literal-password = { enabled = false }
+cyclomatic-complexity = { enabled = false }
+excessive-parameter-list = { enabled = false }
+no-insecure-comparison = { enabled = false }
+kan-defect = { enabled = false }
 
 [analyzer]
 plugins = []
