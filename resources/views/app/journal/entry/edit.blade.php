@@ -82,5 +82,19 @@
     $gridColumns = $columnCount + 1;
   @endphp
 
-  sdfsdfs
+  <div class="grid gap-4 rounded-b-lg bg-gray-50 dark:bg-gray-950" style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr))">
+    @foreach ($columns as $column)
+      <div class="{{ $loop->first ? 'pl-4' : '' }} py-4">
+        <div class="space-y-2">
+          @foreach ($column as $module)
+            @include($module['view'], $module['data'])
+          @endforeach
+        </div>
+      </div>
+    @endforeach
+
+    <div class="flex h-full border-l border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+      @include('app.journal.entry.partials.note', ['module' => $notes])
+    </div>
+  </div>
 </x-app-layout>

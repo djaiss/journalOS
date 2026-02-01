@@ -27,6 +27,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @property int $month
  * @property int $year
  * @property bool $has_content
+ * @property bool $is_edited
  * @property string|null $notes
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
@@ -59,6 +60,7 @@ final class JournalEntry extends Model
         'month',
         'year',
         'has_content',
+        'is_edited',
         'notes',
     ];
 
@@ -81,6 +83,7 @@ final class JournalEntry extends Model
         return [
             'has_content' => 'boolean',
             'notes' => 'encrypted',
+            'is_edited' => 'boolean',
         ];
     }
 
