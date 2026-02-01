@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\Jobs\DeleteRelatedJournalData;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -27,7 +26,6 @@ final readonly class DestroyJournal
     public function execute(): void
     {
         $this->validate();
-        $this->deleteRelatedData();
         $this->delete();
         $this->log();
         $this->updateUserLastActivityDate();
@@ -43,11 +41,6 @@ final readonly class DestroyJournal
     private function delete(): void
     {
         $this->journal->delete();
-    }
-
-    private function deleteRelatedData(): void
-    {
-        DeleteRelatedJournalData::dispatch($this->journalId)->onQueue('low');
     }
 
     private function log(): void

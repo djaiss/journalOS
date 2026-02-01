@@ -16,10 +16,10 @@ return new class extends Migration {
         Schema::create('module_kids', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::RELATIONSHIPS_SOCIAL_LIFE->value);
             $table->text('had_kids_today')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

@@ -15,10 +15,10 @@ return new class extends Migration {
         Schema::create('books', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->index('user_id');
             $table->text('name');
             $table->string('progress')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

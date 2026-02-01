@@ -15,12 +15,12 @@ return new class extends Migration {
         Schema::create('layout_modules', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('layout_id');
-            $table->index('layout_id');
             $table->string('module_key');
             $table->unsignedTinyInteger('column_number');
             $table->unsignedSmallInteger('position');
             $table->unique(['layout_id', 'module_key']);
             $table->timestamps();
+            $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
         });
     }
 

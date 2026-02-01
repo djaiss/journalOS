@@ -25,15 +25,9 @@ final readonly class DestroyAccount
         $userId = $this->user->id;
         $userCreatedAt = $this->user->created_at;
 
-        $this->deleteRelatedData($userId);
         $this->user->delete();
         $this->sendMail($userCreatedAt);
         $this->logAccountDeletion();
-    }
-
-    private function deleteRelatedData(int $userId): void
-    {
-        DeleteRelatedAccountData::dispatch($userId)->onQueue('low');
     }
 
     private function sendMail($userCreatedAt): void

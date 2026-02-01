@@ -16,11 +16,11 @@ return new class extends Migration {
         Schema::create('module_sexual_activity', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::BODY_HEALTH->value);
             $table->text('had_sexual_activity')->nullable();
             $table->text('sexual_activity_type')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\DestroyJournal;
-use App\Jobs\DeleteRelatedJournalData;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
@@ -21,13 +20,6 @@ final class DestroyJournalTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Queue::fake();
-    }
-
     #[Test]
     public function it_deletes_a_journal(): void
     {
@@ -36,7 +28,7 @@ final class DestroyJournalTest extends TestCase
             'user_id' => $user->id,
             'name' => 'Dunder Mifflin',
         ]);
-        $entry = JournalEntry::factory()->create([
+        JournalEntry::factory()->create([
             'journal_id' => $journal->id,
         ]);
 
@@ -63,14 +55,6 @@ final class DestroyJournalTest extends TestCase
             job: UpdateUserLastActivityDate::class,
             callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
                 return $job->user->id === $user->id;
-            },
-        );
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: DeleteRelatedJournalData::class,
-            callback: function (DeleteRelatedJournalData $job) use ($journal): bool {
-                return $job->journalId === $journal->id;
             },
         );
     }

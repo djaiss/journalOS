@@ -36,17 +36,7 @@ final readonly class DestroyLayout
 
     private function destroy(): void
     {
-        DB::transaction(function (): void {
-            $this->layout->entries()->update([
-                'layout_id' => null,
-            ]);
-
-            LayoutModule::query()
-                ->where('layout_id', $this->layout->id)
-                ->delete();
-
-            $this->layout->delete();
-        });
+        $this->layout->delete();
     }
 
     private function log(): void

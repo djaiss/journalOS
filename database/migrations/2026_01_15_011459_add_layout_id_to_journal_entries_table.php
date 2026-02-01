@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
             $table->unsignedBigInteger('layout_id')->nullable();
-            $table->index('layout_id');
+            $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('set null');
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('journal_entries', function (Blueprint $table): void {
-            $table->dropIndex(['layout_id']);
+            $table->dropForeign(['layout_id']);
             $table->dropColumn('layout_id');
         });
     }
