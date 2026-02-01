@@ -23,6 +23,7 @@ final class DestroyJournalTest extends TestCase
     #[Test]
     public function it_deletes_a_journal(): void
     {
+        Queue::fake();
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
             'user_id' => $user->id,

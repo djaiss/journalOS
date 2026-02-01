@@ -13,13 +13,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 final readonly class DestroyJournal
 {
     private string $journalName;
-    private int $journalId;
 
     public function __construct(
         private User $user,
         private Journal $journal,
     ) {
-        $this->journalId = $this->journal->id;
         $this->journalName = $this->journal->name;
     }
 
