@@ -34,9 +34,9 @@
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Why {{ config('app.name') }}</p>
         </a>
 
-        <a href="" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="{{ route('marketing.features.modules') }}" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-squares-four class="h-4 w-4 text-purple-600 group-hover:text-purple-700" />
-          <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Features</p>
+          <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Modules</p>
         </a>
 
         <a href="" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
@@ -59,7 +59,7 @@
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Company</p>
         </a>
 
-        <a href="https://github.com/djaiss/journalOS" data-turbo="true" class="{{ str_starts_with( request()->route()->getName(),'marketing.company.',) ? 'border border-b-3 border-gray-400 bg-white dark:border-slate-500 dark:bg-gray-700/60' : 'border border-b-3 border-transparent' }} group flex items-center gap-x-2 rounded-sm px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="https://github.com/djaiss/journalOS" data-turbo="true" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-github-logo class="h-4 w-4 text-orange-600 group-hover:text-orange-700 dark:text-orange-400 dark:group-hover:text-orange-300" />
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Github</p>
         </a>

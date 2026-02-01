@@ -6,7 +6,6 @@
 
 <x-marketing-layout :breadcrumbItems="[
   ['label' => 'Home', 'route' => route('marketing.index')],
-  ['label' => 'Features', 'route' => route('marketing.features.modules')],
   ['label' => 'Modules'],
 ]">
   <div class="relative bg-white dark:bg-gray-900" x-data="{

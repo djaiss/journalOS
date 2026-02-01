@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Marketing\Docs;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 final class DocController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): RedirectResponse
     {
-        return view('marketing.docs.api.introduction');
+        return to_route('marketing.docs.concepts.modules');
     }
 }

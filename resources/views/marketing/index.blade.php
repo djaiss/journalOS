@@ -21,7 +21,7 @@
         "softwareHelp": "https://journalos.cloud/docs",
         "offers": {
           "@@type": "Offer",
-          "price": "99.00",
+          "price": "50.00",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
         },
@@ -54,8 +54,9 @@
       </div>
 
       <p>
-        <span class="rounded-md bg-green-100 px-1.5 py-1 font-semibold text-green-600">123</span>
-        people started their journal in the last 7 days.
+        You can also try
+        <a href="{{ route('demo.index') }}" data-turbo="true" class="text-blue-600 hover:underline">a demo journal</a>
+        if you see how the product works without creating an account.
       </p>
     </div>
   </div>
@@ -63,14 +64,22 @@
   <!-- App section -->
   @include('marketing.partials.app')
 
+  <div class="flex justify-center md:hidden">
+    <x-image class="mb-10" src="{{ asset('images/marketing/app.webp') }}" srcset="{{ asset('images/marketing/app.webp') }} 1x, {{ asset('images/marketing/app@2x.webp') }} 2x" width="378" height="471" alt="JournalOS main user interface" />
+  </div>
+
   <!-- Feature section -->
   <div id="features" class="bg-gray-50 py-12 dark:bg-gray-800">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
       <!-- Title -->
-      <div class="mx-auto max-w-2xl lg:text-center">
+      <div class="mx-auto mb-10 max-w-2xl lg:text-center">
         <h2 class="text-base leading-7 font-semibold text-green-600">Your personal diary</h2>
-        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Every feature is crafted to help you remember your days with clarity</p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Organize your journal the way you want to.</p>
+        <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">Each journal entry can have a layout that you define.</p>
       </div>
+
+      <!-- App section -->
+      @include('marketing.partials.modules')
 
       <!-- 3 benefits -->
       <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:max-w-none">
@@ -161,7 +170,7 @@
       <!-- Title -->
       <div class="mx-auto mb-10 max-w-2xl lg:text-center">
         <p class="mb-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">JournalOS is proudly open source.</p>
-        <h2 class="text-base leading-7 font-semibold text-green-600">Like really. Not open core.</h2>
+        <h2 class="text-base leading-7 font-semibold text-green-600">Free to read. Free to modify. Free to own it yourself.</h2>
       </div>
 
       <div class="mx-auto mb-10 max-w-2xl lg:text-center">
@@ -228,7 +237,7 @@
             .
           </p>
         </div>
-        <div class="flex items-center lg:col-span-1 lg:items-start">
+        <div class="hidden items-center md:flex lg:col-span-1 lg:items-start">
           <div class="flex flex-col" x-data="{ isRotating: false }">
             <div class="relative">
               <x-image src="{{ asset('images/marketing/regis.webp') }}" srcset="{{ asset('images/marketing/regis.webp') }} 1x, {{ asset('images/marketing/regis@2x.webp') }} 2x" alt="Monica" class="mb-3 w-40 rounded-lg transition-all duration-[2000ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:rotate-[360deg] lg:rotate-4" @mouseenter="isRotating = true" @mouseleave="isRotating = false" @transitionend="isRotating = false" width="187" height="187" />
@@ -246,8 +255,8 @@
   <!-- CTA Section -->
   <div id="privacy" class="bg-gray-50 py-12 sm:py-20 dark:bg-gray-800">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
-      <h3 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Privacy and transparency are at the core of what we do.</h3>
-      <p class="mb-10 text-xl dark:text-gray-300">You are not our product. You are the reason we exist.</p>
+      <h3 class="mt-2 mb-3 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Privacy and transparency are at the core of what we do.</h3>
+      <p class="mb-10 text-center text-xl dark:text-gray-300">You are not our product. You are the reason we exist.</p>
 
       <div class="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-4">
         <div class="rounded-lg bg-gray-50 p-4 dark:bg-gray-900/50">
@@ -331,10 +340,91 @@
 
   <!-- Testimonials -->
   <div class="bg-gray-50 dark:bg-gray-800">
+    <!-- FAQ -->
+    <div id="faq" class="py-12 sm:py-20 dark:bg-gray-900">
+      <div class="mx-auto max-w-4xl px-6 lg:px-8 xl:px-0">
+        <h2 class="mb-10 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Common questions.</h2>
+
+        <div class="space-y-4" x-data="{ openQuestion: null }">
+          <!-- Question 1 -->
+          <div class="cursor-pointer rounded-lg border border-gray-200 bg-white outline-offset-2 hover:bg-gray-50 hover:outline-2 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700/50">
+            <button type="button" @click="openQuestion = openQuestion === 1 ? null : 1" class="flex w-full items-center justify-between px-6 py-4 text-left transition-colors">
+              <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">Is JournalOS really free?</span>
+              <x-phosphor-plus class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            </button>
+            <div x-show="openQuestion === 1" x-collapse>
+              <div class="px-6 py-4">
+                <p class="text-gray-600 dark:text-gray-400">You can use entirely for free if you host it yourself. If you use the version we host on this site, JournalOS can be used for 30 days. We offer a one-time payment of $50 to unlock the tool forever. No recurring subscriptions, no hidden fees.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="cursor-pointer rounded-lg border border-gray-200 bg-white outline-offset-2 hover:bg-gray-50 hover:outline-2 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700/50">
+            <button type="button" @click="openQuestion = openQuestion === 2 ? null : 2" class="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50">
+              <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">Can I self-host JournalOS?</span>
+              <x-phosphor-plus class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            </button>
+            <div x-show="openQuestion === 2" x-collapse>
+              <div class="px-6 py-4">
+                <p class="text-gray-600 dark:text-gray-400">Absolutely! JournalOS is open source and MIT-licensed. You can download the code from GitHub and run it on your own server completely free.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="cursor-pointer rounded-lg border border-gray-200 bg-white outline-offset-2 hover:bg-gray-50 hover:outline-2 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700/50">
+            <button type="button" @click="openQuestion = openQuestion === 3 ? null : 3" class="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50">
+              <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">Is my data encrypted?</span>
+              <x-phosphor-plus class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            </button>
+            <div x-show="openQuestion === 3" x-collapse>
+              <div class="px-6 py-4">
+                <p class="text-gray-600 dark:text-gray-400">Yes. All your journal entries are encrypted at rest using industry-standard encryption. Even if someone gained access to our database, they would only see encrypted gibberish without the encryption keys.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="cursor-pointer rounded-lg border border-gray-200 bg-white outline-offset-2 hover:bg-gray-50 hover:outline-2 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700/50">
+            <button type="button" @click="openQuestion = openQuestion === 4 ? null : 4" class="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50">
+              <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">Can I export my data?</span>
+              <x-phosphor-plus class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            </button>
+            <div x-show="openQuestion === 4" x-collapse>
+              <div class="px-6 py-4">
+                <p class="text-gray-600 dark:text-gray-400">No. Not at the moment, but we will let you export your data later.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="cursor-pointer rounded-lg border border-gray-200 bg-white outline-offset-2 hover:bg-gray-50 hover:outline-2 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700/50">
+            <button type="button" @click="openQuestion = openQuestion === 5 ? null : 5" class="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50">
+              <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">Do you use AI to analyze my entries?</span>
+              <x-phosphor-plus class="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            </button>
+            <div x-show="openQuestion === 5" x-collapse>
+              <div class="px-6 py-4">
+                <p class="text-gray-600 dark:text-gray-400">No. We do not use AI in JournalOS. Your journal entries are private and personal, and we do not analyze, process, or share them with any third parties or AI services.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Need more help? Check out our
+            <a href="{{ route('marketing.docs.index') }}" data-turbo="true" class="text-blue-600 hover:underline">help documentation</a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
     <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-0">
       <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-        <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">Take control of your days and go out there. Life is not lived in front of a computer screen.</h2>
-        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">But if you cannot, we can help with a simple tool to remember what matters.</p>
+        <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">Yeah. Why not. I'm going to try JournalOS.</h2>
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">It's gonna be fun, for sure.</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get started for free</a>
           <a href="{{ route('login') }}" class="text-sm leading-6 font-semibold text-white">

@@ -64,7 +64,7 @@
         <!-- Right: Marketing text -->
         <div class="flex flex-col justify-center gap-10">
           <x-box class="relative space-y-3 pt-14" padding="p-6">
-            <x-image src="{{ asset('images/regis.webp') }}" alt="One-time fee" width="50" height="50" class="absolute top-0 left-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full object-cover shadow-sm ring-2 ring-white" srcset="{{ asset('images/regis.webp') }} 1x, {{ asset('images/regis@2x.webp') }} 2x" />
+            <x-image src="{{ asset('images/marketing/regis.webp') }}" alt="One-time fee" width="50" height="50" class="absolute top-0 left-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full object-cover shadow-sm ring-2 ring-white" srcset="{{ asset('images/marketing/regis.webp') }} 1x, {{ asset('images/marketing/regis@2x.webp') }} 2x" />
             <p class="text-center text-4xl">👋</p>
             <p>{{ __('I\'m Régis. I\'ve created JournalOS.') }}</p>
             <p>{{ __('Thanks so much for considering creating an account.') }}</p>
