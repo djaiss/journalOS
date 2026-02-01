@@ -78,7 +78,7 @@ final class MealsController extends Controller
             notes: array_key_exists('notes', $validated) ? TextSanitizer::nullablePlainText($validated['notes']) : null,
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $journalEntry->journal->slug,
             'year' => $journalEntry->year,
             'month' => $journalEntry->month,

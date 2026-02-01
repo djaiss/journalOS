@@ -64,7 +64,7 @@ final class JournalController extends Controller
         $month = (int) now()->format('m');
         $year = (int) now()->format('Y');
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $journal->slug,
             'year' => $year,
             'month' => $month,

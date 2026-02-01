@@ -21,7 +21,7 @@ final class WorkResetController extends Controller
             entry: $journalEntry,
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $journalEntry->journal->slug,
             'year' => $journalEntry->year,
             'month' => $journalEntry->month,

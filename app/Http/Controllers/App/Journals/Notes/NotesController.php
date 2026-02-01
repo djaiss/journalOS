@@ -38,7 +38,7 @@ final class NotesController extends Controller
             notes: $validated['notes'],
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,
