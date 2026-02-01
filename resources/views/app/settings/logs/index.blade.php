@@ -33,7 +33,7 @@
                 <div class="flex flex-col gap-y-2">
                   <p class="flex items-center gap-2">
                     @if ($log->journal)
-                      <x-link href="{{ route('journal.show', $log->journal->id) }}">{{ $log->journal->name }}</x-link>
+                      <x-link href="{{ route('journal.show', $log->journal->slug) }}">{{ $log->journal->name }}</x-link>
                       |
                     @endif
 

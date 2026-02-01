@@ -19,7 +19,11 @@
         <div class="flex flex-col gap-y-2">
           <p class="items-center gap-2 sm:flex">
             @if ($log->journal_name)
-              <x-link href="{{ route('journal.show', $log->journal_id) }}">{{ $log->journal_name }}</x-link>
+              @if ($log->journal)
+                <x-link href="{{ route('journal.show', $log->journal->slug) }}">{{ $log->journal_name }}</x-link>
+              @else
+                <span class="text-gray-500 dark:text-gray-400">{{ $log->journal_name }}</span>
+              @endif
               |
             @endif
 
