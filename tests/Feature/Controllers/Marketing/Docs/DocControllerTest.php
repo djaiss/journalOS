@@ -18,8 +18,7 @@ final class DocControllerTest extends TestCase
 
         $response = $this->get(route('marketing.docs.index', absolute: false));
 
-        $response->assertOk();
-        $response->assertViewIs('marketing.docs.api.introduction');
+        $response->assertRedirect(route('marketing.docs.concepts.modules', absolute: false));
 
     }
 }

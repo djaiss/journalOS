@@ -11,6 +11,6 @@ final class DocController extends Controller
 {
     public function index(): RedirectResponse
     {
-        return redirect()->route('marketing.docs.concepts.modules');
+        return to_route('marketing.docs.concepts.modules');
     }
 }
