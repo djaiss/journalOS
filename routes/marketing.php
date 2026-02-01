@@ -17,7 +17,7 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs', [Docs\DocController::class, 'index'])->name('marketing.docs.index');
 
     // docs about modules
-    Route::get('/docs/modules', [Docs\Modules\ModulesController::class, 'index'])->name('marketing.docs.modules');
+    Route::get('/docs/modules', [Docs\Modules\ModulesController::class, 'index'])->name('marketing.docs.concepts.modules');
 
     // api docs
     Route::get('/docs/api', [Docs\Api\ApiIntroductionController::class, 'index'])->name('marketing.docs.api.index');
@@ -50,7 +50,7 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs/api/modules/work', [Docs\Api\Modules\WorkController::class, 'index'])->name('marketing.docs.api.modules.work');
 
     // features
-    Route::get('/features/modules', [Features\FeaturesController::class, 'index'])->name('marketing.features.modules');
+    Route::get('/modules', [Features\FeaturesController::class, 'index'])->name('marketing.features.modules');
 
     // company
     Route::get('/company/handbook', [Handbook\HandbookController::class, 'index'])->name('marketing.company.handbook.index');

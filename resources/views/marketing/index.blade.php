@@ -69,7 +69,7 @@
       <!-- Title -->
       <div class="mx-auto max-w-2xl lg:text-center">
         <h2 class="text-base leading-7 font-semibold text-green-600">Your personal diary</h2>
-        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Every feature is crafted to help you remember your days with clarity</p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Organize your journal the way you want to.</p>
       </div>
 
       <!-- 3 benefits -->
@@ -161,7 +161,7 @@
       <!-- Title -->
       <div class="mx-auto mb-10 max-w-2xl lg:text-center">
         <p class="mb-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">JournalOS is proudly open source.</p>
-        <h2 class="text-base leading-7 font-semibold text-green-600">Like really. Not open core.</h2>
+        <h2 class="text-base leading-7 font-semibold text-green-600">Free to read. Free to modify. Free to own it yourself.</h2>
       </div>
 
       <div class="mx-auto mb-10 max-w-2xl lg:text-center">
