@@ -5,25 +5,16 @@ declare(strict_types=1);
 namespace Tests\Unit\Actions;
 
 use App\Actions\DestroyAccount;
-use App\Jobs\DeleteRelatedAccountData;
 use App\Mail\AccountDestroyed;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
-use Illuminate\Support\Facades\Queue;
 
 final class DestroyAccountTest extends TestCase
 {
     use RefreshDatabase;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Queue::fake();
-    }
 
     #[Test]
     public function it_destroys_a_user_account(): void
@@ -50,13 +41,5 @@ final class DestroyAccountTest extends TestCase
             return $job->reason === 'the service is not working'
                 && $job->to[0]['address'] === 'regis@journalos.cloud';
         });
-
-        Queue::assertPushedOn(
-            queue: 'low',
-            job: DeleteRelatedAccountData::class,
-            callback: function (DeleteRelatedAccountData $job) use ($user): bool {
-                return $job->userId === $user->id;
-            },
-        );
     }
 }

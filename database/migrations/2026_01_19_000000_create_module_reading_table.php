@@ -16,7 +16,6 @@ return new class extends Migration {
         Schema::create('module_reading', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::MIND_EMOTION->value);
             $table->text('did_read_today')->nullable();
             $table->text('reading_amount')->nullable();
@@ -25,6 +24,7 @@ return new class extends Migration {
             $table->text('want_continue')->nullable();
             $table->text('reading_limit')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

@@ -15,12 +15,12 @@ return new class extends Migration {
         Schema::create('journal_llm_access_logs', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_id');
-            $table->index('journal_id');
             $table->unsignedSmallInteger('requested_year');
             $table->unsignedTinyInteger('requested_month')->nullable();
             $table->unsignedTinyInteger('requested_day')->nullable();
             $table->text('request_url');
             $table->timestamps();
+            $table->foreign('journal_id')->references('id')->on('journals')->onDelete('cascade');
         });
     }
 

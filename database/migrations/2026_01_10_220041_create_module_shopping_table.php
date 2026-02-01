@@ -16,7 +16,6 @@ return new class extends Migration {
         Schema::create('module_shopping', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::MOVEMENT_PLACES->value);
             $table->text('has_shopped_today')->nullable();
             $table->text('shopping_type')->nullable();
@@ -24,6 +23,7 @@ return new class extends Migration {
             $table->text('shopping_context')->nullable();
             $table->text('shopping_for')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

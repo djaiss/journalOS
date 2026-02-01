@@ -16,7 +16,6 @@ return new class extends Migration {
         Schema::create('module_meals', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::BODY_HEALTH->value);
             $table->text('meal_presence')->nullable();
             $table->text('meal_type')->nullable();
@@ -24,6 +23,7 @@ return new class extends Migration {
             $table->text('has_notes')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

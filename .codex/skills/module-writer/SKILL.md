@@ -77,7 +77,6 @@ Create a factory for the model.
 1. Action flow: validate -> log data -> log user action -> update last activity -> refresh content presence.
 1. Add tests for happy path and edge cases.
 1. Create `Reset{ModuleName}Data` (see `ResetHealthData`).
-1. Add related table to DeleteRelatedJournalData.
 
 ### Step 8: Update the CheckPresenceOfContentInJournalEntry job
 

@@ -16,12 +16,12 @@ return new class extends Migration {
         Schema::create('module_sleep', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::BODY_HEALTH->value);
             $table->text('bedtime')->nullable();
             $table->text('wake_up_time')->nullable();
             $table->text('sleep_duration_in_minutes')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

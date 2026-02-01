@@ -16,12 +16,12 @@ return new class extends Migration {
         Schema::create('module_cognitive_load', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::MIND_EMOTION->value);
             $table->text('cognitive_load')->nullable();
             $table->text('primary_source')->nullable();
             $table->text('load_quality')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

@@ -16,13 +16,13 @@ return new class extends Migration {
         Schema::create('module_weather', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::MOVEMENT_PLACES->value);
             $table->text('condition')->nullable();
             $table->text('temperature_range')->nullable();
             $table->text('precipitation')->nullable();
             $table->text('daylight')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

@@ -16,13 +16,13 @@ return new class extends Migration {
         Schema::create('module_weather_influence', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_entry_id');
-            $table->index('journal_entry_id');
             $table->string('category')->default(ModuleType::MIND_EMOTION->value);
             $table->text('mood_effect')->nullable();
             $table->text('energy_effect')->nullable();
             $table->text('plans_influence')->nullable();
             $table->text('outside_time')->nullable();
             $table->timestamps();
+            $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
         });
     }
 

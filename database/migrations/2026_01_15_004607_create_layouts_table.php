@@ -15,11 +15,11 @@ return new class extends Migration {
         Schema::create('layouts', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('journal_id');
-            $table->index('journal_id');
             $table->text('name');
             $table->unsignedTinyInteger('columns_count');
             $table->boolean('is_active')->default(false);
             $table->timestamps();
+            $table->foreign('journal_id')->references('id')->on('journals')->onDelete('cascade');
         });
     }
 
