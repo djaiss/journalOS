@@ -41,11 +41,11 @@ Schema::create('module_health', function (Blueprint $table): void {
     $table->string('category')->default(ModuleType::BODY_HEALTH->value);
     $table->text('health')->nullable();
     $table->timestamps();
+    $table->foreign('journal_entry_id')->references('id')->on('journal_entries')->onDelete('cascade');
 });
 ```
 
 1. A module always has a category from `ModuleType`. Do not add new types. Choose the closest existing category.
-1. Never use foreign keys constraints.
 
 ### Step 2: Create related model
 
@@ -89,7 +89,9 @@ Create a factory for the model.
 1. If the module has Yes/No buttons, use the existing components.
 1. If the module uses multiple choices, group the choices together like in the health.blade.php view file.
 1. If the module uses multiple choices with multiple accepted values, display them like in the primary_obligation.blade.php view file.
+1. Add the view at the right place within the `resources/views/app/journal/entry/edit.blade.php` file.
 1. Add the view at the right place within the `resources/views/app/journal/entry/show.blade.php` file.
+
 
 ### Step 10: Create the web controller to pilot the view
 
@@ -99,6 +101,7 @@ Create a factory for the model.
 1. Validate inline (no Form Requests). Strings must be strings and within max length.
 1. Create a presenter for module data.
 1. Update the main journal entry presenter to load this data.
+1. Update the JournalEntryShowPresenter presenter.
 1. Test both presenters.
 1. Add the appropriate web route.
 1. Create controller tests for happy path and edge cases.
@@ -136,7 +139,7 @@ Create a factory for the model.
 
 1. Add the new module to the README file in the appropriate section: the name and the emoji.
 
-### Step 17: Add module to the /features/modules marketing view
+### Step 17: Add module to the /modules marketing view
 
 1. Add the module to the list of modules in the marketing site.
 
