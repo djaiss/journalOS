@@ -59,7 +59,10 @@ final class ResetSocialDensityDataTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => $job->action === 'social_density_reset' && $job->user->id === $user->id,
+            callback: fn (LogUserAction $job) => (
+                $job->action === 'social_density_reset'
+                && $job->user->id === $user->id
+            ),
         );
 
         Queue::assertPushedOn(

@@ -54,7 +54,10 @@ final class LogSocialDensityTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => $job->action === 'social_density_logged' && $job->user->id === $user->id,
+            callback: fn (LogUserAction $job) => (
+                $job->action === 'social_density_logged'
+                && $job->user->id === $user->id
+            ),
         );
 
         Queue::assertPushedOn(

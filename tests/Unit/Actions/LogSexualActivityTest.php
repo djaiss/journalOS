@@ -52,7 +52,10 @@ final class LogSexualActivityTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => $job->action === 'sexual_activity_logged' && $job->user->id === $user->id,
+            callback: fn (LogUserAction $job) => (
+                $job->action === 'sexual_activity_logged'
+                && $job->user->id === $user->id
+            ),
         );
 
         Queue::assertPushedOn(

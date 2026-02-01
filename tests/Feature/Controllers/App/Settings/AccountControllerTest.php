@@ -46,6 +46,12 @@ final class AccountControllerTest extends TestCase
             'reason' => 'I want to delete my account',
         ]);
 
-        Mail::assertQueued(AccountDestroyed::class, fn (AccountDestroyed $job): bool => $job->reason === 'I want to delete my account' && $job->to[0]['address'] === 'regis@journalos.cloud');
+        Mail::assertQueued(
+            AccountDestroyed::class,
+            fn (AccountDestroyed $job): bool => (
+                $job->reason === 'I want to delete my account'
+                && $job->to[0]['address'] === 'regis@journalos.cloud'
+            ),
+        );
     }
 }

@@ -47,10 +47,10 @@ final class UpdateUserPasswordTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'update_user_password'
-                    && $job->user->id === $user->id
-                    && $job->description === 'Updated their password'
-                ),
+                $job->action === 'update_user_password'
+                && $job->user->id === $user->id
+                && $job->description === 'Updated their password'
+            ),
         );
 
         Queue::assertPushedOn(

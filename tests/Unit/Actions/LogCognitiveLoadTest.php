@@ -55,7 +55,10 @@ final class LogCognitiveLoadTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => $job->action === 'cognitive_load_logged' && $job->user->id === $user->id,
+            callback: fn (LogUserAction $job) => (
+                $job->action === 'cognitive_load_logged'
+                && $job->user->id === $user->id
+            ),
         );
 
         Queue::assertPushedOn(

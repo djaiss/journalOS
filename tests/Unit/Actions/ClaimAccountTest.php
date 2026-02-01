@@ -66,10 +66,10 @@ final class ClaimAccountTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'account_claimed'
-                    && $job->user->id === $user->id
-                    && $job->description === 'Claimed the account'
-                ),
+                $job->action === 'account_claimed'
+                && $job->user->id === $user->id
+                && $job->description === 'Claimed the account'
+            ),
         );
 
         Queue::assertPushedOn(

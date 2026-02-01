@@ -91,9 +91,11 @@ final readonly class GetJournalEntryMarkdownForLLM
         $relationships = [];
 
         foreach ($moduleKeys as $moduleKey) {
-            if (!(array_key_exists($moduleKey, $relationshipMap))) { continue; }
+            if (!array_key_exists($moduleKey, $relationshipMap)) {
+                continue;
+            }
 
-$relationships[] = $relationshipMap[$moduleKey];
+            $relationships[] = $relationshipMap[$moduleKey];
         }
 
         if (in_array('reading', $moduleKeys, true)) {

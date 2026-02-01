@@ -7,10 +7,8 @@ namespace App\Actions;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Layout;
-
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
 
 final readonly class DestroyLayout
 {

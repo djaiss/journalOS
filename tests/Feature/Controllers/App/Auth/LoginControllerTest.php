@@ -79,7 +79,10 @@ final class LoginControllerTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
-        Queue::assertPushed(SendEmail::class, fn (SendEmail $job) => $job->emailType === EmailType::LOGIN_FAILED && $job->user->id === $user->id);
+        Queue::assertPushed(
+            SendEmail::class,
+            fn (SendEmail $job) => $job->emailType === EmailType::LOGIN_FAILED && $job->user->id === $user->id,
+        );
     }
 
     #[Test]

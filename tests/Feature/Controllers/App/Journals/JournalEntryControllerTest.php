@@ -38,7 +38,7 @@ final class JournalEntryControllerTest extends TestCase
             "/journals/{$journal->slug}/entries/2024/6/15",
         );
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
     #[Test]

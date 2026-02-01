@@ -27,7 +27,7 @@ final class KidsController extends Controller
             hadKidsToday: TextSanitizer::plainText($validated['had_kids_today']),
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $journalEntry->journal->slug,
             'year' => $journalEntry->year,
             'month' => $journalEntry->month,

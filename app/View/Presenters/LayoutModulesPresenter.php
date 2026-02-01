@@ -45,9 +45,11 @@ final readonly class LayoutModulesPresenter
         $availableModules = [];
 
         foreach (ModuleCatalog::moduleLabels() as $key => $label) {
-            if (in_array($key, $existingKeys, true)) { continue; }
+            if (in_array($key, $existingKeys, true)) {
+                continue;
+            }
 
-$availableModules[$key] = $label;
+            $availableModules[$key] = $label;
         }
 
         return [

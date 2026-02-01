@@ -89,11 +89,15 @@ final class CheckLastLoginTest extends TestCase
         $job = new CheckLastLogin($user, '192.168.1.200');
         $job->handle();
 
-        Queue::assertPushedOn('high', SendEmail::class, fn (SendEmail $job) => (
+        Queue::assertPushedOn(
+            'high',
+            SendEmail::class,
+            fn (SendEmail $job) => (
                 $job->emailType === EmailType::USER_IP_CHANGED
                 && $job->user->id === $user->id
                 && $job->parameters['ip'] === '192.168.1.200'
-            ));
+            ),
+        );
     }
 
     #[Test]

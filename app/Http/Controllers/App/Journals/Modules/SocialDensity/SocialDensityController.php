@@ -29,7 +29,7 @@ final class SocialDensityController extends Controller
             socialDensity: TextSanitizer::plainText($validated['social_density']),
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,

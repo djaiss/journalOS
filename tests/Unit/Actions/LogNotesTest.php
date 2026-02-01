@@ -56,7 +56,10 @@ final class LogNotesTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => $job->action === 'journal_entry_notes_logged' && $job->user->id === $user->id,
+            callback: fn (LogUserAction $job) => (
+                $job->action === 'journal_entry_notes_logged'
+                && $job->user->id === $user->id
+            ),
         );
 
         Queue::assertPushedOn(

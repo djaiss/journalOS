@@ -66,10 +66,10 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'entry_creation'
-                    && $job->user->id === $user->id
-                    && str_contains($job->description, 'Dunder Mifflin Journal')
-                ),
+                $job->action === 'entry_creation'
+                && $job->user->id === $user->id
+                && str_contains($job->description, 'Dunder Mifflin Journal')
+            ),
         );
     }
 

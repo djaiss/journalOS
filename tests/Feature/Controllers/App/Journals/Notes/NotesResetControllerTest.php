@@ -45,7 +45,7 @@ final class NotesResetControllerTest extends TestCase
             "/journals/{$journal->slug}/entries/2026/1/8/notes/reset",
         );
 
-        $response->assertRedirect("/journals/{$journal->slug}/entries/2026/1/8");
+        $response->assertRedirect("/journals/{$journal->slug}/entries/2026/1/8/edit");
         $response->assertSessionHas('status', __('Changes saved'));
 
         $entry->refresh();

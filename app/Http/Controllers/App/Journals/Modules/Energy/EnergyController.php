@@ -29,7 +29,7 @@ final class EnergyController extends Controller
             energy: TextSanitizer::plainText($validated['energy']),
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,

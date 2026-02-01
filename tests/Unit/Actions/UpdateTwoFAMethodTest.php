@@ -43,10 +43,10 @@ final class UpdateTwoFAMethodTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->user->id === $user->id
-                    && $job->action === 'update_preferred_method'
-                    && $job->description === 'Updated their preferred 2FA method'
-                ),
+                $job->user->id === $user->id
+                && $job->action === 'update_preferred_method'
+                && $job->description === 'Updated their preferred 2FA method'
+            ),
         );
 
         Queue::assertPushedOn(

@@ -60,7 +60,10 @@ final class UpdateUserInformationTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => $job->action === 'personal_profile_update' && $job->user->id === $user->id,
+            callback: fn (LogUserAction $job) => (
+                $job->action === 'personal_profile_update'
+                && $job->user->id === $user->id
+            ),
         );
 
         Queue::assertPushedOn(

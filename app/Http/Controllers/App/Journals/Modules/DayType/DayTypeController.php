@@ -29,7 +29,7 @@ final class DayTypeController extends Controller
             dayType: TextSanitizer::plainText($validated['day_type']),
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $journalEntry->journal->slug,
             'year' => $journalEntry->year,
             'month' => $journalEntry->month,

@@ -28,6 +28,7 @@ final class JournalEntryFactory extends Factory
             'day' => fake()->numberBetween(1, 31),
             'month' => fake()->numberBetween(1, 12),
             'year' => fake()->year(),
+            'is_edited' => true,
         ];
     }
 }

@@ -39,7 +39,7 @@ final class ReadingBookController extends Controller
             )->execute();
         }
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,
@@ -62,7 +62,7 @@ final class ReadingBookController extends Controller
             book: $book,
         )->execute();
 
-        return to_route('journal.entry.show', [
+        return to_route('journal.entry.edit', [
             'slug' => $entry->journal->slug,
             'year' => $entry->year,
             'month' => $entry->month,

@@ -75,11 +75,11 @@ final class RemoveModuleFromLayoutTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'layout_module_remove'
-                    && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id
-                    && str_contains($job->description, $journal->name)
-                ),
+                $job->action === 'layout_module_remove'
+                && $job->user->id === $user->id
+                && $job->journal?->id === $journal->id
+                && str_contains($job->description, $journal->name)
+            ),
         );
 
         Queue::assertPushedOn(
