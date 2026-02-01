@@ -26,6 +26,7 @@
   @include('app.journal.entry.partials.days', ['days' => $days])
 
   <!-- lock status -->
+
   @if (! $entry->isEditable())
     <div class="border-b border-gray-200 bg-gradient-to-r from-amber-50 to-orange-50 px-4 py-4 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
       <div class="mx-auto max-w-3xl">
@@ -43,13 +44,13 @@
       </div>
     </div>
   @else
-  <div class="flex justify-end border-b border-gray-200 px-4 py-2 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
-    <a href="{{ route('journal.entry.toggle-edit', ['slug' => $journal->slug, 'year' => $entry->year, 'month' => $entry->month, 'day' => $entry->day]) }}" class="inline-block">
-      <x-toggle name="edit-mode" :checked="true">
-        {{ __('Edit mode') }}
-      </x-toggle>
-    </a>
-  </div>
+    <div class="flex justify-end border-b border-gray-200 px-4 py-2 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
+      <a href="{{ route('journal.entry.toggle-edit', ['slug' => $journal->slug, 'year' => $entry->year, 'month' => $entry->month, 'day' => $entry->day]) }}" class="inline-block">
+        <x-toggle name="edit-mode" :checked="true">
+          {{ __('Edit mode') }}
+        </x-toggle>
+      </a>
+    </div>
   @endif
 
   <!-- entry content -->

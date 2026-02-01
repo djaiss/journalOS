@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals;
 
@@ -8,8 +8,8 @@ use App\Helpers\JournalHelper;
 use App\Http\Controllers\Controller;
 use App\View\Presenters\JournalEntryPresenter;
 use App\View\Presenters\JournalEntryShowPresenter;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 final class JournalEntryController extends Controller

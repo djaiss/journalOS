@@ -31,6 +31,7 @@
   @include('app.journal.entry.partials.days', ['days' => $days])
 
   <!-- lock status -->
+
   @if (! $entry->isEditable())
     <div class="border-b border-gray-200 bg-gradient-to-r from-amber-50 to-orange-50 px-4 py-4 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
       <div class="mx-auto max-w-3xl">
@@ -48,16 +49,16 @@
       </div>
     </div>
   @else
-  <div class="flex justify-end border-b border-gray-200 px-4 py-2 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
-    <a href="{{ route('journal.entry.toggle-edit', ['slug' => $journal->slug, 'year' => $entry->year, 'month' => $entry->month, 'day' => $entry->day]) }}" class="inline-block">
-      <x-toggle name="edit-mode" :checked="false">
-        {{ __('Edit mode') }}
-      </x-toggle>
-    </a>
-  </div>
+    <div class="flex justify-end border-b border-gray-200 px-4 py-2 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
+      <a href="{{ route('journal.entry.toggle-edit', ['slug' => $journal->slug, 'year' => $entry->year, 'month' => $entry->month, 'day' => $entry->day]) }}" class="inline-block">
+        <x-toggle name="edit-mode" :checked="false">
+          {{ __('Edit mode') }}
+        </x-toggle>
+      </a>
+    </div>
   @endif
 
-  <div class="w-5xl mx-auto px-4 py-8 sm:px-8">
+  <div class="mx-auto w-5xl px-4 py-8 sm:px-8">
     <div class="relative h-full w-full overflow-hidden bg-[#fdf9f0] text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.06)] ring-1 ring-black/5 before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(transparent_1.45rem,_rgba(13,13,13,0.06)_1.45rem,_rgba(13,13,13,0.06)_1.5rem)] before:bg-[length:100%_1.5rem] after:pointer-events-none after:absolute after:inset-y-0 after:left-8 after:w-px after:bg-red-300/70 dark:bg-slate-900 dark:text-gray-100 dark:ring-white/10 dark:before:bg-[linear-gradient(transparent_1.45rem,_rgba(255,255,255,0.08)_1.45rem,_rgba(255,255,255,0.08)_1.5rem)] dark:after:bg-red-400/40">
       <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
         <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">

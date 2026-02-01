@@ -39,7 +39,7 @@ final readonly class DestroyJournal
 
     private function delete(): void
     {
-        Log::where('journal_id', $this->journal->id)->update(['journal_id' => null]);
+        Log::query()->where('journal_id', $this->journal->id)->update(['journal_id' => null]);
         $this->journal->delete();
     }
 

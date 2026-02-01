@@ -66,11 +66,13 @@ final readonly class LogTravel
             }
 
             foreach ($this->travelModes as $mode) {
-                if (!(!is_string($mode) || !in_array($mode, ModuleTravel::TRAVEL_MODES, true))) { continue; }
+                if (!( !is_string($mode) || !in_array($mode, ModuleTravel::TRAVEL_MODES, true) )) {
+                    continue;
+                }
 
-throw ValidationException::withMessages([
-                        'travel_modes' => 'Invalid travel mode value.',
-                    ]);
+                throw ValidationException::withMessages([
+                    'travel_modes' => 'Invalid travel mode value.',
+                ]);
             }
         }
     }

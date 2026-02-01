@@ -44,10 +44,10 @@ final class Generate2faQRCodeTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === '2fa_qr_code_generation'
-                    && $job->user->id === $user->id
-                    && $job->description === 'Generated 2FA QR code for setup'
-                ),
+                $job->action === '2fa_qr_code_generation'
+                && $job->user->id === $user->id
+                && $job->description === 'Generated 2FA QR code for setup'
+            ),
         );
 
         Queue::assertPushedOn(

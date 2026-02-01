@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -56,16 +56,17 @@ final class ToggleJournalEntryEditionTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn(LogUserAction $job): bool
-                => $job->action === 'journal_entry_edition_toggled'
+            callback: fn (LogUserAction $job): bool => (
+                $job->action === 'journal_entry_edition_toggled'
                 && $job->user->is($user)
-                && $job->journal?->is($journal),
+                && $job->journal?->is($journal)
+            ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: fn(UpdateUserLastActivityDate $job): bool => $job->user->is($user),
+            callback: fn (UpdateUserLastActivityDate $job): bool => $job->user->is($user),
         );
     }
 

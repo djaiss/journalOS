@@ -49,10 +49,10 @@ final class RenameJournalTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'journal_rename'
-                    && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id
-                ),
+                $job->action === 'journal_rename'
+                && $job->user->id === $user->id
+                && $job->journal?->id === $journal->id
+            ),
         );
 
         Queue::assertPushedOn(

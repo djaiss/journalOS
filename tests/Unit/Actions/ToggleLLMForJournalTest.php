@@ -55,10 +55,10 @@ final class ToggleLLMForJournalTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'journal_llm_visibility_toggled'
-                    && $job->user->is($user)
-                    && $job->journal?->is($journal)
-                ),
+                $job->action === 'journal_llm_visibility_toggled'
+                && $job->user->is($user)
+                && $job->journal?->is($journal)
+            ),
         );
 
         Queue::assertPushedOn(

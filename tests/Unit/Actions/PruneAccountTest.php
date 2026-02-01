@@ -51,10 +51,10 @@ final class PruneAccountTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'account_pruning'
-                    && $job->user->id === $user->id
-                    && $job->description === 'Deleted all journals and related data from your account'
-                ),
+                $job->action === 'account_pruning'
+                && $job->user->id === $user->id
+                && $job->description === 'Deleted all journals and related data from your account'
+            ),
         );
     }
 }

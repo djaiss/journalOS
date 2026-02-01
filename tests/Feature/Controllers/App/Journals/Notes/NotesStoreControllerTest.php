@@ -34,7 +34,7 @@ final class NotesStoreControllerTest extends TestCase
             ['notes' => 'Hello from Trix'],
         );
 
-        $response->assertRedirect("/journals/{$journal->slug}/entries/2026/1/8");
+        $response->assertRedirect("/journals/{$journal->slug}/entries/2026/1/8/edit");
         $response->assertSessionHas('status', __('Changes saved'));
 
         $this->assertStringContainsString('Hello from Trix', (string) $entry->fresh()->notes);

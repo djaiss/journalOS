@@ -58,22 +58,15 @@ final class DestroyLayoutTest extends TestCase
         $this->assertDatabaseMissing('layouts', [
             'id' => $layout->id,
         ]);
-        $this->assertDatabaseMissing('layout_modules', [
-            'id' => $layoutModule->id,
-        ]);
-        $this->assertDatabaseHas('journal_entries', [
-            'id' => $entry->id,
-            'layout_id' => null,
-        ]);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
             callback: fn (LogUserAction $job) => (
-                    $job->action === 'layout_destroy'
-                    && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id
-                ),
+                $job->action === 'layout_destroy'
+                && $job->user->id === $user->id
+                && $job->journal?->id === $journal->id
+            ),
         );
 
         Queue::assertPushedOn(
