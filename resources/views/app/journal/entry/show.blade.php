@@ -17,45 +17,13 @@
   </x-slot>
 
   <!-- list of years -->
-  @if (count($years) > 1)
-    <div id="years-listing" class="rounded-tl-lg rounded-tr-lg bg-white dark:bg-gray-900">
-      <div class="mx-auto grid divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700" style="grid-template-columns: repeat({{ count($years) }}, minmax(0, 1fr))">
-        @foreach ($years as $year)
-          <a href="{{ $year->url }}" class="group {{ $year->is_selected ? 'border-indigo-200 bg-indigo-50' : '' }} relative cursor-pointer px-2 py-1 text-center transition-colors first:rounded-tl-lg last:rounded-tr-lg hover:bg-indigo-50">
-            <div class="text-sm font-medium text-gray-900">{{ $year->year }}</div>
-            <div class="{{ $year->is_selected ? 'scale-x-100' : '' }} absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-          </a>
-        @endforeach
-      </div>
-    </div>
-  @endif
+  @include('app.journal.entry.partials.years', ['years' => $years])
 
   <!-- list of months -->
-  <div id="months-listing" class="bg-white dark:bg-gray-900">
-    <div class="mx-auto grid grid-cols-12 divide-x divide-gray-200 border-b border-gray-200 dark:divide-gray-700 dark:border-gray-700">
-      @foreach ($months as $month)
-        <a href="{{ $month->url }}" class="group {{ $month->is_selected ? 'border-indigo-200 bg-indigo-50 dark:border-indigo-400/60 dark:bg-indigo-900/40' : '' }} relative cursor-pointer px-2 py-1 text-center transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/40">
-          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $month->month_name }}</div>
-          <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ trans_choice('{0} No entries|{1} :count entry|[2,*] :count entries', $month->entries_count, ['count' => $month->entries_count]) }}</div>
-          <div class="{{ $month->is_selected ? 'scale-x-100' : '' }} absolute bottom-0 left-0 h-0.5 w-full scale-x-0 bg-indigo-600 transition-transform group-hover:scale-x-100"></div>
-        </a>
-      @endforeach
-    </div>
-  </div>
+  @include('app.journal.entry.partials.months', ['months' => $months])
 
   <!-- list of days -->
-  <div id="days-listing" class="bg-white dark:bg-gray-900">
-    <div class="days-grid-{{ $days->count() }} mx-auto grid divide-x divide-gray-200 dark:divide-gray-700">
-      @foreach ($days as $day)
-        <div class="group {{ $day->is_selected ? 'border-b-indigo-200 bg-indigo-50 dark:border-b-indigo-400/60 dark:bg-indigo-900/40' : '' }} {{ $day->is_today ? 'bg-indigo-50 dark:bg-indigo-900/40' : '' }} relative aspect-square cursor-pointer border-b border-gray-200 text-center transition-colors hover:bg-indigo-50 dark:border-gray-700 dark:hover:bg-indigo-900/40">
-          <a href="{{ $day->url }}" data-turbo="false" class="flex h-full flex-col items-center justify-center">
-            <span class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $day->day }}</span>
-            <div class="{{ $day->has_content === true ? 'bg-green-500' : 'bg-transparent' }} mt-1 h-1.5 w-1.5 rounded-full"></div>
-          </a>
-        </div>
-      @endforeach
-    </div>
-  </div>
+  @include('app.journal.entry.partials.days', ['days' => $days])
 
   <!-- lock status -->
   @if (! $entry->isEditable())
@@ -76,11 +44,38 @@
     </div>
   @endif
 
-  <!-- entry content -->
-  @php
-    $columnCount = $layoutColumnsCount > 0 ? $layoutColumnsCount : count($columns);
-    $gridColumns = $columnCount + 1;
-  @endphp
+  <div class="w-5xl mx-auto py-8 px-4 sm:px-8 ">
+  <div class="relative h-full w-full overflow-hidden bg-[#fdf9f0] text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.06)] ring-1 ring-black/5 before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(transparent_1.45rem,_rgba(13,13,13,0.06)_1.45rem,_rgba(13,13,13,0.06)_1.5rem)] before:bg-[length:100%_1.5rem] after:pointer-events-none after:absolute after:inset-y-0 after:left-8 after:w-px after:bg-red-300/70 dark:bg-slate-900 dark:text-gray-100 dark:ring-white/10 dark:before:bg-[linear-gradient(transparent_1.45rem,_rgba(255,255,255,0.08)_1.45rem,_rgba(255,255,255,0.08)_1.5rem)] dark:after:bg-red-400/40">
+    <div class="relative z-10 space-y-6 px-8 py-[0.25rem] text-left leading-6 sm:px-8">
+    <div class="prose prose-slate dark:prose-invert relative mt-12 max-w-none leading-6">
+      <p class="font-bold mb-6">Entry for January 4, 2025</p>
 
-  sdfsdfs
+      <!-- health -->
+      <div>
+      <p class="flex items-center gap-x-2 font-semibold">
+        <span>❤️</span>
+        Health information
+      </p>
+
+      <div class="pl-1">
+        <div class="gap-x-2"><span>Health:</span> Awesome</div>
+        <div class="gap-x-2"><span>Health:</span> Awesome</div>
+      </div>
+      </div>
+
+      <div>
+      <p class="flex items-center gap-x-2 font-semibold">
+        <span>❤️</span>
+        Health information
+      </p>
+
+      <div class="pl-1">
+        <div class="gap-x-2"><span>Health:</span> Awesome</div>
+        <div class="gap-x-2"><span>Health:</span> Awesome</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
 </x-app-layout>
