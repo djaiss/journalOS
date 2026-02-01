@@ -15,10 +15,8 @@ final class DocControllerTest extends TestCase
     #[Test]
     public function it_renders_the_docs_index(): void
     {
-
         $response = $this->get(route('marketing.docs.index', absolute: false));
 
         $response->assertRedirect(route('marketing.docs.concepts.modules', absolute: false));
-
     }
 }
