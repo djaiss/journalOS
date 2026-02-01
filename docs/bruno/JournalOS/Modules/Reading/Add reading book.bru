@@ -1,0 +1,17 @@
+meta {
+  name: Add reading book
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{URL}}/journals/1/2025/12/29/reading/books
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "book_name": "Dune"
+  }
+}

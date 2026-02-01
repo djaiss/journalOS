@@ -139,6 +139,9 @@
                 <a href="{{ route('marketing.docs.api.modules.mood') }}" class="{{ request()->routeIs('marketing.docs.api.modules.mood') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Mood</a>
               </div>
               <div>
+                <a href="{{ route('marketing.docs.api.modules.reading') }}" class="{{ request()->routeIs('marketing.docs.api.modules.reading') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Reading</a>
+              </div>
+              <div>
                 <a href="{{ route('marketing.docs.api.modules.physical-activity') }}" class="{{ request()->routeIs('marketing.docs.api.modules.physical-activity') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Physical activity</a>
               </div>
               <div>

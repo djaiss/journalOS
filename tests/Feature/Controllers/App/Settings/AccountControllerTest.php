@@ -20,7 +20,7 @@ final class AccountControllerTest extends TestCase
     public function it_deletes_the_user_account(): void
     {
         Mail::fake();
-        config(['journalos.account_deletion_notification_email' => 'regis@journalos.cloud']);
+        config(['app.account_deletion_notification_email' => 'regis@journalos.cloud']);
 
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create();

@@ -60,6 +60,17 @@
   <x-marketing.docs.attribute name="attributes.modules.hygiene.skincare" type="string" description="Whether you did skincare." />
   <x-marketing.docs.attribute name="attributes.modules.mood" type="object" description="The mood module payload." />
   <x-marketing.docs.attribute name="attributes.modules.mood.mood" type="string" description="The mood for that day." />
+  <x-marketing.docs.attribute name="attributes.modules.reading" type="object" description="The reading module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.did_read_today" type="string" description="Whether you read today." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.books" type="array" description="The books you read on that day." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.books.id" type="integer" description="The ID of the book." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.books.name" type="string" description="The name of the book." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.books.status" type="string" description="The reading status for this journal entry." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.reading_amount" type="string" description="How much you read." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.mental_state" type="string" description="Your mental state after reading." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.reading_feel" type="string" description="How reading felt." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.want_continue" type="string" description="Whether you wanted to continue reading." />
+  <x-marketing.docs.attribute name="attributes.modules.reading.reading_limit" type="string" description="What limited your reading." />
   <x-marketing.docs.attribute name="attributes.modules.energy" type="object" description="The energy module payload." />
   <x-marketing.docs.attribute name="attributes.modules.energy.energy" type="string" description="The energy level for that day." />
   <x-marketing.docs.attribute name="attributes.modules.cognitive_load" type="object" description="The cognitive load module payload." />

@@ -31,6 +31,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'modulePrimaryObligation',
             'moduleSocialDensity',
             'moduleMood',
+            'moduleReading',
             'moduleSleep',
             'moduleWork',
             'moduleSexualActivity',
@@ -42,6 +43,7 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             'moduleWeatherInfluence',
             'moduleShopping',
             'moduleMeals',
+            'books',
         ]);
 
         $hasContent = false;
@@ -55,6 +57,19 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
         if (! $hasContent && $this->entry->moduleMood !== null) {
             if ($this->entry->moduleMood->mood !== null) {
+                $hasContent = true;
+            }
+        }
+
+        if (! $hasContent && $this->entry->moduleReading !== null) {
+            $moduleReading = $this->entry->moduleReading;
+            if ($moduleReading->did_read_today !== null
+                || $moduleReading->reading_amount !== null
+                || $moduleReading->mental_state !== null
+                || $moduleReading->reading_feel !== null
+                || $moduleReading->want_continue !== null
+                || $moduleReading->reading_limit !== null
+            ) {
                 $hasContent = true;
             }
         }
@@ -171,6 +186,10 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             if ($moduleMeals->meal_presence !== null || $moduleMeals->meal_type !== null || $moduleMeals->social_context !== null || $moduleMeals->has_notes !== null || $moduleMeals->notes !== null) {
                 $hasContent = true;
             }
+        }
+
+        if (! $hasContent && $this->entry->books->isNotEmpty()) {
+            $hasContent = true;
         }
 
         $richTextNotes = $this->entry->richTextNotes;

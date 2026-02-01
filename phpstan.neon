@@ -19,6 +19,7 @@ parameters:
         - app/Jobs/SendEmail.php
         - app/Jobs/CheckPresenceOfContentInJournalEntry.php
         - app/View/Presenters/NotesPresenter.php
+        - app/View/Presenters/ReadingModulePresenter.php
 
 #    checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: false

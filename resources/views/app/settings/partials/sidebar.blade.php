@@ -15,10 +15,6 @@
       <x-phosphor-key class="h-4 w-4 {{ request()->routeIs('settings.security.index') ? 'text-emerald-700' : 'text-gray-500' }}" />
       {{ __('Security and access') }}
     </a>
-    <a data-turbo="true" href="#" class="flex items-center gap-3 rounded-lg px-2 py-1 text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800">
-      <x-phosphor-bell class="h-4 w-4" />
-      {{ __('Notifications') }}
-    </a>
     <a data-turbo="true" href="{{ route('settings.account.index') }}" class="{{ request()->routeIs('settings.account.index') ? 'bg-red-50 font-medium text-red-600' : 'text-red-600 hover:bg-red-50' }} mt-4 flex items-center gap-3 rounded-lg px-2 py-1">
       <x-phosphor-trash class="h-4 w-4" />
       {{ __('Danger zone') }}

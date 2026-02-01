@@ -100,6 +100,19 @@ final class JournalEntryResource extends JsonResource
                     'mood' => [
                         'mood' => $this->moduleMood?->mood,
                     ],
+                    'reading' => [
+                        'did_read_today' => $this->moduleReading?->did_read_today,
+                        'books' => $this->books->map(fn($book) => [
+                            'id' => $book->id,
+                            'name' => $book->name,
+                            'status' => $book->pivot?->status,
+                        ])->all(),
+                        'reading_amount' => $this->moduleReading?->reading_amount,
+                        'mental_state' => $this->moduleReading?->mental_state,
+                        'reading_feel' => $this->moduleReading?->reading_feel,
+                        'want_continue' => $this->moduleReading?->want_continue,
+                        'reading_limit' => $this->moduleReading?->reading_limit,
+                    ],
                     'sexual_activity' => [
                         'had_sexual_activity' => $this->moduleSexualActivity?->had_sexual_activity,
                         'sexual_activity_type' => $this->moduleSexualActivity?->sexual_activity_type,

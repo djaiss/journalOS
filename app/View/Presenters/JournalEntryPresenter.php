@@ -140,6 +140,11 @@ final readonly class JournalEntryPresenter
                 'view' => 'app.journal.entry.partials.mood',
                 'data' => ['module' => new MoodModulePresenter($this->entry)->build()],
             ],
+            'reading' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.reading',
+                'data' => ['module' => new ReadingModulePresenter($this->entry)->build()],
+            ],
             'sexual_activity' => [
                 'key' => $moduleKey,
                 'view' => 'app.journal.entry.partials.sexual_activity',
