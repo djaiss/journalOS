@@ -75,11 +75,11 @@ final readonly class LogShopping
             }
 
             foreach ($this->shoppingTypes as $type) {
-                if (!is_string($type) || !in_array($type, ModuleShopping::SHOPPING_TYPES, true)) {
-                    throw ValidationException::withMessages([
+                if (!(!is_string($type) || !in_array($type, ModuleShopping::SHOPPING_TYPES, true))) { continue; }
+
+throw ValidationException::withMessages([
                         'shopping_types' => 'Invalid shopping type value.',
                     ]);
-                }
             }
         }
 

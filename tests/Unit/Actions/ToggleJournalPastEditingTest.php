@@ -51,21 +51,16 @@ final class ToggleJournalPastEditingTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return (
-                    $job->action === 'journal_past_editing_toggled'
-                    && $job->user->is($user)
-                    && $job->journal?->is($journal)
-                );
-            },
+            callback: fn (LogUserAction $job): bool =>
+                $job->action === 'journal_past_editing_toggled'
+                && $job->user->is($user)
+                && $job->journal?->is($journal),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->is($user);
-            },
+            callback: fn (UpdateUserLastActivityDate $job): bool => $job->user->is($user),
         );
     }
 

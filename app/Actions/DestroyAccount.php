@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Actions;
 
-use App\Jobs\DeleteRelatedAccountData;
+
 use App\Mail\AccountDestroyed;
 use App\Models\AccountDeletionReason;
 use App\Models\User;

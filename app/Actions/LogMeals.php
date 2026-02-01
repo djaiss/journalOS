@@ -69,11 +69,11 @@ final readonly class LogMeals
             }
 
             foreach ($this->mealPresence as $presence) {
-                if (!is_string($presence) || !in_array($presence, ModuleMeals::MEAL_PRESENCE, true)) {
-                    throw ValidationException::withMessages([
+                if (!(!is_string($presence) || !in_array($presence, ModuleMeals::MEAL_PRESENCE, true))) { continue; }
+
+throw ValidationException::withMessages([
                         'meal_presence' => 'Invalid meal presence value.',
                     ]);
-                }
             }
         }
 
