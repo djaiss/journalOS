@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Helpers;
 
@@ -30,13 +30,14 @@ final class JournalHelper
      */
     public static function getYears(Journal $journal, int $selectedYear): Collection
     {
-        $years = $journal->entries()
+        $years = $journal
+            ->entries()
             ->select('year')
             ->distinct()
             ->orderBy('year', 'asc')
             ->pluck('year');
 
-        return $years->mapWithKeys(fn(int $year): array => [
+        return $years->mapWithKeys(fn (int $year): array => [
             $year => (object) [
                 'year' => $year,
                 'is_selected' => $year === $selectedYear,
@@ -73,27 +74,29 @@ final class JournalHelper
     public static function getMonths(Journal $journal, int $year, int $selectedMonth): Collection
     {
         // Get count of entries with content for each month in this year
-        $entriesCounts = $journal->entries()
+        $entriesCounts = $journal
+            ->entries()
             ->where('year', $year)
             ->where('has_content', true)
             ->groupBy('month')
             ->selectRaw('month, COUNT(*) as count')
             ->pluck('count', 'month');
 
-        return collect(range(1, 12))->mapWithKeys(fn(int $month): array => [
-            $month => (object) [
-                'month' => $month,
-                'month_name' => ucfirst(Date::createFromDate($year, $month, 1)->translatedFormat('F')),
-                'entries_count' => $entriesCounts->get($month, 0),
-                'is_selected' => $month === $selectedMonth,
-                'url' => route('journal.entry.show', [
-                    'slug' => $journal->slug,
-                    'year' => $year,
+        return collect(range(1, 12))
+            ->mapWithKeys(fn (int $month): array => [
+                $month => (object) [
                     'month' => $month,
-                    'day' => 1,
-                ]),
-            ],
-        ]);
+                    'month_name' => ucfirst(Date::createFromDate($year, $month, 1)->translatedFormat('F')),
+                    'entries_count' => $entriesCounts->get($month, 0),
+                    'is_selected' => $month === $selectedMonth,
+                    'url' => route('journal.entry.show', [
+                        'slug' => $journal->slug,
+                        'year' => $year,
+                        'month' => $month,
+                        'day' => 1,
+                    ]),
+                ],
+            ]);
     }
 
     /**
@@ -118,7 +121,8 @@ final class JournalHelper
     public static function getDaysInMonth(Journal $journal, int $year, int $month, int $day): Collection
     {
         // Get all entries for this month with their has_content status
-        $entriesWithContent = $journal->entries()
+        $entriesWithContent = $journal
+            ->entries()
             ->where('year', $year)
             ->where('month', $month)
             ->where('has_content', true)
@@ -126,7 +130,7 @@ final class JournalHelper
             ->flip();
 
         return collect(range(1, cal_days_in_month(CAL_GREGORIAN, $month, $year)))
-            ->mapWithKeys(fn(int $currentDay): array => [
+            ->mapWithKeys(fn (int $currentDay): array => [
                 $currentDay => (object) [
                     'day' => $currentDay,
                     'is_today' => Date::createFromDate($year, $month, $currentDay)->isToday(),

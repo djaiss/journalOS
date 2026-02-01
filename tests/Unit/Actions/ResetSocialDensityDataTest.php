@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetSocialDensityDataTest extends TestCase
             'social_density' => 'crowd',
         ]);
 
-        $result = (new ResetSocialDensityData(
+        $result = new ResetSocialDensityData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleSocialDensity?->social_density);
         $this->assertDatabaseMissing('module_social_density', [
@@ -96,9 +96,9 @@ final class ResetSocialDensityDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetSocialDensityData(
+        new ResetSocialDensityData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Journals\Modules\Reading;
 
@@ -31,7 +31,7 @@ final class ReadingBookController extends Controller
         $book = $this->findOrCreateBook(Auth::user(), $bookName);
 
         $alreadyLogged = $entry->books()->where('books.id', $book->id)->exists();
-        if (! $alreadyLogged) {
+        if (!$alreadyLogged) {
             new LogBook(
                 user: Auth::user(),
                 entry: $entry,
@@ -74,7 +74,7 @@ final class ReadingBookController extends Controller
         $existingBook = Book::query()
             ->where('user_id', $user->id)
             ->get()
-            ->first(fn(Book $book) => $book->name === $bookName);
+            ->first(fn (Book $book) => $book->name === $bookName);
 
         if ($existingBook !== null) {
             return $existingBook;

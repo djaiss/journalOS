@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Mood;
 
@@ -8,10 +8,10 @@ use App\Actions\LogMood;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\ModuleMood;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Http\RedirectResponse;
 
 final class MoodController extends Controller
 {

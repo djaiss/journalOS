@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetCognitiveLoadDataTest extends TestCase
             'cognitive_load' => 'high',
         ]);
 
-        $entry = (new ResetCognitiveLoadData(
+        $entry = new ResetCognitiveLoadData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($entry->moduleCognitiveLoad);
 
@@ -87,9 +87,9 @@ final class ResetCognitiveLoadDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetCognitiveLoadData(
+        new ResetCognitiveLoadData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

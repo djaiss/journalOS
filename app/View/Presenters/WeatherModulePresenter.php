@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -34,11 +34,14 @@ final readonly class WeatherModulePresenter
             'temperature_range_options' => $this->temperatureRangeOptions(),
             'precipitation_options' => $this->precipitationOptions(),
             'daylight_options' => $this->daylightOptions(),
-            'display_reset' => $module !== null
-                && ($module->condition !== null
-                    || $module->temperature_range !== null
-                    || $module->precipitation !== null
-                    || $module->daylight !== null),
+            'display_reset' =>
+                $module !== null
+                    && (
+                        $module->condition !== null
+                        || $module->temperature_range !== null
+                        || $module->precipitation !== null
+                        || $module->daylight !== null
+                    ),
         ];
     }
 
@@ -46,7 +49,7 @@ final readonly class WeatherModulePresenter
     {
         $condition = $this->entry->moduleWeather?->condition;
 
-        return collect(ModuleWeather::CONDITIONS)->map(fn($value) => [
+        return collect(ModuleWeather::CONDITIONS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'sunny' => __('Sunny'),
@@ -64,7 +67,7 @@ final readonly class WeatherModulePresenter
     {
         $temperatureRange = $this->entry->moduleWeather?->temperature_range;
 
-        return collect(ModuleWeather::TEMPERATURE_RANGES)->map(fn($value) => [
+        return collect(ModuleWeather::TEMPERATURE_RANGES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'very_cold' => __('Very cold'),
@@ -82,7 +85,7 @@ final readonly class WeatherModulePresenter
     {
         $precipitation = $this->entry->moduleWeather?->precipitation;
 
-        return collect(ModuleWeather::PRECIPITATION_LEVELS)->map(fn($value) => [
+        return collect(ModuleWeather::PRECIPITATION_LEVELS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'none' => __('None'),
@@ -98,7 +101,7 @@ final readonly class WeatherModulePresenter
     {
         $daylight = $this->entry->moduleWeather?->daylight;
 
-        return collect(ModuleWeather::DAYLIGHT_VALUES)->map(fn($value) => [
+        return collect(ModuleWeather::DAYLIGHT_VALUES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'very_short' => __('Very short'),

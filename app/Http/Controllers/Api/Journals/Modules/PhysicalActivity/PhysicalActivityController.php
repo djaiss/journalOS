@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Journals\Modules\PhysicalActivity;
 
@@ -23,7 +23,12 @@ final class PhysicalActivityController extends Controller
         $validated = $request->validate([
             'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no'],
             'activity_type' => ['nullable', 'string', 'max:255', Rule::in(ModulePhysicalActivity::ACTIVITY_TYPES)],
-            'activity_intensity' => ['nullable', 'string', 'max:255', Rule::in(ModulePhysicalActivity::ACTIVITY_INTENSITIES)],
+            'activity_intensity' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModulePhysicalActivity::ACTIVITY_INTENSITIES),
+            ],
         ]);
 
         $entry = new LogPhysicalActivity(

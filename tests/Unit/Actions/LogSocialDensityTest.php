@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,11 +40,11 @@ final class LogSocialDensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogSocialDensity(
+        $result = new LogSocialDensity(
             user: $user,
             entry: $entry,
             socialDensity: 'alone',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('alone', $result->moduleSocialDensity?->social_density);
         $this->assertDatabaseHas('module_social_density', [
@@ -87,11 +87,11 @@ final class LogSocialDensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogSocialDensity(
+        $result = new LogSocialDensity(
             user: $user,
             entry: $entry,
             socialDensity: 'few people',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('few people', $result->moduleSocialDensity?->social_density);
         $this->assertDatabaseHas('module_social_density', [
@@ -110,11 +110,11 @@ final class LogSocialDensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogSocialDensity(
+        $result = new LogSocialDensity(
             user: $user,
             entry: $entry,
             socialDensity: 'crowd',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('crowd', $result->moduleSocialDensity?->social_density);
         $this->assertDatabaseHas('module_social_density', [
@@ -133,11 +133,11 @@ final class LogSocialDensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogSocialDensity(
+        $result = new LogSocialDensity(
             user: $user,
             entry: $entry,
             socialDensity: 'too much',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('too much', $result->moduleSocialDensity?->social_density);
         $this->assertDatabaseHas('module_social_density', [
@@ -158,11 +158,11 @@ final class LogSocialDensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogSocialDensity(
+        new LogSocialDensity(
             user: $user,
             entry: $entry,
             socialDensity: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -179,10 +179,10 @@ final class LogSocialDensityTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogSocialDensity(
+        new LogSocialDensity(
             user: $user,
             entry: $entry,
             socialDensity: 'crowd',
-        ))->execute();
+        )->execute();
     }
 }

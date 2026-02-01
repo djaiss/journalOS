@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -35,7 +35,7 @@ final readonly class MoodModulePresenter
 
     private function moodOptions(): array
     {
-        return collect(ModuleMood::MOOD_VALUES)->map(fn($value) => [
+        return collect(ModuleMood::MOOD_VALUES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'terrible' => __('Terrible'),

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -48,7 +48,8 @@ final readonly class LogWeatherInfluence
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->moodEffect === null
+        if (
+            $this->moodEffect === null
             && $this->energyEffect === null
             && $this->plansInfluence === null
             && $this->outsideTime === null
@@ -58,25 +59,31 @@ final readonly class LogWeatherInfluence
             ]);
         }
 
-        if ($this->moodEffect !== null && ! in_array($this->moodEffect, ModuleWeatherInfluence::MOOD_EFFECTS, true)) {
+        if ($this->moodEffect !== null && !in_array($this->moodEffect, ModuleWeatherInfluence::MOOD_EFFECTS, true)) {
             throw ValidationException::withMessages([
                 'mood_effect' => 'Invalid mood effect value.',
             ]);
         }
 
-        if ($this->energyEffect !== null && ! in_array($this->energyEffect, ModuleWeatherInfluence::ENERGY_EFFECTS, true)) {
+        if (
+            $this->energyEffect !== null
+            && !in_array($this->energyEffect, ModuleWeatherInfluence::ENERGY_EFFECTS, true)
+        ) {
             throw ValidationException::withMessages([
                 'energy_effect' => 'Invalid energy effect value.',
             ]);
         }
 
-        if ($this->plansInfluence !== null && ! in_array($this->plansInfluence, ModuleWeatherInfluence::PLANS_INFLUENCES, true)) {
+        if (
+            $this->plansInfluence !== null
+            && !in_array($this->plansInfluence, ModuleWeatherInfluence::PLANS_INFLUENCES, true)
+        ) {
             throw ValidationException::withMessages([
                 'plans_influence' => 'Invalid plans influence value.',
             ]);
         }
 
-        if ($this->outsideTime !== null && ! in_array($this->outsideTime, ModuleWeatherInfluence::OUTSIDE_TIMES, true)) {
+        if ($this->outsideTime !== null && !in_array($this->outsideTime, ModuleWeatherInfluence::OUTSIDE_TIMES, true)) {
             throw ValidationException::withMessages([
                 'outside_time' => 'Invalid outside time value.',
             ]);
@@ -85,9 +92,11 @@ final readonly class LogWeatherInfluence
 
     private function log(): void
     {
-        $moduleWeatherInfluence = $this->entry->moduleWeatherInfluence()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleWeatherInfluence = $this->entry
+            ->moduleWeatherInfluence()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->moodEffect !== null) {
             $moduleWeatherInfluence->mood_effect = $this->moodEffect;

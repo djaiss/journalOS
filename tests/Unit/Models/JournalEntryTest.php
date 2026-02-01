@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Models;
 
@@ -9,16 +9,16 @@ use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\Layout;
-use App\Models\ModuleHealth;
-use App\Models\ModuleHygiene;
+use App\Models\ModuleCognitiveLoad;
 use App\Models\ModuleDayType;
 use App\Models\ModuleEnergy;
-use App\Models\ModuleCognitiveLoad;
-use App\Models\ModulePhysicalActivity;
+use App\Models\ModuleHealth;
+use App\Models\ModuleHygiene;
 use App\Models\ModuleMeals;
+use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleReading;
-use App\Models\ModuleShopping;
 use App\Models\ModuleSexualActivity;
+use App\Models\ModuleShopping;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
 use App\Models\ModuleWeather;
@@ -27,8 +27,8 @@ use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class JournalEntryTest extends TestCase
 {

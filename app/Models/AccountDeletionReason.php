@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Models;
 
@@ -20,7 +20,6 @@ final class AccountDeletionReason extends Model
     use HasFactory;
 
     protected $table = 'account_deletion_reasons';
-
 
     /**
      * The attributes that are mass assignable.

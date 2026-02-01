@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Llm;
 
@@ -77,5 +77,4 @@ final class JournalEntryYearControllerTest extends TestCase
 
         $response->assertNotFound();
     }
-
 }

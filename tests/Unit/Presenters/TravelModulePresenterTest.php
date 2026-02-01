@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Presenters;
 
@@ -96,7 +96,7 @@ final class TravelModulePresenterTest extends TestCase
         $presenter = new TravelModulePresenter($entry);
         $result = $presenter->build();
 
-        $selectedModes = $result['travel_modes']->filter(fn($mode) => $mode['is_selected']);
+        $selectedModes = $result['travel_modes']->filter(fn ($mode) => $mode['is_selected']);
         $this->assertCount(1, $selectedModes);
 
         $selectedMode = $selectedModes->first();
@@ -119,7 +119,7 @@ final class TravelModulePresenterTest extends TestCase
         $presenter = new TravelModulePresenter($entry);
         $result = $presenter->build();
 
-        $selectedModes = $result['travel_modes']->filter(fn($mode) => $mode['is_selected']);
+        $selectedModes = $result['travel_modes']->filter(fn ($mode) => $mode['is_selected']);
         $this->assertCount(3, $selectedModes);
 
         $selectedValues = $selectedModes->pluck('value')->toArray();

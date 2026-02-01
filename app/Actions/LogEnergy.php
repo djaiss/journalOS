@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -45,7 +45,7 @@ final readonly class LogEnergy
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->energy, ModuleEnergy::ENERGY_LEVELS, true)) {
+        if (!in_array($this->energy, ModuleEnergy::ENERGY_LEVELS, true)) {
             throw ValidationException::withMessages([
                 'energy' => 'Invalid energy value.',
             ]);
@@ -54,9 +54,11 @@ final readonly class LogEnergy
 
     private function log(): void
     {
-        $moduleEnergy = $this->entry->moduleEnergy()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleEnergy = $this->entry
+            ->moduleEnergy()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleEnergy->energy = $this->energy;
         $moduleEnergy->save();

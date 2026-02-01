@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,14 +40,14 @@ final class LogWeatherTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogWeather(
+        $entry = new LogWeather(
             user: $user,
             entry: $entry,
             condition: 'sunny',
             temperatureRange: 'warm',
             precipitation: 'none',
             daylight: 'normal',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('sunny', $entry->moduleWeather->condition);
         $this->assertEquals('warm', $entry->moduleWeather->temperature_range);
@@ -92,14 +92,14 @@ final class LogWeatherTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWeather(
+        new LogWeather(
             user: $user,
             entry: $entry,
             condition: 'stormy',
             temperatureRange: null,
             precipitation: null,
             daylight: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -116,13 +116,13 @@ final class LogWeatherTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWeather(
+        new LogWeather(
             user: $user,
             entry: $entry,
             condition: 'sunny',
             temperatureRange: 'warm',
             precipitation: 'none',
             daylight: 'normal',
-        ))->execute();
+        )->execute();
     }
 }

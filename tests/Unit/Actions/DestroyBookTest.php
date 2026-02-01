@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -39,10 +39,10 @@ final class DestroyBookTest extends TestCase
             'id' => $book->id,
         ]);
 
-        (new DestroyBook(
+        new DestroyBook(
             user: $user,
             book: $book,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('books', [
             'id' => $book->id,
@@ -74,9 +74,9 @@ final class DestroyBookTest extends TestCase
         $user = User::factory()->create();
         $otherBook = Book::factory()->create();
 
-        (new DestroyBook(
+        new DestroyBook(
             user: $user,
             book: $otherBook,
-        ))->execute();
+        )->execute();
     }
 }

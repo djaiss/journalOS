@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -45,7 +45,7 @@ final readonly class LogMood
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->mood, ModuleMood::MOOD_VALUES, true)) {
+        if (!in_array($this->mood, ModuleMood::MOOD_VALUES, true)) {
             throw ValidationException::withMessages([
                 'mood' => 'Invalid mood value.',
             ]);
@@ -54,9 +54,11 @@ final readonly class LogMood
 
     private function log(): void
     {
-        $moduleMood = $this->entry->moduleMood()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleMood = $this->entry
+            ->moduleMood()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleMood->mood = $this->mood;
         $moduleMood->save();

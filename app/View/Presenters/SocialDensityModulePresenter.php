@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -39,7 +39,7 @@ final readonly class SocialDensityModulePresenter
     {
         $moduleSocialDensity = $this->entry->moduleSocialDensity;
 
-        return collect(ModuleSocialDensity::SOCIAL_DENSITY_VALUES)->map(fn($value) => [
+        return collect(ModuleSocialDensity::SOCIAL_DENSITY_VALUES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'alone' => __('Alone'),

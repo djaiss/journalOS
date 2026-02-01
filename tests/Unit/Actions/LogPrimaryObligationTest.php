@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,11 +40,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'work',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('work', $entry->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseHas('module_primary_obligation', [
@@ -87,11 +87,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'family',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('family', $entry->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseHas('module_primary_obligation', [
@@ -110,11 +110,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'personal',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('personal', $entry->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseHas('module_primary_obligation', [
@@ -133,11 +133,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'health',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('health', $entry->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseHas('module_primary_obligation', [
@@ -156,11 +156,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'travel',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('travel', $entry->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseHas('module_primary_obligation', [
@@ -179,11 +179,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogPrimaryObligation(
+        $entry = new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'none',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('none', $entry->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseHas('module_primary_obligation', [
@@ -204,11 +204,11 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogPrimaryObligation(
+        new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -225,10 +225,10 @@ final class LogPrimaryObligationTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogPrimaryObligation(
+        new LogPrimaryObligation(
             user: $user,
             entry: $entry,
             primaryObligation: 'work',
-        ))->execute();
+        )->execute();
     }
 }

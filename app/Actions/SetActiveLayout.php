@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -30,7 +30,7 @@ final readonly class SetActiveLayout
 
     private function validate(): void
     {
-        if (! $this->layout->journal()->where('user_id', $this->user->id)->exists()) {
+        if (!$this->layout->journal()->where('user_id', $this->user->id)->exists()) {
             throw new ModelNotFoundException('Layout not found');
         }
     }

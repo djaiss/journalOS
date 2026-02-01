@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\PhysicalActivity;
 
@@ -8,10 +8,10 @@ use App\Actions\LogPhysicalActivity;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\ModulePhysicalActivity;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Http\RedirectResponse;
 
 final class PhysicalActivityController extends Controller
 {
@@ -20,9 +20,27 @@ final class PhysicalActivityController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'has_done_physical_activity' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:activity_type,activity_intensity'],
-            'activity_type' => ['nullable', 'string', 'max:255', Rule::in(ModulePhysicalActivity::ACTIVITY_TYPES), 'required_without_all:has_done_physical_activity,activity_intensity'],
-            'activity_intensity' => ['nullable', 'string', 'max:255', Rule::in(ModulePhysicalActivity::ACTIVITY_INTENSITIES), 'required_without_all:has_done_physical_activity,activity_type'],
+            'has_done_physical_activity' => [
+                'nullable',
+                'string',
+                'max:255',
+                'in:yes,no',
+                'required_without_all:activity_type,activity_intensity',
+            ],
+            'activity_type' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModulePhysicalActivity::ACTIVITY_TYPES),
+                'required_without_all:has_done_physical_activity,activity_intensity',
+            ],
+            'activity_intensity' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModulePhysicalActivity::ACTIVITY_INTENSITIES),
+                'required_without_all:has_done_physical_activity,activity_type',
+            ],
         ]);
 
         new LogPhysicalActivity(

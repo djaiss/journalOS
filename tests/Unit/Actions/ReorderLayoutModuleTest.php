@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -59,13 +59,13 @@ final class ReorderLayoutModuleTest extends TestCase
             'position' => 3,
         ]);
 
-        $updatedModule = (new ReorderLayoutModule(
+        $updatedModule = new ReorderLayoutModule(
             user: $user,
             layout: $layout,
             moduleKey: 'sleep',
             columnNumber: 1,
             position: 3,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals(3, $updatedModule->position);
         $this->assertEquals(1, $moduleTwo->fresh()->position);
@@ -75,10 +75,12 @@ final class ReorderLayoutModuleTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'layout_module_reorder'
+                return (
+                    $job->action === 'layout_module_reorder'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
-                    && str_contains($job->description, $journal->name);
+                    && str_contains($job->description, $journal->name)
+                );
             },
         );
 
@@ -121,13 +123,13 @@ final class ReorderLayoutModuleTest extends TestCase
             'position' => 1,
         ]);
 
-        $updatedModule = (new ReorderLayoutModule(
+        $updatedModule = new ReorderLayoutModule(
             user: $user,
             layout: $layout,
             moduleKey: 'work',
             columnNumber: 2,
             position: 1,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals(2, $updatedModule->column_number);
         $this->assertEquals(1, $updatedModule->position);
@@ -155,13 +157,13 @@ final class ReorderLayoutModuleTest extends TestCase
             'position' => 1,
         ]);
 
-        (new ReorderLayoutModule(
+        new ReorderLayoutModule(
             user: $user,
             layout: $layout,
             moduleKey: 'sleep',
             columnNumber: 2,
             position: 3,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -174,12 +176,12 @@ final class ReorderLayoutModuleTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        (new ReorderLayoutModule(
+        new ReorderLayoutModule(
             user: $user,
             layout: $layout,
             moduleKey: 'sleep',
             columnNumber: 1,
             position: 1,
-        ))->execute();
+        )->execute();
     }
 }

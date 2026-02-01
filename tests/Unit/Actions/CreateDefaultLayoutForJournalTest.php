@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -25,7 +25,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateDefaultLayoutForJournal($journal))->execute();
+        new CreateDefaultLayoutForJournal($journal)->execute();
 
         $layout = Layout::query()
             ->where('journal_id', $journal->id)
@@ -45,7 +45,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateDefaultLayoutForJournal($journal))->execute();
+        new CreateDefaultLayoutForJournal($journal)->execute();
 
         $layout = Layout::query()
             ->where('journal_id', $journal->id)
@@ -82,7 +82,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateDefaultLayoutForJournal($journal))->execute();
+        new CreateDefaultLayoutForJournal($journal)->execute();
 
         $layout = Layout::query()
             ->where('journal_id', $journal->id)
@@ -124,7 +124,7 @@ final class CreateDefaultLayoutForJournalTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateDefaultLayoutForJournal($journal))->execute();
+        new CreateDefaultLayoutForJournal($journal)->execute();
 
         $layout = Layout::query()
             ->where('journal_id', $journal->id)

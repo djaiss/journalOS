@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -36,10 +36,10 @@ final class ToggleJournalPastEditingTest extends TestCase
             'can_edit_past' => true,
         ]);
 
-        $updatedJournal = (new ToggleJournalPastEditing(
+        $updatedJournal = new ToggleJournalPastEditing(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
 
         $this->assertFalse($updatedJournal->can_edit_past);
 
@@ -52,9 +52,11 @@ final class ToggleJournalPastEditingTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'journal_past_editing_toggled'
+                return (
+                    $job->action === 'journal_past_editing_toggled'
                     && $job->user->is($user)
-                    && $job->journal?->is($journal);
+                    && $job->journal?->is($journal)
+                );
             },
         );
 
@@ -82,10 +84,10 @@ final class ToggleJournalPastEditingTest extends TestCase
             ['can_edit_past' => null],
         ));
 
-        (new ToggleJournalPastEditing(
+        new ToggleJournalPastEditing(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -96,9 +98,9 @@ final class ToggleJournalPastEditingTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
 
-        (new ToggleJournalPastEditing(
+        new ToggleJournalPastEditing(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
     }
 }

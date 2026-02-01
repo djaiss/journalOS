@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Api\Journals\Notes;
 
@@ -29,10 +29,12 @@ final class NotesResetControllerTest extends TestCase
             'month' => 6,
             'day' => 15,
         ]);
-        $entry->richTextNotes()->create([
-            'field' => 'notes',
-            'body' => '<p>Existing notes.</p>',
-        ]);
+        $entry
+            ->richTextNotes()
+            ->create([
+                'field' => 'notes',
+                'body' => '<p>Existing notes.</p>',
+            ]);
 
         Sanctum::actingAs($user);
 

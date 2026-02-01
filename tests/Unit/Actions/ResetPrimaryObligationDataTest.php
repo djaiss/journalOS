@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetPrimaryObligationDataTest extends TestCase
             'primary_obligation' => 'work',
         ]);
 
-        $result = (new ResetPrimaryObligationData(
+        $result = new ResetPrimaryObligationData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->modulePrimaryObligation?->primary_obligation);
         $this->assertDatabaseMissing('module_primary_obligation', [
@@ -96,9 +96,9 @@ final class ResetPrimaryObligationDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetPrimaryObligationData(
+        new ResetPrimaryObligationData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

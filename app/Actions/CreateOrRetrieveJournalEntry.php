@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -48,7 +48,7 @@ final class CreateOrRetrieveJournalEntry
         }
 
         // check if the date is a real date
-        if (! checkdate($this->month, $this->day, $this->year)) {
+        if (!checkdate($this->month, $this->day, $this->year)) {
             throw new Exception('Invalid date');
         }
 
@@ -57,7 +57,8 @@ final class CreateOrRetrieveJournalEntry
 
     private function create(): void
     {
-        $existingEntry = JournalEntry::query()->where('journal_id', $this->journal->id)
+        $existingEntry = JournalEntry::query()
+            ->where('journal_id', $this->journal->id)
             ->where('day', $this->day)
             ->where('month', $this->month)
             ->where('year', $this->year)
@@ -66,7 +67,8 @@ final class CreateOrRetrieveJournalEntry
         if ($existingEntry) {
             $this->entry = $existingEntry;
         } else {
-            $activeLayout = $this->journal->layouts()
+            $activeLayout = $this->journal
+                ->layouts()
                 ->where('is_active', true)
                 ->first();
 
@@ -93,7 +95,10 @@ final class CreateOrRetrieveJournalEntry
             user: $this->user,
             journal: $this->journal,
             action: 'entry_creation',
-            description: 'Created the entry on ' . $this->date->format('l F jS, Y') . ' for the journal called ' . $this->journal->name,
+            description: 'Created the entry on '
+            . $this->date->format('l F jS, Y')
+            . ' for the journal called '
+            . $this->journal->name,
         )->onQueue('low');
     }
 }

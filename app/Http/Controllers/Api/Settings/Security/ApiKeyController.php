@@ -1,20 +1,20 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Settings\Security;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\ApiResource;
 use App\Actions\CreateApiKey;
 use App\Actions\DestroyApiKey;
 use App\Helpers\TextSanitizer;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ApiResource;
 use App\Traits\ApiResponses;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 final class ApiKeyController extends Controller
 {
@@ -38,7 +38,10 @@ final class ApiKeyController extends Controller
             label: TextSanitizer::plainText($validated['label']),
         )->execute();
 
-        $apiKey = Auth::user()->tokens()->latest()->first();
+        $apiKey = Auth::user()
+            ->tokens()
+            ->latest()
+            ->first();
 
         return new ApiResource($apiKey)
             ->additional(['token' => $token])
@@ -52,11 +55,13 @@ final class ApiKeyController extends Controller
 
         $apiKey = Auth::user()->tokens()->find($id);
 
-        if (! $apiKey) {
+        if (!$apiKey) {
             return $this->error('API key not found', 404);
         }
 
-        return new ApiResource($apiKey)->response()->setStatusCode(200);
+        return new ApiResource($apiKey)
+            ->response()
+            ->setStatusCode(200);
     }
 
     public function destroy(Request $request): Response|JsonResponse
@@ -69,7 +74,7 @@ final class ApiKeyController extends Controller
 
         $apiKey = Auth::user()->tokens()->find($id);
 
-        if (! $apiKey) {
+        if (!$apiKey) {
             return $this->error('API key not found', 404);
         }
 

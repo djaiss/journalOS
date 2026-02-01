@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Database\Seeders;
 
@@ -69,11 +69,13 @@ final class DatabaseSeeder extends Seeder
 
         // Create one entry for each year
         foreach ($selectedYears as $year) {
-            $journal->entries()->create([
-                'year' => $year,
-                'month' => random_int(1, 12),
-                'day' => random_int(1, 28),
-            ]);
+            $journal
+                ->entries()
+                ->create([
+                    'year' => $year,
+                    'month' => random_int(1, 12),
+                    'day' => random_int(1, 28),
+                ]);
         }
     }
 }

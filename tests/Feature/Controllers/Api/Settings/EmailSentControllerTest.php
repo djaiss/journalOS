@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Api\Settings;
 
@@ -79,10 +79,12 @@ final class EmailSentControllerTest extends TestCase
         Carbon::setTestNow('2025-02-03 12:00:00');
         $user = User::factory()->create();
 
-        $emails = EmailSent::factory()->count(15)->create([
-            'user_id' => $user->id,
-            'email_type' => 'daily.summary',
-        ]);
+        $emails = EmailSent::factory()
+            ->count(15)
+            ->create([
+                'user_id' => $user->id,
+                'email_type' => 'daily.summary',
+            ]);
 
         EmailSent::factory()->create();
 

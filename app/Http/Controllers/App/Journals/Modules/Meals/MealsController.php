@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Meals;
 
@@ -20,16 +20,44 @@ final class MealsController extends Controller
         $journalEntry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'meal_presence' => ['nullable', 'array', 'min:1', 'required_without_all:meal_type,social_context,has_notes,notes'],
+            'meal_presence' => [
+                'nullable',
+                'array',
+                'min:1',
+                'required_without_all:meal_type,social_context,has_notes,notes',
+            ],
             'meal_presence.*' => [
                 'string',
                 'max:255',
                 Rule::in(ModuleMeals::MEAL_PRESENCE),
             ],
-            'meal_type' => ['nullable', 'string', 'max:255', Rule::in(ModuleMeals::MEAL_TYPES), 'required_without_all:meal_presence,social_context,has_notes,notes'],
-            'social_context' => ['nullable', 'string', 'max:255', Rule::in(ModuleMeals::SOCIAL_CONTEXTS), 'required_without_all:meal_presence,meal_type,has_notes,notes'],
-            'has_notes' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:meal_presence,meal_type,social_context,notes'],
-            'notes' => ['nullable', 'string', 'max:1000', 'required_without_all:meal_presence,meal_type,social_context,has_notes'],
+            'meal_type' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModuleMeals::MEAL_TYPES),
+                'required_without_all:meal_presence,social_context,has_notes,notes',
+            ],
+            'social_context' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModuleMeals::SOCIAL_CONTEXTS),
+                'required_without_all:meal_presence,meal_type,has_notes,notes',
+            ],
+            'has_notes' => [
+                'nullable',
+                'string',
+                'max:255',
+                'in:yes,no',
+                'required_without_all:meal_presence,meal_type,social_context,notes',
+            ],
+            'notes' => [
+                'nullable',
+                'string',
+                'max:1000',
+                'required_without_all:meal_presence,meal_type,social_context,has_notes',
+            ],
         ]);
 
         new LogMeals(
@@ -38,9 +66,15 @@ final class MealsController extends Controller
             mealPresence: array_key_exists('meal_presence', $validated)
                 ? array_map(TextSanitizer::plainText(...), $validated['meal_presence'])
                 : null,
-            mealType: array_key_exists('meal_type', $validated) ? TextSanitizer::plainText($validated['meal_type']) : null,
-            socialContext: array_key_exists('social_context', $validated) ? TextSanitizer::plainText($validated['social_context']) : null,
-            hasNotes: array_key_exists('has_notes', $validated) ? TextSanitizer::plainText($validated['has_notes']) : null,
+            mealType: array_key_exists('meal_type', $validated)
+                ? TextSanitizer::plainText($validated['meal_type'])
+                : null,
+            socialContext: array_key_exists('social_context', $validated)
+                ? TextSanitizer::plainText($validated['social_context'])
+                : null,
+            hasNotes: array_key_exists('has_notes', $validated)
+                ? TextSanitizer::plainText($validated['has_notes'])
+                : null,
             notes: array_key_exists('notes', $validated) ? TextSanitizer::nullablePlainText($validated['notes']) : null,
         )->execute();
 

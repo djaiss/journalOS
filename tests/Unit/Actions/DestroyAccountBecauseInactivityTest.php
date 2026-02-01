@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -10,8 +10,8 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class DestroyAccountBecauseInactivityTest extends TestCase
 {
@@ -35,9 +35,9 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
             'created_at' => now()->subMonths(12),
         ]);
 
-        (new DestroyAccountBecauseInactivity(
+        new DestroyAccountBecauseInactivity(
             user: $user,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
@@ -57,9 +57,9 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
             'last_activity_at' => now()->subMonths(3),
         ]);
 
-        (new DestroyAccountBecauseInactivity(
+        new DestroyAccountBecauseInactivity(
             user: $user,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
@@ -77,9 +77,9 @@ final class DestroyAccountBecauseInactivityTest extends TestCase
             'last_activity_at' => null,
         ]);
 
-        (new DestroyAccountBecauseInactivity(
+        new DestroyAccountBecauseInactivity(
             user: $user,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,

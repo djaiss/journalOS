@@ -1,23 +1,23 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Jobs;
 
+use App\Actions\CreateEmailSent;
+use App\Enums\EmailType;
+use App\Mail\AccountDestroyed;
+use App\Mail\ApiKeyCreated;
+use App\Mail\ApiKeyDestroyed;
+use App\Mail\LoginFailed;
+use App\Mail\MagicLinkCreated;
+use App\Mail\UserIpAddressChanged;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Mail\Mailable;
-use App\Enums\EmailType;
-use App\Models\User;
-use App\Mail\ApiKeyCreated;
-use App\Mail\ApiKeyDestroyed;
-use App\Mail\MagicLinkCreated;
-use App\Mail\LoginFailed;
-use Resend\Laravel\Facades\Resend;
 use Illuminate\Support\Facades\Mail;
-use App\Actions\CreateEmailSent;
-use App\Mail\AccountDestroyed;
-use App\Mail\UserIpAddressChanged;
+use Resend\Laravel\Facades\Resend;
 
 final class SendEmail implements ShouldQueue
 {
@@ -66,7 +66,7 @@ final class SendEmail implements ShouldQueue
             EmailType::API_CREATED => new ApiKeyCreated($this->parameters['label']),
             EmailType::API_DESTROYED => new ApiKeyDestroyed($this->parameters['label']),
             EmailType::MAGIC_LINK_CREATED => new MagicLinkCreated($this->parameters['link']),
-            EmailType::LOGIN_FAILED => new LoginFailed(),
+            EmailType::LOGIN_FAILED => new LoginFailed,
             EmailType::ACCOUNT_DESTROYED => new AccountDestroyed(
                 reason: $this->parameters['reason'],
                 activeSince: $this->parameters['activeSince'],

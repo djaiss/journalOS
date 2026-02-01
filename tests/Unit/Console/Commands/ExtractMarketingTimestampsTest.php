@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Console\Commands;
 
@@ -21,8 +21,8 @@ final class ExtractMarketingTimestampsTest extends TestCase
 
         $content = $command->generateConfigContent($pages);
 
-        $this->assertStringContainsString("<?php", $content);
-        $this->assertStringContainsString("return [", $content);
+        $this->assertStringContainsString('<?php', $content);
+        $this->assertStringContainsString('return [', $content);
         $this->assertStringContainsString("'pages' => [", $content);
         $this->assertStringContainsString("'marketing/about' => '2024-01-15 10:30:00'", $content);
         $this->assertStringContainsString("'marketing/contact' => '2024-01-14 15:45:00'", $content);

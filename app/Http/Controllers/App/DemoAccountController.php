@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App;
 
@@ -17,7 +17,7 @@ final class DemoAccountController extends Controller
             return to_route('journal.index');
         }
 
-        $user = new CreateGuestAccount()->execute();
+        $user = ( new CreateGuestAccount )->execute();
 
         Auth::login($user, true);
 

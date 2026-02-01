@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Jobs;
 
+use App\Models\MarketingPage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use App\Models\MarketingPage;
 
 final class RecordMarketingPageVisit implements ShouldQueue
 {

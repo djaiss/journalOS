@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -34,11 +34,14 @@ final readonly class WeatherInfluenceModulePresenter
             'energy_effect_options' => $this->energyEffectOptions(),
             'plans_influence_options' => $this->plansInfluenceOptions(),
             'outside_time_options' => $this->outsideTimeOptions(),
-            'display_reset' => $module !== null
-                && ($module->mood_effect !== null
-                    || $module->energy_effect !== null
-                    || $module->plans_influence !== null
-                    || $module->outside_time !== null),
+            'display_reset' =>
+                $module !== null
+                    && (
+                        $module->mood_effect !== null
+                        || $module->energy_effect !== null
+                        || $module->plans_influence !== null
+                        || $module->outside_time !== null
+                    ),
         ];
     }
 
@@ -46,7 +49,7 @@ final readonly class WeatherInfluenceModulePresenter
     {
         $moodEffect = $this->entry->moduleWeatherInfluence?->mood_effect;
 
-        return collect(ModuleWeatherInfluence::MOOD_EFFECTS)->map(fn($value) => [
+        return collect(ModuleWeatherInfluence::MOOD_EFFECTS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'positive' => __('Positive'),
@@ -63,7 +66,7 @@ final readonly class WeatherInfluenceModulePresenter
     {
         $energyEffect = $this->entry->moduleWeatherInfluence?->energy_effect;
 
-        return collect(ModuleWeatherInfluence::ENERGY_EFFECTS)->map(fn($value) => [
+        return collect(ModuleWeatherInfluence::ENERGY_EFFECTS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'boosted' => __('Boosted'),
@@ -79,7 +82,7 @@ final readonly class WeatherInfluenceModulePresenter
     {
         $plansInfluence = $this->entry->moduleWeatherInfluence?->plans_influence;
 
-        return collect(ModuleWeatherInfluence::PLANS_INFLUENCES)->map(fn($value) => [
+        return collect(ModuleWeatherInfluence::PLANS_INFLUENCES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'none' => __('None'),
@@ -95,7 +98,7 @@ final readonly class WeatherInfluenceModulePresenter
     {
         $outsideTime = $this->entry->moduleWeatherInfluence?->outside_time;
 
-        return collect(ModuleWeatherInfluence::OUTSIDE_TIMES)->map(fn($value) => [
+        return collect(ModuleWeatherInfluence::OUTSIDE_TIMES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'a_lot' => __('A lot'),

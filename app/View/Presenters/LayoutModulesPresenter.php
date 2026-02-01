@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -21,7 +21,8 @@ final readonly class LayoutModulesPresenter
      */
     public function build(): array
     {
-        $modules = $this->layout->layoutModules()
+        $modules = $this->layout
+            ->layoutModules()
             ->orderBy('column_number')
             ->orderBy('position')
             ->get();
@@ -44,7 +45,7 @@ final readonly class LayoutModulesPresenter
         $availableModules = [];
 
         foreach (ModuleCatalog::moduleLabels() as $key => $label) {
-            if (! in_array($key, $existingKeys, true)) {
+            if (!in_array($key, $existingKeys, true)) {
                 $availableModules[$key] = $label;
             }
         }

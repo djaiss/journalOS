@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Journals\Modules\Hygiene;
 
@@ -22,16 +22,28 @@ final class HygieneController extends Controller
 
         $validated = $request->validate([
             'showered' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:brushed_teeth,skincare'],
-            'brushed_teeth' => ['nullable', 'string', 'max:255', Rule::in(ModuleHygiene::BRUSHED_TEETH_VALUES), 'required_without_all:showered,skincare'],
+            'brushed_teeth' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModuleHygiene::BRUSHED_TEETH_VALUES),
+                'required_without_all:showered,skincare',
+            ],
             'skincare' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:showered,brushed_teeth'],
         ]);
 
         $entry = new LogHygiene(
             user: Auth::user(),
             entry: $entry,
-            showered: array_key_exists('showered', $validated) ? TextSanitizer::nullablePlainText($validated['showered']) : null,
-            brushedTeeth: array_key_exists('brushed_teeth', $validated) ? TextSanitizer::nullablePlainText($validated['brushed_teeth']) : null,
-            skincare: array_key_exists('skincare', $validated) ? TextSanitizer::nullablePlainText($validated['skincare']) : null,
+            showered: array_key_exists('showered', $validated)
+                ? TextSanitizer::nullablePlainText($validated['showered'])
+                : null,
+            brushedTeeth: array_key_exists('brushed_teeth', $validated)
+                ? TextSanitizer::nullablePlainText($validated['brushed_teeth'])
+                : null,
+            skincare: array_key_exists('skincare', $validated)
+                ? TextSanitizer::nullablePlainText($validated['skincare'])
+                : null,
         )->execute();
 
         return response()->json([

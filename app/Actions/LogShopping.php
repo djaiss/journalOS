@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -49,7 +49,8 @@ final readonly class LogShopping
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->hasShopped === null
+        if (
+            $this->hasShopped === null
             && $this->shoppingTypes === null
             && $this->shoppingIntent === null
             && $this->shoppingContext === null
@@ -60,7 +61,7 @@ final readonly class LogShopping
             ]);
         }
 
-        if ($this->hasShopped !== null && ! in_array($this->hasShopped, ['yes', 'no'], true)) {
+        if ($this->hasShopped !== null && !in_array($this->hasShopped, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'has_shopped' => 'Invalid shopping status value.',
             ]);
@@ -74,7 +75,7 @@ final readonly class LogShopping
             }
 
             foreach ($this->shoppingTypes as $type) {
-                if (! is_string($type) || ! in_array($type, ModuleShopping::SHOPPING_TYPES, true)) {
+                if (!is_string($type) || !in_array($type, ModuleShopping::SHOPPING_TYPES, true)) {
                     throw ValidationException::withMessages([
                         'shopping_types' => 'Invalid shopping type value.',
                     ]);
@@ -82,19 +83,25 @@ final readonly class LogShopping
             }
         }
 
-        if ($this->shoppingIntent !== null && ! in_array($this->shoppingIntent, ModuleShopping::SHOPPING_INTENTS, true)) {
+        if (
+            $this->shoppingIntent !== null
+            && !in_array($this->shoppingIntent, ModuleShopping::SHOPPING_INTENTS, true)
+        ) {
             throw ValidationException::withMessages([
                 'shopping_intent' => 'Invalid shopping intent value.',
             ]);
         }
 
-        if ($this->shoppingContext !== null && ! in_array($this->shoppingContext, ModuleShopping::SHOPPING_CONTEXTS, true)) {
+        if (
+            $this->shoppingContext !== null
+            && !in_array($this->shoppingContext, ModuleShopping::SHOPPING_CONTEXTS, true)
+        ) {
             throw ValidationException::withMessages([
                 'shopping_context' => 'Invalid shopping context value.',
             ]);
         }
 
-        if ($this->shoppingFor !== null && ! in_array($this->shoppingFor, ModuleShopping::SHOPPING_FOR_OPTIONS, true)) {
+        if ($this->shoppingFor !== null && !in_array($this->shoppingFor, ModuleShopping::SHOPPING_FOR_OPTIONS, true)) {
             throw ValidationException::withMessages([
                 'shopping_for' => 'Invalid shopping for value.',
             ]);
@@ -103,9 +110,11 @@ final readonly class LogShopping
 
     private function log(): void
     {
-        $moduleShopping = $this->entry->moduleShopping()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleShopping = $this->entry
+            ->moduleShopping()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->hasShopped !== null) {
             $moduleShopping->has_shopped_today = $this->hasShopped;

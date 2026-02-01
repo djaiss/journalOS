@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
-use App\Models\User;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\User;
 use MagicLink\Actions\LoginAction;
 use MagicLink\MagicLink;
 

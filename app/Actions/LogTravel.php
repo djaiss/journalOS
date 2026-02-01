@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -52,7 +52,7 @@ final readonly class LogTravel
             ]);
         }
 
-        if ($this->hasTraveled !== null && ! in_array($this->hasTraveled, ['yes', 'no'], true)) {
+        if ($this->hasTraveled !== null && !in_array($this->hasTraveled, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'has_traveled' => 'Invalid travel status value.',
             ]);
@@ -66,7 +66,7 @@ final readonly class LogTravel
             }
 
             foreach ($this->travelModes as $mode) {
-                if (! is_string($mode) || ! in_array($mode, ModuleTravel::TRAVEL_MODES, true)) {
+                if (!is_string($mode) || !in_array($mode, ModuleTravel::TRAVEL_MODES, true)) {
                     throw ValidationException::withMessages([
                         'travel_modes' => 'Invalid travel mode value.',
                     ]);
@@ -77,9 +77,11 @@ final readonly class LogTravel
 
     private function log(): void
     {
-        $moduleTravel = $this->entry->moduleTravel()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleTravel = $this->entry
+            ->moduleTravel()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->hasTraveled !== null) {
             $moduleTravel->has_traveled_today = $this->hasTraveled;

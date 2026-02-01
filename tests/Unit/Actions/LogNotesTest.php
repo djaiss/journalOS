@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -39,11 +39,11 @@ final class LogNotesTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogNotes(
+        $result = new LogNotes(
             user: $user,
             entry: $entry,
             notes: '<p>Today was great!</p>',
-        ))->execute();
+        )->execute();
 
         $this->assertNotNull($result->notes);
         $this->assertStringContainsString('Today was great!', $result->notes->toPlainText());
@@ -91,11 +91,11 @@ final class LogNotesTest extends TestCase
 
         $maliciousContent = '<script>alert("XSS")</script><p>Safe content</p>';
 
-        $result = (new LogNotes(
+        $result = new LogNotes(
             user: $user,
             entry: $entry,
             notes: $maliciousContent,
-        ))->execute();
+        )->execute();
 
         $this->assertNotNull($result->notes);
         $this->assertStringNotContainsString('<script>', $result->notes->toHtml());
@@ -114,11 +114,11 @@ final class LogNotesTest extends TestCase
             'notes' => '<p>Old notes</p>',
         ]);
 
-        $result = (new LogNotes(
+        $result = new LogNotes(
             user: $user,
             entry: $entry,
             notes: '<p>New notes</p>',
-        ))->execute();
+        )->execute();
 
         $this->assertStringContainsString('New notes', $result->notes->toPlainText());
         $this->assertStringNotContainsString('Old notes', $result->notes->toPlainText());
@@ -138,10 +138,10 @@ final class LogNotesTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        (new LogNotes(
+        new LogNotes(
             user: $user,
             entry: $entry,
             notes: '<p>Test notes</p>',
-        ))->execute();
+        )->execute();
     }
 }

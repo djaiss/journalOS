@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -33,15 +33,16 @@ final readonly class PhysicalActivityModulePresenter
             'has_done_physical_activity' => $modulePhysicalActivity?->has_done_physical_activity,
             'activity_types' => $this->activityTypes($modulePhysicalActivity?->activity_type),
             'activity_intensities' => $this->activityIntensities($modulePhysicalActivity?->activity_intensity),
-            'display_reset' => $modulePhysicalActivity?->has_done_physical_activity !== null
-                || $modulePhysicalActivity?->activity_type !== null
-                || $modulePhysicalActivity?->activity_intensity !== null,
+            'display_reset' =>
+                $modulePhysicalActivity?->has_done_physical_activity !== null
+                    || $modulePhysicalActivity?->activity_type !== null
+                    || $modulePhysicalActivity?->activity_intensity !== null,
         ];
     }
 
     private function activityTypes(?string $selectedType): array
     {
-        return collect(ModulePhysicalActivity::ACTIVITY_TYPES)->map(fn($value) => [
+        return collect(ModulePhysicalActivity::ACTIVITY_TYPES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'running' => __('Running'),
@@ -57,7 +58,7 @@ final readonly class PhysicalActivityModulePresenter
 
     private function activityIntensities(?string $selectedIntensity): array
     {
-        return collect(ModulePhysicalActivity::ACTIVITY_INTENSITIES)->map(fn($value) => [
+        return collect(ModulePhysicalActivity::ACTIVITY_INTENSITIES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'light' => __('Light'),

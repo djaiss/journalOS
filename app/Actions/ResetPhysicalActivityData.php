@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -22,9 +22,11 @@ final readonly class ResetPhysicalActivityData
     {
         $this->validate();
 
-        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $modulePhysicalActivity = $this->entry
+            ->modulePhysicalActivity()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $modulePhysicalActivity->has_done_physical_activity = null;
         $modulePhysicalActivity->activity_type = null;

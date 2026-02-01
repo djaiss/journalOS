@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -45,10 +45,10 @@ final class SetActiveLayoutTest extends TestCase
             'is_active' => false,
         ]);
 
-        $updatedLayout = (new SetActiveLayout(
+        $updatedLayout = new SetActiveLayout(
             user: $user,
             layout: $targetLayout,
-        ))->execute();
+        )->execute();
 
         $this->assertTrue($updatedLayout->is_active);
         $this->assertFalse($inactiveLayout->fresh()->is_active);
@@ -57,11 +57,13 @@ final class SetActiveLayoutTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user, $journal, $targetLayout): bool {
-                return $job->action === 'layout_set_active'
+                return (
+                    $job->action === 'layout_set_active'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
                     && str_contains($job->description, $targetLayout->name)
-                    && str_contains($job->description, $journal->name);
+                    && str_contains($job->description, $journal->name)
+                );
             },
         );
 
@@ -88,9 +90,9 @@ final class SetActiveLayoutTest extends TestCase
             'journal_id' => $otherJournal->id,
         ]);
 
-        (new SetActiveLayout(
+        new SetActiveLayout(
             user: $user,
             layout: $layout,
-        ))->execute();
+        )->execute();
     }
 }

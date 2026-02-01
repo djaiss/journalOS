@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -54,9 +54,11 @@ final readonly class LogHadKidsToday
 
     private function log(): void
     {
-        $moduleKids = $this->entry->moduleKids()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleKids = $this->entry
+            ->moduleKids()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleKids->had_kids_today = $this->hadKidsToday;
         $moduleKids->save();

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,11 +40,11 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogMood(
+        $result = new LogMood(
             user: $user,
             entry: $entry,
             mood: 'terrible',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('terrible', $result->moduleMood->mood);
 
@@ -84,11 +84,11 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogMood(
+        $result = new LogMood(
             user: $user,
             entry: $entry,
             mood: 'bad',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('bad', $result->moduleMood->mood);
 
@@ -128,11 +128,11 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogMood(
+        $result = new LogMood(
             user: $user,
             entry: $entry,
             mood: 'okay',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('okay', $result->moduleMood->mood);
 
@@ -172,11 +172,11 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogMood(
+        $result = new LogMood(
             user: $user,
             entry: $entry,
             mood: 'good',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('good', $result->moduleMood->mood);
 
@@ -216,11 +216,11 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogMood(
+        $result = new LogMood(
             user: $user,
             entry: $entry,
             mood: 'great',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('great', $result->moduleMood->mood);
 
@@ -262,11 +262,11 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogMood(
+        new LogMood(
             user: $user,
             entry: $entry,
             mood: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -283,10 +283,10 @@ final class LogMoodTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogMood(
+        new LogMood(
             user: $user,
             entry: $entry,
             mood: 'good',
-        ))->execute();
+        )->execute();
     }
 }

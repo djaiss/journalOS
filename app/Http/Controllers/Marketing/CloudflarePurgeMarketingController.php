@@ -1,21 +1,21 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Marketing;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Controllers\Controller;
 
 final class CloudflarePurgeMarketingController extends Controller
 {
     public function __invoke(Request $request): Response
     {
-        $ts  = (string) $request->query('ts', '');
+        $ts = (string) $request->query('ts', '');
         $sig = (string) $request->query('sig', '');
 
         if (!$this->isValidSignature($ts, $sig)) {
@@ -26,11 +26,13 @@ final class CloudflarePurgeMarketingController extends Controller
         $appUrl = mb_rtrim((string) config('app.url'), '/');
 
         $urls = collect(Route::getRoutes())
-            ->filter(fn($route) => in_array('GET', $route->methods(), true) || in_array('HEAD', $route->methods(), true))
-            ->filter(fn($route) => in_array($middleware, $route->gatherMiddleware(), true))
-            ->map(fn($route) => $route->uri())
-            ->reject(fn($uri): bool => Str::contains($uri, '{')) // safety
-            ->map(fn($uri) => $uri === '/' ? $appUrl . '/' : $appUrl . '/' . mb_ltrim((string) $uri, '/'))
+            ->filter(
+                fn ($route) => in_array('GET', $route->methods(), true) || in_array('HEAD', $route->methods(), true),
+            )
+            ->filter(fn ($route) => in_array($middleware, $route->gatherMiddleware(), true))
+            ->map(fn ($route) => $route->uri())
+            ->reject(fn ($uri): bool => Str::contains($uri, '{')) // safety
+            ->map(fn ($uri) => $uri === '/' ? $appUrl . '/' : $appUrl . '/' . mb_ltrim((string) $uri, '/'))
             ->unique()
             ->values();
 
@@ -39,7 +41,7 @@ final class CloudflarePurgeMarketingController extends Controller
         }
 
         $zoneId = config('services.cloudflare.zone_id');
-        $token  = config('services.cloudflare.api_token');
+        $token = config('services.cloudflare.api_token');
 
         $chunkSize = (int) config('services.cloudflare.purge_chunk', 30);
 

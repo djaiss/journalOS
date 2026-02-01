@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -50,10 +50,10 @@ final class ResetReadingDataTest extends TestCase
         ]);
         $entry->books()->attach($book, ['status' => BookStatus::CONTINUED->value]);
 
-        $result = (new ResetReadingData(
+        $result = new ResetReadingData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleReading);
         $this->assertEmpty($result->books);
@@ -107,9 +107,9 @@ final class ResetReadingDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetReadingData(
+        new ResetReadingData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

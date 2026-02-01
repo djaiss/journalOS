@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -59,11 +59,11 @@ final class RemoveModuleFromLayoutTest extends TestCase
             'position' => 3,
         ]);
 
-        (new RemoveModuleFromLayout(
+        new RemoveModuleFromLayout(
             user: $user,
             layout: $layout,
             moduleKey: 'work',
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('layout_modules', [
             'id' => $moduleTwo->id,
@@ -75,10 +75,12 @@ final class RemoveModuleFromLayoutTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'layout_module_remove'
+                return (
+                    $job->action === 'layout_module_remove'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
-                    && str_contains($job->description, $journal->name);
+                    && str_contains($job->description, $journal->name)
+                );
             },
         );
 
@@ -105,11 +107,11 @@ final class RemoveModuleFromLayoutTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        (new RemoveModuleFromLayout(
+        new RemoveModuleFromLayout(
             user: $user,
             layout: $layout,
             moduleKey: 'sleep',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -122,10 +124,10 @@ final class RemoveModuleFromLayoutTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        (new RemoveModuleFromLayout(
+        new RemoveModuleFromLayout(
             user: $user,
             layout: $layout,
             moduleKey: 'sleep',
-        ))->execute();
+        )->execute();
     }
 }

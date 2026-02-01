@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Marketing\Docs\Api\Modules;
 
@@ -11,7 +11,6 @@ final class WorkController extends Controller
 {
     public function index(): View
     {
-
         return view('marketing.docs.api.modules.work');
     }
 }

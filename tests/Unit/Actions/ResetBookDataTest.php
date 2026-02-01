@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -75,10 +75,10 @@ final class ResetBookDataTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
 
-        $result = (new ResetBookData(
+        $result = new ResetBookData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('book_journal_entry', [
             'journal_entry_id' => $entry->id,
@@ -126,9 +126,9 @@ final class ResetBookDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetBookData(
+        new ResetBookData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

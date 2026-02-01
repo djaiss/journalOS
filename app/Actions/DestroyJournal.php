@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
-use App\Models\User;
 use App\Models\Log;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final readonly class DestroyJournal

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -47,10 +47,10 @@ final class ResetWorkDataTest extends TestCase
             'work_procrastinated' => 'no',
         ]);
 
-        $result = (new ResetWorkData(
+        $result = new ResetWorkData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleWork);
 
@@ -100,9 +100,9 @@ final class ResetWorkDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetWorkData(
+        new ResetWorkData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

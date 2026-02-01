@@ -1,20 +1,21 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Settings\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LogResource;
 use App\Models\Log;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 final class LogController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
-        $logs = Log::query()->where('user_id', Auth::user()->id)
+        $logs = Log::query()
+            ->where('user_id', Auth::user()->id)
             ->latest()
             ->latest('id')
             ->paginate(10);

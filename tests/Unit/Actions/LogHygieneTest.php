@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,13 +40,13 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHygiene(
+        $entry = new LogHygiene(
             user: $user,
             entry: $entry,
             showered: 'yes',
             brushedTeeth: null,
             skincare: null,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('yes', $entry->moduleHygiene->showered);
 
@@ -86,13 +86,13 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHygiene(
+        $entry = new LogHygiene(
             user: $user,
             entry: $entry,
             showered: null,
             brushedTeeth: 'am',
             skincare: null,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('am', $entry->moduleHygiene->brushed_teeth);
     }
@@ -108,13 +108,13 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHygiene(
+        $entry = new LogHygiene(
             user: $user,
             entry: $entry,
             showered: null,
             brushedTeeth: null,
             skincare: 'no',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('no', $entry->moduleHygiene->skincare);
     }
@@ -132,13 +132,13 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHygiene(
+        new LogHygiene(
             user: $user,
             entry: $entry,
             showered: 'maybe',
             brushedTeeth: null,
             skincare: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -154,13 +154,13 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHygiene(
+        new LogHygiene(
             user: $user,
             entry: $entry,
             showered: null,
             brushedTeeth: null,
             skincare: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -177,12 +177,12 @@ final class LogHygieneTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHygiene(
+        new LogHygiene(
             user: $user,
             entry: $entry,
             showered: 'yes',
             brushedTeeth: null,
             skincare: null,
-        ))->execute();
+        )->execute();
     }
 }

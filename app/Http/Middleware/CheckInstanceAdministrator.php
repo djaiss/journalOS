@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Middleware;
 
@@ -18,7 +18,7 @@ final class CheckInstanceAdministrator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::user()->is_instance_admin) {
+        if (!Auth::user()->is_instance_admin) {
             abort(403);
         }
 

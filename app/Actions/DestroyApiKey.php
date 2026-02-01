@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -24,7 +24,10 @@ final class DestroyApiKey
      */
     public function execute(): void
     {
-        $token = $this->user->tokens()->where('id', $this->tokenId)->first();
+        $token = $this->user
+            ->tokens()
+            ->where('id', $this->tokenId)
+            ->first();
         $this->label = $token->name;
         $token->delete();
 

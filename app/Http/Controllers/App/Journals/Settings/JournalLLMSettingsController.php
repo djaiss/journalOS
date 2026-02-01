@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Settings;
 
@@ -16,7 +16,8 @@ final class JournalLLMSettingsController extends Controller
     public function show(Request $request): View
     {
         $journal = $request->attributes->get('journal');
-        $accessLogs = $journal->llmAccessLogs()
+        $accessLogs = $journal
+            ->llmAccessLogs()
             ->latest()
             ->take(11)
             ->get();

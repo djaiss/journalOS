@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -12,8 +12,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateGuestAccountTest extends TestCase
 {
@@ -31,7 +31,7 @@ final class CreateGuestAccountTest extends TestCase
     {
         Carbon::setTestNow(Carbon::create(2025, 12, 16));
 
-        $user = (new CreateGuestAccount())->execute();
+        $user = ( new CreateGuestAccount )->execute();
 
         $this->assertInstanceOf(
             User::class,
@@ -70,7 +70,7 @@ final class CreateGuestAccountTest extends TestCase
     #[Test]
     public function it_creates_first_journal_for_guest(): void
     {
-        $user = (new CreateGuestAccount())->execute();
+        $user = ( new CreateGuestAccount )->execute();
 
         $this->assertDatabaseHas('journals', [
             'user_id' => $user->id,
@@ -91,8 +91,8 @@ final class CreateGuestAccountTest extends TestCase
     #[Test]
     public function it_creates_unique_email_for_each_guest(): void
     {
-        $user1 = (new CreateGuestAccount())->execute();
-        $user2 = (new CreateGuestAccount())->execute();
+        $user1 = ( new CreateGuestAccount )->execute();
+        $user2 = ( new CreateGuestAccount )->execute();
 
         $this->assertNotEquals($user1->email, $user2->email);
         $this->assertStringStartsWith('guest+', $user1->email);
@@ -104,7 +104,7 @@ final class CreateGuestAccountTest extends TestCase
     {
         Carbon::setTestNow(Carbon::create(2025, 12, 16, 14, 30, 0));
 
-        $user = (new CreateGuestAccount())->execute();
+        $user = ( new CreateGuestAccount )->execute();
 
         $this->assertEquals(
             Carbon::create(2025, 12, 23, 14, 30, 0),

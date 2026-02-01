@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -12,8 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateAccountTest extends TestCase
 {
@@ -31,12 +31,12 @@ final class CreateAccountTest extends TestCase
     {
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
 
-        $user = (new CreateAccount(
+        $user = new CreateAccount(
             email: 'michael.scott@dundermifflin.com',
             password: 'password',
             firstName: 'Michael',
             lastName: 'Scott',
-        ))->execute();
+        )->execute();
 
         $this->assertInstanceOf(User::class, $user);
 
@@ -77,11 +77,11 @@ final class CreateAccountTest extends TestCase
 
         $this->expectException(UniqueConstraintViolationException::class);
 
-        (new CreateAccount(
+        new CreateAccount(
             email: 'michael.scott@dundermifflin.com',
             password: 'password',
             firstName: 'Michael',
             lastName: 'Scott',
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,11 +40,11 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHealth(
+        $entry = new LogHealth(
             user: $user,
             entry: $entry,
             health: 'good',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('good', $entry->moduleHealth->health);
 
@@ -86,11 +86,11 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHealth(
+        new LogHealth(
             user: $user,
             entry: $entry,
             health: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -107,10 +107,10 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHealth(
+        new LogHealth(
             user: $user,
             entry: $entry,
             health: 'good',
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -155,7 +155,10 @@ final class LogTravelTest extends TestCase
             travelModes: ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'],
         )->execute();
 
-        $this->assertEquals(['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'], $entry->moduleTravel->travel_mode);
+        $this->assertEquals(
+            ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'],
+            $entry->moduleTravel->travel_mode,
+        );
     }
 
     #[Test]

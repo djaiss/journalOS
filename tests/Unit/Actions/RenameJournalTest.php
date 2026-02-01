@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -36,11 +36,11 @@ final class RenameJournalTest extends TestCase
             'name' => 'Dunder Mifflin',
         ]);
 
-        $updatedJournal = (new RenameJournal(
+        $updatedJournal = new RenameJournal(
             user: $user,
             journal: $journal,
             name: 'Threat Level Midnight',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('Threat Level Midnight', $updatedJournal->name);
         $this->assertEquals($journal->id . '-threat-level-midnight', $updatedJournal->slug);
@@ -49,9 +49,11 @@ final class RenameJournalTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'journal_rename'
+                return (
+                    $job->action === 'journal_rename'
                     && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id;
+                    && $job->journal?->id === $journal->id
+                );
             },
         );
 
@@ -74,11 +76,11 @@ final class RenameJournalTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new RenameJournal(
+        new RenameJournal(
             user: $user,
             journal: $journal,
             name: 'Dunder@ / Mifflin!',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -89,10 +91,10 @@ final class RenameJournalTest extends TestCase
         $user = User::factory()->create();
         $otherJournal = Journal::factory()->create();
 
-        (new RenameJournal(
+        new RenameJournal(
             user: $user,
             journal: $otherJournal,
             name: 'Valid Journal Name',
-        ))->execute();
+        )->execute();
     }
 }

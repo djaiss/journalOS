@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -58,11 +58,11 @@ final class RemoveBookTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
 
-        (new RemoveBook(
+        new RemoveBook(
             user: $user,
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('book_journal_entry', [
             'book_id' => $book->id,
@@ -112,11 +112,11 @@ final class RemoveBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Journal entry not found');
 
-        (new RemoveBook(
+        new RemoveBook(
             user: $user,
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -137,10 +137,10 @@ final class RemoveBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Book not found');
 
-        (new RemoveBook(
+        new RemoveBook(
             user: $user,
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
     }
 }

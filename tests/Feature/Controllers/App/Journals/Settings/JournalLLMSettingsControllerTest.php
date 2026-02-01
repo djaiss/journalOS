@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Settings;
 
@@ -32,7 +32,7 @@ final class JournalLLMSettingsControllerTest extends TestCase
         $response->assertOk();
         $response->assertSeeText('LLM access');
         $response->assertSeeText('Dunder Mifflin');
-        $response->assertViewHas('journal', fn($viewJournal): bool => $viewJournal->id === $journal->id);
+        $response->assertViewHas('journal', fn ($viewJournal): bool => $viewJournal->id === $journal->id);
     }
 
     #[Test]
@@ -86,9 +86,11 @@ final class JournalLLMSettingsControllerTest extends TestCase
             'llm_access_key' => 'llm-test-key',
         ]);
 
-        JournalLlmAccessLog::factory()->count(11)->create([
-            'journal_id' => $journal->id,
-        ]);
+        JournalLlmAccessLog::factory()
+            ->count(11)
+            ->create([
+                'journal_id' => $journal->id,
+            ]);
 
         $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/llm');
 

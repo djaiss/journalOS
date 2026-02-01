@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Settings;
 
@@ -13,9 +13,11 @@ final class LogController extends Controller
 {
     public function index(): View
     {
-        $logs = Log::query()->where('user_id', Auth::user()->id)
+        $logs = Log::query()
+            ->where('user_id', Auth::user()->id)
             ->with('journal')
-            ->with('user')->latest()
+            ->with('user')
+            ->latest()
             ->cursorPaginate(10);
 
         return view('app.settings.logs.index', [

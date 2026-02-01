@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Jobs;
 
@@ -13,9 +13,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use Resend\Email;
 use Tests\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class SendEmailTest extends TestCase
 {
@@ -41,8 +41,7 @@ final class SendEmailTest extends TestCase
         $job->handle();
 
         Mail::assertQueued(ApiKeyDestroyed::class, function (ApiKeyDestroyed $mail) use ($user): bool {
-            return $mail->hasTo($user->email)
-                && $mail->label === '123';
+            return $mail->hasTo($user->email) && $mail->label === '123';
         });
 
         $emailSent = EmailSent::latest()->first();
@@ -60,14 +59,17 @@ final class SendEmailTest extends TestCase
         $resendMock = Mockery::mock();
         $emailsMock = Mockery::mock(\Resend\Service\Email::class);
 
-        $emailsMock->shouldReceive('send')
+        $emailsMock
+            ->shouldReceive('send')
             ->once()
             ->with(Mockery::on(function ($args) {
-                return $args['from'] === 'noreply@example.com'
-                       && $args['to'] === ['michael.scott@dundermifflin.com']
-                       && $args['subject'] === 'API key removed'
-                       && is_string($args['html'])
-                       && mb_strlen($args['html']) > 0;
+                return (
+                    $args['from'] === 'noreply@example.com'
+                    && $args['to'] === ['michael.scott@dundermifflin.com']
+                    && $args['subject'] === 'API key removed'
+                    && is_string($args['html'])
+                    && mb_strlen($args['html']) > 0
+                );
             }))
             ->andReturn(Email::from(['id' => 'resend-uuid-12345']));
 

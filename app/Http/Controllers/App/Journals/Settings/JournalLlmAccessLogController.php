@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Settings;
 
@@ -14,7 +14,8 @@ final class JournalLlmAccessLogController extends Controller
     {
         $journal = $request->attributes->get('journal');
 
-        $accessLogs = $journal->llmAccessLogs()
+        $accessLogs = $journal
+            ->llmAccessLogs()
             ->latest()
             ->cursorPaginate(10);
 

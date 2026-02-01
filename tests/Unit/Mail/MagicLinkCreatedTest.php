@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Mail;
 
 use App\Mail\MagicLinkCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class MagicLinkCreatedTest extends TestCase
 {
@@ -36,7 +36,10 @@ final class MagicLinkCreatedTest extends TestCase
         $this->assertStringContainsString('Your login link for OrganizationOS', $rendered);
         $this->assertStringContainsString($link, $rendered);
         $this->assertStringContainsString('This link will only be valid for the next 5 minutes.', $rendered);
-        $this->assertStringContainsString('If you did not request this link, make sure to visit your account and change your password, just in case.', $rendered);
+        $this->assertStringContainsString(
+            'If you did not request this link, make sure to visit your account and change your password, just in case.',
+            $rendered,
+        );
         $this->assertStringContainsString('Thanks,', $rendered);
         $this->assertStringContainsString('OrganizationOS', $rendered);
     }

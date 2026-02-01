@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -47,7 +47,7 @@ final readonly class ShoppingModulePresenter
     {
         $selectedTypes = $this->entry->moduleShopping?->shopping_type;
 
-        return collect(ModuleShopping::SHOPPING_TYPES)->map(fn(string $type) => [
+        return collect(ModuleShopping::SHOPPING_TYPES)->map(fn (string $type) => [
             'value' => $type,
             'label' => match ($type) {
                 'groceries' => __('Groceries'),
@@ -68,7 +68,7 @@ final readonly class ShoppingModulePresenter
     {
         $intent = $this->entry->moduleShopping?->shopping_intent;
 
-        return collect(ModuleShopping::SHOPPING_INTENTS)->map(fn(string $value) => [
+        return collect(ModuleShopping::SHOPPING_INTENTS)->map(fn (string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'planned' => __('Planned'),
@@ -85,7 +85,7 @@ final readonly class ShoppingModulePresenter
     {
         $context = $this->entry->moduleShopping?->shopping_context;
 
-        return collect(ModuleShopping::SHOPPING_CONTEXTS)->map(fn(string $value) => [
+        return collect(ModuleShopping::SHOPPING_CONTEXTS)->map(fn (string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'alone' => __('Alone'),
@@ -101,7 +101,7 @@ final readonly class ShoppingModulePresenter
     {
         $shoppingFor = $this->entry->moduleShopping?->shopping_for;
 
-        return collect(ModuleShopping::SHOPPING_FOR_OPTIONS)->map(fn(string $value) => [
+        return collect(ModuleShopping::SHOPPING_FOR_OPTIONS)->map(fn (string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'for_self' => __('For self'),
@@ -121,10 +121,12 @@ final readonly class ShoppingModulePresenter
             return false;
         }
 
-        return ! is_null($moduleShopping->has_shopped_today)
-            || ! is_null($moduleShopping->shopping_type)
-            || ! is_null($moduleShopping->shopping_intent)
-            || ! is_null($moduleShopping->shopping_context)
-            || ! is_null($moduleShopping->shopping_for);
+        return (
+            !is_null($moduleShopping->has_shopped_today)
+            || !is_null($moduleShopping->shopping_type)
+            || !is_null($moduleShopping->shopping_intent)
+            || !is_null($moduleShopping->shopping_context)
+            || !is_null($moduleShopping->shopping_for)
+        );
     }
 }

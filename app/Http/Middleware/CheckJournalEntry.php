@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Middleware;
 
@@ -25,7 +25,7 @@ final class CheckJournalEntry
         $year = (int) $request->route()->parameter('year');
 
         // make sure the date is a real date
-        if (! checkdate($month, $day, $year)) {
+        if (!checkdate($month, $day, $year)) {
             abort(404);
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Middleware;
 
@@ -24,7 +24,7 @@ final class CheckJournalEntryAPI
         $month = (int) $request->route()->parameter('month');
         $year = (int) $request->route()->parameter('year');
 
-        if (! checkdate($month, $day, $year)) {
+        if (!checkdate($month, $day, $year)) {
             abort(404);
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -22,7 +22,7 @@ final readonly class DestroyAccountAsInstanceAdministrator
 
     private function validate(): void
     {
-        if (! $this->user->is_instance_admin) {
+        if (!$this->user->is_instance_admin) {
             throw new Exception('Account is not an instance administrator');
         }
     }

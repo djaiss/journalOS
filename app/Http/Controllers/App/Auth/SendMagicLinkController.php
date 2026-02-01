@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Actions\CreateMagicLink;
 use App\Enums\EmailType;
 use App\Helpers\TextSanitizer;
+use App\Http\Controllers\Controller;
 use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

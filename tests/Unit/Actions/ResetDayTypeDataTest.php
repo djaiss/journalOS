@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetDayTypeDataTest extends TestCase
             'day_type' => 'workday',
         ]);
 
-        $result = (new ResetDayTypeData(
+        $result = new ResetDayTypeData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleDayType);
 
@@ -97,9 +97,9 @@ final class ResetDayTypeDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetDayTypeData(
+        new ResetDayTypeData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

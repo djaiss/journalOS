@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Settings;
 
@@ -28,7 +28,7 @@ final class JournalModulesSettingsControllerTest extends TestCase
         $response->assertOk();
         $response->assertSeeText('Modules');
         $response->assertSeeText('Dunder Mifflin');
-        $response->assertViewHas('journal', fn($viewJournal): bool => $viewJournal->id === $journal->id);
+        $response->assertViewHas('journal', fn ($viewJournal): bool => $viewJournal->id === $journal->id);
     }
 
     #[Test]

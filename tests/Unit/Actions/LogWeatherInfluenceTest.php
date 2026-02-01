@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,14 +40,14 @@ final class LogWeatherInfluenceTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogWeatherInfluence(
+        $entry = new LogWeatherInfluence(
             user: $user,
             entry: $entry,
             moodEffect: 'positive',
             energyEffect: 'boosted',
             plansInfluence: 'slight',
             outsideTime: 'some',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('positive', $entry->moduleWeatherInfluence->mood_effect);
         $this->assertEquals('boosted', $entry->moduleWeatherInfluence->energy_effect);
@@ -92,14 +92,14 @@ final class LogWeatherInfluenceTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWeatherInfluence(
+        new LogWeatherInfluence(
             user: $user,
             entry: $entry,
             moodEffect: 'extreme',
             energyEffect: null,
             plansInfluence: null,
             outsideTime: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -116,13 +116,13 @@ final class LogWeatherInfluenceTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWeatherInfluence(
+        new LogWeatherInfluence(
             user: $user,
             entry: $entry,
             moodEffect: 'positive',
             energyEffect: 'boosted',
             plansInfluence: 'slight',
             outsideTime: 'some',
-        ))->execute();
+        )->execute();
     }
 }

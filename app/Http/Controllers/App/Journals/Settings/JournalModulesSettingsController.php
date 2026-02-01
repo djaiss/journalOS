@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Settings;
 
@@ -13,7 +13,8 @@ final class JournalModulesSettingsController extends Controller
     public function show(Request $request): View
     {
         $journal = $request->attributes->get('journal');
-        $layouts = $journal->layouts()
+        $layouts = $journal
+            ->layouts()
             ->orderByDesc('created_at')
             ->get();
 

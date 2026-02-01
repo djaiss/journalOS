@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -43,10 +43,10 @@ final class ResetMealsDataTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
 
-        $result = (new ResetMealsData(
+        $result = new ResetMealsData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleMeals);
 
@@ -83,9 +83,9 @@ final class ResetMealsDataTest extends TestCase
         $user = User::factory()->create();
         $entry = JournalEntry::factory()->create();
 
-        (new ResetMealsData(
+        new ResetMealsData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

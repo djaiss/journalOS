@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Settings;
 
@@ -8,8 +8,8 @@ use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class LogControllerTest extends TestCase
 {
@@ -52,10 +52,12 @@ final class LogControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        Log::factory()->count(15)->create([
-            'journal_id' => null,
-            'user_id' => $user->id,
-        ]);
+        Log::factory()
+            ->count(15)
+            ->create([
+                'journal_id' => null,
+                'user_id' => $user->id,
+            ]);
 
         $response = $this->actingAs($user)
             ->get('/settings/profile/logs');

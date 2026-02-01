@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetHealthDataTest extends TestCase
             'health' => 'good',
         ]);
 
-        $result = (new ResetHealthData(
+        $result = new ResetHealthData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleHealth);
 
@@ -97,9 +97,9 @@ final class ResetHealthDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetHealthData(
+        new ResetHealthData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

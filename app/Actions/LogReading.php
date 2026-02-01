@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -50,7 +50,8 @@ final readonly class LogReading
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->didReadToday === null
+        if (
+            $this->didReadToday === null
             && $this->readingAmount === null
             && $this->mentalState === null
             && $this->readingFeel === null
@@ -62,37 +63,40 @@ final readonly class LogReading
             ]);
         }
 
-        if ($this->didReadToday !== null && ! in_array($this->didReadToday, ['yes', 'no'], true)) {
+        if ($this->didReadToday !== null && !in_array($this->didReadToday, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'did_read_today' => 'Invalid reading value.',
             ]);
         }
 
-        if ($this->readingAmount !== null && ! in_array($this->readingAmount, ModuleReading::READING_AMOUNTS, true)) {
+        if ($this->readingAmount !== null && !in_array($this->readingAmount, ModuleReading::READING_AMOUNTS, true)) {
             throw ValidationException::withMessages([
                 'reading_amount' => 'Invalid reading amount value.',
             ]);
         }
 
-        if ($this->mentalState !== null && ! in_array($this->mentalState, ModuleReading::MENTAL_STATES, true)) {
+        if ($this->mentalState !== null && !in_array($this->mentalState, ModuleReading::MENTAL_STATES, true)) {
             throw ValidationException::withMessages([
                 'mental_state' => 'Invalid mental state value.',
             ]);
         }
 
-        if ($this->readingFeel !== null && ! in_array($this->readingFeel, ModuleReading::READING_FEELS, true)) {
+        if ($this->readingFeel !== null && !in_array($this->readingFeel, ModuleReading::READING_FEELS, true)) {
             throw ValidationException::withMessages([
                 'reading_feel' => 'Invalid reading feel value.',
             ]);
         }
 
-        if ($this->wantContinue !== null && ! in_array($this->wantContinue, ModuleReading::WANT_CONTINUE_OPTIONS, true)) {
+        if (
+            $this->wantContinue !== null
+            && !in_array($this->wantContinue, ModuleReading::WANT_CONTINUE_OPTIONS, true)
+        ) {
             throw ValidationException::withMessages([
                 'want_continue' => 'Invalid reading continuation value.',
             ]);
         }
 
-        if ($this->readingLimit !== null && ! in_array($this->readingLimit, ModuleReading::READING_LIMITS, true)) {
+        if ($this->readingLimit !== null && !in_array($this->readingLimit, ModuleReading::READING_LIMITS, true)) {
             throw ValidationException::withMessages([
                 'reading_limit' => 'Invalid reading limit value.',
             ]);
@@ -101,9 +105,11 @@ final readonly class LogReading
 
     private function log(): void
     {
-        $moduleReading = $this->entry->moduleReading()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleReading = $this->entry
+            ->moduleReading()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->didReadToday !== null) {
             $moduleReading->did_read_today = $this->didReadToday;

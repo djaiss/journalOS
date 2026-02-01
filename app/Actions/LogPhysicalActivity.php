@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -47,19 +47,25 @@ final readonly class LogPhysicalActivity
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->hasDonePhysicalActivity !== null && ! in_array($this->hasDonePhysicalActivity, ['yes', 'no'], true)) {
+        if ($this->hasDonePhysicalActivity !== null && !in_array($this->hasDonePhysicalActivity, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'has_done_physical_activity' => 'Invalid physical activity status value.',
             ]);
         }
 
-        if ($this->activityType !== null && ! in_array($this->activityType, ModulePhysicalActivity::ACTIVITY_TYPES, true)) {
+        if (
+            $this->activityType !== null
+            && !in_array($this->activityType, ModulePhysicalActivity::ACTIVITY_TYPES, true)
+        ) {
             throw ValidationException::withMessages([
                 'activity_type' => 'Invalid activity type value.',
             ]);
         }
 
-        if ($this->activityIntensity !== null && ! in_array($this->activityIntensity, ModulePhysicalActivity::ACTIVITY_INTENSITIES, true)) {
+        if (
+            $this->activityIntensity !== null
+            && !in_array($this->activityIntensity, ModulePhysicalActivity::ACTIVITY_INTENSITIES, true)
+        ) {
             throw ValidationException::withMessages([
                 'activity_intensity' => 'Invalid activity intensity value.',
             ]);
@@ -68,9 +74,11 @@ final readonly class LogPhysicalActivity
 
     private function log(): void
     {
-        $modulePhysicalActivity = $this->entry->modulePhysicalActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $modulePhysicalActivity = $this->entry
+            ->modulePhysicalActivity()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->hasDonePhysicalActivity !== null) {
             $modulePhysicalActivity->has_done_physical_activity = $this->hasDonePhysicalActivity;

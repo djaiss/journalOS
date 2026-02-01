@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Jobs;
 
@@ -9,8 +9,8 @@ use App\Mail\AccountAutomaticallyDestroyed;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class DeleteInactiveAccountsTest extends TestCase
 {
@@ -40,7 +40,7 @@ final class DeleteInactiveAccountsTest extends TestCase
             'last_activity_at' => now()->subMonths(3),
         ]);
 
-        (new DeleteInactiveAccounts())->handle();
+        ( new DeleteInactiveAccounts )->handle();
 
         $this->assertDatabaseMissing('users', [
             'id' => $inactiveUser->id,
@@ -70,7 +70,7 @@ final class DeleteInactiveAccountsTest extends TestCase
             'last_activity_at' => now()->subMonths(3),
         ]);
 
-        (new DeleteInactiveAccounts())->handle();
+        ( new DeleteInactiveAccounts )->handle();
 
         Mail::assertNotQueued(AccountAutomaticallyDestroyed::class);
     }

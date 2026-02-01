@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Travel;
 
@@ -32,7 +32,9 @@ final class TravelController extends Controller
         new LogTravel(
             user: Auth::user(),
             entry: $journalEntry,
-            hasTraveled: array_key_exists('has_traveled', $validated) ? TextSanitizer::plainText($validated['has_traveled']) : null,
+            hasTraveled: array_key_exists('has_traveled', $validated)
+                ? TextSanitizer::plainText($validated['has_traveled'])
+                : null,
             travelModes: array_key_exists('travel_modes', $validated)
                 ? array_map(TextSanitizer::plainText(...), $validated['travel_modes'])
                 : null,

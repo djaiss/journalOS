@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Models;
 
@@ -9,8 +9,8 @@ use App\Models\JournalEntry;
 use App\Models\Layout;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class JournalTest extends TestCase
 {
@@ -31,9 +31,11 @@ final class JournalTest extends TestCase
     public function it_has_many_entries(): void
     {
         $journal = Journal::factory()->create();
-        JournalEntry::factory()->count(3)->create([
-            'journal_id' => $journal->id,
-        ]);
+        JournalEntry::factory()
+            ->count(3)
+            ->create([
+                'journal_id' => $journal->id,
+            ]);
 
         $this->assertCount(3, $journal->entries);
         $this->assertTrue($journal->entries()->exists());
@@ -43,9 +45,11 @@ final class JournalTest extends TestCase
     public function it_has_many_layouts(): void
     {
         $journal = Journal::factory()->create();
-        Layout::factory()->count(2)->create([
-            'journal_id' => $journal->id,
-        ]);
+        Layout::factory()
+            ->count(2)
+            ->create([
+                'journal_id' => $journal->id,
+            ]);
 
         $this->assertCount(2, $journal->layouts);
         $this->assertTrue($journal->layouts()->exists());

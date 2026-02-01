@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Settings\Security;
 
@@ -38,7 +38,10 @@ final class ApiKeyController extends Controller
 
     public function destroy(Request $request, int $apiKeyId): RedirectResponse
     {
-        $apiKey = Auth::user()->tokens()->where('id', $apiKeyId)->first();
+        $apiKey = Auth::user()
+            ->tokens()
+            ->where('id', $apiKeyId)
+            ->first();
 
         new DestroyApiKey(
             user: Auth::user(),

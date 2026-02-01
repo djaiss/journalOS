@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -11,8 +11,8 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class DestroyApiKeyTest extends TestCase
 {
@@ -33,10 +33,10 @@ final class DestroyApiKeyTest extends TestCase
 
         $tokenId = $user->tokens()->first()->id;
 
-        (new DestroyApiKey(
+        new DestroyApiKey(
             user: $user,
             tokenId: $tokenId,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('personal_access_tokens', [
             'id' => $tokenId,

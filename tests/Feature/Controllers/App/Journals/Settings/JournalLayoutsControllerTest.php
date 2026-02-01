@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Settings;
 
@@ -73,7 +73,9 @@ final class JournalLayoutsControllerTest extends TestCase
             'is_active' => false,
         ]);
 
-        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/default');
+        $response = $this->actingAs($user)->put(
+            '/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/default',
+        );
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings/modules');
 

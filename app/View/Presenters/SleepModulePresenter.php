@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -21,7 +21,7 @@ final readonly class SleepModulePresenter
     ): array {
         $moduleSleep = $this->entry->moduleSleep;
 
-        if (! $skipShift) {
+        if (!$skipShift) {
             $bedtime = $this->shiftIfValid($moduleSleep?->bedtime, -2) ?? $bedtime;
             $wake_up_time = $this->shiftIfValid($moduleSleep?->wake_up_time, -2) ?? $wake_up_time;
         }
@@ -88,7 +88,7 @@ final readonly class SleepModulePresenter
             'next_wake_up_url' => $nextWakeUpUrl,
             'sleep_url' => $sleepUrl,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($moduleSleep?->bedtime) || ! is_null($moduleSleep?->wake_up_time),
+            'display_reset' => !is_null($moduleSleep?->bedtime) || !is_null($moduleSleep?->wake_up_time),
         ];
     }
 
@@ -101,7 +101,7 @@ final readonly class SleepModulePresenter
         }
 
         $dt = CarbonImmutable::createFromFormat('H:i', $time);
-        if (! $dt instanceof CarbonImmutable) {
+        if (!$dt instanceof CarbonImmutable) {
             return null;
         }
 

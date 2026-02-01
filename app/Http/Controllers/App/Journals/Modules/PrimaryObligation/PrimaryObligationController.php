@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\PrimaryObligation;
 
@@ -8,10 +8,10 @@ use App\Actions\LogPrimaryObligation;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\ModulePrimaryObligation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Http\RedirectResponse;
 
 final class PrimaryObligationController extends Controller
 {
@@ -20,7 +20,12 @@ final class PrimaryObligationController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'primary_obligation' => ['required', 'string', 'max:255', Rule::in(ModulePrimaryObligation::PRIMARY_OBLIGATIONS)],
+            'primary_obligation' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::in(ModulePrimaryObligation::PRIMARY_OBLIGATIONS),
+            ],
         ]);
 
         new LogPrimaryObligation(

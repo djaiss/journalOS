@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -45,10 +45,10 @@ final class ResetTravelDataTest extends TestCase
             'travel_mode' => ['car', 'train'],
         ]);
 
-        $result = (new ResetTravelData(
+        $result = new ResetTravelData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleTravel);
 
@@ -98,9 +98,9 @@ final class ResetTravelDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetTravelData(
+        new ResetTravelData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

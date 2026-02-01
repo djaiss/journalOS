@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -44,7 +44,7 @@ final class ReorderLayoutModule
             throw new ModelNotFoundException('Layout not found');
         }
 
-        if ($this->moduleKey === '' || ! in_array($this->moduleKey, LayoutModule::allowedModuleKeys(), true)) {
+        if ($this->moduleKey === '' || !in_array($this->moduleKey, LayoutModule::allowedModuleKeys(), true)) {
             throw ValidationException::withMessages([
                 'module_key' => 'Module key is invalid',
             ]);
@@ -60,8 +60,8 @@ final class ReorderLayoutModule
             ->where('layout_id', $this->layout->id)
             ->where('module_key', $this->moduleKey)
             ->first() ?? throw ValidationException::withMessages([
-                'module_key' => 'Module does not exist in layout',
-            ]);
+            'module_key' => 'Module does not exist in layout',
+        ]);
 
         $columnCount = LayoutModule::query()
             ->where('layout_id', $this->layout->id)

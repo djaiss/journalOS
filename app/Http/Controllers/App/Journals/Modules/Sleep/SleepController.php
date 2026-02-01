@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Sleep;
 
@@ -9,9 +9,9 @@ use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\View\Presenters\SleepModulePresenter;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 final class SleepController extends Controller
 {

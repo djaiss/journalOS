@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Auth;
 
@@ -33,7 +33,7 @@ final class LoginController extends Controller
     {
         if (config('app.show_marketing_site')) {
             $request->validate([
-                'cf-turnstile-response' => ['required', new TurnstileRule()],
+                'cf-turnstile-response' => ['required', new TurnstileRule],
             ]);
         }
 
@@ -44,7 +44,7 @@ final class LoginController extends Controller
 
         $this->ensureIsNotRateLimited($request);
 
-        if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+        if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey($request));
 
             $user = User::query()->where('email', $request->input('email'))->first();
@@ -66,6 +66,7 @@ final class LoginController extends Controller
             $userId = Auth::user()->id; // Retrieve the user's ID before logging out
             Auth::logout();
             session(['2fa:user:id' => $userId]); // Use the stored ID to set the session value
+
             return to_route('2fa.challenge');
         }
 
@@ -90,7 +91,7 @@ final class LoginController extends Controller
 
     private function ensureIsNotRateLimited(Request $request): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey($request), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey($request), 5)) {
             return;
         }
 
@@ -141,7 +142,7 @@ final class LoginController extends Controller
         $userId = session('2fa:user:id');
         $user = User::query()->find($userId);
 
-        if (! new VerifyTwoFactorCode(
+        if (!new VerifyTwoFactorCode(
             user: $user,
             code: TextSanitizer::plainText((string) $request->input('code')),
         )->execute()) {

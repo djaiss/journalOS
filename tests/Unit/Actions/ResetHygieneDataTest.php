@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetHygieneDataTest extends TestCase
             'showered' => 'yes',
         ]);
 
-        $result = (new ResetHygieneData(
+        $result = new ResetHygieneData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleHygiene);
 
@@ -97,9 +97,9 @@ final class ResetHygieneDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetHygieneData(
+        new ResetHygieneData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

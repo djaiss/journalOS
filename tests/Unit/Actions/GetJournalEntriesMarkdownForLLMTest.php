@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -59,11 +59,11 @@ final class GetJournalEntriesMarkdownForLLMTest extends TestCase
             'mood' => 'calm',
         ]);
 
-        $markdown = (new GetJournalEntriesMarkdownForLLM(
+        $markdown = new GetJournalEntriesMarkdownForLLM(
             journal: $journal,
             year: 2026,
             month: 1,
-        ))->execute();
+        )->execute();
 
         $this->assertStringContainsString('Journal entries — 2026-01', $markdown);
         $this->assertStringContainsString('Journal: Gamma Journal', $markdown);

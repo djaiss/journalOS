@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -45,10 +45,10 @@ final class ResetShoppingDataTest extends TestCase
             'shopping_type' => ['groceries'],
         ]);
 
-        $result = (new ResetShoppingData(
+        $result = new ResetShoppingData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleShopping);
 
@@ -98,9 +98,9 @@ final class ResetShoppingDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetShoppingData(
+        new ResetShoppingData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

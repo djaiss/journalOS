@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,11 +40,11 @@ final class LogHadKidsTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHadKidsToday(
+        $entry = new LogHadKidsToday(
             user: $user,
             entry: $entry,
             hadKidsToday: 'yes',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('yes', $entry->moduleKids->had_kids_today);
         $this->assertDatabaseHas('module_kids', [
@@ -87,11 +87,11 @@ final class LogHadKidsTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHadKidsToday(
+        $entry = new LogHadKidsToday(
             user: $user,
             entry: $entry,
             hadKidsToday: 'no',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('no', $entry->moduleKids->had_kids_today);
         $this->assertDatabaseHas('module_kids', [
@@ -114,11 +114,11 @@ final class LogHadKidsTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHadKidsToday(
+        new LogHadKidsToday(
             user: $user,
             entry: $entry,
             hadKidsToday: 'yes',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -135,10 +135,10 @@ final class LogHadKidsTodayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHadKidsToday(
+        new LogHadKidsToday(
             user: $user,
             entry: $entry,
             hadKidsToday: 'maybe',
-        ))->execute();
+        )->execute();
     }
 }

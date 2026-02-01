@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -13,8 +13,8 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Validation\ValidationException;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateJournalTest extends TestCase
 {
@@ -34,10 +34,10 @@ final class CreateJournalTest extends TestCase
 
         $user = User::factory()->create();
 
-        $journal = (new CreateJournal(
+        $journal = new CreateJournal(
             user: $user,
             name: 'Dunder Mifflin',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('Dunder Mifflin', $journal->name);
         $this->assertEquals($journal->id . '-dunder-mifflin', $journal->slug);
@@ -68,9 +68,9 @@ final class CreateJournalTest extends TestCase
 
         $user = User::factory()->create();
 
-        (new CreateJournal(
+        new CreateJournal(
             user: $user,
             name: 'Dunder@ / Mifflin!',
-        ))->execute();
+        )->execute();
     }
 }

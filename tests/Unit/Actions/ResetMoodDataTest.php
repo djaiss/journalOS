@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetMoodDataTest extends TestCase
             'mood' => 'good',
         ]);
 
-        $result = (new ResetMoodData(
+        $result = new ResetMoodData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleMood);
 
@@ -97,9 +97,9 @@ final class ResetMoodDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetMoodData(
+        new ResetMoodData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

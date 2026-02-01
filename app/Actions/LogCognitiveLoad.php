@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -47,19 +47,22 @@ final readonly class LogCognitiveLoad
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->cognitiveLoad, ModuleCognitiveLoad::COGNITIVE_LOAD_LEVELS, true)) {
+        if (!in_array($this->cognitiveLoad, ModuleCognitiveLoad::COGNITIVE_LOAD_LEVELS, true)) {
             throw ValidationException::withMessages([
                 'cognitive_load' => 'Invalid cognitive load value.',
             ]);
         }
 
-        if ($this->primarySource !== null && ! in_array($this->primarySource, ModuleCognitiveLoad::PRIMARY_SOURCES, true)) {
+        if (
+            $this->primarySource !== null
+            && !in_array($this->primarySource, ModuleCognitiveLoad::PRIMARY_SOURCES, true)
+        ) {
             throw ValidationException::withMessages([
                 'primary_source' => 'Invalid primary source value.',
             ]);
         }
 
-        if ($this->loadQuality !== null && ! in_array($this->loadQuality, ModuleCognitiveLoad::LOAD_QUALITIES, true)) {
+        if ($this->loadQuality !== null && !in_array($this->loadQuality, ModuleCognitiveLoad::LOAD_QUALITIES, true)) {
             throw ValidationException::withMessages([
                 'load_quality' => 'Invalid load quality value.',
             ]);
@@ -68,9 +71,11 @@ final readonly class LogCognitiveLoad
 
     private function log(): void
     {
-        $moduleCognitiveLoad = $this->entry->moduleCognitiveLoad()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleCognitiveLoad = $this->entry
+            ->moduleCognitiveLoad()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleCognitiveLoad->cognitive_load = $this->cognitiveLoad;
 

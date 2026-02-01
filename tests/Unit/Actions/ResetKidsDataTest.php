@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetKidsDataTest extends TestCase
             'had_kids_today' => 'yes',
         ]);
 
-        $result = (new ResetKidsData(
+        $result = new ResetKidsData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleKids?->had_kids_today);
         $this->assertDatabaseMissing('module_kids', [
@@ -98,9 +98,9 @@ final class ResetKidsDataTest extends TestCase
             'had_kids_today' => 'yes',
         ]);
 
-        (new ResetKidsData(
+        new ResetKidsData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

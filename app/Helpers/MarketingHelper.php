@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Helpers;
 
@@ -39,7 +39,7 @@ final class MarketingHelper
         $viewPath = str_replace('.', '/', $view);
         $fullPath = resource_path("views/{$viewPath}.blade.php");
 
-        if (! file_exists($fullPath)) {
+        if (!file_exists($fullPath)) {
             return 0;
         }
 
@@ -153,7 +153,7 @@ final class MarketingHelper
 
         $randomBook = Arr::random($popularBooks);
 
-        $percentage = round($wordCount * 100 / $randomBook['word_count'], 2);
+        $percentage = round(( $wordCount * 100 ) / $randomBook['word_count'], 2);
 
         return [
             'title' => $randomBook['title'],

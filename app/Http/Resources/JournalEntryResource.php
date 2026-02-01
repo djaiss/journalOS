@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Resources;
 
@@ -102,7 +102,7 @@ final class JournalEntryResource extends JsonResource
                     ],
                     'reading' => [
                         'did_read_today' => $this->moduleReading?->did_read_today,
-                        'books' => $this->books->map(fn($book) => [
+                        'books' => $this->books->map(fn ($book) => [
                             'id' => $book->id,
                             'name' => $book->name,
                             'status' => $book->pivot?->status,

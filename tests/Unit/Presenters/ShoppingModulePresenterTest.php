@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Presenters;
 
@@ -94,7 +94,7 @@ final class ShoppingModulePresenterTest extends TestCase
         $presenter = new ShoppingModulePresenter($entry);
         $result = $presenter->build();
 
-        $selectedTypes = collect($result['shopping_types'])->filter(fn($type) => $type['is_selected']);
+        $selectedTypes = collect($result['shopping_types'])->filter(fn ($type) => $type['is_selected']);
         $this->assertCount(2, $selectedTypes);
         $this->assertEquals(['groceries', 'books_media'], $selectedTypes->pluck('value')->values()->all());
     }

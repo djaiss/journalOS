@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Jobs;
 
@@ -10,8 +10,8 @@ use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CheckLastLoginTest extends TestCase
 {
@@ -90,9 +90,11 @@ final class CheckLastLoginTest extends TestCase
         $job->handle();
 
         Queue::assertPushedOn('high', SendEmail::class, function (SendEmail $job) use ($user): bool {
-            return $job->emailType === EmailType::USER_IP_CHANGED
+            return (
+                $job->emailType === EmailType::USER_IP_CHANGED
                 && $job->user->id === $user->id
-                && $job->parameters['ip'] === '192.168.1.200';
+                && $job->parameters['ip'] === '192.168.1.200'
+            );
         });
     }
 

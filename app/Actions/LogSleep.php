@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -83,9 +83,11 @@ final readonly class LogSleep
 
     private function log(): void
     {
-        $moduleSleep = $this->entry->moduleSleep()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleSleep = $this->entry
+            ->moduleSleep()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->bedtime !== null) {
             $moduleSleep->bedtime = $this->bedtime;

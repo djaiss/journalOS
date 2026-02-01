@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -11,8 +11,8 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateApiKeyTest extends TestCase
 {
@@ -30,10 +30,10 @@ final class CreateApiKeyTest extends TestCase
     {
         $user = User::factory()->create();
 
-        (new CreateApiKey(
+        new CreateApiKey(
             user: $user,
             label: 'Test API Key',
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('personal_access_tokens', [
             'name' => 'Test API Key',

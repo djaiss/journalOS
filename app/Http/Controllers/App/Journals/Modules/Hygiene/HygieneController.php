@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Journals\Modules\Hygiene;
 
@@ -8,10 +8,10 @@ use App\Actions\LogHygiene;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
 use App\Models\ModuleHygiene;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Http\RedirectResponse;
 
 final class HygieneController extends Controller
 {
@@ -21,16 +21,28 @@ final class HygieneController extends Controller
 
         $validated = $request->validate([
             'showered' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:brushed_teeth,skincare'],
-            'brushed_teeth' => ['nullable', 'string', 'max:255', Rule::in(ModuleHygiene::BRUSHED_TEETH_VALUES), 'required_without_all:showered,skincare'],
+            'brushed_teeth' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModuleHygiene::BRUSHED_TEETH_VALUES),
+                'required_without_all:showered,skincare',
+            ],
             'skincare' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:showered,brushed_teeth'],
         ]);
 
         new LogHygiene(
             user: Auth::user(),
             entry: $entry,
-            showered: array_key_exists('showered', $validated) ? TextSanitizer::plainText($validated['showered']) : null,
-            brushedTeeth: array_key_exists('brushed_teeth', $validated) ? TextSanitizer::plainText($validated['brushed_teeth']) : null,
-            skincare: array_key_exists('skincare', $validated) ? TextSanitizer::plainText($validated['skincare']) : null,
+            showered: array_key_exists('showered', $validated)
+                ? TextSanitizer::plainText($validated['showered'])
+                : null,
+            brushedTeeth: array_key_exists('brushed_teeth', $validated)
+                ? TextSanitizer::plainText($validated['brushed_teeth'])
+                : null,
+            skincare: array_key_exists('skincare', $validated)
+                ? TextSanitizer::plainText($validated['skincare'])
+                : null,
         )->execute();
 
         return to_route('journal.entry.show', [

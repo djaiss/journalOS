@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,12 +44,12 @@ final class LogBookTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::STARTED,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('book_journal_entry', [
             'book_id' => $book->id,
@@ -96,12 +96,12 @@ final class LogBookTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::CONTINUED,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('book_journal_entry', [
             'book_id' => $book->id,
@@ -124,12 +124,12 @@ final class LogBookTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::FINISHED,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('book_journal_entry', [
             'book_id' => $book->id,
@@ -156,12 +156,12 @@ final class LogBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Journal entry not found');
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::STARTED,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -182,11 +182,11 @@ final class LogBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Book not found');
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::STARTED,
-        ))->execute();
+        )->execute();
     }
 }

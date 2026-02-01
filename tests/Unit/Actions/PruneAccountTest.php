@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
+use App\Actions\PruneAccount;
 use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\User;
-use App\Actions\PruneAccount;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
@@ -33,9 +33,9 @@ final class PruneAccountTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new PruneAccount(
+        new PruneAccount(
             user: $user,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('journals', [
             'id' => $journal->id,
@@ -53,9 +53,11 @@ final class PruneAccountTest extends TestCase
             queue: 'low',
             job: LogUserAction::class,
             callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'account_pruning'
+                return (
+                    $job->action === 'account_pruning'
                     && $job->user->id === $user->id
-                    && $job->description === 'Deleted all journals and related data from your account';
+                    && $job->description === 'Deleted all journals and related data from your account'
+                );
             },
         );
     }

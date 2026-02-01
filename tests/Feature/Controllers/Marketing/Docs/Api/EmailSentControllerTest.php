@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Marketing\Docs\Api;
 
@@ -15,11 +15,9 @@ final class EmailSentControllerTest extends TestCase
     #[Test]
     public function it_renders_the_email_sent_api_docs_page(): void
     {
-
         $response = $this->get(route('marketing.docs.api.account.emails', absolute: false));
 
         $response->assertOk();
         $response->assertViewIs('marketing.docs.api.account.emails');
-
     }
 }

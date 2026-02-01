@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -30,10 +30,10 @@ final class CreateBookTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $book = (new CreateBook(
+        $book = new CreateBook(
             user: $user,
             name: 'The Great Gatsby',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('The Great Gatsby', $book->name);
         $this->assertNull($book->progress);
@@ -67,15 +67,15 @@ final class CreateBookTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $book1 = (new CreateBook(
+        $book1 = new CreateBook(
             user: $user,
             name: 'Harry Potter',
-        ))->execute();
+        )->execute();
 
-        $book2 = (new CreateBook(
+        $book2 = new CreateBook(
             user: $user,
             name: 'Harry Potter',
-        ))->execute();
+        )->execute();
 
         $this->assertNotEquals($book1->id, $book2->id);
         $this->assertEquals($book1->name, $book2->name);
@@ -88,15 +88,15 @@ final class CreateBookTest extends TestCase
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
 
-        $book1 = (new CreateBook(
+        $book1 = new CreateBook(
             user: $user1,
             name: 'To Kill a Mockingbird',
-        ))->execute();
+        )->execute();
 
-        $book2 = (new CreateBook(
+        $book2 = new CreateBook(
             user: $user2,
             name: 'To Kill a Mockingbird',
-        ))->execute();
+        )->execute();
 
         $this->assertNotEquals($book1->id, $book2->id);
         $this->assertEquals($book1->name, $book2->name);

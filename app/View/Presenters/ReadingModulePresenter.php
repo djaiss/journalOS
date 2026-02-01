@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -57,9 +57,10 @@ final readonly class ReadingModulePresenter
     {
         $this->entry->loadMissing('books');
 
-        return $this->entry->books
-            ->sortBy(fn(Book $book) => $book->name)
-            ->map(fn(Book $book) => [
+        return $this->entry
+            ->books
+            ->sortBy(fn (Book $book) => $book->name)
+            ->map(fn (Book $book) => [
                 'id' => $book->id,
                 'name' => $book->name,
                 'status' => $book->pivot?->status,
@@ -75,7 +76,7 @@ final readonly class ReadingModulePresenter
             ->get(['id', 'name']);
 
         return $books
-            ->map(fn(Book $book) => $book->name)
+            ->map(fn (Book $book) => $book->name)
             ->filter()
             ->unique()
             ->values()
@@ -86,7 +87,7 @@ final readonly class ReadingModulePresenter
     {
         $readingAmount = $this->entry->moduleReading?->reading_amount;
 
-        return collect(ModuleReading::READING_AMOUNTS)->map(fn($value) => [
+        return collect(ModuleReading::READING_AMOUNTS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'a few pages' => __('A few pages'),
@@ -103,7 +104,7 @@ final readonly class ReadingModulePresenter
     {
         $mentalState = $this->entry->moduleReading?->mental_state;
 
-        return collect(ModuleReading::MENTAL_STATES)->map(fn($value) => [
+        return collect(ModuleReading::MENTAL_STATES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'stimulated' => __('Stimulated'),
@@ -120,7 +121,7 @@ final readonly class ReadingModulePresenter
     {
         $readingFeel = $this->entry->moduleReading?->reading_feel;
 
-        return collect(ModuleReading::READING_FEELS)->map(fn($value) => [
+        return collect(ModuleReading::READING_FEELS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'effortless' => __('Effortless'),
@@ -137,7 +138,7 @@ final readonly class ReadingModulePresenter
     {
         $wantContinue = $this->entry->moduleReading?->want_continue;
 
-        return collect(ModuleReading::WANT_CONTINUE_OPTIONS)->map(fn($value) => [
+        return collect(ModuleReading::WANT_CONTINUE_OPTIONS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'strongly' => __('Strongly'),
@@ -153,7 +154,7 @@ final readonly class ReadingModulePresenter
     {
         $readingLimit = $this->entry->moduleReading?->reading_limit;
 
-        return collect(ModuleReading::READING_LIMITS)->map(fn($value) => [
+        return collect(ModuleReading::READING_LIMITS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'time' => __('Time'),
@@ -170,13 +171,16 @@ final readonly class ReadingModulePresenter
     {
         $moduleReading = $this->entry->moduleReading;
 
-        if ($moduleReading !== null
-            && ($moduleReading->did_read_today !== null
+        if (
+            $moduleReading !== null
+            && (
+                $moduleReading->did_read_today !== null
                 || $moduleReading->reading_amount !== null
                 || $moduleReading->mental_state !== null
                 || $moduleReading->reading_feel !== null
                 || $moduleReading->want_continue !== null
-                || $moduleReading->reading_limit !== null)
+                || $moduleReading->reading_limit !== null
+            )
         ) {
             return true;
         }

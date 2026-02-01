@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Console\Commands;
 
@@ -27,7 +27,7 @@ final class ExtractMarketingTimestamps extends Command
         $directoryPath = resource_path('views/marketing');
         $filesInfo = [];
 
-        if (! File::isDirectory($directoryPath)) {
+        if (!File::isDirectory($directoryPath)) {
             return;
         }
 

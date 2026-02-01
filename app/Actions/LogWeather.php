@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -48,7 +48,8 @@ final readonly class LogWeather
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->condition === null
+        if (
+            $this->condition === null
             && $this->temperatureRange === null
             && $this->precipitation === null
             && $this->daylight === null
@@ -58,25 +59,31 @@ final readonly class LogWeather
             ]);
         }
 
-        if ($this->condition !== null && ! in_array($this->condition, ModuleWeather::CONDITIONS, true)) {
+        if ($this->condition !== null && !in_array($this->condition, ModuleWeather::CONDITIONS, true)) {
             throw ValidationException::withMessages([
                 'condition' => 'Invalid condition value.',
             ]);
         }
 
-        if ($this->temperatureRange !== null && ! in_array($this->temperatureRange, ModuleWeather::TEMPERATURE_RANGES, true)) {
+        if (
+            $this->temperatureRange !== null
+            && !in_array($this->temperatureRange, ModuleWeather::TEMPERATURE_RANGES, true)
+        ) {
             throw ValidationException::withMessages([
                 'temperature_range' => 'Invalid temperature range value.',
             ]);
         }
 
-        if ($this->precipitation !== null && ! in_array($this->precipitation, ModuleWeather::PRECIPITATION_LEVELS, true)) {
+        if (
+            $this->precipitation !== null
+            && !in_array($this->precipitation, ModuleWeather::PRECIPITATION_LEVELS, true)
+        ) {
             throw ValidationException::withMessages([
                 'precipitation' => 'Invalid precipitation value.',
             ]);
         }
 
-        if ($this->daylight !== null && ! in_array($this->daylight, ModuleWeather::DAYLIGHT_VALUES, true)) {
+        if ($this->daylight !== null && !in_array($this->daylight, ModuleWeather::DAYLIGHT_VALUES, true)) {
             throw ValidationException::withMessages([
                 'daylight' => 'Invalid daylight value.',
             ]);
@@ -85,9 +92,11 @@ final readonly class LogWeather
 
     private function log(): void
     {
-        $moduleWeather = $this->entry->moduleWeather()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleWeather = $this->entry
+            ->moduleWeather()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->condition !== null) {
             $moduleWeather->condition = $this->condition;

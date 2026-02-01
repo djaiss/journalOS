@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Api\Journals;
 
@@ -63,10 +63,12 @@ final class JournalEntryControllerTest extends TestCase
             'month' => 4,
             'year' => 2025,
         ]);
-        $entry->richTextNotes()->create([
-            'field' => 'notes',
-            'body' => '<p>Notes for the entry.</p>',
-        ]);
+        $entry
+            ->richTextNotes()
+            ->create([
+                'field' => 'notes',
+                'body' => '<p>Notes for the entry.</p>',
+            ]);
         ModuleSleep::factory()->create([
             'journal_entry_id' => $entry->id,
             'bedtime' => '22:30',

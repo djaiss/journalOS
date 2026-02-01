@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetEnergyDataTest extends TestCase
             'energy' => 'high',
         ]);
 
-        $result = (new ResetEnergyData(
+        $result = new ResetEnergyData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleEnergy);
 
@@ -97,9 +97,9 @@ final class ResetEnergyDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetEnergyData(
+        new ResetEnergyData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

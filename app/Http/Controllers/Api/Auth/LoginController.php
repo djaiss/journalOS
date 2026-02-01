@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Auth;
 
@@ -21,7 +21,7 @@ final class LoginController extends Controller
             'password' => ['required', 'string', 'max:255'],
         ]);
 
-        if (! Auth::attempt($validated)) {
+        if (!Auth::attempt($validated)) {
             return $this->error('Invalid credentials', 401);
         }
 

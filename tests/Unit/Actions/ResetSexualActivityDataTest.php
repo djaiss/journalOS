@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -45,10 +45,10 @@ final class ResetSexualActivityDataTest extends TestCase
             'sexual_activity_type' => 'solo',
         ]);
 
-        $result = (new ResetSexualActivityData(
+        $result = new ResetSexualActivityData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleSexualActivity);
 
@@ -98,9 +98,9 @@ final class ResetSexualActivityDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetSexualActivityData(
+        new ResetSexualActivityData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }
