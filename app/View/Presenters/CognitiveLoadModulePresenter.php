@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -35,9 +35,10 @@ final readonly class CognitiveLoadModulePresenter
             'cognitive_load_options' => $this->cognitiveLoadOptions(),
             'primary_source_options' => $this->primarySourceOptions(),
             'load_quality_options' => $this->loadQualityOptions(),
-            'display_reset' => $moduleCognitiveLoad?->cognitive_load !== null
-                || $moduleCognitiveLoad?->primary_source !== null
-                || $moduleCognitiveLoad?->load_quality !== null,
+            'display_reset' =>
+                $moduleCognitiveLoad?->cognitive_load !== null
+                    || $moduleCognitiveLoad?->primary_source !== null
+                    || $moduleCognitiveLoad?->load_quality !== null,
             'has_cognitive_load' => $cognitiveLoad !== null,
         ];
     }
@@ -46,7 +47,7 @@ final readonly class CognitiveLoadModulePresenter
     {
         $cognitiveLoad = $this->entry->moduleCognitiveLoad?->cognitive_load;
 
-        return collect(ModuleCognitiveLoad::COGNITIVE_LOAD_LEVELS)->map(fn($value) => [
+        return collect(ModuleCognitiveLoad::COGNITIVE_LOAD_LEVELS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'very low' => __('Very low'),
@@ -63,7 +64,7 @@ final readonly class CognitiveLoadModulePresenter
     {
         $primarySource = $this->entry->moduleCognitiveLoad?->primary_source;
 
-        return collect(ModuleCognitiveLoad::PRIMARY_SOURCES)->map(fn($value) => [
+        return collect(ModuleCognitiveLoad::PRIMARY_SOURCES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'work' => __('Work'),
@@ -82,7 +83,7 @@ final readonly class CognitiveLoadModulePresenter
     {
         $loadQuality = $this->entry->moduleCognitiveLoad?->load_quality;
 
-        return collect(ModuleCognitiveLoad::LOAD_QUALITIES)->map(fn($value) => [
+        return collect(ModuleCognitiveLoad::LOAD_QUALITIES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'productive' => __('Productive'),

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -43,35 +43,29 @@ final class ResetMealsDataTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
 
-        $result = (new ResetMealsData(
+        $result = new ResetMealsData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleMeals);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'meals_data_reset' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'meals_data_reset' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -83,9 +77,9 @@ final class ResetMealsDataTest extends TestCase
         $user = User::factory()->create();
         $entry = JournalEntry::factory()->create();
 
-        (new ResetMealsData(
+        new ResetMealsData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

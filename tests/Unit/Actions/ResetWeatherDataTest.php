@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,10 +44,10 @@ final class ResetWeatherDataTest extends TestCase
             'condition' => 'sunny',
         ]);
 
-        $result = (new ResetWeatherData(
+        $result = new ResetWeatherData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->moduleWeather);
 
@@ -60,25 +60,19 @@ final class ResetWeatherDataTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'weather_reset' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'weather_reset' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -97,9 +91,9 @@ final class ResetWeatherDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetWeatherData(
+        new ResetWeatherData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

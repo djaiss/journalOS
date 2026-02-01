@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Helpers;
 
@@ -51,8 +51,8 @@ final class MarketingHelperTest extends TestCase
         $filePath = resource_path('views/test/word-count.blade.php');
 
         // Create test directory if it doesn't exist
-        if (! file_exists(dirname($filePath))) {
-            mkdir(dirname($filePath), 0777, true);
+        if (!file_exists(dirname($filePath))) {
+            mkdir(dirname($filePath), 0o777, true);
         }
 
         // Create test file
@@ -80,8 +80,8 @@ final class MarketingHelperTest extends TestCase
         $filePath = resource_path('views/test/blade-syntax.blade.php');
 
         // Create test directory if it doesn't exist
-        if (! file_exists(dirname($filePath))) {
-            mkdir(dirname($filePath), 0777, true);
+        if (!file_exists(dirname($filePath))) {
+            mkdir(dirname($filePath), 0o777, true);
         }
 
         // Create test file
@@ -157,8 +157,8 @@ final class MarketingHelperTest extends TestCase
         $content = 'This is a test file with some content.';
         $filePath = resource_path('views/test/stats.blade.php');
 
-        if (! file_exists(dirname($filePath))) {
-            mkdir(dirname($filePath), 0777, true);
+        if (!file_exists(dirname($filePath))) {
+            mkdir(dirname($filePath), 0o777, true);
         }
         file_put_contents($filePath, $content);
 

@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
 use App\Actions\CreateMagicLink;
+use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use App\Jobs\UpdateUserLastActivityDate;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateMagicLinkTest extends TestCase
 {
@@ -31,18 +31,16 @@ final class CreateMagicLinkTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $magicLinkUrl = (new CreateMagicLink(
+        $magicLinkUrl = new CreateMagicLink(
             email: $user->email,
-        ))->execute();
+        )->execute();
 
         $this->assertIsString($magicLinkUrl);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -53,9 +51,9 @@ final class CreateMagicLinkTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $magicLinkUrl = (new CreateMagicLink(
+        $magicLinkUrl = new CreateMagicLink(
             email: $user->email,
-        ))->execute();
+        )->execute();
 
         $appUrl = config('app.url');
         $this->assertStringStartsWith($appUrl . '/magiclink/', $magicLinkUrl);
@@ -69,9 +67,9 @@ final class CreateMagicLinkTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        (new CreateMagicLink(
+        new CreateMagicLink(
             email: $nonExistentEmail,
-        ))->execute();
+        )->execute();
 
         Queue::assertNothingPushed();
     }

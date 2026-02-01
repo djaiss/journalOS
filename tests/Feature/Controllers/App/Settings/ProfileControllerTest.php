@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Settings;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class ProfileControllerTest extends TestCase
 {
@@ -18,8 +18,7 @@ final class ProfileControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this
-            ->actingAs($user)
+        $this->actingAs($user)
             ->get('/settings/profile')
             ->assertOk()
             ->assertViewHasAll([
@@ -36,8 +35,7 @@ final class ProfileControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this
-            ->actingAs($user)
+        $response = $this->actingAs($user)
             ->put('/settings/profile', [
                 'first_name' => 'Michael',
                 'last_name' => 'Scott',
@@ -67,8 +65,7 @@ final class ProfileControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this
-            ->actingAs($user)
+        $response = $this->actingAs($user)
             ->from('/settings/profile')
             ->put('/settings/profile', [
                 'first_name' => str_repeat('a', 256),
@@ -88,8 +85,7 @@ final class ProfileControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this
-            ->actingAs($user)
+        $response = $this->actingAs($user)
             ->put('/settings/profile', [
                 'first_name' => 'Michael',
                 'last_name' => 'Scott',
@@ -113,8 +109,7 @@ final class ProfileControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this
-            ->actingAs($user)
+        $response = $this->actingAs($user)
             ->put('/settings/profile', [
                 'first_name' => 'Michael',
                 'last_name' => 'Scott',

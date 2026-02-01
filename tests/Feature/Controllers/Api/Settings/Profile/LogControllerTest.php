@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Api\Settings\Profile;
 
@@ -9,8 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class LogControllerTest extends TestCase
 {
@@ -73,10 +73,12 @@ final class LogControllerTest extends TestCase
         Carbon::setTestNow('2025-01-15 10:00:00');
         $user = User::factory()->create();
 
-        $logs = Log::factory()->count(15)->create([
-            'user_id' => $user->id,
-            'journal_name' => 'Dunder Mifflin journal',
-        ]);
+        $logs = Log::factory()
+            ->count(15)
+            ->create([
+                'user_id' => $user->id,
+                'journal_name' => 'Dunder Mifflin journal',
+            ]);
 
         Sanctum::actingAs($user);
 

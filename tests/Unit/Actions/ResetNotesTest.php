@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -39,10 +39,10 @@ final class ResetNotesTest extends TestCase
 
         $this->assertNotNull($entry->notes);
 
-        (new ResetNotes(
+        new ResetNotes(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $entry->refresh();
 
@@ -68,9 +68,9 @@ final class ResetNotesTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        (new ResetNotes(
+        new ResetNotes(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -9,8 +9,8 @@ use App\Mail\AccountDestroyed;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class DestroyAccountTest extends TestCase
 {
@@ -24,10 +24,10 @@ final class DestroyAccountTest extends TestCase
 
         $user = User::factory()->create();
 
-        (new DestroyAccount(
+        new DestroyAccount(
             user: $user,
             reason: 'the service is not working',
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
@@ -37,9 +37,6 @@ final class DestroyAccountTest extends TestCase
             'reason' => 'the service is not working',
         ]);
 
-        Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
-            return $job->reason === 'the service is not working'
-                && $job->to[0]['address'] === 'regis@journalos.cloud';
-        });
+        Mail::assertQueued(AccountDestroyed::class, fn (AccountDestroyed $job): bool => $job->reason === 'the service is not working' && $job->to[0]['address'] === 'regis@journalos.cloud');
     }
 }

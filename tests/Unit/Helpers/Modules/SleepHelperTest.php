@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Helpers\Modules;
 
 use App\Helpers\Modules\SleepHelper;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class SleepHelperTest extends TestCase
 {
@@ -16,26 +16,41 @@ final class SleepHelperTest extends TestCase
         $result = SleepHelper::range('22:00', null);
 
         $this->assertCount(5, $result);
-        $this->assertEquals([
-            'time' => '22:00',
-            'is_selected' => false,
-        ], $result[0]);
-        $this->assertEquals([
-            'time' => '23:00',
-            'is_selected' => false,
-        ], $result[1]);
-        $this->assertEquals([
-            'time' => '00:00',
-            'is_selected' => false,
-        ], $result[2]);
-        $this->assertEquals([
-            'time' => '01:00',
-            'is_selected' => false,
-        ], $result[3]);
-        $this->assertEquals([
-            'time' => '02:00',
-            'is_selected' => false,
-        ], $result[4]);
+        $this->assertEquals(
+            [
+                'time' => '22:00',
+                'is_selected' => false,
+            ],
+            $result[0],
+        );
+        $this->assertEquals(
+            [
+                'time' => '23:00',
+                'is_selected' => false,
+            ],
+            $result[1],
+        );
+        $this->assertEquals(
+            [
+                'time' => '00:00',
+                'is_selected' => false,
+            ],
+            $result[2],
+        );
+        $this->assertEquals(
+            [
+                'time' => '01:00',
+                'is_selected' => false,
+            ],
+            $result[3],
+        );
+        $this->assertEquals(
+            [
+                'time' => '02:00',
+                'is_selected' => false,
+            ],
+            $result[4],
+        );
     }
 
     #[Test]
@@ -44,18 +59,27 @@ final class SleepHelperTest extends TestCase
         $result = SleepHelper::range('22:00', '23:00');
 
         $this->assertCount(5, $result);
-        $this->assertEquals([
-            'time' => '22:00',
-            'is_selected' => false,
-        ], $result[0]);
-        $this->assertEquals([
-            'time' => '23:00',
-            'is_selected' => true,
-        ], $result[1]);
-        $this->assertEquals([
-            'time' => '00:00',
-            'is_selected' => false,
-        ], $result[2]);
+        $this->assertEquals(
+            [
+                'time' => '22:00',
+                'is_selected' => false,
+            ],
+            $result[0],
+        );
+        $this->assertEquals(
+            [
+                'time' => '23:00',
+                'is_selected' => true,
+            ],
+            $result[1],
+        );
+        $this->assertEquals(
+            [
+                'time' => '00:00',
+                'is_selected' => false,
+            ],
+            $result[2],
+        );
     }
 
     #[Test]
@@ -64,26 +88,41 @@ final class SleepHelperTest extends TestCase
         $result = SleepHelper::range('00:00', '02:00');
 
         $this->assertCount(5, $result);
-        $this->assertEquals([
-            'time' => '00:00',
-            'is_selected' => false,
-        ], $result[0]);
-        $this->assertEquals([
-            'time' => '01:00',
-            'is_selected' => false,
-        ], $result[1]);
-        $this->assertEquals([
-            'time' => '02:00',
-            'is_selected' => true,
-        ], $result[2]);
-        $this->assertEquals([
-            'time' => '03:00',
-            'is_selected' => false,
-        ], $result[3]);
-        $this->assertEquals([
-            'time' => '04:00',
-            'is_selected' => false,
-        ], $result[4]);
+        $this->assertEquals(
+            [
+                'time' => '00:00',
+                'is_selected' => false,
+            ],
+            $result[0],
+        );
+        $this->assertEquals(
+            [
+                'time' => '01:00',
+                'is_selected' => false,
+            ],
+            $result[1],
+        );
+        $this->assertEquals(
+            [
+                'time' => '02:00',
+                'is_selected' => true,
+            ],
+            $result[2],
+        );
+        $this->assertEquals(
+            [
+                'time' => '03:00',
+                'is_selected' => false,
+            ],
+            $result[3],
+        );
+        $this->assertEquals(
+            [
+                'time' => '04:00',
+                'is_selected' => false,
+            ],
+            $result[4],
+        );
     }
 
     #[Test]

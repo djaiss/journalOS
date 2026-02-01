@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -30,10 +30,10 @@ final class VerifyTwoFactorCodeTest extends TestCase
             'two_factor_recovery_codes' => ['code-one', 'code-two'],
         ]);
 
-        $result = (new VerifyTwoFactorCode(
+        $result = new VerifyTwoFactorCode(
             user: $user,
             code: 'code-one',
-        ))->execute();
+        )->execute();
 
         $this->assertTrue($result);
         $this->assertNotContains('code-one', $user->refresh()->two_factor_recovery_codes);
@@ -41,9 +41,7 @@ final class VerifyTwoFactorCodeTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -54,10 +52,10 @@ final class VerifyTwoFactorCodeTest extends TestCase
             'two_factor_recovery_codes' => ['code-one'],
         ]);
 
-        $result = (new VerifyTwoFactorCode(
+        $result = new VerifyTwoFactorCode(
             user: $user,
             code: 'wrong-code',
-        ))->execute();
+        )->execute();
 
         $this->assertFalse($result);
         $this->assertEquals(['code-one'], $user->refresh()->two_factor_recovery_codes);

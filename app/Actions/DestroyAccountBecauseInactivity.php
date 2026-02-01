@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
-use Illuminate\Support\Facades\Mail;
 use App\Mail\AccountAutomaticallyDestroyed;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Delete an account if there is no activity for all users after a period of

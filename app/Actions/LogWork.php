@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -48,7 +48,8 @@ final readonly class LogWork
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->worked === null
+        if (
+            $this->worked === null
             && $this->workMode === null
             && $this->workLoad === null
             && $this->workProcrastinated === null
@@ -58,25 +59,25 @@ final readonly class LogWork
             ]);
         }
 
-        if ($this->worked !== null && ! in_array($this->worked, ['yes', 'no'], true)) {
+        if ($this->worked !== null && !in_array($this->worked, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'worked' => 'Invalid worked value.',
             ]);
         }
 
-        if ($this->workMode !== null && ! in_array($this->workMode, ModuleWork::WORK_MODES, true)) {
+        if ($this->workMode !== null && !in_array($this->workMode, ModuleWork::WORK_MODES, true)) {
             throw ValidationException::withMessages([
                 'work_mode' => 'Invalid work mode value.',
             ]);
         }
 
-        if ($this->workLoad !== null && ! in_array($this->workLoad, ModuleWork::WORK_LOADS, true)) {
+        if ($this->workLoad !== null && !in_array($this->workLoad, ModuleWork::WORK_LOADS, true)) {
             throw ValidationException::withMessages([
                 'work_load' => 'Invalid work load value.',
             ]);
         }
 
-        if ($this->workProcrastinated !== null && ! in_array($this->workProcrastinated, ['yes', 'no'], true)) {
+        if ($this->workProcrastinated !== null && !in_array($this->workProcrastinated, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'work_procrastinated' => 'Invalid work procrastinated value.',
             ]);
@@ -85,9 +86,11 @@ final readonly class LogWork
 
     private function log(): void
     {
-        $moduleWork = $this->entry->moduleWork()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleWork = $this->entry
+            ->moduleWork()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->worked !== null) {
             $moduleWork->worked = $this->worked;

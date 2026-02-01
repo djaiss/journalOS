@@ -38,7 +38,6 @@
     "larastan/larastan": "^3.3",
     "laravel/boost": "^2.0",
     "laravel/pail": "^1.2.2",
-    "laravel/pint": "^1.18",
     "laravel/sail": "^1.41",
     "mockery/mockery": "^1.6",
     "nunomaduro/collision": "^8.6",
@@ -80,7 +79,7 @@
       "Composer\\Config::disableProcessTimeout",
       "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
     ],
-    "journalos:lint": "./vendor/bin/pint",
+    "journalos:lint": "mago fmt && mago lint",
     "journalos:locale": "php artisan localize en,fr --remove-missing",
     "journalos:marketing": "php artisan marketing:extract-timestamps && php artisan marketing:generate-sitemap",
     "journalos:prettier": "npx prettier --write resources/",

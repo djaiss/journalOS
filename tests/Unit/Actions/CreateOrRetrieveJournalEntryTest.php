@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -15,8 +15,8 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateOrRetrieveJournalEntryTest extends TestCase
 {
@@ -38,13 +38,13 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
             'name' => 'Dunder Mifflin Journal',
         ]);
 
-        $entry = (new CreateOrRetrieveJournalEntry(
+        $entry = new CreateOrRetrieveJournalEntry(
             user: $user,
             journal: $journal,
             day: 1,
             month: 1,
             year: 2024,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('journal_entries', [
             'id' => $entry->id,
@@ -59,19 +59,17 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'entry_creation'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'entry_creation'
                     && $job->user->id === $user->id
-                    && str_contains($job->description, 'Dunder Mifflin Journal');
-            },
+                    && str_contains($job->description, 'Dunder Mifflin Journal')
+                ),
         );
     }
 
@@ -89,13 +87,13 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
             'year' => 2024,
         ]);
 
-        $entry = (new CreateOrRetrieveJournalEntry(
+        $entry = new CreateOrRetrieveJournalEntry(
             user: $user,
             journal: $journal,
             day: 1,
             month: 1,
             year: 2024,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals($existingEntry->id, $entry->id);
     }
@@ -112,13 +110,13 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
             'is_active' => true,
         ]);
 
-        $entry = (new CreateOrRetrieveJournalEntry(
+        $entry = new CreateOrRetrieveJournalEntry(
             user: $user,
             journal: $journal,
             day: 5,
             month: 4,
             year: 2024,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals($layout->id, $entry->layout_id);
     }
@@ -131,13 +129,13 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
 
-        (new CreateOrRetrieveJournalEntry(
+        new CreateOrRetrieveJournalEntry(
             user: $user,
             journal: $journal,
             day: 1,
             month: 1,
             year: 2024,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -151,12 +149,12 @@ final class CreateOrRetrieveJournalEntryTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateOrRetrieveJournalEntry(
+        new CreateOrRetrieveJournalEntry(
             user: $user,
             journal: $journal,
             day: 31,
             month: 2,
             year: 2024,
-        ))->execute();
+        )->execute();
     }
 }

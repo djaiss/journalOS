@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Middleware;
 
@@ -23,7 +23,8 @@ final class CheckJournalAPI
         $id = $request->route()->parameter('id');
 
         try {
-            $journal = Journal::query()->where('id', $id)
+            $journal = Journal::query()
+                ->where('id', $id)
                 ->where('user_id', Auth::user()->id)
                 ->firstOrFail();
 

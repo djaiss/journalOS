@@ -1,26 +1,26 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Jobs;
 
 use App\Jobs\CheckPresenceOfContentInJournalEntry;
+use App\Models\Book;
 use App\Models\Journal;
 use App\Models\JournalEntry;
-use App\Models\ModuleReading;
 use App\Models\ModuleCognitiveLoad;
-use App\Models\ModuleKids;
 use App\Models\ModuleHygiene;
+use App\Models\ModuleKids;
 use App\Models\ModuleMeals;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModulePrimaryObligation;
-use App\Models\ModuleShopping;
+use App\Models\ModuleReading;
 use App\Models\ModuleSexualActivity;
+use App\Models\ModuleShopping;
 use App\Models\ModuleSocialDensity;
-use App\Models\ModuleWork;
 use App\Models\ModuleWeather;
 use App\Models\ModuleWeatherInfluence;
-use App\Models\Book;
+use App\Models\ModuleWork;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;

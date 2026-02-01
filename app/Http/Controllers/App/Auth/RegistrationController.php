@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Auth;
 
@@ -29,7 +29,15 @@ final class RegistrationController extends Controller
         $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class, 'disposable_email'],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:' . User::class,
+                'disposable_email',
+            ],
             'password' => [
                 'required',
                 'string',
@@ -41,7 +49,7 @@ final class RegistrationController extends Controller
 
         if (config('app.show_marketing_site')) {
             $request->validate([
-                'cf-turnstile-response' => ['required', new TurnstileRule()],
+                'cf-turnstile-response' => ['required', new TurnstileRule],
             ]);
         }
 

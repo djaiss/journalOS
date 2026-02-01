@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -36,11 +36,11 @@ final class RenameJournalTest extends TestCase
             'name' => 'Dunder Mifflin',
         ]);
 
-        $updatedJournal = (new RenameJournal(
+        $updatedJournal = new RenameJournal(
             user: $user,
             journal: $journal,
             name: 'Threat Level Midnight',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('Threat Level Midnight', $updatedJournal->name);
         $this->assertEquals($journal->id . '-threat-level-midnight', $updatedJournal->slug);
@@ -48,19 +48,17 @@ final class RenameJournalTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'journal_rename'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'journal_rename'
                     && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id;
-            },
+                    && $job->journal?->id === $journal->id
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -74,11 +72,11 @@ final class RenameJournalTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new RenameJournal(
+        new RenameJournal(
             user: $user,
             journal: $journal,
             name: 'Dunder@ / Mifflin!',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -89,10 +87,10 @@ final class RenameJournalTest extends TestCase
         $user = User::factory()->create();
         $otherJournal = Journal::factory()->create();
 
-        (new RenameJournal(
+        new RenameJournal(
             user: $user,
             journal: $otherJournal,
             name: 'Valid Journal Name',
-        ))->execute();
+        )->execute();
     }
 }

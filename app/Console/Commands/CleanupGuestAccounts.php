@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Console\Commands;
 
@@ -28,7 +28,8 @@ final class CleanupGuestAccounts extends Command
      */
     public function handle(): void
     {
-        User::query()->where('is_guest', true)
+        User::query()
+            ->where('is_guest', true)
             ->where('guest_expires_at', '<', now())
             ->delete();
     }

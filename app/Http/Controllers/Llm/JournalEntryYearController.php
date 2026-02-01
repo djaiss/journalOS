@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Llm;
 
@@ -45,11 +45,11 @@ final class JournalEntryYearController extends Controller
 
     private function ensureValidYear(string $year): void
     {
-        if ($year === '' || ! ctype_digit($year)) {
+        if ($year === '' || !ctype_digit($year)) {
             abort(404);
         }
 
-        if (! checkdate(1, 1, (int) $year)) {
+        if (!checkdate(1, 1, (int) $year)) {
             abort(404);
         }
     }

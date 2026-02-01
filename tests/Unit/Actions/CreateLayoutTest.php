@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -36,12 +36,12 @@ final class CreateLayoutTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $layout = (new CreateLayout(
+        $layout = new CreateLayout(
             user: $user,
             journal: $journal,
             name: 'Daily Review',
             columnsCount: 3,
-        ))->execute();
+        )->execute();
 
         $this->assertInstanceOf(Layout::class, $layout);
         $this->assertEquals($journal->id, $layout->journal_id);
@@ -52,20 +52,18 @@ final class CreateLayoutTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'layout_creation'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'layout_creation'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
-                    && str_contains($job->description, $journal->name);
-            },
+                    && str_contains($job->description, $journal->name)
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -79,12 +77,12 @@ final class CreateLayoutTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateLayout(
+        new CreateLayout(
             user: $user,
             journal: $journal,
             name: 'Daily@Review',
             columnsCount: 2,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -97,12 +95,12 @@ final class CreateLayoutTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new CreateLayout(
+        new CreateLayout(
             user: $user,
             journal: $journal,
             name: 'Daily Review',
             columnsCount: 5,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -113,11 +111,11 @@ final class CreateLayoutTest extends TestCase
         $user = User::factory()->create();
         $journal = Journal::factory()->create();
 
-        (new CreateLayout(
+        new CreateLayout(
             user: $user,
             journal: $journal,
             name: 'Daily Review',
             columnsCount: 2,
-        ))->execute();
+        )->execute();
     }
 }

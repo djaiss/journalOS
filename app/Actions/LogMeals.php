@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -49,7 +49,8 @@ final readonly class LogMeals
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if ($this->mealPresence === null
+        if (
+            $this->mealPresence === null
             && $this->mealType === null
             && $this->socialContext === null
             && $this->hasNotes === null
@@ -68,27 +69,27 @@ final readonly class LogMeals
             }
 
             foreach ($this->mealPresence as $presence) {
-                if (! is_string($presence) || ! in_array($presence, ModuleMeals::MEAL_PRESENCE, true)) {
-                    throw ValidationException::withMessages([
+                if (!(!is_string($presence) || !in_array($presence, ModuleMeals::MEAL_PRESENCE, true))) { continue; }
+
+throw ValidationException::withMessages([
                         'meal_presence' => 'Invalid meal presence value.',
                     ]);
-                }
             }
         }
 
-        if ($this->mealType !== null && ! in_array($this->mealType, ModuleMeals::MEAL_TYPES, true)) {
+        if ($this->mealType !== null && !in_array($this->mealType, ModuleMeals::MEAL_TYPES, true)) {
             throw ValidationException::withMessages([
                 'meal_type' => 'Invalid meal type value.',
             ]);
         }
 
-        if ($this->socialContext !== null && ! in_array($this->socialContext, ModuleMeals::SOCIAL_CONTEXTS, true)) {
+        if ($this->socialContext !== null && !in_array($this->socialContext, ModuleMeals::SOCIAL_CONTEXTS, true)) {
             throw ValidationException::withMessages([
                 'social_context' => 'Invalid social context value.',
             ]);
         }
 
-        if ($this->hasNotes !== null && ! in_array($this->hasNotes, ['yes', 'no'], true)) {
+        if ($this->hasNotes !== null && !in_array($this->hasNotes, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'has_notes' => 'Invalid notes toggle value.',
             ]);
@@ -103,9 +104,11 @@ final readonly class LogMeals
 
     private function log(): void
     {
-        $moduleMeals = $this->entry->moduleMeals()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleMeals = $this->entry
+            ->moduleMeals()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->mealPresence !== null) {
             $moduleMeals->meal_presence = $this->mealPresence;

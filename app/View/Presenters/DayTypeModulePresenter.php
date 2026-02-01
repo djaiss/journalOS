@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -31,7 +31,7 @@ final readonly class DayTypeModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $dayTypes = collect(ModuleDayType::DAY_TYPES)->map(fn($type) => [
+        $dayTypes = collect(ModuleDayType::DAY_TYPES)->map(fn ($type) => [
             'value' => $type,
             'label' => match ($type) {
                 'workday' => __('Workday'),
@@ -48,7 +48,7 @@ final readonly class DayTypeModulePresenter
             'day_type_url' => $dayTypeURL,
             'day_types' => $dayTypes,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($selectedDayType),
+            'display_reset' => !is_null($selectedDayType),
         ];
     }
 }

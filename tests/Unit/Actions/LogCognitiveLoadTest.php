@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,13 +40,13 @@ final class LogCognitiveLoadTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogCognitiveLoad(
+        $entry = new LogCognitiveLoad(
             user: $user,
             entry: $entry,
             cognitiveLoad: 'high',
             primarySource: 'work',
             loadQuality: 'productive',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('high', $entry->moduleCognitiveLoad->cognitive_load);
         $this->assertEquals('work', $entry->moduleCognitiveLoad->primary_source);
@@ -55,25 +55,19 @@ final class LogCognitiveLoadTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'cognitive_load_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'cognitive_load_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -88,13 +82,13 @@ final class LogCognitiveLoadTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogCognitiveLoad(
+        $entry = new LogCognitiveLoad(
             user: $user,
             entry: $entry,
             cognitiveLoad: 'very low',
             primarySource: null,
             loadQuality: null,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('very low', $entry->moduleCognitiveLoad->cognitive_load);
         $this->assertNull($entry->moduleCognitiveLoad->primary_source);
@@ -114,13 +108,13 @@ final class LogCognitiveLoadTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogCognitiveLoad(
+        new LogCognitiveLoad(
             user: $user,
             entry: $entry,
             cognitiveLoad: 'invalid',
             primarySource: null,
             loadQuality: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -136,13 +130,13 @@ final class LogCognitiveLoadTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogCognitiveLoad(
+        new LogCognitiveLoad(
             user: $user,
             entry: $entry,
             cognitiveLoad: 'low',
             primarySource: 'invalid',
             loadQuality: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -158,13 +152,13 @@ final class LogCognitiveLoadTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogCognitiveLoad(
+        new LogCognitiveLoad(
             user: $user,
             entry: $entry,
             cognitiveLoad: 'high',
             primarySource: null,
             loadQuality: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -181,12 +175,12 @@ final class LogCognitiveLoadTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogCognitiveLoad(
+        new LogCognitiveLoad(
             user: $user,
             entry: $entry,
             cognitiveLoad: 'low',
             primarySource: null,
             loadQuality: null,
-        ))->execute();
+        )->execute();
     }
 }

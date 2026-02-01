@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -45,7 +45,7 @@ final class AddModuleToLayout
             throw new ModelNotFoundException('Layout not found');
         }
 
-        if ($this->moduleKey === '' || ! in_array($this->moduleKey, LayoutModule::allowedModuleKeys(), true)) {
+        if ($this->moduleKey === '' || !in_array($this->moduleKey, LayoutModule::allowedModuleKeys(), true)) {
             throw ValidationException::withMessages([
                 'module_key' => 'Module key is invalid',
             ]);
@@ -73,9 +73,9 @@ final class AddModuleToLayout
             ->where('column_number', $this->columnNumber)
             ->count();
 
-        $this->position = $this->requestedPosition ?? ($currentCount + 1);
+        $this->position = $this->requestedPosition ?? ( $currentCount + 1 );
 
-        if ($this->position < 1 || $this->position > ($currentCount + 1)) {
+        if ($this->position < 1 || $this->position > ( $currentCount + 1 )) {
             throw ValidationException::withMessages([
                 'position' => 'Position is invalid for the selected column',
             ]);

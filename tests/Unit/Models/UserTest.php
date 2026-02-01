@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Models;
 
 use App\Models\Book;
 use App\Models\EmailSent;
 use App\Models\Journal;
-use App\Models\User;
 use App\Models\Log;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class UserTest extends TestCase
 {
@@ -21,9 +21,11 @@ final class UserTest extends TestCase
     public function it_has_many_journals(): void
     {
         $user = User::factory()->create();
-        Journal::factory()->count(2)->create([
-            'user_id' => $user->id,
-        ]);
+        Journal::factory()
+            ->count(2)
+            ->create([
+                'user_id' => $user->id,
+            ]);
 
         $this->assertCount(2, $user->journals);
     }
@@ -54,9 +56,11 @@ final class UserTest extends TestCase
     public function it_has_many_books(): void
     {
         $user = User::factory()->create();
-        Book::factory()->count(2)->create([
-            'user_id' => $user->id,
-        ]);
+        Book::factory()
+            ->count(2)
+            ->create([
+                'user_id' => $user->id,
+            ]);
 
         $this->assertCount(2, $user->books);
     }

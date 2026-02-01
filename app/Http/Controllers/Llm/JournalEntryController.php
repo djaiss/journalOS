@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Llm;
 
@@ -46,15 +46,19 @@ final class JournalEntryController extends Controller
 
     private function ensureValidDate(string $year, string $month, string $day): void
     {
-        if ($year === '' || ! ctype_digit($year)
-            || $month === '' || ! ctype_digit($month)
-            || $day === '' || ! ctype_digit($day)) {
+        if (
+            $year === ''
+            || !ctype_digit($year)
+            || $month === ''
+            || !ctype_digit($month)
+            || $day === ''
+            || !ctype_digit($day)
+        ) {
             abort(404);
         }
 
-        if (! checkdate((int) $month, (int) $day, (int) $year)) {
+        if (!checkdate((int) $month, (int) $day, (int) $year)) {
             abort(404);
         }
     }
-
 }

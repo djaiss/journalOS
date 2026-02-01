@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,36 +40,30 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogEnergy(
+        $entry = new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'very low',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('very low', $entry->moduleEnergy->energy);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'energy_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'energy_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -84,11 +78,11 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogEnergy(
+        $entry = new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'low',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('low', $entry->moduleEnergy->energy);
     }
@@ -104,11 +98,11 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogEnergy(
+        $entry = new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'normal',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('normal', $entry->moduleEnergy->energy);
     }
@@ -124,11 +118,11 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogEnergy(
+        $entry = new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'high',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('high', $entry->moduleEnergy->energy);
     }
@@ -144,11 +138,11 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogEnergy(
+        $entry = new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'very high',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('very high', $entry->moduleEnergy->energy);
     }
@@ -166,11 +160,11 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogEnergy(
+        new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -187,10 +181,10 @@ final class LogEnergyTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogEnergy(
+        new LogEnergy(
             user: $user,
             entry: $entry,
             energy: 'normal',
-        ))->execute();
+        )->execute();
     }
 }

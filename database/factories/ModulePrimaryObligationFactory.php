@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Database\Factories;
 
@@ -24,7 +24,14 @@ final class ModulePrimaryObligationFactory extends Factory
     {
         return [
             'journal_entry_id' => JournalEntry::factory(),
-            'primary_obligation' => $this->faker->randomElement(['work', 'family', 'personal', 'health', 'travel', 'none']),
+            'primary_obligation' => $this->faker->randomElement([
+                'work',
+                'family',
+                'personal',
+                'health',
+                'travel',
+                'none',
+            ]),
         ];
     }
 }

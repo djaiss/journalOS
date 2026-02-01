@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -30,7 +30,7 @@ final readonly class TravelModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $travelModes = collect(ModuleTravel::TRAVEL_MODES)->map(fn($mode) => [
+        $travelModes = collect(ModuleTravel::TRAVEL_MODES)->map(fn ($mode) => [
             'value' => $mode,
             'label' => match ($mode) {
                 'car' => __('Car'),
@@ -52,7 +52,7 @@ final readonly class TravelModulePresenter
             'travel_mode' => $moduleTravel?->travel_mode,
             'travel_modes' => $travelModes,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($moduleTravel?->has_traveled_today) || ! is_null($moduleTravel?->travel_mode),
+            'display_reset' => !is_null($moduleTravel?->has_traveled_today) || !is_null($moduleTravel?->travel_mode),
         ];
     }
 }

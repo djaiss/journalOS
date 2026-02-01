@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Notes;
 
@@ -29,10 +29,12 @@ final class NotesResetControllerTest extends TestCase
             'year' => 2026,
         ]);
 
-        $entry->richTextNotes()->create([
-            'field' => 'notes',
-            'body' => '<div>Some notes</div>',
-        ]);
+        $entry
+            ->richTextNotes()
+            ->create([
+                'field' => 'notes',
+                'body' => '<div>Some notes</div>',
+            ]);
 
         $this->assertDatabaseHas('rich_texts', [
             'record_id' => $entry->id,

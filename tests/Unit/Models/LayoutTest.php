@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Models;
 
 use App\Models\Journal;
-use App\Models\Layout;
 use App\Models\JournalEntry;
+use App\Models\Layout;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -33,10 +33,12 @@ final class LayoutTest extends TestCase
         $layout = Layout::factory()->create([
             'journal_id' => $journal->id,
         ]);
-        JournalEntry::factory()->count(2)->create([
-            'journal_id' => $journal->id,
-            'layout_id' => $layout->id,
-        ]);
+        JournalEntry::factory()
+            ->count(2)
+            ->create([
+                'journal_id' => $journal->id,
+                'layout_id' => $layout->id,
+            ]);
 
         $this->assertCount(2, $layout->entries);
         $this->assertTrue($layout->entries()->exists());

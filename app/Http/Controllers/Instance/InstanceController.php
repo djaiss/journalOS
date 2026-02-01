@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Instance;
 
@@ -25,7 +25,7 @@ final class InstanceController extends Controller
             ->withCount('journals')
             ->latest()
             ->get()
-            ->map(fn(User $user): array => [
+            ->map(fn (User $user): array => [
                 'id' => $user->id,
                 'name' => $user->getFullName(),
                 'email' => $user->email,

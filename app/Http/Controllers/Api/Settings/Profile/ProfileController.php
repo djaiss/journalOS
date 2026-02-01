@@ -1,15 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Settings\Profile;
 
-use App\Http\Controllers\Controller;
 use App\Actions\UpdateUserInformation;
 use App\Helpers\TextSanitizer;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Traits\ApiResponses;
 use App\Models\User;
+use App\Traits\ApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;

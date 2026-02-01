@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,36 +40,30 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTypeOfDay(
+        $result = new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'workday',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('workday', $result->moduleDayType->day_type);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'day_type_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'day_type_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -84,11 +78,11 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTypeOfDay(
+        $result = new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'day off',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('day off', $result->moduleDayType->day_type);
     }
@@ -104,11 +98,11 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTypeOfDay(
+        $result = new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'weekend',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('weekend', $result->moduleDayType->day_type);
     }
@@ -124,11 +118,11 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTypeOfDay(
+        $result = new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'vacation',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('vacation', $result->moduleDayType->day_type);
     }
@@ -144,11 +138,11 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogTypeOfDay(
+        $result = new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'sick day',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('sick day', $result->moduleDayType->day_type);
     }
@@ -168,18 +162,20 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTypeOfDay(
+        new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'workday',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
     public function it_throws_when_day_type_is_invalid(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('dayType must be one of: "workday", "day off", "weekend", "vacation", "sick day"');
+        $this->expectExceptionMessage(
+            'dayType must be one of: "workday", "day off", "weekend", "vacation", "sick day"',
+        );
 
         $user = User::factory()->create();
         $journal = Journal::factory()->create([
@@ -189,10 +185,10 @@ final class LogTypeOfDayTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogTypeOfDay(
+        new LogTypeOfDay(
             user: $user,
             entry: $entry,
             dayType: 'invalid',
-        ))->execute();
+        )->execute();
     }
 }

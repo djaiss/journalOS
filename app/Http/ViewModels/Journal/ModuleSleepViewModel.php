@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\ViewModels\Journal;
 
@@ -17,8 +17,12 @@ final readonly class ModuleSleepViewModel
 
     public function sleep(string $startBedTime, string $startWakeUpTime): array
     {
-        $bedtime = $this->journalEntry->moduleSleep?->bedtime ? TimeHelper::format($this->journalEntry->moduleSleep->bedtime) : null;
-        $wakeUpTime = $this->journalEntry->moduleSleep?->wake_up_time ? TimeHelper::format($this->journalEntry->moduleSleep->wake_up_time) : null;
+        $bedtime = $this->journalEntry->moduleSleep?->bedtime
+            ? TimeHelper::format($this->journalEntry->moduleSleep->bedtime)
+            : null;
+        $wakeUpTime = $this->journalEntry->moduleSleep?->wake_up_time
+            ? TimeHelper::format($this->journalEntry->moduleSleep->wake_up_time)
+            : null;
 
         return [
             'bedtime' => $this->getRange($startBedTime, $bedtime),

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -39,7 +39,7 @@ final readonly class EnergyModulePresenter
     {
         $energy = $this->entry->moduleEnergy?->energy;
 
-        return collect(ModuleEnergy::ENERGY_LEVELS)->map(fn($value) => [
+        return collect(ModuleEnergy::ENERGY_LEVELS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'very low' => __('Very low'),

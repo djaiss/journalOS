@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App;
 
@@ -19,7 +19,7 @@ final class ClaimAccountController extends Controller
 {
     public function index(): View|RedirectResponse
     {
-        if (! Auth::user()->is_guest) {
+        if (!Auth::user()->is_guest) {
             return to_route('journal.index');
         }
 
@@ -31,7 +31,15 @@ final class ClaimAccountController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class, 'disposable_email'],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:' . User::class,
+                'disposable_email',
+            ],
             'password' => [
                 'required',
                 'string',

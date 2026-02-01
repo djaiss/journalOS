@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -52,13 +52,16 @@ final readonly class LogSexualActivity
             ]);
         }
 
-        if ($this->hadSexualActivity !== null && ! in_array($this->hadSexualActivity, ['yes', 'no'], true)) {
+        if ($this->hadSexualActivity !== null && !in_array($this->hadSexualActivity, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'had_sexual_activity' => 'Invalid sexual activity status value.',
             ]);
         }
 
-        if ($this->sexualActivityType !== null && ! in_array($this->sexualActivityType, ModuleSexualActivity::SEXUAL_ACTIVITY_TYPES, true)) {
+        if (
+            $this->sexualActivityType !== null
+            && !in_array($this->sexualActivityType, ModuleSexualActivity::SEXUAL_ACTIVITY_TYPES, true)
+        ) {
             throw ValidationException::withMessages([
                 'sexual_activity_type' => 'Invalid sexual activity type value.',
             ]);
@@ -67,9 +70,11 @@ final readonly class LogSexualActivity
 
     private function log(): void
     {
-        $moduleSexualActivity = $this->entry->moduleSexualActivity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleSexualActivity = $this->entry
+            ->moduleSexualActivity()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->hadSexualActivity !== null) {
             $moduleSexualActivity->had_sexual_activity = $this->hadSexualActivity;

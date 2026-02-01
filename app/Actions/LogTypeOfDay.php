@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -48,7 +48,7 @@ final readonly class LogTypeOfDay
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->dayType, ModuleDayType::DAY_TYPES, true)) {
+        if (!in_array($this->dayType, ModuleDayType::DAY_TYPES, true)) {
             $dayTypes = implode('", "', ModuleDayType::DAY_TYPES);
 
             throw new InvalidArgumentException('dayType must be one of: "' . $dayTypes . '"');
@@ -57,9 +57,11 @@ final readonly class LogTypeOfDay
 
     private function log(): void
     {
-        $moduleDayType = $this->entry->moduleDayType()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleDayType = $this->entry
+            ->moduleDayType()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleDayType->day_type = $this->dayType;
         $moduleDayType->save();

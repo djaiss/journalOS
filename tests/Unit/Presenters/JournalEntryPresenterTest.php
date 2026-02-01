@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Presenters;
 
@@ -10,8 +10,8 @@ use App\Models\Layout;
 use App\Models\LayoutModule;
 use App\View\Presenters\JournalEntryPresenter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class JournalEntryPresenterTest extends TestCase
 {

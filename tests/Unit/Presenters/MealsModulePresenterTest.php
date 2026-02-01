@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Presenters;
 
@@ -89,7 +89,7 @@ final class MealsModulePresenterTest extends TestCase
         $presenter = new MealsModulePresenter($entry);
         $result = $presenter->build();
 
-        $selectedPresence = collect($result['meal_presence_options'])->filter(fn($option) => $option['is_selected']);
+        $selectedPresence = collect($result['meal_presence_options'])->filter(fn ($option) => $option['is_selected']);
         $this->assertCount(2, $selectedPresence);
         $this->assertEquals(['breakfast', 'snack'], $selectedPresence->pluck('value')->values()->all());
     }

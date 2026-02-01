@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Settings\Security;
 
@@ -15,7 +15,7 @@ final class SecurityController extends Controller
     public function index(Request $request): View
     {
         $apiKeys = Auth::user()->tokens
-            ->map(fn(PersonalAccessToken $token) => (object) [
+            ->map(fn (PersonalAccessToken $token) => (object) [
                 'id' => $token->id,
                 'name' => $token->name,
                 'last_used' => $token->last_used_at ? $token->last_used_at->diffForHumans() : trans('Never'),

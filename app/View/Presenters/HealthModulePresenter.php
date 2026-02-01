@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -39,7 +39,7 @@ final readonly class HealthModulePresenter
     {
         $health = $this->entry->moduleHealth?->health;
 
-        return collect(ModuleHealth::HEALTH_VALUES)->map(fn($value) => [
+        return collect(ModuleHealth::HEALTH_VALUES)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'not great' => __('Not great'),

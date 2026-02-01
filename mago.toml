@@ -1,0 +1,120 @@
+# Welcome to Mago!
+# For full documentation, see https://mago.carthage.software/tools/overview
+php-version = "8.4.0"
+
+[source]
+workspace = "."
+paths = ["app/", "database/factories/", "database/seeders/", "tests/"]
+includes = ["vendor"]
+excludes = []
+
+[formatter]
+print-width = 120
+tab-width = 4
+use-tabs = false
+end-of-line = "lf"
+single-quote = true
+trailing-comma = true
+remove-trailing-close-tag = true
+control-brace-style = "same-line"
+following-clause-on-newline = false
+closure-brace-style = "same-line"
+function-brace-style = "next-line"
+method-brace-style = "next-line"
+classlike-brace-style = "always-next-line"
+inline-empty-control-braces = false
+inline-empty-closure-braces = false
+inline-empty-function-braces = false
+inline-empty-method-braces = false
+inline-empty-constructor-braces = true
+inline-empty-classlike-braces = true
+inline-empty-anonymous-class-braces = false
+method-chain-breaking-style = "next-line"
+first-method-chain-on-new-line = false
+preserve-breaking-member-access-chain = true
+preserve-breaking-argument-list = true
+preserve-breaking-array-like = true
+preserve-breaking-parameter-list = true
+preserve-breaking-attribute-list = true
+preserve-breaking-conditional-expression = true
+break-promoted-properties-list = true
+line-before-binary-operator = true
+always-break-named-arguments-list = false
+always-break-attribute-named-argument-lists = false
+array-table-style-alignment = true
+align-assignment-like = false
+sort-uses = true
+sort-class-methods = false
+separate-use-types = true
+expand-use-groups = true
+null-type-hint = "question"
+parentheses-around-new-in-member-access = false
+parentheses-in-new-expression = false
+parentheses-in-exit-and-die = true
+parentheses-in-attribute = false
+space-before-arrow-function-parameter-list-parenthesis = true
+space-before-closure-parameter-list-parenthesis = true
+space-before-hook-parameter-list-parenthesis = false
+inline-abstract-property-hooks = true
+space-before-closure-use-clause-parenthesis = true
+space-after-cast-unary-prefix-operators = true
+space-after-reference-unary-prefix-operator = false
+space-after-error-control-unary-prefix-operator = false
+space-after-logical-not-unary-prefix-operator = false
+space-after-bitwise-not-unary-prefix-operator = false
+space-after-increment-unary-prefix-operator = false
+space-after-decrement-unary-prefix-operator = false
+space-after-additive-unary-prefix-operator = false
+space-around-concatenation-binary-operator = true
+space-around-assignment-in-declare = true
+space-within-grouping-parenthesis = true
+empty-line-after-control-structure = false
+empty-line-after-opening-tag = true
+empty-line-after-declare = true
+empty-line-after-namespace = true
+empty-line-after-use = true
+empty-line-after-symbols = true
+empty-line-between-same-symbols = true
+empty-line-after-class-like-constant = false
+empty-line-after-class-like-open = false
+empty-line-before-class-like-close = false
+empty-line-after-enum-case = false
+empty-line-after-trait-use = false
+empty-line-after-property = false
+empty-line-after-method = true
+empty-line-before-return = true
+empty-line-before-dangling-comments = true
+separate-class-like-members = true
+indent-heredoc = true
+uppercase-literal-keyword = false
+
+[linter]
+integrations = ["laravel", "phpunit"]
+
+[linter.rules]
+ambiguous-function-call = { enabled = false }
+literal-named-argument = { enabled = false }
+halstead = { effort-threshold = 7000 }
+prefer-static-closure = { enabled = false }
+sensitive-parameter = { enabled = false }
+too-many-methods = { enabled = false }
+no-literal-password = { enabled = false }
+cyclomatic-complexity = { enabled = false }
+excessive-parameter-list = { enabled = false }
+no-insecure-comparison = { enabled = false }
+kan-defect = { enabled = false }
+
+[analyzer]
+plugins = []
+find-unused-definitions = true
+find-unused-expressions = false
+analyze-dead-code = false
+memoize-properties = true
+allow-possibly-undefined-array-keys = true
+check-throws = false
+check-missing-override = false
+find-unused-parameters = false
+strict-list-index-checks = false
+no-boolean-literal-comparison = false
+check-missing-type-hints = false
+register-super-globals = true

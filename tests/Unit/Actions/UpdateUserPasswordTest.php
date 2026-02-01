@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -12,8 +12,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
 use InvalidArgumentException;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class UpdateUserPasswordTest extends TestCase
 {
@@ -33,11 +33,11 @@ final class UpdateUserPasswordTest extends TestCase
             'password' => Hash::make('current-password'),
         ]);
 
-        $updatedUser = (new UpdateUserPassword(
+        $updatedUser = new UpdateUserPassword(
             user: $user,
             currentPassword: 'current-password',
             newPassword: 'new-password',
-        ))->execute();
+        )->execute();
 
         $this->assertTrue(Hash::check('new-password', $updatedUser->fresh()->password));
 
@@ -46,19 +46,17 @@ final class UpdateUserPasswordTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'update_user_password'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'update_user_password'
                     && $job->user->id === $user->id
-                    && $job->description === 'Updated their password';
-            },
+                    && $job->description === 'Updated their password'
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -72,10 +70,10 @@ final class UpdateUserPasswordTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Current password is incorrect');
 
-        (new UpdateUserPassword(
+        new UpdateUserPassword(
             user: $user,
             currentPassword: Hash::make('wrong-password'),
             newPassword: 'new-password',
-        ))->execute();
+        )->execute();
     }
 }

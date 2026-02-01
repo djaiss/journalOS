@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Modules\Shopping;
 
@@ -86,7 +86,16 @@ final class ShoppingTypeControllerTest extends TestCase
             'day' => 15,
         ]);
 
-        $allTypes = ['groceries', 'clothes', 'electronics_tech', 'household_essentials', 'books_media', 'gifts', 'online_shopping', 'other'];
+        $allTypes = [
+            'groceries',
+            'clothes',
+            'electronics_tech',
+            'household_essentials',
+            'books_media',
+            'gifts',
+            'online_shopping',
+            'other',
+        ];
 
         $response = $this->actingAs($user)->put(
             "/journals/{$journal->slug}/entries/2024/6/15/shopping",

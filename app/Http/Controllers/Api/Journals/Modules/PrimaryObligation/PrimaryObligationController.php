@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Journals\Modules\PrimaryObligation;
 
@@ -21,7 +21,12 @@ final class PrimaryObligationController extends Controller
         $entry = $request->attributes->get('journal_entry');
 
         $validated = $request->validate([
-            'primary_obligation' => ['required', 'string', 'max:255', Rule::in(ModulePrimaryObligation::PRIMARY_OBLIGATIONS)],
+            'primary_obligation' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::in(ModulePrimaryObligation::PRIMARY_OBLIGATIONS),
+            ],
         ]);
 
         $entry = new LogPrimaryObligation(

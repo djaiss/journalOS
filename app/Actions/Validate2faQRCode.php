@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
-use App\Models\User;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\User;
 use Illuminate\Support\Str;
-use PragmaRX\Google2FALaravel\Google2FA;
 use InvalidArgumentException;
+use PragmaRX\Google2FALaravel\Google2FA;
 
 /**
  * Validate the code from the QR code for 2FA setup.
@@ -46,7 +46,7 @@ final readonly class Validate2faQRCode
 
     private function generateRandomCodes(): array
     {
-        return collect()->times(8)->map(fn() => Str::random(10))->all();
+        return collect()->times(8)->map(fn () => Str::random(10))->all();
     }
 
     private function updateUserLastActivityDate(): void

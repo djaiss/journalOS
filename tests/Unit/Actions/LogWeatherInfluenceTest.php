@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,14 +40,14 @@ final class LogWeatherInfluenceTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogWeatherInfluence(
+        $entry = new LogWeatherInfluence(
             user: $user,
             entry: $entry,
             moodEffect: 'positive',
             energyEffect: 'boosted',
             plansInfluence: 'slight',
             outsideTime: 'some',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('positive', $entry->moduleWeatherInfluence->mood_effect);
         $this->assertEquals('boosted', $entry->moduleWeatherInfluence->energy_effect);
@@ -57,25 +57,19 @@ final class LogWeatherInfluenceTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'weather_influence_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'weather_influence_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -92,14 +86,14 @@ final class LogWeatherInfluenceTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWeatherInfluence(
+        new LogWeatherInfluence(
             user: $user,
             entry: $entry,
             moodEffect: 'extreme',
             energyEffect: null,
             plansInfluence: null,
             outsideTime: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -116,13 +110,13 @@ final class LogWeatherInfluenceTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogWeatherInfluence(
+        new LogWeatherInfluence(
             user: $user,
             entry: $entry,
             moodEffect: 'positive',
             energyEffect: 'boosted',
             plansInfluence: 'slight',
             outsideTime: 'some',
-        ))->execute();
+        )->execute();
     }
 }

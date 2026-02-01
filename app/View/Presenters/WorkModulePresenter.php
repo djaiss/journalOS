@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -31,7 +31,7 @@ final readonly class WorkModulePresenter
             'day' => $this->entry->day,
         ]);
 
-        $workModes = collect(ModuleWork::WORK_MODES)->map(fn($mode) => [
+        $workModes = collect(ModuleWork::WORK_MODES)->map(fn ($mode) => [
             'value' => $mode,
             'label' => match ($mode) {
                 'remote' => __('Remote'),
@@ -42,7 +42,7 @@ final readonly class WorkModulePresenter
             'is_selected' => $mode === $moduleWork?->work_mode,
         ]);
 
-        $workLoads = collect(ModuleWork::WORK_LOADS)->map(fn($load) => [
+        $workLoads = collect(ModuleWork::WORK_LOADS)->map(fn ($load) => [
             'value' => $load,
             'label' => match ($load) {
                 'light' => __('Light'),
@@ -60,10 +60,11 @@ final readonly class WorkModulePresenter
             'work_loads' => $workLoads,
             'work_procrastinated' => $moduleWork?->work_procrastinated,
             'reset_url' => $resetUrl,
-            'display_reset' => ! is_null($moduleWork?->worked)
-                || ! is_null($moduleWork?->work_mode)
-                || ! is_null($moduleWork?->work_load)
-                || ! is_null($moduleWork?->work_procrastinated),
+            'display_reset' =>
+                !is_null($moduleWork?->worked)
+                    || !is_null($moduleWork?->work_mode)
+                    || !is_null($moduleWork?->work_load)
+                    || !is_null($moduleWork?->work_procrastinated),
         ];
     }
 }

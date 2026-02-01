@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -33,7 +33,7 @@ final readonly class GetJournalEntriesMarkdownForLLM
     {
         $month = $this->month ?? 1;
 
-        if (! checkdate($month, 1, $this->year)) {
+        if (!checkdate($month, 1, $this->year)) {
             throw ValidationException::withMessages([
                 'date' => 'Date is invalid.',
             ]);
@@ -63,7 +63,7 @@ final readonly class GetJournalEntriesMarkdownForLLM
             ->get();
 
         if ($entries->isEmpty()) {
-            throw new ModelNotFoundException()->setModel(JournalEntry::class);
+            throw ( new ModelNotFoundException )->setModel(JournalEntry::class);
         }
 
         return $entries;
@@ -71,11 +71,11 @@ final readonly class GetJournalEntriesMarkdownForLLM
 
     private function resolveActiveLayout(): ?Layout
     {
-        return $this->journal->layouts()
+        return $this->journal
+            ->layouts()
             ->where('is_active', true)
             ->with(['layoutModules' => function ($query): void {
-                $query->orderBy('column_number')
-                    ->orderBy('position');
+                $query->orderBy('column_number')->orderBy('position');
             }])
             ->first();
     }

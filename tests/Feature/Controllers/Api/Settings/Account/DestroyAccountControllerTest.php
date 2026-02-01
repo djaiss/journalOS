@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\Api\Settings\Account;
 
@@ -51,10 +51,10 @@ final class DestroyAccountControllerTest extends TestCase
             'reason' => 'I no longer need the account',
         ]);
 
-        Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
-            return $job->reason === 'I no longer need the account'
-                && $job->to[0]['address'] === 'regis@journalos.cloud';
-        });
+        Mail::assertQueued(AccountDestroyed::class, fn (AccountDestroyed $job): bool => (
+                $job->reason === 'I no longer need the account'
+                && $job->to[0]['address'] === 'regis@journalos.cloud'
+            ));
     }
 
     #[Test]

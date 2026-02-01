@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Settings\Security;
 
@@ -8,11 +8,11 @@ use App\Actions\Generate2faQRCode;
 use App\Actions\Validate2faQRCode;
 use App\Helpers\TextSanitizer;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use InvalidArgumentException;
-use Illuminate\Http\RedirectResponse;
 
 final class TwoFAController extends Controller
 {

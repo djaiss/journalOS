@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Auth;
 
@@ -9,8 +9,8 @@ use App\Jobs\SendEmail;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class LoginControllerTest extends TestCase
 {
@@ -79,9 +79,7 @@ final class LoginControllerTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
-        Queue::assertPushed(SendEmail::class, function (SendEmail $job) use ($user): bool {
-            return $job->emailType === EmailType::LOGIN_FAILED && $job->user->id === $user->id;
-        });
+        Queue::assertPushed(SendEmail::class, fn (SendEmail $job) => $job->emailType === EmailType::LOGIN_FAILED && $job->user->id === $user->id);
     }
 
     #[Test]

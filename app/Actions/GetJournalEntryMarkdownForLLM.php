@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -39,7 +39,7 @@ final readonly class GetJournalEntryMarkdownForLLM
 
     private function validateDate(): void
     {
-        if (! checkdate($this->month, $this->day, $this->year)) {
+        if (!checkdate($this->month, $this->day, $this->year)) {
             throw ValidationException::withMessages([
                 'date' => 'Date is invalid.',
             ]);
@@ -62,7 +62,8 @@ final readonly class GetJournalEntryMarkdownForLLM
             return $entry->layout;
         }
 
-        return $this->journal->layouts()
+        return $this->journal
+            ->layouts()
             ->where('is_active', true)
             ->first();
     }
@@ -90,9 +91,9 @@ final readonly class GetJournalEntryMarkdownForLLM
         $relationships = [];
 
         foreach ($moduleKeys as $moduleKey) {
-            if (array_key_exists($moduleKey, $relationshipMap)) {
-                $relationships[] = $relationshipMap[$moduleKey];
-            }
+            if (!(array_key_exists($moduleKey, $relationshipMap))) { continue; }
+
+$relationships[] = $relationshipMap[$moduleKey];
         }
 
         if (in_array('reading', $moduleKeys, true)) {
@@ -118,16 +119,17 @@ final readonly class GetJournalEntryMarkdownForLLM
      */
     public static function moduleKeysForLayout(?Layout $layout): array
     {
-        if (! $layout) {
+        if (!$layout) {
             return [];
         }
 
         $modules = $layout->relationLoaded('layoutModules')
             ? $layout->layoutModules->sortBy([
                 ['column_number', 'asc'],
-                ['position', 'asc'],
+                ['position',      'asc'],
             ])
-            : $layout->layoutModules()
+            : $layout
+                ->layoutModules()
                 ->orderBy('column_number')
                 ->orderBy('position')
                 ->get();
@@ -362,7 +364,7 @@ final readonly class GetJournalEntryMarkdownForLLM
             return (string) $value;
         }
 
-        if (! is_string($value)) {
+        if (!is_string($value)) {
             return null;
         }
 

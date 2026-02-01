@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Settings;
 
@@ -9,8 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class AccountControllerTest extends TestCase
 {
@@ -46,9 +46,6 @@ final class AccountControllerTest extends TestCase
             'reason' => 'I want to delete my account',
         ]);
 
-        Mail::assertQueued(AccountDestroyed::class, function (AccountDestroyed $job): bool {
-            return $job->reason === 'I want to delete my account'
-                && $job->to[0]['address'] === 'regis@journalos.cloud';
-        });
+        Mail::assertQueued(AccountDestroyed::class, fn (AccountDestroyed $job): bool => $job->reason === 'I want to delete my account' && $job->to[0]['address'] === 'regis@journalos.cloud');
     }
 }

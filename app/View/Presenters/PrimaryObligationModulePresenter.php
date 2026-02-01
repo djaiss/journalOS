@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -39,7 +39,7 @@ final readonly class PrimaryObligationModulePresenter
     {
         $modulePrimaryObligation = $this->entry->modulePrimaryObligation;
 
-        return collect(ModulePrimaryObligation::PRIMARY_OBLIGATIONS)->map(fn($value) => [
+        return collect(ModulePrimaryObligation::PRIMARY_OBLIGATIONS)->map(fn ($value) => [
             'value' => $value,
             'label' => match ($value) {
                 'work' => __('Work'),

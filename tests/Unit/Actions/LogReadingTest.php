@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -43,7 +43,7 @@ final class LogReadingTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogReading(
+        $entry = new LogReading(
             user: $user,
             entry: $entry,
             didReadToday: 'yes',
@@ -52,7 +52,7 @@ final class LogReadingTest extends TestCase
             readingFeel: 'engaging',
             wantContinue: 'strongly',
             readingLimit: 'time',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('yes', $entry->moduleReading->did_read_today);
         $this->assertEquals('one solid session', $entry->moduleReading->reading_amount);
@@ -64,25 +64,19 @@ final class LogReadingTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'reading_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'reading_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -107,7 +101,7 @@ final class LogReadingTest extends TestCase
         ]);
         $entry->books()->attach($book, ['status' => BookStatus::CONTINUED->value]);
 
-        $entry = (new LogReading(
+        $entry = new LogReading(
             user: $user,
             entry: $entry,
             didReadToday: 'no',
@@ -116,7 +110,7 @@ final class LogReadingTest extends TestCase
             readingFeel: null,
             wantContinue: null,
             readingLimit: null,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('no', $entry->moduleReading->did_read_today);
         $this->assertNull($entry->moduleReading->reading_amount);
@@ -137,7 +131,7 @@ final class LogReadingTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogReading(
+        new LogReading(
             user: $user,
             entry: $entry,
             didReadToday: 'yes',
@@ -146,7 +140,7 @@ final class LogReadingTest extends TestCase
             readingFeel: null,
             wantContinue: null,
             readingLimit: null,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -163,7 +157,7 @@ final class LogReadingTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogReading(
+        new LogReading(
             user: $user,
             entry: $entry,
             didReadToday: 'yes',
@@ -172,6 +166,6 @@ final class LogReadingTest extends TestCase
             readingFeel: null,
             wantContinue: null,
             readingLimit: null,
-        ))->execute();
+        )->execute();
     }
 }

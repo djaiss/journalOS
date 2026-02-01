@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -11,8 +11,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class Generate2faQRCodeTest extends TestCase
 {
@@ -34,28 +34,26 @@ final class Generate2faQRCodeTest extends TestCase
             'email' => 'michael.scott@dundermifflin.com',
         ]);
 
-        $result = (new Generate2faQRCode(
+        $result = new Generate2faQRCode(
             user: $user,
-        ))->execute();
+        )->execute();
 
         $this->assertIsString($result['secret']);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === '2fa_qr_code_generation'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === '2fa_qr_code_generation'
                     && $job->user->id === $user->id
-                    && $job->description === 'Generated 2FA QR code for setup';
-            },
+                    && $job->description === 'Generated 2FA QR code for setup'
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 }

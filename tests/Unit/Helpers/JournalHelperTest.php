@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Helpers;
 
@@ -9,8 +9,8 @@ use App\Models\Journal;
 use App\Models\JournalEntry;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class JournalHelperTest extends TestCase
 {
@@ -44,21 +44,30 @@ final class JournalHelperTest extends TestCase
         );
 
         $this->assertCount(3, $years);
-        $this->assertEquals((object) [
-            'year' => 2024,
-            'is_selected' => false,
-            'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2024/1/1',
-        ], $years[2024]);
-        $this->assertEquals((object) [
-            'year' => 2023,
-            'is_selected' => true,
-            'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2023/1/1',
-        ], $years[2023]);
-        $this->assertEquals((object) [
-            'year' => 2022,
-            'is_selected' => false,
-            'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2022/1/1',
-        ], $years[2022]);
+        $this->assertEquals(
+            (object) [
+                'year' => 2024,
+                'is_selected' => false,
+                'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2024/1/1',
+            ],
+            $years[2024],
+        );
+        $this->assertEquals(
+            (object) [
+                'year' => 2023,
+                'is_selected' => true,
+                'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2023/1/1',
+            ],
+            $years[2023],
+        );
+        $this->assertEquals(
+            (object) [
+                'year' => 2022,
+                'is_selected' => false,
+                'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2022/1/1',
+            ],
+            $years[2022],
+        );
     }
 
     #[Test]
@@ -87,13 +96,16 @@ final class JournalHelperTest extends TestCase
         );
 
         $this->assertCount(12, $collection);
-        $this->assertEquals((object) [
-            'month' => 2,
-            'month_name' => 'February',
-            'entries_count' => 0,
-            'is_selected' => true,
-            'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2023/2/1',
-        ], $collection[2]);
+        $this->assertEquals(
+            (object) [
+                'month' => 2,
+                'month_name' => 'February',
+                'entries_count' => 0,
+                'is_selected' => true,
+                'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2023/2/1',
+            ],
+            $collection[2],
+        );
     }
 
     #[Test]
@@ -254,13 +266,16 @@ final class JournalHelperTest extends TestCase
         $this->assertCount(28, $days);
 
         // Check day 5 has content
-        $this->assertEquals((object) [
-            'day' => 5,
-            'is_today' => false,
-            'is_selected' => false,
-            'has_content' => true,
-            'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2023/2/5',
-        ], $days[5]);
+        $this->assertEquals(
+            (object) [
+                'day' => 5,
+                'is_today' => false,
+                'is_selected' => false,
+                'has_content' => true,
+                'url' => env('APP_URL') . '/journals/' . $journal->slug . '/entries/2023/2/5',
+            ],
+            $days[5],
+        );
 
         // Check day 10 has content
         $this->assertTrue($days[10]->has_content);

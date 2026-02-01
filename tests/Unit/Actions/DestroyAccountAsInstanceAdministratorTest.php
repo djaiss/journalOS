@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
-use App\Models\User;
 use App\Actions\DestroyAccountAsInstanceAdministrator;
+use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Queue;
@@ -31,10 +31,10 @@ final class DestroyAccountAsInstanceAdministratorTest extends TestCase
             'is_instance_admin' => true,
         ]);
 
-        (new DestroyAccountAsInstanceAdministrator(
+        new DestroyAccountAsInstanceAdministrator(
             user: $user,
             account: $account,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('users', [
             'id' => $account->id,
@@ -51,9 +51,9 @@ final class DestroyAccountAsInstanceAdministratorTest extends TestCase
 
         $this->expectException(Exception::class);
 
-        (new DestroyAccountAsInstanceAdministrator(
+        new DestroyAccountAsInstanceAdministrator(
             user: $user,
             account: $account,
-        ))->execute();
+        )->execute();
     }
 }

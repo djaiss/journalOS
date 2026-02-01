@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -10,8 +10,8 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class UpdateTwoFAMethodTest extends TestCase
 {
@@ -31,10 +31,10 @@ final class UpdateTwoFAMethodTest extends TestCase
             'two_factor_preferred_method' => 'email',
         ]);
 
-        $updatedUser = (new UpdateTwoFAMethod(
+        $updatedUser = new UpdateTwoFAMethod(
             user: $user,
             preferredMethods: 'sms',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('sms', $updatedUser->two_factor_preferred_method);
         $this->assertEquals('sms', $user->fresh()->two_factor_preferred_method);
@@ -42,19 +42,17 @@ final class UpdateTwoFAMethodTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->user->id === $user->id
+            callback: fn (LogUserAction $job) => (
+                    $job->user->id === $user->id
                     && $job->action === 'update_preferred_method'
-                    && $job->description === 'Updated their preferred 2FA method';
-            },
+                    && $job->description === 'Updated their preferred 2FA method'
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -58,11 +58,11 @@ final class RemoveBookTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
 
-        (new RemoveBook(
+        new RemoveBook(
             user: $user,
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('book_journal_entry', [
             'book_id' => $book->id,
@@ -72,25 +72,19 @@ final class RemoveBookTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'book_removed' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'book_removed' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -112,11 +106,11 @@ final class RemoveBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Journal entry not found');
 
-        (new RemoveBook(
+        new RemoveBook(
             user: $user,
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -137,10 +131,10 @@ final class RemoveBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Book not found');
 
-        (new RemoveBook(
+        new RemoveBook(
             user: $user,
             entry: $entry,
             book: $book,
-        ))->execute();
+        )->execute();
     }
 }

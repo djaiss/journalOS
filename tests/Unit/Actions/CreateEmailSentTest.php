@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -11,8 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class CreateEmailSentTest extends TestCase
 {
@@ -31,14 +31,14 @@ final class CreateEmailSentTest extends TestCase
         Carbon::setTestNow(Carbon::create(2018, 1, 1));
         $user = User::factory()->create();
 
-        $emailSent = (new CreateEmailSent(
+        $emailSent = new CreateEmailSent(
             user: $user,
             uuid: 'd27cee22-b10f-46c4-a7dc-af3b46820d80',
             emailType: 'birthday_wishes',
             emailAddress: 'dwight.schrute@dundermifflin.com',
             subject: 'Happy Birthday!',
             body: 'Hope you have a great day!',
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('emails_sent', [
             'id' => $emailSent->id,
@@ -61,14 +61,14 @@ final class CreateEmailSentTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $emailSent = (new CreateEmailSent(
+        $emailSent = new CreateEmailSent(
             user: $user,
             uuid: null,
             emailType: 'birthday_wishes',
             emailAddress: 'dwight.schrute@dundermifflin.com',
             subject: 'Happy Birthday!',
             body: 'Hope you <a href="https://example.com">have a great day!</a>',
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('emails_sent', [
             'id' => $emailSent->id,
@@ -82,14 +82,14 @@ final class CreateEmailSentTest extends TestCase
         $user = User::factory()->create();
         $uuid = Str::uuid();
 
-        $emailSent = (new CreateEmailSent(
+        $emailSent = new CreateEmailSent(
             user: $user,
             uuid: $uuid->toString(),
             emailType: 'birthday_wishes',
             emailAddress: 'dwight.schrute@dundermifflin.com',
             subject: 'Happy Birthday!',
             body: 'Hope you have a great day!',
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('emails_sent', [
             'id' => $emailSent->id,

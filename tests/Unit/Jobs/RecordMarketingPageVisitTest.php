@@ -1,19 +1,18 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Jobs;
 
 use App\Jobs\RecordMarketingPageVisit;
 use App\Models\MarketingPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class RecordMarketingPageVisitTest extends TestCase
 {
     use RefreshDatabase;
-
 
     public function it_creates_a_marketing_page_when_it_does_not_exist(): void
     {

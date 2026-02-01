@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Journals;
 
@@ -23,7 +23,10 @@ final class JournalController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $journals = Auth::user()->journals()->orderBy('id')->get();
+        $journals = Auth::user()
+            ->journals()
+            ->orderBy('id')
+            ->get();
 
         return JournalResource::collection($journals);
     }

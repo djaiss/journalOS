@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -42,12 +42,12 @@ final class UpdateLayoutTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        $updatedLayout = (new UpdateLayout(
+        $updatedLayout = new UpdateLayout(
             user: $user,
             layout: $layout,
             name: 'Updated Layout',
             columnsCount: 4,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('Updated Layout', $updatedLayout->name);
         $this->assertEquals(4, $updatedLayout->columns_count);
@@ -55,20 +55,18 @@ final class UpdateLayoutTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'layout_update'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'layout_update'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
-                    && str_contains($job->description, $journal->name);
-            },
+                    && str_contains($job->description, $journal->name)
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -96,12 +94,12 @@ final class UpdateLayoutTest extends TestCase
             'position' => 1,
         ]);
 
-        (new UpdateLayout(
+        new UpdateLayout(
             user: $user,
             layout: $layout,
             name: 'Updated Layout',
             columnsCount: 2,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('layout_modules', [
             'id' => $keptModule->id,
@@ -124,12 +122,12 @@ final class UpdateLayoutTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new UpdateLayout(
+        new UpdateLayout(
             user: $user,
             layout: $layout,
             name: 'Invalid@Layout',
             columnsCount: 2,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -145,12 +143,12 @@ final class UpdateLayoutTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new UpdateLayout(
+        new UpdateLayout(
             user: $user,
             layout: $layout,
             name: 'Valid Layout',
             columnsCount: 0,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -167,11 +165,11 @@ final class UpdateLayoutTest extends TestCase
             'journal_id' => $otherJournal->id,
         ]);
 
-        (new UpdateLayout(
+        new UpdateLayout(
             user: $user,
             layout: $layout,
             name: 'Updated Layout',
             columnsCount: 3,
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -12,8 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class ClaimAccountTest extends TestCase
 {
@@ -41,13 +41,13 @@ final class ClaimAccountTest extends TestCase
             'guest_expires_at' => Carbon::create(2025, 12, 17, 9, 0, 0),
         ]);
 
-        $user = (new ClaimAccount(
+        $user = new ClaimAccount(
             user: $guest,
             email: 'pam.beesly@dundermifflin.com',
             password: 'new-password',
             firstName: 'Pam',
             lastName: 'Beesly',
-        ))->execute();
+        )->execute();
 
         $user->refresh();
 
@@ -65,19 +65,17 @@ final class ClaimAccountTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'account_claimed'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'account_claimed'
                     && $job->user->id === $user->id
-                    && $job->description === 'Claimed the account';
-            },
+                    && $job->description === 'Claimed the account'
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 }

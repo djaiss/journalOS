@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\App\Settings;
 
@@ -13,7 +13,8 @@ final class EmailSentController extends Controller
 {
     public function index(): View
     {
-        $emails = EmailSent::query()->where('user_id', Auth::user()->id)
+        $emails = EmailSent::query()
+            ->where('user_id', Auth::user()->id)
             ->latest('sent_at')
             ->cursorPaginate(10);
 

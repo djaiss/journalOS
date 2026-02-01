@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -15,9 +15,7 @@ final readonly class HygieneModulePresenter
     public function build(): array
     {
         $module = $this->entry->moduleHygiene;
-        $displayReset = $module?->showered !== null
-            || $module?->brushed_teeth !== null
-            || $module?->skincare !== null;
+        $displayReset = $module?->showered !== null || $module?->brushed_teeth !== null || $module?->skincare !== null;
 
         return [
             'hygiene_url' => route('journal.entry.hygiene.update', [
@@ -44,7 +42,7 @@ final readonly class HygieneModulePresenter
 
     private function yesNoOptions(?string $value): array
     {
-        return collect(['yes', 'no'])->map(fn($option) => [
+        return collect(['yes', 'no'])->map(fn ($option) => [
             'value' => $option,
             'label' => $option === 'yes' ? __('Yes') : __('No'),
             'is_selected' => $value === $option,
@@ -53,7 +51,7 @@ final readonly class HygieneModulePresenter
 
     private function brushedTeethOptions(?string $value): array
     {
-        return collect(['no', 'am', 'pm'])->map(fn($option) => [
+        return collect(['no', 'am', 'pm'])->map(fn ($option) => [
             'value' => $option,
             'label' => match ($option) {
                 'no' => __('No'),

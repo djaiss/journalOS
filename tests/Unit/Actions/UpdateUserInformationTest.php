@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -12,8 +12,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class UpdateUserInformationTest extends TestCase
 {
@@ -35,7 +35,7 @@ final class UpdateUserInformationTest extends TestCase
             'email' => 'michael.scott@dundermifflin.com',
         ]);
 
-        $updatedUser = (new UpdateUserInformation(
+        $updatedUser = new UpdateUserInformation(
             user: $user,
             email: 'michael.scott@dundermifflin.com',
             firstName: 'Michael',
@@ -43,7 +43,7 @@ final class UpdateUserInformationTest extends TestCase
             nickname: 'Mike',
             locale: 'fr',
             timeFormat24h: false,
-        ))->execute();
+        )->execute();
 
         $this->assertInstanceOf(User::class, $updatedUser);
 
@@ -60,17 +60,13 @@ final class UpdateUserInformationTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'personal_profile_update' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'personal_profile_update' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -84,7 +80,7 @@ final class UpdateUserInformationTest extends TestCase
             'email_verified_at' => now(),
         ]);
 
-        (new UpdateUserInformation(
+        new UpdateUserInformation(
             user: $user,
             email: 'dwight.schrute@dundermifflin.com',
             firstName: 'Dwight',
@@ -92,7 +88,7 @@ final class UpdateUserInformationTest extends TestCase
             nickname: 'Dwight',
             locale: 'fr',
             timeFormat24h: true,
-        ))->execute();
+        )->execute();
 
         Event::assertDispatched(Registered::class);
         $this->assertNull($user->refresh()->email_verified_at);
@@ -108,7 +104,7 @@ final class UpdateUserInformationTest extends TestCase
             'email_verified_at' => now(),
         ]);
 
-        (new UpdateUserInformation(
+        new UpdateUserInformation(
             user: $user,
             email: 'michael.scott@dundermifflin.com',
             firstName: 'Dwight',
@@ -116,7 +112,7 @@ final class UpdateUserInformationTest extends TestCase
             nickname: 'Dwight',
             locale: 'fr',
             timeFormat24h: true,
-        ))->execute();
+        )->execute();
 
         Event::assertNotDispatched(Registered::class);
         $this->assertNotNull($user->refresh()->email_verified_at);

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Console\Commands;
 
@@ -21,12 +21,12 @@ final class ExtractMarketingTimestampsTest extends TestCase
 
         $content = $command->generateConfigContent($pages);
 
-        $this->assertStringContainsString("<?php", $content);
-        $this->assertStringContainsString("return [", $content);
-        $this->assertStringContainsString("'pages' => [", $content);
-        $this->assertStringContainsString("'marketing/about' => '2024-01-15 10:30:00'", $content);
-        $this->assertStringContainsString("'marketing/contact' => '2024-01-14 15:45:00'", $content);
-        $this->assertStringContainsString("'marketing/docs/index' => '2024-01-16 08:20:00'", $content);
+        static::assertStringContainsString('<?php', $content);
+        static::assertStringContainsString('return [', $content);
+        static::assertStringContainsString("'pages' => [", $content);
+        static::assertStringContainsString("'marketing/about' => '2024-01-15 10:30:00'", $content);
+        static::assertStringContainsString("'marketing/contact' => '2024-01-14 15:45:00'", $content);
+        static::assertStringContainsString("'marketing/docs/index' => '2024-01-16 08:20:00'", $content);
     }
 
     public function test_it_gets_file_modified_time(): void
@@ -36,7 +36,7 @@ final class ExtractMarketingTimestampsTest extends TestCase
 
         $modifiedTime = $command->getFileModifiedTime($testFilePath);
 
-        $this->assertIsInt($modifiedTime);
-        $this->assertGreaterThan(0, $modifiedTime);
+        static::assertIsInt($modifiedTime);
+        static::assertGreaterThan(0, $modifiedTime);
     }
 }

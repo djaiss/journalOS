@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -40,36 +40,30 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $entry = (new LogHealth(
+        $entry = new LogHealth(
             user: $user,
             entry: $entry,
             health: 'good',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('good', $entry->moduleHealth->health);
 
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'health_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'health_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -86,11 +80,11 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHealth(
+        new LogHealth(
             user: $user,
             entry: $entry,
             health: 'invalid',
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -107,10 +101,10 @@ final class LogHealthTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new LogHealth(
+        new LogHealth(
             user: $user,
             entry: $entry,
             health: 'good',
-        ))->execute();
+        )->execute();
     }
 }

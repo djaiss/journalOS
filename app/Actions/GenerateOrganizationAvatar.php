@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -61,15 +61,15 @@ final readonly class GenerateOrganizationAvatar
         $chosen = array_values($vibes)[$index];
 
         return <<<SVG
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="{$chosen[0]}"/>
-              <stop offset="100%" stop-color="{$chosen[1]}"/>
-            </linearGradient>
-          </defs>
-          <circle cx="60" cy="60" r="60" fill="url(#grad)" />
-        </svg>
-        SVG;
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="{$chosen[0]}"/>
+                  <stop offset="100%" stop-color="{$chosen[1]}"/>
+                </linearGradient>
+              </defs>
+              <circle cx="60" cy="60" r="60" fill="url(#grad)" />
+            </svg>
+            SVG;
     }
 }

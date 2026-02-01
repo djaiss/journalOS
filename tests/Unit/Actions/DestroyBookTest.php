@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -39,10 +39,10 @@ final class DestroyBookTest extends TestCase
             'id' => $book->id,
         ]);
 
-        (new DestroyBook(
+        new DestroyBook(
             user: $user,
             book: $book,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('books', [
             'id' => $book->id,
@@ -51,17 +51,13 @@ final class DestroyBookTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'book_deletion' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'book_deletion' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -74,9 +70,9 @@ final class DestroyBookTest extends TestCase
         $user = User::factory()->create();
         $otherBook = Book::factory()->create();
 
-        (new DestroyBook(
+        new DestroyBook(
             user: $user,
             book: $otherBook,
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -53,19 +53,19 @@ final readonly class LogHygiene
             ]);
         }
 
-        if ($this->showered !== null && ! in_array($this->showered, ['yes', 'no'], true)) {
+        if ($this->showered !== null && !in_array($this->showered, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'showered' => 'Invalid showered value.',
             ]);
         }
 
-        if ($this->brushedTeeth !== null && ! in_array($this->brushedTeeth, ModuleHygiene::BRUSHED_TEETH_VALUES, true)) {
+        if ($this->brushedTeeth !== null && !in_array($this->brushedTeeth, ModuleHygiene::BRUSHED_TEETH_VALUES, true)) {
             throw ValidationException::withMessages([
                 'brushed_teeth' => 'Invalid brushed teeth value.',
             ]);
         }
 
-        if ($this->skincare !== null && ! in_array($this->skincare, ['yes', 'no'], true)) {
+        if ($this->skincare !== null && !in_array($this->skincare, ['yes', 'no'], true)) {
             throw ValidationException::withMessages([
                 'skincare' => 'Invalid skincare value.',
             ]);
@@ -74,9 +74,11 @@ final readonly class LogHygiene
 
     private function log(): void
     {
-        $moduleHygiene = $this->entry->moduleHygiene()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleHygiene = $this->entry
+            ->moduleHygiene()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         if ($this->showered !== null) {
             $moduleHygiene->showered = $this->showered;

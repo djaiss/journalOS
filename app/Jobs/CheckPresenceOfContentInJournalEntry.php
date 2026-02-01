@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Jobs;
 
@@ -50,20 +50,25 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
 
         if ($this->entry->moduleSleep !== null) {
             $moduleSleep = $this->entry->moduleSleep;
-            if ($moduleSleep->bedtime !== null || $moduleSleep->wake_up_time !== null || $moduleSleep->sleep_duration_in_minutes !== null) {
+            if (
+                $moduleSleep->bedtime !== null
+                || $moduleSleep->wake_up_time !== null
+                || $moduleSleep->sleep_duration_in_minutes !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleMood !== null) {
+        if (!$hasContent && $this->entry->moduleMood !== null) {
             if ($this->entry->moduleMood->mood !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleReading !== null) {
+        if (!$hasContent && $this->entry->moduleReading !== null) {
             $moduleReading = $this->entry->moduleReading;
-            if ($moduleReading->did_read_today !== null
+            if (
+                $moduleReading->did_read_today !== null
                 || $moduleReading->reading_amount !== null
                 || $moduleReading->mental_state !== null
                 || $moduleReading->reading_feel !== null
@@ -74,87 +79,112 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             }
         }
 
-        if (! $hasContent && $this->entry->moduleWork !== null) {
+        if (!$hasContent && $this->entry->moduleWork !== null) {
             $moduleWork = $this->entry->moduleWork;
-            if ($moduleWork->worked !== null || $moduleWork->work_mode !== null || $moduleWork->work_load !== null || $moduleWork->work_procrastinated !== null) {
+            if (
+                $moduleWork->worked !== null
+                || $moduleWork->work_mode !== null
+                || $moduleWork->work_load !== null
+                || $moduleWork->work_procrastinated !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->modulePhysicalActivity !== null) {
+        if (!$hasContent && $this->entry->modulePhysicalActivity !== null) {
             $modulePhysicalActivity = $this->entry->modulePhysicalActivity;
-            if ($modulePhysicalActivity->has_done_physical_activity !== null || $modulePhysicalActivity->activity_type !== null || $modulePhysicalActivity->activity_intensity !== null) {
+            if (
+                $modulePhysicalActivity->has_done_physical_activity !== null
+                || $modulePhysicalActivity->activity_type !== null
+                || $modulePhysicalActivity->activity_intensity !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleEnergy !== null) {
+        if (!$hasContent && $this->entry->moduleEnergy !== null) {
             if ($this->entry->moduleEnergy->energy !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleCognitiveLoad !== null) {
+        if (!$hasContent && $this->entry->moduleCognitiveLoad !== null) {
             $moduleCognitiveLoad = $this->entry->moduleCognitiveLoad;
-            if ($moduleCognitiveLoad->cognitive_load !== null || $moduleCognitiveLoad->primary_source !== null || $moduleCognitiveLoad->load_quality !== null) {
+            if (
+                $moduleCognitiveLoad->cognitive_load !== null
+                || $moduleCognitiveLoad->primary_source !== null
+                || $moduleCognitiveLoad->load_quality !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleKids !== null) {
+        if (!$hasContent && $this->entry->moduleKids !== null) {
             if ($this->entry->moduleKids->had_kids_today !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->modulePrimaryObligation !== null) {
+        if (!$hasContent && $this->entry->modulePrimaryObligation !== null) {
             if ($this->entry->modulePrimaryObligation->primary_obligation !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleSocialDensity !== null) {
+        if (!$hasContent && $this->entry->moduleSocialDensity !== null) {
             if ($this->entry->moduleSocialDensity->social_density !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleSexualActivity !== null) {
+        if (!$hasContent && $this->entry->moduleSexualActivity !== null) {
             $moduleSexualActivity = $this->entry->moduleSexualActivity;
-            if ($moduleSexualActivity->had_sexual_activity !== null || $moduleSexualActivity->sexual_activity_type !== null) {
+            if (
+                $moduleSexualActivity->had_sexual_activity !== null
+                || $moduleSexualActivity->sexual_activity_type !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleHealth !== null) {
+        if (!$hasContent && $this->entry->moduleHealth !== null) {
             if ($this->entry->moduleHealth->health !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleHygiene !== null) {
+        if (!$hasContent && $this->entry->moduleHygiene !== null) {
             $moduleHygiene = $this->entry->moduleHygiene;
-            if ($moduleHygiene->showered !== null || $moduleHygiene->brushed_teeth !== null || $moduleHygiene->skincare !== null) {
+            if (
+                $moduleHygiene->showered !== null
+                || $moduleHygiene->brushed_teeth !== null
+                || $moduleHygiene->skincare !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleDayType !== null) {
+        if (!$hasContent && $this->entry->moduleDayType !== null) {
             if ($this->entry->moduleDayType->day_type !== null) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleTravel !== null) {
+        if (!$hasContent && $this->entry->moduleTravel !== null) {
             $moduleTravel = $this->entry->moduleTravel;
-            if ($moduleTravel->has_traveled_today !== null || $moduleTravel->travel_details !== null || $moduleTravel->travel_mode !== null) {
+            if (
+                $moduleTravel->has_traveled_today !== null
+                || $moduleTravel->travel_details !== null
+                || $moduleTravel->travel_mode !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleWeather !== null) {
+        if (!$hasContent && $this->entry->moduleWeather !== null) {
             $moduleWeather = $this->entry->moduleWeather;
-            if ($moduleWeather->condition !== null
+            if (
+                $moduleWeather->condition !== null
                 || $moduleWeather->temperature_range !== null
                 || $moduleWeather->precipitation !== null
                 || $moduleWeather->daylight !== null
@@ -163,9 +193,10 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             }
         }
 
-        if (! $hasContent && $this->entry->moduleWeatherInfluence !== null) {
+        if (!$hasContent && $this->entry->moduleWeatherInfluence !== null) {
             $moduleWeatherInfluence = $this->entry->moduleWeatherInfluence;
-            if ($moduleWeatherInfluence->mood_effect !== null
+            if (
+                $moduleWeatherInfluence->mood_effect !== null
                 || $moduleWeatherInfluence->energy_effect !== null
                 || $moduleWeatherInfluence->plans_influence !== null
                 || $moduleWeatherInfluence->outside_time !== null
@@ -174,26 +205,38 @@ final class CheckPresenceOfContentInJournalEntry implements ShouldQueue
             }
         }
 
-        if (! $hasContent && $this->entry->moduleShopping !== null) {
+        if (!$hasContent && $this->entry->moduleShopping !== null) {
             $moduleShopping = $this->entry->moduleShopping;
-            if ($moduleShopping->has_shopped_today !== null || $moduleShopping->shopping_type !== null || $moduleShopping->shopping_intent !== null || $moduleShopping->shopping_context !== null || $moduleShopping->shopping_for !== null) {
+            if (
+                $moduleShopping->has_shopped_today !== null
+                || $moduleShopping->shopping_type !== null
+                || $moduleShopping->shopping_intent !== null
+                || $moduleShopping->shopping_context !== null
+                || $moduleShopping->shopping_for !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->moduleMeals !== null) {
+        if (!$hasContent && $this->entry->moduleMeals !== null) {
             $moduleMeals = $this->entry->moduleMeals;
-            if ($moduleMeals->meal_presence !== null || $moduleMeals->meal_type !== null || $moduleMeals->social_context !== null || $moduleMeals->has_notes !== null || $moduleMeals->notes !== null) {
+            if (
+                $moduleMeals->meal_presence !== null
+                || $moduleMeals->meal_type !== null
+                || $moduleMeals->social_context !== null
+                || $moduleMeals->has_notes !== null
+                || $moduleMeals->notes !== null
+            ) {
                 $hasContent = true;
             }
         }
 
-        if (! $hasContent && $this->entry->books->isNotEmpty()) {
+        if (!$hasContent && $this->entry->books->isNotEmpty()) {
             $hasContent = true;
         }
 
         $richTextNotes = $this->entry->richTextNotes;
-        if (! $hasContent && $richTextNotes !== null && ! $richTextNotes->isEmpty()) {
+        if (!$hasContent && $richTextNotes !== null && !$richTextNotes->isEmpty()) {
             $hasContent = true;
         }
 

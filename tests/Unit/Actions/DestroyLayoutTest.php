@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -50,10 +50,10 @@ final class DestroyLayoutTest extends TestCase
             'layout_id' => $layout->id,
         ]);
 
-        (new DestroyLayout(
+        new DestroyLayout(
             user: $user,
             layout: $layout,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('layouts', [
             'id' => $layout->id,
@@ -69,19 +69,17 @@ final class DestroyLayoutTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'layout_destroy'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'layout_destroy'
                     && $job->user->id === $user->id
-                    && $job->journal?->id === $journal->id;
-            },
+                    && $job->journal?->id === $journal->id
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -93,9 +91,9 @@ final class DestroyLayoutTest extends TestCase
         $user = User::factory()->create();
         $layout = Layout::factory()->create();
 
-        (new DestroyLayout(
+        new DestroyLayout(
             user: $user,
             layout: $layout,
-        ))->execute();
+        )->execute();
     }
 }

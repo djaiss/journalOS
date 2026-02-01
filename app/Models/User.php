@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class User
@@ -134,10 +134,10 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-    * Get the logs associated with the user.
-    *
-    * @return HasMany<Log, $this>
-    */
+     * Get the logs associated with the user.
+     *
+     * @return HasMany<Log, $this>
+     */
     public function logs(): HasMany
     {
         return $this->hasMany(Log::class);
@@ -160,7 +160,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return Str::of($this->first_name . ' ' . $this->last_name)
             ->explode(' ')
-            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
     }
 
@@ -188,10 +188,12 @@ final class User extends Authenticatable implements MustVerifyEmail
      */
     public function isInTrial(): bool
     {
-        return config('app.enable_paid_version')
-            && ! $this->has_lifetime_access
+        return (
+            config('app.enable_paid_version')
+            && !$this->has_lifetime_access
             && $this->trial_ends_at->isFuture()
-            && ! $this->is_guest;
+            && !$this->is_guest
+        );
     }
 
     /**
@@ -201,8 +203,6 @@ final class User extends Authenticatable implements MustVerifyEmail
      */
     public function needsToPay(): bool
     {
-        return config('app.enable_paid_version')
-            && ! $this->has_lifetime_access
-            && $this->trial_ends_at->isPast();
+        return config('app.enable_paid_version') && !$this->has_lifetime_access && $this->trial_ends_at->isPast();
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
-use App\Models\User;
 use App\Jobs\UpdateUserLastActivityDate;
+use App\Models\User;
 use PragmaRX\Google2FA\Google2FA;
 
 /**
@@ -27,11 +27,13 @@ final readonly class VerifyTwoFactorCode
     {
         if ($this->verifyTotp()) {
             $this->updateUserLastActivityDate();
+
             return true;
         }
 
         if ($this->verifyRescueCode()) {
             $this->updateUserLastActivityDate();
+
             return true;
         }
 
@@ -45,7 +47,8 @@ final readonly class VerifyTwoFactorCode
         }
 
         $secret = $this->user->two_factor_secret;
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
+
         return $google2fa->verifyKey($secret, $this->code);
     }
 
@@ -59,6 +62,7 @@ final readonly class VerifyTwoFactorCode
         if (in_array($this->code, $codes, true)) {
             $this->user->two_factor_recovery_codes = array_values(array_diff($codes, [$this->code]));
             $this->user->save();
+
             return true;
         }
 

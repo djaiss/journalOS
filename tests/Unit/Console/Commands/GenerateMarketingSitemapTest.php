@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Console\Commands;
 
@@ -34,7 +34,7 @@ final class GenerateMarketingSitemapTest extends TestCase
     {
         Artisan::call('marketing:generate-sitemap');
 
-        $this->assertFileExists(public_path('sitemap.xml'));
+        static::assertFileExists(public_path('sitemap.xml'));
     }
 
     public function test_sitemap_contains_valid_xml(): void
@@ -43,9 +43,9 @@ final class GenerateMarketingSitemapTest extends TestCase
 
         $content = File::get(public_path('sitemap.xml'));
 
-        $this->assertStringContainsString('<?xml version="1.0" encoding="UTF-8"?>', $content);
-        $this->assertStringContainsString('<urlset', $content);
-        $this->assertStringContainsString('</urlset>', $content);
+        static::assertStringContainsString('<?xml version="1.0" encoding="UTF-8"?>', $content);
+        static::assertStringContainsString('<urlset', $content);
+        static::assertStringContainsString('</urlset>', $content);
     }
 
     public function test_command_outputs_success_message(): void

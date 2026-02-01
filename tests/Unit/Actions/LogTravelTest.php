@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -52,25 +52,19 @@ final class LogTravelTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'travel_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'travel_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -155,7 +149,10 @@ final class LogTravelTest extends TestCase
             travelModes: ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'],
         )->execute();
 
-        $this->assertEquals(['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'], $entry->moduleTravel->travel_mode);
+        $this->assertEquals(
+            ['car', 'plane', 'train', 'bike', 'bus', 'walk', 'boat', 'other'],
+            $entry->moduleTravel->travel_mode,
+        );
     }
 
     #[Test]

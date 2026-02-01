@@ -1,15 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
-use App\Models\Layout;
 use App\Models\JournalEntry;
+use App\Models\Layout;
 
 final readonly class JournalEntryPresenter
 {
-    public function __construct(private JournalEntry $entry) {}
+    public function __construct(
+        private JournalEntry $entry,
+    ) {}
 
     public function build(): array
     {
@@ -31,7 +33,7 @@ final readonly class JournalEntryPresenter
     {
         $columns = [];
 
-        if (! $layout) {
+        if (!$layout) {
             return $columns;
         }
 
@@ -39,19 +41,20 @@ final readonly class JournalEntryPresenter
             $columns[$column] = [];
         }
 
-        $layoutModules = $layout->layoutModules()
+        $layoutModules = $layout
+            ->layoutModules()
             ->orderBy('column_number')
             ->orderBy('position')
             ->get();
 
         foreach ($layoutModules as $layoutModule) {
-            if (! $this->isModuleVisible($layoutModule->module_key)) {
+            if (!$this->isModuleVisible($layoutModule->module_key)) {
                 continue;
             }
 
             $module = $this->buildModulePayload($layoutModule->module_key);
 
-            if (! $module) {
+            if (!$module) {
                 continue;
             }
 
@@ -183,7 +186,9 @@ final readonly class JournalEntryPresenter
             return $this->entry->layout;
         }
 
-        return $this->entry->journal->layouts()
+        return $this->entry
+            ->journal
+            ->layouts()
             ->where('is_active', true)
             ->first();
     }

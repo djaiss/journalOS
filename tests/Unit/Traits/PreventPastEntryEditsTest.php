@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Traits;
 
@@ -29,10 +29,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => now()->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {
@@ -59,10 +61,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => $sixDaysAgo->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {
@@ -89,10 +93,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => $eightDaysAgo->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {
@@ -120,10 +126,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => $thirtyDaysAgo->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {
@@ -151,10 +159,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => $thirtyDaysAgo->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {
@@ -181,10 +191,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => $oneYearAgo->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {
@@ -211,10 +223,12 @@ final class PreventPastEntryEditsTest extends TestCase
             'day' => $sevenDaysAgo->day,
         ]);
 
-        $testClass = new class ($entry) {
+        $testClass = new class($entry) {
             use PreventPastEntryEdits;
 
-            public function __construct(private JournalEntry $entry) {}
+            public function __construct(
+                private JournalEntry $entry,
+            ) {}
 
             public function test(): void
             {

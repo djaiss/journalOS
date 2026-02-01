@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -75,10 +75,10 @@ final class ResetBookDataTest extends TestCase
             'journal_entry_id' => $entry->id,
         ]);
 
-        $result = (new ResetBookData(
+        $result = new ResetBookData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseMissing('book_journal_entry', [
             'journal_entry_id' => $entry->id,
@@ -89,25 +89,19 @@ final class ResetBookDataTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'book_data_reset' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'book_data_reset' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -126,9 +120,9 @@ final class ResetBookDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetBookData(
+        new ResetBookData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

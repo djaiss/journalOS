@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -44,12 +44,12 @@ final class LogBookTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::STARTED,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('book_journal_entry', [
             'book_id' => $book->id,
@@ -60,25 +60,19 @@ final class LogBookTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'book_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'book_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -96,12 +90,12 @@ final class LogBookTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::CONTINUED,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('book_journal_entry', [
             'book_id' => $book->id,
@@ -124,12 +118,12 @@ final class LogBookTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::FINISHED,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('book_journal_entry', [
             'book_id' => $book->id,
@@ -156,12 +150,12 @@ final class LogBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Journal entry not found');
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::STARTED,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -182,11 +176,11 @@ final class LogBookTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         $this->expectExceptionMessage('Book not found');
 
-        (new LogBook(
+        new LogBook(
             user: $user,
             entry: $entry,
             book: $book,
             status: BookStatus::STARTED,
-        ))->execute();
+        )->execute();
     }
 }

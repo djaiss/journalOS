@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -37,10 +37,10 @@ final class ToggleLLMForJournalTest extends TestCase
             'llm_access_key' => null,
         ]);
 
-        $updatedJournal = (new ToggleLLMForJournal(
+        $updatedJournal = new ToggleLLMForJournal(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
 
         $this->assertTrue($updatedJournal->has_llm_access);
         $this->assertNotNull($updatedJournal->llm_access_key);
@@ -54,19 +54,17 @@ final class ToggleLLMForJournalTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'journal_llm_visibility_toggled'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'journal_llm_visibility_toggled'
                     && $job->user->is($user)
-                    && $job->journal?->is($journal);
-            },
+                    && $job->journal?->is($journal)
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->is($user);
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->is($user),
         );
     }
 
@@ -80,10 +78,10 @@ final class ToggleLLMForJournalTest extends TestCase
             'llm_access_key' => 'existing-key',
         ]);
 
-        $updatedJournal = (new ToggleLLMForJournal(
+        $updatedJournal = new ToggleLLMForJournal(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
 
         $this->assertFalse($updatedJournal->has_llm_access);
         $this->assertNull($updatedJournal->llm_access_key);
@@ -111,10 +109,10 @@ final class ToggleLLMForJournalTest extends TestCase
             ['has_llm_access' => null],
         ));
 
-        (new ToggleLLMForJournal(
+        new ToggleLLMForJournal(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -127,9 +125,9 @@ final class ToggleLLMForJournalTest extends TestCase
             'has_llm_access' => true,
         ]);
 
-        (new ToggleLLMForJournal(
+        new ToggleLLMForJournal(
             user: $user,
             journal: $journal,
-        ))->execute();
+        )->execute();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Settings;
 
@@ -28,7 +28,9 @@ final class JournalLayoutModulesControllerTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        $response = $this->actingAs($user)->get('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules');
+        $response = $this->actingAs($user)->get(
+            '/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules',
+        );
 
         $response->assertOk();
         $response->assertSee($layout->name);
@@ -46,10 +48,13 @@ final class JournalLayoutModulesControllerTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        $response = $this->actingAs($user)->post('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules', [
-            'module_key' => 'sleep',
-            'column_number' => 2,
-        ]);
+        $response = $this->actingAs($user)->post(
+            '/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules',
+            [
+                'module_key' => 'sleep',
+                'column_number' => 2,
+            ],
+        );
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules');
 
@@ -107,7 +112,14 @@ final class JournalLayoutModulesControllerTest extends TestCase
             'position' => 1,
         ]);
 
-        $response = $this->actingAs($user)->delete('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules/' . $layoutModule->module_key);
+        $response = $this->actingAs($user)->delete(
+            '/journals/'
+            . $journal->slug
+            . '/settings/layouts/'
+            . $layout->id
+            . '/modules/'
+            . $layoutModule->module_key,
+        );
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules');
 
@@ -140,11 +152,14 @@ final class JournalLayoutModulesControllerTest extends TestCase
             'position' => 2,
         ]);
 
-        $response = $this->actingAs($user)->put('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules/reorder', [
-            'module_key' => $secondModule->module_key,
-            'column_number' => 1,
-            'position' => 1,
-        ]);
+        $response = $this->actingAs($user)->put(
+            '/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules/reorder',
+            [
+                'module_key' => $secondModule->module_key,
+                'column_number' => 1,
+                'position' => 1,
+            ],
+        );
 
         $response->assertRedirect('/journals/' . $journal->slug . '/settings/layouts/' . $layout->id . '/modules');
 

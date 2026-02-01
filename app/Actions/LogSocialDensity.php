@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -45,7 +45,7 @@ final readonly class LogSocialDensity
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->socialDensity, ModuleSocialDensity::SOCIAL_DENSITY_VALUES, true)) {
+        if (!in_array($this->socialDensity, ModuleSocialDensity::SOCIAL_DENSITY_VALUES, true)) {
             throw ValidationException::withMessages([
                 'social_density' => 'Invalid social density value.',
             ]);
@@ -54,9 +54,11 @@ final readonly class LogSocialDensity
 
     private function log(): void
     {
-        $moduleSocialDensity = $this->entry->moduleSocialDensity()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleSocialDensity = $this->entry
+            ->moduleSocialDensity()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleSocialDensity->social_density = $this->socialDensity;
         $moduleSocialDensity->save();

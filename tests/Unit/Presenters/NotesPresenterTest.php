@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Presenters;
 
@@ -33,7 +33,13 @@ final class NotesPresenterTest extends TestCase
         $presenter = new NotesPresenter($entry);
         $data = $presenter->build();
 
-        $this->assertStringContainsString('/journals/' . $journal->slug . '/entries/2024/1/15/notes/edit', $data['notes_edit_url']);
-        $this->assertStringContainsString('/journals/' . $journal->slug . '/entries/2024/1/15/notes/reset', $data['reset_url']);
+        $this->assertStringContainsString(
+            '/journals/' . $journal->slug . '/entries/2024/1/15/notes/edit',
+            $data['notes_edit_url'],
+        );
+        $this->assertStringContainsString(
+            '/journals/' . $journal->slug . '/entries/2024/1/15/notes/reset',
+            $data['reset_url'],
+        );
     }
 }

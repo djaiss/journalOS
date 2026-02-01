@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -45,7 +45,7 @@ final readonly class LogHealth
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->health, ModuleHealth::HEALTH_VALUES, true)) {
+        if (!in_array($this->health, ModuleHealth::HEALTH_VALUES, true)) {
             throw ValidationException::withMessages([
                 'health' => 'Invalid health value.',
             ]);
@@ -54,9 +54,11 @@ final readonly class LogHealth
 
     private function log(): void
     {
-        $moduleHealth = $this->entry->moduleHealth()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $moduleHealth = $this->entry
+            ->moduleHealth()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $moduleHealth->health = $this->health;
         $moduleHealth->save();

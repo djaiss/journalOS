@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Feature\Controllers\App\Journals\Modules\Sleep;
 
@@ -9,8 +9,8 @@ use App\Models\JournalEntry;
 use App\Models\ModuleSleep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 final class SleepControllerTest extends TestCase
 {

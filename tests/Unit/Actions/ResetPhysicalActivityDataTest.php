@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -45,10 +45,10 @@ final class ResetPhysicalActivityDataTest extends TestCase
             'activity_intensity' => 'intense',
         ]);
 
-        $result = (new ResetPhysicalActivityData(
+        $result = new ResetPhysicalActivityData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
 
         $this->assertNull($result->modulePhysicalActivity->has_done_physical_activity);
         $this->assertNull($result->modulePhysicalActivity->activity_type);
@@ -66,17 +66,13 @@ final class ResetPhysicalActivityDataTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'physical_activity_reset' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'physical_activity_reset' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -95,9 +91,9 @@ final class ResetPhysicalActivityDataTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        (new ResetPhysicalActivityData(
+        new ResetPhysicalActivityData(
             user: $user,
             entry: $entry,
-        ))->execute();
+        )->execute();
     }
 }

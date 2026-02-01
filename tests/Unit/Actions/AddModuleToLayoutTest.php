@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -53,13 +53,13 @@ final class AddModuleToLayoutTest extends TestCase
             'position' => 2,
         ]);
 
-        $layoutModule = (new AddModuleToLayout(
+        $layoutModule = new AddModuleToLayout(
             user: $user,
             layout: $layout,
             moduleKey: 'mood',
             columnNumber: 1,
             requestedPosition: 2,
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('mood', $layoutModule->module_key);
         $this->assertEquals(1, $layoutModule->column_number);
@@ -70,20 +70,18 @@ final class AddModuleToLayoutTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user, $journal): bool {
-                return $job->action === 'layout_module_add'
+            callback: fn (LogUserAction $job) => (
+                    $job->action === 'layout_module_add'
                     && $job->user->id === $user->id
                     && $job->journal?->id === $journal->id
-                    && str_contains($job->description, $journal->name);
-            },
+                    && str_contains($job->description, $journal->name)
+                ),
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -101,12 +99,12 @@ final class AddModuleToLayoutTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        (new AddModuleToLayout(
+        new AddModuleToLayout(
             user: $user,
             layout: $layout,
             moduleKey: 'invalid-module',
             columnNumber: 1,
-        ))->execute();
+        )->execute();
     }
 
     #[Test]
@@ -119,11 +117,11 @@ final class AddModuleToLayoutTest extends TestCase
             'columns_count' => 2,
         ]);
 
-        (new AddModuleToLayout(
+        new AddModuleToLayout(
             user: $user,
             layout: $layout,
             moduleKey: 'sleep',
             columnNumber: 1,
-        ))->execute();
+        )->execute();
     }
 }

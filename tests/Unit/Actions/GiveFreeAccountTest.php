@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
-use App\Models\User;
 use App\Actions\GiveFreeAccount;
+use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Queue;
@@ -31,10 +31,10 @@ final class GiveFreeAccountTest extends TestCase
             'is_instance_admin' => true,
         ]);
 
-        (new GiveFreeAccount(
+        new GiveFreeAccount(
             user: $user,
             account: $account,
-        ))->execute();
+        )->execute();
 
         $this->assertDatabaseHas('users', [
             'id' => $account->id,
@@ -52,9 +52,9 @@ final class GiveFreeAccountTest extends TestCase
 
         $this->expectException(Exception::class);
 
-        (new GiveFreeAccount(
+        new GiveFreeAccount(
             user: $user,
             account: $account,
-        ))->execute();
+        )->execute();
     }
 }

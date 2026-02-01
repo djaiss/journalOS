@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -35,11 +35,11 @@ final class RenameBookTest extends TestCase
             'name' => 'The Great Gatsby',
         ]);
 
-        $updatedBook = (new RenameBook(
+        $updatedBook = new RenameBook(
             user: $user,
             book: $book,
             name: 'The Greatest Gatsby',
-        ))->execute();
+        )->execute();
 
         $this->assertEquals('The Greatest Gatsby', $updatedBook->name);
         $this->assertInstanceOf(Book::class, $updatedBook);
@@ -51,17 +51,13 @@ final class RenameBookTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'book_rename' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'book_rename' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
     }
 
@@ -74,10 +70,10 @@ final class RenameBookTest extends TestCase
         $user = User::factory()->create();
         $otherBook = Book::factory()->create();
 
-        (new RenameBook(
+        new RenameBook(
             user: $user,
             book: $otherBook,
             name: 'New Name',
-        ))->execute();
+        )->execute();
     }
 }

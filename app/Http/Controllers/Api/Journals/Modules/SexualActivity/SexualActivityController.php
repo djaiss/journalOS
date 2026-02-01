@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api\Journals\Modules\SexualActivity;
 
@@ -20,8 +20,20 @@ final class SexualActivityController extends Controller
     {
         $journalEntry = $request->attributes->get('journal_entry');
         $validated = $request->validate([
-            'had_sexual_activity' => ['nullable', 'string', 'max:255', 'in:yes,no', 'required_without_all:sexual_activity_type'],
-            'sexual_activity_type' => ['nullable', 'string', 'max:255', Rule::in(ModuleSexualActivity::SEXUAL_ACTIVITY_TYPES), 'required_without_all:had_sexual_activity'],
+            'had_sexual_activity' => [
+                'nullable',
+                'string',
+                'max:255',
+                'in:yes,no',
+                'required_without_all:sexual_activity_type',
+            ],
+            'sexual_activity_type' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::in(ModuleSexualActivity::SEXUAL_ACTIVITY_TYPES),
+                'required_without_all:had_sexual_activity',
+            ],
         ]);
 
         $entry = new LogSexualActivity(

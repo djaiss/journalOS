@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\View\Presenters;
 
@@ -46,7 +46,7 @@ final readonly class MealsModulePresenter
     {
         $selectedPresence = $this->entry->moduleMeals?->meal_presence;
 
-        return collect(ModuleMeals::MEAL_PRESENCE)->map(fn(string $value) => [
+        return collect(ModuleMeals::MEAL_PRESENCE)->map(fn (string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'breakfast' => __('Breakfast'),
@@ -63,7 +63,7 @@ final readonly class MealsModulePresenter
     {
         $mealType = $this->entry->moduleMeals?->meal_type;
 
-        return collect(ModuleMeals::MEAL_TYPES)->map(fn(string $value) => [
+        return collect(ModuleMeals::MEAL_TYPES)->map(fn (string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'home_cooked' => __('Home-cooked'),
@@ -80,7 +80,7 @@ final readonly class MealsModulePresenter
     {
         $socialContext = $this->entry->moduleMeals?->social_context;
 
-        return collect(ModuleMeals::SOCIAL_CONTEXTS)->map(fn(string $value) => [
+        return collect(ModuleMeals::SOCIAL_CONTEXTS)->map(fn (string $value) => [
             'value' => $value,
             'label' => match ($value) {
                 'alone' => __('Alone'),
@@ -101,10 +101,12 @@ final readonly class MealsModulePresenter
             return false;
         }
 
-        return ! is_null($moduleMeals->meal_presence)
-            || ! is_null($moduleMeals->meal_type)
-            || ! is_null($moduleMeals->social_context)
-            || ! is_null($moduleMeals->has_notes)
-            || ! is_null($moduleMeals->notes);
+        return (
+            !is_null($moduleMeals->meal_presence)
+            || !is_null($moduleMeals->meal_type)
+            || !is_null($moduleMeals->social_context)
+            || !is_null($moduleMeals->has_notes)
+            || !is_null($moduleMeals->notes)
+        );
     }
 }

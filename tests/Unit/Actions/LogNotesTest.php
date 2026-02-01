@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests\Unit\Actions;
 
@@ -39,11 +39,11 @@ final class LogNotesTest extends TestCase
             'journal_id' => $journal->id,
         ]);
 
-        $result = (new LogNotes(
+        $result = new LogNotes(
             user: $user,
             entry: $entry,
             notes: '<p>Today was great!</p>',
-        ))->execute();
+        )->execute();
 
         $this->assertNotNull($result->notes);
         $this->assertStringContainsString('Today was great!', $result->notes->toPlainText());
@@ -56,25 +56,19 @@ final class LogNotesTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: function (LogUserAction $job) use ($user): bool {
-                return $job->action === 'journal_entry_notes_logged' && $job->user->id === $user->id;
-            },
+            callback: fn (LogUserAction $job) => $job->action === 'journal_entry_notes_logged' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: UpdateUserLastActivityDate::class,
-            callback: function (UpdateUserLastActivityDate $job) use ($user): bool {
-                return $job->user->id === $user->id;
-            },
+            callback: fn (UpdateUserLastActivityDate $job) => $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
             queue: 'low',
             job: CheckPresenceOfContentInJournalEntry::class,
-            callback: function (CheckPresenceOfContentInJournalEntry $job) use ($entry): bool {
-                return $job->entry->id === $entry->id;
-            },
+            callback: fn (CheckPresenceOfContentInJournalEntry $job) => $job->entry->id === $entry->id,
         );
     }
 
@@ -91,11 +85,11 @@ final class LogNotesTest extends TestCase
 
         $maliciousContent = '<script>alert("XSS")</script><p>Safe content</p>';
 
-        $result = (new LogNotes(
+        $result = new LogNotes(
             user: $user,
             entry: $entry,
             notes: $maliciousContent,
-        ))->execute();
+        )->execute();
 
         $this->assertNotNull($result->notes);
         $this->assertStringNotContainsString('<script>', $result->notes->toHtml());
@@ -114,11 +108,11 @@ final class LogNotesTest extends TestCase
             'notes' => '<p>Old notes</p>',
         ]);
 
-        $result = (new LogNotes(
+        $result = new LogNotes(
             user: $user,
             entry: $entry,
             notes: '<p>New notes</p>',
-        ))->execute();
+        )->execute();
 
         $this->assertStringContainsString('New notes', $result->notes->toPlainText());
         $this->assertStringNotContainsString('Old notes', $result->notes->toPlainText());
@@ -138,10 +132,10 @@ final class LogNotesTest extends TestCase
 
         $this->expectException(ModelNotFoundException::class);
 
-        (new LogNotes(
+        new LogNotes(
             user: $user,
             entry: $entry,
             notes: '<p>Test notes</p>',
-        ))->execute();
+        )->execute();
     }
 }

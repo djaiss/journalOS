@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Actions;
 
@@ -45,7 +45,7 @@ final readonly class LogPrimaryObligation
 
         $this->preventPastEditsAllowed($this->entry);
 
-        if (! in_array($this->primaryObligation, ModulePrimaryObligation::PRIMARY_OBLIGATIONS, true)) {
+        if (!in_array($this->primaryObligation, ModulePrimaryObligation::PRIMARY_OBLIGATIONS, true)) {
             throw ValidationException::withMessages([
                 'primary_obligation' => 'Invalid primary obligation value.',
             ]);
@@ -54,9 +54,11 @@ final readonly class LogPrimaryObligation
 
     private function log(): void
     {
-        $modulePrimaryObligation = $this->entry->modulePrimaryObligation()->firstOrCreate(
-            ['journal_entry_id' => $this->entry->id],
-        );
+        $modulePrimaryObligation = $this->entry
+            ->modulePrimaryObligation()
+            ->firstOrCreate(
+                ['journal_entry_id' => $this->entry->id],
+            );
 
         $modulePrimaryObligation->primary_obligation = $this->primaryObligation;
         $modulePrimaryObligation->save();
