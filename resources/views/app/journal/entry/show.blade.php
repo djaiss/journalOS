@@ -49,9 +49,11 @@
     </div>
   @else
   <div class="flex justify-end border-b border-gray-200 px-4 py-2 dark:border-gray-700 dark:from-amber-900/20 dark:to-orange-900/20">
-    <x-toggle name="edit-mode" :checked="false">
-      {{ __('Edit mode') }}
-    </x-toggle>
+    <a href="{{ route('journal.entry.toggle-edit', ['slug' => $journal->slug, 'year' => $entry->year, 'month' => $entry->month, 'day' => $entry->day]) }}" class="inline-block">
+      <x-toggle name="edit-mode" :checked="false">
+        {{ __('Edit mode') }}
+      </x-toggle>
+    </a>
   </div>
   @endif
 

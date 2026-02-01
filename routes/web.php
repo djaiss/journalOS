@@ -51,6 +51,10 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}/edit', [Journals\JournalEntryController::class, 'edit'])
                     ->name('journal.entry.edit');
 
+                // toggle edit mode
+                Route::get('journals/{slug}/entries/{year}/{month}/{day}/toggle-edit', [Journals\JournalEntryToggleController::class, 'edit'])
+                    ->name('journal.entry.toggle-edit');
+
                 // notes
                 Route::get('journals/{slug}/entries/{year}/{month}/{day}/notes/edit', [Journals\Notes\NotesController::class, 'edit'])->name('journal.entry.notes.edit');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/notes', [Journals\Notes\NotesController::class, 'update'])->name('journal.entry.notes.update');
