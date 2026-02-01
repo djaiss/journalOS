@@ -1,5 +1,4 @@
-<div class="mx-auto mb-20 max-w-7xl px-6 lg:px-8 xl:px-0">
-  <main class="hidden flex-1 flex-col px-2 py-px text-xs md:flex">
+  <main class="mx-auto mb-20 max-w-7xl px-6 lg:px-8 xl:px-0 hidden flex-1 flex-col px-2 py-px text-xs md:flex">
     <div class="mx-auto flex w-full grow flex-col items-stretch rounded-lg bg-gray-50 shadow-xs ring-1 ring-[#E6E7E9] dark:bg-gray-950 dark:ring-gray-800">
       <!-- list of months -->
       <div id="months-listing" class="bg-white dark:bg-gray-900">
@@ -1240,4 +1239,3 @@
       </div>
     </div>
   </main>
-</div>

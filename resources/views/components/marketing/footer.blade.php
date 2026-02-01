@@ -6,104 +6,6 @@
 
 <footer class="border-t border-gray-200 bg-white pt-12 pb-8 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
   <div class="mx-auto max-w-7xl px-6 lg:px-0">
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-      <!-- Products Column -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Products</h3>
-        <ul class="mt-6 space-y-4">
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">All products</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Features</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Security</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Team</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Enterprise</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Resources Column -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Resources</h3>
-        <ul class="mt-6 space-y-4">
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Documentation</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">API Reference</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Guides</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Company Column -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Company</h3>
-        <ul class="mt-6 space-y-4">
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">About</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Blog</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Careers</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Support Column -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Support</h3>
-        <ul class="mt-6 space-y-4">
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Help Center</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Community</a>
-          </li>
-          <li>
-            <a href="https://status.journalos.cloud/" target="_blank" class="flex items-center gap-x-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" aria-label="View system status">
-              <span class="relative flex h-2 w-2" aria-hidden="true">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75 duration-1000"></span>
-                <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-              </span>
-              Status
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Social Column -->
-      <div>
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Social</h3>
-        <ul class="mt-6 space-y-4">
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">GitHub</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">Twitter</a>
-          </li>
-          <li>
-            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">LinkedIn</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bottom section -->
-  <div class="mt-12 border-t border-gray-900/10 pt-8">
-    <div class="mx-auto max-w-7xl px-6 lg:px-0">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div class="flex flex-col gap-y-2">
           <div class="flex flex-col items-center gap-x-4 sm:flex-row sm:gap-x-2">
@@ -139,5 +41,4 @@
         </div>
       </div>
     </div>
-  </div>
 </footer>

@@ -21,7 +21,7 @@
         "softwareHelp": "https://journalos.cloud/docs",
         "offers": {
           "@@type": "Offer",
-          "price": "99.00",
+          "price": "50.00",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
         },
@@ -54,8 +54,7 @@
       </div>
 
       <p>
-        <span class="rounded-md bg-green-100 px-1.5 py-1 font-semibold text-green-600">123</span>
-        people started their journal in the last 7 days.
+        You can also try <a href="{{ route('demo.index') }}" data-turbo="true" class="text-blue-600 hover:underline">a demo journal</a> if you see how the product works without creating an account.
       </p>
     </div>
   </div>
@@ -63,14 +62,22 @@
   <!-- App section -->
   @include('marketing.partials.app')
 
+  <div class="flex justify-center md:hidden">
+    <x-image class="mb-10" src="{{ asset('images/marketing/app.webp') }}" srcset="{{ asset('images/marketing/app.webp') }} 1x, {{ asset('images/marketing/app@2x.webp') }} 2x" width="378" height="471" alt="JournalOS main user interface" />
+  </div>
+
   <!-- Feature section -->
   <div id="features" class="bg-gray-50 py-12 dark:bg-gray-800">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
       <!-- Title -->
-      <div class="mx-auto max-w-2xl lg:text-center">
+      <div class="mx-auto max-w-2xl lg:text-center mb-10">
         <h2 class="text-base leading-7 font-semibold text-green-600">Your personal diary</h2>
         <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Organize your journal the way you want to.</p>
+        <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">Each journal entry can have a layout that you define.</p>
       </div>
+
+      <!-- App section -->
+      @include('marketing.partials.modules')
 
       <!-- 3 benefits -->
       <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:max-w-none">
@@ -228,7 +235,7 @@
             .
           </p>
         </div>
-        <div class="flex items-center lg:col-span-1 lg:items-start">
+        <div class="hidden md:flex items-center lg:col-span-1 lg:items-start">
           <div class="flex flex-col" x-data="{ isRotating: false }">
             <div class="relative">
               <x-image src="{{ asset('images/marketing/regis.webp') }}" srcset="{{ asset('images/marketing/regis.webp') }} 1x, {{ asset('images/marketing/regis@2x.webp') }} 2x" alt="Monica" class="mb-3 w-40 rounded-lg transition-all duration-[2000ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:rotate-[360deg] lg:rotate-4" @mouseenter="isRotating = true" @mouseleave="isRotating = false" @transitionend="isRotating = false" width="187" height="187" />
@@ -246,8 +253,8 @@
   <!-- CTA Section -->
   <div id="privacy" class="bg-gray-50 py-12 sm:py-20 dark:bg-gray-800">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-0">
-      <h3 class="mt-2 mb-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Privacy and transparency are at the core of what we do.</h3>
-      <p class="mb-10 text-xl dark:text-gray-300">You are not our product. You are the reason we exist.</p>
+      <h3 class="text-center mt-2 mb-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-100">Privacy and transparency are at the core of what we do.</h3>
+      <p class="text-center mb-10 text-xl dark:text-gray-300">You are not our product. You are the reason we exist.</p>
 
       <div class="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-4">
         <div class="rounded-lg bg-gray-50 p-4 dark:bg-gray-900/50">
