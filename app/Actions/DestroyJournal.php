@@ -8,6 +8,7 @@ use App\Jobs\LogUserAction;
 use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\User;
+use App\Models\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final readonly class DestroyJournal
@@ -38,6 +39,7 @@ final readonly class DestroyJournal
 
     private function delete(): void
     {
+        Log::where('journal_id', $this->journal->id)->update(['journal_id' => null]);
         $this->journal->delete();
     }
 

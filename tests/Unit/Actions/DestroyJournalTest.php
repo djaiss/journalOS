@@ -10,6 +10,7 @@ use App\Jobs\UpdateUserLastActivityDate;
 use App\Models\Journal;
 use App\Models\JournalEntry;
 use App\Models\User;
+use App\Models\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
@@ -72,5 +73,33 @@ final class DestroyJournalTest extends TestCase
             user: $user,
             journal: $otherJournal,
         ))->execute();
+    }
+
+    #[Test]
+    public function it_nullifies_journal_id_in_logs_when_journal_is_deleted(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $log = Log::create([
+            'user_id' => $user->id,
+            'journal_id' => $journal->id,
+            'journal_name' => $journal->name,
+            'action' => 'test_action',
+            'description' => 'Test description',
+        ]);
+
+        (new DestroyJournal(
+            user: $user,
+            journal: $journal,
+        ))->execute();
+
+        $log->refresh();
+
+        $this->assertNull($log->journal_id);
+        $this->assertNotNull($log->journal_name);
+        $this->assertEquals($journal->name, $log->journal_name);
     }
 }
