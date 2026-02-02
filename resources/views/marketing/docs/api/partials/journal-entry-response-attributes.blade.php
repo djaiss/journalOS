@@ -79,6 +79,10 @@
   <x-marketing.docs.attribute name="attributes.modules.cognitive_load.load_quality" type="string" description="The quality of the cognitive load." />
   <x-marketing.docs.attribute name="attributes.modules.social_density" type="object" description="The social density module payload." />
   <x-marketing.docs.attribute name="attributes.modules.social_density.social_density" type="string" description="How crowded the day felt." />
+  <x-marketing.docs.attribute name="attributes.modules.social_events" type="object" description="The social events module payload." />
+  <x-marketing.docs.attribute name="attributes.modules.social_events.event_type" type="string" description="The type of social event." />
+  <x-marketing.docs.attribute name="attributes.modules.social_events.tone" type="string" description="The tone of the social event." />
+  <x-marketing.docs.attribute name="attributes.modules.social_events.duration" type="string" description="The duration of the social event." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity" type="object" description="The physical activity module payload." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity.has_done_physical_activity" type="string" description="Whether physical activity was done." />
   <x-marketing.docs.attribute name="attributes.modules.physical_activity.activity_type" type="string" description="The type of physical activity." />

@@ -18,6 +18,7 @@ use App\Models\ModuleMeals;
 use App\Models\ModulePhysicalActivity;
 use App\Models\ModuleReading;
 use App\Models\ModuleSexualActivity;
+use App\Models\ModuleSocialEvents;
 use App\Models\ModuleShopping;
 use App\Models\ModuleSleep;
 use App\Models\ModuleTravel;
@@ -393,6 +394,27 @@ final class JournalEntryTest extends TestCase
         $this->assertEquals($moduleSexualActivity->id, $entry->moduleSexualActivity->id);
         $this->assertEquals('yes', $entry->moduleSexualActivity->had_sexual_activity);
         $this->assertEquals('solo', $entry->moduleSexualActivity->sexual_activity_type);
+    }
+
+    #[Test]
+    public function it_has_one_module_social_events(): void
+    {
+        $journal = Journal::factory()->create();
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+        ]);
+        $moduleSocialEvents = ModuleSocialEvents::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'event_type' => 'friends',
+            'tone' => 'positive',
+            'duration' => 'short',
+        ]);
+
+        $this->assertTrue($entry->moduleSocialEvents()->exists());
+        $this->assertEquals($moduleSocialEvents->id, $entry->moduleSocialEvents->id);
+        $this->assertEquals('friends', $entry->moduleSocialEvents->event_type);
+        $this->assertEquals('positive', $entry->moduleSocialEvents->tone);
+        $this->assertEquals('short', $entry->moduleSocialEvents->duration);
     }
 
     #[Test]

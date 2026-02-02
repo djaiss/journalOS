@@ -312,6 +312,20 @@
           </div>
 
           <div x-show="
+            (selectedCategory === 'All' || selectedCategory === 'Social') &&
+              (searchQuery === '' || 'social events'.includes(searchQuery.toLowerCase()))
+          " x-transition>
+            <x-marketing.module emoji="🤝" name="Social Events">
+              <x-slot:trackedData>
+                <li>Event type</li>
+                <li>Tone</li>
+                <li>Duration</li>
+              </x-slot>
+              <x-slot:category>Social</x-slot>
+            </x-marketing.module>
+          </div>
+
+          <div x-show="
             (selectedCategory === 'All' || selectedCategory === 'Places') &&
               (searchQuery === '' || 'travel'.includes(searchQuery.toLowerCase()))
           " x-transition>

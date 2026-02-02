@@ -39,6 +39,7 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/docs/api/modules/meals', [Docs\Api\Modules\MealsController::class, 'index'])->name('marketing.docs.api.modules.meals');
     Route::get('/docs/api/modules/shopping', [Docs\Api\Modules\ShoppingController::class, 'index'])->name('marketing.docs.api.modules.shopping');
     Route::get('/docs/api/modules/social-density', [Docs\Api\Modules\SocialDensityController::class, 'index'])->name('marketing.docs.api.modules.social-density');
+    Route::get('/docs/api/modules/social-events', [Docs\Api\Modules\SocialEventsController::class, 'index'])->name('marketing.docs.api.modules.social-events');
     Route::get('/docs/api/modules/physical-activity', [Docs\Api\Modules\PhysicalActivityController::class, 'index'])->name('marketing.docs.api.modules.physical-activity');
     Route::get('/docs/api/modules/primary-obligation', [Docs\Api\Modules\PrimaryObligationController::class, 'index'])->name('marketing.docs.api.modules.primary-obligation');
     Route::get('/docs/api/modules/reading', [Docs\Api\Modules\ReadingController::class, 'index'])->name('marketing.docs.api.modules.reading');

@@ -342,6 +342,11 @@ final readonly class GetJournalEntryMarkdownForLLM
             'social_density' => [
                 'Social density' => $entry->moduleSocialDensity?->social_density,
             ],
+            'social_events' => [
+                'Social event type' => $entry->moduleSocialEvents?->event_type,
+                'Social event tone' => $entry->moduleSocialEvents?->tone,
+                'Social event duration' => $entry->moduleSocialEvents?->duration,
+            ],
             default => null,
         };
     }
@@ -423,6 +428,7 @@ final readonly class GetJournalEntryMarkdownForLLM
             'energy' => 'moduleEnergy',
             'cognitive_load' => 'moduleCognitiveLoad',
             'social_density' => 'moduleSocialDensity',
+            'social_events' => 'moduleSocialEvents',
         ];
     }
 }

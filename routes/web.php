@@ -145,6 +145,8 @@ Route::middleware(['auth', 'verified', 'throttle:60,1', 'set.locale'])->group(fu
                 // social density
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-density', [Journals\Modules\SocialDensity\SocialDensityController::class, 'update'])->name('journal.entry.social-density.update');
                 Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-density/reset', [Journals\Modules\SocialDensity\SocialDensityResetController::class, 'update'])->name('journal.entry.social-density.reset');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-events', [Journals\Modules\SocialEvents\SocialEventsController::class, 'update'])->name('journal.entry.social-events.update');
+                Route::put('journals/{slug}/entries/{year}/{month}/{day}/social-events/reset', [Journals\Modules\SocialEvents\SocialEventsResetController::class, 'update'])->name('journal.entry.social-events.reset');
             });
 
             // settings

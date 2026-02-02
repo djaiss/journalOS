@@ -296,6 +296,22 @@
   <span class="text-lime-700">"few people"</span>
 </div>
 <div class="pl-16">},</div>
+<div class="pl-16">"social_events": {</div>
+<div class="pl-20">
+  "event_type":
+  <span class="text-lime-700">"friends"</span>
+  ,
+</div>
+<div class="pl-20">
+  "tone":
+  <span class="text-lime-700">"positive"</span>
+  ,
+</div>
+<div class="pl-20">
+  "duration":
+  <span class="text-lime-700">"medium"</span>
+</div>
+<div class="pl-16">},</div>
 <div class="pl-16">"sexual_activity": {</div>
 <div class="pl-20">
   "has_sexual_activity":

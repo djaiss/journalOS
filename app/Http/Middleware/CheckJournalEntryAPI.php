@@ -56,6 +56,7 @@ final class CheckJournalEntryAPI
             'moduleKids',
             'modulePrimaryObligation',
             'moduleSocialDensity',
+            'moduleSocialEvents',
             'books',
             'richTextNotes',
         );

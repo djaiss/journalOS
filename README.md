@@ -63,9 +63,10 @@ This is what it looks like.
   </details>
 
   <details>
-  <summary>👥 Social (3 modules)</summary>
+  <summary>👥 Social (4 modules)</summary>
 
   - 👥 Social density
+  - 🤝 Social events
   - 🧒 Kids
   - ❤️ Sexual activity
   </details>

@@ -124,6 +124,12 @@ final class ModuleCatalog
             'title' => 'Social density',
             'emoji' => '👥',
         ],
+        'social_events' => [
+            'table' => 'module_social_events',
+            'label' => 'Social events module',
+            'title' => 'Social events',
+            'emoji' => '🤝',
+        ],
     ];
 
     /**
