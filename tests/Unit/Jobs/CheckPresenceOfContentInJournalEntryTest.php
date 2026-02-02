@@ -18,6 +18,7 @@ use App\Models\ModuleReading;
 use App\Models\ModuleSexualActivity;
 use App\Models\ModuleShopping;
 use App\Models\ModuleSocialDensity;
+use App\Models\ModuleSocialEvents;
 use App\Models\ModuleWeather;
 use App\Models\ModuleWeatherInfluence;
 use App\Models\ModuleWork;
@@ -227,6 +228,27 @@ final class CheckPresenceOfContentInJournalEntryTest extends TestCase
         ModuleSocialDensity::factory()->create([
             'journal_entry_id' => $entry->id,
             'social_density' => 'crowd',
+        ]);
+
+        $job = new CheckPresenceOfContentInJournalEntry($entry);
+        $job->handle();
+
+        $entry->refresh();
+        $this->assertTrue($entry->has_content);
+    }
+
+    #[Test]
+    public function it_sets_has_content_to_true_when_social_events_module_has_data(): void
+    {
+        $user = User::factory()->create();
+        $journal = Journal::factory()->create(['user_id' => $user->id]);
+        $entry = JournalEntry::factory()->create([
+            'journal_id' => $journal->id,
+            'has_content' => false,
+        ]);
+        ModuleSocialEvents::factory()->create([
+            'journal_entry_id' => $entry->id,
+            'event_type' => 'friends',
         ]);
 
         $job = new CheckPresenceOfContentInJournalEntry($entry);

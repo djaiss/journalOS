@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\Journals\Modules\PrimaryObligation\PrimaryObligatio
 use App\Http\Controllers\Api\Journals\Modules\Shopping\ShoppingController;
 use App\Http\Controllers\Api\Journals\Modules\SexualActivity\SexualActivityController;
 use App\Http\Controllers\Api\Journals\Modules\SocialDensity\SocialDensityController as SocialDensityModuleController;
+use App\Http\Controllers\Api\Journals\Modules\SocialEvents\SocialEventsController as SocialEventsModuleController;
 use App\Http\Controllers\Api\Journals\Modules\Sleep\SleepController;
 use App\Http\Controllers\Api\Journals\Modules\Travel\TravelController;
 use App\Http\Controllers\Api\Journals\Modules\Weather\WeatherController as WeatherModuleController;
@@ -128,6 +129,9 @@ Route::name('api.')->group(function (): void {
 
                         Route::put('social-density', [SocialDensityModuleController::class, 'update'])
                             ->name('journal.entry.social-density.update');
+
+                        Route::put('social-events', [SocialEventsModuleController::class, 'update'])
+                            ->name('journal.entry.social-events.update');
 
                         Route::put('notes', [NotesController::class, 'update'])
                             ->name('journal.entry.notes.update');

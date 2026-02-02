@@ -239,6 +239,11 @@ final readonly class JournalEntryShowPresenter
             'social_density' => [
                 'Social density' => $this->entry->moduleSocialDensity?->social_density,
             ],
+            'social_events' => [
+                'Social event type' => $this->entry->moduleSocialEvents?->event_type,
+                'Social event tone' => $this->entry->moduleSocialEvents?->tone,
+                'Social event duration' => $this->entry->moduleSocialEvents?->duration,
+            ],
             default => null,
         };
     }

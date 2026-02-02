@@ -150,6 +150,16 @@ final class JournalEntry extends Model
     }
 
     /**
+     * Get the social events module data for this entry.
+     *
+     * @return HasOne<ModuleSocialEvents, $this>
+     */
+    public function moduleSocialEvents(): HasOne
+    {
+        return $this->hasOne(ModuleSocialEvents::class, 'journal_entry_id');
+    }
+
+    /**
      * Get the kids module data for this entry.
      *
      * @return HasOne<ModuleKids, $this>

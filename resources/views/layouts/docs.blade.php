@@ -137,6 +137,9 @@
                 <a href="{{ route('marketing.docs.api.modules.social-density') }}" class="{{ request()->routeIs('marketing.docs.api.modules.social-density') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Social density</a>
               </div>
               <div>
+                <a href="{{ route('marketing.docs.api.modules.social-events') }}" class="{{ request()->routeIs('marketing.docs.api.modules.social-events') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Social events</a>
+              </div>
+              <div>
                 <a href="{{ route('marketing.docs.api.modules.mood') }}" class="{{ request()->routeIs('marketing.docs.api.modules.mood') ? 'border-l-blue-400' : 'border-l-transparent' }} block border-l-3 pl-3 hover:border-l-blue-400 hover:underline">Mood</a>
               </div>
               <div>

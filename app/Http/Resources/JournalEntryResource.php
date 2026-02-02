@@ -128,6 +128,11 @@ final class JournalEntryResource extends JsonResource
                     'social_density' => [
                         'social_density' => $this->moduleSocialDensity?->social_density,
                     ],
+                    'social_events' => [
+                        'event_type' => $this->moduleSocialEvents?->event_type,
+                        'tone' => $this->moduleSocialEvents?->tone,
+                        'duration' => $this->moduleSocialEvents?->duration,
+                    ],
                 ],
                 'created_at' => $this->created_at->timestamp,
                 'updated_at' => $this->updated_at?->timestamp,

@@ -171,6 +171,11 @@ final readonly class JournalEntryPresenter
                 'view' => 'app.journal.entry.partials.social_density',
                 'data' => ['module' => new SocialDensityModulePresenter($this->entry)->build()],
             ],
+            'social_events' => [
+                'key' => $moduleKey,
+                'view' => 'app.journal.entry.partials.social_events',
+                'data' => ['module' => new SocialEventsModulePresenter($this->entry)->build()],
+            ],
             default => null,
         };
     }
