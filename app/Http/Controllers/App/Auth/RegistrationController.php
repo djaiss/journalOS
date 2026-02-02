@@ -21,7 +21,12 @@ final class RegistrationController extends Controller
 {
     public function create(): View
     {
-        return view('app.auth.register');
+        $quotes = config('quotes');
+        $randomQuote = $quotes[array_rand($quotes)];
+
+        return view('app.auth.register', [
+            'quote' => $randomQuote,
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
