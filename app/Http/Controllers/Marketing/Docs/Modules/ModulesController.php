@@ -10,7 +10,7 @@ use Illuminate\View\View;
 
 final class ModulesController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): View
     {
         return view('marketing.docs.modules.index');
     }

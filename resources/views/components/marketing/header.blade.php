@@ -35,12 +35,12 @@
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Why {{ config('app.name') }}</p>
         </a>
 
-        <a href="{{ route('marketing.features.modules') }}" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="{{ route('marketing.features.modules') }}" data-turbo="true" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-squares-four class="h-4 w-4 text-purple-600 group-hover:text-purple-700" />
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Modules</p>
         </a>
 
-        <a href="" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
+        <a href="{{ route('marketing.pricing.index') }}" data-turbo="true" class="group flex items-center gap-x-2 rounded-sm border border-b-3 border-transparent px-2 py-1 transition-colors duration-150 hover:border-gray-400 hover:bg-white dark:hover:border-slate-500 dark:hover:bg-gray-700/60">
           <x-phosphor-credit-card class="h-4 w-4 text-green-600 group-hover:text-green-700" />
           <p class="text-sm text-gray-700 group-hover:text-gray-900 dark:text-slate-200 dark:group-hover:text-white">Pricing</p>
         </a>

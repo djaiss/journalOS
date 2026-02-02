@@ -2,16 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\Marketing\Company\Handbook;
+namespace App\Http\Controllers\Marketing\Pricing;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class HandbookController extends Controller
+final class PricingController extends Controller
 {
     public function index(): View
     {
-        return view('marketing.company.handbook.index');
+        return view('marketing.pricing.index');
     }
 }

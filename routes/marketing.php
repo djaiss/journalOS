@@ -6,6 +6,7 @@ use App\Http\Controllers\Marketing\CloudflarePurgeMarketingController;
 use App\Http\Controllers\Marketing\Company\Handbook;
 use App\Http\Controllers\Marketing\Docs;
 use App\Http\Controllers\Marketing\Features;
+use App\Http\Controllers\Marketing\Pricing;
 use App\Http\Controllers\Marketing\MarketingController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,4 +67,7 @@ Route::middleware(['marketing'])->group(function (): void {
     Route::get('/company/handbook/writing', [Handbook\HandbookWritingController::class, 'index'])->name('marketing.company.handbook.marketing.writing');
     Route::get('/company/handbook/product-philosophy', [Handbook\HandbookProductPhilosophyController::class, 'index'])->name('marketing.company.handbook.marketing.product-philosophy');
     Route::get('/company/handbook/prioritize', [Handbook\HandbookPrioritizeController::class, 'index'])->name('marketing.company.handbook.marketing.prioritize');
+
+    // pricing
+    Route::get('/pricing', [Pricing\PricingController::class, 'index'])->name('marketing.pricing.index');
 });
