@@ -60,10 +60,7 @@ final class ResetSocialEventsDataTest extends TestCase
         Queue::assertPushedOn(
             queue: 'low',
             job: LogUserAction::class,
-            callback: fn (LogUserAction $job) => (
-                $job->action === 'social_events_reset'
-                && $job->user->id === $user->id
-            ),
+            callback: fn (LogUserAction $job) => $job->action === 'social_events_reset' && $job->user->id === $user->id,
         );
 
         Queue::assertPushedOn(
