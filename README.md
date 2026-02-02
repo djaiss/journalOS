@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-<em>Awesome, simple personal diary</em>
+<em>A self-hosted, privacy-first system to log your daily life</em>
 </p>
 
 <hr/>
@@ -17,7 +17,7 @@
 
 ## What is this?
 
-JournalOS is a simple diary, released under the MIT license. It lets you track your life, like how you slept, if you are in a good mood, if you've worked remotely today, or how many friends you've talked to.
+JournalOS is a simple diary, released under the MIT license. It lets you log your life, like how you slept, if you are in a good mood, if you've worked remotely today, or how many friends you've talked to.
 
 I don't like writing long essays, I've never succeeded in getting into the habit of writing daily. But I still wanted to document my life in a simple and efficient way. Since this didn't exist, I've created something that I would use every day (like [my previous project](https://github.com/monicahq/monica)).
 
@@ -32,9 +32,21 @@ This is what it looks like.
 </picture>
 </p>
 
+### Who is it for
+
+JournalOS is for:
+- People who want structured daily memory
+- Users who care about privacy and data ownership
+- Developers and power users
+
+JournalOS is not for:
+- Writing long personal journals
+- Social sharing
+- Coaching or habit gamification
+
 ### Features
 
-- Daily logging of your life
+- JournalOS is built around modules, grouped into five categories:
   <details>
   <summary>💪 Body & Health (5 modules)</summary>
 
@@ -81,8 +93,7 @@ This is what it looks like.
   </details>
 
 - Ability to prevent editing older journal entries
-- Monthly/yearly statistics
-- Random email reminders of what happened in the past
+- Access data with the LLM of your chcoice through a friendly URL
 - Fully translated in English and French
 
 ### Core principles
@@ -90,7 +101,9 @@ This is what it looks like.
 - You own your data.
 - I work in public.
 - I don't assume I know your reality.
-- No ads. No reselling of data. I'm like you - hating marketing.
+- No ads.
+- No data resale.
+- No behavioral manipulation.
 
 ### User and developer principles
 
@@ -103,6 +116,10 @@ I wanted this tool to follow those principles:
 - The code should be simple and predictable.
 - It's designed to be self-hosted.
 - The data is fully encrypted at rest. This comes with severe drawbacks, but at least data is secure.
+
+## Installation
+
+JournalOS is designed to be self-hosted. See the documentation for Docker and manual installation instructions.
 
 ## Note for developers who want to contribute
 
