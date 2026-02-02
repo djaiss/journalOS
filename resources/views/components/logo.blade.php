@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var int|string $width
  * @var int|string $height

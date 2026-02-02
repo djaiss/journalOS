@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \Illuminate\View\ComponentAttributeBag $attributes
  * @var \Illuminate\View\ComponentSlot $slot
