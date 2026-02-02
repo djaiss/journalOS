@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\Models\Journal|null $journal
  * @var \Illuminate\View\ComponentSlot $slot

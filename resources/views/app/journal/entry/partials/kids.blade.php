@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\Models\JournalEntry $entry
  * @var array<string, mixed> $module

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var bool $has2fa
  * @var string|null $preferredMethod

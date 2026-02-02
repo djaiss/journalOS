@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string|null $href
  * @var \Illuminate\View\ComponentAttributeBag $attributes

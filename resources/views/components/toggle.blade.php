@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $name
  * @var bool $checked

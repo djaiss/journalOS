@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \Illuminate\Support\Collection $logs
  * @var bool $hasMoreLogs

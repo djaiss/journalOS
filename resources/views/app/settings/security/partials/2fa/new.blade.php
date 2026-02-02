@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $qrCodeSvg
  * @var string $secret

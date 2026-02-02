@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\Models\User $user
  * @var \Illuminate\Support\ViewErrorBag $errors

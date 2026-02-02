@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $align
  * @var string $width

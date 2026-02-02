@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var array<int, string>|string|null $messages
  * @var \Illuminate\View\ComponentAttributeBag $attributes

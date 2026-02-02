@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $method
  * @var string $action
