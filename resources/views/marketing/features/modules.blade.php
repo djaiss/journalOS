@@ -13,11 +13,11 @@
     selectedCategory: 'All',
     searchQuery: '',
     categories: [
-      { name: 'All', emoji: '📋', count: 19 },
+      { name: 'All', emoji: '📋', count: 20 },
       { name: 'Body & Health', emoji: '💪', count: 5 },
       { name: 'Mind & Emotions', emoji: '🧠', count: 4 },
       { name: 'Work', emoji: '💼', count: 3 },
-      { name: 'Social', emoji: '👥', count: 3 },
+      { name: 'Social', emoji: '👥', count: 4 },
       { name: 'Places', emoji: '📍', count: 4 },
     ],
   }">
@@ -25,7 +25,7 @@
       <!-- title -->
       <div class="mb-20 text-center">
         <h2 class="mb-6 text-4xl font-semibold tracking-tight text-gray-900 sm:text-6xl dark:text-gray-100">All the modules you can use in your journal</h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">We have 19 modules to track different aspects of your daily life.</p>
+        <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">We have 20 modules to track different aspects of your daily life.</p>
       </div>
 
       <!-- tabs filter + search field -->
