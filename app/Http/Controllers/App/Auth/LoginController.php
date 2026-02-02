@@ -30,8 +30,8 @@ final class LoginController extends Controller
         $randomQuote = $quotes[array_rand($quotes)];
 
         return view('app.auth.login', [
-            'quote' => $randomQuote]
-        );
+            'quote' => $randomQuote,
+        ]);
     }
 
     public function store(Request $request): RedirectResponse

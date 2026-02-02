@@ -10,7 +10,7 @@ use Illuminate\View\View;
 
 final class FeaturesController extends Controller
 {
-    public function index(Request $request): View
+    public function index(): View
     {
         return view('marketing.features.modules');
     }
