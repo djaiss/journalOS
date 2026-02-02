@@ -54,7 +54,7 @@
 
         <div id="llm-access-key">
           @if ($journal->has_llm_access && $journal->llm_access_key)
-            <x-box padding="p-2">
+            <x-box padding="p-0">
               <x-slot:title>
                 {{ __('Access key') }}
               </x-slot>
@@ -63,7 +63,7 @@
                 {{ __('Keep this key private. Anyone with it can access your data in read-only mode.') }}
               </x-slot>
 
-              <div class="flex items-center gap-x-2" x-data="{
+              <div class="flex items-center gap-x-2 p-4" x-data="{
                 copied: false,
                 copyToClipboard() {
                   const el = document.createElement('textarea')
@@ -85,6 +85,13 @@
                   <x-phosphor-copy x-show="!copied" class="mr-1 h-4 w-4" />
                   <span x-text="copied ? '{{ __('Copied') }}' : '{{ __('Copy') }}'"></span>
                 </button>
+              </div>
+              <div class="border-t border-gray-200 dark:border-gray-700 p-4">
+                <p class="mb-2">{{ __('Access your journal entries by using the following URL structure:') }}</p>
+
+                <ul>
+                  <li class="border border-gray-200 dark:border-gray-700 rounded-lg p-2 text-center">{{ config('app.url') }}/llm/{accessKey}/{year}/{month}/{day}</li>
+                </ul>
               </div>
             </x-box>
           @endif
