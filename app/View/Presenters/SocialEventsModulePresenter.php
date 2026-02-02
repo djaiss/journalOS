@@ -38,9 +38,10 @@ final readonly class SocialEventsModulePresenter
             'duration' => $moduleSocialEvents?->duration,
             'has_event_type' => $moduleSocialEvents?->event_type !== null,
             'has_tone' => $moduleSocialEvents?->tone !== null,
-            'display_reset' => $moduleSocialEvents?->event_type !== null
-                || $moduleSocialEvents?->tone !== null
-                || $moduleSocialEvents?->duration !== null,
+            'display_reset' =>
+                $moduleSocialEvents?->event_type !== null
+                    || $moduleSocialEvents?->tone !== null
+                    || $moduleSocialEvents?->duration !== null,
         ];
     }
 
