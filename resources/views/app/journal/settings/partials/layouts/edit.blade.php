@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\Models\Journal $journal
  * @var \App\Models\Layout $layout

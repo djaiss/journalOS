@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $activeSince
  * @var string $reason

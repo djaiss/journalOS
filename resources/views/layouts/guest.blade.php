@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \Illuminate\View\ComponentSlot $slot
  * @var string|null $title

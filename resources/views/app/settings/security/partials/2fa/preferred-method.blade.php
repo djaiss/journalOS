@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string|null $preferredMethod
  * @var \Illuminate\Support\ViewErrorBag $errors

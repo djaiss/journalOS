@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $src
  * @var string $srcset

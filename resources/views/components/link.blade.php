@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var bool $turbo
  * @var \Illuminate\View\ComponentAttributeBag $attributes

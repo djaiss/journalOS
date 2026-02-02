@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string $size
  * @var string $type

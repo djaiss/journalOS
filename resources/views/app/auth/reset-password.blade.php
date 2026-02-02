@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \Illuminate\Http\Request $request
  */

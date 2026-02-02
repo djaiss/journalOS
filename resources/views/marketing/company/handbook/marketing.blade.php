@@ -1,4 +1,5 @@
 <?php
+
 /*
  * @var array $stats
  * @var \App\Models\MarketingPage $marketingPage

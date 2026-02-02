@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var string|null $status
  * @var \Illuminate\View\ComponentAttributeBag $attributes
