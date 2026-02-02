@@ -28,7 +28,7 @@
 <meta property="og:url" content="https://journalos.cloud/">
 
 <!-- Image -->
-<meta property="og:image" content="{{ public_path('images/marketing/social-sharing.png') }}">
+<meta property="og:image" content="https://journalos.cloud/images/marketing/social-sharing.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="JournalOS dashboard showing daily life modules">
@@ -36,4 +36,4 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="JournalOS – a self-hosted system to log your daily life">
 <meta name="twitter:description" content="Log your days in a structured way. No essays. No ads. Fully open source and self-hosted.">
-<meta name="twitter:image" content="{{ public_path('images/marketing/social-sharing.png') }}">
+<meta name="twitter:image" content="https://journalos.cloud/images/marketing/social-sharing.png">
