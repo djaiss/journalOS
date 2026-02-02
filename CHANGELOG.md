@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.7.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.6.0...djaiss/journalos-v0.7.0) (2026-02-02)
+
+
+### Features
+
+* add a normal mode for a journal entry ([#219](https://github.com/djaiss/journalOS/issues/219)) ([1903d72](https://github.com/djaiss/journalOS/commit/1903d729172f739da8b468f90f0cd30d152e20a8))
+* add images on login page ([#223](https://github.com/djaiss/journalOS/issues/223)) ([c89e1d5](https://github.com/djaiss/journalOS/commit/c89e1d5ba764c8128962f89512a1eb746ae54917))
+* add llm endpoints ([#214](https://github.com/djaiss/journalOS/issues/214)) ([474c7d1](https://github.com/djaiss/journalOS/commit/474c7d11a862ad5c7b87be2bf3f12c40b8c282ef))
+* add pricing page ([#224](https://github.com/djaiss/journalOS/issues/224)) ([9be3286](https://github.com/djaiss/journalOS/commit/9be3286d38e34ea3ccf1ae6005fa8ff461817320))
+* add reading module ([#201](https://github.com/djaiss/journalOS/issues/201)) ([ae8fcb5](https://github.com/djaiss/journalOS/commit/ae8fcb550f37337d66d8f5cdacd3fb6f8b0d4eb0))
+* add social events module ([#221](https://github.com/djaiss/journalOS/issues/221)) ([e115975](https://github.com/djaiss/journalOS/commit/e11597511a77df6c416aee2c84aa347b329bb027))
+* instructions for llm ([#225](https://github.com/djaiss/journalOS/issues/225)) ([94d0d1d](https://github.com/djaiss/journalOS/commit/94d0d1de091ae0c962edf2e275d57748f2a78709))
+* restore foreign keys for tables ([#216](https://github.com/djaiss/journalOS/issues/216)) ([09d8c62](https://github.com/djaiss/journalOS/commit/09d8c6262d6390dbdf763c45b809ccf162a0ee9f))
+
+
+### Bug Fixes
+
+* fix path ([#228](https://github.com/djaiss/journalOS/issues/228)) ([673f02b](https://github.com/djaiss/journalOS/commit/673f02b28e6d27ca6422eec4907c7f5fd6c22da4))
+* nullify journal_id in logs when journal is deleted ([#217](https://github.com/djaiss/journalOS/issues/217)) ([27c7a83](https://github.com/djaiss/journalOS/commit/27c7a83ed760c606b78f9897c87495f66483ac35))
+
+
+### Miscellaneous Chores
+
+* add social sharing ([#227](https://github.com/djaiss/journalOS/issues/227)) ([d60cd96](https://github.com/djaiss/journalOS/commit/d60cd9681b034b66fe2aef940bb6225de9142ee7))
+* **deps-dev:** bump barryvdh/laravel-debugbar from 3.16.3 to 4.0.2 ([#210](https://github.com/djaiss/journalOS/issues/210)) ([6c843cd](https://github.com/djaiss/journalOS/commit/6c843cd09627ba3cd8232c08986adfa17ab6136a))
+* formatting with mago ([#222](https://github.com/djaiss/journalOS/issues/222)) ([50b32a7](https://github.com/djaiss/journalOS/commit/50b32a79757f7cb62c9213cfe47402713f840d3c))
+* update skills ([#220](https://github.com/djaiss/journalOS/issues/220)) ([d5ce39d](https://github.com/djaiss/journalOS/commit/d5ce39dc84f3ca853a05a2405cdac4dd914e9071))
+* use mago to format ([#218](https://github.com/djaiss/journalOS/issues/218)) ([02e9bfd](https://github.com/djaiss/journalOS/commit/02e9bfddd7ee16adb660fb3272545497887cf639))
+
 ## [0.6.0](https://github.com/djaiss/journalOS/compare/djaiss/journalos-v0.5.0...djaiss/journalos-v0.6.0) (2026-01-20)
 
 
